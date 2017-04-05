@@ -1,0 +1,88 @@
+version: '2'
+
+services:
+    application:
+        container_name: renewal_application
+        image: debian
+        volumes:
+            - ./:/var/www/laravel
+            - ~/.ssh:/root/.ssh
+    workspace:
+        container_name: renewal_workspace
+        build:
+            context: ./.docker
+            dockerfile: Dockerfile.workspace
+        restart: always
+        volumes_from:
+            - application
+        tty: true
+    php-fpm:
+        container_name: renewal_php-fpm
+        build:
+            context: ./.docker
+            dockerfile: Dockerfile.php-fpm
+        restart: always
+        volumes_from:
+            - data
+            - application
+            - phpmyadmin
+        expose:
+            - "9000"
+        links:
+            - workspace
+            - mysql
+            - redis
+        environment:
+            PMA_HOST: mysql
+    nginx:
+        container_name: renewal_nginx
+        restart: always
+        tty: true
+        build:
+            context: ./.docker
+            dockerfile: Dockerfile.nginx
+        volumes_from:
+            - data
+            - application
+            - phpmyadmin
+        ports:
+            - "88:80"
+        links:
+            - php-fpm
+            - mysql
+            - redis
+    data:
+        container_name: renewal_data
+        image: debian
+        volumes:
+            - .docker/data/data:/data
+            - .docker/data/nginx:/var/log/nginx
+            - .docker/data/php-fpm:/var/log/php-fpm
+            - .docker/data/mysql/data:/var/lib/mysql
+            - .docker/data/mysql/log:/var/log/mysql
+    mysql:
+        container_name: renewal_mysql
+        restart: always
+        image: mysql:5.7
+        volumes_from:
+            - data
+        expose:
+            - "3306"
+        environment:
+            MYSQL_DATABASE: renewal
+            MYSQL_USER: renewal
+            MYSQL_PASSWORD: renewal
+            MYSQL_ROOT_PASSWORD: root
+    redis:
+        container_name: renewal_redis
+        restart: always
+        image: redis
+        expose:
+            - "6379"
+        volumes_from:
+            - data
+    phpmyadmin:
+        container_name: renewal_phpmyadmin
+        build:
+            context: ./.docker
+            dockerfile: Dockerfile.phpmyadmin

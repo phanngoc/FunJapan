@@ -1,0 +1,32 @@
+build:
+  check:
+    image: framgia/laravel-workspace
+    commands:
+      - framgia-ci run
+deploy:
+  rocketeer:
+    image: fdplugins/rocketeer:php5
+    when:
+      branch: develop
+    commands:
+      - rocketeer deploy --stage=staging --no-interaction
+  rocketeer:
+    image: fdplugins/rocketeer:php5
+    when:
+      branch: master
+    commands:
+      - rocketeer deploy --stage=production --branch=master --no-interaction
+notify:
+  chatwork:
+    image: fdplugins/chatwork
+    room_id: $$CHATWORK_ROOM_ID
+    token: $$CHATWORK_TOKEN
+    format: "TO ALL >>>\r\n[info][title]{repo.owner}/{repo.name}#{build.commit} {build.status}[/title]Branch: {build.branch}\r\nAuthor: {build.author}\r\nMessage: {build.message}\r\nhttp://ci-reports.framgia.vn/repositories/{repo.full_name}/builds/{build.number}/violations/[/info]"
+    when:
+      event: push
+cache:
+  mount:
+    - node_modules
+    - vendor
+    - bower_components
+    - .git

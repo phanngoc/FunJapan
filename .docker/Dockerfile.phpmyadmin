@@ -1,0 +1,30 @@
+FROM alpine:3.4
+
+MAINTAINER TungPro <mr.nttung@gmail.com>
+
+ENV VERSION 4.6.4
+ENV URL https://files.phpmyadmin.net/phpMyAdmin/${VERSION}/phpMyAdmin-${VERSION}-all-languages.tar.gz
+
+RUN set -x \
+    && mkdir -p /var/www \
+    && apk add --no-cache curl \
+    && curl --output phpMyAdmin.tar.gz --location $URL \
+    && apk del --no-cache curl \
+    && tar xzf phpMyAdmin.tar.gz \
+    && rm -f phpMyAdmin.tar.gz \
+    && mv phpMyAdmin-$VERSION-all-languages /var/www/phpmyadmin \
+    && rm -rf /var/www/phpmyadmin/js/jquery/src/ /var/www/phpmyadmin/js/openlayers/src/ /var/www/phpmyadmin/setup/ /var/www/phpmyadmin/sql/ /var/www/phpmyadmin/examples/ /var/www/phpmyadmin/test/ /var/www/phpmyadmin/po/ \
+    && chown -R root:root /var/www/phpmyadmin \
+    && find /var/www/phpmyadmin -type d -exec chmod 755 {} \; \
+    && find /var/www/phpmyadmin -type f -exec chmod 644 {} \;
+
+COPY phpmyadmin.config.inc.php /var/www/phpmyadmin/config.inc.php
+
+
+COPY phpmyadmin-run.sh /run.sh
+RUN chmod u+rwx /run.sh
+
+VOLUME /var/www/phpmyadmin
+
+ENTRYPOINT [ "/run.sh" ]
+CMD ["phpmyadmin"]
