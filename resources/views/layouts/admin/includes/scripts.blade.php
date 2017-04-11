@@ -1,0 +1,55 @@
+<!-- Mainly scripts -->
+{!! Html::script('assets/admin/js/jquery-2.1.1.js') !!}
+{!! Html::script('assets/admin/js/bootstrap.min.js') !!}
+{!! Html::script('assets/admin/js/plugins/metisMenu/jquery.metisMenu.js') !!}
+{!! Html::script('assets/admin/js/plugins/slimscroll/jquery.slimscroll.min.js') !!}
+
+<!-- Flot -->
+{!! Html::script('assets/admin/js/plugins/flot/jquery.flot.js') !!}
+{!! Html::script('assets/admin/js/plugins/flot/jquery.flot.tooltip.min.js') !!}
+{!! Html::script('assets/admin/js/plugins/flot/jquery.flot.spline.js') !!}
+{!! Html::script('assets/admin/js/plugins/flot/jquery.flot.resize.js') !!}
+{!! Html::script('assets/admin/js/plugins/flot/jquery.flot.pie.js') !!}
+
+<!-- Peity -->
+{!! Html::script('assets/admin/js/plugins/peity/jquery.peity.min.js') !!}
+{!! Html::script('assets/admin/js/demo/peity-demo.js') !!}
+
+<!-- Custom and plugin javascript -->
+{!! Html::script('assets/admin/js/inspinia.js') !!}
+{!! Html::script('assets/admin/js/plugins/pace/pace.min.js') !!}
+
+<!-- jQuery UI -->
+{!! Html::script('assets/admin/js/plugins/jquery-ui/jquery-ui.min.js') !!}
+
+<!-- GITTER -->
+{!! Html::script('assets/admin/js/plugins/gritter/jquery.gritter.min.js') !!}
+
+<!-- Sparkline -->
+{!! Html::script('assets/admin/js/plugins/sparkline/jquery.sparkline.min.js') !!}
+
+<!-- Sparkline demo data  -->
+{!! Html::script('assets/admin/js/demo/sparkline-demo.js') !!}
+
+<!-- ChartJS-->
+{!! Html::script('assets/admin/js/plugins/chartJs/Chart.min.js') !!}
+
+<!-- Toastr -->
+{!! Html::script('assets/admin/js/plugins/toastr/toastr.min.js') !!}
+
+
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                showMethod: 'slideDown',
+                timeOut: 4000
+            };
+            toastr.success('Responsive Admin Theme', 'Welcome to INSPINIA');
+
+        }, 1300);
+    });
+</script>
+@yield('script')

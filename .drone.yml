@@ -9,13 +9,13 @@ deploy:
     when:
       branch: develop
     commands:
-      - rocketeer deploy --stage=staging --no-interaction
+      - rocketeer deploy --on=staging --stage=staging --no-interaction
   rocketeer:
     image: fdplugins/rocketeer:php5
     when:
       branch: master
     commands:
-      - rocketeer deploy --stage=production --branch=master --no-interaction
+      - rocketeer deploy --on=production --stage=production --branch=master --no-interaction
 notify:
   chatwork:
     image: fdplugins/chatwork

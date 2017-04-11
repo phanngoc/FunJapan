@@ -1,6 +1,6 @@
 <?php
 use Rocketeer\Facades\Rocketeer;
 Rocketeer::addTaskListeners('deploy', 'before-symlink', function ($task) {
-    $task->runForCurrentRelease('gulp');
-    $task->runForCurrentRelease('php artisan dynamodb:migrate');
+    $task->runForCurrentRelease('npm run dev');
+    $task->runForCurrentRelease('php artisan migrate --force');
 });

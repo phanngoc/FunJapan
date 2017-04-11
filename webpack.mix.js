@@ -10,6 +10,22 @@ const { mix } = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+var assetPath = 'public/assets/';
+var assetsCopy = [
+    ['mock/admin/css', 'admin/css', false],
+    ['mock/admin/js', 'admin/js', false],
+    ['mock/admin/img', 'admin/img', false],
+    ['mock/admin/fonts', 'admin/fonts', false],
+    ['mock/admin/font-awesome', 'admin/font-awesome', false],
+    ['mock/admin/locales', 'admin/locales', false],
+];
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+for (var i = 0; i < assetsCopy.length; i++) {
+    mix.copy(assetsCopy[i][0], assetPath + assetsCopy[i][1], assetsCopy[i][2]);
+}
+
+mix.js('resources/assets/js/app.js', assetPath + 'js')
+    .sass('resources/assets/sass/app.scss', assetPath + 'css')
+    .js('resources/assets/js/admin/admin.js', assetPath + 'admin/js')
+    .sass('resources/assets/sass/admin.scss', assetPath + 'admin/css')
+;
