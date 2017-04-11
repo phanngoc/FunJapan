@@ -18,6 +18,19 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'description',
+        'rank',
+        'point',
+        'login_count',
+        'access_admin',
+        'avatar',
+        'gender',
+        'birthday',
+        'religion_id',
+        'location_id',
+        'locale_id',
+        'invite_code',
+        'subscriptions',
     ];
 
     /**
@@ -29,4 +42,14 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
