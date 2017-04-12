@@ -15,9 +15,9 @@ class CreateArticleLocalesTable extends Migration {
             $table->text('content');
             $table->integer('like_count')->default(0);
             $table->integer('comment_count')->default(0);
-            $table->string('share_count');
+            $table->string('share_count')->default(0);
             $table->integer('view_count')->default(0);
-            $table->timestamp('published_at');
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
     }

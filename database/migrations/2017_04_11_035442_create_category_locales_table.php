@@ -12,7 +12,7 @@ class CreateCategoryLocalesTable extends Migration {
             $table->integer('locale_id');
             $table->integer('category_id');
             $table->string('name');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
