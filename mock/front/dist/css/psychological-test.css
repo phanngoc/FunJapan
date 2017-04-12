@@ -1,0 +1,58 @@
+.psychological-test {
+  font-size: 24px;
+  /*タイトル*/
+  /*設問*/
+  /*アスタリスク消去*/
+  /*回答ボタン*/
+  /*ヘッダー・フッター*/
+}
+.psychological-test h1 {
+  background-color: #FFA3A3;
+  padding: 25px;
+  border-radius: 10px;
+  color: white;
+}
+.psychological-test .scfRadioButtonListBorder {
+  background-color: #FFF1F5;
+  padding: 15px;
+  border-radius: 10px;
+  color: #D06565;
+}
+.psychological-test .scfRadioButtonListLabel {
+  padding: 10px;
+  font-size: 20px;
+}
+.psychological-test .scfValidatorRequired,
+.psychological-test .scfRequired {
+  color: #FFF1F5;
+}
+.psychological-test input[type="submit"] {
+  background-color: #FF878D;
+  border-color: #FF878D;
+  width: 100%;
+  padding: 18px;
+  font-size: 17px;
+}
+.psychological-test header,
+.psychological-test footer {
+  background-color: #531d07;
+}
+.psychological-test header p,
+.psychological-test footer p {
+  color: white;
+  font-size: 16px;
+  padding: 20px;
+  margin-bottom: 0;
+}
+.psychological-test header p {
+  font-weight: bold;
+}
+.psychological-test .scfRadioButtonListGeneralPanel label {
+  margin-bottom: 0;
+}
+.psychological-test.mobile .scfRadioButtonListLabel {
+  font-size: 16px;
+}
+.psychological-test.mobile .scfRadioButtonListGeneralPanel label {
+  font-size: 18px;
+}
