@@ -9,7 +9,7 @@ class CreateReligionsTable extends Migration {
     {
         Schema::create('religions', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('place_holder');
+            $table->string('place_holder')->nullable();
             $table->timestamps();
         });
     }

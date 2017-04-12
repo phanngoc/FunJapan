@@ -9,10 +9,10 @@ class CreateMenuTable extends Migration {
     {
         Schema::create('menu', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('place_holder');
+            $table->string('place_holder')->nullable();
             $table->integer('parent_id')->nullable()->default(null);
-            $table->string('icon');
-            $table->string('link');
+            $table->string('icon')->nullable();
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }

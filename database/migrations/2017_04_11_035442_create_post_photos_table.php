@@ -12,7 +12,7 @@ class CreatePostPhotosTable extends Migration {
             $table->integer('article_id');
             $table->integer('article_locale_id');
             $table->string('photo')->nullable()->default(null);
-            $table->string('content');
+            $table->string('content')->nullable();
             $table->string('user_id');
             $table->timestamps();
         });

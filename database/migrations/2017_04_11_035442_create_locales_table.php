@@ -9,7 +9,7 @@ class CreateLocalesTable extends Migration {
     {
         Schema::create('locales', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('iso_code', 2);
+            $table->string('iso_code', 5);
             $table->string('name');
             $table->timestamps();
         });
