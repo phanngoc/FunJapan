@@ -36,8 +36,16 @@
 
 <!-- Toastr -->
 {!! Html::script('assets/admin/js/plugins/toastr/toastr.min.js') !!}
-
-
+<!-- Steps -->
+{!! Html::script('assets/admin/js/plugins/staps/jquery.steps.min.js') !!}
+<!-- Markdown -->
+{!! Html::script('assets/admin/js/plugins/bootstrap-markdown/bootstrap-markdown.js') !!}
+{!! Html::script('assets/admin/js/plugins/bootstrap-markdown/markdown.js') !!}
+<!-- Typehead -->
+{!! Html::script('assets/admin/js/plugins/typehead/bootstrap3-typeahead.min.js') !!}
+{!! Html::script('assets/admin/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js') !!}
+<!-- Datatables -->
+{!! Html::script('assets/admin/js/plugins/dataTables/datatables.min.js') !!}
 <script>
     $(document).ready(function() {
         setTimeout(function() {

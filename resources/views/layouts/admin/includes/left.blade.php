@@ -3,7 +3,7 @@
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="assets/admin/img/profile_small.jpg" />
+                            <img alt="image" class="img-circle" src="{{ asset('assets/admin/img/profile_small.jpg') }}" />
                              </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
@@ -20,6 +20,26 @@
                     IN+
                 </div>
             </li>
+            <li>
+                <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/article.article_management') }}</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{action('Admin\ArticlesController@index')}}">{{ trans('admin/article.article_list') }}</a></li>
+                    <li>
+                        <a href="{{action('Admin\ArticlesController@create')}}">{{ trans('admin/article.add_article') }}</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/tag.tag_management') }}</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{action('Admin\TagsController@index')}}">{{ trans('admin/tag.tag_list') }}</a></li>
+                    <li>
+                        <a href="#">{{ trans('admin/tag.add_tag') }}</a>
+                    </li>
+                </ul>
+            </li>
+
             <li>
                 <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
@@ -55,7 +75,7 @@
                     <li><a href="email_template.html">Email templates</a></li>
                 </ul>
             </li>
-            <li class="active">
+            <li>
                 <a href="metrics.html"><i class="fa fa-pie-chart"></i> <span class="nav-label">Metrics</span>  </a>
             </li>
             <li>

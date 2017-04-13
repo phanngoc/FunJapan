@@ -13,7 +13,10 @@
     @include('layouts.admin.includes.left')
     <div id="page-wrapper" class="gray-bg">
         @include('layouts.admin.includes.header')
-        @yield('content')
+        @include('layouts.admin.includes.notice_messages')
+        <div class="wrapper wrapper-content">
+            @yield('content')
+        </div>
         @include('layouts.admin.includes.footer')
     </div>
 </div>
