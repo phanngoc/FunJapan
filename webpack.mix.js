@@ -18,6 +18,10 @@ var assetsCopy = [
     ['mock/admin/fonts', 'admin/fonts', false],
     ['mock/admin/font-awesome', 'admin/font-awesome', false],
     ['mock/admin/locales', 'admin/locales', false],
+    ['mock/front/dist/js', 'js', false],
+    ['mock/front/dist/css', 'css', false],
+    ['mock/front/dist/fonts', 'fonts', false],
+    ['mock/front/dist/images', 'images', false],
 ];
 
 for (var i = 0; i < assetsCopy.length; i++) {
