@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "user_avata_src": "images/article/profile_01.png",
+      "user_name": "Chan Swee MEI",
+      "content": "nice article thank you!",
+      "post_date": "2016/12/15, 21:40",
+      "reply_count": 1,
+      "engagement_count": 1,
+      "reply": {
+        "user_avata_src": "images/article/profile_01.png",
+        "user_name": "Chan Swee MEI",
+        "content": "thank you!",
+        "post_date": "2016/12/15, 21:40",
+        "engagement_count": 1
+      }
+    },
+    {
+      "user_avata_src": "images/article/profile_01.png",
+      "user_name": "Chan Swee MEI",
+      "content": "nice article thank you!",
+      "post_date": "2016/12/15, 21:40",
+      "reply_count": 0,
+      "engagement_count": 0,
+      "reply": {}
+    },
+    {
+      "user_avata_src": "images/article/profile_01.png",
+      "user_name": "Chan Swee MEI",
+      "content": "nice article thank you!",
+      "post_date": "2016/12/15, 21:40",
+      "reply_count": 0,
+      "engagement_count": 0,
+      "reply": {}
+    },
+    {
+      "user_avata_src": "images/article/profile_01.png",
+      "user_name": "Chan Swee MEI",
+      "content": "nice article thank you!",
+      "post_date": "2016/12/15, 21:40",
+      "reply_count": 0,
+      "engagement_count": 0,
+      "reply": {}
+    },
+    {
+      "user_avata_src": "images/article/profile_01.png",
+      "user_name": "Chan Swee MEI",
+      "content": "nice article thank you!",
+      "post_date": "2016/12/15, 21:40",
+      "reply_count": 0,
+      "engagement_count": 0,
+      "reply": {}
+    }
+  ]
+}

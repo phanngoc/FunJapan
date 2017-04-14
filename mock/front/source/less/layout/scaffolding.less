@@ -1,0 +1,137 @@
+a {
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: @body-bg;
+    background-color: @brand-primary;
+  }
+  .img-thumbnail {
+    &:hover,
+    &:focus {
+      .opacity(.5);
+      background-color: transparent;
+    }
+  }
+}
+
+hr {
+  margin-top: (@line-height-computed / 2);
+  margin-bottom: (@line-height-computed / 2);
+  border-color: @list-group-border;
+}
+
+// YouTubeの埋め込みをresponsiveにする
+// iframeをdivやpで囲んでスタイルを適用する<p class="youtube-responsive"><iframe .../></p>
+.youtube-responsive {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+  iframe,
+  object,
+  embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+// Google Mapsの埋め込みをresponsiveにする
+// iframeをdivやpで囲んでスタイルを適用する<p class="googlemaps-responsive"><iframe .../></p>
+.googlemaps-responsive {
+  position: relative;
+  padding-bottom: 75%;
+  height: 0;
+  overflow: hidden;
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+body {
+  #top-container {
+    background-color: @body-bg;
+    padding: 0;
+  }
+  .main {
+    .staticpage {
+      &>div {
+        h1 {
+          font-size: 32px;
+          margin-top: 0;
+          &+p {
+            font-size: 18px;
+          }
+        }
+        h2 {
+          font-size: 24px;
+        }
+      }
+    }
+    article {
+      &,
+      &~* {
+        padding-left: 7px;
+        padding-right: 7px;
+      }
+      header {
+        h1 {
+          font-size: 26px;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+  .sidebar {
+    .list-group {
+      margin-bottom: 0;
+    }
+    .banner-sidebar-top {
+      margin-bottom: 24px;
+      margin-top: 0px;
+      img {
+        margin-bottom: 10px;
+      }
+      .sidebar-title {
+        margin-top: 0px;
+        top: 0px;
+      }
+      .banner-content {
+        margin-top: 10px;
+      }
+    }
+    .fb-like-box {
+      margin: 5px 0 5px 0;
+    }
+    hr {
+      margin: 0;
+    }
+    p.sidebar-title {
+      position: relative;
+      top: 10px;
+      font-size: 22px;
+      padding-bottom: 5px;
+      font-family: @font-family-vertically-long;
+      text-transform: uppercase;
+    }
+    ul.list-inline {
+      margin-bottom: 40px;
+      li>a {
+        color: @text-color;
+        font-size: 14px;
+        &:hover,
+        &:focus {
+          background-color: transparent;
+          color: @brand-primary;
+        }
+      }
+    }
+  }
+}

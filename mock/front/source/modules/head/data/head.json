@@ -1,0 +1,25 @@
+{
+  "head": {
+    "home": {
+      "title": "Home"
+    },
+    "article_detail": {
+      "title": "Article detail"
+    },
+    "fj_registration_1": {
+      "title": "FJ registration step 1"
+    },
+    "fj_registration_2": {
+      "title": "FJ registration step 2"
+    },
+    "fj_registration_3": {
+      "title": "FJ registration step 3"
+    },
+    "jmb_registration_2": {
+      "title": "JMB registration step 2"
+    },
+    "jmb_registration_3": {
+      "title": "JMB registration step 3"
+    }
+  }
+}

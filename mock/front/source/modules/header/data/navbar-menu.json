@@ -1,0 +1,77 @@
+{
+  "menus": [
+    {
+      "href_id": "coupons-dropdown",
+      "title": "Coupons",
+      "submenus": ["Get Coupons", "My Coupons", "Coupon Map", "How to use"],
+      "mobile": {
+        "href_id": "sm-coupons-dropdown"
+      }
+    },
+    {
+      "href_id": "other-menus-dropdown",
+      "title": "Other Menus",
+      "submenus": ["Series", "FJ Points", "FJ Talk", "Japan Guide", "Invite Friends", "Omikuji", "Map", "Personality Test"],
+      "mobile": {
+        "href_id": "sm-other-menus-dropdown"
+      }
+    },
+    {
+      "href_id": "categories-dropdown",
+      "title": "categories",
+      "submenus": ["All", "Travel", "Food", "Technology", "Tradition", "Entertainment", "Lifestyle", "Business", "Health", "Talent"],
+      "mobile": {
+        "href_id": "sm-categories-dropdown"
+      }
+    },
+    {
+      "href_id": "tags-dropdown",
+      "title": "TAGS",
+      "submenus": ["japan", "fun", "culture"],
+      "mobile": {
+        "href_id": "sm-tags-dropdown"
+      }
+    },
+    {
+      "href_id": "social-dropdown",
+      "title": "SOCIAL",
+      "submenus": [
+        {
+          "title": "facebook",
+          "class": "fa-facebook"
+        },
+        {
+          "title": "twitter",
+          "class": "fa-twitter"
+        },
+        {
+          "title": "instagram",
+          "class": "fa-instagram"
+        },
+        {
+          "title": "youtube",
+          "class": "fa-youtube-play"
+        }
+      ],        
+      "mobile": {
+        "href_id": "sm-social-dropdown"
+      }
+    },
+    {
+      "href_id": "legal-dropdown",
+      "title": "LEGAL",
+      "submenus": ["TERMS & CONDITIONS", "PRIVACY POLICIES"],
+      "mobile": {
+        "href_id": "sm-legal-dropdown"
+      }
+    },
+    {
+      "href_id": "info-dropdown",
+      "title": "FURTHER INFO",
+      "submenus": ["FAQ", "CONTACT US", "FOR MARKETERS"],
+      "mobile": {
+        "href_id": "sm-info-dropdown"
+      }
+    }
+  ]
+}

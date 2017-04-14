@@ -1,0 +1,173 @@
+@grid-light-gray-4: #f8f7f7;
+.custom-gutter(@size) {
+  &.row {
+    margin-left: -@size;
+    margin-right: -@size;
+  }
+  &.row>[class^="col"]:first-child {
+    padding-left: @size;
+  }
+  &.row>[class^="col"]:last-child {
+    padding-right: @size;
+  }
+  &.row>[class^="col"] {
+    padding-right: @size;
+    padding-left: @size;
+  }
+}
+
+.gutter-80 {
+  .custom-gutter(40px);
+}
+
+.gutter-32 {
+  .custom-gutter(16px);
+}
+
+.gutter-30 {
+  .custom-gutter(15px);
+}
+
+.gutter-16 {
+  .custom-gutter(8px);
+  @media only screen and (max-width: 768px) {
+    .custom-gutter(4px);
+  }
+}
+
+.gutter-12 {
+  .custom-gutter(6px);
+}
+
+.gutter-10 {
+  .custom-gutter(5px);
+}
+
+.gutter-4 {
+  .custom-gutter(2px);
+}
+
+.col-md-30,
+.col-md-70,
+.col-md-39,
+.col-md-61 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-md-22,
+.col-md-18,
+.col-md-82,
+.col-md-45,
+.col-md-55,
+.col-md-36,
+.col-md-64 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+@media (min-width: 768px) {
+  .col-md-22,
+  .col-md-30,
+  .col-md-70,
+  .col-md-45,
+  .col-md-55,
+  .col-md-39,
+  .col-md-61,
+  .col-md-18,
+  .col-md-82,
+  .col-md-36,
+  .col-md-64 {
+    float: left;
+  }
+  .col-md-22 {
+    width: 22%;
+  }
+  .col-md-30 {
+    width: 30.35%;
+  }
+  .col-md-70 {
+    width: 69.65%;
+  }
+  .col-md-45 {
+    width: 45.45%;
+  }
+  .col-md-55 {
+    width: 54.55%;
+  }
+  .col-md-39 {
+    width: 39.3%;
+  }
+  .col-md-61 {
+    width: 60.7%;
+  }
+  .col-md-18 {
+    width: 18%;
+  }
+  .col-md-82 {
+    width: 82%;
+  }
+  .col-md-36 {
+    width: 36.5%;
+  }
+  .col-md-64 {
+    width: 63.5%;
+  }
+}
+
+.col-xs-32,
+.col-xs-68 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-xs-32 {
+  width: 32.2%;
+}
+
+.col-md-68 {
+  width: 67.8%;
+}
+
+.container {
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
+  max-width: 1000px;
+  padding-left: 0;
+  padding-right: 0;
+  &.dark-background {
+    background-color: @grid-light-gray-4;
+  }
+}
+
+.container-outer-footer {
+  background-color: @global-footer-bg;
+}
+
+// Layout
+.top-body {
+  @media only screen and (max-width: 768px) {
+    padding: 0;
+  }
+  padding: 0 15px;
+  .main-content {
+    @media only screen and (max-width: 768px) {
+      padding: 0 16px;
+    }
+  }
+}
+
+.main-column {
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    margin-top: 0;
+  }
+  margin-top: 25px;
+}

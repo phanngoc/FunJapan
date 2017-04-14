@@ -1,0 +1,46 @@
+include ./../head/head
+include ./../header/header
+include ./../sidebar/sidebar-top
+
+doctype html
+html
+  block head
+  body
+    #top-container.top-container
+      .container.dark-background
+        // HEADER
+        +header(true)
+        // EOF HEADER
+        .top-body
+          // RECOMMENDED_POST
+          block recommended-post
+          // EOF RECOMMENDED_POST
+          // ARTICLE RANKING
+          block article-ranking
+          // EOF ARTICLE RANKING
+          .main-content
+            .row.gutter-32
+              .col-md-70.main-column
+                // MAIN
+                block main-content
+                // EOF MAIN
+              .col-md-30.sidebar
+                // SIDEBAR
+                +sidebar-top
+                // EOF SIDEBAR
+    block script   
+    script.
+      $(function() {
+        // Navbar
+        $('.fj-navbar').affix({
+          offset: {
+            top: 504
+          }
+        });
+        $('.fj-navbar-mobile').affix({
+          offset: {
+            top: 215
+          }
+        });
+      });
+      

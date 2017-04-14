@@ -1,0 +1,286 @@
+extends modules/templates/registration.pug
+
+block head
+  +head(head.jmb_registration_2)
+
+block registration-patial
+  .registration-body.jmb
+    .step-3-jmb
+      p.re-status Resigtration completed
+      p.re-checked
+        i.fa.fa-check-circle(aria-hidden='true')
+      p.re-thankyou Thank you for signing up!
+    .break-line
+      img.break-line-dk(src='./images/registration/break_line.png', alt='breack-line')
+      img.break-line-mb(src='./images/registration/break_line_sm.png', alt='breack-line')
+    .jmb-registration
+      .jmb-intro
+        .intro-title
+          p.sm-text ご搭乗・ご宿泊・ショッピングでマイルがたまる！
+          p.lg-text FJ 会員だけのスペシャルオファー
+          p.caret-down
+            i.fa.fa-caret-down(aria-hidden='true')
+        .card-banner
+          img(src='./images/registration/card_banner.png', alt='card_banner')
+          .ribbon-text
+            span.stars-group.left
+              i.fa.fa-star(aria-hidden='true')
+              i.fa.fa-star(aria-hidden='true')
+              i.fa.fa-star(aria-hidden='true')
+            span.text FJ会員限定カード
+            span.stars-group.right
+              i.fa.fa-star(aria-hidden='true')
+              i.fa.fa-star(aria-hidden='true')
+              i.fa.fa-star(aria-hidden='true')
+          .dialog
+            p.title
+              span.red-text Fun!
+              |  Japan 限定
+            p
+              span.green-text JALマイレージバンクカードをプレゼント。今すぐ会員登録してみませんか？
+        p.summary
+          span JALマイレージバンクは、ご搭乗やご宿泊・ショッピングなどでためたマイルを、魅力的な特典と交換できるJALのマイレージプログラムです。
+        .card-guide
+          img(src='./images/registration/card_guide.png', alt='card_banner')
+          .guide.blue-circle
+            p.title マイルをためる
+            p.description フライトやショッピングなどでマイルがたまります。
+          .guide.green-circle
+            p.title マイルをつかう
+            p.description 航空券のほか、クーポンなどの特典と交換ができます。
+      .jmb-intro-mobile
+        .intro-title
+          p.sm-text ご搭乗・ご宿泊・ショッピングでマイルがたまる！
+          p.lg-text FJ 会員だけのスペシャルオファー
+          p.caret-down
+            i.fa.fa-caret-down(aria-hidden='true')
+        .card-banner
+          img(src='./images/registration/card_banner_sm.png', alt='card_banner')
+          .ribbon-text
+            span.stars-group.left
+              i.fa.fa-star(aria-hidden='true')
+              i.fa.fa-star(aria-hidden='true')
+              i.fa.fa-star(aria-hidden='true')
+            span.text FJ会員限定カード
+            span.stars-group.right
+              i.fa.fa-star(aria-hidden='true')
+              i.fa.fa-star(aria-hidden='true')
+              i.fa.fa-star(aria-hidden='true')
+          .dialog
+            p.title
+              span.red-text Fun!
+              |  Japan 限定
+            p
+              span.green-text JALマイレージバンクカードをプレゼント。今すぐ会員登録してみませんか？
+        p.summary
+          span JALマイレージバンクは、ご搭乗やご宿泊・ショッピングなどでためたマイルを、魅力的な特典と交換できるJALのマイレージプログラムです。
+        .card-guide
+          img(src='./images/registration/card_guide_sm.png', alt='card_banner')
+          .guide.blue-circle
+            p.title マイルをためる
+            p.description フライトやショッピングなどでマイルがたまります。
+          .guide.green-circle
+            p.title マイルをつかう
+            p.description 航空券のほか、クーポンなどの特典と交換ができます。
+      .step-2.jmb
+        form#jmbRegisterForm(data-toggle='validator', role='form')
+          p.guide-text.center Please provide all of the required information below and click the Next button.
+          .row
+            .col-md-6
+              .form-group.row.has-feedback.has-info
+                label.col-md-36.col-form-label(for='firstName')
+                  | First name
+                  span.require *
+                .col-md-64.col-xs-11
+                  input#jmbFirstName.form-control(type='text', name='firstName', placeholder='First name')
+                  i#addFn_2.zmdi.zmdi-plus-circle-o.control-btn
+                  i#addFn_3.zmdi.zmdi-plus-circle-o.control-btn
+                  i#firstName1Info.fa.fa-question-circle.info-tooltip-btn(aria-hidden='true')
+            #firstName2_block.col-md-22.col-xs-11.hidden
+              .form-group.has-feedback.has-info
+                .col-md-12.no-padding
+                  input#jmbFirstName2.form-control(type='text', name='firstName2', placeholder='First name 2')
+                  i#rmFn_2.zmdi.zmdi-minus-circle-outline.control-btn
+                  i#firstName2Info.fa.fa-question-circle.info-tooltip-btn(aria-hidden='true')
+            #firstName3_block.col-md-22.col-xs-11.hidden
+              .form-group.has-feedback.has-info
+                .col-md-12.no-padding
+                  input#jmbFirstName3.form-control(type='text', name='firstName3', placeholder='First name 3')
+                  i#rmFn_3.zmdi.zmdi-minus-circle-outline.control-btn
+                  i#firstName3Info.fa.fa-question-circle.info-tooltip-btn(aria-hidden='true')
+          .row
+            .col-md-6
+              .form-group.row.has-feedback.has-info
+                label.col-md-36.col-form-label(for='lastName')
+                  | Last name
+                  span.require *
+                .col-md-64
+                  input#jmbLastName.form-control(type='text', name='lastName', placeholder='Last name')
+                  i#lastNameInfo.fa.fa-question-circle.info-tooltip-btn(aria-hidden='true')
+            .col-md-6
+              .form-group.row.has-info
+                label.col-md-36.col-form-label.alR(for='midName') Middle name
+                .col-md-64
+                  input#jmbMidName.form-control(type='text', name='midName', placeholder='Middle name')
+                  i#midNameInfo.fa.fa-question-circle.info-tooltip-btn(aria-hidden='true')
+          .row
+            .col-md-6
+              .form-group.row
+                label.col-md-36.col-form-label(for='gender')
+                  | Gender
+                  span.require *
+                .col-md-64
+                  select#jmbGender(name='gender')
+                    option(value='', selected='', hidden='') Select
+                    option Male
+                    option Female
+          .row
+            .col-md-6
+              .form-group.row.has-feedback.has-info
+                label.col-md-36.col-form-label(for='password')
+                  | JMB Password
+                  span.require *
+                .col-md-64
+                  input#jmbPassword.form-control(type='password', name='password', placeholder='●●●●●●●●●●')
+                  i#pwInfo.fa.fa-question-circle.info-tooltip-btn(aria-hidden='true')
+            .col-md-6
+              .form-group.row.has-feedback
+                label.col-md-36.col-form-label.alR(for='confirmPassword')
+                  | Confirm password
+                  span.require *
+                .col-md-64
+                  input#jmbConfirmPassword.form-control(type='password', name='confirmPassword', placeholder='●●●●●●●●●●')
+          .row
+            .col-md-6
+              .form-group.row
+                label.col-md-36.col-form-label(for='city')
+                  | Residence City
+                  span.require *
+                .col-md-64
+                  select#jmbCity(name='city')
+                    option(value='', selected='', hidden='') Select
+                    option Location 1
+                    option Location 2
+                    option Location 3
+                    option Location 4
+                    option Location 5
+                    option Location 6
+                    option Location 7
+                    option Location 8
+                    option Location 9
+                    option Location 10
+                    option Location 11
+            .col-md-6
+              .form-group.row
+                label.col-md-36.col-form-label.alR(for='country')
+                  | Country of Residence
+                  span.require *
+                .col-md-64
+                  select#jmbCountry(name='country')
+                    option(value='', selected='', hidden='') Select
+                    option Location 1
+                    option Location 2
+                    option Location 3
+                    option Location 4
+                    option Location 5
+                    option Location 6
+                    option Location 7
+                    option Location 8
+                    option Location 9
+                    option Location 10
+                    option Location 11
+          .row
+            .col-md-6
+              .form-group.row.has-feedback
+                label.col-md-36.col-form-label(for='zipcode')
+                  | Zip code
+                  span.require *
+                .col-md-64
+                  input#jmbZipcode.form-control(type='text', name='zipcode', placeholder='Zip code')
+          .form-group.row.has-feedback
+            label.col-md-18.col-form-label(for='address1')
+              | Address 1
+              span.require *
+            .col-md-82
+              input#jmbAddress1.form-control.addressInput(type='text', name='address1', placeholder='Address 1')
+          .form-group.row.has-feedback
+            label.col-md-18.col-form-label(for='address2')
+              | Address 2
+              span.require *
+            .col-md-82
+              input#jmbAddress2.form-control.addressInput(type='text', name='address2', placeholder='Address 2')
+              i.zmdi.zmdi-plus-circle-o.control-btn.address
+          .form-group.row.has-feedback
+            label.col-md-18.col-form-label(for='phoneNumber')
+              | Phone number
+              span.require *
+            .col-md-82
+              input#jmbPhoneNumber.form-control(type='text', name='phoneNumber', placeholder='Phone number')
+          .form-group.term
+            label.col-form-label Enrollment in JAL Mileage Bank (JMB)
+            p.guide-text
+              | Japan Airlines (JAL) is fully aware of the importance and responsibility to safeguard your personal information collected through online access, and will respectfully take all precautionary means for its handling and protection.
+              br
+              a(href='#')
+                i.zmdi.zmdi-open-in-new
+                | &nbsp 
+                span More information
+            p.term-title
+              label.col-form-label(for='term') Acceptance of Rules and Conditions
+              span.guide-text Please agree to the JMB Rules and Conditions to continue
+            p.term-banner
+              a(href='https://www.jal.co.jp/en/jalmile/rules.html', target='_blank')
+                img.banner-dk(src='./images/registration/jmb_term.png', alt='jmb_term')
+                img.banner-mb(src='./images/registration/jmb_term_sm.png', alt='jmb_term')
+          .form-group.term-check
+            .checkbox-holder.term-checkbox
+              input#jmbIsAcceptPolicy.terms-checkbox(type='checkbox', name='isAcceptPolicy', value='')
+              input(name='isAcceptPolicy', type='hidden', value='false')
+              label.checkbox-label.tick(for='isAcceptPolicy')
+              label.checkbox-label
+                span.guide-text.small
+                  | I have read and agree to the JMB Rules and Conditions and 
+                  a(href='#')
+                    i.zmdi.zmdi-open-in-new
+                    | &nbsp 
+                    span other relevant terms and conditions
+                  | .
+                  br
+                  |                         If you are under the age of 20, your parent or legal guardian must read and agree to the JMB Rules and Conditions and 
+                  a(href='#')
+                    i.zmdi.zmdi-open-in-new
+                    | &nbsp 
+                    span relevant terms and conditions
+                  |  before you submit your application.
+          .form-group.term-check.sm
+            p.guide-text.small
+              | I have read and agree to the JMB Rules and Conditions and 
+              a(href='#')
+                i.zmdi.zmdi-open-in-new
+                | &nbsp 
+                span other relevant terms and conditions
+              | .
+              br
+              |                         If you are under the age of 20, your parent or legal guardian must read and agree to the JMB Rules and Conditions and 
+              a(href='#')
+                i.zmdi.zmdi-open-in-new
+                | &nbsp 
+                span relevant terms and conditions
+              |  before you submit your application.
+            .checkbox-holder.term-checkbox
+              input#jmbIsAcceptPolicySM.terms-checkbox(type='checkbox', name='terms', value='')
+              input(name='terms', type='hidden', value='false')
+              label.checkbox-label.tick(for='terms')
+              label.checkbox-label
+                span I agree to above Terms & conditions.
+          .step-btn-container
+            input#submit-button.btn.btn-primary(type='submit', value='Next')
+  
+
+block script
+  script(type='text/javascript', src='js/vendor/jquery-3.2.1.js')
+  script(type='text/javascript', src='js/vendor/bootstrap-3.1.1.js')
+  script(type='text/javascript', src='js/vendor/jquery.custom-scrollbar.js')
+  script(type='text/javascript', src='js/vendor/jquery.validate.js')
+  script(type='text/javascript', src='js/vendor/additional-methods.min.js')
+  script(type='text/javascript', src='js/main/registration.js')

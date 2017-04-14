@@ -1,0 +1,134 @@
+@media_gray: #999999;
+@media_gray-2: #666666;
+@media_gray-3: #dddddd;
+@media_light-black: #5f5f60;
+@media_red: #dd280d;
+@media_light-pink: #ff6666;
+// コメント欄用media-list
+.media-list-comments {
+  @media only screen and (max-width: 768px) {
+    padding: 0 20px;
+  }
+  li.media {
+    position: relative;
+    margin-top: 10px;
+    .pull-left {
+      margin-right: 18px;
+    } //名前
+    .media-heading {
+      @media only screen and (max-width: 768px) {
+        font-size: 12px;
+      }
+      font-family: futura-medium;
+      font-size: 13px;
+      color: @media_light-pink;
+    }
+    &:first-child {
+      margin-top: 30px;
+    }
+    img.media-object {
+      width: 32px;
+      height: 32px;
+    }
+    .media-body {
+      overflow: auto;
+      .btn-delete {
+        font-size: 12px;
+        margin-left: 5px;
+        margin-bottom: 5px;
+        color: @media_red;
+        &:hover,
+        &:focus {
+          color: @media_red;
+          background-color: transparent;
+        }
+      }
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      ;
+      bottom: 0;
+      left: 50px;
+      right: 0;
+      height: 1px;
+      border-bottom: 1px solid @media_gray-3;
+    }
+    &:last-child {
+      &:before {
+        content: "";
+        position: absolute;
+        border-bottom: none;
+      }
+    }
+  }
+  p.comment-body {
+    @media only screen and (max-width: 1024px) {
+      font-size: 12px;
+    }
+    font-family: myriadpro-regular;
+    color: @media_gray-2;
+    font-size: 13px;
+    white-space: pre-wrap;
+  }
+  p.time {
+    .post-text {
+      @media only screen and (min-width: 768px) and (max-width: 1024) {
+        font-size: 11px;
+      }
+      font-family: myriadpro-regular;
+      font-size: 12px;
+      color: @media_gray;
+    }
+    .post-date {
+      @media only screen and (max-width: 1024px) {
+        font-size: 11px;
+      }
+      color: rgba(0, 0, 0, 0.6);
+      font-size: 11px;
+    }
+    .comment-reply-panel {
+      font-size: 12px;
+      .reply-count {
+        @media only screen and (max-width: 768px) {
+          font-size: 10px;
+        }
+        font-size: 11px;
+        color: @media_gray;
+      }
+    }
+    &>a {
+      color: @media_light-black;
+      background-color: transparent;
+      &:hover,
+      &:focus {
+        background-color: transparent;
+      }
+    }
+    margin-bottom: 20px;
+  }
+  .comment-favorite {
+    @media only screen and (max-width: 768px) {
+      font-size: 10px;
+    }
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 11px;
+    .engagement-count.disabled {
+      color: @media_gray-3;
+    }
+    &>a {
+      i {
+        color: @media_gray-3;
+        &.active {
+          color: @media_red;
+        }
+      }
+      &:focus,
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+}

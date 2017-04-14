@@ -1,0 +1,488 @@
+@comment-light-gray: #f1f0f0;
+@comment-gray-2: #666666;
+@comment-light-gray-2: #e4e4e4;
+@comment-light-gray-3: #f3f3f4;
+@comment-light-gray-4: #eeeeee;
+@comment-dark-gray: #999999;
+@comment-white: #ffffff;
+@comment-gray: #dddddd;
+@comment-red: #dd280d;
+@comment-pink: #fd3261;
+@comment-light-pink: #ff6666;
+#gifs-search-block {
+  /*right: 31px;*/
+  left: 0;
+  height: 400px;
+  max-height: 400px;
+}
+
+#emoji-picker-block {
+  /*right: 1px;*/
+  left: 0;
+  height: 300px;
+  max-height: 300px;
+}
+
+.placeholder-style {
+  font-family: opensans-italic;
+  color: @comment-dark-gray;
+  font-size: 11px;
+  padding: 2px 5px;
+}
+
+.gifs-comment-block {
+  background-color: @comment-white;
+  border: 1px solid #b0b0b0;
+  width: 278px;
+  padding-top: 3px;
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  border-radius: 3px;
+  z-index: 999;
+  display: none;
+  .popup-gif {
+    margin: 5px;
+    .search-for-text {
+      position: relative;
+      padding-bottom: 7px;
+      overflow: hidden;
+      padding-left: 4px;
+      padding-right: 11px;
+      .text-search-gif {
+        width: 80%;
+        padding: 2px 32px 2px 8px;
+      }
+      .text-search-emoji {
+        width: 80%;
+        padding: 2px 2px 2px 8px;
+      }
+      .search-image-gif {
+        position: absolute;
+        top: 5px;
+        right: 70px;
+        font-size: 18px;
+        font-weight: 400;
+        color: #67605d;
+        cursor: pointer;
+      }
+      .gif-header-button {
+        background: transparent none repeat scroll 0 0;
+        border: 1px solid #636364;
+        border-radius: 50%;
+        font-size: 14px;
+        height: 30px;
+        width: 30px;
+        padding: 0;
+      }
+    }
+    .body-result-gifs {
+      width: 266px;
+      max-height: 340px;
+      overflow-y: scroll;
+      padding-right: 5px;
+      .gif-image {
+        width: 250px;
+        height: auto;
+        margin-bottom: 3px;
+        cursor: pointer;
+      }
+    }
+    .body-twitter-emoji-list {
+      width: 266px;
+      max-height: 240px;
+      overflow-y: scroll;
+      padding-right: 5px;
+      position: absolute;
+      ul {
+        padding: 0;
+        margin: 0;
+        li {
+          list-style: none;
+        }
+      }
+    }
+    .category-menu-emoji-list {
+      margin-top: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      height: 40px;
+      position: absolute;
+      bottom: 0;
+      left: 5px;
+      span {
+        width: 30px;
+        padding: 5px;
+        height: auto;
+        float: left;
+        cursor: pointer;
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+      span.active {
+        border-top: solid 1px black;
+      }
+    }
+  }
+}
+
+.comment-area {
+  @media only screen and (max-width: 768px) {
+    margin-top: 0;
+  }
+  margin-top: 40px;
+  #comment-area-desktop {
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+  .login-requirement {
+    @media only screen and (max-width: 768px) {
+      padding: 17px 15px;
+    }
+    font-family: myriadpro-regular;
+    font-size: 13px;
+    border-bottom: 1px solid @comment-gray;
+    span {
+      @media only screen and (max-width: 768px) {
+        bottom: 0;
+      }
+      position: relative;
+      bottom: 14px;
+    }
+    a {
+      color: @comment-light-pink;
+      &:hover,
+      &:focus {
+        color: @comment-light-pink;
+        background-color: transparent;
+      }
+    }
+  }
+  .comment-posting-form {
+    @media only screen and (max-width: 768px) {
+      margin-top: 0;
+    }
+    margin-top: 30px;
+    .no-radius-bot {
+      @media only screen and (max-width: 768px) {
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid @comment-light-gray;
+      }
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      resize: none;
+      box-sizing: border-box;
+      max-height: 90px;
+      border-left: 1px solid @comment-gray;
+      border-top: 1px solid @comment-gray;
+      border-right: 1px solid @comment-gray;
+      border-bottom: none;
+      padding: 10px 20px;
+      font-family: myriadpro-regular;
+      color: #666666;
+      font-size: 13px;
+      white-space: pre-wrap;
+      box-shadow: none;
+      &::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        .placeholder-style();
+      }
+      &::-moz-placeholder {
+        /* Firefox 19+ */
+        .placeholder-style();
+      }
+      &:-ms-input-placeholder {
+        /* IE 10+ */
+        .placeholder-style();
+      }
+      &:-moz-placeholder {
+        /* Firefox 18- */
+        .placeholder-style();
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+    .radius-bot {
+      @media only screen and (max-width: 768px) {
+        border-radius: 0;
+        background-color: @comment-white;
+        border-bottom: 1px solid @comment-light-gray;
+        padding: 1px 20px;
+      }
+      border-left: 1px solid @comment-gray;
+      border-right: 1px solid @comment-gray;
+      border-bottom: 1px solid @comment-gray;
+      border-radius: 0 0 4px 4px;
+      margin-left: 0;
+      margin-right: 0;
+      background-color: @comment-light-gray-3;
+      padding: 5px 20px;
+      .text-left {
+        float: left;
+        padding: 0;
+      }
+      .text-right {
+        float: right;
+        padding: 4px 0;
+      }
+      button {
+        border-radius: 50px;
+        background-color: @comment-white;
+        padding: 2px 20px;
+        border: 1px solid @comment-gray;
+        i {
+          color: @comment-light-pink;
+        }
+      }
+    }
+    .btn-gif {
+      font-weight: 800;
+      font-size: 11px;
+      padding: 0 4px;
+      color: @comment-white;
+      background-color: @comment-dark-gray;
+      margin-right: 10px;
+       :hover {
+        color: white;
+        background-color: #e84545;
+      }
+    }
+    .btn-twemoji {
+      color: @comment-light-pink;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 0;
+       :hover {
+        cursor: pointer;
+        color: @comment-red;
+      }
+    }
+  }
+  .comment-reply-container {
+    margin-left: 16px;
+    .media-list-comments {
+      li.media:first-child {
+        margin-top: -10px;
+        &:before {
+          content: "";
+          position: absolute;
+          border-bottom: none;
+        }
+      }
+    }
+    .media-list-comments-replies {
+      padding: 0;
+      .time {
+        margin-bottom: 5px;
+      }
+    }
+    .comment-reply-form {
+      text-align: right;
+      margin-top: 0;
+      padding-bottom: 15px;
+      display: none;
+      .comment-to-top {
+        position: relative;
+        padding-left: 50px;
+        &>textarea {
+          @media only screen and (max-width: 768px) {
+            border-radius: 0;
+          }
+          height: 30px;
+          width: 100%;
+          padding: 3px;
+          padding-right: 30px;
+          border: 1px solid @comment-gray;
+          border-radius: 3px;
+          resize: none;
+          overflow: hidden;
+          font-family: myriadpro-regular;
+          color: #666666;
+          font-size: 13px;
+          white-space: pre-wrap;
+          &::-webkit-input-placeholder {
+            /* Chrome/Opera/Safari */
+            .placeholder-style();
+          }
+          &::-moz-placeholder {
+            /* Firefox 19+ */
+            .placeholder-style();
+          }
+          &:-ms-input-placeholder {
+            /* IE 10+ */
+            .placeholder-style();
+          }
+          &:-moz-placeholder {
+            /* Firefox 18- */
+            .placeholder-style();
+          }
+        }
+        &>i.btn-twemoji {
+          position: absolute;
+          bottom: 5px;
+          right: 10px;
+          font-size: 18px;
+          color: @comment-dark-gray;
+        }
+      }
+    }
+    span.comment-reply-panel {
+      display: block;
+      margin-bottom: 8px;
+      padding-left: 50px;
+      font-family: myriadpro-regular;
+      font-size: 13px;
+      white-space: pre-wrap;
+    }
+  }
+  .comment-sort-list {
+    .popular-comment-menu {
+      padding-right: 0;
+    }
+  }
+  .comment-body {
+    margin-bottom: 5px;
+    img.emoji {
+      margin-right: 3px;
+      width: 20px;
+      height: 20px;
+    }
+    img.gif-image {
+      height: auto;
+      max-width: 100%;
+    }
+  }
+}
+
+#comment-modal {
+  top: 0;
+  .modal-dialog {
+    width: 100%;
+    margin: 0;
+    .modal-content {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+    }
+  }
+}
+
+.show-comment-modal,
+.hide-comment-modal {
+  &>p {
+    font-family: futura-medium;
+    font-size: 11px;
+    color: @comment-gray-2;
+    background-color: @comment-light-gray-4;
+    padding: 12px 10px 9px;
+    border-bottom: 2px solid @comment-gray;
+    margin-bottom: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    .comment-count {
+      color: @comment-light-pink;
+    }
+    .suggest-text {
+      color: @comment-dark-gray;
+      font-size: 10px;
+    }
+    span>i.fa {
+      font-size: 12px;
+      color: @comment-light-pink;
+      padding: 2px 3px;
+      ;
+      border: 1px solid @comment-light-pink;
+      border-radius: 50%;
+      background-color: @comment-white;
+    }
+  }
+}
+
+.show-comment-modal {
+  @media only screen and (max-width: 768px) {
+    display: block;
+  }
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.hide-comment-modal {
+  display: none;
+}
+
+.emoji-list li {
+  width: 34px;
+  font-size: 30px;
+  float: left;
+  display: inline-block;
+  padding: 2px;
+  margin: 4px;
+  cursor: pointer;
+  img.emoji {
+    cursor: pointer;
+    height: 1em;
+    width: 1em;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.1em;
+  }
+}
+
+.popup-box-on {
+  display: block !important;
+}
+
+.body-result-gifs::-webkit-scrollbar,
+.body-twitter-emoji-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.body-result-gifs::-webkit-scrollbar-track,
+.body-twitter-emoji-list::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.body-result-gifs::-webkit-scrollbar-thumb,
+.body-twitter-emoji-list::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.no-overflow-hidden {
+  overflow: visible;
+}
+
+.comment-pagination {
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    margin-left: 0;
+    &>ul>li>a {
+      font-size: 10px;
+      padding: 1px 5px;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    margin-left: 0;
+  }
+  margin-left: 50px;
+  li>a,
+  li.disabled>a {
+    background-color: inherit;
+    &:hover,
+    &:focus {
+      background-color: inherit;
+    }
+  }
+}

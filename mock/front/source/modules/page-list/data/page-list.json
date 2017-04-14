@@ -1,0 +1,26 @@
+{
+  "pageList": {
+    "data": [{
+      "title": "Home",
+      "url": "/index"
+    }, {
+      "title": "Article detail",
+      "url": "/article-detail"
+    }, {
+      "title": "FJ registration step 1",
+      "url": "/registration-st1"
+    }, {
+      "title": "FJ registration step 2",
+      "url": "/registration-st2"
+    }, {
+      "title": "FJ registration step 3",
+      "url": "/registration-st3"
+    }, {
+      "title": "JMB registration step 2",
+      "url": "/registration-st2-jmb"
+    }, {
+      "title": "JMB registration step 3",
+      "url": "/registration-st3-jmb"
+    }]
+  }
+}

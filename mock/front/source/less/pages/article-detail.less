@@ -1,0 +1,76 @@
+.detail {
+  .navbar-default {
+    border-radius: 3px;
+  }
+}
+
+.article-detail-title {
+  @media only screen and (max-width: 768px) {
+    font-size: 16px;
+  }
+  font-family: futura-medium;
+  font-size: 24px;
+  color: @engagement-black;
+}
+
+.article-detail-category {
+  @media only screen and (max-width: 768px) {
+    font-family: opensans-bold;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: @list-group-pink;
+    display: block;
+    margin-top: 10px;
+  }
+  display: none;
+}
+
+.detail-breadcrumbs {
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
+  margin-bottom: 28px;
+  position: relative;
+  right: 16px;
+}
+
+.article-body {
+  @media only screen and (max-width: 768px) {
+    font-size: 12px;
+  }
+  margin-top: 35px;
+  margin-bottom: 20px;
+  img {
+    .img-responsive(inline); // 記事本文中のimgはすべてresponsiveにする。
+  }
+  a {
+    color: @article-anchor-color;
+    text-decoration: underline;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    &:hover,
+    &:focus {
+      color: @body-bg;
+      background-color: @article-anchor-color;
+    }
+  }
+}
+
+//sidebar
+.detail-about-author {
+  .about-author {
+    @media only screen and (max-width: 768px) {
+      font-size: 12px;
+    }
+    font-family: myriadpro-regular;
+    font-size: 14px;
+    margin-top: 15px;
+    color: @sidebar-gray-2;
+  }
+}
+
+.comment-area {
+  .comment-count {
+    color: @sidebar-red;
+  }
+}

@@ -1,0 +1,1408 @@
+@registration-light-gray: #f3f3f4;
+@registration-red-3: #fc4949;
+@registration-gray: #999999;
+@registration-white: #ffffff;
+@registration-light-pink: #ff6666;
+@registration-red-2: #ff3333;
+@registration-black: #333333;
+@registration-gray-2: #666666;
+@registration-light-red: #fc5959;
+@registration-gray-4: #f8f8f8;
+@registration-dark-gray-2: #ccc;
+@registration-red-4: #ff5c5c;
+@registration-green: #6ec07d;
+@registration-red-5: #ff4747;
+@registration-light-blue: #85d6ff;
+@registration-light-blue-2: #79bee1;
+@registration-dark-blue: #3081d3;
+@registration-dark-blue-2: #3379be;
+@registration-yellow-green: #e1e1c0;
+@registration-gradient: rgba(74, 74, 74, 0.3);
+.registration-body {
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(208, 208, 224, 1);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(208, 208, 224, 1);
+  box-shadow: 0px 0px 10px 0px rgba(208, 208, 224, 1);
+  &.jmb {
+    .break-line {
+      text-align: center;
+      img {
+        width: 100%;
+      }
+      .break-line-dk {
+        @media only screen and (max-width: 768px) {
+          display: none;
+        }
+        margin-top: 65px;
+      }
+      .break-line-mb {
+        @media only screen and (max-width: 768px) {
+          display: block;
+        }
+        display: none;
+        margin-top: 30px;
+      }
+    }
+  }
+}
+
+.step-btn-container {
+  text-align: center;
+  &>a,
+  input {
+    @media only screen and (max-width: 768px) {
+      font-size: 12px;
+    }
+    font-family: futura-medium;
+    font-size: 18px;
+    color: @registration-white;
+    background-color: @registration-red-4;
+    border-radius: 50px;
+    border: none;
+    -webkit-box-shadow: 0px 3px 0px #dd280d;
+    -moz-box-shadow: 0px 3px 0px #dd280d;
+    box-shadow: 0px 3px 0px #dd280d;
+    &:hover,
+    &:focus {
+      background-color: @registration-red-4;
+      border: none;
+      outline: none;
+    }
+  }
+}
+
+.step-1 {
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    margin: 0;
+  }
+  @media only screen and (max-width: 768px) {
+    padding: 30px 0 150px;
+  }
+  text-align: center;
+  padding: 70px 112px 112px;
+  .welcome-title {
+    @media only screen and (max-width: 768px) {
+      margin-top: 44px;
+      padding-top: 11px;
+    }
+    display: inline-block;
+    font-family: futura-medium;
+    padding: 5px 30px 0px;
+    margin-top: 50px;
+    position: relative;
+    .welcome-text {
+      @media only screen and (max-width: 768px) {
+        font-size: 18px;
+      }
+      font-size: 25px;
+      color: @registration-red-3;
+      margin-bottom: 0;
+    }
+    .welcome-text-country {
+      @media only screen and (max-width: 768px) {
+        margin-top: 7px;
+        margin-bottom: 0;
+        line-height: 1.1;
+      }
+      font-size: 14px;
+      color: @registration-gray;
+      margin-bottom: 0;
+    }
+  }
+  .intro-area {
+    @media only screen and (max-width: 768px) {
+      margin-top: 10px;
+    }
+    margin-top: 20px;
+    position: relative;
+    .intro-card {
+      @media only screen and (max-width: 768px) {
+        width: 70%;
+      }
+      display: inline-block;
+      width: 67%;
+      margin-top: 40px;
+      position: relative;
+      z-index: 2;
+      .card-img {
+        @media only screen and (min-width: 768px) and (max-width: 1024px) {
+          height: 160px;
+          width: 160px;
+        }
+        @media only screen and (max-width: 768px) {
+          height: 196px;
+          width: 196px;
+          margin: 0 auto;
+        }
+        position: relative;
+        text-align: left;
+        height: 214px;
+        width: 214px;
+        overflow: hidden;
+        &:after {
+          content: " ";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border: 10px solid rgba(245, 245, 245, 0.72);
+        }
+        &>img {
+          @media only screen and (min-width: 768px) and (max-width: 1024px) {
+            width: 100%;
+            height: auto;
+          }
+          @media only screen and (max-width: 768px) {
+            width: 100%;
+            height: auto;
+          }
+          width: 100%;
+          height: auto;
+        }
+      }
+      .card-info {
+        @media only screen and (max-width: 768px) {
+          margin-top: 20px;
+        }
+        text-align: left;
+        margin-top: 8px;
+        .card-number {
+          @media only screen and (max-width: 768px) {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            float: left;
+          }
+          display: inline-block;
+          font-family: futura-bold;
+          font-size: 12px;
+          color: @registration-white;
+          padding: 4px;
+          width: 25px;
+          background-color: @registration-light-pink;
+        }
+        .card-title {
+          @media only screen and (max-width: 768px) {
+            font-size: 14px;
+            line-height: 1.2;
+            display: inline-block;
+            float: left;
+            width: 84%;
+            margin-top: 0;
+            margin-bottom: 10px;
+          }
+          font-family: futura-medium;
+          font-size: 15px;
+          color: @registration-red-2;
+          margin-top: 8px;
+          margin-bottom: 5px;
+        }
+        .card-description {
+          @media only screen and (max-width: 768px) {
+            margin-top: 5px;
+            clear: left;
+          }
+          color: @registration-gray-2;
+          font-family: myriadpro-regular;
+          font-size: 12px;
+          line-height: 1.3;
+        }
+      }
+    }
+    .col-md-6 {
+      &:nth-child(odd) {
+        .intro-card {
+          @media only screen and (max-width: 768px) {
+            float: none;
+            left: 0;
+          }
+          float: left;
+          left: 20px;
+        }
+      }
+      &:nth-child(even) {
+        .intro-card {
+          @media only screen and (max-width: 768px) {
+            float: none;
+            right: 0;
+          }
+          float: right;
+          right: 20px;
+        }
+      }
+    }
+    .bg-square {
+      @media only screen and (max-width: 768px) {
+        display: none;
+      }
+      width: 54%;
+      height: 50%;
+      border: 5px solid rgba(255, 102, 102, 0.07);
+      position: absolute;
+      top: 150px;
+      left: 47%;
+      transform: translate(-50%, 0);
+      z-index: 1;
+    }
+  }
+  .signup-area {
+    @media only screen and (max-width: 1030px) {
+      display: none;
+    }
+    position: relative;
+    background-size: cover !important;
+    background-position: center !important;
+    height: 209px;
+    background: url('./../images/registration/registration_banner_top.png');
+    &:before {
+      content: " ";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 10px solid rgba(245, 245, 245, 0.72);
+    }
+    .registration-bottom-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+    &>.row {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+    }
+    .signup-btn-container {
+      width: 210px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-37%, -50%);
+      &>a.btn {
+        @media only screen and (max-width: 768px) {
+          height: 30px;
+          padding-top: 2px;
+          padding-bottom: 2px;
+        }
+        display: block;
+        height: 40px;
+        opacity: 0.9;
+        position: relative;
+        margin: 15px 0;
+        padding-top: 7px;
+        padding-bottom: 6px;
+        &>span {
+          line-height: 25px;
+          font-family: futura-medium;
+          font-size: 13px;
+          i {
+            font-size: 18px;
+            position: relative;
+            top: 2px;
+          }
+        }
+        &.email-signup {
+          color: @registration-gray-2;
+          background-color: @registration-white;
+          -webkit-box-shadow: 0px 2px 0px #e0dcdc;
+          -moz-box-shadow: 0px 2px 0px #e0dcdc;
+          box-shadow: 0px 2px 0px #e0dcdc;
+          &:hover,
+          &:focus {
+            background-color: @registration-white;
+          }
+        }
+        &.fb-signup {
+          color: @registration-white;
+          background-color: @registration-dark-blue;
+          -webkit-box-shadow: 0px 2px 0px @registration-dark-blue-2;
+          -moz-box-shadow: 0px 2px 0px @registration-dark-blue-2;
+          box-shadow: 0px 2px 0px @registration-dark-blue-2;
+          &:hover,
+          &:focus {
+            color: @registration-white;
+            background-color: @registration-dark-blue;
+          }
+        }
+        &.gg-signup {
+          color: @registration-white;
+          background-color: @registration-light-red;
+          -webkit-box-shadow: 0px 2px 0px #dd280d;
+          -moz-box-shadow: 0px 2px 0px #dd280d;
+          box-shadow: 0px 2px 0px #dd280d;
+          &:hover,
+          &:focus {
+            color: @registration-white;
+            background-color: @registration-light-red;
+          }
+        }
+      }
+    }
+    &.sm {
+      @media only screen and (max-width: 1030px) {
+        display: block;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+      display: none;
+      position: relative;
+      height: 180px;
+      overflow: hidden;
+      background-size: 100% 100% !important;
+      background: url('./../images/registration/registration_banner_sm.png');
+      .signup-btn-container {
+        @media only screen and (min-width: 480px) and (max-width: 768px) {
+          right: 15%;
+        }
+        @media only screen and (max-width: 480px) {
+          right: 6%;
+        }
+        @media only screen and (min-width: 300px) and (max-width: 350px) {
+          width: 145px;
+        }
+        float: right;
+        right: 12%;
+        left: auto;
+        transform: translate(0,
+        -50%);
+        width: 165px;
+        &>a.btn {
+          &>span {
+            font-size: 11px;
+          }
+        }
+      }
+    }
+    &.bottom {
+      height: 180px;
+      background: url('./../images/registration/registration_banner_bottom.png');
+      .signup-btn-container {
+        width: 50%;
+        float: right;
+        transform: translate(0, -50%);
+        &>a.btn {
+          width: 55%;
+          display: block;
+          margin: 15px auto;
+        }
+      }
+    }
+  }
+}
+
+.step-2 {
+  @media only screen and (max-width: 768px) {
+    padding: 30px 0 38px;
+  }
+  padding: 55px 76px 81px;
+  .form-group {
+    @media only screen and (max-width: 768px) {
+      padding: 0 15px;
+      margin-bottom: 11px;
+    }
+    margin-bottom: 35px;
+    .col-form-label {
+      @media only screen and (max-width: 768px) {
+        font-size: 14px;
+        padding-bottom: 0;
+        margin-bottom: 3px;
+      }
+      font-family: futura-medium;
+      font-size: 14px;
+      font-weight: normal;
+      color: @registration-black;
+      padding-top: 8px;
+      &.alR {
+        @media only screen and (max-width: 768px) {
+          padding-left: 8px;
+        }
+        padding-left: 25px;
+      }
+    }
+    .placholder-style {
+      @media only screen and (max-width: 768px) {
+        font-size: 12px;
+      }
+      font-family: myriadpro-regular;
+      font-size: 14px;
+      color: @registration-gray;
+    }
+    .form-input {
+      @media only screen and (max-width: 768px) {
+        height: 37px;
+      }
+      height: 40px;
+      box-shadow: none;
+      background-color: @registration-gray-4;
+      &::-webkit-input-placeholder::after {
+        /* Chrome/Opera/Safari */
+        .placholder-style();
+      }
+      &::-moz-placeholder::after {
+        /* Firefox 19+ */
+        .placholder-style();
+      }
+      &:-ms-input-placeholder::after {
+        /* IE 10+ */
+        .placholder-style();
+      }
+      &:-moz-placeholder::after {
+        /* Firefox 18- */
+        .placholder-style();
+      }
+      &:focus {
+        background-color: @registration-white;
+        outline: none;
+      }
+    }
+    input {
+      .form-input();
+      &[type="checkbox"] {
+        @media only screen and (max-width: 768px) {
+          height: 15px;
+          width: 15px;
+        }
+        height: 20px;
+        width: 20px;
+        margin-right: 10px;
+        background-color: @registration-white;
+        position: relative;
+        opacity: 0;
+        &:checked+input+.checkbox-label {
+          border: none;
+          background-color: @registration-green;
+          &.tick:after {
+            opacity: 1;
+          }
+        }
+      }
+    }
+    select {
+      .form-control();
+      .form-input();
+    }
+    .combodate {
+      display: block;
+      text-align: center;
+      &>select {
+        display: inline-block;
+        width: 30% !important;
+        &:nth-child(2) {
+          @media only screen and (max-width: 768px) {
+            margin: 0 3%;
+          }
+          margin: 0 4.2%;
+        }
+      }
+    }
+    label {
+      display: block;
+      .require {
+        color: @registration-red-2;
+      }
+      &.help-block {
+        color: @registration-red-2;
+      }
+    }
+    .checkbox-holder {
+      position: relative;
+      &:first-child {
+        margin-bottom: 7px;
+      }
+    }
+    .checkbox-label {
+      @media only screen and (max-width: 768px) {
+        font-size: 12px;
+      }
+      display: inline;
+      font-family: myriadpro-regular;
+      font-size: 14px;
+      font-weight: normal;
+      color: @registration-gray-2;
+      position: relative;
+      bottom: 5px;
+      &.tick {
+        @media only screen and (max-width: 768px) {
+          width: 16px;
+          height: 16px;
+        }
+        cursor: pointer;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        bottom: 1px;
+        left: 0;
+        background: @registration-white;
+        border: 1px solid @registration-dark-gray-2;
+        border-radius: 4px;
+        &:after {
+          @media only screen and (max-width: 768px) {
+            bottom: 6px;
+            left: 3px;
+            width: 10px;
+            height: 6px;
+          }
+          content: '';
+          opacity: 0;
+          position: absolute;
+          bottom: 8px;
+          left: 5px;
+          width: 11px;
+          height: 7px;
+          border: 3px solid @registration-white;
+          border-top: none;
+          border-right: none;
+          transform: rotate(-45deg);
+        }
+      }
+    }
+    &.term {
+      @media only screen and (max-width: 768px) {
+        padding-bottom: 15px;
+        margin-bottom: 30px;
+      }
+      margin-bottom: 10px;
+      .col-form-label {
+        @media only screen and (max-width: 768px) {
+          margin-bottom: 8px;
+        }
+        margin-bottom: 8;
+      }
+      .scrollbar-inner {
+        @media only screen and (max-width: 768px) {
+          height: 426px;
+          font-size: 12px;
+        }
+        font-family: myriadpro-regular;
+        font-size: 13px;
+        color: @registration-black;
+        padding: 15px 25px;
+        border: 1px solid @registration-dark-gray-2;
+        height: 310px;
+        background-color: @registration-white;
+        .overview {
+          h1:nth-child(1) {
+            margin-top: 0;
+          }
+        }
+      }
+    }
+    &.term-check {
+      text-align: center;
+      .term-checkbox {
+        @media only screen and (max-width: 768px) {
+          color: @registration-green;
+          margin: 0 auto;
+          padding: 2px 13px;
+          border: 1px solid @registration-green;
+          border-radius: 50px;
+          margin-bottom: 10px;
+        }
+        display: inline-block;
+        margin-top: 7px;
+        text-align: center;
+        .checkbox-label {
+          @media only screen and (max-width: 768px) {
+            bottom: 2px;
+            color: @registration-green;
+            font-family: futura-medium;
+          }
+          color: @registration-gray-2;
+        }
+        .checkbox-label.tick {
+          @media only screen and (max-width: 768px) {
+            bottom: 1px;
+            left: 19px;
+            border: 1px solid @registration-green;
+          }
+          &:after {
+            @media only screen and (max-width: 768px) {
+              bottom: 5px;
+              left: 2px;
+            }
+          }
+        }
+      }
+    }
+    .tooltip {
+      max-width: 260px;
+      right: 0 !important;
+      left: auto !important;
+      line-height: 1.1;
+      .tooltip-arrow {
+        left: auto !important;
+        right: 24px;
+      }
+      .tooltip-inner {
+        text-align: left;
+        max-width: 260px;
+        padding: 8px;
+        ul {
+          margin-bottom: 0;
+          padding-left: 20px;
+          li {
+            font-size: 15px;
+            margin-bottom: 7px;
+            span {
+              font-family: myriadpro-regular;
+              font-size: 12.7px;
+              position: relative;
+              right: 7px;
+            }
+          }
+        }
+      }
+      &.top {
+        .tooltip-arrow {
+          border-top-color: @registration-green;
+        }
+        .tooltip-inner {
+          background-color: @registration-green;
+        }
+      }
+      &.bottom {
+        .tooltip-arrow {
+          border-bottom-color: @registration-light-pink;
+        }
+        .tooltip-inner {
+          background-color: @registration-light-pink;
+        }
+      }
+    }
+    &.has-info {
+      .info-tooltip-btn {
+        font-size: 20px;
+        position: absolute;
+        top: 10px;
+        right: 21px;
+        color: @registration-green;
+        cursor: pointer;
+      }
+    }
+  }
+  .step-btn-container {
+    @media only screen and (max-width: 768px) {
+      margin-top: 20px;
+    }
+    margin-top: 45px;
+    &>a,
+    input {
+      @media only screen and (max-width: 768px) {
+        padding: 5px 115px;
+      }
+      text-transform: uppercase;
+      padding: 7px 77px 5px;
+    }
+  }
+  &.jmb {
+    @media only screen and (max-width: 768px) {
+      padding-top: 10px;
+      padding-bottom: 50px;
+      padding: 25px 10px 50px;
+      margin-top: 30px;
+    }
+    border-radius: 10px;
+    padding: 50px 55px 80px;
+    background-color: @registration-white;
+    margin-top: 60px;
+    #register-form {
+      margin-top: 0;
+    }
+    .form-group.guide {
+      margin-bottom: 0;
+      margin-top: 55px;
+    }
+    .control-btn {
+      position: absolute;
+      top: 10px;
+      right: -17px;
+      font-size: 22px;
+      color: @registration-gray;
+      z-index: 2;
+      cursor: pointer;
+      &:hover,
+      &:focus {
+        background-color: transparent;
+      }
+      &.address {
+        top: 45px;
+        right: 17px;
+      }
+    }
+    .no-padding {
+      @media only screen and (max-width: 768px) {
+        margin-left: 0;
+      }
+      padding-left: 0;
+      padding-right: 0;
+      margin-left: 16px;
+      .control-btn {
+        right: -25px;
+      }
+      .info-tooltip-btn {
+        right: 12px;
+      }
+      .tooltip {
+        right: -8px !important;
+      }
+    }
+    #addLn_3 {
+      right: 25px;
+    }
+    .term {
+      @media only screen and (max-width: 768px) {
+        padding-top: 20px;
+        padding-bottom: 30px;
+        margin-top: 30px;
+      }
+      margin-top: 70px;
+      .guide-text {
+        @media only screen and (max-width: 768px) {
+          display: block;
+        }
+      }
+      .term-title {
+        margin-bottom: 5px;
+        margin-top: 20px;
+      }
+      .col-form-label {
+        display: inline;
+        margin-right: 15px;
+      }
+      .overview {
+        h2 {
+          margin-top: 5px;
+          margin-bottom: 0;
+          font-family: myriadpro-bold;
+          font-size: 15px;
+        }
+        b {
+          font-family: myriadpro-bold;
+          font-weight: normal;
+        }
+        .alR {
+          text-align: right;
+        }
+        .mgt15 {
+          margin-top: 15px !important;
+        }
+      }
+      .term-banner {
+        margin-top: 15px;
+        img {
+          width: 100%;
+        }
+        .banner-dk {
+          @media only screen and (max-width: 768px) {
+            display: none;
+          }
+        }
+        .banner-mb {
+          @media only screen and (max-width: 768px) {
+            display: inline;
+          }
+          display: none;
+        }
+      }
+    }
+    .terms-checkbox {
+      @media only screen and (max-width: 768px) {
+        float: left;
+        top: 2px;
+        left: 7px;
+        z-index: 2;
+      }
+      margin: 0;
+    }
+    .term-check {
+      @media only screen and (max-width: 768px) {
+        display: none;
+      }
+      &.sm {
+        @media only screen and (max-width: 768px) {
+          display: block;
+        }
+        display: none;
+        .term-checkbox {
+          margin-bottom: 20px;
+        }
+        .guide-text {
+          text-align: left;
+          padding: 0 5px;
+          margin-bottom: 20px;
+        }
+        .checkbox-label {
+          bottom: -2px;
+          &.tick {
+            top: 5px;
+          }
+        }
+      }
+    }
+    .term-checkbox {
+      @media only screen and (max-width: 768px) {
+        width: 270px;
+      }
+      width: 79%;
+      text-align: left !important;
+    }
+    .form-group {
+      @media only screen and (max-width: 768px) {
+        padding: 0;
+      }
+      position: relative;
+      &.term-check {
+        margin-bottom: 0;
+      }
+      .checkbox-label {
+        @media only screen and (max-width: 768px) {
+          left: 20px;
+        }
+        display: block;
+        float: left;
+        left: 40px;
+        bottom: 30px;
+        &.tick {
+          left: 0;
+          top: 0;
+          float: left;
+        }
+      }
+    }
+    .step-btn-container {
+      @media only screen and (max-width: 768px) {
+        input {
+          padding: 5px 121px;
+        }
+      }
+      margin-top: 0;
+    }
+  }
+}
+
+.guide-text {
+  @media only screen and (max-width: 768px) {
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
+  font-family: myriadpro-regular;
+  font-size: 13px;
+  line-height: 1.5;
+  color: @registration-gray-2;
+  margin-bottom: 35px;
+  &.small {
+    font-size: 12px;
+  }
+  &.center {
+    @media only screen and (max-width: 768px) {
+      padding: 0 16px;
+    }
+  }
+  a {
+    &:hover,
+    &:focus {
+      background-color: transparent;
+      outline: none;
+    }
+    span {
+      color: @registration-gray-2;
+      text-decoration: underline;
+    }
+    i {
+      text-decoration: none;
+      color: @registration-red-2;
+    }
+  }
+}
+
+.step-3 {
+  @media only screen and (max-width: 768px) {
+    padding: 45px 15px 70px;
+  }
+  font-family: futura-medium;
+  padding: 62px 180px 167px;
+  text-align: center;
+  .re-status {
+    @media only screen and (max-width: 768px) {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    font-size: 18px;
+    color: @registration-black;
+  }
+  .re-checked {
+    @media only screen and (max-width: 768px) {
+      margin-top: 10px;
+    }
+    margin-top: 30px;
+    i.fa {
+      @media only screen and (max-width: 768px) {
+        font-size: 35px;
+      }
+      font-size: 60px;
+      color: @registration-green;
+    }
+  }
+  .re-thankyou {
+    @media only screen and (max-width: 768px) {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    font-size: 26px;
+    color: @registration-red-5;
+  }
+  .re-guild {
+    @media only screen and (max-width: 768px) {
+      margin-top: 35px;
+      padding: 0 15px;
+    }
+    margin-top: 50px;
+    &>p {
+      @media only screen and (max-width: 768px) {
+        font-size: 12px;
+      }
+      text-align: left;
+      font-family: myriadpro-regular;
+      font-size: 13px;
+      color: @registration-gray-2;
+    }
+  }
+  .step-btn-container {
+    @media only screen and (max-width: 768px) {
+      margin-top: 40px;
+    }
+    margin-top: 70px;
+    &>a {
+      @media only screen and (max-width: 768px) {
+        padding: 6px 70px 5px;
+      }
+      padding: 7px 20px 5px;
+    }
+  }
+}
+
+.step-3-jmb {
+  @media only screen and (max-width: 768px) {
+    padding: 40px 15px 0px;
+  }
+  font-family: futura-medium;
+  padding: 62px 180px 0;
+  text-align: center;
+  .re-status {
+    @media only screen and (max-width: 768px) {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    font-size: 18px;
+    color: @registration-black;
+  }
+  .re-checked {
+    @media only screen and (max-width: 768px) {
+      margin: 0;
+    }
+    margin-top: 15px;
+    i.fa {
+      @media only screen and (max-width: 768px) {
+        font-size: 30px;
+      }
+      font-size: 45px;
+      color: @registration-green;
+    }
+  }
+  .re-thankyou {
+    @media only screen and (max-width: 768px) {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    &.up {
+      text-transform: uppercase;
+    }
+    font-size: 26px;
+    color: @registration-red-5;
+  }
+  .re-welcome {
+    @media only screen and (max-width: 768px) {
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+    font-size: 16px;
+    color: @registration-gray;
+  }
+  .re-guild {
+    @media only screen and (max-width: 768px) {
+      margin-top: 35px;
+      padding: 0 15px;
+    }
+    margin-top: 50px;
+    &>p {
+      @media only screen and (max-width: 768px) {
+        font-size: 12px;
+      }
+      text-align: left;
+      font-family: myriadpro-regular;
+      font-size: 13px;
+      color: @registration-gray-2;
+    }
+  }
+  .step-btn-container {
+    @media only screen and (max-width: 768px) {
+      margin-top: 40px;
+    }
+    margin-top: 70px;
+    &>a {
+      padding-bottom: 5px;
+      width: 212px;
+    }
+    &.nav {
+      @media only screen and (max-width: 768px) {
+        margin-top: 20px;
+      }
+      margin-top: 90px;
+      &>a {
+        @media only screen and (max-width: 768px) {
+          width: 145px;
+        }
+        &:nth-child(odd) {
+          margin-right: 8px;
+        }
+        &:nth-child(even) {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+  &.tk {
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+      padding: 62px 130px 68px;
+    }
+    @media only screen and (max-width: 768px) {
+      padding: 43px 30px 68px;
+    }
+    padding: 62px 270px 250px;
+    text-align: center;
+  }
+  .intro-card {
+    @media only screen and (max-width: 768px) {
+      max-width: 100%;
+      margin-top: 38px;
+    }
+    margin-top: 50px;
+  }
+  .guide-text {
+    @media only screen and (max-width: 768px) {
+      position: static;
+      float: none;
+      width: 100%;
+    }
+    display: block;
+    text-align: left;
+    margin-top: 45px;
+  }
+}
+
+// Intro area
+.intro-title {
+  display: inline-block;
+  max-width: 405px;
+  color: @registration-white;
+  text-shadow: 1px 0 0 @registration-red-2, -1px 0 0 @registration-red-2, 0 1px 0 @registration-red-2, 0 -1px 0 @registration-red-2, 1px 1px @registration-red-2, -1px -1px 0 @registration-red-2, 1px -1px 0 @registration-red-2, -1px 1px 0 @registration-red-2;
+  position: relative;
+  .sm-text {
+    font-style: italic;
+    text-decoration: underline;
+    margin-bottom: 0;
+  }
+  .caret-down {
+    position: relative;
+    bottom: 17px;
+  }
+}
+
+.card-banner {
+  position: relative;
+  img {
+    width: 100%;
+  }
+  .ribbon-text {
+    position: absolute;
+    width: 150px;
+    left: 50%;
+    text-align: center;
+    color: @registration-white;
+    text-shadow: 1px 0 1px @registration-gradient, -1px 0 1px @registration-gradient, 0 1px 1px @registration-gradient, 0 -1px 1px @registration-gradient, 1px 1px 1px @registration-gradient, -1px -1px 1px @registration-gradient, 1px -1px 1px @registration-gradient, -1px 1px 1px @registration-gradient;
+    .stars-group {
+      font-size: 6px;
+      margin-top: 8px;
+      &.left {
+        float: left;
+      }
+      &.right {
+        float: right;
+      }
+    }
+    .text {
+      font-size: 12px;
+    }
+  }
+  .dialog {
+    position: absolute;
+    top: 40px;
+    max-width: 175px;
+    p {
+      margin-bottom: 0;
+    }
+    .title {
+      font-family: futura-medium;
+      text-shadow: 1px 0 0 @registration-white, -1px 0 0 @registration-white, 0 1px 0 @registration-white, 0 -1px 0 @registration-white, 1px 1px @registration-white, -1px -1px 0 @registration-white, 1px -1px 0 @registration-white, -1px 1px 0 @registration-white;
+      color: @registration-black;
+      .red-text {
+        font-family: quicksan-bold;
+        color: @registration-red-2;
+      }
+    }
+    .green-text {
+      font-weight: bold;
+      color: @registration-green;
+    }
+  }
+}
+
+.summary {
+  font-size: 16px;
+  color: @registration-black;
+  text-shadow: 1px 0 0 @registration-white, -1px 0 0 @registration-white, 0 1px 0 @registration-white, 0 -1px 0 @registration-white, 1px 1px @registration-white, -1px -1px 0 @registration-white, 1px -1px 0 @registration-white, -1px 1px 0 @registration-white;
+  font-weight: bold;
+}
+
+.card-guide {
+  position: relative;
+  .title {
+    font-size: 16px;
+    font-weight: bold;
+    color: @registration-white;
+  }
+  .description {
+    font-size: 13px;
+    color: @registration-white;
+    margin-top: 15px;
+  }
+  .guide {
+    position: absolute;
+    max-width: 170px;
+    &.blue-circle {
+      left: 158px;
+    }
+    &.green-circle {
+      right: 158px;
+    }
+  }
+}
+
+.jmb-registration {
+  @media only screen and (max-width: 768px) {
+    background: url('./../images/registration/jmb_background_sm.png');
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin-top: 30px;
+    padding: 0 10px 30px;
+  }
+  margin-top: 100px;
+  background: url('./../images/registration/jmb_background.png');
+  background-position: top;
+  background-repeat: no-repeat;
+  padding: 0 30px 30px;
+  .jmb-intro {
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
+    font-family: "Hiragino Kaku Gothic ProN",
+    "Hiragino Kaku Gothic Pro",
+    "游ゴシック",
+    "YuGothic",
+    "Meiryo",
+    "メイリオ",
+    "ＭＳ ゴシック",
+    sans-serif;
+    text-align: center;
+    .intro-title {
+      top: 10px;
+      .sm-text {
+        font-size: 11px;
+      }
+      .lg-text {
+        font-size: 24px;
+      }
+      .caret-down {
+        font-size: 15px;
+      }
+    }
+    .card-banner {
+      margin-top: 75px;
+      .ribbon-text {
+        top: 82%;
+        margin-left: -65px;
+      }
+      .dialog {
+        @media only screen and (min-width: 768px) and (max-width: 1030px) {
+          left: 8%;
+          top: 20px;
+          max-width: 125px;
+        }
+        left: 7%;
+        .title {
+          @media only screen and (min-width: 768px) and (max-width: 1030px) {
+            font-size: 12px;
+          }
+          font-size: 14px;
+          .red-text {
+            @media only screen and (min-width: 768px) and (max-width: 1030px) {
+              font-size: 15px;
+            }
+            font-size: 18px;
+          }
+        }
+        .green-text {
+          @media only screen and (min-width: 768px) and (max-width: 1030px) {
+            font-size: 10px;
+          }
+          font-size: 13px;
+        }
+      }
+    }
+    .summary {
+      max-width: 60%;
+      margin: 10px auto;
+    }
+    .card-guide {
+      width: 80%;
+      margin: 0 auto;
+      margin-top: 55px;
+      img {
+        width: 100%;
+      }
+      .guide {
+        @media only screen and (min-width: 768px) and (max-width: 1030px) {
+          top: 13%;
+        }
+        top: 18%;
+        &.blue-circle {
+          @media only screen and (min-width: 768px) and (max-width: 1030px) {
+            left: 1%;
+          }
+          left: 6%;
+        }
+        &.green-circle {
+          @media only screen and (min-width: 768px) and (max-width: 1030px) {
+            right: 1%;
+          }
+          right: 6%;
+        }
+      }
+    }
+  }
+  .jmb-intro-mobile {
+    @media only screen and (max-width: 768px) {
+      display: block;
+    }
+    display: none;
+    font-family: "Hiragino Kaku Gothic ProN",
+    "Hiragino Kaku Gothic Pro",
+    "游ゴシック",
+    "YuGothic",
+    "Meiryo",
+    "メイリオ",
+    "ＭＳ ゴシック",
+    sans-serif;
+    text-align: center;
+    .intro-title {
+      margin-top: 6%;
+      .sm-text {
+        font-size: 12px;
+      }
+      .lg-text {
+        @media only screen and (min-width: 300px) and (max-width: 350px) {
+          font-size: 18px;
+        }
+        font-size: 22px;
+      }
+      .caret-down {
+        font-size: 18px;
+      }
+    }
+    .card-banner {
+      @media only screen and (min-width: 480px) and (max-width: 768px) {
+        margin-top: 30px;
+      }
+      .ribbon-text {
+        @media only screen and (min-width: 480px) and (max-width: 768px) {
+          top: 70%;
+        }
+        position: absolute;
+        width: 150px;
+        top: 69%;
+        margin-left: -75px;
+      }
+      .dialog {
+        @media only screen and (min-width: 480px) and (max-width: 768px) {
+          top: 10%;
+          left: 40%;
+        }
+        @media only screen and (min-width: 300px) and (max-width: 350px) {
+          top: 7%;
+          left: 35%;
+          max-width: 150px;
+        }
+        top: 8%;
+        left: 35%;
+        .title {
+          font-size: 15px;
+          .red-text {
+            font-size: 19px;
+          }
+        }
+        .green-text {
+          font-size: 12px;
+        }
+      }
+    }
+    .summary {
+      max-width: 90%;
+      margin: 30px auto;
+    }
+    .card-guide {
+      .guide {
+        left: 50%;
+        margin-left: -95px;
+        &.blue-circle {
+          top: 50px;
+        }
+        &.green-circle {
+          right: auto;
+          top: 410px;
+        }
+      }
+    }
+  }
+}
+
+.registration-footer {
+  @media only screen and (max-width: 768px) {
+    margin-top: 5px;
+    margin-bottom: 74px;
+  }
+  margin-top: 13px;
+  .copy-right {
+    @media only screen and (max-width: 768px) {
+      font-size: 12px;
+    }
+    font-family: futura-medium;
+    font-size: 13px;
+    color: @registration-gray-2;
+    text-align: center;
+  }
+}

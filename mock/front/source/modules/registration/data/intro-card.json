@@ -1,0 +1,28 @@
+{
+  "intro_cards": [
+    {
+      "thumb_src": "images/registration/intro_01.png",
+      "number": "01",
+      "title": "Enjoy original Fun! Japan contents everyday for free!",
+      "description": "Great contents that will make you love Japan even more: selected food, popular tourist spots, fashion, anime and more!"
+    },
+    {
+      "thumb_src": "images/registration/intro_2.png",
+      "number": "02",
+      "title": "Community where Japanese lovers gather!",
+      "description": "Share your stories about food, sightseeing, shopping, entertainment with fellow Japan lovers!"
+    },
+    {
+      "thumb_src": "images/registration/intro_3.png",
+      "number": "03",
+      "title": "Fun! Japan staff will become your friends!",
+      "description": "Know more about Japan from friendly staff with latest insight on Japan!"
+    },
+    {
+      "thumb_src": "images/registration/intro_4.png",
+      "number": "04",
+      "title": "Lot of benefits exclusive for Fun! Japan members!",
+      "description": "Get member exclusive benefits: coupon, win gift, event. All in collaboration with Japanese companies."
+    }
+  ]
+}

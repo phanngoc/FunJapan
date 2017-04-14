@@ -1,62 +1,161 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="utf-8" />
-  <meta name=viewport content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Fun! Japan</title>
-  <link rel="shortcut icon" type="image/png" href="images/brand-icon.png" />
-  <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900' rel='stylesheet' type='text/css'>
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-  <!-- Resource -->
-  <link rel="stylesheet" type="text/css" href="css/mpf-desktop.css">
-  <!-- EOF Resource -->
-</head>
-
-<body>
-  <div class="top-container" id="top-container">
-    <div class="container detail">
-      <!-- HEADER -->
-      <!-- Menu bars -->
-      <header class="global-header">
-        <!-- Top header bar -->
-        <div class="top-header">
-          <div class="header-text">
-            <p class="header-title-text">
-              <a href="/"><img src="images/brand-icon.png" alt="brand-icon"><span>&nbsp;FUN!<span class="title-country">&nbsp;Japan Indonesia</span></span>
-              </a>
-            </p>
-          </div>
-          <div class="header-right">
-            <form role="form" action="/Search" method="get">
-              <input type="text" placeholder="Type in keyword">
-              <i class="fa fa-search form-control-feedback"></i>
-            </form>
-            <div class="user-setting">
-              <div class="authentication">
-                <a class="authen-link" href="#"><i class="fa fa-unlock-alt"></i> Register</a>
-                <span class="authen-link">/</span>
-                <a class="authen-link" href="#"><i class="fa fa-user"></i> Login</a>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Article detail</title>
+    <link rel="shortcut icon" type="image/png" href="images/brand-icon.png" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,300,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900" rel="stylesheet" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" />
+    <!-- Resource-->
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <!-- EOF Resource-->
+  </head>
+  <body>
+    <div class="top-container" id="top-container">
+      <div class="container detail">
+        <!-- HEADER-->
+        <!-- Menu bars-->
+        <header class="global-header">
+          <!-- Top header bar-->
+          <div class="top-header">
+            <div class="header-text">
+              <p class="header-title-text">
+                <a href="/">
+                  <img src="images/brand-icon.png" alt="brand-icon" />
+                  <span>FUN!
+                    <span class="title-country"> Japan Indonesia</span>
+                  </span>
+                </a>
+              </p>
+            </div>
+            <div class="header-right">
+              <form role="form" action="/Search" method="get">
+                <input type="text" placeholder="Type in keyword" />
+                <i class="fa fa-search form-control-feedback"></i>
+              </form>
+              <div class="user-setting">
+                <div class="authentication">
+                  <a class="authen-link" href="#">
+                    <i class="fa fa-unlock-alt"></i> Register</a>
+                  <span class="authen-link">/</span>
+                  <a class="authen-link" href="#">
+                    <i class="fa fa-user"></i> Login</a>
+                </div>
+                <div class="user-preference">
+                  <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                      <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <span>
+                          <i class="fa fa-user-circle"></i>
+                        </span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <div class="dropdown-menu-global">
+                            <ul class="list-items">
+                              <li>
+                                <a href="#">My Coupons</a>
+                              </li>
+                              <li>
+                                <a href="#">Settings</a>
+                              </li>
+                              <li>
+                                <a href="#">About Member Program</a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <i class="zmdi zmdi-account"></i> Logout</a>
+                              </li>
+                            </ul>
+                            <div class="box-sum-ranking">
+                              <div class="row brs-sum">
+                                <div class="col-md-6 bsr-sum-left">
+                                  <img src="./images/ic_regular.png" />
+                                  <div class="bsr-detail">
+                                    <div class="brs-title">Regular</div>
+                                    <div class="brs-month">Next month : </div>
+                                    <div class="brs-promotion">Regular (stay)</div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6 brs-point">
+                                  <strong>6,070</strong>
+                                  <span class="currence">Points</span>
+                                </div>
+                              </div>
+                              <div class="row brs-star">
+                                <div class="col-md-2">
+                                  <strong>Regular</strong>
+                                </div>
+                                <div class="col-md-10">
+                                  <span class="star is-checked"></span>
+                                  <span class="star"></span>
+                                  <span class="star"></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="navbar-text">
+                      <span>Chan Swee MEI</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
+            </div>
+          </div>
+          <!-- Top header bar mobile-->
+          <div class="top-header-mobile">
+            <span class="header-title-text">
+              <a href="/">
+                <img src="images/brand-icon.png" alt="brand-icon" />
+                <span>FUN!
+                  <small class="title-country"> Japan Indonesia</small>
+                </span>
+              </a>
+            </span>
+            <div class="user-setting pull-right">
               <div class="user-preference">
                 <ul class="nav navbar-nav navbar-right">
                   <li class="dropdown">
+                    <!-- If authenticated-->
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                      <span><i class="fa fa-user-circle"></i></span>
+                      <span>
+                        <i class="zmdi zmdi-account-circle pink"></i>
+                      </span>
                     </a>
                     <ul class="dropdown-menu">
                       <li>
                         <div class="dropdown-menu-global">
+                          <!-- If is authenticated-->
+                          <div class="box-sum-ranking">
+                            <div class="bsr-sum-left">
+                              <img src="images/ic_bronze.png" />
+                              <div class="bsr-detail">
+                                <div class="brs-title">Bronze</div>
+                                <div class="brs-month">Next month : </div>
+                                <div class="brs-promotion">Regular (stay)</div>
+                              </div>
+                            </div>
+                            <div class="brs-point">
+                              <span class="point">6,070 </span>
+                              <span class="currence">Points</span>
+                            </div>
+                            <!-- Row detail ratting-->
+                            <div class="brs-star">
+                              <span class="star is-checked"></span>
+                              <span class="star is-checked"></span>
+                              <span class="star"></span>
+                              <span class="star"></span>
+                            </div>
+                            <!-- ./Row detail ratting-->
+                          </div>
                           <ul class="list-items">
-                            <li>
-                              <a href="#">My Coupons</a>
-                            </li>
-                            <li>
-                              <a href="#">Settings</a>
-                            </li>
                             <li>
                               <a href="#">My Coupons</a>
                             </li>
@@ -67,1188 +166,1404 @@
                               <a href="#">About Member Program</a>
                             </li>
                             <li>
-                              <a href="#"><i class="zmdi zmdi-account"></i>  Logout</a>
+                              <a href="#">
+                                <i class="zmdi zmdi-account"></i> Logout</a>
                             </li>
                           </ul>
-
-                          <div class="box-sum-ranking">
-                            <!-- Row Summary -->
-                            <div class="row brs-sum">
-                              <!-- column left -->
-                              <div class="col-md-6 bsr-sum-left">
-                                <img src="/~/media/Mpf/Website/UserRank/ic_regular.ashx">
-                                <div class="bsr-detail">
-                                  <div class="brs-title">Regular</div>
-                                  <div class="brs-month">Next month : </div>
-                                  <div class="brs-promotion">Regular (stay)</div>
-                                </div>
-                              </div>
-                              <!-- ./Column left -->
-                              <!-- Column right -->
-                              <div class="col-md-6 brs-point">
-                                <strong>6,070</strong> <span class="currence">Points</span>
-                              </div>
-                              <!-- Column right -->
-                            </div>
-                            <!-- ./Row Summary -->
-                            <!-- Row detail ratting -->
-                            <div class="row brs-star">
-                              <div class="col-md-2">
-                                <strong>Regular</strong>
-                              </div>
-                              <div class="col-md-10">
-                                <span class="star is-checked"></span>
-                                <span class="star"></span>
-                                <span class="star"></span>
-                              </div>
-                            </div>
-                            <!-- ./Row detail ratting -->
-                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                    <!-- If not authenticated-->
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" style="display: none;">
+                      <span>
+                        <i class="zmdi zmdi-account-circle black"></i>
+                      </span>
+                    </a>
+                    <ul class="dropdown-menu" style="display: none;">
+                      <li>
+                        <!-- If not authenticated-->
+                        <div class="dropdown-menu-global unauthen">
+                          <ul class="list-items">
+                            <li>
+                              <a href="#">
+                                <i class="fa fa-unlock-alt"></i> Register</a>
+                            </li>
+                            <li>
+                              <a href="#">
+                                <i class="fa fa-user"></i> Login</a>
+                            </li>
+                          </ul>
                         </div>
                       </li>
                     </ul>
                   </li>
-                  <li class="navbar-text">
-                    <span>Chan Swee MEI</span>
+                </ul>
+              </div>
+            </div>
+            <form class="pull-right" role="form" action="/Search" method="get">
+              <input type="text" placeholder="Type in keyword" />
+              <span class="vertical-bar"> </span>
+              <i class="fa fa-search form-control-feedback"></i>
+            </form>
+          </div>
+          <!-- SLIDER-->
+          <div class="notification"></div>
+          <!-- NAVBAR-->
+          <div class="fj-navbar nav-desktop">
+            <div class="container">
+              <nav class="navbar navbar-default">
+                <ul class="nav navbar-nav">
+                  <li>
+                    <a href="/index.html">
+                      <i class="zmdi zmdi-ticket-star"></i>Campaigns</a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="zmdi zmdi-card-giftcard"></i>Rewards</a>
+                  </li>
+                  <li class="dropdown">
+                    <a class="fj-tab" data-toggle="tab" href="#coupons-dropdown">
+                      <i class="zmdi zmdi-labels"></i>Coupons
+                      <i class="fa fa-chevron-down"></i>
+                    </a>
+                    <div class="caret-up">
+                      <i class="fa fa-caret-up"> </i>
+                    </div>
+                  </li>
+                  <li class="dropdown">
+                    <a class="fj-tab" data-toggle="tab" href="#other-menus-dropdown">
+                      <i class="zmdi zmdi-labels"></i>Other Menus
+                      <i class="fa fa-chevron-down"></i>
+                    </a>
+                    <div class="caret-up">
+                      <i class="fa fa-caret-up"> </i>
+                    </div>
+                  </li>
+                  <li class="dropdown">
+                    <a class="fj-tab" data-toggle="tab" href="#categories-dropdown">
+                      <i class="zmdi zmdi-labels"></i>categories
+                      <i class="fa fa-chevron-down"></i>
+                    </a>
+                    <div class="caret-up">
+                      <i class="fa fa-caret-up"> </i>
+                    </div>
+                  </li>
+                  <li class="dropdown">
+                    <a class="fj-tab" data-toggle="tab" href="#tags-dropdown">
+                      <i class="zmdi zmdi-labels"></i>TAGS
+                      <i class="fa fa-chevron-down"></i>
+                    </a>
+                    <div class="caret-up">
+                      <i class="fa fa-caret-up"> </i>
+                    </div>
+                  </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-facebook-square"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-twitter"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-instagram"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-youtube-play"></i>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <div class="tab-content">
+                <div class="tab-pane navbar-tab fade" id="coupons-dropdown">
+                  <ul class="tab-content-menu">
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Get Coupons</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">My Coupons</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Coupon Map</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">How to use</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">| </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="tab-pane navbar-tab fade" id="other-menus-dropdown">
+                  <ul class="tab-content-menu">
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Series</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">FJ Points</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">FJ Talk</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Japan Guide</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Invite Friends</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Omikuji</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Map</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Personality Test</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">| </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="tab-pane navbar-tab fade" id="categories-dropdown">
+                  <ul class="tab-content-menu">
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">All</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Travel</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Food</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Technology</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Tradition</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Entertainment</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Lifestyle</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Business</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Health</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Talent</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">| </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="tab-pane navbar-tab fade" id="tags-dropdown">
+                  <ul class="tab-content-menu">
+                    <li class="hot-tags">
+                      <a href="#">
+                        <span class="hashtag"># </span>japan</a>
+                    </li>
+                    <li class="hot-tags">
+                      <a href="#">
+                        <span class="hashtag"># </span>fun</a>
+                    </li>
+                    <li class="hot-tags">
+                      <a href="#">
+                        <span class="hashtag"># </span>culture</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="navigation fj-navbar-mobile" id="nav-affix">
+            <div class="container">
+              <ul class="list-inline">
+                <li>
+                  <a href="#">
+                    <i class="zmdi zmdi-ticket-star"></i>CAMPAIGNS</a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="zmdi zmdi-card-giftcard"></i>REWARDS</a>
+                </li>
+                <li class="dropdown">
+                  <a class="fj-tab" data-toggle="tab" href="#sm-coupons-dropdown">
+                    <i class="zmdi zmdi-labels"></i>Coupons
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <div class="caret-up">
+                    <i class="fa fa-caret-up"> </i>
+                  </div>
+                </li>
+                <li class="dropdown">
+                  <a class="fj-tab" data-toggle="tab" href="#sm-other-menus-dropdown">
+                    <i class="zmdi zmdi-labels"></i>Other Menus
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <div class="caret-up">
+                    <i class="fa fa-caret-up"> </i>
+                  </div>
+                </li>
+                <li class="dropdown">
+                  <a class="fj-tab" data-toggle="tab" href="#sm-categories-dropdown">
+                    <i class="zmdi zmdi-labels"></i>categories
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <div class="caret-up">
+                    <i class="fa fa-caret-up"> </i>
+                  </div>
+                </li>
+                <li class="dropdown">
+                  <a class="fj-tab" data-toggle="tab" href="#sm-tags-dropdown">
+                    <i class="zmdi zmdi-labels"></i>TAGS
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <div class="caret-up">
+                    <i class="fa fa-caret-up"> </i>
+                  </div>
+                </li>
+                <li class="dropdown">
+                  <a class="fj-tab" data-toggle="tab" href="#sm-social-dropdown">
+                    <i class="zmdi zmdi-labels"></i>SOCIAL
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <div class="caret-up">
+                    <i class="fa fa-caret-up"> </i>
+                  </div>
+                </li>
+                <li class="dropdown">
+                  <a class="fj-tab" data-toggle="tab" href="#sm-legal-dropdown">
+                    <i class="zmdi zmdi-labels"></i>LEGAL
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <div class="caret-up">
+                    <i class="fa fa-caret-up"> </i>
+                  </div>
+                </li>
+                <li class="dropdown" id="lastitem">
+                  <a class="fj-tab" data-toggle="tab" href="#sm-info-dropdown">
+                    <i class="zmdi zmdi-labels"></i>FURTHER INFO
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <div class="caret-up">
+                    <i class="fa fa-caret-up"></i>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="tab-content">
+              <div class="tab-pane navbar-tab fade" id="sm-coupons-dropdown">
+                <ul class="tab-content-menu">
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Get Coupons</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">My Coupons</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Coupon Map</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">How to use</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">| </a>
                   </li>
                 </ul>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Top header bar mobile -->
-        <div class="top-header-mobile">
-          <span class="header-title-text"><a href="/"><img src="images/brand-icon.png" alt="brand-icon"><span>&nbsp;FUN!<small class="title-country">&nbsp;Japan Indonesia</small></span></a>
-          </span>
-          <div class="user-setting pull-right">
-            <div class="user-preference">
-              <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                  <!-- If authenticated -->
-                  <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                    <span><i class="zmdi zmdi-account-circle pink"></i></span>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <div class="dropdown-menu-global">
-                        <!-- If is authenticated-->
-                        <div class="box-sum-ranking">
-                          <div class="bsr-sum-left">
-                            <img src="images/ic_bronze.png">
-                            <div class="bsr-detail">
-                              <div class="brs-title">Bronze</div>
-                              <div class="brs-month">Next month : </div>
-                              <div class="brs-promotion">Regular (stay)</div>
-                            </div>
-                          </div>
-                          <div class="brs-point">
-                            <span class="point">6,070 </span><span class="currence">Points</span>
-                          </div>
-                          <!-- Row detail ratting -->
-                          <div class="brs-star">
-                            <span class="star is-checked"></span>
-                            <span class="star is-checked"></span>
-                            <span class="star is-checked"></span>
-                            <span class="star is-checked"></span>
-                            <span class="star is-checked"></span>
-                            <span class="star is-checked"></span>
-                            <span class="star is-checked"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                          </div>
-                          <!-- ./Row detail ratting -->
-                        </div>
-                        <ul class="list-items">
-                          <li>
-                            <a href="#">My Coupons</a>
-                          </li>
-                          <li>
-                            <a href="#">Settings</a>
-                          </li>
-                          <li>
-                            <a href="#">About Member Program</a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="zmdi zmdi-account"></i>  Logout</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                  </ul>
-                  <!-- If not authenticated -->
-                  <a class="dropdown-toggle" href="#" data-toggle="dropdown" style="display: none">
-                    <span><i class="zmdi zmdi-account-circle black"></i></span>
-                  </a>
-                  <ul class="dropdown-menu" style="display: none">
-                    <li>
-                      <!-- If not authenticated -->
-                      <div class="dropdown-menu-global unauthen">
-                        <ul class="list-items">
-                          <li>
-                            <a href="#"><i class="fa fa-unlock-alt"></i> Register</a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fa fa-user"></i> Login</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <form class="pull-right" role="form" action="/Search" method="get">
-            <input type="text" placeholder="Type in keyword">
-            <span class="vertical-bar">| </span>
-            <i class="fa fa-search form-control-feedback"></i>
-          </form>
-        </div>
-        <div class="notification">
-        </div>
-        <!-- NAVBAR -->
-        <div class="fj-navbar nav-desktop">
-          <div class="container">
-            <nav class="navbar navbar-default">
-              <ul class="nav navbar-nav">
-                <li class="">
-                  <a href="/index.html"><i class="zmdi zmdi-ticket-star"></i>Campaigns</a>
-                </li>
-                <li class="">
-                  <a href="#"><i class="zmdi zmdi-card-giftcard"></i>Rewards</a>
-                </li>
-                <li class="dropdown">
-                  <a data-toggle="tab" href="#coupons-dropdown" class="fj-tab"><i class="zmdi zmdi-labels"></i>Coupons <i class="fa fa-chevron-down"></i></a>
-                  <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-                </li>
-                <li class="dropdown">
-                  <a data-toggle="tab" href="#other-menus-dropdown" class="fj-tab"><i class="zmdi zmdi-widgets zmdi-layers"></i>Other Menus <i class="fa fa-chevron-down"></i></a>
-                  <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-                </li>
-                <li class="dropdown">
-                  <a data-toggle="tab" href="#categories-dropdown" class="fj-tab"><i class="zmdi zmdi-layers"></i>categories <i class="fa fa-chevron-down"></i></a>
-                  <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-                </li>
-                <li class="dropdown">
-                  <a data-toggle="tab" href="#tags-dropdown" class="fj-tab"><i class="zmdi zmdi-tag-more"></i>TAGS <i class="fa fa-chevron-down"></i></a>
-                  <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-                </li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><i class="fa fa-facebook-square"></i></a>
-                </li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-              </ul>
-            </nav>
-            <div class="tab-content">
-              <div id="coupons-dropdown" class="tab-pane navbar-tab fade">
+              <div class="tab-pane navbar-tab fade" id="sm-other-menus-dropdown">
                 <ul class="tab-content-menu">
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li><a href="#">Get Coupons</a></li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li><a href="#">My Coupons</a></li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li><a href="#">Coupon Map</a></li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li><a href="#">How to use</a></li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                </ul>
-              </div>
-              <div id="other-menus-dropdown" class="tab-pane navbar-tab fade">
-                <ul class="tab-content-menu">
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
                   <li>
                     <a href="#">Series</a>
                   </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
                   <li>
                     <a href="#">FJ Points</a>
                   </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
                   <li>
                     <a href="#">FJ Talk</a>
                   </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
                   <li>
                     <a href="#">Japan Guide</a>
                   </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
                   <li>
                     <a href="#">Invite Friends</a>
                   </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
                   <li>
                     <a href="#">Omikuji</a>
                   </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
                   <li>
                     <a href="#">Map</a>
                   </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
                   <li>
                     <a href="#">Personality Test</a>
                   </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">| </a>
+                  </li>
                 </ul>
               </div>
-              <div id="categories-dropdown" class="tab-pane navbar-tab fade">
+              <div class="tab-pane navbar-tab fade" id="sm-categories-dropdown">
                 <ul class="tab-content-menu">
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li><a href="#">All</a></li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">All</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
                   <li>
                     <a href="#">Travel</a>
                   </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
                   <li>
                     <a href="#">Food</a>
                   </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
                   <li>
                     <a href="#">Technology</a>
                   </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
                   <li>
                     <a href="#">Tradition</a>
                   </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
                   <li>
                     <a href="#">Entertainment</a>
                   </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
                   <li>
                     <a href="#">Lifestyle</a>
                   </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
                   <li>
                     <a href="#">Business</a>
                   </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
                   <li>
                     <a href="#">Health</a>
                   </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
                   <li>
                     <a href="#">Talent</a>
                   </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
+                  <li class="vertical-bar">
+                    <a href="#">| </a>
+                  </li>
                 </ul>
               </div>
-              <div id="tags-dropdown" class="tab-pane navbar-tab fade">
+              <div class="tab-pane navbar-tab fade" id="sm-tags-dropdown">
                 <ul class="tab-content-menu">
                   <li class="hot-tags">
                     <a href="#">
-                      <span class="hashtag">#&nbsp;</span>japan
-                    </a>
+                      <span class="hashtag"># </span>japan</a>
                   </li>
                   <li class="hot-tags">
                     <a href="#">
-                      <span class="hashtag">#&nbsp;</span>fun
-                    </a>
+                      <span class="hashtag"># </span>fun</a>
                   </li>
                   <li class="hot-tags">
                     <a href="#">
-                      <span class="hashtag">#&nbsp;</span>culture
-                    </a>
+                      <span class="hashtag"># </span>culture</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="tab-pane navbar-tab fade" id="sm-social-dropdown">
+                <div class="sns-btn-fanpage">
+                  <ul class="list-inline">
+                    <li>
+                      <a class="btn btn-sns">
+                        <i class="fa fa-facebook" aria-hidden="true"></i> facebook</a>
+                    </li>
+                    <li>
+                      <a class="btn btn-sns">
+                        <i class="fa fa-twitter" aria-hidden="true"></i> twitter</a>
+                    </li>
+                    <li>
+                      <a class="btn btn-sns">
+                        <i class="fa fa-instagram" aria-hidden="true"></i> instagram</a>
+                    </li>
+                    <li>
+                      <a class="btn btn-sns">
+                        <i class="fa fa-youtube-play" aria-hidden="true"></i> youtube</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="tab-pane navbar-tab fade" id="sm-legal-dropdown">
+                <ul class="tab-content-menu">
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">TERMS &amp; CONDITIONS</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">PRIVACY POLICIES</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">| </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="tab-pane navbar-tab fade" id="sm-info-dropdown">
+                <ul class="tab-content-menu">
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">FAQ</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">CONTACT US</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">FOR MARKETERS</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">| </a>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="navigation fj-navbar-mobile" id="nav-affix">
-          <div class="container">
-            <ul class="list-inline">
-              <li class="">
-                <a href="#"><i class="zmdi zmdi-ticket-star"></i>CAMPAIGNS</a>
-              </li>
-              <li class="">
-                <a href="#"><i class="zmdi zmdi-card-giftcard"></i>REWARDS</a>
-              </li>
-              <li class="dropdown">
-                <a data-toggle="tab" href="#sm-coupons-dropdown" class="fj-tab"><i class="zmdi zmdi-labels"></i>COUPONS<i class="fa fa-chevron-down"></i></a>
-                <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-              </li>
-              <li class="dropdown">
-                <a data-toggle="tab" href="#sm-other-menus-dropdown" class="fj-tab"><i class="zmdi zmdi-widgets zmdi-layers"></i>OTHER MENUS<i class="fa fa-chevron-down"></i></a>
-                <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-              </li>
-              <li class="dropdown">
-                <a data-toggle="tab" href="#sm-categories-dropdown" class="fj-tab"><i class="zmdi zmdi-layers"></i>CATEGORIES</a>
-                <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-              </li>
-              <li class="dropdown">
-                <a data-toggle="tab" href="#sm-tags-dropdown" class="fj-tab"><i class="zmdi zmdi-tag-more"></i>TAGS</a>
-                <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-              </li>
-              <li class="dropdown">
-                <a data-toggle="tab" href="#sm-social-dropdown" class="fj-tab"><i class="zmdi zmdi-share"></i>SOCIAL</a>
-                <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-              </li>
-              <li class="dropdown">
-                <a data-toggle="tab" href="#sm-legal-dropdown" class="fj-tab"><i class="zmdi zmdi-assignment"></i>LEGAL</a>
-                <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-              </li>
-              <li class="dropdown" id="lastitem">
-                <a data-toggle="tab" href="#sm-info-dropdown" class="fj-tab"><i class="zmdi zmdi-info-outline"></i>FURTHER INFO</a>
-                <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-              </li>
-            </ul>
-          </div>
-          <div class="tab-content">
-            <div id="sm-coupons-dropdown" class="tab-pane navbar-tab fade">
-              <ul class="tab-content-menu">
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li><a href="#">Get Coupons</a></li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li><a href="#">My Coupons</a></li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li><a href="#">Coupon Map</a></li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li><a href="#">How to use</a></li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-              </ul>
-            </div>
-            <div id="sm-other-menus-dropdown" class="tab-pane navbar-tab fade">
-              <ul class="tab-content-menu">
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Series</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">FJ Points</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">FJ Talk</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Japan Guide</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Invite Friends</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Omikuji</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Map</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Personality Test</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-              </ul>
-            </div>
-            <div id="sm-categories-dropdown" class="tab-pane navbar-tab fade">
-              <ul class="tab-content-menu">
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li><a href="#">All</a></li>
-                <li>
-                  <a href="#">Travel</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Food</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Technology</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Tradition</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Entertainment</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Lifestyle</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Business</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Health</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Talent</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-              </ul>
-            </div>
-            <div id="sm-tags-dropdown" class="tab-pane navbar-tab fade">
-              <ul class="tab-content-menu">
-                <li class="hot-tags">
-                  <a href="#">
-                    <span class="hashtag"># </span>japan
-                  </a>
-                </li>
-                <li class="hot-tags">
-                  <a href="#">
-                    <span class="hashtag"># </span>fun
-                  </a>
-                </li>
-                <li class="hot-tags">
-                  <a href="#">
-                    <span class="hashtag"># </span>culture
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div id="sm-social-dropdown" class="tab-pane navbar-tab fade">
-              <div class="sns-btn-fanpage">
-                <ul class="list-inline">
-                  <li>
-                    <a class="btn btn-sns"><i class="fa fa-facebook" aria-hidden="true"></i> facebook</a>
-                  </li>
-                  <li>
-                    <a class="btn btn-sns"><i class="fa fa-twitter" aria-hidden="true"></i> twitter</a>
-                  </li>
-                  <li>
-                    <a class="btn btn-sns"><i class="fa fa-instagram" aria-hidden="true"></i> instagram</a>
-                  </li>
-                  <li>
-                    <a class="btn btn-sns"><i class="fa fa-youtube-play" aria-hidden="true"></i> youtube</a>
-                  </li>
-
-                </ul>
+        </header>
+        <!-- EOF HEADER-->
+        <div class="top-body">
+          <div class="main-content">
+            <div class="row gutter-32">
+              <div class="col-md-70 main-column">
+                <!-- MAIN-->
+                <article>
+                  <header>
+                    <ul class="detail-breadcrumbs">
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-home" aria-hidden="true"></i> Fun! Japan</a>
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                      </li>
+                      <li>
+                        <a href="#">Travel Season</a>
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                      </li>
+                      <li>
+                        <a href="#">Dogo Onsen and more sightseeing spots in Matsuyama.</a>
+                      </li>
+                    </ul>
+                    <p class="article-detail-category">Travel / season</p>
+                    <p class="article-detail-title">Dogo Onsen and more sightseeing spots in Matsuyama.</p>
+                  </header>
+                  <div class="detail-engagement">
+                    <ul class="detail-favorite">
+                      <li>
+                        <a class="engagement-favorite" data-mpf-article-id="#" href="#">
+                          <i class="fa fa-heart" aria-hidden="true"></i>
+                        </a>
+                        <span class="engagement-count"> 5</span>
+                      </li>
+                      <li>
+                        <a class="engagement-favorite active" data-mpf-article-id="#" href="#">
+                          <i class="fa fa-heart" aria-hidden="true"></i>
+                        </a>
+                        <span class="engagement-count active"> 6</span>
+                      </li>
+                      <li>
+                        <span class="verticle-slash">|</span>
+                      </li>
+                      <li>
+                        <span class="view-count">17707</span>
+                        <span class="view-text">View</span>
+                      </li>
+                      <li>
+                        <span class="verticle-slash">|</span>
+                      </li>
+                      <li>
+                        <span class="posted-date">
+                          <time datetime="2016-11-06">November 6, 2016</time>
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="sns-container">
+                    <div class="sns-btn-group">
+                      <div class="row gutter-4">
+                        <div class="col-xs-6">
+                          <a class="btn fb" role="button" href="#">
+                            <span>
+                              <i class="fa fa-facebook" aria-hidden="true"></i> share on facebook</span>
+                          </a>
+                        </div>
+                        <div class="col-xs-6">
+                          <a class="btn gp" role="button" href="#">
+                            <span>
+                              <i class="fa fa-google-plus" aria-hidden="true"></i> share on google</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="sns-container sm">
+                    <div class="sns-btn-group">
+                      <div class="row gutter-4">
+                        <div class="col-xs-6">
+                          <a class="btn fb" role="button" href="#">
+                            <span>Share on
+                              <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                            </span>
+                          </a>
+                        </div>
+                        <div class="col-xs-6">
+                          <a class="btn gp" role="button" href="#">
+                            <span>Share on
+                              <i class="fa fa-google-plus" aria-hidden="true"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Article Main-->
+                  <div class="article-body clearfix">
+                    <div></div>
+                    <p>
+                      Hokkaido yang indah yang terletak di pulau paling utara pulau Jepang, dan jika dibandingkan dengan banyak bagian lain dari negara ini yang sedikit berkembang dan masih kurang pengunjung. Hokkaido dikenal oleh wisatawan domestik  menjadi tempat untuk didatangi
+                      di musim dingin, dan meskipun musim bisa keras di sini, salah satunya hujan salju yang turun dengan deras. Jika kamu suka ski atau snowboarding, maka Hokkaido sulit untuk dikalahkan sebagai tujuan ski premium, dan kamu juga dapat
+                      menikmati pemandangan romantis seperti lautan beku dan salju gunung berapi.
+                      <br/>
+                      <br/> Pada bulan-bulan musim panas, Hokkaido hangat dan menyenangkan, meskipun suhu yang lebih lembab daripada pulau-pulau lain dari Jepang. Terlepas dari kenyataan bahwa i namanya sebagai tempat olahraga musim dingin, Hokkaido memiliki
+                      banyak hal yang bisa dilakukan pada musim panas, dan siapa saja yang ingin melakukan aktivitas di luar akan kamu akan mendapatkan beberapa pilihan kegiatan seperti bersepeda dan hiking.
+                    </p>
+                    <p>Tergantung pada preferensi kamu, ada sesuatu untuk semua orang lihat dan dilakukan di sini, mulai dari kota-kota yang besar sampai kota-kota kuno.
+                      <br/>
+                      <br/> Berikut adalah 5 tempat terbaikuntuk dikunjungi di Hokkaido.
+                      <br/>
+                      <br/>
+                      <span style="text-decoration: underline;">Sapporo:</span>
+                    </p>
+                    <div>
+                      <span style="text-decoration: underline;">
+                        <img height="530" alt="20161128-15-01-Hokkaido" width="850" src="./images/article/article_hokkaido.jpg" />
+                        <br/>
+                      </span>
+                    </div>
+                    <div></div>
+                    <p>Sapporo adalah ibu kota Hokkaido dan juga kota terbesar. Dikenal baru-baru ini di kalangan orang Jepang, yang telah didirikan pada abad ke-19, dan hal ini sangat terkenal karena taman yang rindang dan bir terkenal.</p>
+                    Dengan demikian, kunjungan di sini tidak akan lengkap tanpa perjalanan ke Museum Bir Sapporo, di mana kamu dapat mempelajari semua tentang sejarah pembuatan bir di Jepang, dan mendengar kisah terkenal Sapporo Brewing Company. Museum ini memungkinkan untuk
+                    ikut tur pabrik bir dan berakhir di ruang mencicipi di mana kamu dapat mencicipi beberapa brews terbaik yang ditawarkan.
+                    <br/>
+                    <br/> Jika kamu sedang mood ingin pergi ke suatu tempat sedikit lebih tenang, maka jangan lewatkan kesempatan untuk mengunjungi taman paling terkenal di Sapporo, Taman Odori, yang merupakan salah satu tempat yang paling ikonik di kota.
+                    Taman membentang sepanjang 15 blok dan ditutupi rumput dan air mancur yang cantik.
+                    <div>
+                      <br/>
+                    </div>
+                  </div>
+                  <!-- Engagement 2-->
+                  <div class="detail-engagement">
+                    <ul class="detail-favorite">
+                      <li>
+                        <a class="engagement-favorite" data-mpf-article-id="#" href="#">
+                          <i class="fa fa-heart" aria-hidden="true"></i>
+                        </a>
+                        <span class="engagement-count">5</span>
+                      </li>
+                      <li>
+                        <a class="engagement-favorite active" data-mpf-article-id="#" href="#">
+                          <i class="fa fa-heart" aria-hidden="true"></i>
+                        </a>
+                        <span class="engagement-count active"> 6</span>
+                      </li>
+                      <li>
+                        <span class="verticle-slash">|</span>
+                      </li>
+                      <li>
+                        <span class="post-text">Posted by </span>
+                        <span class="post-author">FJ Team</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="sns-container">
+                    <div class="sns-btn-group">
+                      <div class="row gutter-4">
+                        <div class="col-xs-6">
+                          <a class="btn fb" role="button" href="#">
+                            <span>
+                              <i class="fa fa-facebook" aria-hidden="true"></i> share on facebook</span>
+                          </a>
+                        </div>
+                        <div class="col-xs-6">
+                          <a class="btn gp" role="button" href="#">
+                            <span>
+                              <i class="fa fa-google-plus" aria-hidden="true"></i> share on google</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="sns-container sm">
+                    <div class="sns-btn-group">
+                      <div class="row gutter-4">
+                        <div class="col-xs-6">
+                          <a class="btn fb" role="button" href="#">
+                            <span>Share on
+                              <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                            </span>
+                          </a>
+                        </div>
+                        <div class="col-xs-6">
+                          <a class="btn gp" role="button" href="#">
+                            <span>Share on
+                              <i class="fa fa-google-plus" aria-hidden="true"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- TAGS-->
+                  <div class="detail-tags">
+                    <ul class="tags">
+                      <li class="hot-tag">
+                        <a href="#">
+                          <span class="hashtag"># </span>japan</a>
+                      </li>
+                      <li class="hot-tag">
+                        <a href="#">
+                          <span class="hashtag"># </span>technology</a>
+                      </li>
+                      <li class="hot-tag">
+                        <a href="#">
+                          <span class="hashtag"># </span>hokkaido</a>
+                      </li>
+                      <li class="hot-tag">
+                        <a href="#">
+                          <span class="hashtag"># </span>mountain</a>
+                      </li>
+                      <li class="hot-tag">
+                        <a href="#">
+                          <span class="hashtag"># </span>island</a>
+                      </li>
+                      <li class="hot-tag">
+                        <a href="#">
+                          <span class="hashtag"># </span>odori</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- EOF TAGS-->
+                </article>
+                <!-- EOF MAIN-->
+              </div>
+              <div class="col-md-30 sidebar">
+                <!-- SIDEBAR-->
+                <div class="sidebar-detail">
+                  <!-- ABOUT AUTHOR-->
+                  <div class="list-group detail-about-author">
+                    <div class="list-group-header">
+                      <p class="list-group-title">Author</p>
+                    </div>
+                    <p class="about-author">Fun! Japan is a team of passionate fans that is dedicated to yu to bring the most insteresting news about Japanese culture.</p>
+                  </div>
+                  <!-- EOF ABOUT AUTHOR-->
+                  <!-- COMMENT AREA-->
+                  <div class="comment-area" id="comment-area">
+                    <div id="comment-area-desktop">
+                      <div class="list-group">
+                        <div class="list-group-header">
+                          <p class="list-group-title">
+                            <span class="comment-count">119</span> COMMENTS</p>
+                        </div>
+                        <!-- HIDE COMMENT MODAL BTN-->
+                        <div class="hide-comment-modal">
+                          <p>
+                            <span class="comment-count">119</span> COMMENTS
+                            <a id="hide-comment-btn">
+                              <span class="suggest-text pull-right">close
+                                <i class="fa fa-times pull-right" aria-hidden="true"></i>
+                              </span>
+                            </a>
+                          </p>
+                        </div>
+                        <!-- EOF HIDE COMMENT MODAL BTN-->
+                      </div>
+                      <div class="comment-posting-form">
+                        <div class="alert alert-danger hidden">
+                          <ul>
+                            <li class="hidden">Posting comments is limited temporarily. Try again later. </li>
+                            <li class="hidden">Message is too long.</li>
+                            <li class="hidden">You have reached your comment limit for this article.</li>
+                          </ul>
+                        </div>
+                        <form class="comment-to-top" role="form">
+                          <textarea class="form-control no-radius-bot" rows="4" placeholder="What's on your mind?"></textarea>
+                          <div class="row radius-bot">
+                            <div class="col-xs-8 text-left">
+                              <span class="btn btn-gif show-gifs-selection" type="button">GIF</span>
+                              <div class="gifs-comment-block" id="gifs-search-block" style="display: none; bottom: -398px;">
+                                <div class="popup-gif">
+                                  <div class="popup-content">
+                                    <div class="search-for-text">
+                                      <input class="form-control text-search-gif pull-left input-sm" id="search-gif-input" type="text" autocomplete="off" placeholder="Search images" />
+                                      <input class="hidden" type="text" />
+                                      <i class="fa fa-level-down fa-rotate-90 search-image-gif" id="search-gif-btn" aria-hidden="true"></i>
+                                      <button class="gif-header-button pull-right" id="close-gif-popup-btn" type="button">
+                                        <i class="glyphicon glyphicon-off"></i>
+                                      </button>
+                                      <input id="gif-for-parent-comment-id" type="hidden" value="" />
+                                    </div>
+                                    <div class="body-result-gifs">
+                                      <img class="gif-image" alt="" src="https://media.tenor.co/images/1bbe1a6fc1c8f8472e29a4e6aaf2213a/raw" data-width="498" data-height="280" />
+                                      <img class="gif-image" alt="" src="https://media.tenor.co/images/f0cf6c326374df7bf5546e8fcab6b3ed/raw" data-width="498" data-height="276" />
+                                      <img class="gif-image" alt="" src="https://media.tenor.co/images/3540b6bcedf47342da3c584a22632321/raw" data-width="200" data-height="150" />
+                                      <img class="gif-image" alt="" src="https://media.tenor.co/images/3d74984209df64cc363b8bdca8c540d4/raw" data-width="480" data-height="266" />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <i class="fa fa-smile-o btn btn-twemoji" aria-hidden="true"></i>
+                              <div class="gifs-comment-block" id="emoji-picker-block" style="display: none; bottom: 34px;">
+                                <div class="popup-gif">
+                                  <div class="popup-content">
+                                    <input id="emoji-for-parent-comment-id" type="hidden" value="" />
+                                    <div class="body-twitter-emoji-list people">
+                                      <ul class="emoji-list">
+                                        <li>
+                                          <img class="emoji" draggable="false" alt="😉" src="https://twemoji.maxcdn.com/36x36/1f609.png" />
+                                        </li>
+                                        <li>
+                                          <img class="emoji" draggable="false" alt="😍" src="https://twemoji.maxcdn.com/36x36/1f60d.png" />
+                                        </li>
+                                        <li>
+                                          <img class="emoji" draggable="false" alt="😘" src="https://twemoji.maxcdn.com/36x36/1f618.png" />
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <div class="body-twitter-emoji-list nature hidden">
+                                      <ul class="emoji-list">
+                                        <li>
+                                          <img class="emoji" draggable="false" alt="🌁" src="https://twemoji.maxcdn.com/36x36/1f301.png" />
+                                        </li>
+                                        <li>
+                                          <img class="emoji" draggable="false" alt="🌈" src="https://twemoji.maxcdn.com/36x36/1f308.png" />
+                                        </li>
+                                        <li>
+                                          <img class="emoji" draggable="false" alt="🌊" src="https://twemoji.maxcdn.com/36x36/1f30a.png" />
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <div class="category-menu-emoji-list">
+                                      <span class="active" data-category="people">
+                                        <img class="emoji" draggable="false" alt="😆" src="http://twemoji.maxcdn.com/36x36/1f606.png" />
+                                      </span>
+                                      <span data-category="nature">
+                                        <img class="emoji" draggable="false" alt="🌸" src="http://twemoji.maxcdn.com/36x36/1f338.png" />
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-xs-4 text-right">
+                              <button class="btn btn-default" id="post-btn" type="button">
+                                <i class="fa fa-comments-o" aria-hidden="true"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </form>
+                        <div class="login-requirement hidden">
+                          <span>
+                            <a href="#">Login</a> or
+                            <a href="#">create your account</a> to join the discussion.</span>
+                        </div>
+                        <div class="comment-reply-container">
+                          <div class="comment-reply-form">
+                            <div class="alert alert-danger hidden">
+                              <ul>
+                                <li class="hidden">Posting comments is limited temporarily. Try again later. </li>
+                                <li class="hidden">Message is too long.</li>
+                                <li class="hidden">You have reached your comment limit for this article.</li>
+                              </ul>
+                            </div>
+                            <form class="comment-to-top" role="form">
+                              <textarea type="text" placeholder="Reply comment"></textarea>
+                              <i class="fa fa-smile-o btn btn-twemoji" aria-hidden="true"></i>
+                              <div class="gifs-comment-block" id="emoji-picker-block" style="display: none; bottom: 34px;">
+                                <div class="popup-gif">
+                                  <div class="popup-content">
+                                    <input id="emoji-for-parent-comment-id" type="hidden" value="" />
+                                    <div class="body-twitter-emoji-list people">
+                                      <ul class="emoji-list">
+                                        <li>
+                                          <img class="emoji" draggable="false" alt="😉" src="https://twemoji.maxcdn.com/36x36/1f609.png" />
+                                        </li>
+                                        <li>
+                                          <img class="emoji" draggable="false" alt="😍" src="https://twemoji.maxcdn.com/36x36/1f60d.png" />
+                                        </li>
+                                        <li>
+                                          <img class="emoji" draggable="false" alt="😘" src="https://twemoji.maxcdn.com/36x36/1f618.png" />
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <div class="body-twitter-emoji-list nature hidden">
+                                      <ul class="emoji-list">
+                                        <li>
+                                          <img class="emoji" draggable="false" alt="🌁" src="https://twemoji.maxcdn.com/36x36/1f301.png" />
+                                        </li>
+                                        <li>
+                                          <img class="emoji" draggable="false" alt="🌈" src="https://twemoji.maxcdn.com/36x36/1f308.png" />
+                                        </li>
+                                        <li>
+                                          <img class="emoji" draggable="false" alt="🌊" src="https://twemoji.maxcdn.com/36x36/1f30a.png" />
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <div class="category-menu-emoji-list">
+                                      <span class="active" data-category="people">
+                                        <img class="emoji" draggable="false" alt="😆" src="http://twemoji.maxcdn.com/36x36/1f606.png" />
+                                      </span>
+                                      <span data-category="nature">
+                                        <img class="emoji" draggable="false" alt="🌸" src="http://twemoji.maxcdn.com/36x36/1f338.png" />
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                        <ul class="media-list media-list-comments">
+                          <li class="media no-overflow-hidden" data-article-comment-id="cc3819cb-1612-4a0c-8329-c1c08b2ff644" data-article-comment-owner="false">
+                            <div class="pull-left profile-picture" style="position:relative;">
+                              <img class="media-object img-circle" src="images/article/profile_01.png" alt="Minanti Utami" />
+                            </div>
+                            <div class="media-body">
+                              <p class="h4 media-heading">Chan Swee MEI</p>
+                              <div class="pull-right">
+                                <a class="btn-delete" href="javascript: void(0);">delete</a>
+                              </div>
+                              <p class="comment-body">nice article thank you!</p>
+                              <p class="time">
+                                <span class="post-text">Posted at </span>
+                                <span class="post-date">2016/12/15, 21:40</span>
+                                <a class="comment-reply-panel pull-right" href="javascript:void(0);">
+                                  <i class="fa fa-reply-all"></i>
+                                  <span class="reply-count">1</span>
+                                </a>
+                              </p>
+                            </div>
+                            <div class="comment-favorite">
+                              <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                <i class="fa fa-heart"></i>
+                              </a>
+                              <span class="engagement-count disabled">1</span>
+                            </div>
+                            <!-- REPLY COMMENT-->
+                            <div class="comment-reply-container">
+                              <ul class="media-list media-list-comments media-list-comments-replies">
+                                <li class="media no-overflow-hidden" data-article-comment-id="59fc0d14-a887-44cb-b3b6-79d1b942f986" data-article-comment-owner="true">
+                                  <div class="pull-left profile-picture" style="position:relative;">
+                                    <img class="media-object img-circle" src="images/article/profile_01.png" alt="Ping pong" />
+                                  </div>
+                                  <div class="media-body">
+                                    <p class="h4 media-heading">Chan Swee MEI</p>
+                                    <div class="pull-right">
+                                      <a class="btn-delete" href="javascript: void(0);" style="display: inline;">delete</a>
+                                    </div>
+                                    <p class="comment-body">thank you!</p>
+                                    <span class="hidden"></span>
+                                    <p class="time">
+                                      <span class="post-text">Posted at </span>
+                                      <span class="post-date">2016/12/15, 21:40</span>
+                                    </p>
+                                  </div>
+                                  <div class="comment-favorite">
+                                    <a class="engagement-favorite engagement-interactive" href="javascript:void(0);">
+                                      <i class="fa fa-heart"></i>
+                                    </a>
+                                    <span class="engagement-count disabled">1</span>
+                                  </div>
+                                </li>
+                              </ul>
+                              <div class="comment-reply-form comment-posting-form" style="display: block;">
+                                <div class="alert alert-danger hidden">
+                                  <ul>
+                                    <li class="hidden">Posting comments is limited temporarily. Try again later. </li>
+                                    <li class="hidden">Message is too long.</li>
+                                    <li class="hidden">You have reached your comment limit for this article.</li>
+                                  </ul>
+                                </div>
+                                <form class="comment-to-top" role="form">
+                                  <textarea class="comment-input-area" type="text" placeholder="Reply comment"></textarea>
+                                  <i class="fa fa-smile-o btn btn-twemoji" aria-hidden="true"></i>
+                                </form>
+                              </div>
+                            </div>
+                            <!-- EOF REPLY COMMENT-->
+                          </li>
+                          <li class="media no-overflow-hidden" data-article-comment-id="cc3819cb-1612-4a0c-8329-c1c08b2ff644" data-article-comment-owner="false">
+                            <div class="pull-left profile-picture" style="position:relative;">
+                              <img class="media-object img-circle" src="images/article/profile_01.png" alt="Minanti Utami" />
+                            </div>
+                            <div class="media-body">
+                              <p class="h4 media-heading">Chan Swee MEI</p>
+                              <div class="pull-right">
+                                <a class="btn-delete" href="javascript: void(0);">delete</a>
+                              </div>
+                              <p class="comment-body">nice article thank you!</p>
+                              <p class="time">
+                                <span class="post-text">Posted at </span>
+                                <span class="post-date">2016/12/15, 21:40</span>
+                                <a class="comment-reply-panel pull-right" href="javascript:void(0);">
+                                  <i class="fa fa-reply-all"></i>
+                                  <span class="reply-count">0</span>
+                                </a>
+                              </p>
+                            </div>
+                            <div class="comment-favorite">
+                              <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                <i class="fa fa-heart"></i>
+                              </a>
+                              <span class="engagement-count disabled">0</span>
+                            </div>
+                          </li>
+                          <li class="media no-overflow-hidden" data-article-comment-id="cc3819cb-1612-4a0c-8329-c1c08b2ff644" data-article-comment-owner="false">
+                            <div class="pull-left profile-picture" style="position:relative;">
+                              <img class="media-object img-circle" src="images/article/profile_01.png" alt="Minanti Utami" />
+                            </div>
+                            <div class="media-body">
+                              <p class="h4 media-heading">Chan Swee MEI</p>
+                              <div class="pull-right">
+                                <a class="btn-delete" href="javascript: void(0);">delete</a>
+                              </div>
+                              <p class="comment-body">nice article thank you!</p>
+                              <p class="time">
+                                <span class="post-text">Posted at </span>
+                                <span class="post-date">2016/12/15, 21:40</span>
+                                <a class="comment-reply-panel pull-right" href="javascript:void(0);">
+                                  <i class="fa fa-reply-all"></i>
+                                  <span class="reply-count">0</span>
+                                </a>
+                              </p>
+                            </div>
+                            <div class="comment-favorite">
+                              <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                <i class="fa fa-heart"></i>
+                              </a>
+                              <span class="engagement-count disabled">0</span>
+                            </div>
+                          </li>
+                          <li class="media no-overflow-hidden" data-article-comment-id="cc3819cb-1612-4a0c-8329-c1c08b2ff644" data-article-comment-owner="false">
+                            <div class="pull-left profile-picture" style="position:relative;">
+                              <img class="media-object img-circle" src="images/article/profile_01.png" alt="Minanti Utami" />
+                            </div>
+                            <div class="media-body">
+                              <p class="h4 media-heading">Chan Swee MEI</p>
+                              <div class="pull-right">
+                                <a class="btn-delete" href="javascript: void(0);">delete</a>
+                              </div>
+                              <p class="comment-body">nice article thank you!</p>
+                              <p class="time">
+                                <span class="post-text">Posted at </span>
+                                <span class="post-date">2016/12/15, 21:40</span>
+                                <a class="comment-reply-panel pull-right" href="javascript:void(0);">
+                                  <i class="fa fa-reply-all"></i>
+                                  <span class="reply-count">0</span>
+                                </a>
+                              </p>
+                            </div>
+                            <div class="comment-favorite">
+                              <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                <i class="fa fa-heart"></i>
+                              </a>
+                              <span class="engagement-count disabled">0</span>
+                            </div>
+                          </li>
+                          <li class="media no-overflow-hidden" data-article-comment-id="cc3819cb-1612-4a0c-8329-c1c08b2ff644" data-article-comment-owner="false">
+                            <div class="pull-left profile-picture" style="position:relative;">
+                              <img class="media-object img-circle" src="images/article/profile_01.png" alt="Minanti Utami" />
+                            </div>
+                            <div class="media-body">
+                              <p class="h4 media-heading">Chan Swee MEI</p>
+                              <div class="pull-right">
+                                <a class="btn-delete" href="javascript: void(0);">delete</a>
+                              </div>
+                              <p class="comment-body">nice article thank you!</p>
+                              <p class="time">
+                                <span class="post-text">Posted at </span>
+                                <span class="post-date">2016/12/15, 21:40</span>
+                                <a class="comment-reply-panel pull-right" href="javascript:void(0);">
+                                  <i class="fa fa-reply-all"></i>
+                                  <span class="reply-count">0</span>
+                                </a>
+                              </p>
+                            </div>
+                            <div class="comment-favorite">
+                              <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                <i class="fa fa-heart"></i>
+                              </a>
+                              <span class="engagement-count disabled">0</span>
+                            </div>
+                          </li>
+                        </ul>
+                        <div class="comment-pagination text-center">
+                          <ul class="pagination pagination-sm">
+                            <li class="previous disabled pull-left">
+                              <a>PREV</a>
+                            </li>
+                            <li class="active">
+                              <a href="javascript:void(0);">1</a>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0);">2</a>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0);">3</a>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0);">4</a>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0);">5</a>
+                            </li>
+                            <li class="next pull-right">
+                              <a href="javascript:void(0);">NEXT </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- COMMENT MODAL-->
+                    <div class="modal fade" id="comment-modal">
+                      <div class="modal-dialog">
+                        <div class="modal-content"></div>
+                      </div>
+                    </div>
+                    <!-- EOF COMMENT MODAL-->
+                    <!-- SHOW COMMENT MODAL BTN-->
+                    <div class="show-comment-modal">
+                      <p>
+                        <span class="comment-count">119</span> COMMENTS
+                        <a id="show-comment-btn">
+                          <span class="suggest-text pull-right">swipe up
+                            <i class="fa fa-hand-o-up" aria-hidden="true"></i>
+                          </span>
+                        </a>
+                      </p>
+                    </div>
+                    <!-- EOF SHOW COMMENT MODAL BTN-->
+                    <!-- DELETE COMMENT MODAL-->
+                    <div class="modal fade" id="delete-comment-modal">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <p>Are you sure you want to delete ?</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-default" type="button" data-dismiss="modal">No</button>
+                            <button class="btn btn-primary" type="button">Yes</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- EOF DELETE COMMENT MODAL-->
+                    <!-- CONFIRM GIF MODAL-->
+                    <div class="modal fade" id="confirm-gif-modal">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <p>Are you sure you want to post this GIF image?</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-default" type="button" data-dismiss="modal">No</button>
+                            <button class="btn btn-primary" type="button">Yes</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- EOF CONFIRM GIF MODAL    -->
+                  </div>
+                  <!-- EOF COMMENT AREA-->
+                </div>
+                <!-- EOF SIDEBAR-->
               </div>
             </div>
-            <div id="sm-legal-dropdown" class="tab-pane navbar-tab fade">
-              <ul class="tab-content-menu">
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">TERMS & CONDITIONS</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">PRIVACY POLICIES</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-              </ul>
-            </div>
-            <div id="sm-info-dropdown" class="tab-pane navbar-tab fade">
-              <ul class="tab-content-menu">
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">FAQ</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">CONTACT US</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">FOR MARKETERS</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- EOF NAVBAR -->
-      </header>
-      <!-- EOF Menu bars -->
-      <!-- EOF HEADER -->
-      <div class="top-body">
-        <div class="main-content">
-          <div class="row gutter-32">
-            <div class="col-md-70 main-column">
-              <!-- MAIN -->
-              <article>
-
-                <header>
-                  <ul class="detail-breadcrumbs">
-                    <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Fun! Japan</a> <i class="fa fa-chevron-right" aria-hidden="true"></i></li>
-                    <li><a href="#">Travel Season</a> <i class="fa fa-chevron-right" aria-hidden="true"></i></li>
-                    <li><a href="#">Dogo Onsen and more sightseeing spots in Matsuyama.</a></li>
-                  </ul>
-                  <p class="article-detail-category">Travel / season</p>
-                  <p class="article-detail-title">Dogo Onsen and more sightseeing spots in Matsuyama.</h1>
-                </header>
-
-                <div class="detail-engagement">
-                  <ul class="detail-favorite">
-                    <li>
-                      <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
-                        <i class="fa fa-heart" aria-hidden="true"></i>
-                      </a>
-                      <span class="engagement-count"> 5</span>
-                    </li>
-                    <li>
-                      <a class="engagement-favorite active" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
-                        <i class="fa fa-heart" aria-hidden="true"></i>
-                      </a>
-                      <span class="engagement-count active"> 6</span>
-                    </li>
-                    <li>
-                      <span class="verticle-slash">|</span>
-                    </li>
-                    <li>
-                      <span class="view-count">17707</span> <span class="view-text">View</span>
-                    </li>
-                    <li>
-                      <span class="verticle-slash">|</span>
-                    </li>
-                    <li>
-                      <span class="posted-date"><time datetime="2016-11-06">November 6, 2016</time></span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="sns-container">
-                  <div class="sns-btn-group">
-                    <div class="row gutter-4">
-                      <div class="col-xs-6">
-                        <a class="btn fb" role="button" href="#">
-                          <span><i class="fa fa-facebook" aria-hidden="true"></i> share on facebook</span>
-                        </a>
-                      </div>
-                      <div class="col-xs-6">
-                        <a class="btn gp" role="button" href="#">
-                          <span><i class="fa fa-google-plus" aria-hidden="true"></i> share on google</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="sns-container sm">
-                  <div class="sns-btn-group">
-                    <div class="row gutter-4">
-                      <div class="col-xs-6">
-                        <a class="btn fb" role="button" href="#">
-                          <span>Share on&nbsp;&nbsp;<i class="fa fa-facebook-square" aria-hidden="true"></i></span>
-                        </a>
-                      </div>
-                      <div class="col-xs-6">
-                        <a class="btn gp" role="button" href="#">
-                          <span>Share on&nbsp;&nbsp;<i class="fa fa-google-plus" aria-hidden="true"></i></span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Article Main -->
-                <div class="article-body clearfix">
-                  <div></div>
-                  <p>Hokkaido yang indah yang terletak di pulau paling utara pulau Jepang, dan jika dibandingkan dengan banyak bagian lain dari negara ini yang sedikit berkembang dan masih kurang pengunjung. Hokkaido dikenal oleh wisatawan domestik &nbsp;menjadi
-                    tempat untuk didatangi di musim dingin, dan meskipun musim bisa keras di sini, salah satunya hujan salju yang turun dengan deras. Jika kamu suka ski atau snowboarding, maka Hokkaido sulit untuk dikalahkan sebagai tujuan ski premium,
-                    dan kamu juga dapat menikmati pemandangan romantis seperti lautan beku dan salju gunung berapi.<br>
-                    <br> Pada bulan-bulan musim panas, Hokkaido hangat dan menyenangkan, meskipun suhu yang lebih lembab daripada pulau-pulau lain dari Jepang. Terlepas dari kenyataan bahwa i namanya sebagai tempat olahraga musim dingin, Hokkaido memiliki
-                    banyak hal yang bisa dilakukan pada musim panas, dan siapa saja yang ingin melakukan aktivitas di luar akan kamu akan mendapatkan beberapa pilihan kegiatan seperti bersepeda dan hiking.</p>
-                  <p>Tergantung pada preferensi kamu, ada sesuatu untuk semua orang lihat dan dilakukan di sini, mulai dari kota-kota yang besar sampai kota-kota kuno.<br>
-                    <br> Berikut adalah 5 tempat terbaikuntuk dikunjungi di Hokkaido.<br>
-                    <br>
-                    <span style="text-decoration: underline;">Sapporo:</span></p>
-                  <div><span style="text-decoration: underline;">
-            <img height="530" alt="20161128-15-01-Hokkaido" width="850" src="./Fun! Japan Indonesia - 5 Tempat Terbaik yang Wajib Dikunjungi di Hokkaido_files/20161128-15-01-Hokkaido.ashx"><br>
-            </span></div>
-                  <div></div>
-                  <p>Sapporo adalah ibu kota Hokkaido dan juga kota terbesar. Dikenal baru-baru ini di kalangan orang Jepang, yang telah didirikan pada abad ke-19, dan hal ini sangat terkenal karena taman yang rindang dan bir terkenal.</p>
-                  Dengan demikian, kunjungan di sini tidak akan lengkap tanpa perjalanan ke Museum Bir Sapporo, di mana kamu dapat mempelajari semua tentang sejarah pembuatan bir di Jepang, dan mendengar kisah terkenal Sapporo Brewing Company. Museum ini memungkinkan untuk
-                  ikut tur pabrik bir dan berakhir di ruang mencicipi di mana kamu dapat mencicipi beberapa brews terbaik yang ditawarkan.<br>
-                  <br> Jika kamu sedang mood ingin pergi ke suatu tempat sedikit lebih tenang, maka jangan lewatkan kesempatan untuk mengunjungi taman paling terkenal di Sapporo, Taman Odori, yang merupakan salah satu tempat yang paling ikonik di kota.
-                  Taman membentang sepanjang 15 blok dan ditutupi rumput dan air mancur yang cantik.
-                  <div><br>
-                  </div>
-                </div>
-
-                <!-- Engagement 2 -->
-                <div class="detail-engagement">
-                  <ul class="detail-favorite">
-                    <li>
-                      <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
-                        <i class="fa fa-heart" aria-hidden="true"></i>
-                      </a>
-                      <span class="engagement-count">5</span>
-                    </li>
-                    <li>
-                      <a class="engagement-favorite active" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
-                        <i class="fa fa-heart" aria-hidden="true"></i>
-                      </a>
-                      <span class="engagement-count active"> 6</span>
-                    </li>
-                    <li>
-                      <span class="verticle-slash">|</span>
-                    </li>
-                    <li>
-                      <span class="post-text">Posted by </span><span class="post-author">FJ Team</span>
-                    </li>
-                  </ul>
-                </div>
-                <div class="sns-container">
-                  <div class="sns-btn-group">
-                    <div class="row gutter-4">
-                      <div class="col-xs-6">
-                        <a class="btn fb" role="button" href="#">
-                          <span><i class="fa fa-facebook" aria-hidden="true"></i> share on facebook</span>
-                        </a>
-                      </div>
-                      <div class="col-xs-6">
-                        <a class="btn gp" role="button" href="#">
-                          <span><i class="fa fa-google-plus" aria-hidden="true"></i> share on google</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="sns-container sm">
-                  <div class="sns-btn-group">
-                    <div class="row gutter-4">
-                      <div class="col-xs-6">
-                        <a class="btn fb" role="button" href="#">
-                          <span>Share on&nbsp;&nbsp;<i class="fa fa-facebook-square" aria-hidden="true"></i></span>
-                        </a>
-                      </div>
-                      <div class="col-xs-6">
-                        <a class="btn gp" role="button" href="#">
-                          <span>Share on&nbsp;&nbsp;<i class="fa fa-google-plus" aria-hidden="true"></i></span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- TAGS -->
-                <div class="detail-tags">
-                  <ul class="tags">
-                    <li class="hot-tag">
-                      <a href="/?category=TravelSeason">
-                        <span class="hashtag"># </span>japan
-                      </a>
-                    </li>
-                    <li class="hot-tag">
-                      <a href="/?category=FoodGourmet">
-                        <span class="hashtag"># </span>fun
-                      </a>
-                    </li>
-                    <li class="hot-tag">
-                      <a href="/?category=Technology">
-                        <span class="hashtag"># </span>culture
-                      </a>
-                    </li>
-
-                    <li class="hot-tag">
-                      <a href="/?category=TravelSeason">
-                        <span class="hashtag"># </span>japan
-                      </a>
-                    </li>
-                    <li class="hot-tag">
-                      <a href="/?category=FoodGourmet">
-                        <span class="hashtag"># </span>fun
-                      </a>
-                    </li>
-                    <li class="hot-tag">
-                      <a href="/?category=Technology">
-                        <span class="hashtag"># </span>culture
-                      </a>
-                    </li>
-                    <li class="hot-tag">
-                      <a href="/?category=TravelSeason">
-                        <span class="hashtag"># </span>japan
-                      </a>
-                    </li>
-
-                  </ul>
-                </div>
-                <!-- EOF TAGS -->
-              </article>
-
-              <!-- EOF MAIN -->
-            </div>
-            <div class="col-md-30 sidebar">
-              <!-- SIDEBAR -->
-              <div class="sidebar-detail">
-                <!-- ABOUT AUTHOR -->
-                <div class="list-group detail-about-author">
-                  <div class="list-group-header">
-                    <p class="list-group-title">Author</p>
-                  </div>
-                  <p class="about-author">Fun! Japan is a team of passionate fans that is dedicated to yu to bring the most insteresting news about Japanese culture.</p>
-                </div>
-                <!-- EOF ABOUT AUTHOR -->
-
-                <!-- COMMENT AREA -->
-                <div id="comment-area" class="comment-area">
-                  <div id="comment-area-desktop">
-                    <div class="list-group">
-                      <div class="list-group-header">
-                        <p class="list-group-title">
-                          <span class="comment-count">119</span> COMMENTS
+            <div class="related-post">
+              <div class="row gutter-16">
+                <div class="col-md-6 col-xs-8">
+                  <div class="first-block">
+                    <a href="#">
+                      <div class="img-card first-block-img">
+                        <img src="images/article/recommended_img_01.jpg" />
+                        <p class="card-title">
+                          <span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese word "Yuki (雪)" mean? What does the What does the Japanese word "Yuki (雪)" mean? What does the Japanese word "Yuki (雪)" mean? What does the Fun! Japan Words
+                            Oshibori (おしぼり) Fun!</span>
+                        </p>
+                        <p class="card-title-sm">
+                          <span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese word "Yuki (雪)" mean? What does the Japanese word</span>
                         </p>
                       </div>
-                      <!-- HIDE COMMENT MODAL BTN -->
-                      <div class="hide-comment-modal">
-                        <p><span class="comment-count">119</span> COMMENTS
-                          <a id="hide-comment-btn"><span class="suggest-text pull-right">close <i class="fa fa-times pull-right" aria-hidden="true"></i></span></a></p>
-                      </div>
-                      <!-- EOF HIDE COMMENT MODAL BTN -->
-                    </div>
-                    <div class="comment-posting-form">
-                      <div class="alert alert-danger hidden">
-                        <ul>
-                          <li class="hidden">Posting comments is limited temporarily. Try again later. </li>
-                          <li class="hidden">Message is too long.</li>
-                          <li class="hidden">You have reached your comment limit for this article.</li>
-                        </ul>
-                      </div>
-                      <form role="form" class="comment-to-top">
-                        <textarea class="form-control no-radius-bot" rows="4" placeholder="What's on your mind?"></textarea>
-                        <div class="row radius-bot">
-                          <div class="col-xs-8 text-left">
-                            <span type="button" class="btn btn-gif show-gifs-selection">GIF</span>
-                            <div class="gifs-comment-block" id="gifs-search-block" style="display: none; bottom: -398px;">
-                              <div class="popup-gif">
-                                <div class="popup-content">
-                                  <div class="search-for-text">
-                                    <input type="text" id="search-gif-input" class="form-control text-search-gif pull-left input-sm" autocomplete="off" placeholder="Search images">
-                                    <input type="text" class="hidden">
-                                    <i class="fa fa-level-down fa-rotate-90 search-image-gif" id="search-gif-btn" aria-hidden="true"></i>
-                                    <button id="close-gif-popup-btn" class="gif-header-button pull-right" type="button"><i class="glyphicon glyphicon-off"></i></button>
-                                    <input type="hidden" id="gif-for-parent-comment-id" value="">
-                                  </div>
-                                  <div class="body-result-gifs"><img class="gif-image" alt="" src="https://media.tenor.co/images/1bbe1a6fc1c8f8472e29a4e6aaf2213a/raw" data-width="498" data-height="280"><img class="gif-image" alt="" src="https://media.tenor.co/images/f0cf6c326374df7bf5546e8fcab6b3ed/raw"
-                                      data-width="498" data-height="276"><img class="gif-image" alt="" src="https://media.tenor.co/images/3540b6bcedf47342da3c584a22632321/raw" data-width="200" data-height="150"><img class="gif-image" alt="" src="https://media.tenor.co/images/3d74984209df64cc363b8bdca8c540d4/raw"
-                                      data-width="480" data-height="266"><img class="gif-image" alt="" src="https://media.tenor.co/images/abf3b06d542f6adcf8c6474fd9ce759d/raw" data-width="268" data-height="300"><img class="gif-image" alt="" src="https://media.tenor.co/images/e2d0aead28c6470d3516bbb41db35167/raw"
-                                      data-width="244" data-height="300"><img class="gif-image" alt="" src="https://media.tenor.co/images/b927684e8cfc70d76c2fe1d09bce73ed/raw" data-width="498" data-height="275"><img class="gif-image" alt="" src="https://media.tenor.co/images/6bfa711173bbcb4498a064adb6cea09a/raw"
-                                      data-width="366" data-height="274"><img class="gif-image" alt="" src="https://media.tenor.co/images/7ce36800420aac4b8f9c07f1b848bdef/raw" data-width="392" data-height="342"><img class="gif-image" alt="" src="https://media.tenor.co/images/c746233d77c57b462728020e15284f24/raw"
-                                      data-width="120" data-height="120"><img class="gif-image" alt="" src="https://media.tenor.co/images/bc92886e7748f92d65061b17acbd5e00/tenor.gif" data-width="480" data-height="360"><img class="gif-image" alt="" src="https://media.tenor.co/images/deab8a3833ad93a3c9051159895046cd/raw"
-                                      data-width="360" data-height="204"><img class="gif-image" alt="" src="https://media.tenor.co/images/39042eb61bb967eea313bb5e90be1825/raw" data-width="250" data-height="306"><img class="gif-image" alt="" src="https://media.tenor.co/images/5d0767a36ae9b322681e8ab0c8fcd012/raw"
-                                      data-width="498" data-height="412"><img class="gif-image" alt="" src="https://media.tenor.co/images/d49550fc71ca5c6168dfff5443d311cf/raw" data-width="244" data-height="250"><img class="gif-image" alt="" src="https://media.tenor.co/images/c3a73e0c3a1b132cd0b796095578bb1c/raw"
-                                      data-width="498" data-height="282"><img class="gif-image" alt="" src="https://media.tenor.co/images/877af9ac8c629e86fb5f8be807c04158/raw" data-width="350" data-height="197"><img class="gif-image" alt="" src="https://media.tenor.co/images/c10f261079de031baf451884cbec9062/raw"
-                                      data-width="498" data-height="280"><img class="gif-image" alt="" src="https://media.tenor.co/images/d3fbfd5a701f7751dc4b9bb60c2846fa/raw" data-width="480" data-height="270"><img class="gif-image" alt="" src="https://media.tenor.co/images/425027d824305fd320f251578020d93e/raw"
-                                      data-width="460" data-height="258"><img class="gif-image" alt="" src="https://media.tenor.co/images/bd7d1a86cc1d848db7fa269b90b02d02/raw" data-width="244" data-height="204"><img class="gif-image" alt="" src="https://media.tenor.co/images/9e0bef8c25548f34614de294e75fcb66/raw"
-                                      data-width="244" data-height="162"><img class="gif-image" alt="" src="https://media.tenor.co/images/fe9c16813e7dfafe40421aaf14ce3de2/raw" data-width="244" data-height="162"><img class="gif-image" alt="" src="https://media.tenor.co/images/7ab127ef63715d36138c5c76efd84972/raw"
-                                      data-width="244" data-height="260"><img class="gif-image" alt="" src="https://media.tenor.co/images/27a79b5e466802f9fe905bc38db406ac/raw" data-width="200" data-height="112"><img class="gif-image" alt="" src="https://media.tenor.co/images/cd246550cc77dcb71debad2115064942/raw"
-                                      data-width="438" data-height="284"><img class="gif-image" alt="" src="https://media.tenor.co/images/662beb64238e28fefc5b71fa975e0fc7/raw" data-width="434" data-height="434"><img class="gif-image" alt="" src="https://media.tenor.co/images/80f76d1e7c96f1f79b67ff7177709e54/raw"
-                                      data-width="320" data-height="320"><img class="gif-image" alt="" src="https://media.tenor.co/images/4e85f161af5fb60100fa650a9fc12244/raw" data-width="498" data-height="270"><img class="gif-image" alt="" src="https://media.tenor.co/images/e564a67503089d317274f3d5d9fcd72d/raw"
-                                      data-width="498" data-height="276"><img class="gif-image" alt="" src="https://media.tenor.co/images/b999053cdbab50b4aa86bd1bf9fe1199/raw" data-width="332" data-height="332"><img class="gif-image" alt="" src="https://media.tenor.co/images/19ae9d8cc3d7f28644cbd4436d865112/raw"
-                                      data-width="244" data-height="250"><img class="gif-image" alt="" src="https://media.tenor.co/images/e07c904e9dba79236ea3a011dff3702e/raw" data-width="244" data-height="250"><img class="gif-image" alt="" src="https://media.tenor.co/images/a1b4a30841105c8c179e3c73f93d77e1/raw"
-                                      data-width="244" data-height="250"><img class="gif-image" alt="" src="https://media.tenor.co/images/e9fb9c7d759d75150c371de45580d20a/tenor.gif" data-width="450" data-height="382"><img class="gif-image" alt="" src="https://media.tenor.co/images/a18bfe8aae285c2ff90c3969356ca919/tenor.gif"
-                                      data-width="250" data-height="218"><img class="gif-image" alt="" src="https://media.tenor.co/images/9480aa2d10b55ed12e6320cbd55ee7a7/tenor.gif" data-width="498" data-height="273"><img class="gif-image" alt="" src="https://media.tenor.co/images/f5acc076b1fbefe0705a5012e266b381/tenor.gif"
-                                      data-width="498" data-height="291"><img class="gif-image" alt="" src="https://media.tenor.co/images/cb2ca5c0ab32bf1e8773c29531abd263/tenor.gif" data-width="244" data-height="200"><img class="gif-image" alt="" src="https://media.tenor.co/images/72fe493b4f5c7224328a9cb69f0cfc70/tenor.gif"
-                                      data-width="244" data-height="304"></div>
-                                </div>
-                              </div>
-                            </div>
-                            <i class="fa fa-smile-o btn btn-twemoji" aria-hidden="true"></i>
-                            <div class="gifs-comment-block" id="emoji-picker-block" style="display: none; bottom: 34px;">
-                              <div class="popup-gif">
-                                <div class="popup-content">
-                                  <input type="hidden" id="emoji-for-parent-comment-id" value="">
-                                  <div class="body-twitter-emoji-list people">
-                                    <ul class="emoji-list">
-                                      <li><img draggable="false" class="emoji" alt="😉" src="https://twemoji.maxcdn.com/36x36/1f609.png"></li>
-                                      <li><img draggable="false" class="emoji" alt="😍" src="https://twemoji.maxcdn.com/36x36/1f60d.png"></li>
-                                      <li><img draggable="false" class="emoji" alt="😘" src="https://twemoji.maxcdn.com/36x36/1f618.png"></li>
-                                    </ul>
-                                  </div>
-                                  <div class="body-twitter-emoji-list nature hidden">
-                                    <ul class="emoji-list">
-                                      <li><img draggable="false" class="emoji" alt="🌁" src="https://twemoji.maxcdn.com/36x36/1f301.png"></li>
-                                      <li><img draggable="false" class="emoji" alt="🌈" src="https://twemoji.maxcdn.com/36x36/1f308.png"></li>
-                                      <li><img draggable="false" class="emoji" alt="🌊" src="https://twemoji.maxcdn.com/36x36/1f30a.png"></li>
-                                    </ul>
-                                  </div>
-                                  <div class="category-menu-emoji-list">
-                                    <span data-category="people" class="active">
-                                        <img draggable="false" class="emoji" alt="😆" src="http://twemoji.maxcdn.com/36x36/1f606.png">
-                                    </span>
-                                    <span data-category="nature" class="">
-                                        <img draggable="false" class="emoji" alt="🌸" src="http://twemoji.maxcdn.com/36x36/1f338.png">
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-xs-4 text-right">
-                            <button type="button" class="btn btn-default" id="post-btn"><i class="fa fa-comments-o" aria-hidden="true"></i></button>
-                          </div>
-                        </div>
-                      </form>
-                      <div class="login-requirement">
-                        <span><a href="#">Login</a> or <a href="#">create your account</a> to join the discussion.</span>
-                      </div>
-                      <div class="comment-reply-container">
-                        <div class="comment-reply-form">
-                          <div class="alert alert-danger hidden">
-                            <ul>
-                              <li class="hidden">Posting comments is limited temporarily. Try again later. </li>
-                              <li class="hidden">Message is too long.</li>
-                              <li class="hidden">You have reached your comment limit for this article.</li>
-                            </ul>
-                          </div>
-                          <form role="form" class="comment-to-top">
-                            <textarea type="text" placeholder="Reply comment"></textarea>
-                            <i class="fa fa-smile-o btn btn-twemoji" aria-hidden="true"></i>
-                            <div class="gifs-comment-block" id="emoji-picker-block" style="display: none; bottom: 34px;">
-                              <div class="popup-gif">
-                                <div class="popup-content">
-                                  <input type="hidden" id="emoji-for-parent-comment-id" value="">
-                                  <div class="body-twitter-emoji-list people">
-                                    <ul class="emoji-list">
-                                      <li><img draggable="false" class="emoji" alt="😉" src="https://twemoji.maxcdn.com/36x36/1f609.png"></li>
-                                      <li><img draggable="false" class="emoji" alt="😍" src="https://twemoji.maxcdn.com/36x36/1f60d.png"></li>
-                                      <li><img draggable="false" class="emoji" alt="😘" src="https://twemoji.maxcdn.com/36x36/1f618.png"></li>
-                                    </ul>
-                                  </div>
-                                  <div class="body-twitter-emoji-list nature hidden">
-                                    <ul class="emoji-list">
-                                      <li><img draggable="false" class="emoji" alt="🌁" src="https://twemoji.maxcdn.com/36x36/1f301.png"></li>
-                                      <li><img draggable="false" class="emoji" alt="🌈" src="https://twemoji.maxcdn.com/36x36/1f308.png"></li>
-                                      <li><img draggable="false" class="emoji" alt="🌊" src="https://twemoji.maxcdn.com/36x36/1f30a.png"></li>
-                                    </ul>
-                                  </div>
-                                  <div class="category-menu-emoji-list">
-                                    <span data-category="people" class="active">
-                                            <img draggable="false" class="emoji" alt="😆" src="http://twemoji.maxcdn.com/36x36/1f606.png">
-                                        </span>
-                                    <span data-category="nature" class="">
-                                            <img draggable="false" class="emoji" alt="🌸" src="http://twemoji.maxcdn.com/36x36/1f338.png">
-                                        </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                      <ul class="media-list media-list-comments">
-                        <li class="media no-overflow-hidden" data-article-comment-id="cc3819cb-1612-4a0c-8329-c1c08b2ff644" data-article-comment-owner="false">
-                          <div class="pull-left profile-picture" style="position:relative;">
-                            <img class="media-object img-circle" src="images/article/profile_01.png" alt="Minanti Utami">
-                          </div>
-                          <div class="media-body">
-                            <p class="h4 media-heading">Chan Swee MEI</p>
-                            <div class="pull-right">
-                              <a class="btn-delete" href="javascript: void(0);" style="display: none;">delete</a>
-                            </div>
-                            <p class="comment-body">nice article thank you!</p>
-                            <p class="time">
-                              <span class="post-text">Posted at </span><span class="post-date">2016/12/15, 21:40</span>
-                              <a class="comment-reply-panel pull-right" href="javascript:void(0);"><i class="fa fa-reply-all"></i><span class="reply-count"> 4</span></a>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-6 col-xs-4">
+                  <div class="row gutter-16">
+                    <div class="col-md-6">
+                      <div class="second-block">
+                        <a href="#">
+                          <div class="img-card second-block-img">
+                            <img src="images/article/recommended_img_2_1.jpg" />
+                            <p class="card-title">
+                              <span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese word "Yuki (雪)" mean? What does the</span>
+                            </p>
+                            <p class="card-title-sm">
+                              <span>What does the Japanese word "Yuki (雪)" mean? What does the</span>
                             </p>
                           </div>
-                          <div class="comment-favorite">
-                            <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
-                              <i class="fa fa-heart active"></i>
-                            </a>
-                            <span class="engagement-count">5</span>
+                        </a>
+                      </div>
+                      <div class="second-block">
+                        <a href="#">
+                          <div class="img-card second-block-img">
+                            <img src="images/article/recommended_img_2_2.jpg" />
+                            <p class="card-title">
+                              <span>What does the Japanese word "Yuki (雪)" mean?</span>
+                            </p>
+                            <p class="card-title-sm">
+                              <span>What does the Japanese word </span>
+                            </p>
                           </div>
-                          <!-- REPLY COMMENT -->
-                          <div class="comment-reply-container">
-                            <ul class="media-list media-list-comments media-list-comments-replies">
-                              <li class="media no-overflow-hidden" data-article-comment-id="59fc0d14-a887-44cb-b3b6-79d1b942f986" data-article-comment-owner="true" style="">
-                                <div class="pull-left profile-picture" style="position:relative"><img class="media-object img-circle" src="images/article/profile_01.png" alt="Ping pong"></div>
-                                <div class="media-body">
-                                  <p class="h4 media-heading">Ping pong</p>
-                                  <div class="pull-right"><a class="btn-delete" href="javascript: void(0);" style="display: inline;">delete</a></div>
-                                  <p class="comment-body">Dengan demikian, kunjungan di sini tidak akan lengkap tanpa perjalanan ke Museum Bir Sapporo, di mana kamu dapat mempelajari semua tentang sejarah pembuatan bir di Jepang</p>
-                                  <span class="hidden"></span>
-                                  <p class="time"><span class="post-text">Posted at </span><span class="post-date">2017/01/05, 21:50</span></p>
-                                </div>
-                                <div class="comment-favorite">
-                                  <a class="engagement-favorite engagement-interactive" href="javascript:void(0);">&nbsp;&nbsp;<i class="fa fa-heart"></i></a>
-                                  <span class="engagement-count disabled">0</span>
-                                </div>
-                              </li>
-                            </ul>
-                            <div class="comment-reply-form comment-posting-form" style="display: block">
-                              <div class="alert alert-danger hidden">
-                                <ul>
-                                  <li class="hidden">Posting comments is limited temporarily. Try again later. </li>
-                                  <li class="hidden">Message is too long.</li>
-                                  <li class="hidden">You have reached your comment limit for this article.</li>
-                                </ul>
-                              </div>
-                              <form role="form" class="comment-to-top">
-                                <textarea type="text" class="comment-input-area" placeholder="Reply comment"></textarea>
-                                <i class="fa fa-smile-o btn btn-twemoji" aria-hidden="true"></i>
-                              </form>
-                            </div>
-                          </div>
-                          <!-- EOF REPLY COMMENT -->
-                        </li>
-                        <li class="media no-overflow-hidden" data-article-comment-id="cc3819cb-1612-4a0c-8329-c1c08b2ff644" data-article-comment-owner="false">
-                          <div class="pull-left profile-picture" style="position:relative;">
-                            <img class="media-object img-circle" src="images/article/profile_01.png" alt="Minanti Utami">
-                          </div>
-                          <div class="media-body">
-                            <p class="h4 media-heading">Chan Swee MEI</p>
-                            <div class="pull-right">
-                              <a class="btn-delete" href="javascript: void(0);">delete</a>
-                            </div>
-                            <p class="comment-body">nice article thank you!</p>
-                            <p class="time"><span class="post-text">Posted at </span><span class="post-date">2016/12/15, 21:40</span>
-                              <a class="comment-reply-panel pull-right" href="javascript:void(0);"><i class="fa fa-reply-all"></i><span class="reply-count"> 4</span></a></p>
-                          </div>
-                          <div class="comment-favorite">
-                            <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
-                              <i class="fa fa-heart"></i>
-                            </a>
-                            <span class="engagement-count disabled">0</span>
-                          </div>
-                        </li>
-                        <li class="media no-overflow-hidden" data-article-comment-id="cc3819cb-1612-4a0c-8329-c1c08b2ff644" data-article-comment-owner="false">
-                          <div class="pull-left profile-picture" style="position:relative;">
-                            <img class="media-object img-circle" src="images/article/profile_01.png" alt="Minanti Utami">
-                          </div>
-                          <div class="media-body">
-                            <p class="h4 media-heading">Chan Swee MEI</p>
-                            <div class="pull-right">
-                              <a class="btn-delete" href="javascript: void(0);" style="display: none;">delete</a>
-                            </div>
-                            <p class="comment-body">nice article thank you!</p>
-                            <p class="time"><span class="post-text">Posted at </span><span class="post-date">2016/12/15, 21:40</span>
-                              <a class="comment-reply-panel pull-right" href="javascript:void(0);"><i class="fa fa-reply-all"></i><span class="reply-count"> 4</span></a></p>
-                          </div>
-                          <div class="comment-favorite">
-                            <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
-                              <i class="fa fa-heart"></i>
-                            </a>
-                            <span class="engagement-count disabled">0</span>
-                          </div>
-                        </li>
-                        <li class="media no-overflow-hidden" data-article-comment-id="cc3819cb-1612-4a0c-8329-c1c08b2ff644" data-article-comment-owner="false">
-                          <div class="pull-left profile-picture" style="position:relative;">
-                            <img class="media-object img-circle" src="images/article/profile_01.png" alt="Minanti Utami">
-                          </div>
-                          <div class="media-body">
-                            <p class="h4 media-heading">Chan Swee MEI</p>
-                            <div class="pull-right">
-                              <a class="btn-delete" href="javascript: void(0);" style="display: none;">delete</a>
-                            </div>
-                            <p class="comment-body">nice article thank you!</p>
-                            <p class="time"><span class="post-text">Posted at </span><span class="post-date">2016/12/15, 21:40</span>
-                              <a class="comment-reply-panel pull-right" href="javascript:void(0);"><i class="fa fa-reply-all"></i><span class="reply-count"> 0</span></a></p>
-                          </div>
-                          <div class="comment-favorite">
-                            <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
-                              <i class="fa fa-heart"></i>
-                            </a>
-                            <span class="engagement-count disabled">0</span>
-                          </div>
-                        </li>
-                        <li class="media no-overflow-hidden" data-article-comment-id="cc3819cb-1612-4a0c-8329-c1c08b2ff644" data-article-comment-owner="false">
-                          <div class="pull-left profile-picture" style="position:relative;">
-                            <img class="media-object img-circle" src="images/article/profile_01.png" alt="Minanti Utami">
-                          </div>
-                          <div class="media-body">
-                            <p class="h4 media-heading">Chan Swee MEI</p>
-                            <div class="pull-right">
-                              <a class="btn-delete" href="javascript: void(0);" style="display: none;">delete</a>
-                            </div>
-                            <p class="comment-body">nice article thank you!</p>
-                            <p class="time"><span class="post-text">Posted at </span><span class="post-date">2016/12/15, 21:40</span>
-                              <a class="comment-reply-panel pull-right" href="javascript:void(0);"><i class="fa fa-reply-all"></i><span class="reply-count"> 4</span></a></p>
-                          </div>
-                          <div class="comment-favorite">
-                            <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
-                              <i class="fa fa-heart"></i>
-                            </a>
-                            <span class="engagement-count disabled">0</span>
-                          </div>
-                        </li>
-                      </ul>
-                      <div class="comment-pagination text-center">
-                        <ul class="pagination pagination-sm">
-                          <li class="previous  disabled pull-left">
-                            <a>PREV</a>
-                          </li>
-
-                          <li class="active ">
-                            <a href="javascript:void(0);">1</a>
-                          </li>
-                          <li class=" ">
-                            <a href="javascript:void(0);">2</a>
-                          </li>
-                          <li class=" ">
-                            <a href="javascript:void(0);">3</a>
-                          </li>
-                          <li class=" ">
-                            <a href="javascript:void(0);">4</a>
-                          </li>
-                          <li class=" ">
-                            <a href="javascript:void(0);">5</a>
-                          </li>
-                          <li class="next  pull-right">
-                            <a href="javascript:void(0);">NEXT </a>
-                          </li>
-                        </ul>
+                        </a>
                       </div>
                     </div>
-                  </div>
-                  <!-- COMMENT MODAL -->
-                  <div class="modal fade" id="comment-modal">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
+                    <div class="col-md-6 sm-rm">
+                      <div class="second-block">
+                        <a href="#">
+                          <div class="img-card second-block-img">
+                            <img src="images/article/recommended_img_2_3.jpg" />
+                            <p class="card-title">
+                              <span>What does the Japanese word "Yuki (雪)" mean?</span>
+                            </p>
+                            <p class="card-title-sm">
+                              <span>What does the Japanese word </span>
+                            </p>
+                          </div>
+                        </a>
                       </div>
-                    </div>
-                  </div>
-                  <!-- EOF COMMENT MODAL -->
-                  <!-- SHOW COMMENT MODAL BTN -->
-                  <div class="show-comment-modal">
-                    <p><span class="comment-count">119</span> COMMENTS
-                      <a id="show-comment-btn"><span class="suggest-text pull-right">swipe up <i class="fa fa-hand-o-up" aria-hidden="true"></i></span></a></p>
-                  </div>
-                  <!-- EOF SHOW COMMENT MODAL BTN -->
-                  <!-- DELETE COMMENT MODAL -->
-                  <div class="modal fade" id="delete-comment-modal">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        </div>
-                        <div class="modal-body">
-                          <p>Are you sure you want to delete ?</p>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                          <button type="button" class="btn btn-primary">Yes</button>
-                        </div>
+                      <div class="second-block">
+                        <a href="#">
+                          <div class="img-card second-block-img">
+                            <img src="images/article/recommended_img_2_4.jpg" />
+                            <p class="card-title">
+                              <span>What does the Japanese word "Yuki (雪)" mean?</span>
+                            </p>
+                            <p class="card-title-sm">
+                              <span>What does the Japanese word </span>
+                            </p>
+                          </div>
+                        </a>
                       </div>
-                    </div>
-                  </div>
-                  <!-- EOF DELETE COMMENT MODAL -->
-                  <!-- CONFIRM GIF MODAL -->
-                  <div class="modal fade" id="confirm-gif-modal">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        </div>
-                        <div class="modal-body">
-                          <p>Are you sure you want to post this GIF image?</p>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                          <button type="button" class="btn btn-primary">Yes</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- EOF CONFIRM GIF MODAL -->
-                </div>
-                <!-- EOF COMMENT AREA -->
-              </div>
-              <!-- EOF SIDEBAR -->
-            </div>
-          </div>
-          <div class="related-post">
-            <div class="row gutter-16">
-              <div class="col-md-6 col-xs-8">
-                <div class="first-block">
-                  <a href="#">
-                    <div class="img-card first-block-img">
-                      <img src="images/article/recommended_img_01.jpg">
-                      <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese word "Yuki (雪)" mean? What does the What does the Japanese word "Yuki (雪)" mean? What does the Japanese word "Yuki (雪)" mean? What does the Fun! Japan Words Oshibori (おしぼり) Fun! </span>                        </p>
-                      <p class="card-title-sm"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese word "Yuki (雪)" mean? What does the Japanese word</span></p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <div class="col-md-6 col-xs-4">
-                <div class="row gutter-16">
-                  <div class="col-md-6">
-                    <div class="second-block">
-                      <a href="#">
-                        <div class="img-card second-block-img">
-                          <img src="images/article/recommended_img_2_1.jpg">
-                          <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese word "Yuki (雪)" mean? What does the</span> </p>
-                          <p class="card-title-sm"><span>What does the Japanese word "Yuki (雪)" mean? What does the</span></p>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="second-block">
-                      <a href="#">
-                        <div class="img-card second-block-img">
-                          <img src="images/article/recommended_img_2_2.jpg">
-                          <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean?</span> </p>
-                          <p class="card-title-sm"><span>What does the Japanese word </span></p>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="col-md-6 sm-rm">
-                    <div class="second-block">
-                      <a href="#">
-                        <div class="img-card second-block-img">
-                          <img src="images/article/recommended_img_2_3.jpg">
-                          <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean?</span> </p>
-                          <p class="card-title-sm"><span>What does the Japanese word </span></p>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="second-block">
-                      <a href="#">
-                        <div class="img-card second-block-img">
-                          <img src="images/article/recommended_img_2_4.jpg">
-                          <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean?</span> </p>
-                          <p class="card-title-sm"><span>What does the Japanese word </span></p>
-                        </div>
-                      </a>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row gutter-16">
-              <div class="col-md-6 col-xs-4">
-                <div class="row gutter-16">
-                  <div class="col-md-6">
-                    <div class="second-block">
-                      <a href="#">
-                        <div class="img-card second-block-img">
-                          <img src="images/article/recommended_img_2_5.jpg">
-                          <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean?</span> </p>
-                          <p class="card-title-sm"><span>What does the Japanese word </span></p>
-                        </div>
-                      </a>
+              <div class="row gutter-16">
+                <div class="col-md-6 col-xs-4">
+                  <div class="row gutter-16">
+                    <div class="col-md-6">
+                      <div class="second-block">
+                        <a href="#">
+                          <div class="img-card second-block-img">
+                            <img src="images/article/recommended_img_2_5.jpg" />
+                            <p class="card-title">
+                              <span>What does the Japanese word "Yuki (雪)" mean?</span>
+                            </p>
+                            <p class="card-title-sm">
+                              <span>What does the Japanese word </span>
+                            </p>
+                          </div>
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-6 sm-rm">
-                    <div class="second-block">
-                      <a href="#">
-                        <div class="img-card second-block-img">
-                          <img src="images/article/recommended_img_2_6.jpg">
-                          <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean?</span> </p>
-                          <p class="card-title-sm"><span>What does the Japanese word </span></p>
-                        </div>
-                      </a>
+                    <div class="col-md-6 sm-rm">
+                      <div class="second-block">
+                        <a href="#">
+                          <div class="img-card second-block-img">
+                            <img src="images/article/recommended_img_2_6.jpg" />
+                            <p class="card-title">
+                              <span>What does the Japanese word "Yuki (雪)" mean?</span>
+                            </p>
+                            <p class="card-title-sm">
+                              <span>What does the Japanese word </span>
+                            </p>
+                          </div>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-6 col-xs-8">
-                <div class="second-block">
-                  <a href="#">
-                    <div class="img-card second-block-img">
-                      <img src="images/article/recommended_img_1_2.jpg">
-                      <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean?</span> </p>
-                      <p class="card-title-sm"><span>What does the Japanese word </span></p>
-                    </div>
-                  </a>
+                <div class="col-md-6 col-xs-8">
+                  <div class="second-block">
+                    <a href="#">
+                      <div class="img-card second-block-img">
+                        <img src="images/article/recommended_img_1_2.jpg" />
+                        <p class="card-title">
+                          <span>What does the Japanese word "Yuki (雪)" mean?</span>
+                        </p>
+                        <p class="card-title-sm">
+                          <span>What does the Japanese word </span>
+                        </p>
+                      </div>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1256,74 +1571,36 @@
         </div>
       </div>
     </div>
-  </div>
+    <script type="text/javascript" src="js/vendor/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="js/vendor/bootstrap-3.1.1.js"></script>
+    <!-- Navbar-->
+    <script type="text/javascript" src="js/main/navbar.js"></script>
+    <script type="text/javascript" src="js/main/slidecategory.js"></script>
+    <!-- Comment-->
+    <script type="text/javascript" src="js/main/comment.js">
 
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-  <script type="text/javascript" src="js/jquery-ui-1.11.4.js"></script>
-  <script type="text/javascript" src="js/bootstrap-3.1.1.js"></script>
-  <script type="text/javascript" src="js/bootstrap-fileinput/fileinput.js"></script>
-  <script type="text/javascript" src="js/bootstrap-lightbox/bootstrap-lightbox.js"></script>
-  <script type="text/javascript" src="js/jquery.cookie-1.4.1.js"></script>
-  <script type="text/javascript" src="js/mpf.core.js"></script>
-  <script type="text/javascript" src="js/mpf.analytics.js"></script>
-  <script type="text/javascript" src="js/mpf.googleanalytics.event.js"></script>
-  <script type="text/javascript" src="js/mpf.userpreference.js"></script>
-  <script type="text/javascript" src="js/magnific-popup/jquery.magnific-popup.js"></script>
-  <script type="text/javascript" src="js/Page/Account/BasicProfile.js"></script>
-  <script type="text/javascript" src="js/mpf.sharebutton.js"></script>
-  <script type="text/javascript" src="js/mpf.commentcount.js"></script>
-  <script type="text/javascript" src="https://twemoji.maxcdn.com/twemoji.min.js?2.2.2"></script>
-  <script type="text/javascript" src="js/mpf.api.article.photo.js"></script>
-  <script type="text/javascript" src="js/mpf.articlephoto.js"></script>
-  <!-- Slider -->
-  <script type="text/javascript" src="js/mpf.slider.js"></script>
-  <!-- Infinite scroll -->
-  <script type="text/javascript" src="js/infinite-scroll/jquery.infinitescroll.js"></script>
-  <!-- Component -->
-  <!--Header-->
-  <script type="text/javascript" src="js/mpf.navbar.js"></script>
-  <!-- Comment -->
-  <script type="text/javascript" src="js/mpf.api.article.comment.js"></script>
-  <script type="text/javascript" src="js/mpf.commentarea.js"></script>
 
-  <script>
-    $('#show-comment-btn').click(function() {
-      let commentModal = $('#comment-modal').find('.modal-content');
-      if (commentModal.children().length == 0) {
-        commentModal.append($('#comment-area-desktop').children().clone(true, true));
-        commentModal.find('.list-group-header').css('display', 'none');
-        commentModal.find('.hide-comment-modal').css('display', 'block');
-      }
-      $(this).parents().find('.show-comment-modal').css('display', 'none');
-
-      $('#comment-modal').modal({
-        backdrop: 'static',
-        keyboard: false
-      });
-    });
-
-    $('#hide-comment-btn').click(function() {
-      $('.show-comment-modal').css('display', 'block');
-      $('#comment-modal').modal('hide');
-    });
-  </script>
-  <script>
-    $(document).ready(function() {
-      setTimeout(function() {
+    </script>
+    <script>
+      $(function()
+      {
         // Navbar
-        $('.fj-navbar').affix({
-          offset: {
+        $('.fj-navbar').affix(
+        {
+          offset:
+          {
             top: 104
           }
         });
-        $('.fj-navbar-mobile').affix({
-          offset: {
+        $('.fj-navbar-mobile').affix(
+        {
+          offset:
+          {
             top: 40
           }
         });
-      }, 5);
-    });
-  </script>
-</body>
+      });
 
+    </script>
+  </body>
 </html>

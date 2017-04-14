@@ -1,0 +1,89 @@
+﻿//h5文字切れ対応
+@headings-line-height: 1.3;
+@grid-gutter-width: 16px;
+//MPF
+@image-path: "./../images/";
+@font-path: "./../fonts/";
+@slick-font-path: @font-path;
+// ロゴの背景色
+@global-header-bg: #cf1717;
+// 通知欄の色
+@notification-text-color: @gray;
+@notification-bg: @gray-lighter;
+@notification-font-weight: normal;
+// フッターの色
+@global-footer-bg: #000;
+@global-footer-text-color: @gray-light;
+// サイドバーメニューの色
+@global-nav-text-color: #ccc;
+@global-nav-bg: #000;
+@global-nav-border-color: #333;
+@global-nav-hover-bg: @global-nav-border-color;
+// Facebook用ボタンの色
+@btn-facebook-color: #fff;
+@btn-facebook-bg: #3B5998;
+@btn-facebook-border: darken(@btn-facebook-bg, 5%);
+// pagerの色
+@pager-text-color: #4a4a4a;
+@text-color: @pager-text-color;
+// 記事内Campaign文字色
+@campaign-badge-text-color: #fffb4c;
+@campaign-badge-bg: darken(@brand-primary, 15%);
+@campaign-badge-islimitover-text-color: #808080;
+@campaign-badge-islimitover-bg: #ccc;
+// 限定記事のバッジ色
+@memberonly-badge-text-color: #fff;
+@memberonly-badge-bg: #2989d8;
+// 縦長フォント
+@font-family-vertically-long: 'Oswald',
+sans-serif;
+// メインフォント
+@font-family-main: 'Roboto',
+sans-serif;
+//navbarグラデーション開始、終了色
+@nav-gradient-start-color: #999;
+@nav-gradient-end-color: #666;
+@nav-gradient-start-hover-color: #ff0000;
+@nav-gradient-end-hover-color: #c33;
+@nav-bg-color: rgba(255, 255, 255, 0.7);
+@nav-bg-hover-color: #fff;
+@nav-text-default-color: #4a4a4a;
+//記事タイトル色
+@headings-color: #3e3e3e;
+//記事本文アンカー色
+@article-anchor-color: #33f;
+//コンテンツタイトル横四角色
+@content-title-square-red: @brand-primary;
+@content-title-square-deepblue: @btn-facebook-bg;
+@content-title-square-blue: @article-anchor-color;
+@content-title-square-green: #69d41f;
+@content-title-square-yellow: #b200ff;
+@content-title-square-orange: #ea9621;
+//コメントLike色
+@engagement-comment-favotite-color: #FA5882;
+@engagement-comment-favotite-bg: #fdf4f6;
+@engagement-comment-favotite-border: #F8E0E6;
+@engagement-comment-favotite-color-acive: rgb(255, 147, 166);
+// ソート&フィルター
+@current-order: dimgray;
+// ボタン
+@gray-button: rgb(221, 221, 221);
+@btn-simple-color: red;
+@btn-simple-bg: white;
+@btn-simple-border: #DDD;
+@btn-active: #00e676;
+@btn-not-active: #4a4a4a;
+@brand-primary: #db1c00;
+//DESKTOP
+.modal.fade {
+  opacity: 1;
+  .modal-dialog {
+    transform: translate3d(0, 100vh, 0);
+  }
+}
+
+.modal.in {
+  .modal-dialog {
+    transform: translate3d(0, 0, 0);
+  }
+}

@@ -1,0 +1,41 @@
+.btn-facebook {
+  .button-variant(@btn-facebook-color;
+  @btn-facebook-bg;
+  @btn-facebook-border );
+  .fa {
+    font-size: 140%;
+    vertical-align: bottom;
+  }
+}
+
+.btn {
+  font-weight: normal;
+  &[disabled] {
+    background-color: @gray-light;
+    border-color: @gray-light;
+  }
+  &.btn-detail-join {
+    font-size: 20px;
+  }
+  &.btn-active {
+    background: @btn-active;
+    color: white;
+  }
+  &.btn-not-active {
+    background: @btn-not-active;
+    color: white;
+  }
+  &.btn-xs {
+    font-size: 85%;
+  }
+}
+
+.btn-simple {
+  .button-variant(@btn-simple-color;
+  @btn-simple-bg;
+  @btn-simple-border);
+  font-size: 12px;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}

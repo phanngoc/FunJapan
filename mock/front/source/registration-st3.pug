@@ -1,0 +1,16 @@
+extends modules/templates/registration.pug
+
+block head
+  +head(head.fj_registration_3)
+
+block registration-patial
+  .registration-body
+    .step-3
+      p.re-status Resigtration completed!
+      p.re-checked
+        i.fa.fa-check-circle(aria-hidden='true')
+      p.re-thankyou Thank you for signing up!
+      p.re-country for FUN! Japan Malaysia
+      .step-btn-container
+        a.btn(role='button', href='#')
+          span Go to FUN! Japan

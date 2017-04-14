@@ -1,0 +1,100 @@
+include ./social-buttons
+
+mixin article-detail()
+  article
+    header
+      ul.detail-breadcrumbs
+        li
+          a(href='#')
+            i.fa.fa-home(aria-hidden='true')
+            |  Fun! Japan
+          i.fa.fa-chevron-right(aria-hidden='true')
+        li
+          a(href='#') Travel Season
+          i.fa.fa-chevron-right(aria-hidden='true')
+        li
+          a(href='#') Dogo Onsen and more sightseeing spots in Matsuyama.
+      p.article-detail-category Travel / season
+      p.article-detail-title
+        | Dogo Onsen and more sightseeing spots in Matsuyama.
+    .detail-engagement
+      ul.detail-favorite
+        li
+          a.engagement-favorite(data-mpf-article-id='#', href='#')
+            i.fa.fa-heart(aria-hidden='true')
+          span.engagement-count  5
+        li
+          a.engagement-favorite.active(data-mpf-article-id='#', href='#')
+            i.fa.fa-heart(aria-hidden='true')
+          span.engagement-count.active  6
+        li
+          span.verticle-slash |
+        li
+          span.view-count 17707
+          span.view-text View
+        li
+          span.verticle-slash |
+        li
+          span.posted-date
+            time(datetime='2016-11-06') November 6, 2016
+    +social-buttons
+    // Article Main
+    .article-body.clearfix
+      div
+      p
+        | Hokkaido yang indah yang terletak di pulau paling utara pulau Jepang, dan jika dibandingkan dengan banyak bagian lain dari negara ini yang sedikit berkembang dan masih kurang pengunjung. Hokkaido dikenal oleh wisatawan domestik  menjadi tempat
+        | untuk didatangi di musim dingin, dan meskipun musim bisa keras di sini, salah satunya hujan salju yang turun dengan deras. Jika kamu suka ski atau snowboarding, maka Hokkaido sulit untuk dikalahkan sebagai tujuan ski premium, dan kamu juga dapat
+        | menikmati pemandangan romantis seperti lautan beku dan salju gunung berapi.
+        br
+        br
+        |  Pada bulan-bulan musim panas, Hokkaido hangat dan menyenangkan, meskipun suhu yang lebih lembab daripada pulau-pulau lain dari Jepang. Terlepas dari kenyataan bahwa i namanya sebagai tempat olahraga musim dingin, Hokkaido memiliki banyak hal
+        |       yang bisa dilakukan pada musim panas, dan siapa saja yang ingin melakukan aktivitas di luar akan kamu akan mendapatkan beberapa pilihan kegiatan seperti bersepeda dan hiking.
+      p
+        | Tergantung pada preferensi kamu, ada sesuatu untuk semua orang lihat dan dilakukan di sini, mulai dari kota-kota yang besar sampai kota-kota kuno.
+        br
+        br
+        |  Berikut adalah 5 tempat terbaikuntuk dikunjungi di Hokkaido.
+        br
+        br
+        span(style='text-decoration: underline;') Sapporo:
+      div
+        span(style='text-decoration: underline;')
+          img(height='530', alt='20161128-15-01-Hokkaido', width='850', src='./images/article/article_hokkaido.jpg')
+          br
+      div
+      p
+        | Sapporo adalah ibu kota Hokkaido dan juga kota terbesar. Dikenal baru-baru ini di kalangan orang Jepang, yang telah didirikan pada abad ke-19, dan hal ini sangat terkenal karena taman yang rindang dan bir terkenal.
+      |     Dengan demikian, kunjungan di sini tidak akan lengkap tanpa perjalanan ke Museum Bir Sapporo, di mana kamu dapat mempelajari semua tentang sejarah pembuatan bir di Jepang, dan mendengar kisah terkenal Sapporo Brewing Company. Museum ini memungkinkan untuk
+      |     ikut tur pabrik bir dan berakhir di ruang mencicipi di mana kamu dapat mencicipi beberapa brews terbaik yang ditawarkan.
+      br
+      br
+      |  Jika kamu sedang mood ingin pergi ke suatu tempat sedikit lebih tenang, maka jangan lewatkan kesempatan untuk mengunjungi taman paling terkenal di Sapporo, Taman Odori, yang merupakan salah satu tempat yang paling ikonik di kota. Taman membentang
+      |     sepanjang 15 blok dan ditutupi rumput dan air mancur yang cantik.
+      div
+        br
+    // Engagement 2
+    .detail-engagement
+      ul.detail-favorite
+        li
+          a.engagement-favorite(data-mpf-article-id='#', href='#')
+            i.fa.fa-heart(aria-hidden='true')
+          span.engagement-count 5
+        li
+          a.engagement-favorite.active(data-mpf-article-id='#', href='#')
+            i.fa.fa-heart(aria-hidden='true')
+          span.engagement-count.active  6
+        li
+          span.verticle-slash |
+        li
+          span.post-text Posted by 
+          span.post-author FJ Team
+    +social-buttons
+    // TAGS
+    .detail-tags
+      ul.tags
+        each tag in tags
+          li.hot-tag
+            a(href='#')
+              span.hashtag # 
+              | #{tag.title}
+    // EOF TAGS

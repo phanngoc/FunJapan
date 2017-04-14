@@ -1,0 +1,37 @@
+extends ./modules/templates/registration.pug
+include ./modules/registration/signup-area
+
+block head
+  +head(head.fj_registration_1)
+
+block registration-patial
+  .registration-body
+    .step-1
+      +signup-area
+      +signup-area("sm")
+      .intro-area
+        each card, index in intro_cards
+          if index%2 == 0
+            .row
+              .col-md-6
+                .intro-card
+                  .card-img
+                    img(src= card.thumb_src)
+                  .card-info
+                    .card-number
+                      | #{card.number}
+                    p.card-title= card.title
+                    p.card-description=card.description                  
+              .col-md-6
+                .intro-card
+                  - var next_card= intro_cards[index + 1]
+                  .card-img
+                    img(src= next_card.thumb_src)
+                  .card-info
+                    .card-number
+                      | #{next_card.number}
+                    p.card-title= next_card.title
+                    p.card-description= next_card.description        
+        .bg-square
+      +signup-area("bottom")
+      +signup-area("sm")

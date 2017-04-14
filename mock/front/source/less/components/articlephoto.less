@@ -1,0 +1,131 @@
+﻿.articlephoto {
+  margin-bottom: 10px;
+  .image-popup-vertical-fit {
+    background-color: white;
+  }
+  .articlephoto-image {
+    img {
+      max-height: 200px;
+    }
+  }
+  .articlephoto-like {
+    position: absolute;
+    right: 0;
+    background-color: rgb(253, 244, 246);
+    padding: 3px 7px 3px 7px;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border: solid 1px #F8E0E6;
+    .fa-heart {
+      color: #FA5882;
+      font-size: 0.8em;
+    }
+    span {
+      color: #FA5882;
+      font-size: 1em;
+    }
+  }
+  .articlephoto-like.liked {
+    background-color: rgb(255, 147, 166);
+    .fa-heart {
+      color: rgb(252, 239, 241);
+      font-size: 0.8em;
+    }
+    span {
+      color: rgb(252, 239, 241);
+      font-size: 1em;
+    }
+  }
+  .articlephoto-message {
+    height: 5em;
+    p {
+      font-style: italic;
+      font-size: 0.9em;
+    }
+  }
+  .articlephoto-message-mng {
+    height: 3.5em;
+    p {
+      font-style: italic;
+      font-size: 0.9em;
+    }
+  }
+  .articlephoto-meta {
+    font-size: 0.8em;
+    position: relative;
+    margin-bottom: 10px;
+    margin-top: 5px;
+  }
+  .articlephoto-postedby {
+    margin-bottom: 5px;
+  }
+  .articlephoto-approves {
+    margin-top: 5px;
+  }
+  .articlephoto-status {
+    margin-bottom: 1px;
+    padding: 5px;
+    position: relative;
+  }
+  .checkbox {
+    position: absolute;
+    top: -20%;
+    margin-left: 10px;
+  }
+}
+
+.articlephoto-more {
+  font-weight: bold;
+}
+
+.articlephoto-order {
+  padding: 15px 0 0 0;
+  font-weight: bold;
+  a {
+    padding-right: 10px;
+  }
+  .current-order {
+    color: @current-order !important;
+    background-color: white;
+  }
+}
+
+.articlephoto-filter {
+  padding: 5px;
+  font-weight: bold;
+  a {
+    padding-left: 10px;
+  }
+  .current-filter {
+    color: @current-order !important;
+    background-color: white;
+  }
+}
+
+.articlephoto-search .btn {
+  background-color: @gray-button;
+}
+
+.articlephoto-search-minimize .btn {
+  border-radius: 4px !important;
+  background-color: @gray-button;
+}
+
+.articlephoto-select-article-box {
+  padding: 0 20px 0 20px;
+}
+
+.articlephoto-condition {
+  margin: 5px 0 5px 0;
+}
+
+.articlephoto-check {
+  margin: 10px;
+  span {
+    margin-left: 10px;
+  }
+  i {
+    margin-left: 10px;
+  }
+}
