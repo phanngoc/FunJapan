@@ -2,11 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Locale extends BaseModel
 {
-
     protected $table = 'locales';
 
     /**
@@ -18,4 +15,16 @@ class Locale extends BaseModel
         'iso_code',
         'name',
     ];
+
+    public static function getAll()
+    {
+        $locales = self::all();
+        $result = [];
+
+        foreach ($locales as $value) {
+            $result[$value->iso_code] = $value->toArray();
+        }
+
+        return $result;
+    }
 }

@@ -1,9 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -30,7 +31,8 @@ class User extends Authenticatable
         'location_id',
         'locale_id',
         'invite_code',
-        'subscriptions',
+        'subscription_new_letter',
+        'subscription_reply_noti',
     ];
 
     /**
@@ -51,5 +53,30 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
+
+    public function confirmPass($value)
+    {
+        return $this->attributes['password'] == Hash::make($value);
+    }
+
+    public static function getByCondition($conditions, $getOne = false)
+    {
+        $query = self::select('*');
+
+        foreach ($conditions as $field => $value) {
+            $query->where($field, $value);
+        }
+
+        if ($getOne) {
+            return $query->first();
+        }
+
+        return $query->get();
     }
 }

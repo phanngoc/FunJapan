@@ -23,4 +23,13 @@ class Location extends BaseModel
     {
         return $this->belongsTo(Locale::class);
     }
+
+    public static function all($localeId = null)
+    {
+        if ($localeId) {
+            return self::where('locale_id', $localeId)->get();
+        }
+
+        return parent::all();
+    }
 }
