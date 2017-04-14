@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="fragment" content="!">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ $title ?? trans('web/global.title') }}</title>
         @include('layouts.includes.scripts_detail')
         @include('layouts.includes.styles')

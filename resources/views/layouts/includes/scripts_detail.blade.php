@@ -5,6 +5,7 @@
 {{ Html::script('assets/js/main/slidecategory.js') }}
 <!-- Comment-->
 {{ Html::script('assets/js/main/comment.js') }}
+{{ Html::script('https://twemoji.maxcdn.com/twemoji.min.js?2.2.2') }}
 <script>
 $(function() {
     // Navbar

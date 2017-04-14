@@ -11,7 +11,7 @@
             </p>
         </div>
         <!-- EOF ABOUT AUTHOR -->
-        @include('web.comments._comments_area')
+        @include('web.comments._comments_area', ['articleLocale' => $articleLocale])
     </div>
     <!-- EOF SIDEBAR -->
 </div>
