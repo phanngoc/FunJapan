@@ -1,9 +1,17 @@
 <header>
     <ul class="detail-breadcrumbs">
-        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Fun! Japan</a> <i class="fa fa-chevron-right" aria-hidden="true"></i></li>
-        <li><a href="#">Travel Season</a> <i class="fa fa-chevron-right" aria-hidden="true"></i></li>
-        <li><a href="#">Dogo Onsen and more sightseeing spots in Matsuyama.</a></li>
+        <li>
+            <a href="#"><i class="fa fa-home" aria-hidden="true"></i> {{ trans('web/global.title') }}</a> <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        </li>
+        <li>
+            <a href="#">{{ $categoryName }}</a> <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        </li>
+        <li>
+            <a href="{{ action('Web\ArticlesController@show', [$articleLocale->id]) }}">
+                {{ isset($articleLocale->title) ? $articleLocale->title : '' }}
+            </a>
+        </li>
     </ul>
-    <p class="article-detail-category">Travel / season</p>
-    <p class="article-detail-title">Dogo Onsen and more sightseeing spots in Matsuyama.</h1>
+    <p class="article-detail-category">{{ $categoryName }}</p>
+    <p class="article-detail-title">{{ isset($articleLocale->title) ? $articleLocale->title : '' }}</h1>
 </header>

@@ -3,7 +3,9 @@
 @section('content')
 <div class="col-md-70 main-column">
     <!-- MAIN -->
-    @include('web.articles._detail')
+    @if (!$errors->any() && !session()->has('message') && !session()->has('error'))
+    	@include('web.articles._detail')
+    @endif
     <!-- EOF MAIN -->
 </div>
 @endsection
