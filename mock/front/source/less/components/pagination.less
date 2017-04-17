@@ -1,0 +1,41 @@
+﻿@pagination-red: #dd280d;
+@pagination-light-black: #5f5f60;
+@pagination-light-pink: #ff6666;
+.pagination {
+  display: inline-block;
+  .previous>a {
+    margin-right: 1em;
+    margin-left: 0;
+  }
+  .next>a {
+    margin-right: 0;
+    margin-left: 1em;
+  }
+  li {
+    &.active>a {
+      border-radius: 100px;
+      background-color: @pagination-light-pink;
+      box-shadow: 0 -2px 3px rgba(221, 40, 13, 0.65) inset;
+    }
+    &>a {
+      color: @pagination-light-black;
+      border: 0;
+      margin-left: 0.2em;
+      margin-right: 0.2em;
+      &:focus,
+      &:hover {
+        color: @pagination-red;
+      }
+    }
+  }
+}
+
+.pagination-sm {
+  li {
+    a {
+      font-size: 11px;
+      font-weight: bold;
+      padding: 2px 6px;
+    }
+  }
+}

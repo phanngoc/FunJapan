@@ -1,0 +1,270 @@
+﻿mixin header(hasSlider)
+  // Menu bars
+  header.global-header
+    // Top header bar
+    .top-header
+      .header-text
+        p.header-title-text
+          a(href='/')
+            img(src='images/brand-icon.png', alt='brand-icon')
+            span
+              | FUN!
+              span.title-country  Japan Indonesia
+      .header-right
+        form(role='form', action='/Search', method='get')
+          input(type='text', placeholder='Type in keyword')
+          i.fa.fa-search.form-control-feedback
+        .user-setting
+          .authentication
+            a.authen-link(href='#')
+              i.fa.fa-unlock-alt
+              |  Register
+            span.authen-link /
+            a.authen-link(href='#')
+              i.fa.fa-user
+              |  Login
+          .user-preference
+            ul.nav.navbar-nav.navbar-right
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown')
+                  span
+                    i.fa.fa-user-circle
+                ul.dropdown-menu
+                  li
+                    .dropdown-menu-global
+                      ul.list-items
+                        each val, index in account_info
+                          li
+                            a(href=val.href)=val.title                        
+                        li
+                          a(href='#')
+                            i.zmdi.zmdi-account
+                            |   Logout
+                      .box-sum-ranking
+                        .row.brs-sum
+                          .col-md-6.bsr-sum-left
+                            img(src='./images/ic_regular.png')
+                            .bsr-detail
+                              .brs-title Regular
+                              .brs-month Next month : 
+                              .brs-promotion Regular (stay)
+                          .col-md-6.brs-point
+                            strong 6,070
+                            span.currence Points
+                        .row.brs-star
+                          .col-md-2
+                            strong Regular
+                          .col-md-10
+                            span.star.is-checked
+                            span.star
+                            span.star
+              li.navbar-text
+                span Chan Swee MEI
+    // Top header bar mobile
+    .top-header-mobile
+      span.header-title-text
+        a(href='/')
+          img(src='images/brand-icon.png', alt='brand-icon')
+          span
+            | FUN!
+            small.title-country  Japan Indonesia
+      .user-setting.pull-right
+        .user-preference
+          ul.nav.navbar-nav.navbar-right
+            li.dropdown
+              // If authenticated
+              a.dropdown-toggle(href='#', data-toggle='dropdown')
+                span
+                  i.zmdi.zmdi-account-circle.pink
+              ul.dropdown-menu
+                li
+                  .dropdown-menu-global
+                    // If is authenticated
+                    .box-sum-ranking
+                      .bsr-sum-left
+                        img(src='images/ic_bronze.png')
+                        .bsr-detail
+                          .brs-title Bronze
+                          .brs-month Next month : 
+                          .brs-promotion Regular (stay)
+                      .brs-point
+                        span.point 6,070 
+                        span.currence Points
+                      // Row detail ratting
+                      .brs-star
+                        span.star.is-checked
+                        span.star.is-checked
+                        span.star
+                        span.star
+                      // ./Row detail ratting
+                    ul.list-items
+                      each val, index in account_info
+                        li
+                          a(href=val.href)=val.title 
+                      li
+                        a(href='#')
+                          i.zmdi.zmdi-account
+                          |   Logout
+              // If not authenticated
+              a.dropdown-toggle(href='#', data-toggle='dropdown', style='display: none')
+                span
+                  i.zmdi.zmdi-account-circle.black
+              ul.dropdown-menu(style='display: none')
+                li
+                  // If not authenticated
+                  .dropdown-menu-global.unauthen
+                    ul.list-items
+                      li
+                        a(href='#')
+                          i.fa.fa-unlock-alt
+                          |  Register
+                      li
+                        a(href='#')
+                          i.fa.fa-user
+                          |  Login
+      form.pull-right(role='form', action='/Search', method='get')
+        input(type='text', placeholder='Type in keyword')
+        span.vertical-bar 
+        i.fa.fa-search.form-control-feedback
+    // SLIDER
+    if hasSlider
+      #banner-top-sliderFrame
+        // MAIN IMAGES
+        #banner-top-slider
+          each val in slide_images
+            a.lazyImage(href=val.main_image_src, title="#" + val.title_id)
+        // MAIN IMAGES
+        // CAPTIONS
+        div(style='display: none;')
+          each val in slide_images
+            div(id=val.title_id)
+              a(href='#')
+                .content
+                  p.heading=val.heading
+                  p.description=val.description 
+                  p.read-more
+                    span Read more
+                .content.sm
+                  p.heading=val.mobile.heading
+                  p.description=val.mobile.description          
+        // EOF CAPTIONS
+        // THUMBNAIS
+        #banner-top-thumbs
+          each slide_image in slide_images
+            .thumb(style="background-image: url('" + slide_image.thumb.thumb_src + "');")
+              .thumb-content-wrapper
+                .thumb-content
+                  p=slide_image.thumb.description
+              div(style='clear:both;')          
+        // EOF THUMBNAIS
+        // EOF SLIDER
+    .notification
+    // NAVBAR
+    .fj-navbar.nav-desktop
+      .container
+        nav.navbar.navbar-default
+          ul.nav.navbar-nav
+            li
+              a(href='/index.html')
+                i.zmdi.zmdi-ticket-star
+                | Campaigns
+            li
+              a(href='#')
+                i.zmdi.zmdi-card-giftcard
+                | Rewards
+            each menu in menus
+              if menu.href_id != "social-dropdown" && menu.href_id != "legal-dropdown" && menu.href_id != "info-dropdown"                     
+                li.dropdown
+                  a.fj-tab(data-toggle='tab', href=`#${menu.href_id}`)
+                    i.zmdi.zmdi-labels
+                    | #{menu.title}
+                    i.fa.fa-chevron-down
+                  .caret-up
+                    i.fa.fa-caret-up          
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href='#')
+                i.fa.fa-facebook-square
+            li
+              a(href='#')
+                i.fa.fa-twitter
+            li
+              a(href='#')
+                i.fa.fa-instagram
+            li
+              a(href='#')
+                i.fa.fa-youtube-play
+        .tab-content
+          each menu in menus
+            if menu.href_id != "social-dropdown" && menu.href_id != "legal-dropdown" && menu.href_id != "info-dropdown"
+              div(class="tab-pane navbar-tab fade", id=`${menu.href_id}`)
+                ul.tab-content-menu
+                  if menu.href_id === "tags-dropdown"
+                    each submenu in menu.submenus
+                      li.hot-tags
+                        a(href='#')
+                          span.hashtag # 
+                          | #{submenu}
+                  else              
+                    each submenu in menu.submenus
+                      li.vertical-bar
+                        a(href='#') |
+                      li
+                        a(href='#')=submenu
+                    li.vertical-bar
+                      a(href='#') |          
+    #nav-affix.navigation.fj-navbar-mobile
+      .container
+        ul.list-inline
+          li
+            a(href='#')
+              i.zmdi.zmdi-ticket-star
+              | CAMPAIGNS
+          li
+            a(href='#')
+              i.zmdi.zmdi-card-giftcard
+              | REWARDS
+          each menu in menus
+            if menu.href_id === "info-dropdown"
+              li.dropdown#lastitem
+                a.fj-tab(data-toggle='tab', href=`#${menu.mobile.href_id}`)
+                  i.zmdi.zmdi-labels
+                  | #{menu.title}
+                  i.fa.fa-chevron-down
+                .caret-up
+                  i.fa.fa-caret-up
+            else
+              li.dropdown
+                a.fj-tab(data-toggle='tab', href=`#${menu.mobile.href_id}`)
+                  i.zmdi.zmdi-labels
+                  | #{menu.title}
+                  i.fa.fa-chevron-down
+                .caret-up
+                  i.fa.fa-caret-up          
+      .tab-content
+        each menu in menus
+          div(class="tab-pane navbar-tab fade", id=`${menu.mobile.href_id}`)
+            if menu.mobile.href_id === "sm-tags-dropdown"
+              ul.tab-content-menu
+                each submenu in menu.submenus
+                  li.hot-tags
+                    a(href='#')
+                      span.hashtag # 
+                      | #{submenu}
+            else if menu.mobile.href_id === "sm-social-dropdown"
+              .sns-btn-fanpage
+                ul.list-inline
+                  each submenu in menu.submenus              
+                    li
+                      a.btn.btn-sns
+                        i(class="fa " + submenu.class, aria-hidden='true')
+                        |  #{submenu.title}
+            else
+              ul.tab-content-menu 
+                each submenu in menu.submenus
+                  li.vertical-bar
+                    a(href='#') |
+                  li
+                    a(href='#')=submenu
+                li.vertical-bar
+                  a(href='#') |       

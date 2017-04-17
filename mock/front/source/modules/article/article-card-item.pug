@@ -1,0 +1,30 @@
+﻿include ./../shared/engagement
+
+mixin card-item(card_item)
+  .list-group-item.list-group-item-cards
+    a(href='#')
+      .img-card.card-item
+        img(src=card_item.thumb_src)
+        p.card-title
+          span=card_item.title
+        p.card-title-sm
+          span=card_item.sm_title
+    .article-info
+      .article-summary
+        .article-engagement
+          p.article-category
+            img.category-icon(src=card_item.category_icon_src)
+            | #{card_item.category}
+            span.verticle-bar |
+          // ENGAGEMENT
+          +engagement
+          // EOF ENGAGEMENT
+        // TAGS
+        .article-tags
+          ul
+            each tag in card_item.tags
+              li.hot-tag
+                a(href='#')
+                  span.hashtag # 
+                  | #{tag}
+        // EOF TAGS

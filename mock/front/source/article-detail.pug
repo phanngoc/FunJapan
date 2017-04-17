@@ -1,0 +1,28 @@
+extends ./modules/templates/info-detail.pug
+include ./modules/article/article-detail
+include ./modules/sidebar/sidebar-article
+include ./modules/article/related-post
+
+block head
+  +head(head.article_detail)
+
+block main-content
+  .row.gutter-32
+    .col-md-70.main-column
+      // MAIN
+      +article-detail
+      // EOF MAIN
+    .col-md-30.sidebar
+      // SIDEBAR
+      +sidebar-article
+      // EOF SIDEBAR
+  +related-post
+
+block script
+  script(type='text/javascript', src='js/vendor/jquery-3.2.1.js')
+  script(type='text/javascript', src='js/vendor/bootstrap-3.1.1.js')
+  // Navbar
+  script(type='text/javascript', src='js/main/navbar.js')
+  script(type='text/javascript', src='js/main/slidecategory.js')
+  // Comment
+  script(type='text/javascript', src='js/main/comment.js')    

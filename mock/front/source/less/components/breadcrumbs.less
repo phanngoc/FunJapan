@@ -1,0 +1,27 @@
+@breadcrumb-dark-gray: #999999;
+@breadcrumb-red: #dd280d;
+.detail-breadcrumbs {
+  padding-left: 0;
+  &>li {
+    display: inline;
+    font-family: futura-medium;
+    font-size: 12px;
+    margin-right: 10px;
+    &>i {
+      font-size: 7px;
+    }
+    &>a {
+      color: @breadcrumb-dark-gray;
+      &:focus,
+      &:hover {
+        color: @breadcrumb-red;
+        background-color: transparent;
+      }
+    }
+    &:first-child {
+      a {
+        color: @breadcrumb-red;
+      }
+    }
+  }
+}

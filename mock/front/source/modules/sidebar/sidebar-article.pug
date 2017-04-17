@@ -1,0 +1,186 @@
+include ./comment
+
+mixin sidebar-article()
+  .sidebar-detail
+    // ABOUT AUTHOR
+    .list-group.detail-about-author
+      .list-group-header
+        p.list-group-title Author
+      p.about-author
+        | Fun! Japan is a team of passionate fans that is dedicated to yu to bring the most insteresting news about Japanese culture.
+    // EOF ABOUT AUTHOR
+    // COMMENT AREA
+    #comment-area.comment-area
+      #comment-area-desktop
+        .list-group
+          .list-group-header
+            p.list-group-title
+              span.comment-count 119
+              |  COMMENTS
+          // HIDE COMMENT MODAL BTN
+          .hide-comment-modal
+            p
+              span.comment-count 119
+              |  COMMENTS
+              a#hide-comment-btn
+                span.suggest-text.pull-right
+                  | close 
+                  i.fa.fa-times.pull-right(aria-hidden='true')
+          // EOF HIDE COMMENT MODAL BTN
+        .comment-posting-form
+          .alert.alert-danger.hidden
+            ul
+              li.hidden Posting comments is limited temporarily. Try again later. 
+              li.hidden Message is too long.
+              li.hidden You have reached your comment limit for this article.
+          form.comment-to-top(role='form')
+            textarea.form-control.no-radius-bot(rows='4', placeholder="What's on your mind?")
+            .row.radius-bot
+              .col-xs-8.text-left
+                span.btn.btn-gif.show-gifs-selection(type='button') GIF
+                #gifs-search-block.gifs-comment-block(style='display: none; bottom: -398px;')
+                  .popup-gif
+                    .popup-content
+                      .search-for-text
+                        input#search-gif-input.form-control.text-search-gif.pull-left.input-sm(type='text', autocomplete='off', placeholder='Search images')
+                        input.hidden(type='text')
+                        i#search-gif-btn.fa.fa-level-down.fa-rotate-90.search-image-gif(aria-hidden='true')
+                        button#close-gif-popup-btn.gif-header-button.pull-right(type='button')
+                          i.glyphicon.glyphicon-off
+                        input#gif-for-parent-comment-id(type='hidden', value='')
+                      .body-result-gifs
+                        img.gif-image(alt='', src='https://media.tenor.co/images/1bbe1a6fc1c8f8472e29a4e6aaf2213a/raw', data-width='498', data-height='280')
+                        img.gif-image(alt='', src='https://media.tenor.co/images/f0cf6c326374df7bf5546e8fcab6b3ed/raw', data-width='498', data-height='276')
+                        img.gif-image(alt='', src='https://media.tenor.co/images/3540b6bcedf47342da3c584a22632321/raw', data-width='200', data-height='150')
+                        img.gif-image(alt='', src='https://media.tenor.co/images/3d74984209df64cc363b8bdca8c540d4/raw', data-width='480', data-height='266')                        
+                i.fa.fa-smile-o.btn.btn-twemoji(aria-hidden='true')
+                #emoji-picker-block.gifs-comment-block(style='display: none; bottom: 34px;')
+                  .popup-gif
+                    .popup-content
+                      input#emoji-for-parent-comment-id(type='hidden', value='')
+                      .body-twitter-emoji-list.people
+                        ul.emoji-list
+                          li
+                            img.emoji(draggable='false', alt='😉', src='https://twemoji.maxcdn.com/36x36/1f609.png')
+                          li
+                            img.emoji(draggable='false', alt='😍', src='https://twemoji.maxcdn.com/36x36/1f60d.png')
+                          li
+                            img.emoji(draggable='false', alt='😘', src='https://twemoji.maxcdn.com/36x36/1f618.png')
+                      .body-twitter-emoji-list.nature.hidden
+                        ul.emoji-list
+                          li
+                            img.emoji(draggable='false', alt='🌁', src='https://twemoji.maxcdn.com/36x36/1f301.png')
+                          li
+                            img.emoji(draggable='false', alt='🌈', src='https://twemoji.maxcdn.com/36x36/1f308.png')
+                          li
+                            img.emoji(draggable='false', alt='🌊', src='https://twemoji.maxcdn.com/36x36/1f30a.png')
+                      .category-menu-emoji-list
+                        span.active(data-category='people')
+                          img.emoji(draggable='false', alt='😆', src='http://twemoji.maxcdn.com/36x36/1f606.png')
+                        span(data-category='nature')
+                          img.emoji(draggable='false', alt='🌸', src='http://twemoji.maxcdn.com/36x36/1f338.png')
+              .col-xs-4.text-right
+                button#post-btn.btn.btn-default(type='button')
+                  i.fa.fa-comments-o(aria-hidden='true')
+          .login-requirement.hidden
+            span
+              a(href='#') Login
+              |  or 
+              a(href='#') create your account
+              |  to join the discussion.
+          .comment-reply-container
+            .comment-reply-form
+              .alert.alert-danger.hidden
+                ul
+                  li.hidden Posting comments is limited temporarily. Try again later. 
+                  li.hidden Message is too long.
+                  li.hidden You have reached your comment limit for this article.
+              form.comment-to-top(role='form')
+                textarea(type='text', placeholder='Reply comment')
+                i.fa.fa-smile-o.btn.btn-twemoji(aria-hidden='true')
+                #emoji-picker-block.gifs-comment-block(style='display: none; bottom: 34px;')
+                  .popup-gif
+                    .popup-content
+                      input#emoji-for-parent-comment-id(type='hidden', value='')
+                      .body-twitter-emoji-list.people
+                        ul.emoji-list
+                          li
+                            img.emoji(draggable='false', alt='😉', src='https://twemoji.maxcdn.com/36x36/1f609.png')
+                          li
+                            img.emoji(draggable='false', alt='😍', src='https://twemoji.maxcdn.com/36x36/1f60d.png')
+                          li
+                            img.emoji(draggable='false', alt='😘', src='https://twemoji.maxcdn.com/36x36/1f618.png')
+                      .body-twitter-emoji-list.nature.hidden
+                        ul.emoji-list
+                          li
+                            img.emoji(draggable='false', alt='🌁', src='https://twemoji.maxcdn.com/36x36/1f301.png')
+                          li
+                            img.emoji(draggable='false', alt='🌈', src='https://twemoji.maxcdn.com/36x36/1f308.png')
+                          li
+                            img.emoji(draggable='false', alt='🌊', src='https://twemoji.maxcdn.com/36x36/1f30a.png')
+                      .category-menu-emoji-list
+                        span.active(data-category='people')
+                          img.emoji(draggable='false', alt='😆', src='http://twemoji.maxcdn.com/36x36/1f606.png')
+                        span(data-category='nature')
+                          img.emoji(draggable='false', alt='🌸', src='http://twemoji.maxcdn.com/36x36/1f338.png')
+          ul.media-list.media-list-comments
+            each value, index in comments
+              +comment(value)
+          .comment-pagination.text-center
+            ul.pagination.pagination-sm
+              li.previous.disabled.pull-left
+                a PREV
+              li.active
+                a(href='javascript:void(0);') 1
+              li
+                a(href='javascript:void(0);') 2
+              li
+                a(href='javascript:void(0);') 3
+              li
+                a(href='javascript:void(0);') 4
+              li
+                a(href='javascript:void(0);') 5
+              li.next.pull-right
+                a(href='javascript:void(0);') NEXT 
+      // COMMENT MODAL
+      #comment-modal.modal.fade
+        .modal-dialog
+          .modal-content
+      // EOF COMMENT MODAL
+      // SHOW COMMENT MODAL BTN
+      .show-comment-modal
+        p
+          span.comment-count 119
+          |  COMMENTS
+          a#show-comment-btn
+            span.suggest-text.pull-right
+              | swipe up 
+              i.fa.fa-hand-o-up(aria-hidden='true')
+      // EOF SHOW COMMENT MODAL BTN
+      // DELETE COMMENT MODAL
+      #delete-comment-modal.modal.fade
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true') ×
+            .modal-body
+              p Are you sure you want to delete ?
+            .modal-footer
+              button.btn.btn-default(type='button', data-dismiss='modal') No
+              button.btn.btn-primary(type='button') Yes
+      // EOF DELETE COMMENT MODAL
+      // CONFIRM GIF MODAL
+      #confirm-gif-modal.modal.fade
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true') ×
+            .modal-body
+              p Are you sure you want to post this GIF image?
+            .modal-footer
+              button.btn.btn-default(type='button', data-dismiss='modal') No
+              button.btn.btn-primary(type='button') Yes
+      // EOF CONFIRM GIF MODAL    
+    // EOF COMMENT AREA

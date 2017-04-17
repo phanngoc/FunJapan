@@ -1,0 +1,31 @@
+include ./../head/head
+include ./../header/header
+
+doctype html
+html
+  block head
+  body
+    #top-container.top-container
+      .container.detail
+        // HEADER
+        +header(false)
+        // EOF HEADER
+        .top-body
+          .main-content
+            block main-content
+    block script
+    script.
+      $(function() {
+        // Navbar
+        $('.fj-navbar').affix({
+          offset: {
+            top: 104
+          }
+        });
+        $('.fj-navbar-mobile').affix({
+          offset: {
+            top: 40
+          }
+        });
+      });
+

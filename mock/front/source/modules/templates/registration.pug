@@ -1,0 +1,14 @@
+include ./../head/head
+include ./../header/header-registration
+include ./../footer/footer-registration
+
+doctype html
+html
+  block head
+  body
+    #top-container.top-container
+      .container
+        +header-registration
+        block registration-patial
+        +footer-registration
+    block script

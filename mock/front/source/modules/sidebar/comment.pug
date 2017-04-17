@@ -1,0 +1,49 @@
+mixin comment(comment_item)
+  li.media.no-overflow-hidden(data-article-comment-id='cc3819cb-1612-4a0c-8329-c1c08b2ff644', data-article-comment-owner='false')
+    .pull-left.profile-picture(style='position:relative;')
+      img.media-object.img-circle(src=comment_item.user_avata_src, alt='Minanti Utami')
+    .media-body
+      p.h4.media-heading=comment_item.user_name
+      .pull-right
+        a.btn-delete(href='javascript: void(0);') delete
+      p.comment-body=comment_item.content
+      p.time
+        span.post-text Posted at 
+        span.post-date=comment_item.post_date
+        a.comment-reply-panel.pull-right(href='javascript:void(0);')
+          i.fa.fa-reply-all
+          span.reply-count=comment_item.reply_count
+    .comment-favorite
+      a.engagement-favorite(data-mpf-article-id='66e2b2081c4a40218c5ff119c68f984b', href='#')
+        i.fa.fa-heart
+      span.engagement-count.disabled=comment_item.engagement_count
+    if comment_item.reply_count > 0
+      // REPLY COMMENT
+      .comment-reply-container
+        ul.media-list.media-list-comments.media-list-comments-replies
+          li.media.no-overflow-hidden(data-article-comment-id='59fc0d14-a887-44cb-b3b6-79d1b942f986', data-article-comment-owner='true', style='')
+            .pull-left.profile-picture(style='position:relative')
+              img.media-object.img-circle(src=comment_item.reply.user_avata_src, alt='Ping pong')
+            .media-body
+              p.h4.media-heading=comment_item.reply.user_name
+              .pull-right
+                a.btn-delete(href='javascript: void(0);', style='display: inline;') delete
+              p.comment-body=comment_item.reply.content              
+              span.hidden
+              p.time
+                span.post-text Posted at 
+                span.post-date=comment_item.reply.post_date
+            .comment-favorite
+              a.engagement-favorite.engagement-interactive(href='javascript:void(0);')
+                i.fa.fa-heart
+              span.engagement-count.disabled=comment_item.reply.engagement_count
+        .comment-reply-form.comment-posting-form(style='display: block')
+          .alert.alert-danger.hidden
+            ul
+              li.hidden Posting comments is limited temporarily. Try again later. 
+              li.hidden Message is too long.
+              li.hidden You have reached your comment limit for this article.
+          form.comment-to-top(role='form')
+            textarea.comment-input-area(type='text', placeholder='Reply comment')
+            i.fa.fa-smile-o.btn.btn-twemoji(aria-hidden='true')
+      // EOF REPLY COMMENT

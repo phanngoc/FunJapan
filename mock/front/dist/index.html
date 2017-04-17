@@ -1,62 +1,161 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="utf-8" />
-  <meta name=viewport content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Fun! Japan</title>
-  <link rel="shortcut icon" type="image/png" href="images/brand-icon.png" />
-  <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900' rel='stylesheet' type='text/css'>
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-  <!-- Resource -->
-  <link rel="stylesheet" type="text/css" href="css/mpf-desktop.css">
-  <!-- EOF Resource -->
-</head>
-
-<body>
-  <div class="top-container" id="top-container">
-    <div class="container dark-background">
-      <!-- HEADER -->
-      <!-- Menu bars -->
-      <header class="global-header">
-        <!-- Top header bar -->
-        <div class="top-header">
-          <div class="header-text">
-            <p class="header-title-text">
-              <a href="/"><img src="images/brand-icon.png" alt="brand-icon"><span>&nbsp;FUN!<span class="title-country">&nbsp;Japan Indonesia</span></span>
-              </a>
-            </p>
-          </div>
-          <div class="header-right">
-            <form role="form" action="/Search" method="get">
-              <input type="text" placeholder="Type in keyword">
-              <i class="fa fa-search form-control-feedback"></i>
-            </form>
-            <div class="user-setting">
-              <div class="authentication">
-                <a class="authen-link" href="#"><i class="fa fa-unlock-alt"></i> Register</a>
-                <span class="authen-link">/</span>
-                <a class="authen-link" href="#"><i class="fa fa-user"></i> Login</a>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Home</title>
+    <link rel="shortcut icon" type="image/png" href="images/brand-icon.png" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,300,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900" rel="stylesheet" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" />
+    <!-- Resource-->
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <!-- EOF Resource-->
+  </head>
+  <body>
+    <div class="top-container" id="top-container">
+      <div class="container dark-background">
+        <!-- HEADER-->
+        <!-- Menu bars-->
+        <header class="global-header">
+          <!-- Top header bar-->
+          <div class="top-header">
+            <div class="header-text">
+              <p class="header-title-text">
+                <a href="/">
+                  <img src="images/brand-icon.png" alt="brand-icon" />
+                  <span>FUN!
+                    <span class="title-country"> Japan Indonesia</span>
+                  </span>
+                </a>
+              </p>
+            </div>
+            <div class="header-right">
+              <form role="form" action="/Search" method="get">
+                <input type="text" placeholder="Type in keyword" />
+                <i class="fa fa-search form-control-feedback"></i>
+              </form>
+              <div class="user-setting">
+                <div class="authentication">
+                  <a class="authen-link" href="#">
+                    <i class="fa fa-unlock-alt"></i> Register</a>
+                  <span class="authen-link">/</span>
+                  <a class="authen-link" href="#">
+                    <i class="fa fa-user"></i> Login</a>
+                </div>
+                <div class="user-preference">
+                  <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                      <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <span>
+                          <i class="fa fa-user-circle"></i>
+                        </span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <div class="dropdown-menu-global">
+                            <ul class="list-items">
+                              <li>
+                                <a href="#">My Coupons</a>
+                              </li>
+                              <li>
+                                <a href="#">Settings</a>
+                              </li>
+                              <li>
+                                <a href="#">About Member Program</a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <i class="zmdi zmdi-account"></i> Logout</a>
+                              </li>
+                            </ul>
+                            <div class="box-sum-ranking">
+                              <div class="row brs-sum">
+                                <div class="col-md-6 bsr-sum-left">
+                                  <img src="./images/ic_regular.png" />
+                                  <div class="bsr-detail">
+                                    <div class="brs-title">Regular</div>
+                                    <div class="brs-month">Next month : </div>
+                                    <div class="brs-promotion">Regular (stay)</div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6 brs-point">
+                                  <strong>6,070</strong>
+                                  <span class="currence">Points</span>
+                                </div>
+                              </div>
+                              <div class="row brs-star">
+                                <div class="col-md-2">
+                                  <strong>Regular</strong>
+                                </div>
+                                <div class="col-md-10">
+                                  <span class="star is-checked"></span>
+                                  <span class="star"></span>
+                                  <span class="star"></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="navbar-text">
+                      <span>Chan Swee MEI</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
+            </div>
+          </div>
+          <!-- Top header bar mobile-->
+          <div class="top-header-mobile">
+            <span class="header-title-text">
+              <a href="/">
+                <img src="images/brand-icon.png" alt="brand-icon" />
+                <span>FUN!
+                  <small class="title-country"> Japan Indonesia</small>
+                </span>
+              </a>
+            </span>
+            <div class="user-setting pull-right">
               <div class="user-preference">
                 <ul class="nav navbar-nav navbar-right">
                   <li class="dropdown">
+                    <!-- If authenticated-->
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                      <span><i class="fa fa-user-circle"></i></span>
+                      <span>
+                        <i class="zmdi zmdi-account-circle pink"></i>
+                      </span>
                     </a>
                     <ul class="dropdown-menu">
                       <li>
                         <div class="dropdown-menu-global">
+                          <!-- If is authenticated-->
+                          <div class="box-sum-ranking">
+                            <div class="bsr-sum-left">
+                              <img src="images/ic_bronze.png" />
+                              <div class="bsr-detail">
+                                <div class="brs-title">Bronze</div>
+                                <div class="brs-month">Next month : </div>
+                                <div class="brs-promotion">Regular (stay)</div>
+                              </div>
+                            </div>
+                            <div class="brs-point">
+                              <span class="point">6,070 </span>
+                              <span class="currence">Points</span>
+                            </div>
+                            <!-- Row detail ratting-->
+                            <div class="brs-star">
+                              <span class="star is-checked"></span>
+                              <span class="star is-checked"></span>
+                              <span class="star"></span>
+                              <span class="star"></span>
+                            </div>
+                            <!-- ./Row detail ratting-->
+                          </div>
                           <ul class="list-items">
-                            <li>
-                              <a href="#">My Coupons</a>
-                            </li>
-                            <li>
-                              <a href="#">Settings</a>
-                            </li>
                             <li>
                               <a href="#">My Coupons</a>
                             </li>
@@ -67,1292 +166,1748 @@
                               <a href="#">About Member Program</a>
                             </li>
                             <li>
-                              <a href="#"><i class="zmdi zmdi-account"></i>  Logout</a>
+                              <a href="#">
+                                <i class="zmdi zmdi-account"></i> Logout</a>
                             </li>
                           </ul>
-
-                          <div class="box-sum-ranking">
-                            <!-- Row Summary -->
-                            <div class="row brs-sum">
-                              <!-- column left -->
-                              <div class="col-md-6 bsr-sum-left">
-                                <img src="/~/media/Mpf/Website/UserRank/ic_regular.ashx">
-                                <div class="bsr-detail">
-                                  <div class="brs-title">Regular</div>
-                                  <div class="brs-month">Next month : </div>
-                                  <div class="brs-promotion">Regular (stay)</div>
-                                </div>
-                              </div>
-                              <!-- ./Column left -->
-                              <!-- Column right -->
-                              <div class="col-md-6 brs-point">
-                                <strong>6,070</strong> <span class="currence">Points</span>
-                              </div>
-                              <!-- Column right -->
-                            </div>
-                            <!-- ./Row Summary -->
-                            <!-- Row detail ratting -->
-                            <div class="row brs-star">
-                              <div class="col-md-2">
-                                <strong>Regular</strong>
-                              </div>
-                              <div class="col-md-10">
-                                <span class="star is-checked"></span>
-                                <span class="star"></span>
-                                <span class="star"></span>
-                              </div>
-                            </div>
-                            <!-- ./Row detail ratting -->
-                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                    <!-- If not authenticated-->
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" style="display: none;">
+                      <span>
+                        <i class="zmdi zmdi-account-circle black"></i>
+                      </span>
+                    </a>
+                    <ul class="dropdown-menu" style="display: none;">
+                      <li>
+                        <!-- If not authenticated-->
+                        <div class="dropdown-menu-global unauthen">
+                          <ul class="list-items">
+                            <li>
+                              <a href="#">
+                                <i class="fa fa-unlock-alt"></i> Register</a>
+                            </li>
+                            <li>
+                              <a href="#">
+                                <i class="fa fa-user"></i> Login</a>
+                            </li>
+                          </ul>
                         </div>
                       </li>
                     </ul>
                   </li>
-                  <li class="navbar-text">
-                    <span>Chan Swee MEI</span>
-                  </li>
                 </ul>
               </div>
             </div>
+            <form class="pull-right" role="form" action="/Search" method="get">
+              <input type="text" placeholder="Type in keyword" />
+              <span class="vertical-bar"> </span>
+              <i class="fa fa-search form-control-feedback"></i>
+            </form>
           </div>
-        </div>
-
-        <!-- Top header bar mobile -->
-        <div class="top-header-mobile">
-          <span class="header-title-text"><a href="/"><img src="images/brand-icon.png" alt="brand-icon"><span>&nbsp;FUN!<small class="title-country">&nbsp;Japan Indonesia</small></span></a>
-          </span>
-          <div class="user-setting pull-right">
-            <div class="user-preference">
-              <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                  <!-- If authenticated -->
-                  <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                    <span><i class="zmdi zmdi-account-circle pink"></i></span>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <div class="dropdown-menu-global">
-                        <!-- If is authenticated-->
-                        <div class="box-sum-ranking">
-                          <div class="bsr-sum-left">
-                            <img src="images/ic_bronze.png">
-                            <div class="bsr-detail">
-                              <div class="brs-title">Bronze</div>
-                              <div class="brs-month">Next month : </div>
-                              <div class="brs-promotion">Regular (stay)</div>
-                            </div>
-                          </div>
-                          <div class="brs-point">
-                            <span class="point">6,070 </span><span class="currence">Points</span>
-                          </div>
-                          <!-- Row detail ratting -->
-                          <div class="brs-star">
-                            <span class="star is-checked"></span>
-                            <span class="star is-checked"></span>
-                            <span class="star is-checked"></span>
-                            <span class="star is-checked"></span>
-                            <span class="star is-checked"></span>
-                            <span class="star is-checked"></span>
-                            <span class="star is-checked"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                          </div>
-                          <!-- ./Row detail ratting -->
-                        </div>
-                        <ul class="list-items">
-                          <li>
-                            <a href="#">My Coupons</a>
-                          </li>
-                          <li>
-                            <a href="#">Settings</a>
-                          </li>
-                          <li>
-                            <a href="#">About Member Program</a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="zmdi zmdi-account"></i>  Logout</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                  </ul>
-                  <!-- If not authenticated -->
-                  <a class="dropdown-toggle" href="#" data-toggle="dropdown" style="display: none">
-                    <span><i class="zmdi zmdi-account-circle black"></i></span>
-                  </a>
-                  <ul class="dropdown-menu" style="display: none">
-                    <li>
-                      <!-- If not authenticated -->
-                      <div class="dropdown-menu-global unauthen">
-                        <ul class="list-items">
-                          <li>
-                            <a href="#"><i class="fa fa-unlock-alt"></i> Register</a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fa fa-user"></i> Login</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
+          <!-- SLIDER-->
+          <div id="banner-top-sliderFrame">
+            <!-- MAIN IMAGES-->
+            <div id="banner-top-slider">
+              <a class="lazyImage" href="images/top/main_img_01.jpg" title="#htmlcaption1"></a>
+              <a class="lazyImage" href="images/top/main_img_2.jpg" title="#htmlcaption2"></a>
+              <a class="lazyImage" href="images/top/main_img_3.jpg" title="#htmlcaption3"></a>
             </div>
-          </div>
-          <form class="pull-right" role="form" action="/Search" method="get">
-            <input type="text" placeholder="Type in keyword">
-            <span class="vertical-bar">| </span>
-            <i class="fa fa-search form-control-feedback"></i>
-          </form>
-        </div>
-        <!-- SLIDER -->
-        <div id="banner-top-sliderFrame">
-          <!-- MAIN IMAGES -->
-          <div id="banner-top-slider">
-            <a class="lazyImage" href="images/top/main_img_01.jpg" title="#htmlcaption1"></a>
-            <a class="lazyImage" href="images/top/main_img_2.jpg" title="#htmlcaption2"></a>
-            <a class="lazyImage" href="images/top/main_img_3.jpg" title="#htmlcaption3"></a>
-          </div>
-          <!-- MAIN IMAGES -->
-          <!-- CAPTIONS -->
-          <div style="display: none;">
-            <div id="htmlcaption1">
-              <a href="#">
-                <div class="content">
-                  <p class="heading">Oshibori (sdxxdd) Fun! Japan Words. </p>
-                  <p class="description">If you want to enjoy ice and snow in... </p>
-                  <p class="read-more"><span>Read more</span></p>
-                </div>
-                <div class="content sm">
-                  <p class="heading">Oshibori (sdxxdd) Fun! .... </p>
-                  <p class="description">If you want to enjoy ice... </p>
-                </div>
-              </a>
-            </div>
-            <div id="htmlcaption2">
-              <a href="#">
-                <div class="content">
-                  <p class="heading">Fun! Japan Reporter Recruitment </p>
-                  <p class="description">Below is the hexadecimal representation for an array of HTML background colors</p>
-                  <p class="read-more"><span>Read more</span></p>
-                </div>
-                <div class="content sm">
-                  <p class="heading">Fun! Japan Reporter ... </p>
-                  <p class="description">Below is the hexadecimal...</p>
-                </div>
-              </a>
-            </div>
-            <div id="htmlcaption3">
-              <a href="#">
-                <div class="content">
-                  <p class="heading">Fun! Japan Reporter Recruitment </p>
-                  <p class="description">Below is the hexadecimal representation for an array of HTML background colors</p>
-                  <p class="read-more"><span>Read more</span></p>
-                </div>
-                <div class="content sm">
-                  <p class="heading">Fun! Japan Reporter ... </p>
-                  <p class="description">Below is the hexadecimal...</p>
-                </div>
-              </a>
-            </div>
-          </div>
-          <!-- EOF CAPTIONS -->
-
-          <!-- THUMBNAIS -->
-          <div id="banner-top-thumbs">
-            <div class="thumb" style="background-image: url('images/top/thumb_img_2.jpg');">
-              <div class="thumb-content-wrapper">
-                <div class="thumb-content">
-                  <p>We recruit people that can report...</p>
-                </div>
-              </div>
-              <div style="clear:both;"></div>
-            </div>
-            <div class="thumb" style="background-image: url('images/top/thumb_img_1.jpg');">
-              <div class="thumb-content-wrapper">
-                <div class="thumb-content">
-                  <p>We recruit people that can report...</p>
-                </div>
-              </div>
-              <div style="clear:both;"></div>
-            </div>
-            <div class="thumb" style="background-image: url('images/top/thumb_img_3.jpg');">
-              <div class="thumb-content-wrapper">
-                <div class="thumb-content">
-                  <p>We recruit people that can report...</p>
-                </div>
-              </div>
-              <div style="clear:both;"></div>
-            </div>
-          </div>
-          <!-- EOF THUMBNAIS -->
-        </div>
-
-        <!-- EOF SLIDER -->
-        <div class="notification">
-        </div>
-        <!-- NAVBAR -->
-        <div class="fj-navbar nav-desktop">
-          <div class="container">
-            <nav class="navbar navbar-default">
-              <ul class="nav navbar-nav">
-                <li class="">
-                  <a href="/index.html"><i class="zmdi zmdi-ticket-star"></i>Campaigns</a>
-                </li>
-                <li class="">
-                  <a href="#"><i class="zmdi zmdi-card-giftcard"></i>Rewards</a>
-                </li>
-                <li class="dropdown">
-                  <a data-toggle="tab" href="#coupons-dropdown" class="fj-tab"><i class="zmdi zmdi-labels"></i>Coupons <i class="fa fa-chevron-down"></i></a>
-                  <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-                </li>
-                <li class="dropdown">
-                  <a data-toggle="tab" href="#other-menus-dropdown" class="fj-tab"><i class="zmdi zmdi-widgets zmdi-layers"></i>Other Menus <i class="fa fa-chevron-down"></i></a>
-                  <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-                </li>
-                <li class="dropdown">
-                  <a data-toggle="tab" href="#categories-dropdown" class="fj-tab"><i class="zmdi zmdi-layers"></i>categories <i class="fa fa-chevron-down"></i></a>
-                  <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-                </li>
-                <li class="dropdown">
-                  <a data-toggle="tab" href="#tags-dropdown" class="fj-tab"><i class="zmdi zmdi-tag-more"></i>TAGS <i class="fa fa-chevron-down"></i></a>
-                  <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-                </li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><i class="fa fa-facebook-square"></i></a>
-                </li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-              </ul>
-            </nav>
-            <div class="tab-content">
-              <div id="coupons-dropdown" class="tab-pane navbar-tab fade">
-                <ul class="tab-content-menu">
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li><a href="#">Get Coupons</a></li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li><a href="#">My Coupons</a></li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li><a href="#">Coupon Map</a></li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li><a href="#">How to use</a></li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                </ul>
-              </div>
-              <div id="other-menus-dropdown" class="tab-pane navbar-tab fade">
-                <ul class="tab-content-menu">
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li>
-                    <a href="#">Series</a>
-                  </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li>
-                    <a href="#">FJ Points</a>
-                  </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li>
-                    <a href="#">FJ Talk</a>
-                  </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li>
-                    <a href="#">Japan Guide</a>
-                  </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li>
-                    <a href="#">Invite Friends</a>
-                  </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li>
-                    <a href="#">Omikuji</a>
-                  </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li>
-                    <a href="#">Map</a>
-                  </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li>
-                    <a href="#">Personality Test</a>
-                  </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                </ul>
-              </div>
-              <div id="categories-dropdown" class="tab-pane navbar-tab fade">
-                <ul class="tab-content-menu">
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li><a href="#">All</a></li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li>
-                    <a href="#">Travel</a>
-                  </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li>
-                    <a href="#">Food</a>
-                  </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li>
-                    <a href="#">Technology</a>
-                  </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li>
-                    <a href="#">Tradition</a>
-                  </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li>
-                    <a href="#">Entertainment</a>
-                  </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li>
-                    <a href="#">Lifestyle</a>
-                  </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li>
-                    <a href="#">Business</a>
-                  </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li>
-                    <a href="#">Health</a>
-                  </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                  <li>
-                    <a href="#">Talent</a>
-                  </li>
-                  <li class="vertical-bar"><a href="#">|</a></li>
-                </ul>
-              </div>
-              <div id="tags-dropdown" class="tab-pane navbar-tab fade">
-                <ul class="tab-content-menu">
-                  <li class="hot-tags">
-                    <a href="#">
-                      <span class="hashtag">#&nbsp;</span>japan
-                    </a>
-                  </li>
-                  <li class="hot-tags">
-                    <a href="#">
-                      <span class="hashtag">#&nbsp;</span>fun
-                    </a>
-                  </li>
-                  <li class="hot-tags">
-                    <a href="#">
-                      <span class="hashtag">#&nbsp;</span>culture
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="navigation fj-navbar-mobile" id="nav-affix">
-          <div class="container">
-            <ul class="list-inline">
-              <li class="">
-                <a href="#"><i class="zmdi zmdi-ticket-star"></i>CAMPAIGNS</a>
-              </li>
-              <li class="">
-                <a href="#"><i class="zmdi zmdi-card-giftcard"></i>REWARDS</a>
-              </li>
-              <li class="dropdown">
-                <a data-toggle="tab" href="#sm-coupons-dropdown" class="fj-tab"><i class="zmdi zmdi-labels"></i>COUPONS<i class="fa fa-chevron-down"></i></a>
-                <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-              </li>
-              <li class="dropdown">
-                <a data-toggle="tab" href="#sm-other-menus-dropdown" class="fj-tab"><i class="zmdi zmdi-widgets zmdi-layers"></i>OTHER MENUS<i class="fa fa-chevron-down"></i></a>
-                <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-              </li>
-              <li class="dropdown">
-                <a data-toggle="tab" href="#sm-categories-dropdown" class="fj-tab"><i class="zmdi zmdi-layers"></i>CATEGORIES</a>
-                <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-              </li>
-              <li class="dropdown">
-                <a data-toggle="tab" href="#sm-tags-dropdown" class="fj-tab"><i class="zmdi zmdi-tag-more"></i>TAGS</a>
-                <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-              </li>
-              <li class="dropdown">
-                <a data-toggle="tab" href="#sm-social-dropdown" class="fj-tab"><i class="zmdi zmdi-share"></i>SOCIAL</a>
-                <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-              </li>
-              <li class="dropdown">
-                <a data-toggle="tab" href="#sm-legal-dropdown" class="fj-tab"><i class="zmdi zmdi-assignment"></i>LEGAL</a>
-                <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-              </li>
-              <li class="dropdown" id="lastitem">
-                <a data-toggle="tab" href="#sm-info-dropdown" class="fj-tab"><i class="zmdi zmdi-info-outline"></i>FURTHER INFO</a>
-                <div class="caret-up"><i class="fa fa-caret-up"></i></div>
-              </li>
-            </ul>
-          </div>
-          <div class="tab-content">
-            <div id="sm-coupons-dropdown" class="tab-pane navbar-tab fade">
-              <ul class="tab-content-menu">
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li><a href="#">Get Coupons</a></li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li><a href="#">My Coupons</a></li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li><a href="#">Coupon Map</a></li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li><a href="#">How to use</a></li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-              </ul>
-            </div>
-            <div id="sm-other-menus-dropdown" class="tab-pane navbar-tab fade">
-              <ul class="tab-content-menu">
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Series</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">FJ Points</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">FJ Talk</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Japan Guide</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Invite Friends</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Omikuji</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Map</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Personality Test</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-              </ul>
-            </div>
-            <div id="sm-categories-dropdown" class="tab-pane navbar-tab fade">
-              <ul class="tab-content-menu">
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li><a href="#">All</a></li>
-                <li>
-                  <a href="#">Travel</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Food</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Technology</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Tradition</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Entertainment</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Lifestyle</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Business</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Health</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">Talent</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-              </ul>
-            </div>
-            <div id="sm-tags-dropdown" class="tab-pane navbar-tab fade">
-              <ul class="tab-content-menu">
-                <li class="hot-tags">
-                  <a href="#">
-                    <span class="hashtag"># </span>japan
-                  </a>
-                </li>
-                <li class="hot-tags">
-                  <a href="#">
-                    <span class="hashtag"># </span>fun
-                  </a>
-                </li>
-                <li class="hot-tags">
-                  <a href="#">
-                    <span class="hashtag"># </span>culture
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div id="sm-social-dropdown" class="tab-pane navbar-tab fade">
-              <div class="sns-btn-fanpage">
-                <ul class="list-inline">
-                  <li>
-                    <a class="btn btn-sns"><i class="fa fa-facebook" aria-hidden="true"></i> facebook</a>
-                  </li>
-                  <li>
-                    <a class="btn btn-sns"><i class="fa fa-twitter" aria-hidden="true"></i> twitter</a>
-                  </li>
-                  <li>
-                    <a class="btn btn-sns"><i class="fa fa-instagram" aria-hidden="true"></i> instagram</a>
-                  </li>
-                  <li>
-                    <a class="btn btn-sns"><i class="fa fa-youtube-play" aria-hidden="true"></i> youtube</a>
-                  </li>
-
-                </ul>
-              </div>
-            </div>
-            <div id="sm-legal-dropdown" class="tab-pane navbar-tab fade">
-              <ul class="tab-content-menu">
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">TERMS & CONDITIONS</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">PRIVACY POLICIES</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-              </ul>
-            </div>
-            <div id="sm-info-dropdown" class="tab-pane navbar-tab fade">
-              <ul class="tab-content-menu">
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">FAQ</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">CONTACT US</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-                <li>
-                  <a href="#">FOR MARKETERS</a>
-                </li>
-                <li class="vertical-bar"><a href="#">|</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- EOF NAVBAR -->
-      </header>
-      <!-- EOF Menu bars -->
-      <!-- EOF HEADER -->
-      <div class="top-body">
-        <!-- RECOMMENDED_POST -->
-        <section class="regular slider">
-          <div>
-            <a href="#">
-              <div class="img-card slider-img">
-                <img src="images/top/carousel_img_01.jpg">
-                <p class="card-title"><span>What does the</span> </p>
-                <p class="card-title-sm"><span>What does the </span></p>
-              </div>
-            </a>
-          </div>
-          <div>
-            <a href="#">
-              <div class="img-card slider-img">
-                <img src="images/top/carousel_img_2.jpg">
-                <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean?</span> </p>
-                <p class="card-title-sm"><span>What does the Japanese word </span></p>
-              </div>
-            </a>
-          </div>
-          <div>
-            <a href="#">
-              <div class="img-card slider-img">
-                <img src="images/top/carousel_img_3.jpg">
-                <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese</span> </p>
-                <p class="card-title-sm"><span>What does the Japanese word "Yuki (雪)" mean?</span></p>
-              </div>
-            </a>
-          </div>
-          <div>
-            <a href="#">
-              <div class="img-card slider-img">
-                <img src="images/top/carousel_img_4.jpg">
-                <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese word "Yuki (雪)" mean?</span> </p>
-                <p class="card-title-sm"><span>What does the Japanese word "Yuki (雪)" mean? What does the </span></p>
-              </div>
-            </a>
-          </div>
-          <div>
-            <a href="#">
-              <div class="img-card slider-img">
-                <img src="images/top/carousel_img_5.jpg">
-                <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese word "Yuki (雪)" mean?</span> </p>
-                <p class="card-title-sm"><span>What does the Japanese word "Yuki (雪)" mean?</span></p>
-              </div>
-            </a>
-          </div>
-          <div>
-            <a href="#">
-              <div class="img-card slider-img">
-                <img src="images/top/carousel_img_6.jpg">
-                <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese word "Yuki (雪)" mean?</span> </p>
-                <p class="card-title-sm"><span>What does the Japanese word "Yuki (雪)" mean?</span></p>
-              </div>
-            </a>
-          </div>
-        </section>
-
-        <!-- EOF RECOMMENDED_POST -->
-        <!-- ARTICLE RANKING -->
-        <div class="article-ranking">
-          <div class="row gutter-10">
-            <div class="col-md-55">
-              <div class="first-ranking">
+            <!-- MAIN IMAGES-->
+            <!-- CAPTIONS-->
+            <div style="display: none;">
+              <div id="htmlcaption1">
                 <a href="#">
-                  <div class="img-card first-ranking-img">
-                    <img src="images/top/ranking_01.png">
-                    <p class="card-title"><span>Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! </span> </p>
-                    <p class="card-title-sm"><span>Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan  </span></p>
-                    <p class="first-ranking-num">
-                      <span class="no">No</span><span class="dot">.</span><span class="number-1">1</span>
+                  <div class="content">
+                    <p class="heading">Oshibori (sdxxdd) Fun! Japan Words.</p>
+                    <p class="description">If you want to enjoy ice and snow in... </p>
+                    <p class="read-more">
+                      <span>Read more</span>
                     </p>
-                    <div class="triangle-bottomright-1"></div>
                   </div>
-                  <div class="first-ranking-info">
-                    <p class="first-ranking-topic"><img src="images/top/icon_bus.png"> Tralvel / Season</p>
-                    <p class="first-ranking-des">
-                      Below is the hexadecimal representation for an array of HTML background colors
+                  <div class="content sm">
+                    <p class="heading">Oshibori (sdxxdd) Fun! ...</p>
+                    <p class="description">If you want to enjoy ice...</p>
+                  </div>
+                </a>
+              </div>
+              <div id="htmlcaption2">
+                <a href="#">
+                  <div class="content">
+                    <p class="heading">Fun! Japan Reporter Recruitment</p>
+                    <p class="description">Below is the hexadecimal representation for an array of HTML background colors</p>
+                    <p class="read-more">
+                      <span>Read more</span>
                     </p>
+                  </div>
+                  <div class="content sm">
+                    <p class="heading">Fun! Japan Reporter ...</p>
+                    <p class="description">Below is the hexadecimal...</p>
+                  </div>
+                </a>
+              </div>
+              <div id="htmlcaption3">
+                <a href="#">
+                  <div class="content">
+                    <p class="heading">Fun! Japan Reporter Recruitment </p>
+                    <p class="description">Below is the hexadecimal representation for an array of HTML background colors</p>
+                    <p class="read-more">
+                      <span>Read more</span>
+                    </p>
+                  </div>
+                  <div class="content sm">
+                    <p class="heading">Fun! Japan Reporter ...</p>
+                    <p class="description">Below is the hexadecimal...</p>
                   </div>
                 </a>
               </div>
             </div>
-            <div class="col-md-45">
-              <div class="row gutter-10">
-                <div class="col-xs-6">
-                  <div class="rest-ranking">
-                    <a href="#">
-                      <div class="img-card list-group-ranking-item">
-                        <img src="images/top/ranking_2.jpg">
-                        <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese</span> </p>
-                        <p class="card-title-sm"><span>What does the Japanese word "Yuki (雪)" mean?What does the</span></p>
-                        <p class="rest-ranking-num">
-                          .2
-                        </p>
-                        <div class="triangle-bottomright-rest"></div>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="rest-ranking">
-                    <a href="#">
-                      <div class="img-card list-group-ranking-item">
-                        <img src="images/top/ranking_4.jpg">
-                        <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese</span> </p>
-                        <p class="card-title-sm"><span>What does the Japanese word "Yuki (雪)" mean?</span></p>
-                        <p class="rest-ranking-num">
-                          .4
-                        </p>
-                        <div class="triangle-bottomright-rest"></div>
-                      </div>
-                    </a>
+            <!-- EOF CAPTIONS-->
+            <!-- THUMBNAIS-->
+            <div id="banner-top-thumbs">
+              <div class="thumb" style="background-image: url('images/top/thumb_img_1.jpg');">
+                <div class="thumb-content-wrapper">
+                  <div class="thumb-content">
+                    <p>We recruit people that can report...</p>
                   </div>
                 </div>
-                <div class="col-xs-6">
-                  <div class="rest-ranking">
-                    <a href="#">
-                      <div class="img-card list-group-ranking-item">
-                        <img src="images/top/ranking_3.jpg">
-                        <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese</span> </p>
-                        <p class="card-title-sm"><span>What does the Japanese word "Yuki (雪)" mean?</span></p>
-                        <p class="rest-ranking-num">
-                          .3
-                        </p>
-                        <div class="triangle-bottomright-rest"></div>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="rest-ranking">
-                    <a href="#">
-                      <div class="img-card list-group-ranking-item">
-                        <img src="images/top/ranking_5.jpg">
-                        <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese</span> </p>
-                        <p class="card-title-sm"><span>What does the Japanese word "Yuki (雪)" mean?</span></p>
-                        <p class="rest-ranking-num">
-                          .5
-                        </p>
-                        <div class="triangle-bottomright-rest"></div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
+                <div style="clear:both;"> </div>
               </div>
-              <div class="vote-button">
-                <p class="text-center">
-                  <a class="btn btn-default" role="button" href="#" target="_blank">
-                    <span><i class="fa fa-heart"></i> Vote for your favorite article</span>
-                  </a>
-                </p>
+              <div class="thumb" style="background-image: url('images/top/thumb_img_2.jpg');">
+                <div class="thumb-content-wrapper">
+                  <div class="thumb-content">
+                    <p>We recruit people that can report...</p>
+                  </div>
+                </div>
+                <div style="clear:both;"> </div>
+              </div>
+              <div class="thumb" style="background-image: url('images/top/thumb_img_3.jpg');">
+                <div class="thumb-content-wrapper">
+                  <div class="thumb-content">
+                    <p>We recruit people that can report...</p>
+                  </div>
+                </div>
+                <div style="clear:both;"> </div>
+              </div>
+            </div>
+            <!-- EOF THUMBNAIS-->
+            <!-- EOF SLIDER-->
+          </div>
+          <div class="notification"></div>
+          <!-- NAVBAR-->
+          <div class="fj-navbar nav-desktop">
+            <div class="container">
+              <nav class="navbar navbar-default">
+                <ul class="nav navbar-nav">
+                  <li>
+                    <a href="/index.html">
+                      <i class="zmdi zmdi-ticket-star"></i>Campaigns</a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="zmdi zmdi-card-giftcard"></i>Rewards</a>
+                  </li>
+                  <li class="dropdown">
+                    <a class="fj-tab" data-toggle="tab" href="#coupons-dropdown">
+                      <i class="zmdi zmdi-labels"></i>Coupons
+                      <i class="fa fa-chevron-down"></i>
+                    </a>
+                    <div class="caret-up">
+                      <i class="fa fa-caret-up"> </i>
+                    </div>
+                  </li>
+                  <li class="dropdown">
+                    <a class="fj-tab" data-toggle="tab" href="#other-menus-dropdown">
+                      <i class="zmdi zmdi-labels"></i>Other Menus
+                      <i class="fa fa-chevron-down"></i>
+                    </a>
+                    <div class="caret-up">
+                      <i class="fa fa-caret-up"> </i>
+                    </div>
+                  </li>
+                  <li class="dropdown">
+                    <a class="fj-tab" data-toggle="tab" href="#categories-dropdown">
+                      <i class="zmdi zmdi-labels"></i>categories
+                      <i class="fa fa-chevron-down"></i>
+                    </a>
+                    <div class="caret-up">
+                      <i class="fa fa-caret-up"> </i>
+                    </div>
+                  </li>
+                  <li class="dropdown">
+                    <a class="fj-tab" data-toggle="tab" href="#tags-dropdown">
+                      <i class="zmdi zmdi-labels"></i>TAGS
+                      <i class="fa fa-chevron-down"></i>
+                    </a>
+                    <div class="caret-up">
+                      <i class="fa fa-caret-up"> </i>
+                    </div>
+                  </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-facebook-square"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-twitter"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-instagram"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-youtube-play"></i>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <div class="tab-content">
+                <div class="tab-pane navbar-tab fade" id="coupons-dropdown">
+                  <ul class="tab-content-menu">
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Get Coupons</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">My Coupons</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Coupon Map</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">How to use</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">| </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="tab-pane navbar-tab fade" id="other-menus-dropdown">
+                  <ul class="tab-content-menu">
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Series</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">FJ Points</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">FJ Talk</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Japan Guide</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Invite Friends</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Omikuji</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Map</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Personality Test</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">| </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="tab-pane navbar-tab fade" id="categories-dropdown">
+                  <ul class="tab-content-menu">
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">All</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Travel</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Food</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Technology</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Tradition</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Entertainment</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Lifestyle</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Business</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Health</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">|</a>
+                    </li>
+                    <li>
+                      <a href="#">Talent</a>
+                    </li>
+                    <li class="vertical-bar">
+                      <a href="#">| </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="tab-pane navbar-tab fade" id="tags-dropdown">
+                  <ul class="tab-content-menu">
+                    <li class="hot-tags">
+                      <a href="#">
+                        <span class="hashtag"># </span>japan</a>
+                    </li>
+                    <li class="hot-tags">
+                      <a href="#">
+                        <span class="hashtag"># </span>fun</a>
+                    </li>
+                    <li class="hot-tags">
+                      <a href="#">
+                        <span class="hashtag"># </span>culture</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- EOF ARTICLE RANKING -->
-        <div class="main-content">
-          <div class="row gutter-32">
-            <div class="col-md-70 main-column">
-              <!-- MAIN -->
-              <div class="list-group article-cards">
-                <div class="list-group-header">
-                  <p class="list-group-title">NEW POST</p>
-                </div>
-                <div class="list-infinity">
-                  <div class="list-group-article">
-                    <div class="row gutter-16">
-                      <div class="col-md-6">
-                        <!-- CARD_ITEM -->
-                        <div class="list-group-item list-group-item-cards">
-                          <a href="#">
-                            <div class="img-card card-item">
-                              <img src="images/top/thumb_article.jpg">
-                              <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese What does the Japanese word "Yuki (雪)" mean? What does the Japanese</span> </p>
-                              <p class="card-title-sm"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese word "Yuki (雪)" mean?  What does the Japanese word "Yuki (雪)" mean?  What does the Japanese word "Yuki (雪)" mean?</span></p>
-                            </div>
-                          </a>
-                          <div class="article-info">
-                            <div class="article-summary">
-                              <div class="article-engagement">
-                                <p class="article-category"><img class="category-icon" src="images/top/icon_balloon_pink.png" />BUSINESS <span class="verticle-bar">|</span></p>
-                                <!-- ENGAGEMENT -->
-                                <div class="loader-engagement"></div>
-                                <!-- EOF ENGAGEMENT -->
-                              </div>
-                              <!-- TAGS -->
-                              <div class="article-tags">
-                                <ul>
-                                  <li class="hot-tag">
-                                    <a href="#">
-                                      <span class="hashtag"># </span>japan
-                                    </a>
-                                  </li>
-                                  <li class="hot-tag">
-                                    <a href="#">
-                                      <span class="hashtag"># </span>fun
-                                    </a>
-                                  </li>
-                                  <li class="hot-tag">
-                                    <a href="#">
-                                      <span class="hashtag"># </span>culture
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <!-- EOF TAGS -->
-                            </div>
-                          </div>
-                        </div>
-                        <!-- EOF CARD_ITEM -->
-                      </div>
-                      <div class="col-md-6">
-                        <!-- CARD_ITEM -->
-                        <div class="list-group-item list-group-item-cards">
-                          <a href="#">
-                            <div class="img-card card-item">
-                              <img src="images/top/thumb_article.jpg">
-                              <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese What does the Japanese word "Yuki (雪)" mean? What does the Japanese</span> </p>
-                              <p class="card-title-sm"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese word "Yuki (雪)" mean?  What does the Japanese word "Yuki (雪)" mean?  What does the Japanese word "Yuki (雪)" mean?</span></p>
-                            </div>
-                          </a>
-                          <div class="article-info">
-                            <div class="article-summary">
-                              <div class="article-engagement">
-                                <p class="article-category"><img class="category-icon" src="images/top/icon_balloon_pink.png" />BUSINESS <span class="verticle-bar">|</span></p>
-                                <!-- ENGAGEMENT -->
-                                <div class="loader-engagement"></div>
-                                <!-- EOF ENGAGEMENT -->
-                              </div>
-                              <!-- TAGS -->
-                              <div class="article-tags">
-                                <ul>
-                                  <li class="hot-tag">
-                                    <a href="#">
-                                      <span class="hashtag"># </span>japan
-                                    </a>
-                                  </li>
-                                  <li class="hot-tag">
-                                    <a href="#">
-                                      <span class="hashtag"># </span>fun
-                                    </a>
-                                  </li>
-                                  <li class="hot-tag">
-                                    <a href="#">
-                                      <span class="hashtag"># </span>culture
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <!-- EOF TAGS -->
-                            </div>
-                          </div>
-                        </div>
-                        <!-- EOF CARD_ITEM -->
-                      </div>
-                    </div>
+          <div class="navigation fj-navbar-mobile" id="nav-affix">
+            <div class="container">
+              <ul class="list-inline">
+                <li>
+                  <a href="#">
+                    <i class="zmdi zmdi-ticket-star"></i>CAMPAIGNS</a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="zmdi zmdi-card-giftcard"></i>REWARDS</a>
+                </li>
+                <li class="dropdown">
+                  <a class="fj-tab" data-toggle="tab" href="#sm-coupons-dropdown">
+                    <i class="zmdi zmdi-labels"></i>Coupons
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <div class="caret-up">
+                    <i class="fa fa-caret-up"> </i>
                   </div>
-                  <div class="list-group-article">
-                    <div class="row gutter-16">
-                      <div class="col-md-6">
-                        <!-- CARD_ITEM -->
-                        <div class="list-group-item list-group-item-cards">
-                          <a href="#">
-                            <div class="img-card card-item">
-                              <img src="images/top/thumb_article.jpg">
-                              <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese What does the Japanese word "Yuki (雪)" mean? What does the Japanese</span> </p>
-                              <p class="card-title-sm"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese word "Yuki (雪)" mean?  What does the Japanese word "Yuki (雪)" mean?  What does the Japanese word "Yuki (雪)" mean?</span></p>
-                            </div>
-                          </a>
-                          <div class="article-info">
-                            <div class="article-summary">
-                              <div class="article-engagement">
-                                <p class="article-category"><img class="category-icon" src="images/top/icon_balloon_pink.png" />BUSINESS <span class="verticle-bar">|</span></p>
-                                <!-- ENGAGEMENT -->
-                                <div class="loader-engagement"></div>
-                                <!-- EOF ENGAGEMENT -->
-                              </div>
-                              <!-- TAGS -->
-                              <div class="article-tags">
-                                <ul>
-                                  <li class="hot-tag">
-                                    <a href="#">
-                                      <span class="hashtag"># </span>japan
-                                    </a>
-                                  </li>
-                                  <li class="hot-tag">
-                                    <a href="#">
-                                      <span class="hashtag"># </span>fun
-                                    </a>
-                                  </li>
-                                  <li class="hot-tag">
-                                    <a href="#">
-                                      <span class="hashtag"># </span>culture
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <!-- EOF TAGS -->
-                            </div>
-                          </div>
-                        </div>
-                        <!-- EOF CARD_ITEM -->
-                      </div>
-                      <div class="col-md-6">
-                        <!-- CARD_ITEM -->
-                        <div class="list-group-item list-group-item-cards">
-                          <a href="#">
-                            <div class="img-card card-item">
-                              <img src="images/top/thumb_article.jpg">
-                              <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese What does the Japanese word "Yuki (雪)" mean? What does the Japanese</span> </p>
-                              <p class="card-title-sm"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese word "Yuki (雪)" mean?  What does the Japanese word "Yuki (雪)" mean?  What does the Japanese word "Yuki (雪)" mean?</span></p>
-                            </div>
-                          </a>
-                          <div class="article-info">
-                            <div class="article-summary">
-                              <div class="article-engagement">
-                                <p class="article-category"><img class="category-icon" src="images/top/icon_balloon_pink.png" />BUSINESS <span class="verticle-bar">|</span></p>
-                                <!-- ENGAGEMENT -->
-                                <div class="loader-engagement"></div>
-                                <!-- EOF ENGAGEMENT -->
-                              </div>
-                              <!-- TAGS -->
-                              <div class="article-tags">
-                                <ul>
-                                  <li class="hot-tag">
-                                    <a href="#">
-                                      <span class="hashtag"># </span>japan
-                                    </a>
-                                  </li>
-                                  <li class="hot-tag">
-                                    <a href="#">
-                                      <span class="hashtag"># </span>fun
-                                    </a>
-                                  </li>
-                                  <li class="hot-tag">
-                                    <a href="#">
-                                      <span class="hashtag"># </span>culture
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <!-- EOF TAGS -->
-                            </div>
-                          </div>
-                        </div>
-                        <!-- EOF CARD_ITEM -->
-                      </div>
-                    </div>
+                </li>
+                <li class="dropdown">
+                  <a class="fj-tab" data-toggle="tab" href="#sm-other-menus-dropdown">
+                    <i class="zmdi zmdi-labels"></i>Other Menus
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <div class="caret-up">
+                    <i class="fa fa-caret-up"> </i>
                   </div>
-                </div>
-              </div>
-              <!-- EOF MAIN -->
+                </li>
+                <li class="dropdown">
+                  <a class="fj-tab" data-toggle="tab" href="#sm-categories-dropdown">
+                    <i class="zmdi zmdi-labels"></i>categories
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <div class="caret-up">
+                    <i class="fa fa-caret-up"> </i>
+                  </div>
+                </li>
+                <li class="dropdown">
+                  <a class="fj-tab" data-toggle="tab" href="#sm-tags-dropdown">
+                    <i class="zmdi zmdi-labels"></i>TAGS
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <div class="caret-up">
+                    <i class="fa fa-caret-up"> </i>
+                  </div>
+                </li>
+                <li class="dropdown">
+                  <a class="fj-tab" data-toggle="tab" href="#sm-social-dropdown">
+                    <i class="zmdi zmdi-labels"></i>SOCIAL
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <div class="caret-up">
+                    <i class="fa fa-caret-up"> </i>
+                  </div>
+                </li>
+                <li class="dropdown">
+                  <a class="fj-tab" data-toggle="tab" href="#sm-legal-dropdown">
+                    <i class="zmdi zmdi-labels"></i>LEGAL
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <div class="caret-up">
+                    <i class="fa fa-caret-up"> </i>
+                  </div>
+                </li>
+                <li class="dropdown" id="lastitem">
+                  <a class="fj-tab" data-toggle="tab" href="#sm-info-dropdown">
+                    <i class="zmdi zmdi-labels"></i>FURTHER INFO
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <div class="caret-up">
+                    <i class="fa fa-caret-up"></i>
+                  </div>
+                </li>
+              </ul>
             </div>
-            <div class="col-md-30 sidebar">
-              <!-- SIDEBAR -->
-              <div class="sidebar-top">
-                <!-- POPULAR POST -->
-                <div class="popular-list">
-                  <ul class="nav popular-tabs">
-                    <li class="active"><a data-toggle="tab" href="#popular-posts">POPULAR POSTS</a></li>
-                    <li><a data-toggle="tab" href="#popular-series">POPULAR SERIES</a></li>
-                  </ul>
-                  <div class="tab-content">
-                    <!-- POPULAR POSTS -->
-                    <div id="popular-posts" class="list-group tab-pane fade in active">
-                      <div class="list-group-popular-post">
-                        <div class="row">
-                          <div class="col-xs-12">
-                            <div class="list-group-item">
-                              <div class="row gutter-12">
-                                <div class="col-md-39 pp-item-thumbnail">
-                                  <a href="#">
-                                    <img class="img-thumbnail" src="https://indonesia.fun-japan.jp/~/media/Mpf/Website/20160622_S_JapanTouristGuide.ashx?bc=White&h=220&thn=0&w=350">
-                                  </a>
-                                </div>
-                                <div class="col-md-61">
-                                  <div class="pp-item-info">
-                                    <p class="pp-item-title">
-                                      <a href="#">Fun! Japan Photos - New Fun!</a>
-                                    </p>
-                                    <div class="loader-engagement"></div>
-                                  </div>
-                                </div>
-                              </div>
-                              <img class="pp-icon" src="images/top/icon_balloon_pink_sm.png">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-xs-12">
-                            <div class="list-group-item">
-                              <div class="row gutter-12">
-                                <div class="col-md-39 pp-item-thumbnail">
-                                  <a href="#">
-                                    <img class="img-thumbnail" src="https://indonesia.fun-japan.jp/~/media/Mpf/Articles/2016/Campaign/20161201-1-Mini-Campaign.ashx?bc=White&h=220&thn=0&w=350">
-                                  </a>
-                                </div>
-                                <div class="col-md-61">
-                                  <div class="pp-item-info">
-                                    <p class="pp-item-title">
-                                      <a href="#">Find out your Japanese name!</a>
-                                    </p>
-                                    <div class="loader-engagement"></div>
-                                  </div>
-                                </div>
-                              </div>
-                              <img class="pp-icon" src="images/top/icon_cook_pink_sm.png">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-xs-12">
-                            <div class="list-group-item">
-                              <div class="row gutter-12">
-                                <div class="col-md-39 pp-item-thumbnail">
-                                  <a href="#">
-                                    <img class="img-thumbnail" src="https://indonesia.fun-japan.jp/~/media/Mpf/Articles/2016/11/30/20161130-11-Top-Otaguro-Park.ashx?bc=White&h=220&thn=0&w=350">
-                                  </a>
-                                </div>
-                                <div class="col-md-61">
-                                  <div class="pp-item-info">
-                                    <p class="pp-item-title">
-                                      <a href="#">Fun! Japan Reporter Recruitment</a>
-                                    </p>
-                                    <div class="loader-engagement"></div>
-                                  </div>
-                                </div>
-                              </div>
-                              <img class="pp-icon" src="images/top/icon_balloon_2_pink_sm.png">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-xs-12">
-                            <div class="list-group-item">
-                              <div class="row gutter-12">
-                                <div class="col-md-39 pp-item-thumbnail">
-                                  <a href="#">
-                                    <img class="img-thumbnail" src="https://indonesia.fun-japan.jp/~/media/Mpf/Articles/2016/12/14/20161214-17-Top-Parenting-Gadgets.ashx?bc=White&h=220&thn=0&w=350.png">
-                                  </a>
-                                </div>
-                                <div class="col-md-61">
-                                  <div class="pp-item-info">
-                                    <p class="pp-item-title">
-                                      <a href="#">Fun! Japan ★★TRAVEL★★</a>
-                                    </p>
-                                    <div class="loader-engagement"></div>
-                                  </div>
-                                </div>
-                              </div>
-                              <img class="pp-icon" src="images/top/icon_rocket_pink_sm.png">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-xs-12">
-                            <div class="list-group-item">
-                              <div class="row gutter-12">
-                                <div class="col-md-39 pp-item-thumbnail">
-                                  <a href="#">
-                                    <img class="img-thumbnail" src="https://indonesia.fun-japan.jp/~/media/Mpf/Articles/2016/11/28/20161128-17-Top-Ishikawa.ashx?bc=White&h=220&thn=0&w=350">
-                                  </a>
-                                </div>
-                                <div class="col-md-61">
-                                  <div class="pp-item-info">
-                                    <p class="pp-item-title">
-                                      <a href="#">Hiking on Mount Takao</a>
-                                    </p>
-                                    <div class="loader-engagement"></div>
-                                  </div>
-                                </div>
-                              </div>
-                              <img class="pp-icon" src="images/top/icon_gate_pink_sm.png">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- EOF POPULAR POSTS -->
-
-                    <!-- POPULAR SERIES -->
-                    <div id="popular-series" class="list-group tab-pane fade">
-                      <div class="list-group-popular-series">
-                        <div class="row">
-                          <div class="col-xs-12">
-                            <div class="list-group-item">
-                              <div class="row">
-                                <div class="col-xs-4 col-sm-5">
-                                  <a href="#">
-                                    <img src="https://indonesia.fun-japan.jp/~/media/Mpf/Website/Guide/ArticleSeries/reward.ashx" class="img-thumbnail">
-                                  </a>
-                                </div>
-                                <div class="col-xs-8 col-sm-7">
-                                  <p class="pp-item-title">
-                                    <a href="#">You will earn FP, and join present campaign program.</a>
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="list-group-item">
-                              <div class="row">
-                                <div class="col-xs-4 col-sm-5">
-                                  <a href="#">
-                                    <img src="https://indonesia.fun-japan.jp/~/media/Mpf/Website/Guide/ArticleSeries/Personality.ashx" class="img-thumbnail">
-                                  </a>
-                                </div>
-                                <div class="col-xs-8 col-sm-7">
-                                  <p class="pp-item-title">
-                                    <a href="#">The test will give your idea about what it means to be you!</a>
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="list-group-item">
-                              <div class="row">
-                                <div class="col-xs-4 col-sm-5">
-                                  <a href="#">
-                                    <img src="https://indonesia.fun-japan.jp/~/media/Mpf/Website/Guide/ArticleSeries/words.ashx" class="img-thumbnail">
-                                  </a>
-                                </div>
-                                <div class="col-xs-8 col-sm-7">
-                                  <p class="pp-item-title">
-                                    <a href="#">If you're interested in Japanese language, you'll like this series!</a>
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="list-group-item">
-                              <div class="row">
-                                <div class="col-xs-4 col-sm-5">
-                                  <a href="#">
-                                    <img src="https://indonesia.fun-japan.jp/~/media/Mpf/Website/Guide/ArticleSeries/FJ_Photos.ashx" class="img-thumbnail">
-                                  </a>
-                                </div>
-                                <div class="col-xs-8 col-sm-7">
-                                  <p class="pp-item-title">
-                                    <a href="#">Upload fun photos and see who will gain many favorites.</a>
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- EOF SERIES -->
-                  </div>
-                </div>
-                <!-- EOF POPULAR POST -->
-                <!-- POPULAR CATEGORIES -->
-                <div class="list-group-popular-category">
-                  <div class="list-group noborder">
-                    <div class="row">
-                      <div class="col-xs-12">
-                        <div class="list-group-header">
-                          <p class="list-group-title">POPULAR CATEGORIES <a href="#" class="show-more">show more</a></p>
-                        </div>
-                        <div class="list-group-item">
-                          <a href="#">
-                            <img src="images/top/category_01.png" class="img-thumbnail">
-                            <p class="text-right">Travel / Season</p>
-                          </a>
-                        </div>
-                        <div class="list-group-item">
-                          <a href="#">
-                            <img src="images/top/category_2.png" class="img-thumbnail">
-                            <p class="text-right">Food / Gourmet</p>
-                          </a>
-                        </div>
-                        <div class="list-group-item hidden-category hidden">
-                          <a href="#">
-                            <img src="images/top/category_01.png" class="img-thumbnail">
-                            <p class="text-right">Tradition</p>
-                          </a>
-                        </div>
-                        <div class="list-group-item hidden-category hidden">
-                          <a href="#">
-                            <img src="images/top/category_2.png" class="img-thumbnail">
-                            <p class="text-right">Technology</p>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-
-                <!-- EOF POPULAR CATEGORIES -->
-                <!-- SIDEBAR FOOTER -->
-                <div class="sidebar-footer">
-                  <div class="col-md-12">
-                    <div class="row">
-                      <div class="sns">
-                        <label class="footer-label">FOLLOW<span class="colon">:</span></label>
-                        <ul class="footer-list">
-                          <li><a href="#">Facebook</a></li>
-                          <li><a href="#">-&nbsp;Instagram</a></li>
-                          <li><a href="#">-&nbsp;Twitter</a></li>
-                          <li><a href="#">-&nbsp;YouTube</a></li>
-                        </ul>
-                      </div>
-                      <div class="legal">
-                        <label class="footer-label">LEGAL<span class="colon">:</span></label>
-                        <ul class="footer-list">
-                          <li><a href="#">Terms&Conditions</a></li>
-                          <li><a href="#">-&nbsp;Privacy Policies</a></li>
-                        </ul>
-                      </div>
-                      <div class="ìno">
-                        <label class="footer-label">FURTHER INFO<span class="colon">:</span></label>
-                        <ul class="footer-list">
-                          <li><a href="#">FAQ</a></li>
-                          <li><a href="#">-&nbsp;Privacy Policies</a></li>
-                          <li><a href="#">-&nbsp;For Marketers</a></li>
-                        </ul>
-                      </div>
-                      <div class="copyright">
-                        <label class="footer-label">FUN! JAPAN</label><span class="year">&nbsp;&copy 2016</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- EOF SIDEBAR FOOTER -->
+            <div class="tab-content">
+              <div class="tab-pane navbar-tab fade" id="sm-coupons-dropdown">
+                <ul class="tab-content-menu">
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Get Coupons</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">My Coupons</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Coupon Map</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">How to use</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">| </a>
+                  </li>
+                </ul>
               </div>
-              <!-- EOF SIDEBAR -->
+              <div class="tab-pane navbar-tab fade" id="sm-other-menus-dropdown">
+                <ul class="tab-content-menu">
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Series</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">FJ Points</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">FJ Talk</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Japan Guide</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Invite Friends</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Omikuji</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Map</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Personality Test</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">| </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="tab-pane navbar-tab fade" id="sm-categories-dropdown">
+                <ul class="tab-content-menu">
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">All</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Travel</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Food</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Technology</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Tradition</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Entertainment</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Lifestyle</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Business</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Health</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">Talent</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">| </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="tab-pane navbar-tab fade" id="sm-tags-dropdown">
+                <ul class="tab-content-menu">
+                  <li class="hot-tags">
+                    <a href="#">
+                      <span class="hashtag"># </span>japan</a>
+                  </li>
+                  <li class="hot-tags">
+                    <a href="#">
+                      <span class="hashtag"># </span>fun</a>
+                  </li>
+                  <li class="hot-tags">
+                    <a href="#">
+                      <span class="hashtag"># </span>culture</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="tab-pane navbar-tab fade" id="sm-social-dropdown">
+                <div class="sns-btn-fanpage">
+                  <ul class="list-inline">
+                    <li>
+                      <a class="btn btn-sns">
+                        <i class="fa fa-facebook" aria-hidden="true"></i> facebook</a>
+                    </li>
+                    <li>
+                      <a class="btn btn-sns">
+                        <i class="fa fa-twitter" aria-hidden="true"></i> twitter</a>
+                    </li>
+                    <li>
+                      <a class="btn btn-sns">
+                        <i class="fa fa-instagram" aria-hidden="true"></i> instagram</a>
+                    </li>
+                    <li>
+                      <a class="btn btn-sns">
+                        <i class="fa fa-youtube-play" aria-hidden="true"></i> youtube</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="tab-pane navbar-tab fade" id="sm-legal-dropdown">
+                <ul class="tab-content-menu">
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">TERMS &amp; CONDITIONS</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">PRIVACY POLICIES</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">| </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="tab-pane navbar-tab fade" id="sm-info-dropdown">
+                <ul class="tab-content-menu">
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">FAQ</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">CONTACT US</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">|</a>
+                  </li>
+                  <li>
+                    <a href="#">FOR MARKETERS</a>
+                  </li>
+                  <li class="vertical-bar">
+                    <a href="#">| </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </header>
+        <!-- EOF HEADER-->
+        <div class="top-body">
+          <!-- RECOMMENDED_POST-->
+          <section class="regular slider">
+            <div>
+              <a href="#">
+                <div class="img-card slider-img">
+                  <img src="images/top/carousel_img_01.jpg" />
+                  <p class="card-title">
+                    <span>What does the</span>
+                  </p>
+                  <p class="card-title-sm">
+                    <span>What does the</span>
+                  </p>
+                </div>
+              </a>
+            </div>
+            <div>
+              <a href="#">
+                <div class="img-card slider-img">
+                  <img src="images/top/carousel_img_2.jpg" />
+                  <p class="card-title">
+                    <span>What does the Japanese word 'Yuki (雪)' mean?</span>
+                  </p>
+                  <p class="card-title-sm">
+                    <span>What does the Japanese word </span>
+                  </p>
+                </div>
+              </a>
+            </div>
+            <div>
+              <a href="#">
+                <div class="img-card slider-img">
+                  <img src="images/top/carousel_img_3.jpg" />
+                  <p class="card-title">
+                    <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese</span>
+                  </p>
+                  <p class="card-title-sm">
+                    <span>What does the Japanese word 'Yuki (雪)' mean?</span>
+                  </p>
+                </div>
+              </a>
+            </div>
+            <div>
+              <a href="#">
+                <div class="img-card slider-img">
+                  <img src="images/top/carousel_img_4.jpg" />
+                  <p class="card-title">
+                    <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean?</span>
+                  </p>
+                  <p class="card-title-sm">
+                    <span>What does the Japanese word 'Yuki (雪)' mean?</span>
+                  </p>
+                </div>
+              </a>
+            </div>
+            <div>
+              <a href="#">
+                <div class="img-card slider-img">
+                  <img src="images/top/carousel_img_5.jpg" />
+                  <p class="card-title">
+                    <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean?</span>
+                  </p>
+                  <p class="card-title-sm">
+                    <span>What does the Japanese word 'Yuki (雪)' mean?</span>
+                  </p>
+                </div>
+              </a>
+            </div>
+            <div>
+              <a href="#">
+                <div class="img-card slider-img">
+                  <img src="images/top/carousel_img_6.jpg" />
+                  <p class="card-title">
+                    <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean?</span>
+                  </p>
+                  <p class="card-title-sm">
+                    <span>What does the Japanese word 'Yuki (雪)' mean?</span>
+                  </p>
+                </div>
+              </a>
+            </div>
+          </section>
+          <!-- EOF RECOMMENDED_POST-->
+          <!-- ARTICLE RANKING-->
+          <div class="article-ranking">
+            <div class="row gutter-10">
+              <div class="col-md-55">
+                <div class="first-ranking">
+                  <a href="#">
+                    <div class="img-card first-ranking-img">
+                      <img src="images/top/ranking_01.png" />
+                      <p class="card-title">
+                        <span>Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun!</span>
+                      </p>
+                      <p class="card-title-sm">
+                        <span>Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan</span>
+                      </p>
+                      <p class="first-ranking-num">
+                        <span class="no">No</span>
+                        <span class="dot">.</span>
+                        <span class="number-1">1</span>
+                      </p>
+                      <div class="triangle-bottomright-1"></div>
+                    </div>
+                    <div class="first-ranking-info">
+                      <p class="first-ranking-topic">
+                        <img src="images/top/icon_bus.png" /> Tralvel / Season</p>
+                      <p class="first-ranking-des">Below is the hexadecimal representation for an array of HTML background colors</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-45">
+                <div class="row gutter-10">
+                  <div class="col-xs-6">
+                    <div class="rest-ranking">
+                      <a href="#">
+                        <div class="img-card list-group-ranking-item">
+                          <img src="images/top/ranking_2.jpg" />
+                          <p class="card-title">
+                            <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese</span>
+                          </p>
+                          <p class="card-title-sm">
+                            <span>What does the Japanese word 'Yuki (雪)' mean?</span>
+                          </p>
+                          <p class="rest-ranking-num">.2</p>
+                          <div class="triangle-bottomright-rest"></div>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="rest-ranking">
+                      <a href="#">
+                        <div class="img-card list-group-ranking-item">
+                          <img src="images/top/ranking_4.jpg" />
+                          <p class="card-title">
+                            <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese</span>
+                          </p>
+                          <p class="card-title-sm">
+                            <span>What does the Japanese word 'Yuki (雪)' mean?</span>
+                          </p>
+                          <p class="rest-ranking-num">.4</p>
+                          <div class="triangle-bottomright-rest"> </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <div class="rest-ranking">
+                      <a href="#">
+                        <div class="img-card list-group-ranking-item">
+                          <img src="images/top/ranking_3.jpg" />
+                          <p class="card-title">
+                            <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese</span>
+                          </p>
+                          <p class="card-title-sm">
+                            <span>What does the Japanese word 'Yuki (雪)' mean?</span>
+                          </p>
+                          <p class="rest-ranking-num">.3</p>
+                          <div class="triangle-bottomright-rest"></div>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="rest-ranking">
+                      <a href="#">
+                        <div class="img-card list-group-ranking-item">
+                          <img src="images/top/ranking_5.jpg" />
+                          <p class="card-title">
+                            <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese</span>
+                          </p>
+                          <p class="card-title-sm">
+                            <span>What does the Japanese word 'Yuki (雪)' mean?</span>
+                          </p>
+                          <p class="rest-ranking-num">.5</p>
+                          <div class="triangle-bottomright-rest"> </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="vote-button">
+                  <p class="text-center">
+                    <a class="btn btn-default" role="button" href="#" target="_blank">
+                      <span>
+                        <i class="fa fa-heart"></i> Vote for your favorite article</span>
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- EOF ARTICLE RANKING-->
+          <div class="main-content">
+            <div class="row gutter-32">
+              <div class="col-md-70 main-column">
+                <!-- MAIN-->
+                <div class="list-group article-cards">
+                  <div class="list-group-header">
+                    <p class="list-group-title">NEW POST</p>
+                  </div>
+                  <div class="list-infinity">
+                    <div class="list-group-article">
+                      <div class="row gutter-16">
+                        <div class="col-md-6">
+                          <!-- CARD_ITEM-->
+                          <div class="list-group-item list-group-item-cards">
+                            <a href="#">
+                              <div class="img-card card-item">
+                                <img src="images/top/thumb_article.jpg" />
+                                <p class="card-title">
+                                  <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese What does the Japanese word 'Yuki (雪)' mean? What does the Japanese</span>
+                                </p>
+                                <p class="card-title-sm">
+                                  <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean?</span>
+                                </p>
+                              </div>
+                            </a>
+                            <div class="article-info">
+                              <div class="article-summary">
+                                <div class="article-engagement">
+                                  <p class="article-category">
+                                    <img class="category-icon" src="images/top/icon_balloon_pink.png" />1.BUSINESS
+                                    <span class="verticle-bar">|</span>
+                                  </p>
+                                  <!-- ENGAGEMENT-->
+                                  <ul class="engagement">
+                                    <li>
+                                      <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                        <i class="fa fa-heart"></i>
+                                      </a>
+                                      <span class="engagement-count">126</span>
+                                    </li>
+                                    <li>
+                                      <a class="engagement-comment" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                        <i class="fa fa-comment"></i>
+                                      </a>
+                                      <span class="engagement-count">117</span>
+                                    </li>
+                                    <li>
+                                      <a class="engagement-share" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#" data-mpf-article-url="https%3a%2f%2findonesia.fun-japan.jp%2fArticles%2f2016%2f10%2f31%2fID_20161031-21-Sponsor-Company">
+                                        <i class="fa fa-share-alt"></i>
+                                      </a>
+                                      <span class="engagement-count">38</span>
+                                    </li>
+                                  </ul>
+                                  <!-- EOF ENGAGEMENT-->
+                                </div>
+                                <!-- TAGS-->
+                                <div class="article-tags">
+                                  <ul>
+                                    <li class="hot-tag">
+                                      <a href="#">
+                                        <span class="hashtag"># </span>japan</a>
+                                    </li>
+                                    <li class="hot-tag">
+                                      <a href="#">
+                                        <span class="hashtag"># </span>fun</a>
+                                    </li>
+                                    <li class="hot-tag">
+                                      <a href="#">
+                                        <span class="hashtag"># </span>culture</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <!-- EOF TAGS-->
+                              </div>
+                            </div>
+                          </div>
+                          <!-- EOF CARD_ITEM-->
+                        </div>
+                        <div class="col-md-6">
+                          <!-- CARD_ITEM-->
+                          <div class="list-group-item list-group-item-cards">
+                            <a href="#">
+                              <div class="img-card card-item">
+                                <img src="images/top/thumb_article.jpg" />
+                                <p class="card-title">
+                                  <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese What does the Japanese word 'Yuki (雪)' mean? What does the Japanese</span>
+                                </p>
+                                <p class="card-title-sm">
+                                  <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean?</span>
+                                </p>
+                              </div>
+                            </a>
+                            <div class="article-info">
+                              <div class="article-summary">
+                                <div class="article-engagement">
+                                  <p class="article-category">
+                                    <img class="category-icon" src="images/top/icon_balloon_pink.png" />2.BUSINESS
+                                    <span class="verticle-bar">|</span>
+                                  </p>
+                                  <!-- ENGAGEMENT-->
+                                  <ul class="engagement">
+                                    <li>
+                                      <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                        <i class="fa fa-heart"></i>
+                                      </a>
+                                      <span class="engagement-count">126</span>
+                                    </li>
+                                    <li>
+                                      <a class="engagement-comment" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                        <i class="fa fa-comment"></i>
+                                      </a>
+                                      <span class="engagement-count">117</span>
+                                    </li>
+                                    <li>
+                                      <a class="engagement-share" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#" data-mpf-article-url="https%3a%2f%2findonesia.fun-japan.jp%2fArticles%2f2016%2f10%2f31%2fID_20161031-21-Sponsor-Company">
+                                        <i class="fa fa-share-alt"></i>
+                                      </a>
+                                      <span class="engagement-count">38</span>
+                                    </li>
+                                  </ul>
+                                  <!-- EOF ENGAGEMENT-->
+                                </div>
+                                <!-- TAGS-->
+                                <div class="article-tags">
+                                  <ul>
+                                    <li class="hot-tag">
+                                      <a href="#">
+                                        <span class="hashtag"># </span>japan</a>
+                                    </li>
+                                    <li class="hot-tag">
+                                      <a href="#">
+                                        <span class="hashtag"># </span>fun</a>
+                                    </li>
+                                    <li class="hot-tag">
+                                      <a href="#">
+                                        <span class="hashtag"># </span>culture</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <!-- EOF TAGS-->
+                              </div>
+                            </div>
+                          </div>
+                          <!-- EOF CARD_ITEM-->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="list-group-article">
+                      <div class="row gutter-16">
+                        <div class="col-md-6">
+                          <!-- CARD_ITEM-->
+                          <div class="list-group-item list-group-item-cards">
+                            <a href="#">
+                              <div class="img-card card-item">
+                                <img src="images/top/thumb_article.jpg" />
+                                <p class="card-title">
+                                  <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese What does the Japanese word 'Yuki (雪)' mean? What does the Japanese</span>
+                                </p>
+                                <p class="card-title-sm">
+                                  <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean?</span>
+                                </p>
+                              </div>
+                            </a>
+                            <div class="article-info">
+                              <div class="article-summary">
+                                <div class="article-engagement">
+                                  <p class="article-category">
+                                    <img class="category-icon" src="images/top/icon_balloon_pink.png" />3.BUSINESS
+                                    <span class="verticle-bar">|</span>
+                                  </p>
+                                  <!-- ENGAGEMENT-->
+                                  <ul class="engagement">
+                                    <li>
+                                      <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                        <i class="fa fa-heart"></i>
+                                      </a>
+                                      <span class="engagement-count">126</span>
+                                    </li>
+                                    <li>
+                                      <a class="engagement-comment" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                        <i class="fa fa-comment"></i>
+                                      </a>
+                                      <span class="engagement-count">117</span>
+                                    </li>
+                                    <li>
+                                      <a class="engagement-share" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#" data-mpf-article-url="https%3a%2f%2findonesia.fun-japan.jp%2fArticles%2f2016%2f10%2f31%2fID_20161031-21-Sponsor-Company">
+                                        <i class="fa fa-share-alt"></i>
+                                      </a>
+                                      <span class="engagement-count">38</span>
+                                    </li>
+                                  </ul>
+                                  <!-- EOF ENGAGEMENT-->
+                                </div>
+                                <!-- TAGS-->
+                                <div class="article-tags">
+                                  <ul>
+                                    <li class="hot-tag">
+                                      <a href="#">
+                                        <span class="hashtag"># </span>japan</a>
+                                    </li>
+                                    <li class="hot-tag">
+                                      <a href="#">
+                                        <span class="hashtag"># </span>fun</a>
+                                    </li>
+                                    <li class="hot-tag">
+                                      <a href="#">
+                                        <span class="hashtag"># </span>culture</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <!-- EOF TAGS-->
+                              </div>
+                            </div>
+                          </div>
+                          <!-- EOF CARD_ITEM-->
+                        </div>
+                        <div class="col-md-6">
+                          <!-- CARD_ITEM-->
+                          <div class="list-group-item list-group-item-cards">
+                            <a href="#">
+                              <div class="img-card card-item">
+                                <img src="images/top/thumb_article.jpg" />
+                                <p class="card-title">
+                                  <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese What does the Japanese word 'Yuki (雪)' mean? What does the Japanese</span>
+                                </p>
+                                <p class="card-title-sm">
+                                  <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean?</span>
+                                </p>
+                              </div>
+                            </a>
+                            <div class="article-info">
+                              <div class="article-summary">
+                                <div class="article-engagement">
+                                  <p class="article-category">
+                                    <img class="category-icon" src="images/top/icon_balloon_pink.png" />4.BUSINESS
+                                    <span class="verticle-bar">|</span>
+                                  </p>
+                                  <!-- ENGAGEMENT-->
+                                  <ul class="engagement">
+                                    <li>
+                                      <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                        <i class="fa fa-heart"></i>
+                                      </a>
+                                      <span class="engagement-count">126</span>
+                                    </li>
+                                    <li>
+                                      <a class="engagement-comment" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                        <i class="fa fa-comment"></i>
+                                      </a>
+                                      <span class="engagement-count">117</span>
+                                    </li>
+                                    <li>
+                                      <a class="engagement-share" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#" data-mpf-article-url="https%3a%2f%2findonesia.fun-japan.jp%2fArticles%2f2016%2f10%2f31%2fID_20161031-21-Sponsor-Company">
+                                        <i class="fa fa-share-alt"></i>
+                                      </a>
+                                      <span class="engagement-count">38</span>
+                                    </li>
+                                  </ul>
+                                  <!-- EOF ENGAGEMENT-->
+                                </div>
+                                <!-- TAGS-->
+                                <div class="article-tags">
+                                  <ul>
+                                    <li class="hot-tag">
+                                      <a href="#">
+                                        <span class="hashtag"># </span>japan</a>
+                                    </li>
+                                    <li class="hot-tag">
+                                      <a href="#">
+                                        <span class="hashtag"># </span>fun</a>
+                                    </li>
+                                    <li class="hot-tag">
+                                      <a href="#">
+                                        <span class="hashtag"># </span>culture</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <!-- EOF TAGS-->
+                              </div>
+                            </div>
+                          </div>
+                          <!-- EOF CARD_ITEM-->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="list-group-article">
+                      <div class="row gutter-16">
+                        <div class="col-md-6">
+                          <!-- CARD_ITEM-->
+                          <div class="list-group-item list-group-item-cards">
+                            <a href="#">
+                              <div class="img-card card-item">
+                                <img src="images/top/thumb_article.jpg" />
+                                <p class="card-title">
+                                  <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese What does the Japanese word 'Yuki (雪)' mean? What does the Japanese</span>
+                                </p>
+                                <p class="card-title-sm">
+                                  <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean?</span>
+                                </p>
+                              </div>
+                            </a>
+                            <div class="article-info">
+                              <div class="article-summary">
+                                <div class="article-engagement">
+                                  <p class="article-category">
+                                    <img class="category-icon" src="images/top/icon_balloon_pink.png" />5.BUSINESS
+                                    <span class="verticle-bar">|</span>
+                                  </p>
+                                  <!-- ENGAGEMENT-->
+                                  <ul class="engagement">
+                                    <li>
+                                      <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                        <i class="fa fa-heart"></i>
+                                      </a>
+                                      <span class="engagement-count">126</span>
+                                    </li>
+                                    <li>
+                                      <a class="engagement-comment" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                        <i class="fa fa-comment"></i>
+                                      </a>
+                                      <span class="engagement-count">117</span>
+                                    </li>
+                                    <li>
+                                      <a class="engagement-share" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#" data-mpf-article-url="https%3a%2f%2findonesia.fun-japan.jp%2fArticles%2f2016%2f10%2f31%2fID_20161031-21-Sponsor-Company">
+                                        <i class="fa fa-share-alt"></i>
+                                      </a>
+                                      <span class="engagement-count">38</span>
+                                    </li>
+                                  </ul>
+                                  <!-- EOF ENGAGEMENT-->
+                                </div>
+                                <!-- TAGS-->
+                                <div class="article-tags">
+                                  <ul>
+                                    <li class="hot-tag">
+                                      <a href="#">
+                                        <span class="hashtag"># </span>japan</a>
+                                    </li>
+                                    <li class="hot-tag">
+                                      <a href="#">
+                                        <span class="hashtag"># </span>fun</a>
+                                    </li>
+                                    <li class="hot-tag">
+                                      <a href="#">
+                                        <span class="hashtag"># </span>culture</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <!-- EOF TAGS-->
+                              </div>
+                            </div>
+                          </div>
+                          <!-- EOF CARD_ITEM-->
+                        </div>
+                        <div class="col-md-6">
+                          <!-- CARD_ITEM-->
+                          <div class="list-group-item list-group-item-cards">
+                            <a href="#">
+                              <div class="img-card card-item">
+                                <img src="images/top/thumb_article.jpg" />
+                                <p class="card-title">
+                                  <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese What does the Japanese word 'Yuki (雪)' mean? What does the Japanese</span>
+                                </p>
+                                <p class="card-title-sm">
+                                  <span>What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean? What does the Japanese word 'Yuki (雪)' mean?</span>
+                                </p>
+                              </div>
+                            </a>
+                            <div class="article-info">
+                              <div class="article-summary">
+                                <div class="article-engagement">
+                                  <p class="article-category">
+                                    <img class="category-icon" src="images/top/icon_balloon_pink.png" />6.BUSINESS
+                                    <span class="verticle-bar">|</span>
+                                  </p>
+                                  <!-- ENGAGEMENT-->
+                                  <ul class="engagement">
+                                    <li>
+                                      <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                        <i class="fa fa-heart"></i>
+                                      </a>
+                                      <span class="engagement-count">126</span>
+                                    </li>
+                                    <li>
+                                      <a class="engagement-comment" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                        <i class="fa fa-comment"></i>
+                                      </a>
+                                      <span class="engagement-count">117</span>
+                                    </li>
+                                    <li>
+                                      <a class="engagement-share" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#" data-mpf-article-url="https%3a%2f%2findonesia.fun-japan.jp%2fArticles%2f2016%2f10%2f31%2fID_20161031-21-Sponsor-Company">
+                                        <i class="fa fa-share-alt"></i>
+                                      </a>
+                                      <span class="engagement-count">38</span>
+                                    </li>
+                                  </ul>
+                                  <!-- EOF ENGAGEMENT-->
+                                </div>
+                                <!-- TAGS-->
+                                <div class="article-tags">
+                                  <ul>
+                                    <li class="hot-tag">
+                                      <a href="#">
+                                        <span class="hashtag"># </span>japan</a>
+                                    </li>
+                                    <li class="hot-tag">
+                                      <a href="#">
+                                        <span class="hashtag"># </span>fun</a>
+                                    </li>
+                                    <li class="hot-tag">
+                                      <a href="#">
+                                        <span class="hashtag"># </span>culture</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <!-- EOF TAGS-->
+                              </div>
+                            </div>
+                          </div>
+                          <!-- EOF CARD_ITEM-->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- EOF MAIN-->
+              </div>
+              <div class="col-md-30 sidebar">
+                <!-- SIDEBAR-->
+                <div class="sidebar-top">
+                  <!-- POPULAR POST-->
+                  <div class="popular-list">
+                    <ul class="nav popular-tabs">
+                      <li class="active">
+                        <a data-toggle="tab" href="#popular-posts">POPULAR POSTS</a>
+                      </li>
+                      <li>
+                        <a data-toggle="tab" href="#popular-series">POPULAR SERIES</a>
+                      </li>
+                    </ul>
+                    <div class="tab-content">
+                      <!-- POPULAR POSTS-->
+                      <div class="list-group tab-pane fade in active" id="popular-posts">
+                        <div class="list-group-popular-post">
+                          <div class="row">
+                            <div class="col-xs-12">
+                              <div class="list-group-item">
+                                <div class="row gutter-12">
+                                  <div class="col-md-39 pp-item-thumbnail">
+                                    <a href="#">
+                                      <img class="img-thumbnail" src="https://indonesia.fun-japan.jp/~/media/Mpf/Website/20160622_S_JapanTouristGuide.ashx?bc=White&amp;h=220&amp;thn=0&amp;w=350" />
+                                    </a>
+                                  </div>
+                                  <div class="col-md-61">
+                                    <div class="pp-item-info">
+                                      <p class="pp-item-title">
+                                        <a href="#">Title here</a>
+                                      </p>
+                                      <ul class="engagement">
+                                        <li>
+                                          <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                            <i class="fa fa-heart"></i>
+                                          </a>
+                                          <span class="engagement-count">126</span>
+                                        </li>
+                                        <li>
+                                          <a class="engagement-comment" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                            <i class="fa fa-comment"></i>
+                                          </a>
+                                          <span class="engagement-count">117</span>
+                                        </li>
+                                        <li>
+                                          <a class="engagement-share" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#" data-mpf-article-url="https%3a%2f%2findonesia.fun-japan.jp%2fArticles%2f2016%2f10%2f31%2fID_20161031-21-Sponsor-Company">
+                                            <i class="fa fa-share-alt"></i>
+                                          </a>
+                                          <span class="engagement-count">38</span>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                                <img class="pp-icon" src="images/top/icon_balloon_pink_sm.png" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-xs-12">
+                              <div class="list-group-item">
+                                <div class="row gutter-12">
+                                  <div class="col-md-39 pp-item-thumbnail">
+                                    <a href="#">
+                                      <img class="img-thumbnail" src="https://indonesia.fun-japan.jp/~/media/Mpf/Website/20160622_S_JapanTouristGuide.ashx?bc=White&amp;h=220&amp;thn=0&amp;w=350" />
+                                    </a>
+                                  </div>
+                                  <div class="col-md-61">
+                                    <div class="pp-item-info">
+                                      <p class="pp-item-title">
+                                        <a href="#">Title here</a>
+                                      </p>
+                                      <ul class="engagement">
+                                        <li>
+                                          <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                            <i class="fa fa-heart"></i>
+                                          </a>
+                                          <span class="engagement-count">126</span>
+                                        </li>
+                                        <li>
+                                          <a class="engagement-comment" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                            <i class="fa fa-comment"></i>
+                                          </a>
+                                          <span class="engagement-count">117</span>
+                                        </li>
+                                        <li>
+                                          <a class="engagement-share" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#" data-mpf-article-url="https%3a%2f%2findonesia.fun-japan.jp%2fArticles%2f2016%2f10%2f31%2fID_20161031-21-Sponsor-Company">
+                                            <i class="fa fa-share-alt"></i>
+                                          </a>
+                                          <span class="engagement-count">38</span>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                                <img class="pp-icon" src="images/top/icon_balloon_pink_sm.png" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-xs-12">
+                              <div class="list-group-item">
+                                <div class="row gutter-12">
+                                  <div class="col-md-39 pp-item-thumbnail">
+                                    <a href="#">
+                                      <img class="img-thumbnail" src="https://indonesia.fun-japan.jp/~/media/Mpf/Website/20160622_S_JapanTouristGuide.ashx?bc=White&amp;h=220&amp;thn=0&amp;w=350" />
+                                    </a>
+                                  </div>
+                                  <div class="col-md-61">
+                                    <div class="pp-item-info">
+                                      <p class="pp-item-title">
+                                        <a href="#">Title here</a>
+                                      </p>
+                                      <ul class="engagement">
+                                        <li>
+                                          <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                            <i class="fa fa-heart"></i>
+                                          </a>
+                                          <span class="engagement-count">126</span>
+                                        </li>
+                                        <li>
+                                          <a class="engagement-comment" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                            <i class="fa fa-comment"></i>
+                                          </a>
+                                          <span class="engagement-count">117</span>
+                                        </li>
+                                        <li>
+                                          <a class="engagement-share" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#" data-mpf-article-url="https%3a%2f%2findonesia.fun-japan.jp%2fArticles%2f2016%2f10%2f31%2fID_20161031-21-Sponsor-Company">
+                                            <i class="fa fa-share-alt"></i>
+                                          </a>
+                                          <span class="engagement-count">38</span>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                                <img class="pp-icon" src="images/top/icon_balloon_pink_sm.png" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-xs-12">
+                              <div class="list-group-item">
+                                <div class="row gutter-12">
+                                  <div class="col-md-39 pp-item-thumbnail">
+                                    <a href="#">
+                                      <img class="img-thumbnail" src="https://indonesia.fun-japan.jp/~/media/Mpf/Website/20160622_S_JapanTouristGuide.ashx?bc=White&amp;h=220&amp;thn=0&amp;w=350" />
+                                    </a>
+                                  </div>
+                                  <div class="col-md-61">
+                                    <div class="pp-item-info">
+                                      <p class="pp-item-title">
+                                        <a href="#">Title here</a>
+                                      </p>
+                                      <ul class="engagement">
+                                        <li>
+                                          <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                            <i class="fa fa-heart"></i>
+                                          </a>
+                                          <span class="engagement-count">126</span>
+                                        </li>
+                                        <li>
+                                          <a class="engagement-comment" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                            <i class="fa fa-comment"></i>
+                                          </a>
+                                          <span class="engagement-count">117</span>
+                                        </li>
+                                        <li>
+                                          <a class="engagement-share" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#" data-mpf-article-url="https%3a%2f%2findonesia.fun-japan.jp%2fArticles%2f2016%2f10%2f31%2fID_20161031-21-Sponsor-Company">
+                                            <i class="fa fa-share-alt"></i>
+                                          </a>
+                                          <span class="engagement-count">38</span>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                                <img class="pp-icon" src="images/top/icon_balloon_pink_sm.png" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-xs-12">
+                              <div class="list-group-item">
+                                <div class="row gutter-12">
+                                  <div class="col-md-39 pp-item-thumbnail">
+                                    <a href="#">
+                                      <img class="img-thumbnail" src="https://indonesia.fun-japan.jp/~/media/Mpf/Website/20160622_S_JapanTouristGuide.ashx?bc=White&amp;h=220&amp;thn=0&amp;w=350" />
+                                    </a>
+                                  </div>
+                                  <div class="col-md-61">
+                                    <div class="pp-item-info">
+                                      <p class="pp-item-title">
+                                        <a href="#">Title here</a>
+                                      </p>
+                                      <ul class="engagement">
+                                        <li>
+                                          <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                            <i class="fa fa-heart"></i>
+                                          </a>
+                                          <span class="engagement-count">126</span>
+                                        </li>
+                                        <li>
+                                          <a class="engagement-comment" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
+                                            <i class="fa fa-comment"></i>
+                                          </a>
+                                          <span class="engagement-count">117</span>
+                                        </li>
+                                        <li>
+                                          <a class="engagement-share" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#" data-mpf-article-url="https%3a%2f%2findonesia.fun-japan.jp%2fArticles%2f2016%2f10%2f31%2fID_20161031-21-Sponsor-Company">
+                                            <i class="fa fa-share-alt"></i>
+                                          </a>
+                                          <span class="engagement-count">38</span>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                                <img class="pp-icon" src="images/top/icon_balloon_pink_sm.png" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- EOF POPULAR POSTS-->
+                      <!-- POPULAR SERIES-->
+                      <div class="list-group tab-pane fade" id="popular-series">
+                        <div class="list-group-popular-series">
+                          <div class="row">
+                            <div class="col-xs-12">
+                              <div class="list-group-item">
+                                <div class="row">
+                                  <div class="col-xs-4 col-sm-5">
+                                    <a href="#">
+                                      <img class="img-thumbnail" src="https://indonesia.fun-japan.jp/~/media/Mpf/Website/Guide/ArticleSeries/reward.ashx" />
+                                    </a>
+                                  </div>
+                                  <div class="col-xs-8 col-sm-7">
+                                    <p class="pp-item-title">
+                                      <a href="#">You will earn FP, and join present campaign program.</a>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="list-group-item">
+                                <div class="row">
+                                  <div class="col-xs-4 col-sm-5">
+                                    <a href="#">
+                                      <img class="img-thumbnail" src="https://indonesia.fun-japan.jp/~/media/Mpf/Website/Guide/ArticleSeries/reward.ashx" />
+                                    </a>
+                                  </div>
+                                  <div class="col-xs-8 col-sm-7">
+                                    <p class="pp-item-title">
+                                      <a href="#">You will earn FP, and join present campaign program.</a>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="list-group-item">
+                                <div class="row">
+                                  <div class="col-xs-4 col-sm-5">
+                                    <a href="#">
+                                      <img class="img-thumbnail" src="https://indonesia.fun-japan.jp/~/media/Mpf/Website/Guide/ArticleSeries/reward.ashx" />
+                                    </a>
+                                  </div>
+                                  <div class="col-xs-8 col-sm-7">
+                                    <p class="pp-item-title">
+                                      <a href="#">You will earn FP, and join present campaign program.</a>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="list-group-item">
+                                <div class="row">
+                                  <div class="col-xs-4 col-sm-5">
+                                    <a href="#">
+                                      <img class="img-thumbnail" src="https://indonesia.fun-japan.jp/~/media/Mpf/Website/Guide/ArticleSeries/reward.ashx" />
+                                    </a>
+                                  </div>
+                                  <div class="col-xs-8 col-sm-7">
+                                    <p class="pp-item-title">
+                                      <a href="#">You will earn FP, and join present campaign program.</a>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- EOF SERIES-->
+                    </div>
+                  </div>
+                  <!-- EOF POPULAR POST-->
+                  <!-- POPULAR CATEGORIES-->
+                  <div class="list-group-popular-category">
+                    <div class="list-group noborder">
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <div class="list-group-header">
+                            <p class="list-group-title">POPULAR CATEGORIES
+                              <a class="show-more" href="#">show more</a>
+                            </p>
+                          </div>
+                          <div class="list-group-item">
+                            <a href="#">
+                              <img class="img-thumbnail" src="images/top/category_01.png" />
+                              <p class="text-right">Travel / Season</p>
+                            </a>
+                          </div>
+                          <div class="list-group-item">
+                            <a href="#">
+                              <img class="img-thumbnail" src="images/top/category_2.png" />
+                              <p class="text-right">Food / Gourmet</p>
+                            </a>
+                          </div>
+                          <div class="list-group-item hidden-category hidden">
+                            <a href="#">
+                              <img class="img-thumbnail" src="images/top/category_01.png" />
+                              <p class="text-right">Tradition</p>
+                            </a>
+                          </div>
+                          <div class="list-group-item hidden-category hidden">
+                            <a href="#">
+                              <img class="img-thumbnail" src="images/top/category_2.png" />
+                              <p class="text-right">Technology</p>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- EOF POPULAR CATEGORIES-->
+                  <!-- SIDEBAR FOOTER-->
+                  <div class="sidebar-footer">
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="sns">
+                          <label class="footer-label">FOLLOW
+                            <span class="colon">:</span>
+                          </label>
+                          <ul class="footer-list">
+                            <li>
+                              <a href="#">Facebook</a>
+                            </li>
+                            <li>
+                              <a href="#">- Instagram</a>
+                            </li>
+                            <li>
+                              <a href="#">- Twitter</a>
+                            </li>
+                            <li>
+                              <a href="#">- YouTube</a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="legal">
+                          <label class="footer-label">LEGAL
+                            <span class="colon">:</span>
+                          </label>
+                          <ul class="footer-list">
+                            <li>
+                              <a href="#">Terms&Conditions</a>
+                            </li>
+                            <li>
+                              <a href="#">- Privacy Policies</a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="info">
+                          <label class="footer-label">FURTHER INFO
+                            <span class="colon">:</span>
+                          </label>
+                          <ul class="footer-list">
+                            <li>
+                              <a href="#">FAQ</a>
+                            </li>
+                            <li>
+                              <a href="#">- Privacy Policies</a>
+                            </li>
+                            <li>
+                              <a href="#">- For Marketers</a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="copyright">
+                          <label class="footer-label">FUN! JAPAN</label>
+                          <span class="year"> &copy 2016</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- EOF SIDEBAR FOOTER-->
+                </div>
+                <!-- EOF SIDEBAR-->
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-  <script type="text/javascript" src="js/jquery-ui-1.11.4.js"></script>
-  <script type="text/javascript" src="js/bootstrap-3.1.1.js"></script>
-  <script type="text/javascript" src="js/bootstrap-fileinput/fileinput.js"></script>
-  <script type="text/javascript" src="js/bootstrap-lightbox/bootstrap-lightbox.js"></script>
-  <script type="text/javascript" src="js/jquery.cookie-1.4.1.js"></script>
-  <script type="text/javascript" src="js/mpf.core.js"></script>
-  <script type="text/javascript" src="js/mpf.analytics.js"></script>
-  <script type="text/javascript" src="js/mpf.googleanalytics.event.js"></script>
-  <script type="text/javascript" src="js/mpf.userpreference.js"></script>
-  <script type="text/javascript" src="js/Page/Account/BasicProfile.js"></script>
-  <script type="text/javascript" src="js/jquery.mpf.favoritebutton.js"></script>
-  <script type="text/javascript" src="js/mpf.sharebutton.js"></script>
-  <script type="text/javascript" src="js/mpf.commentcount.js"></script>
-  <script type="text/javascript" src="js/mpf.api.article.comment.js"></script>
-  <script type="text/javascript" src="js/mpf.api.article.photo.js"></script>
-  <script type="text/javascript" src="js/mpf.articlephoto.js"></script>
-  <!-- Slider -->
-  <script type="text/javascript" src="js/mpf.slider.js"></script>
-  <!-- Slick carousel -->
-  <script type="text/javascript" src="js/mpf.slick-carousel.js"></script>
-  <!-- Infinite scroll -->
-  <script type="text/javascript" src="js/infinite-scroll/jquery.infinitescroll.js"></script>
-
-  <!-- Components-->
-  <!--Header-->
-  <script type="text/javascript" src="js/mpf.navbar.js"></script>
-  <script type="text/javascript" src="js/mpf.slidecategory.js"></script>
-
-  <!-- Load more popular categories -->
-  <script type="text/javascript" src="js/mpf.popular-categories.js"></script>
-
-  <script>
-    $(document).on('ready', function() {
-      setTimeout(function() {
-        // Carousel
-        $(".regular").slick({
-          infinite: true,
-          slidesToShow: 5,
-          slidesToScroll: 1,
-          autoplay: true,
-          responsive: [{
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 5,
-            }
-          }, {
-            breakpoint: 768,
-            settings: {
-              slidesToShow: 3,
-              arrows: false
-            }
-          }],
-        });
-
+    <script type="text/javascript" src="js/vendor/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="js/vendor/bootstrap-3.1.1.js"></script>
+    <script type="text/javascript" src="js/vendor/slick-carousel.js"></script>
+    <!-- Category-->
+    <script type="text/javascript" src="js/main/popular-categories.js"></script>
+    <!-- Navbar-->
+    <script type="text/javascript" src="js/main/navbar.js"></script>
+    <script type="text/javascript" src="js/main/slidecategory.js"></script>
+    <!-- Slider-->
+    <script type="text/javascript" src="js/main/slider.js"></script>
+    <!-- Carousel-->
+    <script type="text/javascript" src="js/main/slick-carousel-custom.js"></script>
+    <script>
+      $(function()
+      {
         // Navbar
-        $('.fj-navbar').affix({
-          offset: {
+        $('.fj-navbar').affix(
+        {
+          offset:
+          {
             top: 504
           }
         });
-        $('.fj-navbar-mobile').affix({
-          offset: {
+        $('.fj-navbar-mobile').affix(
+        {
+          offset:
+          {
             top: 215
           }
         });
-      }, 5);
-    });
-  </script>
-</body>
+      });
 
+    </script>
+  </body>
 </html>

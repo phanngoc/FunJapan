@@ -1,0 +1,175 @@
+﻿//MPF
+body {
+  /*font-weight: 200; // 通常のweightを軽くしてみる。*/
+  font-family: @font-family-main;
+  .main {
+    .content-privacy-policies {
+      overflow-y: scroll;
+      height: 200px;
+      background-color: whitesmoke;
+      border-style: solid;
+      border-width: 1px;
+      padding: 5px;
+    }
+    .staticpage {
+      &>div {
+        margin-bottom: 60px;
+      }
+      img.img-responsive {
+        width: 100%;
+        &:hover,
+        &:focus {
+          .opacity(.5);
+        }
+      }
+    }
+    .content-title {
+      font-family: @font-family-vertically-long;
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3 {
+  margin-top: (@line-height-computed);
+  &.blacksquare:before,
+  &.redsquare:before,
+  &.bluesquare:before,
+  &.yellowsquare:before,
+  &.orangesquare:before,
+  &.greensquare:before,
+  &.deepbluesquare:before {
+    position: relative;
+    left: -7px;
+    content: "\a0";
+  }
+  &.blacksquare:before {
+    background-color: @headings-color;
+  }
+  &.redsquare:before {
+    background-color: @content-title-square-red;
+  }
+  &.bluesquare:before {
+    background-color: @content-title-square-blue;
+  }
+  &.yellowsquare:before {
+    background-color: @content-title-square-yellow;
+  }
+  &.orangesquare:before {
+    background-color: @content-title-square-orange;
+  }
+  &.greensquare:before {
+    background-color: @content-title-square-green;
+  }
+  &.deepbluesquare:before {
+    background-color: @content-title-square-deepblue;
+  }
+}
+
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  font-weight: normal;
+  margin-top: (@line-height-computed / 4);
+  margin-bottom: (@line-height-computed / 4);
+}
+
+// 日時のスタイル
+.datetime {
+  font-style: italic;
+}
+
+// インラインリスト用スタイルの区切り文字拡張
+.list-inline {
+  // ,区切り
+  &.separator-comma {
+    >li {
+      padding-right: 0;
+      &:not(:last-child) {
+        >*:after {
+          content: ",";
+          color: @text-color;
+        }
+      }
+    }
+  } // |区切り
+  &.separator-pipe {
+    >li+li {
+      &:before {
+        position: relative;
+        left: -7px;
+        content: "|";
+        color: @text-color;
+      }
+    }
+  }
+}
+
+//DESKTOP
+.h5 {
+  font-weight: bold;
+}
+
+// インラインリスト用スタイルの区切り文字拡張
+.list-inline {
+  // /区切り
+  &.separator-slash {
+    padding: 16px;
+    >li {
+      padding-left: 0px;
+      &:not(:last-child) {
+        >*:after {
+          position: relative;
+          left: 7px;
+          content: "/";
+          color: @text-color;
+        }
+      }
+    }
+  }
+}
+
+div.map-info {
+  &>div {
+    width: 300px;
+    margin: 0;
+    img {
+      width: 100%;
+    }
+    &>div {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    div.content {
+      position: relative;
+      min-height: 100px;
+      p.detail {
+        color: blue;
+        margin: 0;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+    }
+  }
+}

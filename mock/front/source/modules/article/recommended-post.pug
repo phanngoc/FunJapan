@@ -1,0 +1,11 @@
+﻿mixin recommended-post()
+  section.regular.slider
+    each post in recommended_posts
+      div
+        a(href='#')
+          .img-card.slider-img
+            img(src= post.thumb_src)
+            p.card-title
+              span= post.title
+            p.card-title-sm
+              span= post.title_sm 

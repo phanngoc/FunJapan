@@ -1,0 +1,22 @@
+extends modules/templates/registration.pug
+
+block head
+  +head(head.jmb_registration_3)
+
+block registration-patial
+  .registration-body
+    .step-3-jmb.tk
+      p.re-status Completed
+      p.re-checked
+        i.fa.fa-check-circle(aria-hidden='true')
+      p.re-thankyou.up Congratulation!
+      p.re-welcome You become a member of JMB!
+      .intro-card
+        img(src='./images/registration/jmb_card.png', alt='card')
+      p.guide-text
+        | As the standard JAL Mileage Bank membership card, the JMB Card provides the ability to earn miles as well as easy access to both the JAL Touch & Go Service and electronic money.
+      .step-btn-container.nav
+        a.btn(role='button', href='#')
+          span Go to FUN! Japan
+        a.btn(role='button', hef='#')
+          span Go to JMB

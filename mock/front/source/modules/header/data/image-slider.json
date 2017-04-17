@@ -1,0 +1,46 @@
+{
+  "slide_images": [
+    {
+      "main_image_src": "images/top/main_img_01.jpg",
+      "title_id": "htmlcaption1",
+      "heading": "Oshibori (sdxxdd) Fun! Japan Words.",
+      "description": "If you want to enjoy ice and snow in... ",
+      "mobile": {
+        "heading":"Oshibori (sdxxdd) Fun! ...",
+        "description": "If you want to enjoy ice..."
+      },
+      "thumb": {
+        "thumb_src": "images/top/thumb_img_1.jpg",
+        "description": "We recruit people that can report..."
+      }
+    },
+    {
+      "main_image_src": "images/top/main_img_2.jpg",
+      "title_id": "htmlcaption2",
+      "heading": "Fun! Japan Reporter Recruitment",
+      "description": "Below is the hexadecimal representation for an array of HTML background colors",
+      "mobile": {
+        "heading":"Fun! Japan Reporter ...",
+        "description": "Below is the hexadecimal..."
+      },
+      "thumb": {
+        "thumb_src": "images/top/thumb_img_2.jpg",
+        "description": "We recruit people that can report..."
+      }
+    },
+    {
+      "main_image_src": "images/top/main_img_3.jpg",
+      "title_id": "htmlcaption3",
+      "heading": "Fun! Japan Reporter Recruitment ",
+      "description": "Below is the hexadecimal representation for an array of HTML background colors",
+      "mobile": {
+        "heading":"Fun! Japan Reporter ...",
+        "description": "Below is the hexadecimal..."
+      },
+      "thumb": {
+        "thumb_src": "images/top/thumb_img_3.jpg",
+        "description": "We recruit people that can report..."
+      }
+    }
+  ]
+}
