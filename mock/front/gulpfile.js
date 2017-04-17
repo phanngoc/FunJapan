@@ -21,7 +21,7 @@ var fonts = { in: [
   ],
   out: dest + 'fonts/'
 };
-var js = { 
+var js = {
   in: source + 'js/**/*.js',
   out: dest + 'js'
 };
@@ -238,7 +238,7 @@ gulp.task('build-html', function (cb) {
   );
 });
 
-// JSON 
+// JSON
 // = Build DataJson
 gulp.task('combine-modules-json', function(cb) {
   return gulp.src(['**/*.json', '!**/_*.json'], {cwd: 'source/modules/*/data'})

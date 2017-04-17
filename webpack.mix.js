@@ -22,6 +22,7 @@ var assetsCopy = [
     ['mock/front/dist/css', 'css', false],
     ['mock/front/dist/fonts', 'fonts', false],
     ['mock/front/dist/images', 'images', false],
+    ['node_modules/font-awesome/css', 'font-awesome', false],
 ];
 
 for (var i = 0; i < assetsCopy.length; i++) {
