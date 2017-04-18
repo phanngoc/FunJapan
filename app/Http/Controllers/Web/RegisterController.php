@@ -56,6 +56,8 @@ class RegisterController extends BaseController
             'accept_policy',
         ]);
         $data['birthday'] = $data['birthday_year'] . '-' . $data['birthday_month'] . '-' . $data['birthday_day'];
+        $data['locale_id'] = $this->currentLocaleId;
+        $data['registered_by'] = $data['provider'] ? : 0;
 
         $validate = UserService::validate($data);
         if (count($validate)) {

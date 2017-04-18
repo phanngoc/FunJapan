@@ -1,9 +1,11 @@
 <?php
 namespace App\Services\Web;
 
+use App\Models\PasswordReset;
 use App\Models\SocialAccount;
 use App\Models\User;
 use App\Services\EmailService;
+use Carbon\Carbon;
 use Validator;
 use Illuminate\Support\Facades\DB;
 
@@ -12,23 +14,26 @@ class UserService
     public static function validate($input)
     {
         $rules = [
-            'name' => 'required',
+            'name' => 'required|max:50',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
             'gender' => 'required',
             'location_id' => 'required',
             'accept_policy' => 'required',
             'birthday' => 'required|date',
         ];
 
+        if (!$input['registered_by']) {
+            $rules['password'] =  'required|min:6|confirmed';
+        }
+
         $messages = [
             'name.required' => trans('web/user.validate.required.name'),
+            'name.max' => trans('web/user.validate.max.name'),
             'email.required' => trans('web/user.validate.required.email'),
             'email.email' => trans('web/user.validate.email'),
             'email.unique' => trans('web/user.validate.unique.email'),
             'password.required' => trans('web/user.validate.required.password'),
             'password.min' => trans('web/user.validate.min.password'),
-            're_password.required' => trans('web/user.validate.required.re_password'),
             'gender.required' => trans('web/user.validate.required.gender'),
             'location_id.required' => trans('web/user.validate.required.location_id'),
             'accept_policy.required' => trans('web/user.validate.required.accept_policy'),
@@ -63,8 +68,8 @@ class UserService
     public static function create($data)
     {
         $data['point'] = config('user.default_point');
-        $data['subscription_new_letter'] = isset($data['subscription_new_letter']) ? 1 : 0;
-        $data['subscription_reply_noti'] = isset($data['subscription_reply_noti']) ? 1 : 0;
+        $data['subscription_new_letter'] = $data['subscription_new_letter'] ? 1 : 0;
+        $data['subscription_reply_noti'] = $data['subscription_reply_noti'] ? 1 : 0;
 
         try {
             DB::beginTransaction();
@@ -142,5 +147,111 @@ class UserService
     public static function find($userId)
     {
         return User::find($userId);
+    }
+
+    public static function validateLostPass($input)
+    {
+        $rules = [
+            'email' => 'required|email|exists:users,email',
+        ];
+
+        $messages = [
+            'email.required' => trans('web/user.validate.required.email'),
+            'email.email' => trans('web/user.validate.email'),
+            'email.exists' => trans('web/user.validate.exists.email'),
+        ];
+
+        $validate = Validator::make($input, $rules, $messages)->messages();
+
+        if (count($validate)) {
+            return $validate;
+        }
+
+        $user = User::getByCondition($input, true);
+        if ($user->registered_by) {
+            return ['email_facebook' => trans('web/user.lost_password.email_facebook')];
+        }
+
+        return [];
+    }
+
+    public static function lostPassProcess($email)
+    {
+        try {
+            DB::beginTransaction();
+            $user = User::getByCondition(['email' => $email], true);
+
+            PasswordReset::where('email', $email)->delete();
+
+            $a = md5(uniqid(rand(), true));
+            $request = PasswordReset::create([
+                'user_id' => $user->id,
+                'email' => $email,
+                'token' => $a,
+            ]);
+
+            EmailService::sendMail(
+                'user.lost_password',
+                $request->email,
+                trans('web/email.lost_password_mail_subject'),
+                ['email' => $request->email, 'token' => $request->token]
+            );
+
+            DB::commit();
+
+            return $request;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return false;
+        }
+    }
+
+    public static function checkToken($token)
+    {
+        $request = PasswordReset::where('token', $token)->first();
+
+        if ($request && Carbon::now()->gt($request->created_at->addDays(config('user.token_expire')))) {
+            return false;
+        }
+
+        return $request;
+    }
+
+    public static function validateResetPassword($input)
+    {
+        $rules = [
+            'password' => 'required|min:6|confirmed',
+            'password_confirmation' => 'required',
+            'token' => 'required',
+        ];
+
+        $messages = [
+            'password.required' => trans('web/user.validate.required.password'),
+            'password.min' => trans('web/user.validate.min.password'),
+            'password_confirmation.required' => trans('web/user.validate.required.re_password'),
+            'token.required' => trans('web/user.token_not_found'),
+        ];
+
+        return Validator::make($input, $rules, $messages)->messages()->toArray();
+    }
+
+    public static function resetPassword($requestReset, $newPassword)
+    {
+        try {
+            DB::beginTransaction();
+
+            $user = User::find($requestReset->user_id);
+            $user->password = $newPassword;
+            $user->save();
+
+            $requestReset->delete();
+
+            DB::commit();
+
+            return $user;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return false;
+        }
     }
 }

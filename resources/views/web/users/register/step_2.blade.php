@@ -5,13 +5,13 @@
     <div class="step-2">
         {!! Form::open(['url' => action('Web\RegisterController@store')]) !!}
             <div class="form-group row has-feedback">
-                <label for="fullName" class="col-md-18 col-form-label">Your Name<span class="require">*</span></label>
+                <label for="fullName" class="col-md-18 col-form-label">{{ trans('web/user.label.name_title') }}<span class="require">*</span></label>
                 <div class="col-md-82">
                     <input
                         class="form-control"
                         id="name"
                         name="name"
-                        placeholder="Enter your name"
+                        placeholder="{{ trans('web/user.label.name_placeholder') }}"
                         type="text"
                         value="{{ old('name') ? : ($name ? : '') }}"
                     >
@@ -19,14 +19,14 @@
                 </div>
             </div>
             <div class="form-group row has-feedback">
-                <label for="email" class="col-md-18 col-form-label">Email<span class="require">*</span></label>
+                <label for="email" class="col-md-18 col-form-label">{{ trans('web/user.label.email_title') }}<span class="require">*</span></label>
                 <div class="col-md-82">
                     <input
                         type="text"
                         class="form-control"
                         id="email"
                         name="email"
-                        placeholder="Email"
+                        placeholder="{{ trans('web/user.label.email_placeholder') }}"
                         value="{{ $email ? : old('email') }}"
                     >
                     <label class="help-block">{{ $errors->has('email') ? $errors->first('email') : '' }}</label>
@@ -49,35 +49,37 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group row has-feedback">
-                        <label for="password" class="col-md-36 col-form-label">Password<span class="require">*</span></label>
-                        <div class="col-md-64">
-                            <input class="form-control" id="password" name="password" placeholder="Minimum 6 letters" type="password" >
-                            <label class="help-block">{{ $errors->has('password') ? $errors->first('password') : '' }}</label>
+            @if (!$socialId)
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row has-feedback">
+                            <label for="password" class="col-md-36 col-form-label">{{ trans('web/user.label.password_title') }}<span class="require">*</span></label>
+                            <div class="col-md-64">
+                                <input class="form-control" id="password" name="password" placeholder="{{ trans('web/user.label.password_placeholder') }}" type="password" >
+                                <label class="help-block">{{ $errors->has('password') ? $errors->first('password') : '' }}</label>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group row has-feedback">
-                        <label for="confirmPassword" class="col-md-36 col-form-label">Password, Again<span class="require">*</span></label>
-                        <div class="col-md-64">
-                            <input class="form-control" id="re_password" name="password_confirmation" placeholder="Confirm your password" type="password">
-                            <label class="help-block">{{ $errors->has('re_password') ? $errors->first('re_password') : '' }}</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row has-feedback">
+                            <label for="confirmPassword" class="col-md-36 col-form-label">{{ trans('web/user.label.re_password_title') }}<span class="require">*</span></label>
+                            <div class="col-md-64">
+                                <input class="form-control" id="re_password" name="password_confirmation" placeholder="Confirm your password" type="password">
+                                <label class="help-block">{{ $errors->has('password_confirmation') ? $errors->first('password_confirmation') : '' }}</label>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endif
             <div class="form-group row">
                 <label for="dobl" class="col-md-18 col-form-label">Birthday<span class="require">*</span></label>
                 <div class="col-md-82">
                     <div class="row">
                         <div class="col-xs-4">
                             <select class="form-control" id="birthday_month" name="birthday_month">
-                                    <option disabled selected>Month</option>
+                                    <option disabled selected>{{ trans('web/user.label.month') }}</option>
                                     @foreach (range(1, 12) as $month)
                                         <option
                                             value="{{ $month }}"
@@ -90,7 +92,7 @@
                         </div>
                         <div class="col-xs-4">
                             <select class="form-control" id="birthday_day" name="birthday_day">
-                                <option disabled selected>Day</option>
+                                <option disabled selected>{{ trans('web/user.label.day') }}</option>
                                 @foreach (range(1, 31) as $date)
                                     <option
                                         value="{{ $date }}"
@@ -103,7 +105,7 @@
                         </div>
                         <div class="col-xs-4">
                             <select class="form-control" id="birthday_year" name="birthday_year">
-                                <option disabled selected>Year</option>
+                                <option disabled selected>{{ trans('web/user.label.year') }}</option>
                                     @foreach (range(1989, date("Y")) as $year)
                                         <option
                                             value="{{ $year }}"
@@ -121,7 +123,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="location" class="col-md-18 col-form-label">Location<span class="require">*</span></label>
+                <label for="location" class="col-md-18 col-form-label">{{ trans('web/user.label.location_title') }}<span class="require">*</span></label>
                 <div class="col-md-82">
                     <select class="form-control" id="location_id" name="location_id">
                         <option value="">---</option>
@@ -138,7 +140,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="religion" class="col-md-18 col-form-label">Religion</label>
+                <label for="religion" class="col-md-18 col-form-label">{{ trans('web/user.label.religion_title') }}</label>
                 <div class="col-md-82">
                     <select class="form-control" id="religion_id" name="religion_id">
                         <option selected="selected" value="">---</option>
@@ -155,7 +157,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-18 col-form-label">Subscription</label>
+                <label class="col-md-18 col-form-label">{{ trans('web/user.label.subscription_title') }}</label>
                 <div class="col-md-82">
                     <div class="checkbox-holder">
                         <input
@@ -166,7 +168,7 @@
                         >
                         <input type="hidden">
                         <label for="newsCheckbox" class="checkbox-label tick"></label>
-                        <label class="checkbox-label"><span>Receive "Newsletter Email"</span></label>
+                        <label class="checkbox-label"><span>{{ trans('web/user.label.subscription_new_letter') }}</span></label>
                     </div>
                     <div class="checkbox-holder">
                         <input
@@ -177,7 +179,7 @@
                         >
                         <input type="hidden">
                         <label for="notiCheckbox" class="checkbox-label tick"></label>
-                        <label class="checkbox-label"><span>Receive "Reply Notification Email"</span></label>
+                        <label class="checkbox-label"><span>{{ trans('web/user.label.subscription_reply_noti') }}</span></label>
                     </div>
                 </div>
             </div>
@@ -192,12 +194,12 @@
                     >
                     <input type="hidden">
                     <label for="chk-license-agreement" class="checkbox-label tick"></label>
-                    <label class="checkbox-label"><span>I accept the terms of use and the privacy policy.</span></label>
+                    <label class="checkbox-label"><span>{{ trans('web/user.label.accept_policy') }}</span></label>
                 </div>
                 <label class="help-block">{{ $errors->has('accept_policy') ? $errors->first('accept_policy') : '' }}</label>
             </div>
             <div class="step-btn-container">
-                <input class="btn btn-primary" id="submit-button" type="submit" value="Next">
+                <input class="btn btn-primary" id="submit-button" type="submit" value="{{ trans('web/user.label.next') }}">
             </div>
         {!! Form::close() !!}
     </div>

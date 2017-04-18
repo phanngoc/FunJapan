@@ -33,6 +33,8 @@ class User extends Authenticatable
         'invite_code',
         'subscription_new_letter',
         'subscription_reply_noti',
+        'locale_id',
+        'registered_by',
     ];
 
     /**
