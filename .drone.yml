@@ -9,7 +9,7 @@ deploy:
     when:
       branch: develop
     commands:
-      - rocketeer deploy --on=staging --stage=staging --no-interaction
+      - rocketeer deploy --on=dev --stage=dev --no-interaction
   rocketeer:
     image: fdplugins/rocketeer:php5
     when:
