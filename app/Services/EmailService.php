@@ -13,7 +13,14 @@ class EmailService
     {
         $locale = App::getLocale();
 
-        Mail::to($emailTo)
-            ->queue(new SendMail($locale, $layout, $subject, $data));
+        try {
+            Mail::to($emailTo)->queue(new SendMail($locale, $layout, $subject, $data));
+
+            return true;
+        } catch (\Exception $e) {
+            \Log::debug($e->getMessage());
+
+            return false;
+        }
     }
 }
