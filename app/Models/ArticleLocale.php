@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class ArticleLocale extends BaseModel
 {
@@ -25,6 +26,8 @@ class ArticleLocale extends BaseModel
         'view_count',
         'published_at',
     ];
+
+    protected $dates = ['published_at'];
 
     public function locale()
     {

@@ -27,6 +27,6 @@ class ArticleTag extends BaseModel
 
     public function tag()
     {
-        return $this->hasOne(Tag::class);
+        return $this->belongsTo(Tag::class);
     }
 }

@@ -4,9 +4,11 @@
         <!-- ABOUT AUTHOR -->
         <div class="list-group detail-about-author">
             <div class="list-group-header">
-                <p class="list-group-title">Author</p>
+                <p class="list-group-title">{{ trans('admin/global.author') }}</p>
             </div>
-            <p class="about-author">Fun! Japan is a team of passionate fans that is dedicated to yu to bring the most insteresting news about Japanese culture.</p>
+            <p class="about-author">
+                {{ isset($articleLocale->article->user) ? $articleLocale->article->user->description : '' }}
+            </p>
         </div>
         <!-- EOF ABOUT AUTHOR -->
         @include('web.comments._comments_area')

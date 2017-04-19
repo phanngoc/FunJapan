@@ -33,4 +33,5 @@ mix.js('resources/assets/js/app.js', assetPath + 'js')
     .sass('resources/assets/sass/app.scss', assetPath + 'css')
     .js('resources/assets/js/admin/admin.js', assetPath + 'admin/js')
     .sass('resources/assets/sass/admin.scss', assetPath + 'admin/css')
+    .sass('resources/assets/sass/article.scss', assetPath + 'css')
 ;

@@ -3,8 +3,8 @@
 Route::get('/', function () {
     return view('web.home.index');
 });
-Route::get('/articles/{id}', function () {
-    return view('web.articles.show');
+
+Route::group(['middleware' => ['web'], 'namespace' => 'Web'], function () {
 });
 
 Route::get('/register/jmb_1', function (Request $request) {
@@ -41,4 +41,6 @@ Route::group(['middleware' => 'web', 'namespace' => 'Web'], function () {
     Route::group(['middleware' => 'auth'], function () {
         Route::get('account/logout', 'LoginController@logout')->name('logout');
     });
+
+    Route::get('/articles/{id}', 'ArticlesController@show');
 });

@@ -5,5 +5,6 @@
 {!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css') !!}
 <!-- Resource -->
 {!! Html::style('assets/css/main.css') !!}
+{!! Html::style('assets/css/article.css') !!}
 <!-- EOF Resource -->
 @yield('style')
