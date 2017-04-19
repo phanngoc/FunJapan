@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password')->nullable();
             $table->string('description')->nullable();
             $table->tinyInteger('rank')->default(1);
@@ -28,9 +28,10 @@ class CreateUsersTable extends Migration
             $table->date('birthday')->nullable();
             $table->integer('religion_id')->nullable();
             $table->integer('location_id')->nullable();
-            $table->integer('locale_id')->nullable();
             $table->string('invite_code')->nullable();
-            $table->string('subscriptions', 45)->nullable();
+            $table->tinyInteger('subscription_new_letter')->nullable();
+            $table->tinyInteger('subscription_reply_noti')->nullable();
+            $table->string('remember_token')->nullable();
             $table->timestamps();
         });
     }

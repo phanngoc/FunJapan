@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
+use App\Services\Web\LocaleService;
 
 class Religion extends BaseModel
 {
@@ -18,8 +19,26 @@ class Religion extends BaseModel
         'place_holder',
     ];
 
-    public function religionLocales()
+    protected $appends = ['locale'];
+
+    public function getLocaleAttribute()
     {
-        return $this->hasMany(ReligionLocale::class);
+        $locales = [
+            'id' => 0,
+            'name' => 'No data in this language',
+        ];
+
+        $locale = LocaleService::getLocaleByIsoCode(App::getLocale());
+
+        $data = ReligionLocale::where('locale_id', $locale->id)
+            ->where('religion_id', $this->id)
+            ->first();
+
+        if ($data) {
+            $locales['name'] = $data->name;
+            $locales['id'] = $data->id;
+        }
+
+        return $locales;
     }
 }

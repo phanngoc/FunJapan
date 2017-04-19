@@ -5,20 +5,23 @@
     <div class="step-1">
         <div class="signup-area">
             <div class="signup-btn-container">
-                <a class="btn email-signup" role="button" href="./registration_st2.html">
-                    <span><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Sign up with email</span>
+                <a class="btn email-signup" role="button" href="{{ action('Web\RegisterController@createStep2') }}">
+                    <span>
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        &nbsp;Sign up with email
+                    </span>
                 </a>
-                <a class="btn fb-signup" role="button" href="#">
+                <a class="btn fb-signup" role="button" href="{{ action('Web\RegisterController@storeViaFaceBook') }}">
                     <span><i class="fa fa-facebook" aria-hidden="true"></i>&nbsp;Sign up with facebook</span>
                 </a>
             </div>
         </div>
         <div class="signup-area sm">
             <div class="signup-btn-container">
-                <a class="btn email-signup" role="button" href="./registration_st2.html">
+                <a class="btn email-signup" role="button" href="{{ action('Web\RegisterController@createStep2') }}">
                     <span><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Sign up with email</span>
                 </a>
-                <a class="btn fb-signup" role="button" href="#">
+                <a class="btn fb-signup" role="button" href="{{ action('Web\RegisterController@storeViaFaceBook') }}">
                     <span><i class="fa fa-facebook" aria-hidden="true"></i>&nbsp;Sign up with facebook</span>
                 </a>
             </div>
@@ -88,20 +91,20 @@
         </div>
         <div class="signup-area bottom">
             <div class="signup-btn-container">
-                <a class="btn email-signup" role="button" href="./registration_st2.html">
+                <a class="btn email-signup" role="button" href="{{ action('Web\RegisterController@createStep2') }}">
                     <span><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Sign up with email</span>
                 </a>
-                <a class="btn fb-signup" role="button" href="#">
+                <a class="btn fb-signup" role="button" href="{{ action('Web\RegisterController@storeViaFaceBook') }}">
                     <span><i class="fa fa-facebook" aria-hidden="true"></i>&nbsp;Sign up with facebook</span>
                 </a>
             </div>
         </div>
         <div class="signup-area sm">
             <div class="signup-btn-container">
-                <a class="btn email-signup" role="button" href="./registration_st2.html">
+                <a class="btn email-signup" role="button" href="{{ action('Web\RegisterController@createStep2') }}">
                     <span><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Sign up with email</span>
                 </a>
-                <a class="btn fb-signup" role="button" href="#">
+                <a class="btn fb-signup" role="button" href="{{ action('Web\RegisterController@storeViaFaceBook') }}">
                     <span><i class="fa fa-facebook" aria-hidden="true"></i>&nbsp;Sign up with facebook</span>
                 </a>
             </div>

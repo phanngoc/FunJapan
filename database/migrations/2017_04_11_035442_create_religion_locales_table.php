@@ -11,7 +11,7 @@ class CreateReligionLocalesTable extends Migration {
             $table->increments('id');
             $table->integer('locale_id');
             $table->integer('religion_id');
-            $table->integer('name');
+            $table->string('name');
             $table->timestamps();
         });
     }
