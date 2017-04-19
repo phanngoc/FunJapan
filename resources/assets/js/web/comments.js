@@ -3,7 +3,7 @@ var articleLocaleId = $('#comment-area').attr('data-article-locale-id');
 
 $(function () {
     parseEmojiComment();
-    getItems('/comments/lists/' + articleId + '/' + articleLocaleId + '?page=1');
+    getItems('/comments/lists/' + articleId + '/' + articleLocaleId + '?page=1', true);
 
     $('body').on('click', '.btn-twemoji', function (event) {
         event.stopPropagation();
@@ -294,7 +294,7 @@ function parseEmojiComment() {
     });
 }
 
-function getItems(url) {
+function getItems(url, firstTime) {
     $('.comments-list').html('<i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>');
 
     $.ajax({
@@ -305,9 +305,12 @@ function getItems(url) {
                 $('.comments-list').html('').append(response.htmlItems);
                 $('.comment-pagination').html('').append(response.htmlPaginator);
                 parseEmojiComment();
-                $('html, body').animate({
-                    scrollTop: $('.comment-posting-form').offset().top
-                }, 700);
+
+                if (!firstTime) {
+                    $('html, body').animate({
+                        scrollTop: $('.comment-posting-form').offset().top
+                    }, 700);
+                }
             }
         }
     });
