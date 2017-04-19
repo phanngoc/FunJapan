@@ -26,7 +26,7 @@ Route::group(['middleware' => 'web', 'namespace' => 'Web'], function () {
 //    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 //    Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
-    Route::get('account/create', 'RegisterController@create');
+    Route::get('account/create', 'RegisterController@create')->name('register');
     Route::get('account/create/email', 'RegisterController@createStep2');
     Route::post('account/create/email', 'RegisterController@store');
 
@@ -38,8 +38,14 @@ Route::group(['middleware' => 'web', 'namespace' => 'Web'], function () {
     Route::get('account/facebook', 'RegisterController@storeViaFaceBook');
     Route::get('facebook/callback', 'RegisterController@storeViaFaceBookCallBack');
 
+    Route::get('/comments/lists/{articleId}/{articleLocaleId}', 'CommentsController@lists');
+    Route::get('/comments/getEmoji', 'CommentsController@getEmoji');
+
     Route::group(['middleware' => 'auth'], function () {
         Route::get('account/logout', 'LoginController@logout')->name('logout');
+
+        Route::get('/comments/favorite/{userId}', 'CommentsController@favorite');
+        Route::resource('comments', 'CommentsController');
     });
 
     Route::get('/articles/{id}', 'ArticlesController@show');

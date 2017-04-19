@@ -1,35 +1,38 @@
-<form role="form" class="comment-to-top">
-    <textarea class="form-control no-radius-bot" rows="4" placeholder="What's on your mind?"></textarea>
+{{ Form::open([
+    'action' => 'Web\CommentsController@store',
+    'method' => 'POST',
+    'class' => 'form-gif-comment',
+]) }}
+    {{ Form::hidden('content', null, ['class' => 'comment-gif-input']) }}
+    {{ Form::hidden('articleId', $articleLocale->article_id) }}
+    {{ Form::hidden('articleLocaleId', $articleLocale->id) }}
+    {{ Form::hidden('type', config('comment.type.gif')) }}
+{{ Form::close() }}
+
+{{ Form::open([
+    'action' => 'Web\CommentsController@store',
+    'method' => 'POST',
+    'class' => 'comment-to-top form-create-comment form-comment',
+]) }}
+    {{ Form::textarea('content', null, [
+        'class' => 'comment-input form-control no-radius-bot',
+        'placeholder' => trans('web/comment.place_holder.create_comment'),
+        'rows' => 4,
+    ]) }}
+    {{ Form::hidden('articleId', $articleLocale->article_id) }}
+    {{ Form::hidden('articleLocaleId', $articleLocale->id) }}
+    {{ Form::hidden('type', config('comment.type.text')) }}
     <div class="row radius-bot">
         <div class="col-xs-8 text-left">
             <span type="button" class="btn btn-gif show-gifs-selection">GIF</span>
-            <div class="gifs-comment-block" id="gifs-search-block" style="display: none; bottom: -398px;">
-                <div class="popup-gif">
-                    <div class="popup-content">
-                        <div class="search-for-text">
-                            <input type="text" id="search-gif-input" class="form-control text-search-gif pull-left input-sm"
-                                autocomplete="off" placeholder="Search images">
-                            <input type="text" class="hidden">
-                            <i class="fa fa-level-down fa-rotate-90 search-image-gif" id="search-gif-btn" aria-hidden="true"></i>
-                            <button id="close-gif-popup-btn" class="gif-header-button pull-right" type="button">
-                                <i class="glyphicon glyphicon-off"></i>
-                            </button>
-                            <input type="hidden" id="gif-for-parent-comment-id" value="">
-                        </div>
-                        <div class="body-result-gifs"></div>
-                    </div>
-                </div>
-            </div>
+            @include('web.comments._popup_gif')
             <i class="fa fa-smile-o btn btn-twemoji" aria-hidden="true"></i>
-            <div class="gifs-comment-block" id="emoji-picker-block" style="display: none; bottom: 34px;">
-                <div class="popup-gif">
-                    <div class="popup-content">
-                    </div>
-                </div>
-            </div>
+            <div class="popup-emoticon"></div>
         </div>
         <div class="col-xs-4 text-right">
-            <button type="button" class="btn btn-default" id="post-btn"><i class="fa fa-comments-o" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default send-comment" id="post-btn">
+                <i class="fa fa-comments-o" aria-hidden="true"></i>
+            </button>
         </div>
     </div>
-</form>
+{{ Form::close() }}

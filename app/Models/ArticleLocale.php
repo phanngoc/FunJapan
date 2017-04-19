@@ -38,4 +38,9 @@ class ArticleLocale extends BaseModel
     {
         return $this->belongsTo(Article::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
+    }
 }
