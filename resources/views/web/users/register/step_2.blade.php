@@ -28,7 +28,6 @@
                         name="email"
                         placeholder="Email"
                         value="{{ $email ? : old('email') }}"
-                        {{ $socialId ? 'readonly' : ''  }}
                     >
                     <label class="help-block">{{ $errors->has('email') ? $errors->first('email') : '' }}</label>
                     <input type="hidden" value="{{ $socialId }}" name="social_id" readonly>
