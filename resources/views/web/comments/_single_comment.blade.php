@@ -11,7 +11,7 @@
         @endif
     </div>
     @if ($comment->type == config('comment.type.text'))
-        <p class="comment-body text-comment">{{ $comment->content }}</p>
+        <p class="comment-body text-comment break-word">{{ $comment->content }}</p>
     @elseif ($comment->type == config('comment.type.gif'))
         <p class="comment-body"><img class="gif-image" src="{{ $comment->content }}"></p>
     @endif

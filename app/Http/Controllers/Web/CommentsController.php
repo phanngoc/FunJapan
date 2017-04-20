@@ -55,7 +55,7 @@ class CommentsController extends Controller
         if ($validate->fails()) {
             return [
                 'success' => false,
-                'message' => $validate->errors(),
+                'message' => implode(' ', $validate->errors()->messages()['content']),
             ];
         }
 
