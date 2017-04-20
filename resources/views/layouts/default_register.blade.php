@@ -7,7 +7,6 @@
         <meta name="fragment" content="!">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title>Fun! Japan</title>
-        @include('layouts.includes.scripts_register')
         @include('layouts.includes.styles')
     </head>
     <body>
@@ -18,5 +17,6 @@
                 @include('layouts.includes.footer_register')
             </div>
         </div>
+        @include('layouts.includes.scripts_register')
     </body>
 </html>

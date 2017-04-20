@@ -18,19 +18,11 @@ Route::group(['middleware' => 'web', 'namespace' => 'Web'], function () {
     // Authentication Routes...
     Route::get('account/login', 'LoginController@showLoginForm')->name('login');
     Route::post('account/login', 'LoginController@login');
-//    Route::get('account/logout', 'LoginController@logout')->name('logout');
-
-//    // Password Reset Routes...
-//    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-//    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-//    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-//    Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
     Route::get('account/create', 'RegisterController@create')->name('register');
     Route::get('account/create/email', 'RegisterController@createStep2');
     Route::post('account/create/email', 'RegisterController@store');
 
-    //
     Route::get('account/confirm/{userId}/{socialId}/{provider}', 'RegisterController@createStep2ConfirmPass');
     Route::post('account/confirm', 'RegisterController@confirmPass');
 
@@ -40,6 +32,12 @@ Route::group(['middleware' => 'web', 'namespace' => 'Web'], function () {
 
     Route::get('/comments/lists/{articleId}/{articleLocaleId}', 'CommentsController@lists');
     Route::get('/comments/getEmoji', 'CommentsController@getEmoji');
+
+    Route::get('account/lost-password', 'ResetPasswordController@lostPassWord');
+    Route::post('account/lost-password', 'ResetPasswordController@lostPassWordProcess');
+
+    Route::get('account/reset-password/{token}', 'ResetPasswordController@resetPassword');
+    Route::post('account/reset-password', 'ResetPasswordController@resetPasswordProcess');
 
     Route::group(['middleware' => 'auth'], function () {
         Route::get('account/logout', 'LoginController@logout')->name('logout');
