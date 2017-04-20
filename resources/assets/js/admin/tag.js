@@ -1,3 +1,6 @@
+baseUrl = function () {
+    return window.location.protocol + '//' + window.location.host;
+};
 $(document).ready(function (e) {
     $('#tag-table').DataTable({
         'processing': true,
@@ -26,6 +29,7 @@ $(document).ready(function (e) {
         }],
         'createdRow': function (row, data, index) {
             $('td', row).eq(3).attr('data-id', data.id);
+            $('td', row).eq(1).empty().append('<a href="' + baseUrl() + '/admin/tags/' + data.id + '">' + data.name + '</a>');
         }
     });
 })

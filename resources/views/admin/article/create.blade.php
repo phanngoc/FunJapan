@@ -96,6 +96,23 @@
                     </div>
 
                     <div class="form-group">
+                        {{ Form::label(
+                            'is_top_article',
+                            trans('admin/article.label.is_top'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-10">
+                            <label class="checkbox-inline">
+                                {{ Form::checkbox(
+                                    'is_top_article',
+                                    1,
+                                    false)
+                                }}&nbsp;
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <div class="col-sm-10 col-sm-offset-2">
                             {{ Form::submit(trans('admin/article.button.create'), ['class' => 'btn btn-primary']) }}
                         </div>
