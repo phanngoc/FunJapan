@@ -58,6 +58,8 @@ class RegisterController extends BaseController
         $data['birthday'] = $data['birthday_year'] . '-' . $data['birthday_month'] . '-' . $data['birthday_day'];
         $data['locale_id'] = $this->currentLocaleId;
         $data['registered_by'] = $data['provider'] ? : 0;
+        $data['subscription_new_letter'] = $data['subscription_new_letter'] ? 1 : 0;
+        $data['subscription_reply_noti'] = $data['subscription_reply_noti'] ? 1 : 0;
 
         $validate = UserService::validate($data);
         if (count($validate)) {
@@ -134,32 +136,36 @@ class RegisterController extends BaseController
 
     public function storeViaFaceBookCallBack()
     {
-        $validate = UserService::validateSocialUser(Socialite::driver('facebook')->user());
+        try {
+            $validate = UserService::validateSocialUser(Socialite::driver('facebook')->user());
 
-        if ($validate['success']) {
-            auth()->login($validate['data']);
-            return redirect('/');
-        }
+            if ($validate['success']) {
+                auth()->login($validate['data']);
+                return redirect('/');
+            }
 
-        if (isset($validate['user_id'])) {
+            if (isset($validate['user_id'])) {
+                return redirect()->action(
+                    'Web\RegisterController@createStep2ConfirmPass',
+                    [
+                        'userId' => $validate['user_id'],
+                        'socialId' => $validate['social_id'],
+                        'provider' => config('user.social_provider.facebook'),
+                    ]
+                );
+            }
+
             return redirect()->action(
-                'Web\RegisterController@createStep2ConfirmPass',
+                'Web\RegisterController@createStep2',
                 [
-                    'userId' => $validate['user_id'],
                     'socialId' => $validate['social_id'],
+                    'email' => $validate['email'],
+                    'name' => $validate['name'],
                     'provider' => config('user.social_provider.facebook'),
                 ]
             );
+        } catch (\Exception $e) {
+            return redirect()->action('Web\RegisterController@create');
         }
-
-        return redirect()->action(
-            'Web\RegisterController@createStep2',
-            [
-                'socialId' => $validate['social_id'],
-                'email' => $validate['email'],
-                'name' => $validate['name'],
-                'provider' => config('user.social_provider.facebook'),
-            ]
-        );
     }
 }

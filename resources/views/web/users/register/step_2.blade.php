@@ -106,10 +106,10 @@
                         <div class="col-xs-4">
                             <select class="form-control" id="birthday_year" name="birthday_year">
                                 <option disabled selected>{{ trans('web/user.label.year') }}</option>
-                                    @foreach (range(1989, date("Y")) as $year)
+                                    @foreach (range(1900, date("Y")) as $year)
                                         <option
                                             value="{{ $year }}"
-                                            {{ old('birthday_year') == $year ? 'selected' : ''  }}
+                                            {{ old('birthday_year') ? (old('birthday_year') == $year ? 'selected' : '') : ($year == 1992 ? 'selected' : '')   }}
                                         >
                                             {{ $year }}
                                         </option>
@@ -163,7 +163,7 @@
                         <input
                             id="newsCheckbox"
                             name="subscription_new_letter"
-                            {{ old('subscription_new_letter') == 'on' ? 'checked' : ''  }}
+                            {{ !is_null(old('subscription_new_letter')) ? (old('subscription_new_letter') === 1 ? 'checked' : '') : 'checked'  }}
                             type="checkbox"
                         >
                         <input type="hidden">
@@ -174,7 +174,7 @@
                         <input
                             id="notiCheckbox"
                             name="subscription_reply_noti"
-                            {{ old('subscription_reply_noti') == 'on' ? 'checked' : ''  }}
+                            {{ !is_null(old('subscription_reply_noti')) ? (old('subscription_reply_noti') === 1 ? 'checked' : '') : 'checked'  }}
                             type="checkbox"
                         >
                         <input type="hidden">
