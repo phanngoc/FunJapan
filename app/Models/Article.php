@@ -25,6 +25,11 @@ class Article extends BaseModel
         return $this->hasMany(ArticleLocale::class);
     }
 
+    public function articleTags()
+    {
+        return $this->hasMany(ArticleTag::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -33,10 +38,5 @@ class Article extends BaseModel
     public function category()
     {
         return $this->belongsTo(Category::class);
-    }
-
-    public function articleTags()
-    {
-        return $this->hasMany(ArticleTag::class);
     }
 }
