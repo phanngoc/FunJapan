@@ -12,11 +12,11 @@
                     <table class="table table-striped table-bordered table-hover" id="article-table">
                         <thead>
                             <tr>
-                                <th>{{ trans('admin/tag.no') }}</th>
-                                <th>{{ trans('admin/tag.title') }}</th>
-                                <th>{{ trans('admin/tag.language') }}</th>
-                                <th>{{ trans('admin/tag.created_at') }}</th>
-                                <th>{{ trans('admin/tag.action') }}</th>
+                                <th>{{ trans('admin/article.no') }}</th>
+                                <th>{{ trans('admin/article.title') }}</th>
+                                <th>{{ trans('admin/article.language') }}</th>
+                                <th>{{ trans('admin/article.created_at') }}</th>
+                                <th>{{ trans('admin/article.action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
