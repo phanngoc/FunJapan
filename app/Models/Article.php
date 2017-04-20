@@ -16,6 +16,7 @@ class Article extends BaseModel
         'user_id',
         'category_id',
         'is_top_article',
+        'post_photo',
     ];
 
     public function articleLocales()

@@ -3,11 +3,14 @@
 namespace App\Services\Web;
 
 use App\Models\Article;
+use Illuminate\Support\Facades\Validator;
+use App\Services\ImageService;
 use App\Models\ArticleLocale;
 use App\Models\FavoriteArticle;
 use App\Services\Web\LocaleService;
 use Illuminate\Support\Facades\App;
 use Carbon\Carbon;
+use App\Models\PostPhoto;
 
 class ArticleService
 {
@@ -30,7 +33,7 @@ class ArticleService
 
     public static function countLike($userId, $articleId, $localeId)
     {
-        $articleLocale = ArticleService::getArticleDetails($articleId, $localeId);
+        $articleLocale = ArticleService::getArticleLocaleDetails($articleId, $localeId);
         $favorite = ArticleService::getFavoriteArticleDetails($userId, $articleId, $articleLocale->id);
         if ($favorite == null) {
             $data = [
@@ -80,5 +83,66 @@ class ArticleService
         $article->relateArticle = $relateArticle;
 
         return $article;
+    }
+
+    public static function validatePostPhoto($input)
+    {
+        $mimes = config('images.validate.post_photo.mimes');
+        $maxSize = config('images.validate.post_photo.max_size');
+
+        return Validator::make($input, [
+            'description' => 'required|max:100',
+            'file' => 'required|mimes:' . $mimes . '|max:' . $maxSize,
+        ]);
+    }
+
+    public static function postPhoto($data)
+    {
+        $photoUploadPath = config('images.paths.post_photo') . '/' . $data['articleLocale']->id . '/' . $data['userId'];
+        $photo = ImageService::uploadFile($data['file'], 'post_photo', $photoUploadPath);
+
+        if ($photo) {
+            return PostPhoto::create([
+                'article_id' => $data['articleLocale']->article_id,
+                'article_locale_id' => $data['articleLocale']->id,
+                'photo' => $photo,
+                'content' => strip_tags($data['description']),
+                'user_id' => $data['userId'],
+            ]);
+        }
+
+        return false;
+    }
+
+    public static function getPostPhotosList($articleId, $localeId, $searchCondition = null, $orderBy = null, $limit = 10)
+    {
+        $articleLocale = self::getArticleLocaleDetails($articleId, $localeId);
+        $postPhotos = PostPhoto::with('user')
+            // ->where('status', config('post_photo.status.approved')) //will be used latter
+            ->where('article_locale_id', $articleLocale->id);
+
+        if ($searchCondition) {
+            $postPhotos = $postPhotos->whereHas('user', function ($query) use ($searchCondition) {
+                $query->where('name', 'like', '%' . $searchCondition['user_name'] . '%');
+            });
+        }
+
+        switch ($orderBy) {
+            case PostPhoto::ORDER_BY_CREATED_DESC:
+                $postPhotos = $postPhotos->orderBy('created_at', 'desc');
+                break;
+            case PostPhoto::ORDER_BY_CREATED_ASC:
+                $postPhotos = $postPhotos->orderBy('created_at', 'asc');
+                break;
+            case PostPhoto::ORDER_BY_MOST_POPULAR:
+                //TO DO
+                break;
+
+            default:
+                $postPhotos = $postPhotos->orderBy('created_at', 'desc');
+                break;
+        }
+
+        return $postPhotos->paginate($limit);
     }
 }

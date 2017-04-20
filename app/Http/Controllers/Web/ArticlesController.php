@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Web;
 
 use App\Services\Web\ArticleService;
+use App\Services\Web\CommentService;
 use App\Services\Web\CategoryService;
+use Illuminate\Http\Request;
 
 class ArticlesController extends BaseController
 {
@@ -32,6 +34,16 @@ class ArticlesController extends BaseController
         $this->viewData['article'] = $article;
         $this->viewData['title'] = trans('web/global.title', ['article_title' => $article->locale->title]);
         $this->viewData['photo'] = $article->photo;
+        $this->viewData['comments'] = CommentService::lists($article->locale->id, config('limitation.comment.per_page'));
+        if ($article->post_photo) {
+            $this->viewData['postPhotos'] = ArticleService::getPostPhotosList(
+                $article->id,
+                $this->currentLocaleId,
+                [],
+                'created_desc',
+                config('limitation.post_photo.per_page')
+            );
+        }
 
         if (auth()->check()) {
             $this->viewData['favorite'] = ArticleService::getFavoriteArticleDetails(
@@ -44,7 +56,7 @@ class ArticlesController extends BaseController
         return view('web.articles.show', $this->viewData);
     }
 
-    public function countLike($articleId, Request $request)
+    public function countLike(Request $request, $articleId)
     {
         if (!auth()->check()) {
             return response('', 404);

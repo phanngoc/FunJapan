@@ -1,5 +1,5 @@
 @foreach ($comments as $comment)
-    <li class="media no-overflow-hidden">
+    <li class="media no-overflow-hidden parent-comment">
         @include('web.comments._single_comment', ['comment' => $comment])
         @if ($comment->children->count())
                 <!-- REPLY COMMENT -->
@@ -14,8 +14,7 @@
                     @if (auth()->check())
                         @include('web.comments._form_reply', [
                             'parentId' => $comment->id,
-                            'articleId' => $articleId,
-                            'articleLocaleId' => $articleLocaleId
+                            'articleId' => $comment->article_id,
                         ])
                     @endif
                 </div>
@@ -27,8 +26,7 @@
                 @if (auth()->check())
                     @include('web.comments._form_reply', [
                         'parentId' => $comment->id,
-                        'articleId' => $articleId,
-                        'articleLocaleId' => $articleLocaleId
+                        'articleId' => $comment->article_id,
                     ])
                 @endif
             </div>

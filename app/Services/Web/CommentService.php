@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use App\Models\FavoriteComment;
 use App\Models\ArticleLocale;
 use App\Models\Comment;
+use App\Services\Web\ArticleService;
 use Exception;
 use DB;
 
@@ -43,14 +44,13 @@ class CommentService
             ->paginate($limit);
     }
 
-    public static function getCommentsListWithPaginator($articleLocaleId, $articleId, $limit = 10)
+    public static function getCommentsListWithPaginator($articleId, $localeId, $limit = 10)
     {
-        $comments = self::lists($articleLocaleId, $limit);
+        $articleLocale = ArticleService::getArticleLocaleDetails($articleId, $localeId);
+        $comments = self::lists($articleLocale->id, $limit);
 
         $htmlComments = View::make('web.comments._list_comments')
             ->with('comments', $comments)
-            ->with('articleId', $articleId)
-            ->with('articleLocaleId', $articleLocaleId)
             ->render();
 
         $htmlPaginator = View::make('web.comments._pagination')

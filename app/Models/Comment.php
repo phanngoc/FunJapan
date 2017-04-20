@@ -33,7 +33,9 @@ class Comment extends BaseModel
         parent::boot();
 
         static::created(function ($comment) {
-            $comment->articleLocale->increment('comment_count');
+            if (!$comment->parent_id) {
+                $comment->articleLocale->increment('comment_count');
+            }
         });
 
         static::deleting(function ($comment) {
@@ -51,6 +53,11 @@ class Comment extends BaseModel
     public function children()
     {
         return $this->hasMany(Comment::class, 'parent_id', 'id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Comment::class, 'parent_id', 'id');
     }
 
     public function getPostedTimeAttribute()

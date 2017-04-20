@@ -31,5 +31,5 @@
     <a class="engagement-favorite engagement-interactive" data-comment-id="{{ $comment->id }}" href="javascript:;">
         <i class="fa fa-heart {{ $comment->isFavorite() ? 'active' : 'disabled' }}"></i>
     </a>
-    <span class="engagement-count">{{ $comment->favorite_count }}</span>
+    <span class="engagement-count">{{ $comment->favorite_count ?? 0 }}</span>
 </div>

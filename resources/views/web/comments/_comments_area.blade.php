@@ -1,5 +1,5 @@
 <!-- COMMENT AREA -->
-<div id="comment-area" class="comment-area" data-article-id="{{ $articleLocale->article_id }}" data-article-locale-id="{{ $articleLocale->id }}">
+<div class="comment-area" data-article-id="{{ $articleLocale->article_id }}" data-article-locale-id="{{ $articleLocale->id }}">
     <div id="comment-area-desktop">
         <div class="list-group">
             <div class="list-group-header">
@@ -36,8 +36,10 @@
                 </div>
             @endif
             <ul class="media-list media-list-comments comments-list">
+                @include('web.comments._list_comments', ['comments' => $comments])
             </ul>
             <div class="comment-pagination text-center">
+                @include('web.comments._pagination', ['paginator' => $comments])
             </div>
         </div>
     </div>
@@ -61,42 +63,6 @@
         </p>
     </div>
     <!-- EOF SHOW COMMENT MODAL BTN -->
-    <!-- DELETE COMMENT MODAL -->
-    <div class="modal fade" id="delete-comment-modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                </div>
-                <div class="modal-body">
-                    <p>{{ trans('web/comment.messages.confirm_delete') }}</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('web/comment.button.no') }}</button>
-                    <button type="button" class="btn btn-primary confirm-delete" data-comment-id="">{{ trans('web/comment.button.yes') }}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- EOF DELETE COMMENT MODAL -->
-    <!-- CONFIRM GIF MODAL -->
-    <div class="modal fade" id="confirm-gif-modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                </div>
-                <div class="modal-body">
-                    <p>{{ trans('web/comment.messages.confirm_post_gif') }}</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('web/comment.button.no') }}</button>
-                    <button type="button" class="btn btn-primary confirm-post-gif" data-comment-gif="">{{ trans('web/comment.button.yes') }}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- EOF CONFIRM GIF MODAL -->
 </div>
 <!-- EOF COMMENT AREA -->
 {{ Html::script('assets/js/web/comments.js') }}

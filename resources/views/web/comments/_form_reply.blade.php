@@ -15,6 +15,5 @@
     {{ Form::hidden('type', config('comment.type.text')) }}
     {{ Form::hidden('parentId', $parentId ?? null) }}
     {{ Form::hidden('articleId', $articleId) }}
-    {{ Form::hidden('articleLocaleId', $articleLocaleId) }}
     {{ Form::close() }}
 </div>

@@ -30,8 +30,11 @@ Route::group(['middleware' => 'web', 'namespace' => 'Web'], function () {
     Route::get('account/facebook', 'RegisterController@storeViaFaceBook');
     Route::get('facebook/callback', 'RegisterController@storeViaFaceBookCallBack');
 
-    Route::get('/comments/lists/{articleId}/{articleLocaleId}', 'CommentsController@lists');
+    Route::get('/comments/lists/{articleId}', 'CommentsController@lists');
     Route::get('/comments/getEmoji', 'CommentsController@getEmoji');
+    Route::get('/comments/getGif', 'CommentsController@getGif');
+    Route::post('/articles/{id}/photo', 'ArticlePhotosController@store');
+    Route::get('/articles/{id}/listsPhoto/{orderBy}', 'ArticlePhotosController@lists');
 
     Route::get('account/lost-password', 'ResetPasswordController@lostPassWord');
     Route::post('account/lost-password', 'ResetPasswordController@lostPassWordProcess');
