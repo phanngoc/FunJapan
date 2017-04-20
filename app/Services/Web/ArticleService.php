@@ -8,6 +8,7 @@ use App\Models\ArticleLocale;
 use App\Models\FavoriteArticle;
 use App\Services\Web\LocaleService;
 use Illuminate\Support\Facades\App;
+use Carbon\Carbon;
 
 class ArticleService
 {
@@ -15,6 +16,8 @@ class ArticleService
     {
         return ArticleLocale::where('article_id', $id)
             ->where('locale_id', $localeId)
+            ->whereNotNull('published_at')
+            ->where('published_at', '<', Carbon::now())
             ->first();
     }
 
@@ -47,5 +50,15 @@ class ArticleService
             'count' => $articleLocale->like_count,
             'check' => !$favorite ? true : false,
         ]);
+    }
+
+    public static function getNextArticle($id, $localeId)
+    {
+        return ArticleLocale::where('id', '<', $id)
+            ->where('locale_id', $localeId)
+            ->whereNotNull('published_at')
+            ->where('published_at', '<', Carbon::now())
+            ->orderBy('id', 'desc')
+            ->first();
     }
 }
