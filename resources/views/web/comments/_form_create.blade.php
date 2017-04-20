@@ -15,7 +15,7 @@
     'class' => 'comment-to-top form-create-comment form-comment',
 ]) }}
     {{ Form::textarea('content', null, [
-        'class' => 'comment-input form-control no-radius-bot',
+        'class' => 'comment-input post-comment form-control no-radius-bot',
         'placeholder' => trans('web/comment.place_holder.create_comment'),
         'rows' => 4,
     ]) }}

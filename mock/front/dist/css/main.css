@@ -4360,8 +4360,8 @@ button.close {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url('/mpf/images/fonts/glyphicons-halflings-regular.eot');
-  src: url('/mpf/images/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/mpf/images/fonts/glyphicons-halflings-regular.woff') format('woff'), url('/mpf/images/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('/mpf/images/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: url('/assets/fonts/glyphicons-halflings-regular.eot');
+  src: url('/assets/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/glyphicons-halflings-regular.woff') format('woff'), url('/assets/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 .glyphicon {
   position: relative;
@@ -9442,13 +9442,13 @@ ul.engagement li > a:focus {
 #gifs-search-block {
   /*right: 31px;*/
   left: 0;
-  height: 400px;
+  height: 395px;
   max-height: 400px;
 }
 #emoji-picker-block {
   /*right: 1px;*/
   left: 0;
-  height: 300px;
+  height: 295px;
   max-height: 300px;
 }
 .placeholder-style {
@@ -9665,7 +9665,7 @@ ul.engagement li > a:focus {
   margin-left: 0;
   margin-right: 0;
   background-color: #f3f3f4;
-  padding: 5px 20px;
+  padding: 8px 20px;
 }
 @media only screen and (max-width: 768px) {
   .comment-area .comment-posting-form .radius-bot {
@@ -9681,7 +9681,6 @@ ul.engagement li > a:focus {
 }
 .comment-area .comment-posting-form .radius-bot .text-right {
   float: right;
-  padding: 4px 0;
 }
 .comment-area .comment-posting-form .radius-bot button {
   border-radius: 50px;

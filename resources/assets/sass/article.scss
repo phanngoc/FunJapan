@@ -1,3 +1,20 @@
 #alert-message {
     text-align: center;
 }
+
+.break-word {
+    word-break: break-word;
+}
+
+.modal-content, .modal-dialog {
+    height: inherit;
+    overflow: auto;
+}
+
+.modal-dialog {
+    position: static;
+}
+
+.modal {
+    overflow-y: auto;
+}

@@ -28,6 +28,6 @@ return [
     ],
     'place_holder' => [
         'reply_comment' => 'Reply comment',
-        'create_comment' => 'What\'s on your mind?',
+        'create_comment' => 'Join the discussion...',
     ],
 ];
