@@ -57,8 +57,8 @@ return [
     ],
     'label' => [
         'name_title' => 'Your Name',
-        'email_title' => 'E-Mail',
-        'gender_title' => 'Gender',
+        'email_title' => 'E-Mail Address',
+        'gender_title' => 'E-Mail Address',
         'password_title' => 'Password',
         're_password_title' => 'Password, Again',
         're_password_placeholder' => 'Confirm your password',
@@ -80,9 +80,9 @@ return [
     ],
     'register_page' => [
         'banner' => [
-            'step_1_title' => 'Cek benefit member Fun! Japan',
-            'step_2_title' => 'Isi datamu',
-            'step_3_title' => 'Registrasi selesai',
+            'step_1_title' => 'Check member benefit',
+            'step_2_title' => 'Fill your information',
+            'step_3_title' => 'Registration completed',
             'text_country' => 'Japan Indonesia',
         ],
         'term_title' => 'Terms and Conditions and Privacy policy'

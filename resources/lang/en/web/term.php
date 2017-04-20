@@ -1,12 +1,12 @@
-<div class="form-group term">
-  <label for="term" class="col-form-label">Terms and conditions</label>
-  <div class="scrollbar-inner default-skin">
-    <h1>Fun! Japan Terms of Use</h1>
+<?php
+
+return [
+    'content' => "<h1>Fun! Japan Terms of Use</h1>
     <p>Welcome to Fun! Japan!<br> “Fun! Japan” collectively means a project (“Fun! Japan Project”) that offers products and services through various means, including this website (including, but not limited to the web domain indonesia.fun-japan.jp
       – referred to as “Site” – which may later be revised or changed for any reason), and strives to expand interest in Japan by introducing Japanese products and services to consumers across Asia.
     </p>
     <p>
-      The governing body of Fun! Japan, the Fun! Japan Team, offers services and information to its customers according to the following Terms of Use (“Terms of Use”). "Fun! Japan" hereby refers to the Fun! Japan Project, this Site, the individual members or
+      The governing body of Fun! Japan, the Fun! Japan Team, offers services and information to its customers according to the following Terms of Use (“Terms of Use”). \"Fun! Japan\" hereby refers to the Fun! Japan Project, this Site, the individual members or
       company that makes up the Fun! Japan Team, individually or collectively,&nbsp;as implied by the context.
     </p>
     <p>
@@ -119,6 +119,5 @@
     <h2>Inquiries</h2>
     <p>
       Email: support-id@fun-japan.jp
-    </p>
-  </div>
-</div>
+    </p>"
+];

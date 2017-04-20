@@ -15,7 +15,7 @@ class UserService
     {
         $rules = [
             'name' => 'required|max:50',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|max:100|email|unique:users,email',
             'gender' => 'required',
             'location_id' => 'required',
             'accept_policy' => 'required',
@@ -23,7 +23,8 @@ class UserService
         ];
 
         if (!$input['registered_by']) {
-            $rules['password'] =  'required|min:6|confirmed';
+            $rules['password'] =  'required|min:6|max:50|confirmed';
+            $rules['password_confirmation'] = 'required|min:6|max:50';
         }
 
         $messages = [
@@ -38,6 +39,11 @@ class UserService
             'location_id.required' => trans('web/user.validate.required.location_id'),
             'accept_policy.required' => trans('web/user.validate.required.accept_policy'),
             'birthday.required' => trans('web/user.validate.required.birthday'),
+            'birthday.date' => trans('web/user.validate.required.birthday'),
+            'password_confirmation.required' => trans('web/user.validate.required.password_confirmation'),
+            'email.max' => trans('web/user.validate.max.email'),
+            'password.max' => trans('web/user.validate.max.password'),
+            'password_confirmation.max' => trans('web/user.validate.max.password_confirmation'),
         ];
 
         return Validator::make($input, $rules, $messages)->messages()->toArray();
@@ -68,8 +74,6 @@ class UserService
     public static function create($data)
     {
         $data['point'] = config('user.default_point');
-        $data['subscription_new_letter'] = $data['subscription_new_letter'] ? 1 : 0;
-        $data['subscription_reply_noti'] = $data['subscription_reply_noti'] ? 1 : 0;
 
         try {
             DB::beginTransaction();
