@@ -1067,11 +1067,7 @@
                 "framework",
                 "laravel"
             ],
-<<<<<<< HEAD
-            "time": "2017-04-16 13:33:34"
-=======
             "time": "2017-04-16T13:33:34+00:00"
->>>>>>> Create article and show list tag
         },
         {
             "name": "laravel/socialite",
