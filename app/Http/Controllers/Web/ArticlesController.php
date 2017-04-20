@@ -31,7 +31,27 @@ class ArticlesController extends BaseController
         }
 
         $this->viewData['articleLocale'] = $articleLocale;
+        $this->viewData['title'] = trans('web/global.title', ['article_title' => $articleLocale->title]);
+        $this->viewData['photo'] = $articleLocale->article->photo;
+        if (auth()->check()) {
+            $this->viewData['favorite'] = ArticleService::getFavoriteArticleDetails(
+                auth()->user()->id,
+                $articleLocale->article->id,
+                $articleLocale->id
+            );
+        }
 
         return view('web.articles.show', $this->viewData);
+    }
+
+    public function countLike($articleId, Request $request)
+    {
+        if (!auth()->check()) {
+            return response('', 404);
+        } else {
+            if ($request->ajax()) {
+                return ArticleService::countLike(auth()->user()->id, $articleId, $this->currentLocaleId);
+            }
+        }
     }
 }
