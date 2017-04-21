@@ -1,7 +1,10 @@
 <header>
     <ul class="detail-breadcrumbs">
         <li>
-            <a href="#"><i class="fa fa-home" aria-hidden="true"></i> {{ trans('web/global.title') }}</a> <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            <a href="#">
+                <i class="fa fa-home" aria-hidden="true"></i> {{ trans('web/global.title', ['article_title' => '']) }}
+            </a>
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
         </li>
         <li>
             <a href="#">{{ $categoryName }}</a> <i class="fa fa-chevron-right" aria-hidden="true"></i>

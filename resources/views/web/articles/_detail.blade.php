@@ -3,10 +3,13 @@
     <div class="detail-engagement">
         <ul class="detail-favorite">
             <li>
-                <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
-                    <i class="fa fa-heart" aria-hidden="true"></i>
+                <a class="engagement-favorite {{ (isset($favorite) && $favorite != null) ? 'active' : '' }}"
+                    href="{{ !Auth::check() ? action('Web\LoginController@showLoginForm') : 'javascript:;' }}">
+                    <i class="fa fa-heart" aria-hidden="true" data-article-id="{{ $articleLocale->article->id }}"></i>
                 </a>
-                <span class="engagement-count">{{ $articleLocale->like_count }}</span>
+                <span class="engagement-count {{ (isset($favorite) && $favorite != null) ? 'active' : '' }}">
+                    {{ $articleLocale->like_count }}
+                </span>
             </li>
             <li>
                 <span class="verticle-slash">|</span>
@@ -20,7 +23,9 @@
             </li>
         </ul>
     </div>
-    @include('web.includes._social_share')
+    @include('web.includes._social_share', [
+        'url' => request()->fullUrl()
+    ])
     <!-- Article Main -->
     <div class="article-body clearfix">
         {!! $articleLocale->content !!}
@@ -29,10 +34,13 @@
     <div class="detail-engagement">
         <ul class="detail-favorite">
             <li>
-                <a class="engagement-favorite" data-mpf-article-id="66e2b2081c4a40218c5ff119c68f984b" href="#">
-                    <i class="fa fa-heart" aria-hidden="true"></i>
+                <a class="engagement-favorite {{ (isset($favorite) && $favorite != null) ? 'active' : '' }}"
+                    href="{{ !Auth::check() ? action('Web\LoginController@showLoginForm') : 'javascript:;' }}">
+                    <i class="fa fa-heart" aria-hidden="true" data-article-id="{{ $articleLocale->article->id }}"></i>
                 </a>
-                <span class="engagement-count">{{ $articleLocale->like_count }}</span>
+                <span class="engagement-count {{ (isset($favorite) && $favorite != null) ? 'active' : '' }}">
+                    {{ $articleLocale->like_count }}
+                </span>
             </li>
             <li>
                 <span class="verticle-slash">|</span>
@@ -40,11 +48,12 @@
             <li>
                 <span class="post-text">{{ trans('web/global.posted_by') }} </span><span class="post-author">
                     {{ isset($articleLocale->article->user) ? $articleLocale->article->user->name : '' }}
-                </span>
             </li>
         </ul>
     </div>
-    @include('web.includes._social_share')
+    @include('web.includes._social_share', [
+        'url' => request()->fullUrl()
+    ])
     @if (isset($articleLocale->article->articleTags))
         @include('web.includes._list_tags', [
             'listTags' => $articleLocale->article->articleTags

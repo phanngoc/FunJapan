@@ -47,4 +47,5 @@ Route::group(['middleware' => 'web', 'namespace' => 'Web'], function () {
     });
 
     Route::get('/articles/{id}', 'ArticlesController@show');
+    Route::get('/articles/{id}/like', 'ArticlesController@countLike');
 });
