@@ -7,8 +7,7 @@
         <meta name="fragment" content="!">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta property="og:image" content="{{ $photo ?? '' }}" />
-        <title>{{ $title ?? trans('web/global.title') }}</title>
+        <title>{{ $title ?? trans('web/global.title', ['article_title' => '']) }}</title>
         @include('layouts.includes.scripts_detail')
         @include('layouts.includes.styles')
     </head>
@@ -21,11 +20,16 @@
                         @include('web.articles._notice_messages')
                     @else
                         <div class="main-content">
-                          <div class="row gutter-32">
-                            @yield('content')
-                            @include('web.includes._side_bar_detail')
-                          </div>
+                            <div class="row gutter-32">
+                                @yield('content')
+                                @include('web.includes._side_bar_detail')
+                            </div>
                           @include('web.articles._related_articles')
+                        </div>
+                        <div class="next-page">
+                            @if ($nextArticle && isset($nextArticle->article_id))
+                                <a href="{{ url('articles/' . $nextArticle->article_id) }}"></a>
+                            @endif
                         </div>
                     @endif
                 </div>

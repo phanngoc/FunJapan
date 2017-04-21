@@ -30,6 +30,7 @@ class ArticlesController extends BaseController
             return view('web.articles.show', $this->viewData)->withErrors(trans('web/global.error'));
         }
 
+        $this->viewData['nextArticle'] = ArticleService::getNextArticle($articleLocale->id, $this->currentLocaleId);
         $this->viewData['articleLocale'] = $articleLocale;
         $this->viewData['title'] = trans('web/global.title', ['article_title' => $articleLocale->title]);
         $this->viewData['photo'] = $articleLocale->article->photo;
