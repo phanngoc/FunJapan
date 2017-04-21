@@ -23,6 +23,11 @@ return [
                     'height' => 100,
                 ],
             ],
-        ]
+        ],
+    ],
+    'relate_article' => [
+        'same_category' => 3,
+        'same_tag' => 3,
+        'random' => 2,
     ]
 ];

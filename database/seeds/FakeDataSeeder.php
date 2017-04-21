@@ -13,5 +13,6 @@ class FakeDataSeeder extends Seeder
     {
         $this->call(ArticleSeeder::class);
         $this->call(CategorySeeder::class);
+        $this->call(TagSeeder::class);
     }
 }

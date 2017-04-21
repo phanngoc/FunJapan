@@ -20,11 +20,11 @@
                         @include('web.articles._notice_messages')
                     @else
                         <div class="main-content">
-                            <div class="row gutter-32">
-                                @yield('content')
-                                @include('web.includes._side_bar_detail')
-                            </div>
-                          @include('web.articles._related_articles')
+                          <div class="row gutter-32">
+                            @yield('content')
+                            @include('web.includes._side_bar_detail')
+                          </div>
+                          @include('web.articles._related_articles', ['articles' => $article->relateArticle])
                         </div>
                         <div class="next-page">
                             @if ($nextArticle && isset($nextArticle->article_id))
