@@ -224,7 +224,7 @@ class UserService
     public static function validateResetPassword($input)
     {
         $rules = [
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:6|max:50|confirmed',
             'password_confirmation' => 'required',
             'token' => 'required',
         ];
@@ -232,7 +232,8 @@ class UserService
         $messages = [
             'password.required' => trans('web/user.validate.required.password'),
             'password.min' => trans('web/user.validate.min.password'),
-            'password_confirmation.required' => trans('web/user.validate.required.re_password'),
+            'password.max' => trans('web/user.validate.max.password'),
+            'password_confirmation.required' => trans('web/user.validate.required.password_confirmation'),
             'token.required' => trans('web/user.token_not_found'),
         ];
 
