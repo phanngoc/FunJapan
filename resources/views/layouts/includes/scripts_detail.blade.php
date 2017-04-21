@@ -6,7 +6,7 @@
 <!-- Comment-->
 {{ Html::script('assets/js/main/comment.js') }}
 {{ Html::script('https://twemoji.maxcdn.com/twemoji.min.js?2.2.2') }}
-{{ Html::script('assets/js/infinite-scroll/jquery.infinitescroll.js') }}
+{{ Html::script('assets/js/web/infinite-scroll/jquery.infinitescroll.js') }}
 {{ Html::script('assets/js/web/article.js') }}
 <script>
 $(function() {

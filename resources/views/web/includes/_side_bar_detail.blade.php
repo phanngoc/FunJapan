@@ -7,11 +7,11 @@
                 <p class="list-group-title">{{ trans('admin/global.author') }}</p>
             </div>
             <p class="about-author">
-                {{ isset($articleLocale->article->user) ? $articleLocale->article->user->description : '' }}
+                {{ isset($article->locale->article->user) ? $article->locale->article->user->description : '' }}
             </p>
         </div>
         <!-- EOF ABOUT AUTHOR -->
-        @include('web.comments._comments_area', ['articleLocale' => $articleLocale])
+        @include('web.comments._comments_area', ['articleLocale' => $article->locale])
     </div>
     <!-- EOF SIDEBAR -->
 </div>

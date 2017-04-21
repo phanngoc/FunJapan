@@ -38,7 +38,7 @@ return [
     'updated_fail' => 'Updated fail',
     'lost_password' => [
         'title' => 'Lupa Kata Sandi?',
-        'title_requested' => 'Reset Kata Sandi',
+        'title_requested' => 'Terima Kasih!',
         'title_reset_password' => 'Terima Kasih!',
         'description' => 'Silakan masukkan alamat emailmu. Kamu akan menerima link untuk membuat kata sandi baru melalui email.',
         'description_requested' => 'Silakan periksa emailmu untuk konfirmasi link.',

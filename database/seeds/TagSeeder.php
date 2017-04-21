@@ -46,7 +46,7 @@ class TagSeeder extends Seeder
                     ],
                     [
                         'tag_id' => 2,
-                        'article_id' => $article->articleLocales->first()->id,
+                        'article_id' => $article->id,
                         'article_locale_id' => $article->articleLocales->first()->id,
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),

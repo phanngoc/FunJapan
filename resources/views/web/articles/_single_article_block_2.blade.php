@@ -1,9 +1,9 @@
 <div class="second-block">
-    <a href="#">
+    <a href="{{ action('Web\ArticlesController@show', ['id' => $article['id']]) }}">
         <div class="img-card second-block-img">
-            <img src="assets/images/article/recommended_img_2_1.jpg">
-            <p class="card-title"><span>What does the Japanese word "Yuki (雪)" mean? What does the Japanese word "Yuki (雪)" mean? What does the</span> </p>
-            <p class="card-title-sm"><span>What does the Japanese word "Yuki (雪)" mean? What does the</span></p>
+            <img src="{{ $article['photo'] }}">
+            <p class="card-title"><span>{{ $article['locale']->title }}</span> </p>
+            <p class="card-title-sm"><span>{{ $article['locale']->title }}</span></p>
         </div>
     </a>
 </div>

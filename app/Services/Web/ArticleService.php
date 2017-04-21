@@ -2,7 +2,6 @@
 
 namespace App\Services\Web;
 
-use Illuminate\Support\Facades\Validator;
 use App\Models\Article;
 use App\Models\ArticleLocale;
 use App\Models\FavoriteArticle;
@@ -12,7 +11,7 @@ use Carbon\Carbon;
 
 class ArticleService
 {
-    public static function getArticleDetails($id, $localeId)
+    public static function getArticleLocaleDetails($id, $localeId)
     {
         return ArticleLocale::where('article_id', $id)
             ->where('locale_id', $localeId)
@@ -60,5 +59,26 @@ class ArticleService
             ->where('published_at', '<', Carbon::now())
             ->orderBy('id', 'desc')
             ->first();
+    }
+
+    public static function getArticleDetail($id, $localeId)
+    {
+        $article = Article::find($id);
+        $article->locale = self::getArticleLocaleDetails($id, $localeId);
+        $relates = $article->getRelateArticle();
+        $relateArticle = [];
+
+        foreach ($relates as $relateType) {
+            if (count($relateType)) {
+                foreach ($relateType as $articleRelate) {
+                    $articleRelate['locale'] = self::getArticleLocaleDetails($articleRelate['id'], $localeId);
+                    $relateArticle[] = $articleRelate;
+                }
+            }
+        }
+
+        $article->relateArticle = $relateArticle;
+
+        return $article;
     }
 }
