@@ -54,6 +54,7 @@ return [
         'facebook_login_text' => 'Login with Facebook',
         'or' => 'ATAU',
         'email_login_title' => 'Sign in dengan e mail address',
+        'login_title' => 'Login to Fun! Japan',
     ],
     'label' => [
         'name_title' => 'Your Name',

@@ -6,4 +6,5 @@ return [
         'facebook' => 1,
     ],
     'token_expire' => 1,
+    'old_default' => 18,
 ];

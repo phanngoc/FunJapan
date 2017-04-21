@@ -109,7 +109,7 @@
                                     @foreach (range(1900, date("Y")) as $year)
                                         <option
                                             value="{{ $year }}"
-                                            {{ old('birthday_year') ? (old('birthday_year') == $year ? 'selected' : '') : ($year == 1992 ? 'selected' : '')   }}
+                                            {{ old('birthday_year') ? (old('birthday_year') == $year ? 'selected' : '') : ($year == date("Y") - config('user.old_default') ? 'selected' : '')   }}
                                         >
                                             {{ $year }}
                                         </option>

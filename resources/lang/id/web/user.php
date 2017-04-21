@@ -17,10 +17,10 @@ return [
             'password_confirmation' => 'Password confirmation needs to be longer, at least 6 letters.',
         ],
         'max' => [
-            'name' => 'Your name needs to be shorter, at most 50 letters.',
-            'password' => 'Your password needs to be shorter, at most 50 letters.',
-            'password_confirmation' => 'Your password confirmation needs to be shorter, at most 50 letters.',
-            'email' => 'Your email needs to be shorter, at most 100 letters.',
+            'name' => 'Please enter your name in 50 characters or less.',
+            'password' => 'Please enter your password in 50 characters or less.',
+            'password_confirmation' => 'Please enter your password confirmation in 50 characters or less.',
+            'email' => 'Please enter your email address in 100 characters or less.',
         ],
         'unique' => [
             'email' => 'Your account is already activated.',
@@ -54,6 +54,7 @@ return [
         'facebook_login_text' => 'Login with Facebook',
         'or' => 'ATAU',
         'email_login_title' => 'Sign in dengan e mail address',
+        'login_title' => 'Login ke Fun! Japan',
     ],
     'label' => [
         'name_title' => 'Your Name',
@@ -85,6 +86,6 @@ return [
             'step_3_title' => 'Registrasi selesai',
             'text_country' => 'Japan Indonesia',
         ],
-        'term_title' => 'Terms and Conditions and Privacy policy'
+        'term_title' => 'Terms and Conditions and Privacy Policy'
     ],
 ];
