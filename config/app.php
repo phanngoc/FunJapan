@@ -77,7 +77,10 @@ return [
     |
     */
 
-    'locale' => 'id',
+    'locale' => env('APP_LOCALE', 'id'),
+
+
+    'locales' => explode(',', env('APP_LOCALES', 'id,ms,th,tw')),
 
     /*
     |--------------------------------------------------------------------------
@@ -90,7 +93,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'id'),
 
     /*
     |--------------------------------------------------------------------------

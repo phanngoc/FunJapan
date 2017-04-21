@@ -10,6 +10,11 @@ use App\Services\Web\UserService;
 
 class RegisterController extends BaseController
 {
+    public function __construct()
+    {
+        config(['services.facebook.redirect' => route('facebook_callback')]);
+    }
+
     public function create()
     {
         $this->viewData['step'] = 1;

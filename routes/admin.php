@@ -12,7 +12,6 @@
 */
 
 Route::group(['namespace' => 'Admin'], function () {
-    Route::get('/', 'DashboardController@index');
 
     Route::resource('articles', 'ArticlesController');
     Route::get('articles/setOtherLanguage/{article}', 'ArticlesController@setOtherLanguage');
@@ -21,4 +20,6 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::resource('tags', 'TagsController');
     Route::get('tagsSuggest', 'TagsController@suggest');
     Route::get('api/tags', 'TagsController@getListTags');
+
+    Route::get('{action?}', 'DashboardController@index');
 });

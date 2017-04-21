@@ -63,32 +63,27 @@
                 margin-bottom: 30px;
             }
         </style>
+        <link media="all" type="text/css" rel="stylesheet" href="/assets/css/main.css">
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+        <div class="flex-center position-ref full-height top-header">
+            <div class="content header-text">
+                <div class="title m-b-md header-title-text">
+                    <p class="header-title-text">
+                        <a href="/">
+                            <img src="/assets/images/brand-icon.png" alt="brand-icon">
+                            <span>&nbsp;FUN!
+                        <span class="title-country">&nbsp;Japan Indonesia</span>
+                    </span>
+                        </a>
+                    </p>
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                    <a href="/facebook">Facebook</a>
+                    <a href="{{ url('id') }}">Indonesia</a>
+                    <a href="{{ url('ms') }}">Malaysia</a>
+                    <a href="{{ url('th') }}">Thailand</a>
+                    <a href="{{ url('tw') }}">Taiwan</a>
                 </div>
             </div>
         </div>

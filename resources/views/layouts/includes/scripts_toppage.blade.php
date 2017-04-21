@@ -1,5 +1,5 @@
-{{ Html::script('assets/js/vendor/jquery-3.2.1.js') }}
-{{ Html::script('assets/js/vendor/bootstrap-3.1.1.js') }}
+@include('layouts.includes.scripts')
+
 {{ Html::script('assets/js/vendor/slick-carousel.js') }}
 <!-- Category-->
 {{ Html::script('assets/js/main/popular-categories.js') }}
