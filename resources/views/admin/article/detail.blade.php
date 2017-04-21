@@ -12,7 +12,7 @@
                     <div class="tabs-container">
                         <ul class="nav nav-tabs">
                             @foreach ($article->articleLocales as $key => $articleLocale)
-                                <li class="@if ($key === 0) active @endif"><a data-toggle="tab" href="#{{ $articleLocale->locale->name }}">{{ $articleLocale->locale->name }}</a></li>
+                                <li class="@if ($tab == $articleLocale->locale->id) active @endif"><a data-toggle="tab" href="#{{ $articleLocale->locale->name }}">{{ $articleLocale->locale->name }}</a></li>
                             @endforeach
                             @if (count($article->articleLocales) !== count($locales))
                             <li>
@@ -25,7 +25,7 @@
                         </ul>
                         <div class="tab-content">
                             @foreach ($article->articleLocales as $key => $articleLocale)
-                                <div id="{{ $articleLocale->locale->name }}" class="tab-pane @if ($key === 0) active @endif">
+                                <div id="{{ $articleLocale->locale->name }}" class="tab-pane @if ($tab == $articleLocale->locale->id) active @endif">
                                     <div class="panel-body">
                                         <h2>{{ $articleLocale->title }}</h2>
                                         <hr>
@@ -39,18 +39,18 @@
                                         <hr>
                                         <strong>{{ trans('admin/article.list_tag') }}: </strong>
                                         @foreach ($article->articleTags as $articleTag)
-                                            @if ($articleTag->article_locale_id == $articleLocale->locale_id)
+                                            @if ($articleTag->article_locale_id == $articleLocale->id)
                                                 #{{ $articleTag->tag->name }}
                                             @endif
                                         @endforeach
+                                        <hr>
+                                        <strong>{{ trans('admin/article.published_at') }}: </strong>
+                                        {{ $articleLocale->published_at }}
                                         <hr>
                                         <a href="{{ action('Admin\ArticlesController@edit',
                                             [$article->id, 'locale' => $articleLocale->locale_id]) }}" class="btn btn-w-m btn-primary">
                                             {{ trans('admin/article.button.edit') }}
                                         </a>
-                                        <hr>
-                                        <strong>{{ trans('admin/article.published_at') }}: </strong>
-                                        {{ $articleLocale->published_at }}
                                     </div>
                                 </div>
                             @endforeach

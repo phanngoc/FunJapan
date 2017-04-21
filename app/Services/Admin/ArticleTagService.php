@@ -8,7 +8,7 @@ use DB;
 
 class ArticleTagService extends BaseService
 {
-    public static function create($article, $localeId, $tags)
+    public static function create($article, $articleLocaleId, $tags)
     {
         if (!$tags) {
             return true;
@@ -20,7 +20,7 @@ class ArticleTagService extends BaseService
             try {
                 foreach ($tagsCreated as $tagId) {
                     $articleTag = ArticleTag::create([
-                        'article_locale_id' => $localeId,
+                        'article_locale_id' => $articleLocaleId,
                         'article_id' => $article->id,
                         'tag_id' => $tagId,
                     ]);

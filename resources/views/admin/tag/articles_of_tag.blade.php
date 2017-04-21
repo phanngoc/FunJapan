@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
-                <div class="ibox-title"></div>
+                <div class="ibox-title"><h2>{{ trans('admin/article.list_article_of_tag') . $tag->name }}</h2></div>
                 <div class="ibox-content">
                     <table class="table table-striped table-bordered table-hover" id="article-table">
                         <thead>
@@ -20,15 +20,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($articleLocales as $articleLocale)
+                            @foreach ($articlesOfTag as $article)
                                 <tr>
-                                    <td>{{ $articleLocale->id }}</td>
-                                    <td>{{ $articleLocale->title }}</td>
-                                    <td>{{ $articleLocale->locale->name }}</td>
-                                    <td>{{ $articleLocale->article->created_at }}</td>
+                                    <td>{{ $article->id }}</td>
+                                    <td>{{ $article->title }}</td>
+                                    <td>{{ $article->locale->name }}</td>
+                                    <td>{{ $article->created_at }}</td>
                                     <td>
                                         <a href="{{ action('Admin\ArticlesController@show',
-                                                [$articleLocale->article_id, 'locale' => $articleLocale->locale->id]) }}">
+                                                [$article->article_id, 'locale' => $article->locale->id]) }}">
                                             {{ trans('admin/article.detail') }}
                                         </a>
                                     </td>
@@ -37,7 +37,7 @@
                         </tbody>
                     </table>
                     <div class="">
-                        {{ $articleLocales->appends(Request::except('page'))->links() }}
+                        {{ $articlesOfTag->appends(Request::except('page'))->links() }}
                     </div>
                 </div>
             </div>

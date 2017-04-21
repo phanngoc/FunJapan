@@ -22,8 +22,10 @@ class ArticlesController extends Controller
         return view('admin.article.index', $this->viewData);
     }
 
-    public function show(Article $article)
+    public function show(Request $request, Article $article)
     {
+        $this->viewData['tab'] = $request->input('locale');
+
         $this->viewData['article'] = $article;
         $this->viewData['locales'] = LocaleService::getAllLocales();
 
@@ -48,7 +50,7 @@ class ArticlesController extends Controller
         }
 
         if ($article = ArticleService::create($inputs)) {
-            return redirect()->action('Admin\ArticlesController@show', [$article->id]);
+            return redirect()->action('Admin\ArticlesController@show', [$article->id, 'locale' => $inputs['locale']]);
         }
 
         return redirect()->back()->withErrors(['errors' => trans('admin/article.create_error')]);
@@ -64,7 +66,7 @@ class ArticlesController extends Controller
             $articleLocale = $article->articleLocales->where('locale_id', $localeId)->first();
             $this->viewData['articleLocale'] = $articleLocale;
             $this->viewData['categories'] = CategoryLocaleService::getCategories();
-            $tagLocales = $article->articleTags->where('article_locale_id', $localeId);
+            $tagLocales = $article->articleTags->where('article_locale_id', $articleLocale->id);
             $this->viewData['tags'] = [];
             foreach ($tagLocales as $tagLocale) {
                 $this->viewData['tags'][$tagLocale->tag->name] = $tagLocale->tag->name;
@@ -87,7 +89,7 @@ class ArticlesController extends Controller
         }
 
         if (ArticleService::update($article, $inputs)) {
-            return redirect()->action('Admin\ArticlesController@show', [$article->id])
+            return redirect()->action('Admin\ArticlesController@show', [$article->id, 'locale' => $inputs['locale']])
                 ->with(['message' => trans('admin/article.update_success')]);
         }
 
@@ -117,7 +119,7 @@ class ArticlesController extends Controller
         }
 
         if ($articleLocale = ArticleLocaleService::createArticleOtherLanguage($article, $inputs)) {
-            return redirect()->action('Admin\ArticlesController@show', [$article->id])
+            return redirect()->action('Admin\ArticlesController@show', [$article->id, 'locale' => $inputs['locale']])
                 ->with(['message' => trans('admin/article.add_success')]);
         }
 

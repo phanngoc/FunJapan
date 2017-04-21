@@ -3,6 +3,7 @@
 namespace App\Services\Admin;
 
 use App\Models\ArticleLocale;
+use App\Models\ArticleTag;
 use Image;
 use File;
 use Illuminate\Support\Facades\Storage;
@@ -14,6 +15,14 @@ class ArticleLocaleService extends BaseService
     {
         return ArticleLocale::paginate();
     }
+
+    public static function listArticleByTags($tag)
+    {
+        $articleLocaleIds = ArticleTag::where('tag_id', $tag->id)->pluck('article_locale_id');
+
+        return ArticleLocale::whereIn('id', $articleLocaleIds)->paginate();
+    }
+
     public static function create($inputs, $thumbnail)
     {
         $articleLocale = ArticleLocale::create($inputs);
@@ -84,8 +93,8 @@ class ArticleLocaleService extends BaseService
         ];
         DB::beginTransaction();
         try {
-            if (static::create($articleLocaleData, $inputs['thumbnail'])) {
-                if (ArticleTagService::create($article, (int)$inputs['locale'], $inputs['tags'] ?? [])) {
+            if ($articleLocale = static::create($articleLocaleData, $inputs['thumbnail'])) {
+                if (ArticleTagService::create($article, $articleLocale->id, $inputs['tags'] ?? [])) {
                     DB::commit();
 
                     return true;

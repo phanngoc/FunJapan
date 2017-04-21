@@ -91,7 +91,7 @@
 
                     <div class="form-group">
                         <div class="col-sm-10 col-sm-offset-2">
-                            {{Form::submit(trans('admin/article.button.add'), ['class' => 'btn btn-primary'])}}
+                            {{Form::submit(trans('admin/article.button.update'), ['class' => 'btn btn-primary'])}}
                         </div>
                     </div>
                 {{Form::close()}}

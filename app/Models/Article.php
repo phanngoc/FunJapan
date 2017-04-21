@@ -13,9 +13,9 @@ class Article extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'photo',
         'user_id',
         'category_id',
+        'is_top_article',
     ];
 
     public function articleLocales()

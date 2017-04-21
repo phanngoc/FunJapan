@@ -18,7 +18,6 @@ class ArticleService extends BaseService
             'summary' => 'required|min:1',
             'locale' => 'required',
             'category' => 'required',
-            'publish_date' => 'required|after_or_equal:'. Carbon::now()->format('d-m-Y'),
             'thumbnail' => 'image|max:' . config('article.thumbnail.upload.max_size'),
         ];
 
@@ -37,6 +36,9 @@ class ArticleService extends BaseService
                 'user_id' => Auth::id(),
                 'category_id' => $inputs['category'],
             ];
+            if (isset($inputs['is_top_article'])) {
+                $articleData['is_top_article'] = $inputs['is_top_article'];
+            }
 
             if ($article = Article::create($articleData)) {
                 $articleLocaleData = [
@@ -48,8 +50,8 @@ class ArticleService extends BaseService
                     'published_at' => $inputs['publish_date'],
                 ];
 
-                if (ArticleLocaleService::create($articleLocaleData, $inputs['thumbnail'])) {
-                    if (ArticleTagService::create($article, (int)$inputs['locale'], $inputs['tags'] ?? [])) {
+                if ($articleLocale = ArticleLocaleService::create($articleLocaleData, $inputs['thumbnail'])) {
+                    if (ArticleTagService::create($article, $articleLocale->id, $inputs['tags'] ?? [])) {
                         DB::commit();
 
                         return $article;
@@ -84,7 +86,7 @@ class ArticleService extends BaseService
                     $articleLocaleData['thumbnail'] = $inputs['thumbnail'];
                 }
                 if (ArticleLocaleService::update($articleLocaleData, $inputs['articleLocaleId'])) {
-                    if (ArticleTagService::update($article, (int)$inputs['locale'], $inputs['tags'] ?? [])) {
+                    if (ArticleTagService::update($article, $inputs['articleLocaleId'], $inputs['tags'] ?? [])) {
                         DB::commit();
 
                         return true;
