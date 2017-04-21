@@ -141,7 +141,7 @@ class RegisterController extends BaseController
 
             if ($validate['success']) {
                 auth()->login($validate['data']);
-                return redirect('/');
+                return redirect()->intended();
             }
 
             if (isset($validate['user_id'])) {

@@ -9,12 +9,20 @@
                             </div>
                             <div class="col-xs-offset-2 col-xs-8 text-center">
                                 <div>
+                                    <h3>{{ trans('web/user.login.login_title') }}</h3>
+                                </div>
+                                <div>
                                     <p>&nbsp;</p>
                                     <p>{{ trans('web/user.login.facebook_login_title') }}</p>
 
                                     <p class="text-center">
-                                        <a class="btn btn-facebook" href="{{ action('Web\RegisterController@storeViaFaceBook') }}" title="Login with Facebook">
-                                            <i class="fa fa-facebook-square"></i>{{ trans('web/user.login.facebook_login_text') }}</a>
+                                        <a
+                                            class="btn btn-facebook"
+                                            href="{{ action('Web\RegisterController@storeViaFaceBook') }}"
+                                            title="{{ trans('web/user.login.facebook_login_text') }}"
+                                        >
+                                            <i class="fa fa-facebook-square"></i>&nbsp;{{ trans('web/user.login.facebook_login_text') }}
+                                        </a>
                                     </p>
 
                                     <div class="text-center">
