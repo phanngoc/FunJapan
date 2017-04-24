@@ -47,6 +47,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $appends = [
+        'avatar_url',
+    ];
+
     public function articles()
     {
         return $this->hasMany(Article::class);
@@ -65,6 +69,15 @@ class User extends Authenticatable
     public function confirmPass($value)
     {
         return $this->attributes['password'] == Hash::make($value);
+    }
+
+    public function getAvatarUrl()
+    {
+        if ($this->avatar) {
+            return null; //Do it latter
+        }
+
+        return null;
     }
 
     public static function getByCondition($conditions, $getOne = false)

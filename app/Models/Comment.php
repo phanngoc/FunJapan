@@ -39,7 +39,7 @@ class Comment extends BaseModel
         });
 
         static::deleting(function ($comment) {
-            $comment->articleLocale->decrement('comment_count', ($comment->children->count() + 1));
+            $comment->articleLocale->decrement('comment_count');
             $comment->children()->delete();
             $comment->favoriteComments()->delete();
         });

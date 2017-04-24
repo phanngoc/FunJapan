@@ -35,6 +35,9 @@
                     </span>
                 </div>
             @endif
+            <div class="comments-loading hidden">
+                <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+            </div>
             <ul class="media-list media-list-comments comments-list">
                 @include('web.comments._list_comments', ['comments' => $comments])
             </ul>

@@ -17,7 +17,7 @@ class CommentService
     public static function validate($input)
     {
         return Validator::make($input, [
-            'content' => 'required',
+            'content' => 'required|max:255',
             'type' => 'in:' . implode(',', array_values(config('comment.type'))),
             'articleId' => 'required',
         ]);

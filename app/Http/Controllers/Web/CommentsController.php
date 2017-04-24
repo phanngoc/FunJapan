@@ -44,16 +44,27 @@ class CommentsController extends BaseController
         if (!auth()->check()) {
             return [
                 'success' => false,
-                'message' => trans('web/comment.messages.no_permission'),
+                'message' => [trans('web/comment.messages.no_permission')],
             ];
         }
 
         $articleLocale = ArticleService::getArticleLocaleDetails($input['articleId'], $this->currentLocaleId);
+        $comment = Comment::where('user_id', auth()->id())
+            ->where('article_locale_id', $articleLocale->id)
+            ->whereNull('parent_id')
+            ->first();
+
+        if ($comment && !$input['parentId']) {
+            return [
+                'success' => false,
+                'message' => [trans('web/comment.messages.only_once')],
+            ];
+        }
 
         if (!$articleLocale) {
             return [
                 'success' => false,
-                'message' => trans('web/comment.messages.not_found'),
+                'message' => [trans('web/comment.messages.not_found')],
             ];
         }
 
@@ -102,7 +113,7 @@ class CommentsController extends BaseController
 
         return [
             'success' => false,
-            'message' => trans('web/comment.messages.create_error'),
+            'message' => [trans('web/comment.messages.create_error')],
         ];
     }
 

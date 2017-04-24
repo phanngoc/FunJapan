@@ -17,6 +17,10 @@ return [
             'oldest' => 'Oldest',
             'popular' => 'Popular',
         ],
+        'login' => 'Login',
+        'or' => 'or',
+        'create_account' => 'create your account',
+        'to_post' => 'to post photo.',
     ],
     'button' => [
         'more' => 'More...',
