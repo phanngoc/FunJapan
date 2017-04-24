@@ -15,7 +15,7 @@ class UserService
     {
         $rules = [
             'name' => 'required|max:50',
-            'email' => 'required|max:100|email|unique:users,email',
+            'email' => 'required|max:100|email|email_update|unique:users,email',
             'gender' => 'required',
             'location_id' => 'required',
             'accept_policy' => 'required',
@@ -32,6 +32,7 @@ class UserService
             'name.max' => trans('web/user.validate.max.name'),
             'email.required' => trans('web/user.validate.required.email'),
             'email.email' => trans('web/user.validate.email'),
+            'email.email_update' => trans('web/user.validate.email'),
             'email.unique' => trans('web/user.validate.unique.email'),
             'password.required' => trans('web/user.validate.required.password'),
             'password.min' => trans('web/user.validate.min.password'),
