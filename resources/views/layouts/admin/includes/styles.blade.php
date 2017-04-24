@@ -9,4 +9,5 @@
 {!! Html::style('assets/admin/js/plugins/gritter/jquery.gritter.css') !!}
 {!! Html::style('assets/admin/css/animate.css') !!}
 {!! Html::style('assets/admin/css/style.css') !!}
+{!! Html::style('assets/admin/css/plugins/sweetalert/sweetalert.css') !!}
 @yield('style')

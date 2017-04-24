@@ -56,7 +56,7 @@
     ])
     @if (isset($articleLocale->article->articleTags))
         @include('web.includes._list_tags', [
-            'listTags' => $articleLocale->article->articleTags
+            'articleLocale' => $articleLocale
         ])
     @endif
 </article>

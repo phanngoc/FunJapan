@@ -23,8 +23,8 @@
             <li class="{{ set_active(['admin/articles*', 'admin/articles/create']) }}">
                 <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/article.article_management') }}</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="{{action('Admin\ArticlesController@index')}}">{{ trans('admin/article.article_list') }}</a></li>
-                    <li>
+                    <li class="{{ set_active(['admin/articles']) }}"><a href="{{action('Admin\ArticlesController@index')}}">{{ trans('admin/article.article_list') }}</a></li>
+                    <li class="{{ set_active(['admin/articles/create']) }}">
                         <a href="{{action('Admin\ArticlesController@create')}}">{{ trans('admin/article.add_article') }}</a>
                     </li>
                 </ul>
@@ -33,9 +33,9 @@
             <li class="{{ set_active(['admin/tags*', 'admin/tags/create']) }}">
                 <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/tag.tag_management') }}</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="{{action('Admin\TagsController@index')}}">{{ trans('admin/tag.tag_list') }}</a></li>
-                    <li>
-                        <a href="#">{{ trans('admin/tag.add_tag') }}</a>
+                    <li class="{{ set_active(['admin/tags']) }}"><a href="{{action('Admin\TagsController@index')}}">{{ trans('admin/tag.tag_list') }}</a></li>
+                    <li class="{{ set_active(['admin/tags/create']) }}">
+                        <a href="{{action('Admin\TagsController@create')}}">{{ trans('admin/tag.add_tag') }}</a>
                     </li>
                 </ul>
             </li>

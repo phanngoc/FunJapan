@@ -50,7 +50,9 @@ class ArticlesController extends Controller
         }
 
         if ($article = ArticleService::create($inputs)) {
-            return redirect()->action('Admin\ArticlesController@show', [$article->id, 'locale' => $inputs['locale']]);
+            return redirect()
+                ->action('Admin\ArticlesController@show', [$article->id, 'locale' => $inputs['locale']])
+                ->with(['message' => trans('admin/article.create_success')]);
         }
 
         return redirect()->back()->withErrors(['errors' => trans('admin/article.create_error')]);
