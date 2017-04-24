@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
     <head>
-      <base href="/">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="fragment" content="!">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+        @include('layouts.includes.head')
         <title>{{ $title ?? trans('web/global.title', ['article_title' => '']) }}</title>
         @include('layouts.includes.scripts_detail')
         @include('layouts.includes.styles')
@@ -27,7 +22,9 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('web/comment.button.no') }}</button>
-                                    <button type="button" class="btn btn-primary confirm-delete" data-comment-id="">{{ trans('web/comment.button.yes') }}</button>
+                                    <button type="button" class="btn btn-primary confirm-delete" data-comment-id="" data-article-id="">
+                                        {{ trans('web/comment.button.yes') }}
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -41,11 +38,14 @@
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                 </div>
                                 <div class="modal-body">
+                                    <img src="" class="hidden">
                                     <p>{{ trans('web/comment.messages.confirm_post_gif') }}</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('web/comment.button.no') }}</button>
-                                    <button type="button" class="btn btn-primary confirm-post-gif" data-comment-gif="">{{ trans('web/comment.button.yes') }}</button>
+                                    <button type="button" class="btn btn-primary confirm-post-gif" data-comment-gif="" data-article-id="">
+                                        {{ trans('web/comment.button.yes') }}
+                                    </button>
                                 </div>
                             </div>
                         </div>

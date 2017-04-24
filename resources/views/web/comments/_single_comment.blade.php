@@ -1,11 +1,16 @@
 <div class="pull-left profile-picture" style="position:relative;">
-    <img class="media-object img-circle" src="assets/images/article/profile_01.png" alt="{{ $comment->user->name }}">
+    @if ($comment->user->avatar)
+        <img class="media-object img-circle" src="{{ $comment->user->avatar_url }}" alt="{{ $comment->user->name }}">
+    @else
+        <i class="fa fa-user-circle fa-3x"></i>
+    @endif
 </div>
 <div class="media-body">
     <p class="h4 media-heading">{{ $comment->user->name }}</p>
     <div class="pull-right">
         @if ($comment->canBeDeleted())
-            <a class="btn-delete" href="javascript:void(0);" data-id="{{ $comment->id }}" style="display: inline;">
+            <a class="btn-delete" href="javascript:void(0);" data-article-id="{{ $comment->article_id }}"
+                data-id="{{ $comment->id }}" style="display: inline;">
                 {{ trans('web/comment.button.delete') }}
             </a>
         @endif

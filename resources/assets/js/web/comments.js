@@ -32,7 +32,7 @@ $(function () {
     $('body').on('click', '.show-gifs-selection', function (event) {
         event.stopPropagation();
         getGifPopup($(this).parents('.comment-area'));
-        
+
     });
 
     $('body').on('keydown', '#search-gif-input', function (e) {
@@ -51,9 +51,13 @@ $(function () {
     });
 
     $('body').on('click', '#gifs-search-block .body-result-gifs .gif-image', function () {
-        $('form.form-gif-comment .comment-gif-input').val($(this).attr('src'));
-        var data = $('form.form-gif-comment').serialize();
+        var commentArea = $(this).parents('.comment-area');
+        commentArea.find('form.form-gif-comment .comment-gif-input').val($(this).attr('src'));
+        $('#confirm-gif-modal').find('img').attr('src', $(this).attr('src')).removeClass('hidden');
+        var data = commentArea.find('form.form-gif-comment').serialize();
+        var articleId = commentArea.attr('data-article-id');
         $('#confirm-gif-modal').find('.confirm-post-gif').attr('data-comment-gif', data);
+        $('#confirm-gif-modal').find('.confirm-post-gif').attr('data-article-id', articleId);
         $('#confirm-gif-modal').modal('show');
         $('#gifs-search-block').css('display', 'none');
     });
@@ -61,20 +65,28 @@ $(function () {
     $('#confirm-gif-modal').on('click', '.confirm-post-gif', function () {
         $('#confirm-gif-modal').modal('hide');
         var data = $(this).attr('data-comment-gif');
+        var articleId = $(this).attr('data-article-id');
+        var commentArea = $('#article-body-' + articleId).find('.comment-area');
         $('#confirm-gif-modal').find('.confirm-post-gif').attr('data-comment-gif', '');
-        var alertArea = $('.comment-posting-form').find('.alert-danger:first');
+        $('#confirm-gif-modal').find('.confirm-post-gif').attr('data-article-id', '');
+        $('#confirm-gif-modal').find('img').attr('src', '').addClass('hidden');
+        var alertArea = commentArea.find('.comment-posting-form .alert-danger:first');
         alertArea.addClass('hidden').html('');
-        $('.comments-list').html('<i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>');
+        commentArea.find('.comments-list').addClass('hidden');
+        commentArea.find('.comments-loading').removeClass('hidden');
 
         $.ajax({
             'url': '/comments',
             'type': 'POST',
             'data': data,
             success: (response) => {
+                commentArea.find('.comments-loading').addClass('hidden');
+                commentArea.find('.comments-list').removeClass('hidden');
+
                 if (response.success) {
-                    $('.comments-list').html('').append(response.htmlComments);
-                    $('.comment-count').html(response.total);
-                    $('.comment-pagination').html('').append(response.htmlPaginator);
+                    commentArea.find('.comments-list').html('').append(response.htmlComments);
+                    commentArea.find('.comment-count').html(response.total);
+                    commentArea.find('.comment-pagination').html('').append(response.htmlPaginator);
                     parseEmojiComment();
                 } else {
                     var message = '';
@@ -135,7 +147,7 @@ $(function () {
             var form = $(this).parents('.comment-to-top');
             var data = form.serialize();
             var input = form.find('.reply-comment-input');
-            var alertArea = $(this).parents('.comment-posting-form').find('.alert-danger:first');
+            var alertArea = $(this).parents('.comment-reply-container').find('.alert-danger:first');
             alertArea.addClass('hidden').html('');
             var commentsListArea = $(this).parents('.comment-reply-container').find('.media-list-comments-replies');
             var currentParrentComment = $(this).parents('.parent-comment');
@@ -166,17 +178,24 @@ $(function () {
     $('body').on('click', '.btn-delete', function () {
         var thisModal = $('#delete-comment-modal');
         var commentId = $(this).attr('data-id');
+        var articleId = $(this).attr('data-article-id')
         thisModal.modal('show');
         thisModal.find('.confirm-delete').attr('data-comment-id', commentId);
+        thisModal.find('.confirm-delete').attr('data-article-id', articleId);
     });
 
     $('.confirm-delete').on('click', function () {
-        $('#delete-comment-modal').modal('hide');
+        var thisModal = $('#delete-comment-modal');
+        thisModal.modal('hide');
         var commentId = $(this).attr('data-comment-id');
-        $('#delete-comment-modal').find('.confirm-delete').attr('data-comment-id', '');
-        var alertArea = $('.comment-posting-form').find('.alert-danger:first');
+        var articleId = $(this).attr('data-article-id');
+        thisModal.find('.confirm-delete').attr('data-comment-id', '');
+        thisModal.find('.confirm-delete').attr('data-comment-id', '');
+        var commentArea = $('#article-body-' + articleId).find('.comment-area');
+        var alertArea = commentArea.find('.comment-posting-form .alert-danger:first');
         alertArea.addClass('hidden').html('');
-        $('.comments-list').html('<i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>');
+        commentArea.find('.comments-list').addClass('hidden');
+        commentArea.find('.comments-loading').removeClass('hidden');
 
         $.ajax({
             'url': '/comments/' + commentId,
@@ -186,15 +205,18 @@ $(function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
             },
             success: (response) => {
+                commentArea.find('.comments-loading').addClass('hidden');
+                commentArea.find('.comments-list').removeClass('hidden');
+
                 if (response.success) {
-                    $('.comments-list').html('').append(response.htmlComments);
-                    $('.comment-count').html(response.total);
-                    $('.comment-pagination').html('').append(response.htmlPaginator);
+                    commentArea.find('.comments-list').html('').append(response.htmlComments);
+                    commentArea.find('.comment-count').html(response.total);
+                    commentArea.find('.comment-pagination').html('').append(response.htmlPaginator);
                     parseEmojiComment();
                 } else {
                     alertArea.removeClass('hidden').append('<ul><li>' + response.message + '</li></ul>');
                     $('html, body').animate({
-                        scrollTop: $('.comment-posting-form').offset().top
+                        scrollTop: commentArea.find('.comment-posting-form').offset().top
                     }, 700);
                 }
             }
@@ -249,9 +271,9 @@ function postComment(element) {
     alertArea.addClass('hidden').html('');
 
     if (currentArea.find('.comment-input').val() != '') {
-        currentArea.find('.comments-list').html('<i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>');
+        currentArea.find('.comments-list').addClass('hidden');
+        currentArea.find('.comments-loading').removeClass('hidden');
         element.attr('disabled', true);
-        currentArea.find('.comment-input').val('');
 
         $.ajax({
             'url': '/comments',
@@ -261,7 +283,8 @@ function postComment(element) {
                 element.attr('disabled', false);
 
                 if (response.success) {
-                    currentArea.find('.comments-list').html('').append(response.htmlComments);
+                    currentArea.find('.comments-list').removeClass('hidden').html('').append(response.htmlComments);
+                    currentArea.find('.comments-loading').addClass('hidden');
                     currentArea.find('.comment-count').html(response.total);
 
                     if (response.htmlPaginator != '') {
@@ -270,7 +293,15 @@ function postComment(element) {
 
                     parseEmojiComment();
                 } else {
-                    alertArea.removeClass('hidden').append('<ul><li>' + response.message + '</li></ul>');
+                    var message = '';
+
+                    for (let key in response.message) {
+                        message += '<p>' + response.message[key] + '</p>';
+                    }
+
+                    currentArea.find('.comments-loading').addClass('hidden');
+                    currentArea.find('.comments-list').removeClass('hidden');
+                    alertArea.removeClass('hidden').append('<ul><li>' + message + '</li></ul>');
                 }
             }
         });

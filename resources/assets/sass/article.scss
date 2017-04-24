@@ -3,7 +3,7 @@
 }
 
 .next-page {
-	display:none;
+    display:none;
 }
 
 .break-word {
@@ -21,4 +21,18 @@
 
 .modal {
     overflow-y: auto;
+}
+
+.comments-loading {
+    text-align: center;
+}
+
+#confirm-gif-modal {
+    .modal-body {
+        text-align: center;
+    }
+
+    img {
+        width: 50%;
+    }
 }
