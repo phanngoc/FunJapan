@@ -36,7 +36,7 @@
             <li>
                 <a class="engagement-favorite {{ (isset($favorite) && $favorite != null) ? 'active' : '' }}"
                     href="{{ !Auth::check() ? action('Web\LoginController@showLoginForm') : 'javascript:;' }}">
-                    <i class="fa fa-heart" aria-hidden="true" data-article-id="{{ $articleLocale->article->id }}"></i>
+                    <i class="fa fa-heart" aria-hidden="true" onclick="changeLike({{ $articleLocale->article_id }});"></i>
                 </a>
                 <span class="engagement-count {{ (isset($favorite) && $favorite != null) ? 'active' : '' }}">
                     {{ $articleLocale->like_count }}

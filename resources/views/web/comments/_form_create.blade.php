@@ -25,8 +25,8 @@
     <div class="row radius-bot">
         <div class="col-xs-8 text-left">
             <span type="button" class="btn btn-gif show-gifs-selection">GIF</span>
-            @include('web.comments._popup_gif')
             <i class="fa fa-smile-o btn btn-twemoji" aria-hidden="true"></i>
+            <div class="popup-gif-search"></div>
             <div class="popup-emoticon"></div>
         </div>
         <div class="col-xs-4 text-right">

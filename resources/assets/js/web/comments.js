@@ -1,14 +1,11 @@
-var articleId = $('#comment-area').attr('data-article-id');
-var articleLocaleId = $('#comment-area').attr('data-article-locale-id');
-
 $(function () {
     parseEmojiComment();
-    getItems('/comments/lists/' + articleId + '/' + articleLocaleId + '?page=1', true);
 
     $(window).on('click', function() {
         $('#emoji-picker-block').css('display', 'none');
-        $('.popup-emoticon').html('');
         $('#gifs-search-block').css('display', 'none');
+        $('.popup-emoticon').html('');
+        $('.popup-gif-search').html('');
     });
 
     $('body').on('click', '.gifs-comment-block', function (event) {
@@ -27,55 +24,33 @@ $(function () {
             emojiPicker.css('display', 'none');
             $('.popup-emoticon').html('');
         } else {
-            $('#gifs-search-block').css('display', 'none');
+            $('body').find('#gifs-search-block').css('display', 'none');
             getEmojiPopup($(this));
         }
     });
 
-    $('.show-gifs-selection').on('click', function (event) {
+    $('body').on('click', '.show-gifs-selection', function (event) {
         event.stopPropagation();
-        var gifPicker = $('#gifs-search-block');
-        $('#search-gif-input').val('');
-
-        if (gifPicker.css('display') == 'block') {
-            gifPicker.css('display', 'none');
-        } else {
-            gifPicker.css('display', 'block');
-            $('#emoji-picker-block').css('display', 'none');
-            $('.body-result-gifs').animate({
-                scrollTop: 0
-            }, 10);
-
-            $.ajax({
-                'url': 'https://api.tenor.co/v1/trending?key=LIVDSRZULELA&limit=40',
-                'type': 'GET',
-                'data': {},
-                success: (data) => {
-                    $('#gifs-search-block .body-result-gifs').html('');
-                    $.each(data.results, function( key, value ) {
-                        $('#gifs-search-block .body-result-gifs').append('<img class="gif-image" alt="" src="' + value.media[0]['gif']['url'] + '">');
-                    });
-                }
-            });
-        }
+        getGifPopup($(this).parents('.comment-area'));
+        
     });
 
-    $('#search-gif-input').keypress(function (e) {
+    $('body').on('keydown', '#search-gif-input', function (e) {
         if (e.which == 13) {
             searchGif();
             return false;
         }
     });
 
-    $('#gifs-search-block').on('click', '#search-gif-btn', function () {
+    $('body').on('click', '#gifs-search-block #search-gif-btn', function () {
         searchGif();
     });
 
-    $('#close-gif-popup-btn').on('click', function () {
+    $('body').on('click', '#close-gif-popup-btn', function () {
         $('#gifs-search-block').css('display', 'none');
     });
 
-    $('#gifs-search-block .body-result-gifs').on('click', '.gif-image', function () {
+    $('body').on('click', '#gifs-search-block .body-result-gifs .gif-image', function () {
         $('form.form-gif-comment .comment-gif-input').val($(this).attr('src'));
         var data = $('form.form-gif-comment').serialize();
         $('#confirm-gif-modal').find('.confirm-post-gif').attr('data-comment-gif', data);
@@ -102,7 +77,12 @@ $(function () {
                     $('.comment-pagination').html('').append(response.htmlPaginator);
                     parseEmojiComment();
                 } else {
-                    alertArea.removeClass('hidden').append('<ul><li>' + response.message + '</li></ul>');
+                    var message = '';
+                    for (let key in response.message) {
+                        message += '<ul><li>' + response.message[key] + '</li></ul>';
+                    }
+
+                    alertArea.removeClass('hidden').append(message);
                 }
 
                 $('#gifs-search-block').css('display', 'none');
@@ -132,9 +112,8 @@ $(function () {
         $('body #emoji-picker-block').find('.body-twitter-emoji-list.' + dataCategory).removeClass('hidden');
     });
 
-    $('.send-comment').on('click', function () {
-        var element = $(this).parents('.form-create-comment').find('.comment-input');
-        postComment(element);
+    $('body').on('click', '.send-comment', function () {
+        postComment($(this));
     });
 
     $('body').on('keydown', '.post-comment', function (e) {
@@ -159,6 +138,7 @@ $(function () {
             var alertArea = $(this).parents('.comment-posting-form').find('.alert-danger:first');
             alertArea.addClass('hidden').html('');
             var commentsListArea = $(this).parents('.comment-reply-container').find('.media-list-comments-replies');
+            var currentParrentComment = $(this).parents('.parent-comment');
 
             if (input.val() != '') {
                 $.ajax({
@@ -169,7 +149,7 @@ $(function () {
                         if (response.success) {
                             input.val('');
                             commentsListArea.append('<li class="media no-overflow-hidden">' + response.htmlComments + '</li>');
-                            $('.comment-count').html(response.total);
+                            currentParrentComment.find('.comment-reply-panel .reply-count').html(response.total);
                             var reply = commentsListArea.find('li:last').find('.comment-body.text-comment');
                             reply.html(twemoji.parse(reply.text()));
                         } else {
@@ -224,13 +204,16 @@ $(function () {
     $('body').on('click', '.comment-area .pagination a', function (e) {
         e.preventDefault();
         $('.comment-posting-form').find('.alert-danger:first').addClass('hidden').html('');
+        var element = $(this).parents('.comment-area');
         var page = $(this).attr('href').split('page=')[1];
-        getItems('/comments/lists/' + articleId + '/' + articleLocaleId + '?page=' + page);
+        var url = '/comments/lists/' + element.attr('data-article-id') + '?page=' + page;
+        getItems(element, url);
     });
 
     $('body').on('click', '.engagement-favorite.engagement-interactive', function () {
         var commentId = $(this).attr('data-comment-id');
-        var alertArea = $('.comment-posting-form').find('.alert-danger:first');
+        var currentArea = $(this).parents('.comment-area');
+        var alertArea = currentArea.find('.alert-danger:first');
         alertArea.addClass('hidden').html('');
         var favoriteArea = $(this).parents('.comment-favorite');
 
@@ -251,7 +234,7 @@ $(function () {
                 } else {
                     alertArea.removeClass('hidden').append('<ul><li>' + response.message + '</li></ul>');
                     $('html, body').animate({
-                        scrollTop: $('.comment-posting-form').offset().top
+                        scrollTop: currentArea.offset().top
                     }, 700);
                 }
             }
@@ -260,29 +243,29 @@ $(function () {
 });
 
 function postComment(element) {
-    var data = $('form.form-create-comment').serialize();
-    $('.comment-posting-form').find('.alert-danger').addClass('hidden');
-    var alertArea = element.parents('.comment-posting-form').find('.alert-danger:first');
+    var currentArea = element.parents('.comment-area');
+    var data = currentArea.find('form.form-create-comment').serialize();
+    var alertArea = currentArea.find('.alert-danger:first');
     alertArea.addClass('hidden').html('');
 
-    if (element.val() != '') {
-        $('.comments-list').html('<i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>');
-        $('.send-comment').attr('disabled', true);
-        element.val('');
+    if (currentArea.find('.comment-input').val() != '') {
+        currentArea.find('.comments-list').html('<i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>');
+        element.attr('disabled', true);
+        currentArea.find('.comment-input').val('');
 
         $.ajax({
             'url': '/comments',
             'type': 'POST',
             'data': data,
             success: (response) => {
-                $('.send-comment').attr('disabled', false);
+                element.attr('disabled', false);
 
                 if (response.success) {
-                    $('.comments-list').html('').append(response.htmlComments);
-                    $('.comment-count').html(response.total);
+                    currentArea.find('.comments-list').html('').append(response.htmlComments);
+                    currentArea.find('.comment-count').html(response.total);
 
                     if (response.htmlPaginator != '') {
-                        $('.comment-pagination').html('').append(response.htmlPaginator);
+                        currentArea.find('.comment-pagination').html('').append(response.htmlPaginator);
                     }
 
                     parseEmojiComment();
@@ -335,21 +318,21 @@ function parseEmojiComment() {
     });
 }
 
-function getItems(url, firstTime) {
-    $('.comments-list').html('<i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>');
+function getItems(element, url, firstTime) {
+   element.find('.comments-list').html('<i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>');
 
     $.ajax({
         'url': url,
         'type': 'GET',
         success: (response) => {
             if (response.success) {
-                $('.comments-list').html('').append(response.htmlItems);
-                $('.comment-pagination').html('').append(response.htmlPaginator);
+                element.find('.comments-list').html('').append(response.htmlItems);
+                element.find('.comment-pagination').html('').append(response.htmlPaginator);
                 parseEmojiComment();
 
                 if (!firstTime) {
                     $('html, body').animate({
-                        scrollTop: $('.comment-posting-form').offset().top
+                        scrollTop: element.offset().top
                     }, 700);
                 }
             }
@@ -367,6 +350,40 @@ function getEmojiPopup(element) {
             popupArea.html('').append(response);
             $('#emoji-picker-block').css('display', 'block');
             getEmoji('people');
+        }
+    });
+}
+
+function getGifPopup(element) {
+    var popupArea = element.find('.popup-gif-search');
+    var gifPicker = element.find('#gifs-search-block');
+
+    if (gifPicker) {
+        gifPicker.css('display', 'none');
+        $('.popup-gif-search').html('');
+    }
+
+    $.ajax({
+        'url': '/comments/getGif',
+        'type': 'GET',
+        success: (response) => {
+            popupArea.html('').append(response);
+            var gifPicker = element.find('#gifs-search-block');
+            element.find('#search-gif-input').val('');
+            gifPicker.css('display', 'block');
+            $('#emoji-picker-block').css('display', 'none');
+
+            $.ajax({
+                'url': 'https://api.tenor.co/v1/trending?key=LIVDSRZULELA&limit=40',
+                'type': 'GET',
+                'data': {},
+                success: (data) => {
+                    popupArea.find('.body-result-gifs').html('');
+                    $.each(data.results, function(key, value) {
+                        popupArea.find('.body-result-gifs').append('<img class="gif-image" alt="" src="' + value.media[0]['gif']['url'] + '">');
+                    });
+                }
+            });
         }
     });
 }

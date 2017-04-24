@@ -4,22 +4,23 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Web\Controller;
 use App\Services\Web\CommentService;
+use App\Services\Web\ArticleService;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 
-class CommentsController extends Controller
+class CommentsController extends BaseController
 {
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function lists($articleId, $articleLocaleId, Request $request)
+    public function lists($articleId, Request $request)
     {
         $commentsWithPaginator = CommentService::getCommentsListWithPaginator(
-            $articleLocaleId,
             $articleId,
+            $this->currentLocaleId,
             config('limitation.comment.per_page')
         );
 
@@ -36,7 +37,6 @@ class CommentsController extends Controller
         $input = $request->only(
             'content',
             'articleId',
-            'articleLocaleId',
             'type',
             'parentId'
         );
@@ -48,14 +48,24 @@ class CommentsController extends Controller
             ];
         }
 
+        $articleLocale = ArticleService::getArticleLocaleDetails($input['articleId'], $this->currentLocaleId);
+
+        if (!$articleLocale) {
+            return [
+                'success' => false,
+                'message' => trans('web/comment.messages.not_found'),
+            ];
+        }
+
         $input['userId'] = auth()->id();
+        $input['articleLocaleId'] = $articleLocale->id;
 
         $validate = CommentService::validate($input);
 
         if ($validate->fails()) {
             return [
                 'success' => false,
-                'message' => implode(' ', $validate->errors()->messages()['content']),
+                'message' => $validate->errors(),
             ];
         }
 
@@ -69,8 +79,8 @@ class CommentsController extends Controller
                     ->render();
             } else {
                 $commentsWithPaginator = CommentService::getCommentsListWithPaginator(
-                    $input['articleLocaleId'],
                     $input['articleId'],
+                    $this->currentLocaleId,
                     config('limitation.comment.per_page')
                 );
 
@@ -78,10 +88,13 @@ class CommentsController extends Controller
                 $htmlPaginator = $commentsWithPaginator['htmlPaginator'];
             }
 
+            $total = $comment->parent_id ? $comment->parent->children->count() :
+                $comment->articleLocale->comment_count;
+
             return [
                 'success' => true,
                 'message' => '',
-                'total' => $comment->articleLocale->comment_count,
+                'total' => $total,
                 'htmlComments' => $htmlComments,
                 'htmlPaginator' => $htmlPaginator,
             ];
@@ -99,8 +112,8 @@ class CommentsController extends Controller
 
         if ($comment && $comment->canBeDeleted() && $comment->delete()) {
             $commentsWithPaginator = CommentService::getCommentsListWithPaginator(
-                $comment->article_locale_id,
                 $comment->article_id,
+                $this->currentLocaleId,
                 config('limitation.comment.per_page')
             );
 
@@ -122,6 +135,12 @@ class CommentsController extends Controller
     public function getEmoji()
     {
         return View::make('web.comments._popup_emoticon')
+            ->render();
+    }
+
+    public function getGif()
+    {
+        return View::make('web.comments._popup_gif')
             ->render();
     }
 

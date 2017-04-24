@@ -1,5 +1,9 @@
 @extends('layouts/default_detail')
 
+@section('style')
+{{ Html::style('assets/admin/css/plugins/dropzone/dropzone.css') }}
+@endsection
+
 @section('content')
 <div class="col-md-70 main-column">
     <!-- MAIN -->
