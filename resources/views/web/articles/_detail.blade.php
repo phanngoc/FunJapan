@@ -28,7 +28,7 @@
     ])
     <!-- Article Main -->
     <div class="article-body clearfix">
-        {!! $articleLocale->content !!}
+        {!! $articleLocale->html_content !!}
     </div>
     <!-- Engagement 2 -->
     <div class="detail-engagement">

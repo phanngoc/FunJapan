@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <!-- EOF CONFIRM GIF MODAL -->
-                <div class="top-body" id='article-body-{{ $article->id}}'>
+                <div class="top-body" id="article-body-{{ $article->id ?? '' }}">
                     @if ($errors->any() || session()->has('message') || session()->has('error'))
                         @include('web.articles._notice_messages')
                     @else
@@ -69,8 +69,8 @@
                             @include('web.articles._related_articles', ['articles' => $article->relateArticle])
                         </div>
                         <div class="next-page">
-                            @if ($nextArticle && isset($nextArticle->article_id))
-                                <a href="{{ url('articles/' . $nextArticle->article_id) }}"></a>
+                            @if ($nextArticleId)
+                                <a href="{{ url('articles/' . $nextArticleId) }}"></a>
                             @endif
                         </div>
                     @endif

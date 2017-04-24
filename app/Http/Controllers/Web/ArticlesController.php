@@ -18,7 +18,7 @@ class ArticlesController extends BaseController
     public function show($id)
     {
         $article = ArticleService::getArticleDetail($id, $this->currentLocaleId);
-        if (!$article->locale) {
+        if (!$article) {
             return view('web.articles.show', $this->viewData)->withErrors(trans('web/global.error'));
         }
 
@@ -30,11 +30,18 @@ class ArticlesController extends BaseController
             return view('web.articles.show', $this->viewData)->withErrors(trans('web/global.error'));
         }
 
-        $this->viewData['nextArticle'] = ArticleService::getNextArticle($article->locale->id, $this->currentLocaleId);
+        $this->viewData['nextArticleId'] = ArticleService::getNextArticleId(
+            $id,
+            $article->locale->published_at,
+            $this->currentLocaleId
+        );
         $this->viewData['article'] = $article;
-        $this->viewData['title'] = trans('web/global.title', ['article_title' => $article->locale->title]);
+        $this->viewData['title'] = trans('web/global.title', ['article_title' => ' - ' . $article->locale->title]);
         $this->viewData['photo'] = $article->photo;
-        $this->viewData['comments'] = CommentService::lists($article->locale->id, config('limitation.comment.per_page'));
+        $this->viewData['comments'] = CommentService::lists(
+            $article->locale->id,
+            config('limitation.comment.per_page')
+        );
         if ($article->post_photo) {
             $this->viewData['postPhotos'] = ArticleService::getPostPhotosList(
                 $article->id,

@@ -10,7 +10,7 @@
             <a href="#">{{ $categoryName }}</a> <i class="fa fa-chevron-right" aria-hidden="true"></i>
         </li>
         <li>
-            <a href="{{ action('Web\ArticlesController@show', [$articleLocale->id]) }}">
+            <a href="{{ action('Web\ArticlesController@show', [$articleLocale->article_id]) }}">
                 {{ isset($articleLocale->title) ? $articleLocale->title : '' }}
             </a>
         </li>
