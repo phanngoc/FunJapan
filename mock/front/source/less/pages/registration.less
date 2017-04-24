@@ -24,9 +24,13 @@
   box-shadow: 0px 0px 10px 0px rgba(208, 208, 224, 1);
   &.jmb {
     .break-line {
+      @media only screen and (max-width: 768px) {
+        margin-bottom: 30px;
+      }
+      margin-bottom: 100px;
       text-align: center;
       img {
-        width: 100%;
+        max-width: 100%;
       }
       .break-line-dk {
         @media only screen and (max-width: 768px) {
@@ -36,7 +40,7 @@
       }
       .break-line-mb {
         @media only screen and (max-width: 768px) {
-          display: block;
+          display: inline;
         }
         display: none;
         margin-top: 30px;
@@ -249,8 +253,8 @@
       display: none;
     }
     position: relative;
-    background-size: cover !important;
-    background-position: center !important;
+    background-size: cover;
+    background-position: center;
     height: 209px;
     background: url('./../images/registration/registration_banner_top.png');
     &:before {
@@ -352,8 +356,8 @@
       position: relative;
       height: 180px;
       overflow: hidden;
-      background-size: 100% 100% !important;
       background: url('./../images/registration/registration_banner_sm.png');
+      background-size: 100% 100%;
       .signup-btn-container {
         @media only screen and (min-width: 480px) and (max-width: 768px) {
           right: 15%;
@@ -472,6 +476,7 @@
         background-color: @registration-white;
         position: relative;
         opacity: 0;
+        z-index: 2;
         &:checked+input+.checkbox-label {
           border: none;
           background-color: @registration-green;
@@ -484,20 +489,6 @@
     select {
       .form-control();
       .form-input();
-    }
-    .combodate {
-      display: block;
-      text-align: center;
-      &>select {
-        display: inline-block;
-        width: 30% !important;
-        &:nth-child(2) {
-          @media only screen and (max-width: 768px) {
-            margin: 0 3%;
-          }
-          margin: 0 4.2%;
-        }
-      }
     }
     label {
       display: block;
@@ -521,6 +512,7 @@
       display: inline;
       font-family: myriadpro-regular;
       font-size: 14px;
+      line-height: 2;
       font-weight: normal;
       color: @registration-gray-2;
       position: relative;
@@ -529,12 +521,13 @@
         @media only screen and (max-width: 768px) {
           width: 16px;
           height: 16px;
+          top: 2px;
         }
         cursor: pointer;
         position: absolute;
         width: 20px;
         height: 20px;
-        bottom: 1px;
+        top: 4px;
         left: 0;
         background: @registration-white;
         border: 1px solid @registration-dark-gray-2;
@@ -615,7 +608,7 @@
         }
         .checkbox-label.tick {
           @media only screen and (max-width: 768px) {
-            bottom: 1px;
+            top: 7px;
             left: 19px;
             border: 1px solid @registration-green;
           }
@@ -627,14 +620,22 @@
           }
         }
       }
+      .feedback {
+        text-align: center;
+        span {
+          color: @registration-light-pink;
+          font-family: myriadpro-regular;
+          font-size: 14px;
+        }
+      }
     }
     .tooltip {
       max-width: 260px;
-      right: 0 !important;
+      right: 0;
       left: auto !important;
       line-height: 1.1;
       .tooltip-arrow {
-        left: auto !important;
+        left: auto;
         right: 24px;
       }
       .tooltip-inner {
@@ -747,7 +748,7 @@
         right: 12px;
       }
       .tooltip {
-        right: -8px !important;
+        right: -8px;
       }
     }
     #addLn_3 {
@@ -765,31 +766,9 @@
           display: block;
         }
       }
-      .term-title {
-        margin-bottom: 5px;
-        margin-top: 20px;
-      }
       .col-form-label {
         display: inline;
         margin-right: 15px;
-      }
-      .overview {
-        h2 {
-          margin-top: 5px;
-          margin-bottom: 0;
-          font-family: myriadpro-bold;
-          font-size: 15px;
-        }
-        b {
-          font-family: myriadpro-bold;
-          font-weight: normal;
-        }
-        .alR {
-          text-align: right;
-        }
-        .mgt15 {
-          margin-top: 15px !important;
-        }
       }
       .term-banner {
         margin-top: 15px;
@@ -818,68 +797,10 @@
       }
       margin: 0;
     }
-    .term-check {
-      @media only screen and (max-width: 768px) {
-        display: none;
-      }
-      &.sm {
-        @media only screen and (max-width: 768px) {
-          display: block;
-        }
-        display: none;
-        .term-checkbox {
-          margin-bottom: 20px;
-        }
-        .guide-text {
-          text-align: left;
-          padding: 0 5px;
-          margin-bottom: 20px;
-        }
-        .checkbox-label {
-          bottom: -2px;
-          &.tick {
-            top: 5px;
-          }
-        }
-      }
-    }
-    .term-checkbox {
-      @media only screen and (max-width: 768px) {
-        width: 270px;
-      }
-      width: 79%;
-      text-align: left !important;
-    }
     .form-group {
       @media only screen and (max-width: 768px) {
         padding: 0;
       }
-      position: relative;
-      &.term-check {
-        margin-bottom: 0;
-      }
-      .checkbox-label {
-        @media only screen and (max-width: 768px) {
-          left: 20px;
-        }
-        display: block;
-        float: left;
-        left: 40px;
-        bottom: 30px;
-        &.tick {
-          left: 0;
-          top: 0;
-          float: left;
-        }
-      }
-    }
-    .step-btn-container {
-      @media only screen and (max-width: 768px) {
-        input {
-          padding: 5px 121px;
-        }
-      }
-      margin-top: 0;
     }
   }
 }
@@ -896,11 +817,6 @@
   margin-bottom: 35px;
   &.small {
     font-size: 12px;
-  }
-  &.center {
-    @media only screen and (max-width: 768px) {
-      padding: 0 16px;
-    }
   }
   a {
     &:hover,
@@ -1193,6 +1109,7 @@
   .guide {
     position: absolute;
     max-width: 170px;
+    font-style: italic;
     &.blue-circle {
       left: 158px;
     }
@@ -1208,10 +1125,8 @@
     background-position: top;
     background-repeat: no-repeat;
     background-size: 100%;
-    margin-top: 30px;
     padding: 0 10px 30px;
   }
-  margin-top: 100px;
   background: url('./../images/registration/jmb_background.png');
   background-position: top;
   background-repeat: no-repeat;

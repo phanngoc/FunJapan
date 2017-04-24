@@ -1,7 +1,7 @@
 $(function() {
   // User info taken from FJ registration form
   var userInfo = {
-    birthDate: '19'
+    birthYear: '1987'
   }
   var emailBlackList = ["@armyspy.com", "@cuvox.de", "@dayrep.com", "@einrot.com", "@fleckens.hu", "@gustr.com", "@jourrapide.com", "@rhyta.com", "@superrito.com", "@teleworm.us", "@dispostable.com", "@fakeinbox.com", "@mailinator.com", "@trbvm.com", "@yopmail.com", "@mailnesia.com"];
   var messages = {
@@ -13,7 +13,8 @@ $(function() {
       email: {
         required: "This field is required.",
         maxlength: "Max length {0} charactors.",
-        valueNotContains: "Invalid email address."
+        valueNotContains: "Please enter valid email address.",
+        regex: "Please enter valid email address."
       },
       gender: {
         required: "This field is required.",
@@ -40,32 +41,36 @@ $(function() {
         required: "This field is required."
       },
       isAcceptPolicy: {
-        required: "This field is required."
+        required: "You must accept JMB Rules and Conditions first."
       }
     },
     jmb: {
       firstName: {
         required: "This field is required.",
         maxlength: "Max length {0} charactors.",
-        lettersOnly: "Only alphabets charactors are allowed.",
+        regex: "Only alphabets charactors are allowed.",
         info: "First name info here."
       },
       firstName2: {
         required: "This field is required.",
         maxlength: "Max length {0} charactors.",
+        regex: "Only alphabets charactors are allowed.",
         info: "First name 2 info here."
       },
       firstName3: {
         maxlength: "Max length {0} charactors.",
+        regex: "Only alphabets charactors are allowed.",
         info: "First name 3 info here."
       },
       lastName: {
         required: "This field is required.",
         maxlength: "Max length {0} charactors.",
+        regex: "Only alphabets charactors are allowed.",
         info: "Last name info here."
       },
       midName: {
         maxlength: "Max length {0} charactors.",
+        regex: "Only alphabets charactors are allowed.",
         info: "Middle name info here."
       },
       password: {
@@ -73,9 +78,10 @@ $(function() {
         exactLength: "Password must have exactly {0} charactors.",
         isNotSequentialNumber: "Password is invalid.",
         isNot6RepeatedNumChar: "Password is invalid.",
-        valueNotContains: "Password should not contain your birth date.",
+        valueNotContains: "Password should not contain your birth year.",
         isNotInPhoneNumber: "Password should not be in phone number.",
-        isNotInAddress: "Password should not be in your addresses.",
+        isNotInZipCode: "Password should not be in your zip code.",
+        regex: "Must be 6 numeric charactors.",
         info: "<ul>\
                         <li><span>Birth date (the Christian Era, the name of a Japanese era)</span></li>\
                         <li><span>Telephone number</span></li>\
@@ -111,14 +117,15 @@ $(function() {
       zipcode: {
         required: "This field is required.",
         maxlength: "Max length {0} charactors.",
-        numberAndDashOnly: "Zipcode should contain only number and dash."
+        regex: "Zipcode should contain only number and dash."
       },
       phoneNumber: {
         required: "This field is required.",
-        maxlength: "Max length {0} charactors."
+        maxlength: "Max length {0} charactors.",
+        regex: "Phone number should contain only number and dash."
       },
       isAcceptPolicy: {
-        required: "This field is required."
+        required: "You must accept JMB Rules and Conditions first."
       }
     }
   }
@@ -182,14 +189,14 @@ $(function() {
   addAddressBtn.click(function() {
     var parent_block = $(this).parents('.form-group');
     var inserted_block = parent_block.clone(true, true);
-    inserted_block.removeClass('has-feedback');
-    inserted_block.find('.form-control-feedback').remove();
     inserted_block.find('.col-form-label').attr('for', 'address' + addressCount).text('Address ' + addressCount);
     inserted_block.find('input').attr({
-      'id': 'address' + addressCount,
+      'id': 'jmbAddress' + addressCount,
       'name': 'address' + addressCount,
       'placeholder': 'Address ' + addressCount
     });
+    inserted_block.find('input').val('');
+    // inserted_block.find('input').
     inserted_block.insertAfter(parent_block);
     $(this).addClass('hidden');
     addressCount = addressCount + 1;
@@ -197,7 +204,7 @@ $(function() {
 
   // Check term checkbox when clicking term banner
   $(".term-banner>a").click(function(e) {
-    $(".terms-checkbox").prop('checked', true);
+    $("#jmbIsAcceptPolicy").prop('checked', true);
   })
 
   // Scrollbar
@@ -295,16 +302,8 @@ $(function() {
     return true;
   });
 
-  $.validator.addMethod("lettersOnly", function(value, element) {
-    return this.optional(element) || /^[a-z]+$/i.test(value);
-  });
-
   $.validator.addMethod("exactLength", function(value, element, param) {
     return this.optional(element) || value.length === param;
-  });
-
-  $.validator.addMethod("numberAndDashOnly", function(value, element, param) {
-    return this.optional(element) || /^[0-9\-]+$/i.test(value);
   });
 
   $.validator.addMethod("isNotSequentialNumber", function(value, element) {
@@ -319,15 +318,21 @@ $(function() {
   });
 
   $.validator.addMethod("isNot6RepeatedNumChar", function(value, element) {
-    if (value % 111111 == 0) {
-      return false;
-    } else {
-      return true;
-    }
+    return !(value % 111111 == 0);
   });
+
+  $.validator.addMethod("regex", function(value, element, regexp) {
+    var re = new RegExp(regexp);
+    return this.optional(element) || re.test(value);
+  });
+
 
   // FJ - form validation
   $("#fjRegisterForm").validate({
+    onfocusout: function(element) {
+      var $el = $(element);
+      $el.valid();
+    },
     rules: {
       fullName: {
         required: true,
@@ -335,13 +340,15 @@ $(function() {
       },
       email: {
         required: true,
-        maxlength: 50,
-        valueNotContains: emailBlackList
+        maxlength: 100,
+        valueNotContains: emailBlackList,
+        regex: "^((\"[\\w\\s-]+\")|([\\w-]+(?:\\.[\\w-]+)*)|(\"[\\w\\s-]+\")([\\w-]+(?:\\.[\\w-]+)*))(@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-zA-Z]{2,6}(?:\\.[a-zA-Z]{2})?)$)|(@\\[?((25[0-5]\\.|2[0-4][0-9]\\.|1[0-9]{2}\\.|[0-9]{1,2}\\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\\]?$)"
       },
       gender: {
         required: true
       },
       password: {
+        required: true,
         minlength: 6,
         maxlength: 50
       },
@@ -359,9 +366,6 @@ $(function() {
         required: true
       },
       location: {
-        required: true
-      },
-      isAcceptPolicy: {
         required: true
       }
     },
@@ -384,32 +388,51 @@ $(function() {
     }
   });
 
+  // FJ - Other validations rules
+  // Require accepting rule and condition
+  $('#fjRegisterForm').on('submit', function(e) {
+    if (!$('#fjIsAcceptPolicy').is(":checked")) {
+      $('#fjRequireMessage').text(messages.fj.isAcceptPolicy.required);
+    } else {
+      $('#fjRequireMessage').text("");
+    }
+  });
+
   // JMB - form validation
   $("#jmbRegisterForm").validate({
+    onfocusout: function(element) {
+      var $el = $(element);
+      $el.valid();
+    },
     rules: {
       firstName: {
         required: true,
-        maxlength: 10,
-        lettersOnly: true
+        regex: /^[a-z]+$/i,
+        maxlength: 10
       },
       firstName2: {
+        regex: /^[a-z]+$/i,
         maxlength: 9
       },
       firstName3: {
+        regex: /^[a-z]+$/i,
         maxlength: 9
       },
       lastName: {
+        regex: /^[a-z]+$/i,
         maxlength: 9
       },
       midName: {
+        regex: /^[a-z]+$/i,
         maxlength: 9
       },
       password: {
         required: true,
+        regex: /^[0-9]+$/i,
         exactLength: 6,
         isNotSequentialNumber: true,
         isNot6RepeatedNumChar: true,
-        valueNotContains: [userInfo.birthDate]
+        valueNotContains: [userInfo.birthYear]
       },
       confirmPassword: {
         required: true,
@@ -437,16 +460,13 @@ $(function() {
       },
       zipcode: {
         required: true,
-        maxlength: 10,
-        numberAndDashOnly: true
+        regex: /^[0-9\-]+$/i,
+        maxlength: 10
       },
       phoneNumber: {
         required: true,
-        maxlength: 20,
-        numberAndDashOnly: true
-      },
-      isAcceptPolicy: {
-        required: true
+        regex: /^[0-9\-]+$/i,
+        maxlength: 20
       }
     },
     messages: messages.jmb,
@@ -488,34 +508,65 @@ $(function() {
     setTimeout(
       function() {
         var jmbPassword = $('#jmbPassword');
-        if (jmbPassword.val() != "" && isInPhoneNumber(jmbPassword.val())) {
-          showToolTip(jmbPassword, messages.jmb.password.isNotInPhoneNumber);
-        } else if (jmbPassword.val() != "" && isInHomeAddress(jmbPassword.val())) {
-          showToolTip(jmbPassword, messages.jmb.password.isNotInAddress);
-        } else {
-          hideToolTip(jmbPassword);
+        var jmbPasswordVal = jmbPassword.val();
+        var jmbPhoneNumVal = $('#jmbPhoneNumber').val().replace(/-/g, '');
+        var jmbZipcodeVal = $('#jmbZipcode').val().replace(/-/g, '');
+
+        if (jmbPasswordVal != "") {
+          if (!jmbPassword.valid()) {
+            return;
+          } else if (jmbZipcodeVal.indexOf(jmbPasswordVal) == 0) {
+            showToolTip(jmbPassword, messages.jmb.password.isNotInZipCode);
+          } else if (jmbPhoneNumVal.indexOf(jmbPasswordVal) == 0) {
+            showToolTip(jmbPassword, messages.jmb.password.isNotInPhoneNumber);
+          } else {
+            hideToolTip(jmbPassword);
+          }
         }
       }, 10
     );
   });
 
+  $('#jmbZipcode').focusout(function() {
+    var jmbPassword = $('#jmbPassword');
+    var jmbPasswordVal = jmbPassword.val();
+    var jmbZipcodeVal = $('#jmbZipcode').val().replace(/-/g, '');
+
+    if (!jmbPassword.valid()) {
+      return;
+    } else if (jmbPasswordVal != "" && jmbZipcodeVal.indexOf(jmbPasswordVal) == 0) {
+      showToolTip(jmbPassword, messages.jmb.password.isNotInZipCode);
+    } else {
+      hideToolTip(jmbPassword);
+    }
+  });
+
   $('#jmbPhoneNumber').focusout(function() {
     var jmbPassword = $('#jmbPassword');
-    if (jmbPassword.val() != "" && isInPhoneNumber(jmbPassword.val())) {
+    var jmbPasswordVal = jmbPassword.val();
+    var jmbPhoneNumVal = $('#jmbPhoneNumber').val().replace(/-/g, '');
+
+    if (!jmbPassword.valid()) {
+      return;
+    } else if (jmbPasswordVal != "" && jmbPhoneNumVal.indexOf(jmbPasswordVal) == 0) {
       showToolTip(jmbPassword, messages.jmb.password.isNotInPhoneNumber);
     } else {
       hideToolTip(jmbPassword);
     }
   });
 
-  $.each($('.addressInput'), function(index, el) {
-    var jmbPassword = $('#jmbPassword');
-    $(el).focusout(function() {
-      if (jmbPassword.val() != "" && isInHomeAddress(jmbPassword.val()) == true) {
-        showToolTip(jmbPassword, messages.jmb.password.isNotInAddress);
-      } else {
-        hideToolTip(jmbPassword);
-      }
-    });
+  // Require accepting rule and condition
+  $('#jmbRegisterForm').on('submit', function(e) {
+    if (!$('#jmbIsAcceptPolicy').is(":checked")) {
+      $('#jmbRequireMessage').text(messages.jmb.isAcceptPolicy.required);
+    } else {
+      $('#jmbRequireMessage').text("");
+    }
+
+    if (!$('#jmbIsAcceptPolicySM').is(":checked")) {
+      $('#jmbRequireMessageSM').text(messages.jmb.isAcceptPolicy.required);
+    } else {
+      $('#jmbRequireMessageSM').text("");
+    }
   });
 });

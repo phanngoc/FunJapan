@@ -9442,7 +9442,7 @@ ul.engagement li > a:focus {
 #gifs-search-block {
   /*right: 31px;*/
   left: 0;
-  height: 395px;
+  height: 400px;
   max-height: 400px;
 }
 #emoji-picker-block {
@@ -11234,9 +11234,9 @@ body.modal-open {
   overflow: hidden;
   position: relative;
   border-radius: 0 0 7px 7px;
-  background-size: cover !important;
-  background-position: center !important;
   background: url('../images/registration/registration_banner_header.png');
+  background-size: cover;
+  background-position: center;
 }
 @media only screen and (max-width: 768px) {
   .registration-header {
@@ -12571,10 +12571,16 @@ body .sidebar ulul.engagement li > a:focus {
   box-shadow: 0px 0px 10px 0px #d0d0e0;
 }
 .registration-body.jmb .break-line {
+  margin-bottom: 100px;
   text-align: center;
 }
+@media only screen and (max-width: 768px) {
+  .registration-body.jmb .break-line {
+    margin-bottom: 30px;
+  }
+}
 .registration-body.jmb .break-line img {
-  width: 100%;
+  max-width: 100%;
 }
 .registration-body.jmb .break-line .break-line-dk {
   margin-top: 65px;
@@ -12590,7 +12596,7 @@ body .sidebar ulul.engagement li > a:focus {
 }
 @media only screen and (max-width: 768px) {
   .registration-body.jmb .break-line .break-line-mb {
-    display: block;
+    display: inline;
   }
 }
 .step-btn-container {
@@ -12827,8 +12833,8 @@ body .sidebar ulul.engagement li > a:focus {
 }
 .step-1 .signup-area {
   position: relative;
-  background-size: cover !important;
-  background-position: center !important;
+  background-size: cover;
+  background-position: center;
   height: 209px;
   background: url('../images/registration/registration_banner_top.png');
 }
@@ -12927,8 +12933,8 @@ body .sidebar ulul.engagement li > a:focus {
   position: relative;
   height: 180px;
   overflow: hidden;
-  background-size: 100% 100% !important;
   background: url('../images/registration/registration_banner_sm.png');
+  background-size: 100% 100%;
 }
 @media only screen and (max-width: 1030px) {
   .step-1 .signup-area.sm {
@@ -13148,6 +13154,7 @@ body .sidebar ulul.engagement li > a:focus {
   background-color: #ffffff;
   position: relative;
   opacity: 0;
+  z-index: 2;
 }
 @media only screen and (max-width: 768px) {
   .step-2 .form-group input[type="checkbox"] {
@@ -13258,22 +13265,6 @@ textarea.step-2 .form-group select {
   background-color: #ffffff;
   outline: none;
 }
-.step-2 .form-group .combodate {
-  display: block;
-  text-align: center;
-}
-.step-2 .form-group .combodate > select {
-  display: inline-block;
-  width: 30% !important;
-}
-.step-2 .form-group .combodate > select:nth-child(2) {
-  margin: 0 4.2%;
-}
-@media only screen and (max-width: 768px) {
-  .step-2 .form-group .combodate > select:nth-child(2) {
-    margin: 0 3%;
-  }
-}
 .step-2 .form-group label {
   display: block;
 }
@@ -13293,6 +13284,7 @@ textarea.step-2 .form-group select {
   display: inline;
   font-family: myriadpro-regular;
   font-size: 14px;
+  line-height: 2;
   font-weight: normal;
   color: #666666;
   position: relative;
@@ -13308,7 +13300,7 @@ textarea.step-2 .form-group select {
   position: absolute;
   width: 20px;
   height: 20px;
-  bottom: 1px;
+  top: 4px;
   left: 0;
   background: #ffffff;
   border: 1px solid #ccc;
@@ -13318,6 +13310,7 @@ textarea.step-2 .form-group select {
   .step-2 .form-group .checkbox-label.tick {
     width: 16px;
     height: 16px;
+    top: 2px;
   }
 }
 .step-2 .form-group .checkbox-label.tick:after {
@@ -13406,7 +13399,7 @@ textarea.step-2 .form-group select {
 }
 @media only screen and (max-width: 768px) {
   .step-2 .form-group.term-check .term-checkbox .checkbox-label.tick {
-    bottom: 1px;
+    top: 7px;
     left: 19px;
     border: 1px solid #6ec07d;
   }
@@ -13417,14 +13410,22 @@ textarea.step-2 .form-group select {
     left: 2px;
   }
 }
+.step-2 .form-group.term-check .feedback {
+  text-align: center;
+}
+.step-2 .form-group.term-check .feedback span {
+  color: #ff6666;
+  font-family: myriadpro-regular;
+  font-size: 14px;
+}
 .step-2 .form-group .tooltip {
   max-width: 260px;
-  right: 0 !important;
+  right: 0;
   left: auto !important;
   line-height: 1.1;
 }
 .step-2 .form-group .tooltip .tooltip-arrow {
-  left: auto !important;
+  left: auto;
   right: 24px;
 }
 .step-2 .form-group .tooltip .tooltip-inner {
@@ -13540,7 +13541,7 @@ textarea.step-2 .form-group select {
   right: 12px;
 }
 .step-2.jmb .no-padding .tooltip {
-  right: -8px !important;
+  right: -8px;
 }
 .step-2.jmb #addLn_3 {
   right: 25px;
@@ -13560,29 +13561,9 @@ textarea.step-2 .form-group select {
     display: block;
   }
 }
-.step-2.jmb .term .term-title {
-  margin-bottom: 5px;
-  margin-top: 20px;
-}
 .step-2.jmb .term .col-form-label {
   display: inline;
   margin-right: 15px;
-}
-.step-2.jmb .term .overview h2 {
-  margin-top: 5px;
-  margin-bottom: 0;
-  font-family: myriadpro-bold;
-  font-size: 15px;
-}
-.step-2.jmb .term .overview b {
-  font-family: myriadpro-bold;
-  font-weight: normal;
-}
-.step-2.jmb .term .overview .alR {
-  text-align: right;
-}
-.step-2.jmb .term .overview .mgt15 {
-  margin-top: 15px !important;
 }
 .step-2.jmb .term .term-banner {
   margin-top: 15px;
@@ -13615,74 +13596,8 @@ textarea.step-2 .form-group select {
   }
 }
 @media only screen and (max-width: 768px) {
-  .step-2.jmb .term-check {
-    display: none;
-  }
-}
-.step-2.jmb .term-check.sm {
-  display: none;
-}
-@media only screen and (max-width: 768px) {
-  .step-2.jmb .term-check.sm {
-    display: block;
-  }
-}
-.step-2.jmb .term-check.sm .term-checkbox {
-  margin-bottom: 20px;
-}
-.step-2.jmb .term-check.sm .guide-text {
-  text-align: left;
-  padding: 0 5px;
-  margin-bottom: 20px;
-}
-.step-2.jmb .term-check.sm .checkbox-label {
-  bottom: -2px;
-}
-.step-2.jmb .term-check.sm .checkbox-label.tick {
-  top: 5px;
-}
-.step-2.jmb .term-checkbox {
-  width: 79%;
-  text-align: left !important;
-}
-@media only screen and (max-width: 768px) {
-  .step-2.jmb .term-checkbox {
-    width: 270px;
-  }
-}
-.step-2.jmb .form-group {
-  position: relative;
-}
-@media only screen and (max-width: 768px) {
   .step-2.jmb .form-group {
     padding: 0;
-  }
-}
-.step-2.jmb .form-group.term-check {
-  margin-bottom: 0;
-}
-.step-2.jmb .form-group .checkbox-label {
-  display: block;
-  float: left;
-  left: 40px;
-  bottom: 30px;
-}
-@media only screen and (max-width: 768px) {
-  .step-2.jmb .form-group .checkbox-label {
-    left: 20px;
-  }
-}
-.step-2.jmb .form-group .checkbox-label.tick {
-  left: 0;
-  top: 0;
-  float: left;
-}
-.step-2.jmb .step-btn-container {
-  margin-top: 0;
-}
-@media only screen and (max-width: 768px) {
-  .step-2.jmb .step-btn-container input {
-    padding: 5px 121px;
   }
 }
 .guide-text {
@@ -13700,11 +13615,6 @@ textarea.step-2 .form-group select {
 }
 .guide-text.small {
   font-size: 12px;
-}
-@media only screen and (max-width: 768px) {
-  .guide-text.center {
-    padding: 0 16px;
-  }
 }
 .guide-text a:hover,
 .guide-text a:focus {
@@ -14034,6 +13944,7 @@ textarea.step-2 .form-group select {
 .card-guide .guide {
   position: absolute;
   max-width: 170px;
+  font-style: italic;
 }
 .card-guide .guide.blue-circle {
   left: 158px;
@@ -14042,7 +13953,6 @@ textarea.step-2 .form-group select {
   right: 158px;
 }
 .jmb-registration {
-  margin-top: 100px;
   background: url('../images/registration/jmb_background.png');
   background-position: top;
   background-repeat: no-repeat;
@@ -14054,7 +13964,6 @@ textarea.step-2 .form-group select {
     background-position: top;
     background-repeat: no-repeat;
     background-size: 100%;
-    margin-top: 30px;
     padding: 0 10px 30px;
   }
 }

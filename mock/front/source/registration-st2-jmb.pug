@@ -16,8 +16,8 @@ block registration-patial
     .jmb-registration
       .jmb-intro
         .intro-title
-          p.sm-text ご搭乗・ご宿泊・ショッピングでマイルがたまる！
-          p.lg-text FJ 会員だけのスペシャルオファー
+          p.sm-text Earn miles by boarding, lodging or shopping!
+          p.lg-text Special offer for FJ members
           p.caret-down
             i.fa.fa-caret-down(aria-hidden='true')
         .card-banner
@@ -26,32 +26,31 @@ block registration-patial
             span.stars-group.left
               i.fa.fa-star(aria-hidden='true')
               i.fa.fa-star(aria-hidden='true')
-              i.fa.fa-star(aria-hidden='true')
-            span.text FJ会員限定カード
+            span.text FJ member limited
             span.stars-group.right
-              i.fa.fa-star(aria-hidden='true')
               i.fa.fa-star(aria-hidden='true')
               i.fa.fa-star(aria-hidden='true')
           .dialog
             p.title
               span.red-text Fun!
-              |  Japan 限定
+              |  Japan ONLY
             p
-              span.green-text JALマイレージバンクカードをプレゼント。今すぐ会員登録してみませんか？
+              span.green-text We give JAL mileage bank card as present! Let's register now!
         p.summary
-          span JALマイレージバンクは、ご搭乗やご宿泊・ショッピングなどでためたマイルを、魅力的な特典と交換できるJALのマイレージプログラムです。
+          span
+            | With JAL mileage bank service, you can exchange miles for many attractive rewards. Miles can be earned through boarding, lodging or shopping activities.
         .card-guide
           img(src='./images/registration/card_guide.png', alt='card_banner')
           .guide.blue-circle
-            p.title マイルをためる
-            p.description フライトやショッピングなどでマイルがたまります。
+            p.title Earn miles
+            p.description Earn miles by boarding flight or shopping.
           .guide.green-circle
-            p.title マイルをつかう
-            p.description 航空券のほか、クーポンなどの特典と交換ができます。
+            p.title Exchange miles
+            p.description Miles can be exchanged for flight ticket, coupons and more.
       .jmb-intro-mobile
         .intro-title
-          p.sm-text ご搭乗・ご宿泊・ショッピングでマイルがたまる！
-          p.lg-text FJ 会員だけのスペシャルオファー
+          p.sm-text Earn miles by boarding, lodging or shopping!
+          p.lg-text Special offer for FJ members
           p.caret-down
             i.fa.fa-caret-down(aria-hidden='true')
         .card-banner
@@ -61,7 +60,7 @@ block registration-patial
               i.fa.fa-star(aria-hidden='true')
               i.fa.fa-star(aria-hidden='true')
               i.fa.fa-star(aria-hidden='true')
-            span.text FJ会員限定カード
+            span.text FJ member limited
             span.stars-group.right
               i.fa.fa-star(aria-hidden='true')
               i.fa.fa-star(aria-hidden='true')
@@ -69,87 +68,98 @@ block registration-patial
           .dialog
             p.title
               span.red-text Fun!
-              |  Japan 限定
+              |  Japan ONLY
             p
-              span.green-text JALマイレージバンクカードをプレゼント。今すぐ会員登録してみませんか？
+              span.green-text We give JAL mileage bank card as present! Let's register now!
         p.summary
-          span JALマイレージバンクは、ご搭乗やご宿泊・ショッピングなどでためたマイルを、魅力的な特典と交換できるJALのマイレージプログラムです。
+          span
+            | With JAL mileage bank service, you can exchange miles for many attractive rewards. Miles can be earned through boarding, lodging or shopping activities.
         .card-guide
           img(src='./images/registration/card_guide_sm.png', alt='card_banner')
           .guide.blue-circle
-            p.title マイルをためる
-            p.description フライトやショッピングなどでマイルがたまります。
+            p.title Earn miles
+            p.description Earn miles by boarding flight or shopping.
           .guide.green-circle
-            p.title マイルをつかう
-            p.description 航空券のほか、クーポンなどの特典と交換ができます。
+            p.title Exchange miles
+            p.description Miles can be exchanged for flight ticket, coupons and more.
       .step-2.jmb
         form#jmbRegisterForm(data-toggle='validator', role='form')
           p.guide-text.center Please provide all of the required information below and click the Next button.
           .row
             .col-md-6
-              .form-group.row.has-feedback.has-info
+              .form-group.row.has-info
                 label.col-md-36.col-form-label(for='firstName')
-                  | First name
+                  | Given name
                   span.require *
                 .col-md-64.col-xs-11
-                  input#jmbFirstName.form-control(type='text', name='firstName', placeholder='First name')
+                  input#jmbFirstName.form-control(type='text', name='firstName', placeholder='10 character or less')
                   i#addFn_2.zmdi.zmdi-plus-circle-o.control-btn
                   i#addFn_3.zmdi.zmdi-plus-circle-o.control-btn
                   i#firstName1Info.fa.fa-question-circle.info-tooltip-btn(aria-hidden='true')
             #firstName2_block.col-md-22.col-xs-11.hidden
-              .form-group.has-feedback.has-info
+              .form-group.has-info
                 .col-md-12.no-padding
-                  input#jmbFirstName2.form-control(type='text', name='firstName2', placeholder='First name 2')
+                  input#jmbFirstName2.form-control(type='text', name='firstName2', placeholder='9 character or less')
                   i#rmFn_2.zmdi.zmdi-minus-circle-outline.control-btn
                   i#firstName2Info.fa.fa-question-circle.info-tooltip-btn(aria-hidden='true')
             #firstName3_block.col-md-22.col-xs-11.hidden
-              .form-group.has-feedback.has-info
+              .form-group.has-info
                 .col-md-12.no-padding
-                  input#jmbFirstName3.form-control(type='text', name='firstName3', placeholder='First name 3')
+                  input#jmbFirstName3.form-control(type='text', name='firstName3', placeholder='9 character or less')
                   i#rmFn_3.zmdi.zmdi-minus-circle-outline.control-btn
                   i#firstName3Info.fa.fa-question-circle.info-tooltip-btn(aria-hidden='true')
           .row
             .col-md-6
-              .form-group.row.has-feedback.has-info
+              .form-group.row.has-info
                 label.col-md-36.col-form-label(for='lastName')
-                  | Last name
+                  | Family name
                   span.require *
                 .col-md-64
-                  input#jmbLastName.form-control(type='text', name='lastName', placeholder='Last name')
+                  input#jmbLastName.form-control(type='text', name='lastName', placeholder='9 character or less')
                   i#lastNameInfo.fa.fa-question-circle.info-tooltip-btn(aria-hidden='true')
             .col-md-6
               .form-group.row.has-info
                 label.col-md-36.col-form-label.alR(for='midName') Middle name
                 .col-md-64
-                  input#jmbMidName.form-control(type='text', name='midName', placeholder='Middle name')
+                  input#jmbMidName.form-control(type='text', name='midName', placeholder='9 character or less')
                   i#midNameInfo.fa.fa-question-circle.info-tooltip-btn(aria-hidden='true')
           .row
             .col-md-6
-              .form-group.row
-                label.col-md-36.col-form-label(for='gender')
-                  | Gender
-                  span.require *
-                .col-md-64
-                  select#jmbGender(name='gender')
-                    option(value='', selected='', hidden='') Select
-                    option Male
-                    option Female
-          .row
-            .col-md-6
-              .form-group.row.has-feedback.has-info
+              .form-group.row.has-info
                 label.col-md-36.col-form-label(for='password')
-                  | JMB Password
+                  | Personal Identification Number (PIN)
                   span.require *
                 .col-md-64
-                  input#jmbPassword.form-control(type='password', name='password', placeholder='●●●●●●●●●●')
+                  input#jmbPassword.form-control(type='password', name='password', placeholder='Must be 6 numeric characters')
                   i#pwInfo.fa.fa-question-circle.info-tooltip-btn(aria-hidden='true')
             .col-md-6
-              .form-group.row.has-feedback
+              .form-group.row
                 label.col-md-36.col-form-label.alR(for='confirmPassword')
-                  | Confirm password
+                  | PIN confirmation
                   span.require *
                 .col-md-64
-                  input#jmbConfirmPassword.form-control(type='password', name='confirmPassword', placeholder='●●●●●●●●●●')
+                  input#jmbConfirmPassword.form-control(type='password', name='confirmPassword', placeholder='Must be 6 numeric characters')
+          .form-group.row
+            label.col-md-18.col-form-label(for='address1')
+              | Address 1
+              span.require *
+            .col-md-82
+              input#jmbAddress1.form-control.addressInput(type='text', name='address1', placeholder='Address 1')
+          .form-group.row
+            label.col-md-18.col-form-label(for='address2')
+              | Address 2
+              span.require *
+            .col-md-82
+              input#jmbAddress2.form-control.addressInput(type='text', name='address2', placeholder='Address 2')
+              i.zmdi.zmdi-plus-circle-o.control-btn.address
+          .row
+            .col-md-6
+              .form-group.row
+                label.col-md-36.col-form-label(for='zipcode')
+                  | Zip Code
+                  span.require *
+                .col-md-64
+                  input#jmbZipcode.form-control(type='text', name='zipcode', placeholder='Zip Code')
           .row
             .col-md-6
               .form-group.row
@@ -189,42 +199,13 @@ block registration-patial
                     option Location 9
                     option Location 10
                     option Location 11
-          .row
-            .col-md-6
-              .form-group.row.has-feedback
-                label.col-md-36.col-form-label(for='zipcode')
-                  | Zip code
-                  span.require *
-                .col-md-64
-                  input#jmbZipcode.form-control(type='text', name='zipcode', placeholder='Zip code')
-          .form-group.row.has-feedback
-            label.col-md-18.col-form-label(for='address1')
-              | Address 1
-              span.require *
-            .col-md-82
-              input#jmbAddress1.form-control.addressInput(type='text', name='address1', placeholder='Address 1')
-          .form-group.row.has-feedback
-            label.col-md-18.col-form-label(for='address2')
-              | Address 2
-              span.require *
-            .col-md-82
-              input#jmbAddress2.form-control.addressInput(type='text', name='address2', placeholder='Address 2')
-              i.zmdi.zmdi-plus-circle-o.control-btn.address
-          .form-group.row.has-feedback
+          .form-group.row
             label.col-md-18.col-form-label(for='phoneNumber')
               | Phone number
               span.require *
             .col-md-82
               input#jmbPhoneNumber.form-control(type='text', name='phoneNumber', placeholder='Phone number')
           .form-group.term
-            label.col-form-label Enrollment in JAL Mileage Bank (JMB)
-            p.guide-text
-              | Japan Airlines (JAL) is fully aware of the importance and responsibility to safeguard your personal information collected through online access, and will respectfully take all precautionary means for its handling and protection.
-              br
-              a(href='#')
-                i.zmdi.zmdi-open-in-new
-                | &nbsp 
-                span More information
             p.term-title
               label.col-form-label(for='term') Acceptance of Rules and Conditions
               span.guide-text Please agree to the JMB Rules and Conditions to continue
@@ -234,48 +215,16 @@ block registration-patial
                 img.banner-mb(src='./images/registration/jmb_term_sm.png', alt='jmb_term')
           .form-group.term-check
             .checkbox-holder.term-checkbox
-              input#jmbIsAcceptPolicy.terms-checkbox(type='checkbox', name='isAcceptPolicy', value='')
+              input#jmbIsAcceptPolicy(type='checkbox', name='isAcceptPolicy', value='')
               input(name='isAcceptPolicy', type='hidden', value='false')
-              label.checkbox-label.tick(for='isAcceptPolicy')
+              label.checkbox-label.tick(for='jmbIsAcceptPolicy')
               label.checkbox-label
-                span.guide-text.small
-                  | I have read and agree to the JMB Rules and Conditions and 
-                  a(href='#')
-                    i.zmdi.zmdi-open-in-new
-                    | &nbsp 
-                    span other relevant terms and conditions
-                  | .
-                  br
-                  |                         If you are under the age of 20, your parent or legal guardian must read and agree to the JMB Rules and Conditions and 
-                  a(href='#')
-                    i.zmdi.zmdi-open-in-new
-                    | &nbsp 
-                    span relevant terms and conditions
-                  |  before you submit your application.
-          .form-group.term-check.sm
-            p.guide-text.small
-              | I have read and agree to the JMB Rules and Conditions and 
-              a(href='#')
-                i.zmdi.zmdi-open-in-new
-                | &nbsp 
-                span other relevant terms and conditions
-              | .
-              br
-              |                         If you are under the age of 20, your parent or legal guardian must read and agree to the JMB Rules and Conditions and 
-              a(href='#')
-                i.zmdi.zmdi-open-in-new
-                | &nbsp 
-                span relevant terms and conditions
-              |  before you submit your application.
-            .checkbox-holder.term-checkbox
-              input#jmbIsAcceptPolicySM.terms-checkbox(type='checkbox', name='terms', value='')
-              input(name='terms', type='hidden', value='false')
-              label.checkbox-label.tick(for='terms')
-              label.checkbox-label
-                span I agree to above Terms & conditions.
+                span I agree to above Terms of use & Conditions
+            p.feedback
+              span#jmbRequireMessage
           .step-btn-container
             input#submit-button.btn.btn-primary(type='submit', value='Next')
-  
+
 
 block script
   script(type='text/javascript', src='js/vendor/jquery-3.2.1.js')

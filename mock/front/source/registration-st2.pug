@@ -7,14 +7,13 @@ block registration-patial
   .registration-body
     .step-2
       form#fjRegisterForm(data-toggle='validator', role='form')
-        .form-group.row.has-feedback
+        .form-group.row
           label.col-md-18.col-form-label(for='fullName')
             | Your Name
             span.require *
           .col-md-82
             input#fjFullName.form-control(name='fullName', placeholder='Enter your name', type='text', value='')
-            label.help-block
-        .form-group.row.has-feedback
+        .form-group.row
           label.col-md-18.col-form-label(for='email')
             | Email
             span.require *
@@ -22,7 +21,7 @@ block registration-patial
             input#fjEmail.form-control(type='email', name='email', placeholder='Email', data-error='Bruh, that email address is invalid')
         .row
           .col-md-6
-            .form-group.row.has-feedback
+            .form-group.row
               label.col-md-36.col-form-label(for='gender')
                 | Gender
                 span.require *
@@ -31,25 +30,22 @@ block registration-patial
                   option(value='') ---
                   option(value='Male') Male
                   option(value='Female') Female
-                label.help-block
         .row
           .col-md-6
-            .form-group.row.has-feedback
+            .form-group.row
               label.col-md-36.col-form-label(for='password')
                 | Password
                 span.require *
               .col-md-64
                 input#fjPassword.form-control(name='password', placeholder='Minimum 6 letters', type='password')
-                label.help-block
         .row
           .col-md-6
-            .form-group.row.has-feedback
+            .form-group.row
               label.col-md-36.col-form-label(for='confirmPassword')
                 | Password, Again
                 span.require *
               .col-md-64
                 input#fjConfirmPassword.form-control(name='confirmPassword', placeholder='Confirm your password', type='password')
-                label.help-block
         .form-group.row
           label.col-md-18.col-form-label(for='dobl')
             | Birthday
@@ -137,8 +133,6 @@ block registration-patial
                   option(value='2015') 2015
                   option(value='2016') 2016
                   option(value='2017') 2017
-            .row(style='padding-left: 8px; padding-right: 8px')
-              label.help-block
         .form-group.row
           label.col-md-18.col-form-label(for='location')
             | Location
@@ -160,7 +154,6 @@ block registration-patial
               option(value='MalukuPapua') Maluku, Papua
               option(value='OtherCountry') Not in Indonesia
               option(value='Japan') Jepang
-            label.help-block
         .form-group.row
           label.col-md-18.col-form-label(for='religion') Religion
           .col-md-82
@@ -174,18 +167,17 @@ block registration-patial
               option(value='Islam') Islam
               option(value='Other') Other
               option(value='Taoism') Taoism
-            label.help-block
         .form-group.row
           label.col-md-18.col-form-label Subscription
           .col-md-82
             .checkbox-holder
-              input#fjNewsCheckbox(checked='checked', name='receivesNewsletters', type='checkbox', value='true')
+              input#fjNewsCheckbox(name='receivesNewsletters', type='checkbox', value='true')
               input(name='ReceivesNewsletters', type='hidden', value='false')
               label.checkbox-label.tick(for='newsCheckbox')
               label.checkbox-label
                 span Receive "Newsletter Email"
             .checkbox-holder
-              input#fjNotiCheckbox(checked='checked', name='receivesReplyCommentNotification', type='checkbox', value='true')
+              input#fjNotiCheckbox(name='receivesReplyCommentNotification', type='checkbox', value='true')
               input(name='ReceivesReplyCommentNotification', type='hidden', value='false')
               label.checkbox-label.tick(for='notiCheckbox')
               label.checkbox-label
@@ -197,7 +189,7 @@ block registration-patial
             p
               | Welcome to Fun! Japan!
               br
-              |                     “Fun! Japan” collectively means a project (“Fun! Japan Project”) that offers products and services through various means, including this website (including, but not limited to the web domain indonesia.fun-japan.jp – referred to as “Site” – which may later be revised or changed for any reason), and strives to expand interest in Japan by introducing Japanese products and services to consumers across Asia.
+              | “Fun! Japan” collectively means a project (“Fun! Japan Project”) that offers products and services through various means, including this website (including, but not limited to the web domain indonesia.fun-japan.jp – referred to as “Site” – which may later be revised or changed for any reason), and strives to expand interest in Japan by introducing Japanese products and services to consumers across Asia.
             p
               | The governing body of Fun! Japan, the Fun! Japan Team, offers services and information to its customers according to the following Terms of Use (“Terms of Use”). "Fun! Japan" hereby refers to the Fun! Japan Project, this Site, the individual members or company that makes up the Fun! Japan Team, individually or collectively, as implied by the context.
             p
@@ -206,12 +198,12 @@ block registration-patial
             p
               | Privacy policies are applied when you use Fun! Japan. 
               br
-              |                     Pease read them carefully and make sure you understand them.
+              | Pease read them carefully and make sure you understand them.
             h2 Electronic communication
             p
               | When you use Fun! Japan or send email to Fun! Japan, you are engaging in electronic communication with Fun! Japan. 
               br
-              |                     You are prospectively agreeing to receive communications from Fun! Japan as a part of a notification regarding its operation, publication or function by sending you an email to your registered address, placing a notice on the Site, or using other appropriate means via the Site. You are deemed to agree that electronic communications from Fun! Japan, including all agreements, notices, and information disclosure, satisfy the legal requirements for communications in writing.
+              | You are prospectively agreeing to receive communications from Fun! Japan as a part of a notification regarding its operation, publication or function by sending you an email to your registered address, placing a notice on the Site, or using other appropriate means via the Site. You are deemed to agree that electronic communications from Fun! Japan, including all agreements, notices, and information disclosure, satisfy the legal requirements for communications in writing.
             h2 Copyrights
             p
               | All contents provided via Fun! Japan (e.g., characters, graphics, logos, button icons, images, audio clips, movies, digitally downloaded materials, and edited data) are the property of either Fun! Japan or content provider and are protected by Japan’s copyright law and international laws concerning copyrights. All compilations of contents provided via Fun! Japan are the exclusive property of Fun! Japan and are protected by Japan's copyright law and international laws concerning copyrights. You may not reprint or reproduce information, images, etc., that are provided via Fun! Japan without our permission.
@@ -219,7 +211,7 @@ block registration-patial
             p
               | Fun! Japan or any content provider for it grants you a limited, non-exclusive, non-commercial, and personal license to use Fun! Japan on the condition that you comply with these Terms of Use (no assignment or sublicense is permitted). This license does not cover any of the following: resale or commercial use of Fun! Japan or its content; collection or use of product lists, descriptions, or prices; secondary use of Fun! Japan or its content; download or copy of account information for other companies; or use of data collection or extraction tools such as data mining or robot. 
               br
-              |                     Fun! Japan or its licensors, suppliers, publishers, right holders, or other content holders reserve all rights that are not explicitly granted by these Terms of Use or other terms. You may not duplicate, photocopy, copy, sell, resell, access, or otherwise use Fun! Japan or any part thereof for commercial use without an explicit written consent from Fun! Japan. You may not frame or use frame technology to incorporate any logo or any other information of value owned by Fun! Japan (including images, characters, page layout, and forms) without an explicit written consent. You are prohibited from misusing Fun! Japan, and may only use Fun! Japan according to applicable laws. This license granted by Fun! Japan will be cancelled or terminated at the discretion of Fun! Japan without notice, if you use Fun! Japan in violation of these Terms of Use or any other applicable conditions.
+              | Fun! Japan or its licensors, suppliers, publishers, right holders, or other content holders reserve all rights that are not explicitly granted by these Terms of Use or other terms. You may not duplicate, photocopy, copy, sell, resell, access, or otherwise use Fun! Japan or any part thereof for commercial use without an explicit written consent from Fun! Japan. You may not frame or use frame technology to incorporate any logo or any other information of value owned by Fun! Japan (including images, characters, page layout, and forms) without an explicit written consent. You are prohibited from misusing Fun! Japan, and may only use Fun! Japan according to applicable laws. This license granted by Fun! Japan will be cancelled or terminated at the discretion of Fun! Japan without notice, if you use Fun! Japan in violation of these Terms of Use or any other applicable conditions.
             h2 Account
             p
               | When using this Site, you understand and agree to be held responsible for your account, in safeguarding your password and supervising the use and access to your account.  If someone accesses your account or uses your account to access the Site, we will rely on that account ID and will assume that access has been made by you, and you will be held responsible for any conduct made through your account.  Please notify us immediately if you suspect or become aware that your account has been used without your authorization. We at Fun! Japan reserve the right to remove any and/or all of your submissions, suspend, and/or terminate your account with or without prior notice.  Regardless of whether intentional or negligent infringement, costs, losses and damages arising in connection with termination as a result of password theft, loss, or unauthorized use (such as, but not limited to: investigation costs, preventive measures costs, attorney fees, claim correspondence costs) shall not be charged to Fun! Japan.  We reserve the right to revise or delete contents, stop or change promotions or campaigns, deny service, suspend accounts without notice.
@@ -251,7 +243,7 @@ block registration-patial
             p
               | We recommend that you use the latest version of one of the following browsers when using Fun! Japan.  
               br
-              |                     (As of June 2, 2014)
+              | (As of June 2, 2014)
             ul
               li Google Chrome
               li FireFox
@@ -286,11 +278,13 @@ block registration-patial
               | Email:  support-id@fun-japan.jp
         .form-group.term-check
           .checkbox-holder.term-checkbox
-            input#chk-license-agreement(type='checkbox', name='isAcceptPolicy', value='')
+            input#fjIsAcceptPolicy(type='checkbox', name='isAcceptPolicy', value='')
             input(name='isAcceptPolicy', type='hidden', value='false')
-            label.checkbox-label.tick(for='chk-license-agreement')
+            label.checkbox-label.tick(for='fjIsAcceptPolicy')
             label.checkbox-label
               span I accept the terms of use and the privacy policy.
+          p.feedback
+            span#fjRequireMessage
         .step-btn-container
           input#submit-button.btn.btn-primary(type='submit', value='Next')
 
