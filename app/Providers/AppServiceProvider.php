@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Validator::extend('email_update', function ($attribute, $value, $parameters, $validator) {
+            $regex = '/^[^!#$%^&*+-]+$/';
+
+            return preg_match($regex, $value);
+        });
     }
 
     /**
