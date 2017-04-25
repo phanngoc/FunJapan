@@ -13,6 +13,7 @@
 
 Route::group(['namespace' => 'Admin'], function () {
 
+    Route::resource('recommend-articles', 'RecommendedArticlesController');
     Route::resource('articles', 'ArticlesController');
     Route::get('articles/setOtherLanguage/{article}', 'ArticlesController@setOtherLanguage');
     Route::post('articles/updateOtherLanguage/{article}', 'ArticlesController@updateOtherLanguage');

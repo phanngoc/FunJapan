@@ -30,6 +30,7 @@ class ArticleLocale extends BaseModel
         'published_at',
         'photo',
         'is_top_article',
+        'recommended',
     ];
 
     protected $appends = [
