@@ -9,6 +9,7 @@ use App\Services\Admin\ArticleLocaleService;
 use App\Services\Admin\ArticleTagService;
 use App\Services\Admin\LocaleService;
 use App\Services\Admin\CategoryLocaleService;
+use App\Services\Admin\CategoryService;
 use App\Models\Article;
 use App\Models\ArticleTag;
 use Carbon\Carbon;
@@ -17,7 +18,7 @@ class ArticlesController extends Controller
 {
     public function index()
     {
-        $this->viewData['articleLocales'] = ArticleLocaleService::list();
+        $this->viewData['locales'] = json_encode(LocaleService::getAllLocales());
 
         return view('admin.article.index', $this->viewData);
     }
@@ -32,10 +33,20 @@ class ArticlesController extends Controller
         return view('admin.article.detail', $this->viewData);
     }
 
+    public function getListArticles(Request $request)
+    {
+        $params = $request->input();
+        $draw = $params['draw'];
+        $articlesData = ArticleLocaleService::list($params);
+        $articlesData['draw'] = (int)$draw;
+
+        return $articlesData;
+    }
+
     public function create()
     {
         $this->viewData['locales'] = LocaleService::getAllLocales();
-        $this->viewData['categories'] = CategoryLocaleService::getCategories();
+        $this->viewData['categories'] = CategoryService::getAllCategories();
 
         return view('admin.article.create', $this->viewData);
     }
@@ -50,8 +61,7 @@ class ArticlesController extends Controller
         }
 
         if ($article = ArticleService::create($inputs)) {
-            return redirect()
-                ->action('Admin\ArticlesController@show', [$article->id, 'locale' => $inputs['locale']])
+            return redirect()->action('Admin\ArticlesController@show', [$article->id, 'locale' => $inputs['locale']])
                 ->with(['message' => trans('admin/article.create_success')]);
         }
 
@@ -67,7 +77,7 @@ class ArticlesController extends Controller
             $this->viewData['article'] = $article;
             $articleLocale = $article->articleLocales->where('locale_id', $localeId)->first();
             $this->viewData['articleLocale'] = $articleLocale;
-            $this->viewData['categories'] = CategoryLocaleService::getCategories();
+            $this->viewData['categories'] = CategoryService::getAllCategories();
             $tagLocales = $article->articleTags->where('article_locale_id', $articleLocale->id);
             $this->viewData['tags'] = [];
             foreach ($tagLocales as $tagLocale) {

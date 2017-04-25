@@ -1,5 +1,8 @@
 @if ($errors->any() || session()->has('message') || session()->has('error'))
-    <div class="alert {{ session()->has('message') ? 'alert-success' : 'alert-danger' }}" id="alert-message">
+    <div class="alert mt20 {{ session()->has('message') ? 'alert-success' : 'alert-danger' }}" id="alert-message">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         @foreach ($errors->all() as $message)
             <p>{{ $message }}</p>
         @endforeach

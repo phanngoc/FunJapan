@@ -1,6 +1,3 @@
-baseUrl = function () {
-    return window.location.protocol + '//' + window.location.host;
-};
 $(document).ready(function (e) {
     var table = $('#tag-table').DataTable({
         'order': [[ 1, "desc" ]],

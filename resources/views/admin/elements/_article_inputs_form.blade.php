@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="form-group required">
     {{ Form::label(
         'title',
         trans('admin/article.label.title'),
@@ -10,13 +10,14 @@
             $title ?? '',
             [
                 'class' => 'form-control',
-                'placeholder' => trans('admin/article.placeholder.title')
+                'placeholder' => trans('admin/article.placeholder.title'),
+                'required',
             ])
         }}
     </div>
 </div>
 
-<div class="form-group">
+<div class="form-group required">
     {{ Form::label(
         'content',
         trans('admin/article.label.content'),
@@ -29,12 +30,13 @@
             [
                 'class' => 'article-content',
                 'placeholder' => trans('admin/article.placeholder.content'),
+                'required',
             ])
         }}
     </div>
 </div>
 
-<div class="form-group">
+<div class="form-group required">
     {{ Form::label(
         'summary',
         trans('admin/article.label.summary'),
@@ -46,7 +48,8 @@
             $summary ?? '',
             [
                 'class' => 'form-control',
-                'rows' => 2
+                'rows' => 2,
+                'required',
             ])
         }}
     </div>

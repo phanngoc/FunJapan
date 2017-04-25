@@ -35,7 +35,7 @@
                                         <hr>
                                         <img src="{{ $articleLocale->thumbnail_urls['small_'] }}">
                                         <hr>
-                                        <strong>{{ trans('admin/article.category') }}: </strong> {{$articleLocale->category_locale_name}}
+                                        <strong>{{ trans('admin/article.category') }}: </strong> {{$articleLocale->article->category->name}}
                                         <hr>
                                         <strong>{{ trans('admin/article.list_tag') }}: </strong>
                                         @foreach ($article->articleTags as $articleTag)

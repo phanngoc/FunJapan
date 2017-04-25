@@ -48,4 +48,7 @@
 {!! Html::script('assets/admin/js/plugins/dataTables/datatables.min.js') !!}
 <!-- Sweetalert -->
 {!! Html::script('assets/admin/js/plugins/sweetalert/sweetalert.min.js') !!}
+<!-- adminjs -->
+{!! Html::script('assets/admin/js/admin.js') !!}
+
 @yield('script')
