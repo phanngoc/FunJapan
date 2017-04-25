@@ -39,6 +39,13 @@
                     </li>
                 </ul>
             </li>
+            <li class="{{ set_active(['admin/categories*', 'admin/categories/create']) }}">
+                <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/category.category_management') }}</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{action('Admin\CategoriesController@index')}}">{{ trans('admin/category.category_list') }}</a></li>                    
+                </ul>
+            </li>
+
         </ul>
 
     </div>

@@ -22,12 +22,16 @@ class CategorySeeder extends Seeder
                     'user_id' => 1,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
+                    'name' => 'Category Name 01',
+                    'short_name' => 'CaName01',
                 ],
                 [
                     'id' => 2,
                     'user_id' => 1,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
+                    'name' => 'Category Name 02',
+                    'short_name' => 'CaName02',
                 ],
             ];
 

@@ -21,5 +21,6 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::get('tagsSuggest', 'TagsController@suggest');
     Route::get('api/tags', 'TagsController@getListTags');
 
+    Route::resource('categories', 'CategoriesController');
     Route::get('{action?}', 'DashboardController@index');
 });
