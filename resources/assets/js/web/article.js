@@ -18,8 +18,10 @@ $(document).ready(function (e) {
                 window.history.pushState(null, null, nextHref);
                 return nextHref;
             }
-
-            return undefined;
+        }
+    }, function() {
+        if ($(".next-page:last").children('a').length == 0) {
+            $('div.container:first').infinitescroll('destroy');
         }
     });
 });

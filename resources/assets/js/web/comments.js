@@ -283,6 +283,7 @@ function postComment(element) {
                 element.attr('disabled', false);
 
                 if (response.success) {
+                    currentArea.find('.comment-input').val('');
                     currentArea.find('.comments-list').removeClass('hidden').html('').append(response.htmlComments);
                     currentArea.find('.comments-loading').addClass('hidden');
                     currentArea.find('.comment-count').html(response.total);

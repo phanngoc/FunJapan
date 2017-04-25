@@ -11,6 +11,7 @@ use App\Services\Web\LocaleService;
 use Illuminate\Support\Facades\App;
 use Carbon\Carbon;
 use App\Models\PostPhoto;
+use DB;
 
 class ArticleService
 {
@@ -54,20 +55,32 @@ class ArticleService
         ]);
     }
 
-    public static function getNextArticle($id, $localeId)
+    public static function getNextArticleId($id, $publishedAt, $localeId)
     {
-        return ArticleLocale::where('id', '<', $id)
-            ->where('locale_id', $localeId)
-            ->whereNotNull('published_at')
-            ->where('published_at', '<', Carbon::now())
-            ->orderBy('id', 'desc')
+        $article = DB::table('articles as a')
+            ->join('article_locales as al', 'a.id', '=', 'al.article_id')
+            ->where('al.locale_id', $localeId)
+            ->where('a.id', '<', $id)
+            ->where('al.published_at', '<', Carbon::now())
+            ->orderBy('al.published_at', 'desc')
+            ->orderBy('a.is_top_article', 'desc')
             ->first();
+
+        return $article->article_id ?? 0;
     }
 
     public static function getArticleDetail($id, $localeId)
     {
         $article = Article::find($id);
+        if (!$article) {
+            return false;
+        }
+
         $article->locale = self::getArticleLocaleDetails($id, $localeId);
+        if (!$article->locale) {
+            return false;
+        }
+
         $relates = $article->getRelateArticle();
         $relateArticle = [];
 
