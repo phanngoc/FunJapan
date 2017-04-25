@@ -16,11 +16,8 @@
       margin-right: 18px;
     } //名前
     .media-heading {
-      @media only screen and (max-width: 768px) {
-        font-size: 12px;
-      }
-      font-family: futura-medium;
-      font-size: 13px;
+      font-family: josefinsans-semibold;
+      font-size: 14px;
       color: @media_light-pink;
     }
     &:first-child {
@@ -36,10 +33,10 @@
         font-size: 12px;
         margin-left: 5px;
         margin-bottom: 5px;
-        color: @media_red;
+        color: @media_light-pink;
         &:hover,
         &:focus {
-          color: @media_red;
+          color: @media_light-pink;
           background-color: transparent;
         }
       }
@@ -63,12 +60,9 @@
     }
   }
   p.comment-body {
-    @media only screen and (max-width: 1024px) {
-      font-size: 12px;
-    }
-    font-family: myriadpro-regular;
+    font-family: opensans-regular;
     color: @media_gray-2;
-    font-size: 13px;
+    font-size: 12px;
     white-space: pre-wrap;
   }
   p.time {
@@ -76,7 +70,7 @@
       @media only screen and (min-width: 768px) and (max-width: 1024) {
         font-size: 11px;
       }
-      font-family: myriadpro-regular;
+      font-family: opensans-regular;
       font-size: 12px;
       color: @media_gray;
     }

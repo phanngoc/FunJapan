@@ -18,6 +18,12 @@
 @registration-dark-blue-2: #3379be;
 @registration-yellow-green: #e1e1c0;
 @registration-gradient: rgba(74, 74, 74, 0.3);
+.placeholder-form-input {
+  font-family: opensans-regular;
+  font-size: 13px;
+  color: lighten(@registration-gray-2, 20%);
+}
+
 .registration-body {
   -webkit-box-shadow: 0px 0px 10px 0px rgba(208, 208, 224, 1);
   -moz-box-shadow: 0px 0px 10px 0px rgba(208, 208, 224, 1);
@@ -54,9 +60,9 @@
   &>a,
   input {
     @media only screen and (max-width: 768px) {
-      font-size: 12px;
+      font-size: 13px;
     }
-    font-family: futura-medium;
+    font-family: josefinsans-semibold;
     font-size: 18px;
     color: @registration-white;
     background-color: @registration-red-4;
@@ -89,7 +95,7 @@
       padding-top: 11px;
     }
     display: inline-block;
-    font-family: futura-medium;
+    font-family: josefinsans-semibold;
     padding: 5px 30px 0px;
     margin-top: 50px;
     position: relative;
@@ -177,16 +183,17 @@
             float: left;
           }
           display: inline-block;
-          font-family: futura-bold;
+          font-family: josefinsans-bold;
           font-size: 12px;
+          line-height: 2.4;
           color: @registration-white;
-          padding: 4px;
           width: 25px;
+          height: 25px;
+          text-align: center;
           background-color: @registration-light-pink;
         }
         .card-title {
           @media only screen and (max-width: 768px) {
-            font-size: 14px;
             line-height: 1.2;
             display: inline-block;
             float: left;
@@ -194,8 +201,8 @@
             margin-top: 0;
             margin-bottom: 10px;
           }
-          font-family: futura-medium;
-          font-size: 15px;
+          font-family: josefinsans-semibold;
+          font-size: 16px;
           color: @registration-red-2;
           margin-top: 8px;
           margin-bottom: 5px;
@@ -205,10 +212,10 @@
             margin-top: 5px;
             clear: left;
           }
-          color: @registration-gray-2;
-          font-family: myriadpro-regular;
-          font-size: 12px;
+          font-family: opensans-regular;
+          font-size: 13px;
           line-height: 1.3;
+          color: @registration-gray-2;
         }
       }
     }
@@ -301,12 +308,12 @@
         padding-bottom: 6px;
         &>span {
           line-height: 25px;
-          font-family: futura-medium;
-          font-size: 13px;
+          font-family: josefinsans-semibold;
+          font-size: 14px;
           i {
             font-size: 18px;
             position: relative;
-            top: 2px;
+            margin-right: 3px;
           }
         }
         &.email-signup {
@@ -376,7 +383,11 @@
         width: 165px;
         &>a.btn {
           &>span {
-            font-size: 11px;
+            font-size: 13px;
+            i {
+              font-size: 15px;
+              top: 1px;
+            }
           }
         }
       }
@@ -415,8 +426,8 @@
         padding-bottom: 0;
         margin-bottom: 3px;
       }
-      font-family: futura-medium;
-      font-size: 14px;
+      font-family: josefinsans-semibold;
+      font-size: 16px;
       font-weight: normal;
       color: @registration-black;
       padding-top: 8px;
@@ -427,14 +438,6 @@
         padding-left: 25px;
       }
     }
-    .placholder-style {
-      @media only screen and (max-width: 768px) {
-        font-size: 12px;
-      }
-      font-family: myriadpro-regular;
-      font-size: 14px;
-      color: @registration-gray;
-    }
     .form-input {
       @media only screen and (max-width: 768px) {
         height: 37px;
@@ -442,21 +445,21 @@
       height: 40px;
       box-shadow: none;
       background-color: @registration-gray-4;
-      &::-webkit-input-placeholder::after {
+      &::-webkit-input-placeholder {
         /* Chrome/Opera/Safari */
-        .placholder-style();
+        .placeholder-form-input();
       }
-      &::-moz-placeholder::after {
+      &::-moz-placeholder {
         /* Firefox 19+ */
-        .placholder-style();
+        .placeholder-form-input();
       }
-      &:-ms-input-placeholder::after {
+      &:-ms-input-placeholder {
         /* IE 10+ */
-        .placholder-style();
+        .placeholder-form-input();
       }
-      &:-moz-placeholder::after {
+      &:-moz-placeholder {
         /* Firefox 18- */
-        .placholder-style();
+        .placeholder-form-input();
       }
       &:focus {
         background-color: @registration-white;
@@ -489,6 +492,7 @@
     select {
       .form-control();
       .form-input();
+      font-size: 13px;
     }
     label {
       display: block;
@@ -510,8 +514,8 @@
         font-size: 12px;
       }
       display: inline;
-      font-family: myriadpro-regular;
-      font-size: 14px;
+      font-family: opensans-regular;
+      font-size: 13px;
       line-height: 2;
       font-weight: normal;
       color: @registration-gray-2;
@@ -570,7 +574,7 @@
           height: 426px;
           font-size: 12px;
         }
-        font-family: myriadpro-regular;
+        font-family: opensans-regular;
         font-size: 13px;
         color: @registration-black;
         padding: 15px 25px;
@@ -580,6 +584,18 @@
         .overview {
           h1:nth-child(1) {
             margin-top: 0;
+          }
+          h1 {
+            @media only screen and (max-width: 768px) {
+              font-size: 18px;
+            }
+            font-size: 19px;
+          }
+          p {
+            @media only screen and (max-width: 768px) {
+              font-size: 11px;
+            }
+            font-size: 12px;
           }
         }
       }
@@ -602,7 +618,7 @@
           @media only screen and (max-width: 768px) {
             bottom: 2px;
             color: @registration-green;
-            font-family: futura-medium;
+            font-family: josefinsans-semibold;
           }
           color: @registration-gray-2;
         }
@@ -624,7 +640,7 @@
         text-align: center;
         span {
           color: @registration-light-pink;
-          font-family: myriadpro-regular;
+          font-family: opensans-regular;
           font-size: 14px;
         }
       }
@@ -639,6 +655,7 @@
         right: 24px;
       }
       .tooltip-inner {
+        font-family: opensans-regular;
         text-align: left;
         max-width: 260px;
         padding: 8px;
@@ -649,7 +666,6 @@
             font-size: 15px;
             margin-bottom: 7px;
             span {
-              font-family: myriadpro-regular;
               font-size: 12.7px;
               position: relative;
               right: 7px;
@@ -693,7 +709,7 @@
     &>a,
     input {
       @media only screen and (max-width: 768px) {
-        padding: 5px 115px;
+        padding: 8px 115px 2px;
       }
       text-transform: uppercase;
       padding: 7px 77px 5px;
@@ -810,7 +826,7 @@
     font-size: 12px;
     margin-bottom: 15px;
   }
-  font-family: myriadpro-regular;
+  font-family: opensans-regular;
   font-size: 13px;
   line-height: 1.5;
   color: @registration-gray-2;
@@ -839,15 +855,15 @@
   @media only screen and (max-width: 768px) {
     padding: 45px 15px 70px;
   }
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   padding: 62px 180px 167px;
   text-align: center;
   .re-status {
     @media only screen and (max-width: 768px) {
-      font-size: 14px;
+      font-size: 15px;
       margin-bottom: 5px;
     }
-    font-size: 18px;
+    font-size: 20px;
     color: @registration-black;
   }
   .re-checked {
@@ -857,7 +873,7 @@
     margin-top: 30px;
     i.fa {
       @media only screen and (max-width: 768px) {
-        font-size: 35px;
+        font-size: 36px;
       }
       font-size: 60px;
       color: @registration-green;
@@ -871,6 +887,14 @@
     font-size: 26px;
     color: @registration-red-5;
   }
+  .re-country {
+    @media only screen and (max-width: 768px) {
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+    font-size: 15px;
+    color: @registration-gray;
+  }
   .re-guild {
     @media only screen and (max-width: 768px) {
       margin-top: 35px;
@@ -882,7 +906,7 @@
         font-size: 12px;
       }
       text-align: left;
-      font-family: myriadpro-regular;
+      font-family: opensans-regular;
       font-size: 13px;
       color: @registration-gray-2;
     }
@@ -896,7 +920,7 @@
       @media only screen and (max-width: 768px) {
         padding: 6px 70px 5px;
       }
-      padding: 7px 20px 5px;
+      padding: 8px 20px 5px;
     }
   }
 }
@@ -905,15 +929,15 @@
   @media only screen and (max-width: 768px) {
     padding: 40px 15px 0px;
   }
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   padding: 62px 180px 0;
   text-align: center;
   .re-status {
     @media only screen and (max-width: 768px) {
-      font-size: 14px;
+      font-size: 15px;
       margin-bottom: 5px;
     }
-    font-size: 18px;
+    font-size: 20px;
     color: @registration-black;
   }
   .re-checked {
@@ -942,10 +966,10 @@
   }
   .re-welcome {
     @media only screen and (max-width: 768px) {
-      font-size: 12px;
+      font-size: 13px;
       margin-bottom: 5px;
     }
-    font-size: 16px;
+    font-size: 15px;
     color: @registration-gray;
   }
   .re-guild {
@@ -955,11 +979,8 @@
     }
     margin-top: 50px;
     &>p {
-      @media only screen and (max-width: 768px) {
-        font-size: 12px;
-      }
       text-align: left;
-      font-family: myriadpro-regular;
+      font-family: opensans-regular;
       font-size: 13px;
       color: @registration-gray-2;
     }
@@ -970,7 +991,7 @@
     }
     margin-top: 70px;
     &>a {
-      padding-bottom: 5px;
+      padding: 8px 12px 5px;
       width: 212px;
     }
     &.nav {
@@ -1072,11 +1093,10 @@
       margin-bottom: 0;
     }
     .title {
-      font-family: futura-medium;
+      font-family: josefinsans-semibold;
       text-shadow: 1px 0 0 @registration-white, -1px 0 0 @registration-white, 0 1px 0 @registration-white, 0 -1px 0 @registration-white, 1px 1px @registration-white, -1px -1px 0 @registration-white, 1px -1px 0 @registration-white, -1px 1px 0 @registration-white;
       color: @registration-black;
       .red-text {
-        font-family: quicksan-bold;
         color: @registration-red-2;
       }
     }
@@ -1088,7 +1108,7 @@
 }
 
 .summary {
-  font-size: 16px;
+  font-size: 15px;
   color: @registration-black;
   text-shadow: 1px 0 0 @registration-white, -1px 0 0 @registration-white, 0 1px 0 @registration-white, 0 -1px 0 @registration-white, 1px 1px @registration-white, -1px -1px 0 @registration-white, 1px -1px 0 @registration-white, -1px 1px 0 @registration-white;
   font-weight: bold;
@@ -1315,7 +1335,7 @@
     @media only screen and (max-width: 768px) {
       font-size: 12px;
     }
-    font-family: futura-medium;
+    font-family: josefinsans-semibold;
     font-size: 13px;
     color: @registration-gray-2;
     text-align: center;

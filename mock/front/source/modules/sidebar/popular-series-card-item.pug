@@ -3,7 +3,7 @@ mixin popular-series-card-item(series_item)
     .row
       .col-xs-4.col-sm-5
         a(href=series_item.href)
-          img.img-thumbnail(src=series_item.thumb_src)
+          img(src=series_item.thumb_src)
       .col-xs-8.col-sm-7
         p.pp-item-title
           a(href=series_item.href)=series_item.title

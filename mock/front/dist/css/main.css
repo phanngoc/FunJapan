@@ -8359,12 +8359,12 @@ button.close {
   }
 }
 .slick-slide .slider-img .card-title {
-  font-size: 13px;
+  font-size: 14px;
   height: 70px;
   padding: 0 8px;
 }
 .slick-slide .slider-img .card-title-sm {
-  font-size: 12px;
+  font-size: 13px;
   height: 56px;
   padding: 0 5px;
 }
@@ -8403,48 +8403,28 @@ button.close {
   content: "";
 }
 @font-face {
-  font-family: 'futura-bold';
-  src: url('../fonts/Futura-Bold.woff') format('woff');
+  font-family: 'josefinsans-semibold';
+  src: url('../fonts/JosefinSans-SemiBold.ttf') format('truetype');
 }
 @font-face {
-  font-family: 'futura-medium';
-  src: url('../fonts/Futura-Medium.woff') format('woff');
-}
-@font-face {
-  font-family: 'futura-medium-italic';
-  src: url('../fonts/Futura-MediumItalic.woff') format('woff');
-}
-@font-face {
-  font-family: 'opensans-bold';
-  src: url('../fonts/OpenSans-Bold.woff') format('woff');
-}
-@font-face {
-  font-family: 'opensans-bold-italic';
-  src: url('../fonts/OpenSans-BoldItalic.woff') format('woff');
-}
-@font-face {
-  font-family: 'opensans-italic';
-  src: url('../fonts/OpenSans-Italic.woff') format('woff');
+  font-family: 'josefinsans-bold';
+  src: url('../fonts/JosefinSans-Bold.ttf') format('truetype');
 }
 @font-face {
   font-family: 'opensans-regular';
-  src: url('../fonts/OpenSans-Regular.woff') format('woff');
+  src: url('../fonts/OpenSans-Regular.woff') format('woff'), url('../fonts/OpenSans-Regular.ttf') format('truetype');
 }
 @font-face {
-  font-family: 'myriadpro-regular';
-  src: url('../fonts/MyriadPro-Regular.woff') format('woff');
+  font-family: 'opensans-bold';
+  src: url('../fonts/OpenSans-Bold.woff') format('woff'), url('../fonts/OpenSans-Bold.ttf') format('truetype');
 }
 @font-face {
-  font-family: 'myriadpro-italic';
-  src: url('../fonts/MyriadPro-Italic.woff') format('woff');
+  font-family: 'opensans-italic';
+  src: url('../fonts/OpenSans-Italic.woff') format('woff'), url('../fonts/OpenSans-Italic.ttf') format('truetype');
 }
 @font-face {
-  font-family: 'myriadpro-bold';
-  src: url('../fonts/MyriadPro-Bold.woff') format('woff');
-}
-@font-face {
-  font-family: 'quicksan-bold';
-  src: url('../fonts/Quicksand-Bold.woff') format('woff');
+  font-family: 'opensans-bold-italic';
+  src: url('../fonts/OpenSans-BoldItalic.woff') format('woff'), url('../fonts/OpenSans-BoldItalic.ttf') format('truetype');
 }
 body {
   /*font-weight: 200; // 通常のweightを軽くしてみる。*/
@@ -8671,7 +8651,7 @@ div.map-info > div div.content p.detail {
 }
 .img-card .card-title,
 .img-card .card-title-sm {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   color: #fff;
   line-height: 1.2;
   width: 100%;
@@ -9164,8 +9144,8 @@ fieldset[disabled] .btn-simple.active {
 }
 .detail-breadcrumbs > li {
   display: inline;
-  font-family: futura-medium;
-  font-size: 12px;
+  font-family: josefinsans-semibold;
+  font-size: 14px;
   margin-right: 10px;
 }
 .detail-breadcrumbs > li > i {
@@ -9233,7 +9213,7 @@ ul.engagement li > a:focus {
   background-color: transparent;
 }
 .detail-engagement .detail-favorite {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   display: inline-block;
   padding: 5px 5px 7px 0;
 }
@@ -9292,7 +9272,7 @@ ul.engagement li > a:focus {
 }
 .detail-engagement .detail-favorite li .post-text,
 .detail-engagement .detail-favorite li .posted-date {
-  font-family: myriadpro-italic;
+  font-family: opensans-italic;
   color: #666666;
 }
 .detail-engagement .detail-favorite li .post-text {
@@ -9321,11 +9301,11 @@ ul.engagement li > a:focus {
   }
 }
 .sns-container .sns-btn-group a {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   color: #ffffff;
   border: none;
   padding: 8px 10px;
-  font-size: 12px;
+  font-size: 14px;
   width: 100%;
   display: inline-block;
   border-radius: 5px;
@@ -9373,7 +9353,7 @@ ul.engagement li > a:focus {
 .detail-tags ul li {
   list-style-type: none;
   display: inline;
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   padding: 4px 6px;
   margin: 0 3px;
   border: 1px solid #dddddd;
@@ -9412,7 +9392,7 @@ ul.engagement li > a:focus {
 .article-tags ul li {
   list-style-type: none;
   display: inline;
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   padding: 4px 6px;
   margin: 0 3px;
   border: 1px solid #dddddd;
@@ -9568,7 +9548,7 @@ ul.engagement li > a:focus {
   }
 }
 .comment-area .login-requirement {
-  font-family: myriadpro-regular;
+  font-family: opensans-regular;
   font-size: 13px;
   border-bottom: 1px solid #dddddd;
 }
@@ -9613,7 +9593,7 @@ ul.engagement li > a:focus {
   border-right: 1px solid #dddddd;
   border-bottom: none;
   padding: 10px 20px;
-  font-family: myriadpro-regular;
+  font-family: opensans-regular;
   color: #666666;
   font-size: 13px;
   white-space: pre-wrap;
@@ -9672,12 +9652,12 @@ ul.engagement li > a:focus {
     border-radius: 0;
     background-color: #ffffff;
     border-bottom: 1px solid #f1f0f0;
-    padding: 1px 20px;
+    padding: 5px 20px;
   }
 }
 .comment-area .comment-posting-form .radius-bot .text-left {
   float: left;
-  padding: 0;
+  padding: 2px 0;
 }
 .comment-area .comment-posting-form .radius-bot .text-right {
   float: right;
@@ -9749,7 +9729,7 @@ ul.engagement li > a:focus {
   border-radius: 3px;
   resize: none;
   overflow: hidden;
-  font-family: myriadpro-regular;
+  font-family: opensans-regular;
   color: #666666;
   font-size: 13px;
   white-space: pre-wrap;
@@ -9789,7 +9769,7 @@ ul.engagement li > a:focus {
 }
 .comment-area .comment-reply-container .comment-reply-form .comment-to-top > i.btn-twemoji {
   position: absolute;
-  bottom: 5px;
+  bottom: 10px;
   right: 10px;
   font-size: 18px;
   color: #999999;
@@ -9798,7 +9778,7 @@ ul.engagement li > a:focus {
   display: block;
   margin-bottom: 8px;
   padding-left: 50px;
-  font-family: myriadpro-regular;
+  font-family: opensans-regular;
   font-size: 13px;
   white-space: pre-wrap;
 }
@@ -9829,7 +9809,7 @@ ul.engagement li > a:focus {
 }
 .show-comment-modal > p,
 .hide-comment-modal > p {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   font-size: 11px;
   color: #666666;
   background-color: #eeeeee;
@@ -9841,12 +9821,14 @@ ul.engagement li > a:focus {
 }
 .show-comment-modal > p .comment-count,
 .hide-comment-modal > p .comment-count {
+  font-size: 13px;
   color: #ff6666;
 }
 .show-comment-modal > p .suggest-text,
 .hide-comment-modal > p .suggest-text {
   color: #999999;
   font-size: 10px;
+  line-height: 2;
 }
 .show-comment-modal > p span > i.fa,
 .hide-comment-modal > p span > i.fa {
@@ -9973,7 +9955,7 @@ ul.engagement li > a:focus {
   background-color: rgba(197, 197, 197, 0.28);
 }
 .navbar-default ul.navbar-nav li > a {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   font-size: 12px;
   color: #ffffff;
   padding: 14px 3px;
@@ -10059,7 +10041,7 @@ ul.engagement li > a:focus {
   list-style-type: none;
   display: inline-block;
   font-size: 12px;
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   padding: 4px 0;
   margin: 0 6px;
 }
@@ -10143,8 +10125,8 @@ ul.engagement li > a:focus {
 }
 .fj-navbar-mobile .container > ul.list-inline > li > a,
 .fj-navbar-mobile .container > ulul.engagement > li > a {
-  font-family: myriadpro-regular;
-  font-size: 12px;
+  font-family: opensans-regular;
+  font-size: 11px;
   padding: 8px 10px;
   color: #ffffff;
   border-radius: 0;
@@ -10200,7 +10182,7 @@ ul.engagement li > a:focus {
   list-style-type: none;
   display: inline-block;
   font-size: 11px;
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   padding: 4px 0;
   margin: 0 6px;
 }
@@ -10259,7 +10241,7 @@ ul.engagement li > a:focus {
 }
 .sns-btn-fanpage ul.list-inline > li > a.btn-sns,
 .sns-btn-fanpage ulul.engagement > li > a.btn-sns {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   font-size: 12px;
   color: #999999;
   padding: 5px 10px;
@@ -10339,14 +10321,9 @@ ul.engagement li > a:focus {
   margin-right: 18px;
 }
 .media-list-comments li.media .media-heading {
-  font-family: futura-medium;
-  font-size: 13px;
+  font-family: josefinsans-semibold;
+  font-size: 14px;
   color: #ff6666;
-}
-@media only screen and (max-width: 768px) {
-  .media-list-comments li.media .media-heading {
-    font-size: 12px;
-  }
 }
 .media-list-comments li.media:first-child {
   margin-top: 30px;
@@ -10362,11 +10339,11 @@ ul.engagement li > a:focus {
   font-size: 12px;
   margin-left: 5px;
   margin-bottom: 5px;
-  color: #dd280d;
+  color: #ff6666;
 }
 .media-list-comments li.media .media-body .btn-delete:hover,
 .media-list-comments li.media .media-body .btn-delete:focus {
-  color: #dd280d;
+  color: #ff6666;
   background-color: transparent;
 }
 .media-list-comments li.media:before {
@@ -10384,21 +10361,16 @@ ul.engagement li > a:focus {
   border-bottom: none;
 }
 .media-list-comments p.comment-body {
-  font-family: myriadpro-regular;
+  font-family: opensans-regular;
   color: #666666;
-  font-size: 13px;
+  font-size: 12px;
   white-space: pre-wrap;
-}
-@media only screen and (max-width: 1024px) {
-  .media-list-comments p.comment-body {
-    font-size: 12px;
-  }
 }
 .media-list-comments p.time {
   margin-bottom: 20px;
 }
 .media-list-comments p.time .post-text {
-  font-family: myriadpro-regular;
+  font-family: opensans-regular;
   font-size: 12px;
   color: #999999;
 }
@@ -10480,8 +10452,8 @@ ul.engagement li > a:focus {
   margin: 0 0 0 10px;
 }
 .list-group .list-group-header p.list-group-title {
-  font-family: futura-medium;
-  font-size: 14px;
+  font-family: josefinsans-semibold;
+  font-size: 15px;
   color: #dd280d;
   text-transform: uppercase;
   padding: 8px 0;
@@ -10507,7 +10479,7 @@ ul.engagement li > a:focus {
   border-radius: 0;
   background-color: transparent;
 }
-.list-group .list-group-item .img-thumbnail {
+.list-group .list-group-item img {
   width: 100%;
   border: none;
 }
@@ -10561,9 +10533,10 @@ ul.engagement li > a:focus {
   border-left: 5px solid transparent;
 }
 .popular-list .popular-tabs li > a {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   font-size: 12px;
   color: #999999;
+  padding: 12px 15px 8px;
 }
 @media only screen and (max-width: 1024px) {
   .popular-list .popular-tabs li > a {
@@ -10611,14 +10584,15 @@ ul.engagement li > a:focus {
   min-height: 69px;
 }
 .popular-list .tab-content .list-group-popular-post .list-group-item .pp-item-info .pp-item-title {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
+  font-size: 14px;
   max-width: 87%;
   padding-top: 4px;
   margin-bottom: 0;
 }
 @media only screen and (max-width: 1024px) {
   .popular-list .tab-content .list-group-popular-post .list-group-item .pp-item-info .pp-item-title {
-    font-size: 11px;
+    font-size: 12px;
     max-width: 83%;
   }
 }
@@ -10634,7 +10608,7 @@ ul.engagement li > a:focus {
   width: 17px;
 }
 .popular-list .tab-content .list-group-popular-series {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
 }
 .popular-list .tab-content .list-group-popular-series .list-group-item {
   margin: 6px 0;
@@ -10688,7 +10662,7 @@ ul.engagement li > a:focus {
   overflow: hidden;
 }
 .list-group-popular-category .list-group-item .text-right {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   font-size: 15px;
   color: #ffffff;
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
@@ -10706,9 +10680,6 @@ ul.engagement li > a:focus {
 }
 .article-cards .list-group-header p {
   margin: 0 0 0 10px;
-}
-.article-cards .list-group-header p.list-group-title {
-  font-size: 16px;
 }
 .list-group-article .list-group-item {
   padding: 0;
@@ -10732,8 +10703,8 @@ ul.engagement li > a:focus {
   }
 }
 .list-group-article .list-group-item.list-group-item-cards .card-item .card-title {
-  font-size: 15px;
-  height: 80px;
+  font-size: 16px;
+  height: 82px;
   padding: 0 8px;
   /* FF3.6-15 */
   /* Chrome10-25,Safari5.1-6 */
@@ -10743,7 +10714,7 @@ ul.engagement li > a:focus {
   /* IE6-9 */
 }
 .list-group-article .list-group-item.list-group-item-cards .card-item .card-title-sm {
-  font-size: 13px;
+  font-size: 14px;
   height: 70px;
   padding: 0 5px;
 }
@@ -10836,6 +10807,18 @@ body.modal-open {
   font-weight: normal;
   font-size: 12px;
 }
+.placeholder-header-desktop {
+  font-family: opensans-regular;
+  font-size: 11px;
+  color: #999999;
+  position: relative;
+  bottom: 2px;
+}
+.placeholder-header-mobile {
+  color: #333333;
+  font-size: 11px;
+  opacity: 0.5;
+}
 .dropdown-menu-global {
   width: 508px;
   display: inline-block;
@@ -10911,7 +10894,7 @@ body.modal-open {
   margin-right: 10px;
 }
 .dropdown-menu-global .box-sum-ranking .bsr-sum-left .brs-title {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   font-size: 18px;
 }
 .dropdown-menu-global .box-sum-ranking .bsr-sum-left .brs-month,
@@ -10926,7 +10909,7 @@ body.modal-open {
   margin-bottom: 45px;
 }
 .top-header .header-text {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   text-align: center;
   padding-top: 35px;
 }
@@ -10972,23 +10955,35 @@ body.modal-open {
 }
 .top-header .header-right > form > input::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
+  font-family: opensans-regular;
+  font-size: 11px;
   color: #999999;
-  font-size: 12px;
+  position: relative;
+  bottom: 2px;
 }
 .top-header .header-right > form > input::-moz-placeholder {
   /* Firefox 19+ */
+  font-family: opensans-regular;
+  font-size: 11px;
   color: #999999;
-  font-size: 12px;
+  position: relative;
+  bottom: 2px;
 }
 .top-header .header-right > form > input:-ms-input-placeholder {
   /* IE 10+ */
+  font-family: opensans-regular;
+  font-size: 11px;
   color: #999999;
-  font-size: 12px;
+  position: relative;
+  bottom: 2px;
 }
 .top-header .header-right > form > input:-moz-placeholder {
   /* Firefox 18- */
+  font-family: opensans-regular;
+  font-size: 11px;
   color: #999999;
-  font-size: 12px;
+  position: relative;
+  bottom: 2px;
 }
 .top-header .header-right > form > input:focus {
   outline: none;
@@ -11010,22 +11005,22 @@ body.modal-open {
   margin-right: 5px;
 }
 .top-header .header-right .user-setting .authentication a.authen-link {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   color: #fd3261;
   background-color: transparent;
-  font-size: 11px;
+  font-size: 13px;
 }
 .top-header .header-right .user-setting .authentication a.authen-link:hover {
   color: #dd280d;
   background-color: transparent;
 }
 .top-header .header-right .user-setting .authentication a.authen-link > i {
-  font-size: 12px;
+  font-size: 13px;
   color: #fd3261;
 }
 .top-header .header-right .user-setting .authentication span.authen-link {
   margin: 0 5px;
-  font-size: 11px;
+  font-size: 13px;
   color: #999999;
 }
 .top-header .header-right .user-setting .user-preference ul.nav {
@@ -11042,10 +11037,12 @@ body.modal-open {
   bottom: 2px;
 }
 .top-header .header-right .user-setting .user-preference ul.nav .navbar-text {
-  font-family: futura-medium;
-  font-size: 12px;
+  font-family: josefinsans-semibold;
+  font-size: 13px;
   color: #333333;
   margin-left: -10px;
+  position: relative;
+  top: 2px;
 }
 .top-header .header-right .user-setting .user-preference .navbar-right a {
   font-size: 14px;
@@ -11069,8 +11066,9 @@ body.modal-open {
   padding: 10px 0 10px 10px;
 }
 .top-header-mobile .header-title-text {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   color: #dd280d;
+  line-height: 2;
 }
 .top-header-mobile .header-title-text > a:hover,
 .top-header-mobile .header-title-text > a:focus {
@@ -11084,6 +11082,7 @@ body.modal-open {
   bottom: 2px;
 }
 .top-header-mobile .header-title-text .title-country {
+  font-size: 87%;
   color: #333333;
 }
 .top-header-mobile form {
@@ -11100,8 +11099,27 @@ body.modal-open {
   outline: none;
 }
 .top-header-mobile > form > input::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
   color: #333333;
-  font-size: 12px;
+  font-size: 11px;
+  opacity: 0.5;
+}
+.top-header-mobile > form > input::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #333333;
+  font-size: 11px;
+  opacity: 0.5;
+}
+.top-header-mobile > form > input:-ms-input-placeholder {
+  /* IE 10+ */
+  color: #333333;
+  font-size: 11px;
+  opacity: 0.5;
+}
+.top-header-mobile > form > input:-moz-placeholder {
+  /* Firefox 18- */
+  color: #333333;
+  font-size: 11px;
   opacity: 0.5;
 }
 .top-header-mobile > form > i.fa {
@@ -11209,7 +11227,7 @@ body.modal-open {
   height: auto;
 }
 .top-header-mobile .user-preference .nav li.dropdown .box-sum-ranking .bsr-sum-left .brs-title {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   font-size: 12px;
   font-weight: normal;
 }
@@ -11221,7 +11239,7 @@ body.modal-open {
   margin: 5px 0;
 }
 .top-header-mobile .user-preference .nav li.dropdown .box-sum-ranking .brs-point {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   margin-top: 5px;
   text-align: center;
 }
@@ -11261,7 +11279,7 @@ body.modal-open {
 }
 .registration-header .registration-title {
   margin-top: 24px;
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   position: relative;
   z-index: 2;
 }
@@ -11276,24 +11294,31 @@ body.modal-open {
 }
 .registration-header .registration-title .registration-logo {
   display: inline-block;
-  font-size: 48px;
-  line-height: 1.25;
-  text-transform: uppercase;
-  color: #ff6666;
   background-color: #ffffff;
   opacity: 0.8;
   border-radius: 3px;
-  padding: 0 8px;
+  width: 60px;
+  height: 60px;
 }
 @media only screen and (max-width: 768px) {
   .registration-header .registration-title .registration-logo {
+    width: 50px;
+    height: 50px;
+  }
+}
+.registration-header .registration-title .registration-logo span {
+  font-size: 48px;
+  text-transform: uppercase;
+  color: #ff6666;
+}
+@media only screen and (max-width: 768px) {
+  .registration-header .registration-title .registration-logo span {
     font-size: 40px;
-    padding: 0 6px;
-    line-height: 1.23;
   }
 }
 .registration-header .registration-title .web-title {
   color: #ffffff;
+  margin-top: 10px;
 }
 .registration-header .registration-title .web-title .text-fun {
   font-size: 24px;
@@ -11301,15 +11326,15 @@ body.modal-open {
 }
 @media only screen and (max-width: 768px) {
   .registration-header .registration-title .web-title .text-fun {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 .registration-header .registration-title .web-title .text-country {
-  font-size: 18px;
+  font-size: 20px;
 }
 @media only screen and (max-width: 768px) {
   .registration-header .registration-title .web-title .text-country {
-    font-size: 11px;
+    font-size: 13px;
   }
 }
 .registration-header .registration-navigation {
@@ -11342,15 +11367,15 @@ body.modal-open {
 .registration-header .registration-navigation ul.list-inline.step .horizontal-bar,
 .registration-header .registration-navigation ulul.engagement.step .horizontal-bar {
   position: relative;
-  bottom: 7px;
+  bottom: 25px;
   padding: 0 70px;
   background: rgba(255, 255, 255, 0.15);
 }
 @media only screen and (max-width: 768px) {
   .registration-header .registration-navigation ul.list-inline.step .horizontal-bar,
   .registration-header .registration-navigation ulul.engagement.step .horizontal-bar {
-    padding: 0 5px;
-    bottom: 3px;
+    padding: 0px 20px;
+    bottom: 15px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
@@ -11374,10 +11399,12 @@ body.modal-open {
 }
 .registration-header .registration-navigation ul.list-inline.step .step-item,
 .registration-header .registration-navigation ulul.engagement.step .step-item {
-  font-family: futura-bold;
+  font-family: josefinsans-bold;
   font-size: 23px;
   color: rgba(255, 255, 255, 0.15);
-  padding: 7px 16px;
+  width: 50px;
+  height: 50px;
+  padding: 0;
   border-radius: 50%;
   position: relative;
   border: 3px solid rgba(255, 255, 255, 0.15);
@@ -11386,10 +11413,17 @@ body.modal-open {
   .registration-header .registration-navigation ul.list-inline.step .step-item,
   .registration-header .registration-navigation ulul.engagement.step .step-item {
     font-size: 16px;
-    padding: 3px 9px;
-    position: static;
+    width: 30px;
+    height: 30px;
     border: 2px solid rgba(255, 255, 255, 0.15);
   }
+}
+.registration-header .registration-navigation ul.list-inline.step .step-item .step-number,
+.registration-header .registration-navigation ulul.engagement.step .step-item .step-number {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .registration-header .registration-navigation ul.list-inline.step .step-item .step-des-item,
 .registration-header .registration-navigation ulul.engagement.step .step-item .step-des-item {
@@ -11399,27 +11433,24 @@ body.modal-open {
   padding: 0;
   width: 280px;
   position: absolute;
-  left: -120px;
   top: 65px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 @media only screen and (max-width: 768px) {
   .registration-header .registration-navigation ul.list-inline.step .step-item .step-des-item,
   .registration-header .registration-navigation ulul.engagement.step .step-item .step-des-item {
     font-size: 10px;
-    top: 48px;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
+    top: 35px;
   }
 }
 .registration-header .registration-navigation ul.list-inline.step .step-item .step-des-item .step-number,
 .registration-header .registration-navigation ulul.engagement.step .step-item .step-des-item .step-number {
-  font-family: futura-bold;
+  font-family: josefinsans-bold;
 }
 .registration-header .registration-navigation ul.list-inline.step .step-item .step-des-item .step-des,
 .registration-header .registration-navigation ulul.engagement.step .step-item .step-des-item .step-des {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   padding: 5px 25px;
   background-color: #ffffff;
   opacity: 0.8;
@@ -11428,30 +11459,28 @@ body.modal-open {
 @media only screen and (max-width: 768px) {
   .registration-header .registration-navigation ul.list-inline.step .step-item .step-des-item .step-des,
   .registration-header .registration-navigation ulul.engagement.step .step-item .step-des-item .step-des {
-    padding: 2px 25px;
+    display: inline-block;
+    min-width: 180px;
+    padding: 2px 0 1px;
   }
 }
 .registration-header .registration-navigation ul.list-inline.step .step-item .vertical-bar,
 .registration-header .registration-navigation ulul.engagement.step .step-item .vertical-bar {
   display: none;
-  position: absolute;
-  right: 22px;
-  top: 47px;
   background-color: #ffffff;
-  opacity: 0.8;
   width: 3px;
-  line-height: 1.2;
   height: 15px;
+  position: absolute;
+  top: 47px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 @media only screen and (max-width: 768px) {
   .registration-header .registration-navigation ul.list-inline.step .step-item .vertical-bar,
   .registration-header .registration-navigation ulul.engagement.step .step-item .vertical-bar {
     width: 2px;
-    height: 11px;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    top: 36px;
+    height: 7px;
+    top: 28px;
   }
 }
 .registration-header .registration-navigation ul.list-inline.step .step-item.active,
@@ -11469,21 +11498,15 @@ body.modal-open {
   display: block;
 }
 @media only screen and (max-width: 768px) {
-  .registration-header .registration-navigation ul.list-inline.step .step-item.step-item--1 .vertical-bar,
-  .registration-header .registration-navigation ulul.engagement.step .step-item.step-item--1 .vertical-bar {
-    left: -90px;
+  .registration-header .registration-navigation ul.list-inline.step .step-item.step-item--1 .step-des-item,
+  .registration-header .registration-navigation ulul.engagement.step .step-item.step-item--1 .step-des-item {
+    transform: translateX(-25%);
   }
 }
 @media only screen and (max-width: 768px) {
-  .registration-header .registration-navigation ul.list-inline.step .step-item.step-item--2 .vertical-bar,
-  .registration-header .registration-navigation ulul.engagement.step .step-item.step-item--2 .vertical-bar {
-    left: -5px;
-  }
-}
-@media only screen and (max-width: 768px) {
-  .registration-header .registration-navigation ul.list-inline.step .step-item.step-item--3 .vertical-bar,
-  .registration-header .registration-navigation ulul.engagement.step .step-item.step-item--3 .vertical-bar {
-    left: 78px;
+  .registration-header .registration-navigation ul.list-inline.step .step-item.step-item--3 .step-des-item,
+  .registration-header .registration-navigation ulul.engagement.step .step-item.step-item--3 .step-des-item {
+    transform: translateX(-75%);
   }
 }
 .registration-header .header-boder {
@@ -11588,7 +11611,7 @@ body.modal-open {
   }
 }
 .article-ranking .first-ranking .first-ranking-img .first-ranking-num .number-1 {
-  font-family: futura-bold;
+  font-family: josefinsans-bold;
   font-size: 43px;
 }
 @media only screen and (max-width: 768px) {
@@ -11597,11 +11620,11 @@ body.modal-open {
   }
 }
 .article-ranking .first-ranking .first-ranking-img .first-ranking-num .dot {
-  font-family: futura-bold;
+  font-family: josefinsans-bold;
   font-size: 30px;
 }
 .article-ranking .first-ranking .first-ranking-img .first-ranking-num .no {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   font-size: 30px;
 }
 @media only screen and (max-width: 768px) {
@@ -11654,8 +11677,8 @@ body.modal-open {
   width: 17px;
 }
 .article-ranking .first-ranking .first-ranking-info .first-ranking-des {
-  font-family: myriadpro-regular;
-  font-size: 14px;
+  font-family: opensans-regular;
+  font-size: 13px;
   color: #5f5f60;
 }
 @media only screen and (max-width: 768px) {
@@ -11675,19 +11698,19 @@ body.modal-open {
   }
 }
 .article-ranking .rest-ranking .list-group-ranking-item .card-title {
-  font-size: 13px;
+  font-size: 14px;
   height: 70px;
   padding-left: 10px;
   padding-right: 60px;
 }
 .article-ranking .rest-ranking .list-group-ranking-item .card-title-sm {
-  font-size: 12px;
+  font-size: 13px;
   height: 57px;
   padding-left: 10px;
   padding-right: 50px;
 }
 .article-ranking .rest-ranking .list-group-ranking-item .rest-ranking-num {
-  font-family: futura-bold;
+  font-family: josefinsans-bold;
   font-size: 24px;
   color: #ffffff;
   position: absolute;
@@ -11731,13 +11754,14 @@ body.modal-open {
   margin: 0;
 }
 .article-ranking .vote-button a {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   color: #fd3261;
   width: 100%;
+  padding: 10px 12px 6px;
 }
 @media only screen and (max-width: 768px) {
   .article-ranking .vote-button a {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 .article-ranking .vote-button a:focus {
@@ -11749,7 +11773,7 @@ body.modal-open {
   box-sizing: content-box;
 }
 #banner-top-sliderFrame {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   position: relative;
   width: 100%;
   margin: 0 auto;
@@ -11823,7 +11847,7 @@ body.modal-open {
   }
 }
 #banner-top-slider .mc-caption .content .description {
-  font-family: myriadpro-regular;
+  font-family: opensans-regular;
   color: #5f5f60;
   font-size: 14px;
 }
@@ -11838,7 +11862,7 @@ body.modal-open {
   }
 }
 #banner-top-slider .mc-caption .content .read-more span {
-  font-family: myriadpro-regular;
+  font-family: opensans-regular;
   color: #5f5f60;
   text-decoration: none;
   font-size: 10px;
@@ -11861,11 +11885,11 @@ body.modal-open {
 }
 #banner-top-slider .mc-caption .content.sm .heading {
   text-transform: none;
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 5px;
 }
 #banner-top-slider .mc-caption .content.sm .description {
-  font-size: 13px;
+  font-size: 12px;
   margin-bottom: 7px;
   line-height: 1.1;
 }
@@ -11960,7 +11984,7 @@ body.modal-open {
   height: 44px;
 }
 #banner-top-thumbs .thumb-content-wrapper {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.3;
   color: #333333;
@@ -12007,7 +12031,7 @@ body.modal-open {
 }
 .related-post .post-title > a,
 .related-post .post-title-sm > a {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   font-size: 12px;
   color: #333333;
 }
@@ -12065,12 +12089,12 @@ body.modal-open {
   height: 100%;
 }
 .related-post .first-block .first-block-img .card-title {
-  font-size: 13px;
+  font-size: 14px;
   height: 70px;
   padding: 0 8px;
 }
 .related-post .first-block .first-block-img .card-title-sm {
-  font-size: 12px;
+  font-size: 13px;
   height: 65px;
   padding: 0 5px;
 }
@@ -12106,12 +12130,12 @@ body.modal-open {
   }
 }
 .related-post .second-block .second-block-img .card-title {
-  font-size: 13px;
+  font-size: 14px;
   height: 69px;
   padding: 0 8px;
 }
 .related-post .second-block .second-block-img .card-title-sm {
-  font-size: 11px;
+  font-size: 13px;
   height: 55px;
   padding: 0 5px;
 }
@@ -12514,7 +12538,7 @@ body .sidebar ulul.engagement li > a:focus {
   outline: 0;
 }
 .sidebar-footer .footer-label {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   font-size: 10px;
   text-transform: uppercase;
 }
@@ -12551,7 +12575,7 @@ body .sidebar ulul.engagement li > a:focus {
   }
 }
 .sidebar-footer .copyright .footer-label {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   font-size: 10px;
   text-transform: uppercase;
   width: auto;
@@ -12566,6 +12590,11 @@ body .sidebar ulul.engagement li > a:focus {
 }
 .sidebar-footer .copyright .year {
   font-size: 11px;
+}
+.placeholder-form-input {
+  font-family: opensans-regular;
+  font-size: 13px;
+  color: #999999;
 }
 .registration-body {
   box-shadow: 0px 0px 10px 0px #d0d0e0;
@@ -12604,7 +12633,7 @@ body .sidebar ulul.engagement li > a:focus {
 }
 .step-btn-container > a,
 .step-btn-container input {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   font-size: 18px;
   color: #ffffff;
   background-color: #ff5c5c;
@@ -12615,7 +12644,7 @@ body .sidebar ulul.engagement li > a:focus {
 @media only screen and (max-width: 768px) {
   .step-btn-container > a,
   .step-btn-container input {
-    font-size: 12px;
+    font-size: 13px;
   }
 }
 .step-btn-container > a:hover,
@@ -12642,7 +12671,7 @@ body .sidebar ulul.engagement li > a:focus {
 }
 .step-1 .welcome-title {
   display: inline-block;
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   padding: 5px 30px 0px;
   margin-top: 50px;
   position: relative;
@@ -12752,11 +12781,13 @@ body .sidebar ulul.engagement li > a:focus {
 }
 .step-1 .intro-area .intro-card .card-info .card-number {
   display: inline-block;
-  font-family: futura-bold;
+  font-family: josefinsans-bold;
   font-size: 12px;
+  line-height: 2.4;
   color: #ffffff;
-  padding: 4px;
   width: 25px;
+  height: 25px;
+  text-align: center;
   background-color: #ff6666;
 }
 @media only screen and (max-width: 768px) {
@@ -12767,15 +12798,14 @@ body .sidebar ulul.engagement li > a:focus {
   }
 }
 .step-1 .intro-area .intro-card .card-info .card-title {
-  font-family: futura-medium;
-  font-size: 15px;
+  font-family: josefinsans-semibold;
+  font-size: 16px;
   color: #ff3333;
   margin-top: 8px;
   margin-bottom: 5px;
 }
 @media only screen and (max-width: 768px) {
   .step-1 .intro-area .intro-card .card-info .card-title {
-    font-size: 14px;
     line-height: 1.2;
     display: inline-block;
     float: left;
@@ -12785,10 +12815,10 @@ body .sidebar ulul.engagement li > a:focus {
   }
 }
 .step-1 .intro-area .intro-card .card-info .card-description {
-  color: #666666;
-  font-family: myriadpro-regular;
-  font-size: 12px;
+  font-family: opensans-regular;
+  font-size: 13px;
   line-height: 1.3;
+  color: #666666;
 }
 @media only screen and (max-width: 768px) {
   .step-1 .intro-area .intro-card .card-info .card-description {
@@ -12891,13 +12921,13 @@ body .sidebar ulul.engagement li > a:focus {
 }
 .step-1 .signup-area .signup-btn-container > a.btn > span {
   line-height: 25px;
-  font-family: futura-medium;
-  font-size: 13px;
+  font-family: josefinsans-semibold;
+  font-size: 14px;
 }
 .step-1 .signup-area .signup-btn-container > a.btn > span i {
   font-size: 18px;
   position: relative;
-  top: 2px;
+  margin-right: 3px;
 }
 .step-1 .signup-area .signup-btn-container > a.btn.email-signup {
   color: #666666;
@@ -12966,7 +12996,11 @@ body .sidebar ulul.engagement li > a:focus {
   }
 }
 .step-1 .signup-area.sm .signup-btn-container > a.btn > span {
-  font-size: 11px;
+  font-size: 13px;
+}
+.step-1 .signup-area.sm .signup-btn-container > a.btn > span i {
+  font-size: 15px;
+  top: 1px;
 }
 .step-1 .signup-area.bottom {
   height: 180px;
@@ -13000,8 +13034,8 @@ body .sidebar ulul.engagement li > a:focus {
   }
 }
 .step-2 .form-group .col-form-label {
-  font-family: futura-medium;
-  font-size: 14px;
+  font-family: josefinsans-semibold;
+  font-size: 16px;
   font-weight: normal;
   color: #333333;
   padding-top: 8px;
@@ -13021,16 +13055,6 @@ body .sidebar ulul.engagement li > a:focus {
     padding-left: 8px;
   }
 }
-.step-2 .form-group .placholder-style {
-  font-family: myriadpro-regular;
-  font-size: 14px;
-  color: #999999;
-}
-@media only screen and (max-width: 768px) {
-  .step-2 .form-group .placholder-style {
-    font-size: 12px;
-  }
-}
 .step-2 .form-group .form-input {
   height: 40px;
   box-shadow: none;
@@ -13041,49 +13065,29 @@ body .sidebar ulul.engagement li > a:focus {
     height: 37px;
   }
 }
-.step-2 .form-group .form-input::-webkit-input-placeholder::after {
+.step-2 .form-group .form-input::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  font-family: myriadpro-regular;
-  font-size: 14px;
+  font-family: opensans-regular;
+  font-size: 13px;
   color: #999999;
 }
-@media only screen and (max-width: 768px) {
-  .step-2 .form-group .form-input::-webkit-input-placeholder::after {
-    font-size: 12px;
-  }
-}
-.step-2 .form-group .form-input::-moz-placeholder::after {
+.step-2 .form-group .form-input::-moz-placeholder {
   /* Firefox 19+ */
-  font-family: myriadpro-regular;
-  font-size: 14px;
+  font-family: opensans-regular;
+  font-size: 13px;
   color: #999999;
 }
-@media only screen and (max-width: 768px) {
-  .step-2 .form-group .form-input::-moz-placeholder::after {
-    font-size: 12px;
-  }
-}
-.step-2 .form-group .form-input:-ms-input-placeholder::after {
+.step-2 .form-group .form-input:-ms-input-placeholder {
   /* IE 10+ */
-  font-family: myriadpro-regular;
-  font-size: 14px;
+  font-family: opensans-regular;
+  font-size: 13px;
   color: #999999;
 }
-@media only screen and (max-width: 768px) {
-  .step-2 .form-group .form-input:-ms-input-placeholder::after {
-    font-size: 12px;
-  }
-}
-.step-2 .form-group .form-input:-moz-placeholder::after {
+.step-2 .form-group .form-input:-moz-placeholder {
   /* Firefox 18- */
-  font-family: myriadpro-regular;
-  font-size: 14px;
+  font-family: opensans-regular;
+  font-size: 13px;
   color: #999999;
-}
-@media only screen and (max-width: 768px) {
-  .step-2 .form-group .form-input:-moz-placeholder::after {
-    font-size: 12px;
-  }
 }
 .step-2 .form-group .form-input:focus {
   background-color: #ffffff;
@@ -13099,49 +13103,29 @@ body .sidebar ulul.engagement li > a:focus {
     height: 37px;
   }
 }
-.step-2 .form-group input::-webkit-input-placeholder::after {
+.step-2 .form-group input::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  font-family: myriadpro-regular;
-  font-size: 14px;
+  font-family: opensans-regular;
+  font-size: 13px;
   color: #999999;
 }
-@media only screen and (max-width: 768px) {
-  .step-2 .form-group input::-webkit-input-placeholder::after {
-    font-size: 12px;
-  }
-}
-.step-2 .form-group input::-moz-placeholder::after {
+.step-2 .form-group input::-moz-placeholder {
   /* Firefox 19+ */
-  font-family: myriadpro-regular;
-  font-size: 14px;
+  font-family: opensans-regular;
+  font-size: 13px;
   color: #999999;
 }
-@media only screen and (max-width: 768px) {
-  .step-2 .form-group input::-moz-placeholder::after {
-    font-size: 12px;
-  }
-}
-.step-2 .form-group input:-ms-input-placeholder::after {
+.step-2 .form-group input:-ms-input-placeholder {
   /* IE 10+ */
-  font-family: myriadpro-regular;
-  font-size: 14px;
+  font-family: opensans-regular;
+  font-size: 13px;
   color: #999999;
 }
-@media only screen and (max-width: 768px) {
-  .step-2 .form-group input:-ms-input-placeholder::after {
-    font-size: 12px;
-  }
-}
-.step-2 .form-group input:-moz-placeholder::after {
+.step-2 .form-group input:-moz-placeholder {
   /* Firefox 18- */
-  font-family: myriadpro-regular;
-  font-size: 14px;
+  font-family: opensans-regular;
+  font-size: 13px;
   color: #999999;
-}
-@media only screen and (max-width: 768px) {
-  .step-2 .form-group input:-moz-placeholder::after {
-    font-size: 12px;
-  }
 }
 .step-2 .form-group input:focus {
   background-color: #ffffff;
@@ -13186,6 +13170,7 @@ body .sidebar ulul.engagement li > a:focus {
   height: 40px;
   box-shadow: none;
   background-color: #f8f8f8;
+  font-size: 13px;
 }
 .step-2 .form-group select:focus {
   border-color: #66afe9;
@@ -13217,49 +13202,29 @@ textarea.step-2 .form-group select {
     height: 37px;
   }
 }
-.step-2 .form-group select::-webkit-input-placeholder::after {
+.step-2 .form-group select::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  font-family: myriadpro-regular;
-  font-size: 14px;
+  font-family: opensans-regular;
+  font-size: 13px;
   color: #999999;
 }
-@media only screen and (max-width: 768px) {
-  .step-2 .form-group select::-webkit-input-placeholder::after {
-    font-size: 12px;
-  }
-}
-.step-2 .form-group select::-moz-placeholder::after {
+.step-2 .form-group select::-moz-placeholder {
   /* Firefox 19+ */
-  font-family: myriadpro-regular;
-  font-size: 14px;
+  font-family: opensans-regular;
+  font-size: 13px;
   color: #999999;
 }
-@media only screen and (max-width: 768px) {
-  .step-2 .form-group select::-moz-placeholder::after {
-    font-size: 12px;
-  }
-}
-.step-2 .form-group select:-ms-input-placeholder::after {
+.step-2 .form-group select:-ms-input-placeholder {
   /* IE 10+ */
-  font-family: myriadpro-regular;
-  font-size: 14px;
+  font-family: opensans-regular;
+  font-size: 13px;
   color: #999999;
 }
-@media only screen and (max-width: 768px) {
-  .step-2 .form-group select:-ms-input-placeholder::after {
-    font-size: 12px;
-  }
-}
-.step-2 .form-group select:-moz-placeholder::after {
+.step-2 .form-group select:-moz-placeholder {
   /* Firefox 18- */
-  font-family: myriadpro-regular;
-  font-size: 14px;
+  font-family: opensans-regular;
+  font-size: 13px;
   color: #999999;
-}
-@media only screen and (max-width: 768px) {
-  .step-2 .form-group select:-moz-placeholder::after {
-    font-size: 12px;
-  }
 }
 .step-2 .form-group select:focus {
   background-color: #ffffff;
@@ -13282,8 +13247,8 @@ textarea.step-2 .form-group select {
 }
 .step-2 .form-group .checkbox-label {
   display: inline;
-  font-family: myriadpro-regular;
-  font-size: 14px;
+  font-family: opensans-regular;
+  font-size: 13px;
   line-height: 2;
   font-weight: normal;
   color: #666666;
@@ -13352,7 +13317,7 @@ textarea.step-2 .form-group select {
   }
 }
 .step-2 .form-group.term .scrollbar-inner {
-  font-family: myriadpro-regular;
+  font-family: opensans-regular;
   font-size: 13px;
   color: #333333;
   padding: 15px 25px;
@@ -13368,6 +13333,22 @@ textarea.step-2 .form-group select {
 }
 .step-2 .form-group.term .scrollbar-inner .overview h1:nth-child(1) {
   margin-top: 0;
+}
+.step-2 .form-group.term .scrollbar-inner .overview h1 {
+  font-size: 19px;
+}
+@media only screen and (max-width: 768px) {
+  .step-2 .form-group.term .scrollbar-inner .overview h1 {
+    font-size: 18px;
+  }
+}
+.step-2 .form-group.term .scrollbar-inner .overview p {
+  font-size: 12px;
+}
+@media only screen and (max-width: 768px) {
+  .step-2 .form-group.term .scrollbar-inner .overview p {
+    font-size: 11px;
+  }
 }
 .step-2 .form-group.term-check {
   text-align: center;
@@ -13394,7 +13375,7 @@ textarea.step-2 .form-group select {
   .step-2 .form-group.term-check .term-checkbox .checkbox-label {
     bottom: 2px;
     color: #6ec07d;
-    font-family: futura-medium;
+    font-family: josefinsans-semibold;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -13415,7 +13396,7 @@ textarea.step-2 .form-group select {
 }
 .step-2 .form-group.term-check .feedback span {
   color: #ff6666;
-  font-family: myriadpro-regular;
+  font-family: opensans-regular;
   font-size: 14px;
 }
 .step-2 .form-group .tooltip {
@@ -13429,6 +13410,7 @@ textarea.step-2 .form-group select {
   right: 24px;
 }
 .step-2 .form-group .tooltip .tooltip-inner {
+  font-family: opensans-regular;
   text-align: left;
   max-width: 260px;
   padding: 8px;
@@ -13442,7 +13424,6 @@ textarea.step-2 .form-group select {
   margin-bottom: 7px;
 }
 .step-2 .form-group .tooltip .tooltip-inner ul li span {
-  font-family: myriadpro-regular;
   font-size: 12.7px;
   position: relative;
   right: 7px;
@@ -13483,7 +13464,7 @@ textarea.step-2 .form-group select {
 @media only screen and (max-width: 768px) {
   .step-2 .step-btn-container > a,
   .step-2 .step-btn-container input {
-    padding: 5px 115px;
+    padding: 8px 115px 2px;
   }
 }
 .step-2.jmb {
@@ -13601,7 +13582,7 @@ textarea.step-2 .form-group select {
   }
 }
 .guide-text {
-  font-family: myriadpro-regular;
+  font-family: opensans-regular;
   font-size: 13px;
   line-height: 1.5;
   color: #666666;
@@ -13630,7 +13611,7 @@ textarea.step-2 .form-group select {
   color: #ff3333;
 }
 .step-3 {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   padding: 62px 180px 167px;
   text-align: center;
 }
@@ -13640,12 +13621,12 @@ textarea.step-2 .form-group select {
   }
 }
 .step-3 .re-status {
-  font-size: 18px;
+  font-size: 20px;
   color: #333333;
 }
 @media only screen and (max-width: 768px) {
   .step-3 .re-status {
-    font-size: 14px;
+    font-size: 15px;
     margin-bottom: 5px;
   }
 }
@@ -13663,7 +13644,7 @@ textarea.step-2 .form-group select {
 }
 @media only screen and (max-width: 768px) {
   .step-3 .re-checked i.fa {
-    font-size: 35px;
+    font-size: 36px;
   }
 }
 .step-3 .re-thankyou {
@@ -13673,6 +13654,16 @@ textarea.step-2 .form-group select {
 @media only screen and (max-width: 768px) {
   .step-3 .re-thankyou {
     font-size: 18px;
+    margin-bottom: 5px;
+  }
+}
+.step-3 .re-country {
+  font-size: 15px;
+  color: #999999;
+}
+@media only screen and (max-width: 768px) {
+  .step-3 .re-country {
+    font-size: 13px;
     margin-bottom: 5px;
   }
 }
@@ -13687,7 +13678,7 @@ textarea.step-2 .form-group select {
 }
 .step-3 .re-guild > p {
   text-align: left;
-  font-family: myriadpro-regular;
+  font-family: opensans-regular;
   font-size: 13px;
   color: #666666;
 }
@@ -13705,7 +13696,7 @@ textarea.step-2 .form-group select {
   }
 }
 .step-3 .step-btn-container > a {
-  padding: 7px 20px 5px;
+  padding: 8px 20px 5px;
 }
 @media only screen and (max-width: 768px) {
   .step-3 .step-btn-container > a {
@@ -13713,7 +13704,7 @@ textarea.step-2 .form-group select {
   }
 }
 .step-3-jmb {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   padding: 62px 180px 0;
   text-align: center;
 }
@@ -13723,12 +13714,12 @@ textarea.step-2 .form-group select {
   }
 }
 .step-3-jmb .re-status {
-  font-size: 18px;
+  font-size: 20px;
   color: #333333;
 }
 @media only screen and (max-width: 768px) {
   .step-3-jmb .re-status {
-    font-size: 14px;
+    font-size: 15px;
     margin-bottom: 5px;
   }
 }
@@ -13763,12 +13754,12 @@ textarea.step-2 .form-group select {
   text-transform: uppercase;
 }
 .step-3-jmb .re-welcome {
-  font-size: 16px;
+  font-size: 15px;
   color: #999999;
 }
 @media only screen and (max-width: 768px) {
   .step-3-jmb .re-welcome {
-    font-size: 12px;
+    font-size: 13px;
     margin-bottom: 5px;
   }
 }
@@ -13783,14 +13774,9 @@ textarea.step-2 .form-group select {
 }
 .step-3-jmb .re-guild > p {
   text-align: left;
-  font-family: myriadpro-regular;
+  font-family: opensans-regular;
   font-size: 13px;
   color: #666666;
-}
-@media only screen and (max-width: 768px) {
-  .step-3-jmb .re-guild > p {
-    font-size: 12px;
-  }
 }
 .step-3-jmb .step-btn-container {
   margin-top: 70px;
@@ -13801,7 +13787,7 @@ textarea.step-2 .form-group select {
   }
 }
 .step-3-jmb .step-btn-container > a {
-  padding-bottom: 5px;
+  padding: 8px 12px 5px;
   width: 212px;
 }
 .step-3-jmb .step-btn-container.nav {
@@ -13910,12 +13896,11 @@ textarea.step-2 .form-group select {
   margin-bottom: 0;
 }
 .card-banner .dialog .title {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   text-shadow: 1px 0 0 #ffffff, -1px 0 0 #ffffff, 0 1px 0 #ffffff, 0 -1px 0 #ffffff, 1px 1px #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;
   color: #333333;
 }
 .card-banner .dialog .title .red-text {
-  font-family: quicksan-bold;
   color: #ff3333;
 }
 .card-banner .dialog .green-text {
@@ -13923,7 +13908,7 @@ textarea.step-2 .form-group select {
   color: #6ec07d;
 }
 .summary {
-  font-size: 16px;
+  font-size: 15px;
   color: #333333;
   text-shadow: 1px 0 0 #ffffff, -1px 0 0 #ffffff, 0 1px 0 #ffffff, 0 -1px 0 #ffffff, 1px 1px #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;
   font-weight: bold;
@@ -14159,7 +14144,7 @@ textarea.step-2 .form-group select {
   }
 }
 .registration-footer .copy-right {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   font-size: 13px;
   color: #666666;
   text-align: center;
@@ -14173,13 +14158,13 @@ textarea.step-2 .form-group select {
   border-radius: 3px;
 }
 .article-detail-title {
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   font-size: 24px;
   color: #333333;
 }
 @media only screen and (max-width: 768px) {
   .article-detail-title {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 .article-detail-category {
@@ -14218,6 +14203,7 @@ textarea.step-2 .form-group select {
   display: inline;
   max-width: 100%;
   height: auto;
+  margin-bottom: 10px;
 }
 .article-body a {
   color: #33f;
@@ -14230,9 +14216,14 @@ textarea.step-2 .form-group select {
   color: #fff;
   background-color: #33f;
 }
+.article-body p {
+  font-family: opensans-regular;
+  font-size: 13px;
+  color: #666666;
+}
 .detail-about-author .about-author {
-  font-family: myriadpro-regular;
-  font-size: 14px;
+  font-family: opensans-regular;
+  font-size: 13px;
   margin-top: 15px;
   color: #666666;
 }
