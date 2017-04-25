@@ -25,6 +25,10 @@ class LocaleSeeder extends Seeder
                 'iso_code' => 'ms',
                 'name' => 'Malaysia',
             ],
+            [
+                'iso_code' => 'tw',
+                'name' => 'Taiwan',
+            ],
         ];
 
         Locale::insert($data);

@@ -70,7 +70,7 @@
                         </div>
                         <div class="next-page">
                             @if ($nextArticleId)
-                                <a href="{{ url('articles/' . $nextArticleId) }}"></a>
+                                <a href="{{ action('Web\ArticlesController@show',  $nextArticleId) }}"></a>
                             @endif
                         </div>
                     @endif

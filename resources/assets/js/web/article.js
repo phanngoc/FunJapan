@@ -1,7 +1,3 @@
-baseUrl = function () {
-    return window.location.protocol + '//' + window.location.host;
-};
-
 $(document).ready(function (e) {
     $('div.container:first').infinitescroll({
         nextSelector: ".next-page a",
@@ -28,7 +24,7 @@ $(document).ready(function (e) {
 
 function changeLike(articleId) {
     $.ajax({
-        url: baseUrl() + '/articles/' + articleId + '/like',
+        url: baseUrlLocale() + '/articles/' + articleId + '/like',
         type: 'GET',
         success: function (response) {
             $('.engagement-count').text(response.count);

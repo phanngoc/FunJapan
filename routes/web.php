@@ -14,7 +14,7 @@ Route::get('/register/jmb_2', function (Request $request) {
     return view('web.users.register.jmb_2');
 });
 
-Route::group(['middleware' => 'web', 'namespace' => 'Web'], function () {
+Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
     // Authentication Routes...
     Route::get('account/login', 'LoginController@showLoginForm')->name('login');
     Route::post('account/login', 'LoginController@login');
@@ -28,7 +28,7 @@ Route::group(['middleware' => 'web', 'namespace' => 'Web'], function () {
 
     Route::get('account/create/success', 'RegisterController@createSuccess');
     Route::get('account/facebook', 'RegisterController@storeViaFaceBook');
-    Route::get('facebook/callback', 'RegisterController@storeViaFaceBookCallBack');
+    Route::get('facebook/callback', 'RegisterController@storeViaFaceBookCallBack')->name('facebook_callback');
 
     Route::get('/comments/lists/{articleId}', 'CommentsController@lists');
     Route::get('/comments/getEmoji', 'CommentsController@getEmoji');

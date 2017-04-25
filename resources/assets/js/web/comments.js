@@ -76,7 +76,7 @@ $(function () {
         commentArea.find('.comments-loading').removeClass('hidden');
 
         $.ajax({
-            'url': '/comments',
+            'url': baseUrlLocale() + 'comments',
             'type': 'POST',
             'data': data,
             success: (response) => {
@@ -154,7 +154,7 @@ $(function () {
 
             if (input.val() != '') {
                 $.ajax({
-                    'url': '/comments',
+                    'url': baseUrlLocale() + 'comments',
                     'type': 'POST',
                     'data': data,
                     success: (response) => {
@@ -198,7 +198,7 @@ $(function () {
         commentArea.find('.comments-loading').removeClass('hidden');
 
         $.ajax({
-            'url': '/comments/' + commentId,
+            'url': baseUrlLocale() + 'comments/' + commentId,
             'type': 'DELETE',
             'data': {},
             'headers': {
@@ -228,7 +228,7 @@ $(function () {
         $('.comment-posting-form').find('.alert-danger:first').addClass('hidden').html('');
         var element = $(this).parents('.comment-area');
         var page = $(this).attr('href').split('page=')[1];
-        var url = '/comments/lists/' + element.attr('data-article-id') + '?page=' + page;
+        var url = baseUrlLocale() + 'comments/lists/' + element.attr('data-article-id') + '?page=' + page;
         getItems(element, url);
     });
 
@@ -240,7 +240,7 @@ $(function () {
         var favoriteArea = $(this).parents('.comment-favorite');
 
         $.ajax({
-            'url': '/comments/favorite/' + commentId,
+            'url': baseUrlLocale() + 'comments/favorite/' + commentId,
             'type': 'GET',
             success: (response) => {
                 if (response.success) {
@@ -276,7 +276,7 @@ function postComment(element) {
         element.attr('disabled', true);
 
         $.ajax({
-            'url': '/comments',
+            'url': baseUrlLocale() + 'comments',
             'type': 'POST',
             'data': data,
             success: (response) => {
@@ -376,7 +376,7 @@ function getEmojiPopup(element) {
     var popupArea = element.parents('.form-comment').find('.popup-emoticon');
 
     $.ajax({
-        'url': '/comments/getEmoji',
+        'url': baseUrlLocale() + 'comments/getEmoji',
         'type': 'GET',
         success: (response) => {
             popupArea.html('').append(response);
@@ -396,7 +396,7 @@ function getGifPopup(element) {
     }
 
     $.ajax({
-        'url': '/comments/getGif',
+        'url': baseUrlLocale() + 'comments/getGif',
         'type': 'GET',
         success: (response) => {
             popupArea.html('').append(response);

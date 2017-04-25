@@ -83,7 +83,7 @@ $(function () {
         $(this).addClass('current-order');
         let orderBy = $(this).attr('data-orderby');
         let data = {keywords: currentSection.find('.search-photo-keywords').val()};
-        let url = '/articles/' + articleId + '/listsPhoto/' + orderBy;
+        let url = baseUrlLocale() + 'articles/' + articleId + '/listsPhoto/' + orderBy;
         getPostPhotos(currentSection, url, data);
     });
 
@@ -91,7 +91,7 @@ $(function () {
         var currentSection = $(this).parents('.main-content');
         var articleId = currentSection.find('.upload-photo').attr('data-article-id');
         let orderBy = currentSection.find('.current-order').attr('data-orderby');
-        let url = '/articles/' + articleId + '/listsPhoto/' + orderBy;
+        let url = baseUrlLocale() + 'articles/' + articleId + '/listsPhoto/' + orderBy;
         let data = {keywords: currentSection.find('.search-photo-keywords').val()};
         getPostPhotos(currentSection, url, data);
     });
@@ -101,7 +101,7 @@ $(function () {
             var currentSection = $(this).parents('.main-content');
             var articleId = currentSection.find('.upload-photo').attr('data-article-id');
             let orderBy = currentSection.find('.current-order').attr('data-orderby');
-            let url = '/articles/' + articleId + '/listsPhoto/' + orderBy;
+            let url = baseUrlLocale() + 'articles/' + articleId + '/listsPhoto/' + orderBy;
             let data = {keywords: currentSection.find('.search-photo-keywords').val()};
             getPostPhotos(currentSection, url, data);
             return false;
@@ -113,7 +113,7 @@ $(function () {
         var articleId = currentSection.find('.upload-photo').attr('data-article-id');
         var page = parseInt($(this).attr('data-current-page')) + 1;
         let orderBy = currentSection.find('.current-order').attr('data-orderby');
-        let url = '/articles/' + articleId + '/listsPhoto/' + orderBy;
+        let url = baseUrlLocale() + 'articles/' + articleId + '/listsPhoto/' + orderBy;
 
         $.ajax({
             'url': url,
