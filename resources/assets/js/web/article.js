@@ -6,6 +6,8 @@ $(document).ready(function (e) {
         bufferPx: 0,
         finished: function () {
             $("#infscr-loading").remove();
+            console.log('finished');
+
         },
         path: function() {
             var nextHref = $(".next-page:last").children('a');
@@ -19,6 +21,8 @@ $(document).ready(function (e) {
         if ($(".next-page:last").children('a').length == 0) {
             $('div.container:first').infinitescroll('destroy');
         }
+
+        initDropzone();
     });
 });
 

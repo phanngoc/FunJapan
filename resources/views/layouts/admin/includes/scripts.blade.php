@@ -52,4 +52,5 @@
 {!! Html::script('assets/admin/js/admin.js') !!}
 
 {!! Html::script('assets/admin/js/plugins/sweetalert/sweetalert.min.js') !!}
+{!! Html::script('assets/admin/js/jquery-datetimepicker/jquery.datetimepicker.full.min.js') !!}
 @yield('script')

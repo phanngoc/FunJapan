@@ -2,8 +2,11 @@
 @if (auth()->check())
     <div class="text-center" style="margin-bottom: 30px;">
         <div class="alert post-photo-alert hidden"></div>
-        <form action="/articles/{{ $articleLocale->article_id }}/photo" method="POST" id="upload-photo-{{$articleLocale->article_id}}"
-            data-article-id="{{ $articleLocale->article_id }}" class="upload-photo dropzone"></form>
+        <form action="{{ action('Web\ArticlePhotosController@store', $articleLocale->article_id) }}" method="POST"
+            id="upload-photo-{{ $articleLocale->article_id }}"
+            data-article-id="{{ $articleLocale->article_id }}" class="upload-photo dropzone">
+            <div class="close fileinput-remove"><span>×</span></div>
+        </form>
         <form action="/" enctype="multipart/form-data" method="post">
             <div class="articlephoto-upload form-group">
                 <div style="margin-bottom:10px;">
@@ -45,7 +48,7 @@
     </div>
 @endif
 <p class="h2 blacksquare content-title">{{ trans('web/post_photo.label.posted_photo') }}</p>
-<div>
+<div class="photo-list" data-article-id="{{ $articleLocale->article_id }}">
     <div class="articlephoto-condition row">
         <div class="col-xs-12 col-sm-6">
             <div class="articlephoto-search input-group">
@@ -65,18 +68,24 @@
         </div>
     </div>
     <hr>
-    <div class="row article-list-photo">
-        <div class="articlephoto-area col-xs-12">
-            @include('web.articles._list_post_photos', ['postPhotos' => $postPhotos ?? null])
-        </div>
-        @if ($postPhotos->currentPage() < $postPhotos->lastPage() && $postPhotos->lastPage() != 0)
-            <div class="text-right col-xs-12">
-                <a class="articlephoto-more" href="javascript:void(0)" data-current-page="{{ $postPhotos->currentPage() }}">
-                    {{ trans('web/post_photo.button.more') }}
-                </a>
+    @if ($postPhotos->count() > 0)
+        <div class="row article-list-photo">
+            <div class="articlephoto-area col-xs-12">
+                @include('web.articles._list_post_photos', ['postPhotos' => $postPhotos ?? null])
             </div>
-        @endif
-
-    </div>
+            @if ($postPhotos->currentPage() < $postPhotos->lastPage() && $postPhotos->lastPage() != 0)
+                <div class="text-right col-xs-12">
+                    <a class="articlephoto-more" href="javascript:void(0)" data-current-page="{{ $postPhotos->currentPage() }}">
+                        {{ trans('web/post_photo.button.more') }}
+                    </a>
+                </div>
+            @endif
+        </div>
+    @else
+        <div class="row article-list-photo">
+            <div class="articlephoto-area col-xs-12">
+                No photo
+            </div>
+        </div>
+    @endif
 </div>
-{{ Html::script('assets/js/web/post_photo.js') }}

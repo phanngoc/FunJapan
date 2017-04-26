@@ -71,7 +71,7 @@ class User extends Authenticatable
         return $this->attributes['password'] == Hash::make($value);
     }
 
-    public function getAvatarUrl()
+    public function getAvatarUrlAttribute()
     {
         if ($this->avatar) {
             return null; //Do it latter

@@ -20,6 +20,9 @@ class ArticleService extends BaseService
             'category' => 'required',
             'thumbnail' => 'image|max:' . config('article.thumbnail.upload.max_size'),
             'tags.*' => 'min:3|max:15',
+            'type' => 'in:' . implode(',', array_values(config('article.type'))),
+            'start_campaign' => 'required|date_format:"Y-m-d H:i"',
+            'end_campaign' => 'date_format:"Y-m-d H:i"|after:start_campaign',
         ];
 
         if (!$article) {
@@ -30,6 +33,17 @@ class ArticleService extends BaseService
             ->setAttributeNames(trans('admin/article.label'));
     }
 
+    public static function validateGlobal($input)
+    {
+        $rules = [
+            'category_id' => 'required',
+            'type' => 'in:' . implode(',', array_values(config('article.type'))),
+        ];
+
+        return Validator::make($input, $rules)
+            ->setAttributeNames(trans('admin/article.label'));
+    }
+
     public static function create($inputs)
     {
         DB::beginTransaction();
@@ -37,6 +51,8 @@ class ArticleService extends BaseService
             $articleData = [
                 'user_id' => Auth::id(),
                 'category_id' => $inputs['category'],
+                'type' => $inputs['type'],
+                'auto_approve_photo' => $inputs['auto_approve_photo'],
             ];
 
             if ($article = Article::create($articleData)) {
@@ -47,6 +63,8 @@ class ArticleService extends BaseService
                     'content' => $inputs['content'],
                     'summary' => $inputs['summary'],
                     'published_at' => $inputs['publish_date'] ?? Carbon::now(),
+                    'start_campaign' => $inputs['start_campaign'],
+                    'end_campaign' => $inputs['end_campaign'],
                 ];
                 if (isset($inputs['is_top_article'])) {
                     $articleLocaleData['is_top_article'] = $inputs['is_top_article'];
@@ -84,6 +102,8 @@ class ArticleService extends BaseService
                     'summary' => $inputs['summary'],
                     'published_at' => $inputs['publish_date'],
                     'is_top_article' => isset($inputs['is_top_article']) ? $inputs['is_top_article'] : 0,
+                    'start_campaign' => $inputs['start_campaign'],
+                    'end_campaign' => $inputs['end_campaign'],
                 ];
                 if (isset($inputs['thumbnail'])) {
                     $articleLocaleData['thumbnail'] = $inputs['thumbnail'];
@@ -103,5 +123,16 @@ class ArticleService extends BaseService
 
             return false;
         }
+    }
+
+    public static function getArticleTypes()
+    {
+        $result = [];
+
+        foreach (config('article.type') as $key => $value) {
+            $result[$value] = trans('admin/article.type.' . $key);
+        }
+
+        return $result;
     }
 }

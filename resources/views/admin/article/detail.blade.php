@@ -10,6 +10,29 @@
                 <div class="ibox-title"><h2>{{ trans('admin/article.list_language') . $article->id }}</h2></div>
                 <div class="ibox-content">
                     <div class="tabs-container">
+                        <div class="tab-content">
+                            <h3>{{ trans('admin/article.title_global') }}</h3>
+                            <hr>
+                            <strong>{{ trans('admin/article.category') }}: </strong>
+                            {{ $article->category->name }}
+                            <hr>
+                            <strong>{{ trans('admin/article.label.type') }}:</strong>
+                            {{ $types[$article->type] ?? null }}
+                            <hr>
+                            @if ($article->type == config('article.type.photo'))
+                                <strong>{{ trans('admin/article.label.auto_approve_photo') }}:</strong>
+                                {{ $article->auto_approve_photo ? trans('admin/article.label.yes') : trans('admin/article.label.no') }}
+                            <hr>
+                            @endif
+                            <a href="{{ action('Admin\ArticlesController@editGlobalInfo',
+                                [$article->id, 'locale' => $article->articleLocales->first()->locale_id]) }}" class="btn btn-w-m btn-primary">
+                                {{ trans('admin/article.button.edit') }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="tabs-container">
                         <ul class="nav nav-tabs">
                             @foreach ($article->articleLocales as $key => $articleLocale)
                                 <li class="@if ($tab == $articleLocale->locale->id) active @endif"><a data-toggle="tab" href="#{{ $articleLocale->locale->name }}">{{ $articleLocale->locale->name }}</a></li>
@@ -35,8 +58,6 @@
                                         <hr>
                                         <img src="{{ $articleLocale->thumbnail_urls['small_'] }}">
                                         <hr>
-                                        <strong>{{ trans('admin/article.category') }}: </strong> {{$articleLocale->article->category->name}}
-                                        <hr>
                                         <strong>{{ trans('admin/article.list_tag') }}: </strong>
                                         @foreach ($article->articleTags as $articleTag)
                                             @if ($articleTag->article_locale_id == $articleLocale->id)
@@ -44,9 +65,20 @@
                                             @endif
                                         @endforeach
                                         <hr>
+                                        <strong>{{ trans('admin/article.label.is_top') }}:</strong>
+                                        {{ $articleLocale->is_top_article ? trans('admin/article.label.yes') : trans('admin/article.label.no') }}
+                                        <hr>
                                         <strong>{{ trans('admin/article.published_at') }}: </strong>
                                         {{ $articleLocale->published_at }}
                                         <hr>
+                                        @if ($articleLocale->start_campaign || $articleLocale->end_campaign)
+                                            <strong>{{ trans('admin/article.label.start_campaign') }}: </strong>
+                                            {{ $articleLocale->start_campaign ?? '-' }}
+                                            <hr>
+                                            <strong>{{ trans('admin/article.label.end_campaign') }}: </strong>
+                                            {{ $articleLocale->end_campaign ?? '-' }}
+                                            <hr>
+                                        @endif
                                         <a href="{{ action('Admin\ArticlesController@edit',
                                             [$article->id, 'locale' => $articleLocale->locale_id]) }}" class="btn btn-w-m btn-primary">
                                             {{ trans('admin/article.button.edit') }}

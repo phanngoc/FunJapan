@@ -29,5 +29,9 @@ return [
         'same_category' => 3,
         'same_tag' => 3,
         'random' => 2,
+    ],
+    'type' => [
+        'normal' => 0,
+        'photo' => 1,
     ]
 ];

@@ -16,7 +16,7 @@
             <p class="articlephoto-postedby">{{ $postPhoto->user->name }}</p>
         </strong>
         <div class="articlephoto-message">
-            <p class="text-left break-word">{{ str_limit($postPhoto->content, config('limitation.post_photo.description')) }}</p>
+            <p class="text-left break-word">{{ $postPhoto->content ? str_limit($postPhoto->content, config('limitation.post_photo.description')) : '' }}</p>
         </div>
     </div>
 </div>

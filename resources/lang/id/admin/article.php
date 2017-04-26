@@ -25,6 +25,8 @@ return [
     'locale_not_exist' => 'Locale Not Exist',
     'list_article_of_tag' => 'List Article Of Tag: ',
     'select_category' => 'Select Category',
+    'edit_global' => 'Edit general informations',
+    'title_global' => 'General informations',
     'button' => [
         'create' => 'Save',
         'set_language' => 'Set Other Language',
@@ -44,6 +46,14 @@ return [
         'tags' => 'Tags',
         'summary' => 'Summary',
         'thumbnail' => 'Thumbnail',
+        'type' => 'Type',
+        'auto_approve_photo' => 'Auto Approve Photo',
+        'yes' => 'Yes',
+        'no' => 'No',
+    ],
+    'type' => [
+        'normal' => 'Normal Article',
+        'photo' => 'Photo Article',
     ],
     'placeholder' => [
         'title' => 'Input Title',

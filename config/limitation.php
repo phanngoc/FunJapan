@@ -4,6 +4,7 @@ return [
     'comment' => [
         'link_pagination' => 7,
         'per_page' => 10,
+        'next_time' => 60, // second
     ],
     'post_photo' => [
         'description' => 50,

@@ -113,6 +113,66 @@
                     </div>
 
                     <div class="form-group">
+                        {{ Form::label(
+                            'type',
+                            trans('admin/article.label.type'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-10">
+                            {{ Form::select(
+                                'type',
+                                $types,
+                                null,
+                                ['class' => 'form-control select-type'])
+                            }}
+                        </div>
+                    </div>
+
+                    <div class="form-group auto-approve-photo hidden">
+                        {{ Form::label(
+                            'auto_approve_photo',
+                            trans('admin/article.label.auto_approve_photo'),
+                            [
+                                'class' => 'col-sm-2 control-label'
+                            ]
+                        ) }}
+                        <div class="col-sm-10">
+                            <label class="checkbox-inline">
+                                {{ Form::checkbox(
+                                    'auto_approve_photo',
+                                    1,
+                                    false
+                                ) }}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="date-time-campaign">
+                        <div class="form-group">
+                            {{ Form::label(
+                                'time_campaign',
+                                trans('admin/article.label.time_campaign'),
+                                [
+                                    'class' => 'col-sm-2 control-label',
+                                ]
+                            ) }}
+                            <div class="col-sm-5 width30">
+                                {{ Form::text(
+                                    'start_campaign',
+                                    null,
+                                    ['class' => 'form-control datetime-picker'])
+                                }}
+                            </div>
+                            <div class="col-sm-5 width30">
+                                {{ Form::text(
+                                    'end_campaign',
+                                    null,
+                                    ['class' => 'form-control datetime-picker'])
+                                }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <div class="col-sm-2 col-sm-offset-2">
                             {{ Form::submit(trans('admin/article.button.create'), ['class' => 'btn btn-primary']) }}
                         </div>
@@ -131,5 +191,8 @@
 </div>
 @stop
 @section('script')
+    <script type="text/javascript">
+        var typePhoto = {!! config('article.type.photo') !!};
+    </script>
     {!! Html::script('assets/admin/js/article.js') !!}
 @stop

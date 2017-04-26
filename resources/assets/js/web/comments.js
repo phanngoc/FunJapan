@@ -139,6 +139,7 @@ $(function () {
     });
 
     $('body').on('click', '.comment-reply-panel', function () {
+        $(this).parents('ul').find('.comment-reply-container').css('display', 'none');
         $(this).parents('li').find('.comment-reply-container').css('display', 'block');
     });
 

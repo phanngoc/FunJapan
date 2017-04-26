@@ -17,7 +17,9 @@ class Article extends BaseModel
     protected $fillable = [
         'user_id',
         'category_id',
-        'post_photo',
+        'is_top_article',
+        'auto_approve_photo',
+        'type',
     ];
 
     public function articleLocales()

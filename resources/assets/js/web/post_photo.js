@@ -7,6 +7,21 @@ var dropzoneOptions = {
     acceptedFiles: 'image/*',
     maxFilesize: 10,
     headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
+    resize: function(file) {
+        var info;
+        info = {
+            srcX:0,
+            srcY:0,
+            srcWidth: file.width,
+            srcHeight: file.height,
+            trgX:0,
+            trgY:0,
+            trgWidth: this.options.thumbnailWidth * 3,
+            trgHeight: parseInt(this.options.thumbnailWidth * file.height / file.width) * 3
+        }
+
+        return info;
+    },
     init: function () {
         this.on('maxfilesexceeded', function (file) {
             this.removeAllFiles();
@@ -17,6 +32,7 @@ var dropzoneOptions = {
             var currentSection = $('#' + this.element.getAttribute('id')).parents('.main-content');
             currentSection.find('.file-caption-name').html('').append('<span class="glyphicon glyphicon-file"></span>' + file.name);
             currentSection.find('.btn-upload-photo').removeClass('hidden');
+            currentSection.find('.upload-photo').removeClass('hidden');
         })
     },
     sending: function (file, xhr, formData) {
@@ -46,35 +62,38 @@ var dropzoneOptions = {
     },
 }
 
-$(function () {
-    var myDropzone = new Dropzone('.upload-photo', dropzoneOptions);
-    $('.dropzone').css('display', 'none');
+var myDropzone = undefined;
 
-    $('body').on('click', '.articlephoto-upload-btn', function(e) {
-        e.preventDefault();
-        var currentSection = $(this).parents('.main-content');
-
-        if (currentSection.find('.photo-description').val() != '') {
-            myDropzone.processQueue();
-        } else {
-            currentSection.find('.post-photo-alert').addClass('alert-danger').removeClass('hidden alert-success')
-                .html('').append($('.btn-upload-photo').attr('alert-description'));
+function initDropzone () {
+    if ($('.upload-photo').length > 0) {
+        if (typeof myDropzone != 'undefined') {
+            myDropzone.destroy();
         }
-    });
 
-    $('body').on('click', '.btn-file', function () {
-        var currentSection = $(this).parents('.main-content');
-        var articleId = currentSection.find('.upload-photo').attr('data-article-id');
-        myDropzone.destroy();
-        myDropzone = new Dropzone('#upload-photo-' + articleId, dropzoneOptions);
-        currentSection.find('.post-photo-alert').addClass('hidden');
-        $('.dropzone').css('display', 'block');
-        currentSection.find('.dz-default.dz-message').click();
-    });
+        myDropzone = new Dropzone('.upload-photo', dropzoneOptions);
 
-    $('body').on('click', '.get-order-photo', function () {
+        $('.dropzone').addClass('hidden');
+
+        $('body').off('click', '.articlephoto-upload-btn').on('click', '.articlephoto-upload-btn', function(e) {
+            e.preventDefault();
+            var currentSection = $(this).parents('.main-content');
+
+            myDropzone.processQueue();
+        });
+
+        $('body').off('click', '.btn-file').on('click', '.btn-file', function () {
+            var currentSection = $(this).parents('.main-content');
+            var articleId = currentSection.find('.upload-photo').attr('data-article-id');
+            myDropzone.destroy();
+            myDropzone = new Dropzone('#upload-photo-' + articleId, dropzoneOptions);
+            currentSection.find('.post-photo-alert').addClass('hidden');
+            currentSection.find('.dz-default.dz-message').click();
+        });
+    }
+
+    $('body').off('click', '.get-order-photo').on('click', '.get-order-photo', function () {
         var currentSection = $(this).parents('.main-content');
-        var articleId = currentSection.find('.upload-photo').attr('data-article-id');
+        var articleId = currentSection.find('.photo-list').attr('data-article-id');
 
         currentSection.find('.get-order-photo').each(function () {
             $(this).removeClass('current-order');
@@ -87,19 +106,19 @@ $(function () {
         getPostPhotos(currentSection, url, data);
     });
 
-    $('body').on('click', '.search-photo-by-user', function () {
+    $('body').off('click', '.search-photo-by-user').on('click', '.search-photo-by-user', function () {
         var currentSection = $(this).parents('.main-content');
-        var articleId = currentSection.find('.upload-photo').attr('data-article-id');
+        var articleId = currentSection.find('.photo-list').attr('data-article-id');
         let orderBy = currentSection.find('.current-order').attr('data-orderby');
         let url = baseUrlLocale() + 'articles/' + articleId + '/listsPhoto/' + orderBy;
         let data = {keywords: currentSection.find('.search-photo-keywords').val()};
         getPostPhotos(currentSection, url, data);
     });
 
-    $('body').on('keydown', '.search-photo-keywords', function (e) {
+    $('body').off('keydown', '.search-photo-keywords').on('keydown', '.search-photo-keywords', function (e) {
         if (e.which == 13) {
             var currentSection = $(this).parents('.main-content');
-            var articleId = currentSection.find('.upload-photo').attr('data-article-id');
+            var articleId = currentSection.find('.photo-list').attr('data-article-id');
             let orderBy = currentSection.find('.current-order').attr('data-orderby');
             let url = baseUrlLocale() + 'articles/' + articleId + '/listsPhoto/' + orderBy;
             let data = {keywords: currentSection.find('.search-photo-keywords').val()};
@@ -108,9 +127,9 @@ $(function () {
         }
     });
 
-    $('body').on('click', '.articlephoto-more', function () {
+    $('body').off('click', '.articlephoto-more').on('click', '.articlephoto-more', function () {
         var currentSection = $(this).parents('.main-content');
-        var articleId = currentSection.find('.upload-photo').attr('data-article-id');
+        var articleId = currentSection.find('.photo-list').attr('data-article-id');
         var page = parseInt($(this).attr('data-current-page')) + 1;
         let orderBy = currentSection.find('.current-order').attr('data-orderby');
         let url = baseUrlLocale() + 'articles/' + articleId + '/listsPhoto/' + orderBy;
@@ -136,7 +155,15 @@ $(function () {
             }
         });
     });
-});
+
+    $('body').on('click', '.fileinput-remove', function () {
+        var currentSection = $(this).parents('.main-content');
+        currentSection.find('.upload-photo').addClass('hidden');
+        currentSection.find('.file-caption-name').html('');
+        myDropzone.destroy();
+    });
+}
+
 
 function getPostPhotos(currentSection, url, data = {}) {
     currentSection.find('.articlephoto-area').html('<i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>');
@@ -159,3 +186,7 @@ function getPostPhotos(currentSection, url, data = {}) {
         }
     });
 }
+
+$(function () {
+    initDropzone();
+});

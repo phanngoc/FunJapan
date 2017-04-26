@@ -40,7 +40,7 @@ class ArticlePhotosController extends Controller
         //     ];
         // }
 
-        if (!auth()->check()) {
+        if (!auth()->check() || $articleLocale->article->type != config('article.type.photo')) {
             return [
                 'success' => false,
                 'message' => [trans('web/post_photo.messages.no_permission')],
@@ -56,12 +56,19 @@ class ArticlePhotosController extends Controller
             ];
         }
 
+        $input['status'] = $articleLocale->article->auto_approve_photo ?
+            config('post_photo.status.approved') :
+            config('post_photo.status.waiting');
+
         if ($postPhoto = ArticleService::postPhoto($input)) {
             $postPhoto->with('user');
+            $html = '';
 
-            $html = View::make('web.articles._single_post_photo')
-                    ->with('postPhoto', $postPhoto)
-                    ->render();
+            if ($articleLocale->article->auto_approve_photo) {
+                $html = View::make('web.articles._single_post_photo')
+                        ->with('postPhoto', $postPhoto)
+                        ->render();
+            }
 
             return [
                 'success' => true,

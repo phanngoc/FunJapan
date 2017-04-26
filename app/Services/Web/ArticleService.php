@@ -64,6 +64,7 @@ class ArticleService
             ->where('al.published_at', '<', Carbon::now())
             ->orderBy('al.published_at', 'desc')
             ->orderBy('al.is_top_article', 'desc')
+            ->orderBy('a.id', 'desc')
             ->first();
 
         return $article->article_id ?? 0;
@@ -104,7 +105,7 @@ class ArticleService
         $maxSize = config('images.validate.post_photo.max_size');
 
         return Validator::make($input, [
-            'description' => 'required|max:100',
+            'description' => 'max:100',
             'file' => 'required|mimes:' . $mimes . '|max:' . $maxSize,
         ]);
     }
@@ -121,6 +122,7 @@ class ArticleService
                 'photo' => $photo,
                 'content' => strip_tags($data['description']),
                 'user_id' => $data['userId'],
+                'status' => $data['status'],
             ]);
         }
 
@@ -131,7 +133,7 @@ class ArticleService
     {
         $articleLocale = self::getArticleLocaleDetails($articleId, $localeId);
         $postPhotos = PostPhoto::with('user')
-            // ->where('status', config('post_photo.status.approved')) //will be used latter
+            ->where('status', config('post_photo.status.approved'))
             ->where('article_locale_id', $articleLocale->id);
 
         if ($searchCondition) {

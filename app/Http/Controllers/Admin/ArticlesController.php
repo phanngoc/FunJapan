@@ -29,6 +29,7 @@ class ArticlesController extends Controller
 
         $this->viewData['article'] = $article;
         $this->viewData['locales'] = LocaleService::getAllLocales();
+        $this->viewData['types'] = ArticleService::getArticleTypes();
 
         return view('admin.article.detail', $this->viewData);
     }
@@ -47,6 +48,7 @@ class ArticlesController extends Controller
     {
         $this->viewData['locales'] = LocaleService::getAllLocales();
         $this->viewData['categories'] = CategoryService::getAllCategories();
+        $this->viewData['types'] = ArticleService::getArticleTypes();
 
         return view('admin.article.create', $this->viewData);
     }
@@ -54,6 +56,10 @@ class ArticlesController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->all();
+
+        $inputs['auto_approve_photo'] = isset($inputs['auto_approve_photo']) && $inputs['auto_approve_photo'] ?
+            $inputs['auto_approve_photo'] : false;
+
         $validator = ArticleService::validate($inputs);
 
         if ($validator->fails()) {
@@ -133,6 +139,36 @@ class ArticlesController extends Controller
         if ($articleLocale = ArticleLocaleService::createArticleOtherLanguage($article, $inputs)) {
             return redirect()->action('Admin\ArticlesController@show', [$article->id, 'locale' => $inputs['locale']])
                 ->with(['message' => trans('admin/article.add_success')]);
+        }
+
+        return redirect()->back()->withErrors(['errors' => trans('admin/article.add_error')]);
+    }
+
+    public function editGlobalInfo(Request $request, Article $article)
+    {
+        $this->viewData['article'] = $article;
+        $this->viewData['categories'] = CategoryService::getAllCategories();
+        $this->viewData['types'] = ArticleService::getArticleTypes();
+        $this->viewData['localeId'] = $request->get('locale');
+
+        return view('admin.article.edit_global', $this->viewData);
+    }
+
+    public function updateGlobalInfo(Request $request, Article $article)
+    {
+        $inputs = $request->all();
+        $inputs['auto_approve_photo'] = isset($inputs['auto_approve_photo']) && $inputs['auto_approve_photo'] ?
+            $inputs['auto_approve_photo'] : false;
+
+        $validator = ArticleService::validateGlobal($inputs);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($inputs);
+        }
+
+        if ($article->update($inputs)) {
+            return redirect()->action('Admin\ArticlesController@show', [$article->id, 'locale' => $inputs['locale']])
+                ->with(['message' => trans('admin/article.update_success')]);
         }
 
         return redirect()->back()->withErrors(['errors' => trans('admin/article.add_error')]);
