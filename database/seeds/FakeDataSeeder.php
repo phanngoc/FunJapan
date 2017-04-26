@@ -12,6 +12,8 @@ class FakeDataSeeder extends Seeder
     public function run()
     {
         $this->call(LocaleSeeder::class);
+        $this->call(LocationSeeder::class);
+        $this->call(ReligionSeeder::class);
         $this->call(ArticleSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(TagSeeder::class);

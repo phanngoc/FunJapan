@@ -8,7 +8,7 @@
         <p class="re-thankyou">Thank you for signing up!</p>
         <p class="re-country">for FUN! {{ trans('web/user.register_page.banner.text_country') }}</p>
         <div class="step-btn-container">
-            <a class="btn" role="button" href="#">
+            <a class="btn" role="button" href="/{{ $currentLocale }}">
                 <span>Go to FUN! Japan</span>
             </a>
         </div>

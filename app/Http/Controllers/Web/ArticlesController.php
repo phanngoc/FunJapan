@@ -7,7 +7,7 @@ use App\Services\Web\CommentService;
 use App\Services\Web\CategoryService;
 use Illuminate\Http\Request;
 
-class ArticlesController extends BaseController
+class ArticlesController extends Controller
 {
     public function __construct()
     {

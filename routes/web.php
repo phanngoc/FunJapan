@@ -4,9 +4,6 @@ Route::get('/', function () {
     return view('web.home.index');
 });
 
-Route::group(['middleware' => ['web'], 'namespace' => 'Web'], function () {
-});
-
 Route::get('/register/jmb_1', function (Request $request) {
     return view('web.users.register.jmb_1');
 });
