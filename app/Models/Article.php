@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+
 class Article extends BaseModel
 {
 
@@ -39,18 +41,13 @@ class Article extends BaseModel
         return $this->belongsTo(Category::class);
     }
 
-    public function getRelateArticle()
+    public function getRelateArticle($localeId)
     {
         $result = [];
         $arrIgnoreIds = [$this->id];
 
         // get article same category
-        $result['category'] = self::inRandomOrder()
-            ->where('category_id', $this->category_id)
-            ->whereNotIn('id', $arrIgnoreIds)
-            ->limit(config('article.relate_article.same_category'))
-            ->get(['id', 'photo'])
-            ->toArray();
+        $result['category'] = $this->commonQueryGetRelate($arrIgnoreIds, $localeId, config('article.relate_article.same_category'));
 
         if ($result['category']) {
             $arrIgnoreIds = array_merge($arrIgnoreIds, array_pluck($result['category'], 'id'));
@@ -58,28 +55,42 @@ class Article extends BaseModel
 
         // get article same tag
         $tags = $this->articleTags->pluck('tag_id');
-        $result['tag'] = self::inRandomOrder()
-            ->whereIn('id', function ($subQuery) use ($tags) {
-                $subQuery->select('article_id')
-                    ->from('article_tags')
-                    ->whereIn('tag_id', $tags);
-            })
-            ->whereNotIn('id', $arrIgnoreIds)
-            ->limit(config('article.relate_article.same_tag'))
-            ->get(['id', 'photo'])
-            ->toArray();
+        $result['tag'] = $this->commonQueryGetRelate($arrIgnoreIds, $localeId, config('article.relate_article.same_tag'), false, $tags);
 
         if ($result['tag']) {
             $arrIgnoreIds = array_merge($arrIgnoreIds, array_pluck($result['tag'], 'id'));
         }
 
         // get article random
-        $result['random'] = self::inRandomOrder()
-            ->whereNotIn('id', $arrIgnoreIds)
-            ->limit(config('article.relate_article.random'))
-            ->get(['id', 'photo'])
-            ->toArray();
+        $result['random'] = $this->commonQueryGetRelate($arrIgnoreIds, $localeId, config('article.relate_article.random'), false);
 
         return $result;
+    }
+
+    public function commonQueryGetRelate($arrIgnoreIds, $localeId, $limit = 1, $isSameCategory = true, $tags = null)
+    {
+        $query = self::inRandomOrder()
+            ->whereNotIn('id', $arrIgnoreIds)
+            ->whereIn('id', function ($subQueryLocale) use ($localeId) {
+                $subQueryLocale->select('article_id')
+                    ->from('article_locales')
+                    ->where('locale_id', $localeId)
+                    ->where('published_at', '<=', Carbon::now());
+            })
+            ->limit($limit);
+
+        if ($isSameCategory) {
+            $query->where('category_id', $this->category_id);
+        }
+
+        if ($tags) {
+            $query->whereIn('id', function ($subQuery) use ($tags) {
+                $subQuery->select('article_id')
+                    ->from('article_tags')
+                    ->whereIn('tag_id', $tags);
+            });
+        }
+
+        return $query->get(['id'])->toArray();
     }
 }

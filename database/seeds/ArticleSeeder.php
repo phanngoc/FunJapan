@@ -20,61 +20,51 @@ class ArticleSeeder extends Seeder
             $articles = [
                 [
                     'id' => 1,
-                    'photo' => 'assets/images/article/recommended_img_2_1.jpg',
                     'user_id' => 1,
                     'category_id' => 1,
                 ],
                 [
                     'id' => 2,
-                    'photo' => 'assets/images/article/recommended_img_01.jpg',
                     'user_id' => 1,
                     'category_id' => 1,
                 ],
                 [
                     'id' => 3,
-                    'photo' => 'assets/images/article/recommended_img_2_2.jpg',
                     'user_id' => 1,
                     'category_id' => 1,
                 ],
                 [
                     'id' => 4,
-                    'photo' => 'assets/images/article/recommended_img_2_3.jpg',
                     'user_id' => 1,
                     'category_id' => 1,
                 ],
                 [
                     'id' => 5,
-                    'photo' => 'assets/images/article/recommended_img_2_4.jpg',
                     'user_id' => 1,
                     'category_id' => 1,
                 ],
                 [
                     'id' => 6,
-                    'photo' => 'assets/images/article/recommended_img_2_5.jpg',
                     'user_id' => 1,
                     'category_id' => 1,
                 ],
                 [
                     'id' => 7,
-                    'photo' => 'assets/images/article/recommended_img_2_6.jpg',
                     'user_id' => 1,
                     'category_id' => 1,
                 ],
                 [
                     'id' => 8,
-                    'photo' => 'assets/images/article/recommended_img_2_1.jpg',
                     'user_id' => 1,
                     'category_id' => 1,
                 ],
                 [
                     'id' => 9,
-                    'photo' => 'assets/images/article/recommended_img_2_2.jpg',
                     'user_id' => 1,
                     'category_id' => 1,
                 ],
                 [
                     'id' => 10,
-                    'photo' => 'assets/images/article/recommended_img_2_3.jpg',
                     'user_id' => 1,
                     'category_id' => 1,
                 ],
@@ -94,6 +84,7 @@ class ArticleSeeder extends Seeder
                         $header = $row;
                     } else {
                         $input = array_combine($header, $row);
+                        $input['photo'] = 'assets/images/article/recommended_img_2_3.jpg';
                         $input['created_at'] = Carbon::now();
                         $input['updated_at'] = Carbon::now();
                         $input['published_at'] = Carbon::now();
