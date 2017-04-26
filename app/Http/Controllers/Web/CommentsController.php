@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Web\Controller;
 use App\Services\Web\CommentService;
 use App\Services\Web\ArticleService;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 
-class CommentsController extends BaseController
+class CommentsController extends Controller
 {
     public function __construct()
     {

@@ -8,10 +8,12 @@ use Laravel\Socialite\Facades\Socialite;
 use Symfony\Component\HttpFoundation\Request;
 use App\Services\Web\UserService;
 
-class RegisterController extends BaseController
+class RegisterController extends Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
         config(['services.facebook.redirect' => route('facebook_callback')]);
     }
 
@@ -85,7 +87,7 @@ class RegisterController extends BaseController
     {
         $this->viewData['user'] = UserService::find($userId);
         if (!$this->viewData['user']) {
-            return redirect('/');
+            return redirect('/' . $this->currentLocale . '/');
         }
         $this->viewData['step'] = 2;
         $this->viewData['socialId'] = $socialId;
@@ -129,6 +131,7 @@ class RegisterController extends BaseController
     public function createSuccess()
     {
         $this->viewData['step'] = 3;
+        $this->viewData['currentLocale'] = $this->currentLocale;
 
         return view('web.users.register.step_3', $this->viewData);
     }

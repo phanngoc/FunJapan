@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Symfony\Component\HttpFoundation\Request;
 use App\Services\Web\UserService;

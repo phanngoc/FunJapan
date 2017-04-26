@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
 use App\Services\Web\ArticleService;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\Models\PostPhoto;
 
-class ArticlePhotosController extends BaseController
+class ArticlePhotosController extends Controller
 {
     public function __construct()
     {

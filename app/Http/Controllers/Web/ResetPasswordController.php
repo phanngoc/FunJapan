@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Web;
 use Symfony\Component\HttpFoundation\Request;
 use App\Services\Web\UserService;
 
-class ResetPasswordController extends BaseController
+class ResetPasswordController extends Controller
 {
     public function lostPassWord()
     {
