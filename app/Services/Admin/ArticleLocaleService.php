@@ -53,6 +53,21 @@ class ArticleLocaleService extends BaseService
         ];
     }
 
+    public static function getListForRank($condition)
+    {
+        return ArticleLocale::where('locale_id', $condition['locale_id'])
+            ->where('title', 'like', '%' . $condition['key_search'] . '%')
+            ->whereNotIn('id', function ($subquery) use ($condition) {
+                $subquery->select('article_locale_id')
+                    ->from('article_ranks')
+                    ->whereNotNull('article_locale_id')
+                    ->where('locale_id', $condition['locale_id'])
+                    ->where('id', '<>', $condition['rank']);
+            })
+            ->select(['id', 'title as text'])
+            ->paginate(config('article.per_page'));
+    }
+
     public static function listArticleByTags($tag)
     {
         $articleLocaleIds = ArticleTag::where('tag_id', $tag->id)->pluck('article_locale_id');

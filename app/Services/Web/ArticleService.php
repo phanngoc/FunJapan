@@ -19,8 +19,8 @@ class ArticleService
     {
         return ArticleLocale::where('article_id', $id)
             ->where('locale_id', $localeId)
-            ->whereNotNull('published_at')
-            ->where('published_at', '<', Carbon::now())
+            ->where('hide_always', 0)
+            ->where('published_at', '<=', Carbon::now())
             ->first();
     }
 
@@ -61,11 +61,17 @@ class ArticleService
             ->join('article_locales as al', 'a.id', '=', 'al.article_id')
             ->where('al.locale_id', $localeId)
             ->where('a.id', '<', $id)
-            ->where('al.published_at', '<', Carbon::now())
-            ->orderBy('al.published_at', 'desc')
-            ->orderBy('al.is_top_article', 'desc')
-            ->orderBy('a.id', 'desc')
-            ->first();
+            ->where('al.published_at', '<=', Carbon::now())
+            ->where('al.hide_always', 0);
+
+        if (!auth()->check()) {
+            $article = $article->where('is_member_only', 0);
+        }
+
+        $article = $article->orderBy('al.published_at', 'desc')
+        ->orderBy('al.is_top_article', 'desc')
+        ->orderBy('a.id', 'desc')
+        ->first();
 
         return $article->article_id ?? 0;
     }

@@ -39,4 +39,8 @@ Route::group(['namespace' => 'Admin'], function () {
 
     Route::get('{action?}', 'DashboardController@index');
 
+    Route::get('setting/ranks', 'ArticleRanksController@index');
+    Route::get('setting/ranks/{locale}', 'ArticleRanksController@getArticleLocales');
+    Route::post('setting/ranks/{locale}/store', 'ArticleRanksController@store');
+    Route::post('setting/ranks/{locale}/delete', 'ArticleRanksController@destroy');
 });

@@ -37,6 +37,8 @@ $(document).ready(function (e) {
         nextSelector: ".next-page a",
         navSelector: ".next-page",
         itemSelector: "div.top-body",
+        bufferPx: 0,
+        pixelsFromNavToBottom: 20,
         finished: function () {
             $("#infscr-loading").remove();
         },

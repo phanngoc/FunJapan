@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Web;
 
+use Illuminate\Http\Request;
+use App\Services\Admin\LocaleService;
+use App\Services\Admin\ArticleRankService;
 use App\Services\Admin\ArticleService;
 use App\Services\Admin\BannerSettingService;
 
@@ -16,6 +19,7 @@ class HomesController extends Controller
     {
         $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
         $this->viewData['banners'] = BannerSettingService::getBannerViaLocale($this->currentLocaleId);
+        $this->viewData['articleRanks'] = ArticleRankService::getArticleRanksLocale($this->currentLocaleId);
 
         return view('web.home.index', $this->viewData);
     }

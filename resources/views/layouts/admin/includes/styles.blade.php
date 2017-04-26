@@ -12,4 +12,6 @@
 {!! Html::style('assets/admin/css/animate.css') !!}
 {!! Html::style('assets/admin/css/style.css') !!}
 {!! Html::style('assets/admin/css/plugins/sweetalert/sweetalert.css') !!}
+{!! Html::style('assets/admin/css/plugins/select2/select2.min.css') !!}
+{!! Html::style('assets/admin/css/admin.css') !!}
 @yield('style')

@@ -30,10 +30,15 @@ return [
         'same_tag' => 3,
         'random' => 2,
     ],
+
     'type' => [
         'normal' => 0,
         'photo' => 1,
     ],
+
     'limit_short_title' => 37,
     'limit_short_summary' => 80,
+    'rank' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'per_page' => 10,
+    'rank_1' => 1,
 ];
