@@ -81,7 +81,7 @@ class ArticleService
             return false;
         }
 
-        $relates = $article->getRelateArticle();
+        $relates = $article->getRelateArticle($localeId);
         $relateArticle = [];
 
         foreach ($relates as $relateType) {
