@@ -5,3 +5,20 @@
 div.dataTables_length select {
     padding: 4px 17px !important;
 }
+
+.required label::after {
+    content: " *";
+    color: red;
+}
+
+.pt5 {
+    padding-top: 5px;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.width30 {
+    width: 30% !important;
+}

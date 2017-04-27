@@ -63,7 +63,7 @@ class ArticleService
             ->where('a.id', '<', $id)
             ->where('al.published_at', '<', Carbon::now())
             ->orderBy('al.published_at', 'desc')
-            ->orderBy('a.is_top_article', 'desc')
+            ->orderBy('al.is_top_article', 'desc')
             ->first();
 
         return $article->article_id ?? 0;

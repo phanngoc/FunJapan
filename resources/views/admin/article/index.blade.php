@@ -9,7 +9,7 @@
             <div class="ibox">
                 <div class="ibox-title"></div>
                 <div class="ibox-content">
-                    <table class="table table-striped table-bordered table-hover" id="article-table">
+                    <table class="table table-striped table-bordered table-hover" id="article-table" data-url="{{action('Admin\ArticlesController@getListArticles')}}">
                         <thead>
                             <tr>
                                 <th>{{ trans('admin/article.no') }}</th>
@@ -19,28 +19,22 @@
                                 <th>{{ trans('admin/article.action') }}</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach ($articleLocales as $articleLocale)
-                                <tr>
-                                    <td>{{ $articleLocale->id }}</td>
-                                    <td>{{ $articleLocale->title }}</td>
-                                    <td>{{ $articleLocale->locale->name }}</td>
-                                    <td>{{ $articleLocale->article->created_at }}</td>
-                                    <td>
-                                        <a href="{{ action('Admin\ArticlesController@show',
-                                                [$articleLocale->article_id, 'locale' => $articleLocale->locale->id]) }}">
-                                            {{ trans('admin/article.detail') }}
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
+                        <tfoot>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tfoot>
                     </table>
-                    <div class="">
-                        {{ $articleLocales->appends(Request::except('page'))->links() }}
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+@stop
+@section('script')
+    <script type="text/javascript">
+        var locales = {!! $locales !!};
+    </script>
+    {!! Html::script('assets/admin/js/article.js') !!}
 @stop

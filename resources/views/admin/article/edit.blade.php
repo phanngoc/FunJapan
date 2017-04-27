@@ -7,7 +7,7 @@
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
-                <h3>{{ trans('admin/article.add_article') }}</h3>
+                <h3>{{ trans('admin/article.edit_article') }}</h3>
             </div>
             <div class="ibox-content">
                 {{ Form::open(['action' => ['Admin\ArticlesController@update', $article->id], 'id' => 'create-article-form', 'class' => 'form-horizontal', 'files' => true]) }}
@@ -19,7 +19,7 @@
                             'summary' => $articleLocale->summary,
                         ])
 
-                    <div class="form-group">
+                    <div class="form-group required">
                         {{ Form::label(
                             'category',
                             trans('admin/article.label.category'),
@@ -28,9 +28,9 @@
                         <div class="col-sm-10">
                             {{ Form::select(
                                 'category',
-                                array_pluck($categories[$localeId], 'name', 'category_id'),
+                                $categories,
                                 $article->category_id,
-                                ['class' => 'form-control'])
+                                ['class' => 'form-control', 'required'])
                             }}
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                             trans('admin/article.label.publish_date'),
                             ['class' => 'col-sm-2 control-label'])
                         }}
-                        <div class="col-sm-10">
+                        <div class="col-sm-10 width30">
                             {{ Form::date(
                                 'publish_date',
                                 $articleLocale->published_at,
@@ -77,7 +77,7 @@
                             trans('admin/article.label.thumbnail'),
                             ['class' => 'col-sm-2 control-label'])
                         }}
-                        <div class="col-sm-10">
+                        <div class="col-sm-10 pt5">
                             {{ Form::file(
                                 'thumbnail',
                                 null,
@@ -86,15 +86,38 @@
                         </div>
                     </div>
 
-                    {{Form::hidden('locale', $localeId)}}
-                    {{Form::hidden('articleLocaleId', $articleLocale->id)}}
-
                     <div class="form-group">
-                        <div class="col-sm-10 col-sm-offset-2">
-                            {{Form::submit(trans('admin/article.button.update'), ['class' => 'btn btn-primary'])}}
+                        {{ Form::label(
+                            'is_top_article',
+                            trans('admin/article.label.is_top'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-10">
+                            <label class="checkbox-inline">
+                                {{ Form::checkbox(
+                                    'is_top_article',
+                                    1,
+                                    $articleLocale->is_top_article)
+                                }}&nbsp;
+                            </label>
                         </div>
                     </div>
-                {{Form::close()}}
+
+                    {{ Form::hidden('locale', $localeId) }}
+                    {{ Form::hidden('articleLocaleId', $articleLocale->id) }}
+
+                    <div class="form-group">
+                        <div class="col-sm-2 col-sm-offset-2">
+                            {{ Form::submit(trans('admin/article.button.update'), ['class' => 'btn btn-primary']) }}
+                        </div>
+                        <div class="col-sm-3">
+                            <a class="btn btn-primary" href="{{ action('Admin\ArticlesController@show',
+                                [$articleLocale->article_id, 'locale' => $localeId]) }}">
+                                {{ trans('admin/article.button.cancel') }}
+                            </a>
+                        </div>
+                    </div>
+                {{ Form::close() }}
             </div>
         </div>
     </div>

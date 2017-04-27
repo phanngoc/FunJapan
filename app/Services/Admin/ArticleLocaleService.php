@@ -4,16 +4,40 @@ namespace App\Services\Admin;
 
 use App\Models\ArticleLocale;
 use App\Models\ArticleTag;
+use App\Models\Locale;
 use Image;
 use File;
 use Illuminate\Support\Facades\Storage;
 use DB;
+use App\Services\Admin\LocaleService;
 
 class ArticleLocaleService extends BaseService
 {
-    public static function list()
+    public static function list($conditions)
     {
-        return ArticleLocale::paginate();
+        $keyword = $conditions['search']['value'];
+        $searchColumns = ['id', 'title'];
+        $limit = $conditions['length'];
+        $page = $conditions['start'] / $conditions['length'] + 1;
+        $orderParams = $conditions['order'];
+        $orderConditions['column'] = $conditions['columns'][$orderParams[0]['column']]['data'];
+        $orderConditions['dir'] = $orderParams[0]['dir'];
+        $query = ArticleLocale::query();
+        foreach ($conditions['columns'] as $column) {
+            if ($column['data'] !== 'locale_id' && $column['data'] !== 'function') {
+                $query->where($column['data'], 'like', '%' . $column['search']['value'] . '%');
+            } elseif ($column['data'] === 'locale_id') {
+                $locales = Locale::where('name', 'like', '%' . $column['search']['value'] . '%')->pluck('id');
+                $query->whereIn($column['data'], $locales);
+            }
+        }
+
+        $results = static::listItems($query, $keyword, $searchColumns, $orderConditions, $limit, $page);
+
+        return $returnData = [
+            'recordsFiltered' => $results->total(),
+            'data' => $results->items(),
+        ];
     }
 
     public static function listArticleByTags($tag)
@@ -91,6 +115,10 @@ class ArticleLocaleService extends BaseService
             'summary' => $inputs['summary'],
             'published_at' => $inputs['publish_date'],
         ];
+
+        if (isset($inputs['is_top_article'])) {
+            $articleLocaleData['is_top_article'] = $inputs['is_top_article'];
+        }
         DB::beginTransaction();
         try {
             if ($articleLocale = static::create($articleLocaleData, $inputs['thumbnail'])) {

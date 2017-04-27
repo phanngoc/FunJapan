@@ -8,6 +8,12 @@ class CategoryLocaleService extends BaseService
 {
     public static function getCategories()
     {
-        return CategoryLocale::all()->groupBy('locale_id');
+        $add = ['category_id' => '', 'name' => trans('admin/article.select_category')];
+        $categories = CategoryLocale::all()->groupBy('locale_id');
+        foreach ($categories as $category) {
+            $category->prepend($add);
+        }
+
+        return $categories;
     }
 }

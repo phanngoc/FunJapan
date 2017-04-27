@@ -15,4 +15,12 @@ class CategoryService extends BaseService
             ->orWhere('locale_iso_code', '=', null)->get();
         return $categories;
     }
+
+    public static function getAllCategories()
+    {
+        $add = trans('admin/article.select_category');
+        $categories = Category::pluck('name', 'id')->prepend($add, '')->toArray();
+
+        return $categories;
+    }
 }
