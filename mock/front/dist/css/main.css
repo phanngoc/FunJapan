@@ -10785,7 +10785,7 @@ ul.engagement li > a:focus {
     padding: 0 4px;
   }
 }
-.modal {
+.modal.fullscreen {
   top: 100px;
   min-height: 100%;
 }
@@ -10793,11 +10793,11 @@ body.modal-open {
   overflow: visible;
   height: 100%;
 }
-.modal-dialog {
+.fullscreen .modal-dialog {
   position: fixed;
 }
-.modal-content,
-.modal-dialog {
+.fullscreen .modal-content,
+.fullscreen .modal-dialog {
   height: 100%;
   overflow: scroll;
 }

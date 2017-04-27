@@ -1,4 +1,4 @@
-﻿.modal {
+﻿.modal.fullscreen {
   top: 100px;
   min-height: 100%;
 }
@@ -8,12 +8,14 @@ body.modal-open {
   height: 100%;
 }
 
-.modal-dialog {
-  position: fixed;
-}
+.fullscreen {
+  .modal-dialog {
+    position: fixed;
+  }
 
-.modal-content,
-.modal-dialog {
-  height: 100%;
-  overflow: scroll;
+  .modal-content,
+  .modal-dialog {
+    height: 100%;
+    overflow: scroll;
+  }
 }
