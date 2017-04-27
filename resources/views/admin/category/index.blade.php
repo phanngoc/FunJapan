@@ -24,25 +24,33 @@
                     <tbody>
                     @foreach($categories as $category)
                         <tr>
-                            <td class="text-center">{{$category->id}}</td>
-                            <td>{{$category->name}}</td>
-                            <td>{{$category->short_name}}</td>
-                            @if (!empty($category->photo))
-                                <td><img src="{{asset($category->photo)}}"></td>
+                            <td class="text-center">{{ $category->id }}</td>
+                            <td>{{ $category->name }}</td>
+                            <td>{{ $category->short_name }}</td>
+                            @if (!empty($category->icon))
+                                <td><img src="{{ $category->iconUrls['normal'] }}"></td>
                             @else
                                 <td></td>
                             @endif
-                            <td>{{$category->locale}}</td>
-                            <td class="text-center">{{$category->created_at}}</td>
+                            <td>{{ $category->localeName }}</td>
+                            <td class="text-center">{{ $category->created_at }}</td>
                             <td class="text-center">
-                                <a href="#" class="detail"><i class="fa fa-plus-square-o fa-lg"></i></a>
-                                <a href="#" class="edit"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                                <a href="#" class="delete"><i class="fa fa-trash-o fa-lg"></i></a>
+                                <a href="{{ action('Admin\CategoriesController@show', [$category->id]) }}" class="detail">
+                                    &nbsp;<i class="fa fa-eye fa-lg"></i>
+                                </a>
+                                <a href="{{ action('Admin\CategoriesController@edit', [$category->id]) }}" class="edit">
+                                    &nbsp;<i class="fa fa-pencil-square-o fa-lg"></i>
+                                </a>
+                                <a href="#" data-url="{{ action('Admin\CategoriesController@destroy', [$category->id]) }}" class="delete">
+                                    &nbsp;<i class="fa fa-trash-o fa-lg"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach()
                     </tbody>
                 </table>
+                <div id="delete-confirm" data-confirm-message="{{ trans('admin/category.delete_confirm') }}"></div>
+                <div id="url-redirect" data-url="{{ url()->current() }}"></div>
             </div>
         </div>
     </div>

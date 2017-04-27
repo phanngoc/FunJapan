@@ -39,6 +39,11 @@ class PostPhoto extends BaseModel
         return $this->belongsTo(User::class);
     }
 
+    public function article()
+    {
+        return $this->belongsTo(Article::class);
+    }
+
     public function getPostedTimeAttribute()
     {
         return $this->created_at->format(trans('datetime.posted_time'));

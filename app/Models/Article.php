@@ -31,6 +31,16 @@ class Article extends BaseModel
         return $this->hasMany(ArticleTag::class);
     }
 
+    public function favoriteArticles()
+    {
+        return $this->hasMany(FavoriteArticle::class);
+    }
+
+    public function postPhotos()
+    {
+        return $this->hasMany(PostPhoto::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
