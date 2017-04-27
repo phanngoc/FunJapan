@@ -5,7 +5,7 @@ mixin comment(comment_item)
     .media-body
       p.h4.media-heading=comment_item.user_name
       .pull-right
-        a.btn-delete(href='javascript: void(0);') delete
+        a.btn-delete(href='javascript: void(0);',data-toggle="modal",data-target="#delete-comment-modal") delete
       p.comment-body=comment_item.content
       p.time
         span.post-text Posted at 
@@ -27,7 +27,7 @@ mixin comment(comment_item)
             .media-body
               p.h4.media-heading=comment_item.reply.user_name
               .pull-right
-                a.btn-delete(href='javascript: void(0);', style='display: inline;') delete
+                a.btn-delete(href='javascript: void(0);',data-toggle="modal",data-target="#delete-comment-modal") delete
               p.comment-body=comment_item.reply.content              
               span.hidden
               p.time
