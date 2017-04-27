@@ -6,9 +6,9 @@
 
 .article-detail-title {
   @media only screen and (max-width: 768px) {
-    font-size: 16px;
+    font-size: 18px;
   }
-  font-family: futura-medium;
+  font-family: josefinsans-semibold;
   font-size: 24px;
   color: @engagement-black;
 }
@@ -41,7 +41,8 @@
   margin-top: 35px;
   margin-bottom: 20px;
   img {
-    .img-responsive(inline); // 記事本文中のimgはすべてresponsiveにする。
+    .img-responsive(inline);
+    margin-bottom: 10px;
   }
   a {
     color: @article-anchor-color;
@@ -54,6 +55,11 @@
       background-color: @article-anchor-color;
     }
   }
+  p {
+    font-family: opensans-regular;
+    font-size: 13px;
+    color: @sidebar-gray-2;
+  }
 }
 
 //sidebar
@@ -62,8 +68,8 @@
     @media only screen and (max-width: 768px) {
       font-size: 12px;
     }
-    font-family: myriadpro-regular;
-    font-size: 14px;
+    font-family: opensans-regular;
+    font-size: 13px;
     margin-top: 15px;
     color: @sidebar-gray-2;
   }

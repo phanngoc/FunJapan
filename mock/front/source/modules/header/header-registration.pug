@@ -2,27 +2,27 @@ mixin header-registration()
   .registration-header
     .registration-title
       a(href='#')
-        p.registration-logo
-          | FJ
-        p.web-title
+        div.registration-logo
+          span FJ
+        div.web-title
           span.text-fun FUN!
           span.text-country  Japan Malaysia
     .registration-navigation
       ul.list-inline.step
         li.step-item.step-item--1.active
-          span 1
+          span.step-number 1
           p.vertical-bar
           p.step-des-item
             span.step-des Check member benefit
         li.horizontal-bar
         li.step-item.step-item--2
-          span 2
+          span.step-number 2
           p.vertical-bar
           p.step-des-item
             span.step-des Fill your information
         li.horizontal-bar
         li.step-item.step-item--3
-          span 3
+          span.step-number 3
           p.vertical-bar
           p.step-des-item
             span.step-des Registration completed

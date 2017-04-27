@@ -1,4 +1,4 @@
-# {JTB-landingpage}
+# {FJ-theme}
 
 ## Install
 ### Requirement

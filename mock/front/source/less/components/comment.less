@@ -142,7 +142,7 @@
     @media only screen and (max-width: 768px) {
       padding: 17px 15px;
     }
-    font-family: myriadpro-regular;
+    font-family: opensans-regular;
     font-size: 13px;
     border-bottom: 1px solid @comment-gray;
     span {
@@ -182,8 +182,8 @@
       border-right: 1px solid @comment-gray;
       border-bottom: none;
       padding: 10px 20px;
-      font-family: myriadpro-regular;
-      color: #666666;
+      font-family: opensans-regular;
+      color: @comment-gray-2;
       font-size: 13px;
       white-space: pre-wrap;
       box-shadow: none;
@@ -212,7 +212,7 @@
         border-radius: 0;
         background-color: @comment-white;
         border-bottom: 1px solid @comment-light-gray;
-        padding: 1px 20px;
+        padding: 5px 20px;
       }
       border-left: 1px solid @comment-gray;
       border-right: 1px solid @comment-gray;
@@ -224,7 +224,7 @@
       padding: 8px 20px;
       .text-left {
         float: left;
-        padding: 0;
+        padding: 2px 0;
       }
       .text-right {
         float: right;
@@ -300,8 +300,8 @@
           border-radius: 3px;
           resize: none;
           overflow: hidden;
-          font-family: myriadpro-regular;
-          color: #666666;
+          font-family: opensans-regular;
+          color: @comment-gray-2;
           font-size: 13px;
           white-space: pre-wrap;
           &::-webkit-input-placeholder {
@@ -323,7 +323,7 @@
         }
         &>i.btn-twemoji {
           position: absolute;
-          bottom: 5px;
+          bottom: 10px;
           right: 10px;
           font-size: 18px;
           color: @comment-dark-gray;
@@ -334,7 +334,7 @@
       display: block;
       margin-bottom: 8px;
       padding-left: 50px;
-      font-family: myriadpro-regular;
+      font-family: opensans-regular;
       font-size: 13px;
       white-space: pre-wrap;
     }
@@ -374,7 +374,7 @@
 .show-comment-modal,
 .hide-comment-modal {
   &>p {
-    font-family: futura-medium;
+    font-family: josefinsans-semibold;
     font-size: 11px;
     color: @comment-gray-2;
     background-color: @comment-light-gray-4;
@@ -384,11 +384,13 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     .comment-count {
+      font-size: 13px;
       color: @comment-light-pink;
     }
     .suggest-text {
       color: @comment-dark-gray;
       font-size: 10px;
+      line-height: 2;
     }
     span>i.fa {
       font-size: 12px;
