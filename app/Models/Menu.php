@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Services\ImageService;
+use Illuminate\Support\Facades\Log;
 
 class Menu extends BaseModel
 {
@@ -15,14 +17,54 @@ class Menu extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'place_holder',
+        'description',
         'parent_id',
-        'icon',
         'link',
+        'locale_id',
+        'icon',
+        'name',
+        'type',
+        'order',
     ];
 
-    public function menuLocales()
+    protected $appends = [
+        'icon_url',
+    ];
+
+    public function children()
     {
-        return $this->hasMany(MenuLocale::class);
+        return $this->hasMany(self::class, 'parent_id', 'id');
+    }
+
+    public function locale()
+    {
+        return $this->belongsTo(Locale::class);
+    }
+
+    public function getIconUrlAttribute()
+    {
+        if ($this->icon) {
+            $result = [];
+            try {
+                foreach (config('images.dimensions.menu_icon') as $key => $value) {
+                    $filePath = config('images.paths.menu_icon') . '/' . $this->id . '/' . $key . '_' . $this->icon;
+
+                    $result[$key] = ImageService::imageUrl($filePath);
+                }
+
+                return $result;
+            } catch (\Exception $e) {
+                Log::debug($e);
+            }
+        }
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($menu) {
+            $menu->children()->delete();
+        });
     }
 }

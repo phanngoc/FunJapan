@@ -123,4 +123,13 @@ class TagsController extends Controller
         return redirect()
             ->back()->withErrors(['errors' => trans('admin/tag.block_error')]);
     }
+
+    public function getTags(Request $request)
+    {
+        $query = $request->input('q');
+        $dataReturn = [];
+        $dataReturn['items'] = TagService::getTagsByQuery($query);
+
+        return $dataReturn;
+    }
 }

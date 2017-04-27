@@ -6,6 +6,7 @@ return [
         'category_icon' => 'uploads/categories/icons',
         'article_thumbnail' => 'uploads/articles/thumbnail',
         'banner' => 'uploads/banner',
+        'menu_icon' => 'uploads/menu',
     ],
     'validate' => [
         'post_photo' => [
@@ -21,6 +22,9 @@ return [
         ],
         'banner' => [
             'mimes' => 'jpeg,png,jpg',
+            'max_size' => 10240,
+        ],
+        'menu_icon' => [
             'max_size' => 10240,
         ],
     ],
@@ -46,6 +50,9 @@ return [
             'original' => '',
             'larger' => [1000, 400],
             'small' => [200, 129],
+        ],
+        'menu_icon' => [
+            'normal' => [20, 20],
         ],
     ],
     'not_resize' => [

@@ -105,4 +105,13 @@ class CategoriesController extends Controller
 
         return response()->json($response);
     }
+
+    public function getCategories(Request $request)
+    {
+        $query = $request->input('q');
+        $dataReturn = [];
+        $dataReturn['items'] = CategoryService::getCategoriesByQuery($query);
+
+        return $dataReturn;
+    }
 }

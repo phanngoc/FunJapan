@@ -102,12 +102,12 @@ $(document).ready(function () {
             var pageInfo = table.page.info();
             $('td', row).eq(0).empty().append(pageInfo.page * pageInfo.length + index + 1);
             var detailLink = baseUrl() + '/admin/articles/' + data.article_id + '?locale=' + data.locale_id;
-            $('td', row).eq(1).empty().append('<a href="' + detailLink + '">' + data.title + '</a>');
+            $('td', row).eq(1).empty().append('<a href="' + detailLink + '">' + encodeHTML(data.title) + '</a>');
             $('td', row).eq(2).empty().append(locales[data.locale_id]);
             $('td', row).eq(5).empty().append(data.is_top_article ? 'Yes' : 'No');
             $('td', row).eq(6).empty().append(data.hide_always ? 'Yes' : 'No');
             $('td', row).eq(7).empty().append(data.is_member_only ? 'Yes' : 'No');
-            var editLink = baseUrl() + '/admin/articles/' + data.id + '/edit/?locale=' + data.locale_id;
+            var editLink = baseUrl() + '/admin/articles/' + data.article_id + '/edit/?locale=' + data.locale_id;
             $('td', row).eq(8).empty().append('<a href="' + editLink + '" class="edit"><i class="fa fa-pencil-square-o fa fa-lg"></i></a>'
                 + '<a href="#" class="delete"><i class="fa fa-trash-o fa fa-lg"></i></a>');
         }

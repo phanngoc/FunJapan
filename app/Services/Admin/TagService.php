@@ -94,4 +94,11 @@ class TagService extends BaseService
     {
         return $tag->delete();
     }
+
+    public static function getTagsByQuery($q)
+    {
+        $tags = Tag::select('id', 'name')->where('name', 'like', "%$q%")->get();
+
+        return $tags;
+    }
 }
