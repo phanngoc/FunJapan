@@ -35,4 +35,5 @@ return [
         'photo' => 1,
     ],
     'limit_short_title' => 37,
+    'limit_short_summary' => 80,
 ];

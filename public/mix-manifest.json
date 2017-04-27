@@ -6,7 +6,9 @@
   "/assets/admin/css/article.css": "/assets/admin/css/article.css",
   "/assets/admin/js/tag.js": "/assets/admin/js/tag.js",
   "/assets/admin/js/recommend_article.js": "/assets/admin/js/recommend_article.js",
+  "/assets/admin/js/popular_article.js": "/assets/admin/js/popular_article.js",
   "/assets/admin/js/category.js": "/assets/admin/js/category.js",
+  "/assets/admin/js/banner.js": "/assets/admin/js/banner.js",
   "/assets/admin/js/article.js": "/assets/admin/js/article.js",
   "/assets/admin/js/admin.js": "/assets/admin/js/admin.js"
 }

@@ -32,6 +32,11 @@ Route::group(['namespace' => 'Admin'], function () {
 
     Route::resource('setting/popular-articles', 'PopularArticlesController');
 
+    Route::get('setting/banner', 'BannerSettingsController@index');
+    Route::post('setting/banner/{localeId}/locale', 'BannerSettingsController@update');
+    Route::delete('setting/banner/{localeId}/locale', 'BannerSettingsController@delete');
+    Route::get('setting/banner/get-article', 'BannerSettingsController@getArticle');
+
     Route::get('{action?}', 'DashboardController@index');
 
 });

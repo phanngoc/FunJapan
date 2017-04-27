@@ -1,0 +1,33 @@
+.select2-selection__clear {
+    position: absolute !important;
+    right: 20px !important;
+}
+
+.image-banner {
+    height:190px;
+    width: 475px;
+    border: solid 1px;
+    border-color: #c0c0c0;
+}
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.article-select2 {
+    width: 100%;
+}
+
+@media screen and (max-width: 1600px) {
+    .image-banner {
+        height:150px;
+        width: 375px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .image-banner {
+        height:100px;
+        width: 250px;
+    }
+}

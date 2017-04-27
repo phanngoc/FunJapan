@@ -5,6 +5,7 @@ return [
         'post_photo' => 'uploads/articles/post_photos',
         'category_icon' => 'uploads/categories/icons/',
         'article_thumbnail' => 'uploads/articles/thumbnail',
+        'banner' => 'uploads/banner',
     ],
     'validate' => [
         'post_photo' => [
@@ -15,6 +16,10 @@ return [
             'mimes' => 'jpeg,png,jpg',
         ],
         'article_thumbnail' => [
+            'max_size' => 10240,
+        ],
+        'banner' => [
+            'mimes' => 'jpeg,png,jpg',
             'max_size' => 10240,
         ],
     ],
@@ -35,6 +40,11 @@ return [
             'larger' => [850, 450],
             'normal' => [400, 200],
             'small' => [96, 60],
+        ],
+        'banner' => [
+            'original' => '',
+            'larger' => [1000, 400],
+            'small' => [200, 129],
         ],
     ],
     'not_resize' => [

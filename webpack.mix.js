@@ -26,6 +26,7 @@ var assetsCopy = [
     ['resources/assets/js/web', 'js/web', false],
     ['node_modules/jquery-datetimepicker/build/jquery.datetimepicker.min.css', 'admin/css/jquery-datetimepicker', false],
     ['node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js', 'admin/js/jquery-datetimepicker', false],
+    ['resources/assets/sass/admin/banner.css', 'admin/css', false],
 ];
 
 for (var i = 0; i < assetsCopy.length; i++) {
@@ -38,6 +39,7 @@ mix.js('resources/assets/js/app.js', assetPath + 'js')
     .sass('resources/assets/sass/admin.scss', assetPath + 'admin/css')
     .sass('resources/assets/sass/article.scss', assetPath + 'css')
     .js('resources/assets/js/admin/article.js', assetPath + 'admin/js')
+    .js('resources/assets/js/admin/banner.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/tag.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/recommend_article.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/popular_article.js', assetPath + 'admin/js')
