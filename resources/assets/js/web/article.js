@@ -24,7 +24,7 @@ $(document).ready(function (e) {
 
 function changeLike(articleId) {
     $.ajax({
-        url: baseUrlLocale() + '/articles/' + articleId + '/like',
+        url: baseUrlLocale() + 'articles/' + articleId + '/like',
         type: 'GET',
         success: function (response) {
             $('.engagement-count').text(response.count);

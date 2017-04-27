@@ -5,6 +5,8 @@ namespace App\Services\Admin;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Log;
 use DB;
+use Validator;
+use Illuminate\Validation\Rule;
 
 class TagService extends BaseService
 {
@@ -12,7 +14,7 @@ class TagService extends BaseService
     public static function list($conditions)
     {
         $keyword = $conditions['search']['value'];
-        $searchColumns = ['id', 'name', 'created_at'];
+        $searchColumns = ['name'];
         $limit = $conditions['length'];
         $page = $conditions['start'] / $conditions['length'] + 1;
         $orderParams = $conditions['order'];
@@ -54,8 +56,42 @@ class TagService extends BaseService
 
     public static function suggetTags($q)
     {
-        $tags = Tag::where('name', 'like', "%$q%")->pluck('name')->toArray();
+        $tags = Tag::where('name', 'like', "%$q%")
+            ->where('status', config('tag.status.un_block'))->pluck('name')->toArray();
 
         return $tags;
+    }
+
+    public static function validate($inputs, $tag = null)
+    {
+        $validationRules = [
+            'name' => 'required|min:3|max:15|unique:tags,name',
+        ];
+
+        if ($tag) {
+            $validationRules = [
+                'name' => [
+                    'required',
+                    'min:3',
+                    'max:15',
+                    Rule::unique('tags')->ignore($tag->id),
+                ],
+            ];
+        }
+
+        return Validator::make($inputs, $validationRules)
+            ->setAttributeNames(trans('admin/tag.label'));
+    }
+
+    public static function update($inputs, $tagId)
+    {
+        $tag = Tag::findOrFail($tagId);
+
+        return $tag->update($inputs);
+    }
+
+    public static function delete($tag)
+    {
+        return $tag->delete();
     }
 }

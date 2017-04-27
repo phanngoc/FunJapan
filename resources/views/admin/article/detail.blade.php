@@ -40,7 +40,7 @@
                                         <strong>{{ trans('admin/article.list_tag') }}: </strong>
                                         @foreach ($article->articleTags as $articleTag)
                                             @if ($articleTag->article_locale_id == $articleLocale->id)
-                                                #{{ $articleTag->tag->name }}
+                                                {{ $articleTag->tag->status ? '' : '#' . $articleTag->tag->name }}
                                             @endif
                                         @endforeach
                                         <hr>

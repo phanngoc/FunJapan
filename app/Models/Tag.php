@@ -16,5 +16,20 @@ class Tag extends BaseModel
      */
     protected $fillable = [
         'name',
+        'status',
     ];
+
+    public function articlesTags()
+    {
+        return $this->hasMany(articleTag::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($tag) {
+            $tag->articlesTags->delete();
+        });
+    }
 }

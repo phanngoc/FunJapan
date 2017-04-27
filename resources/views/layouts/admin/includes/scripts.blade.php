@@ -46,4 +46,6 @@
 {!! Html::script('assets/admin/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js') !!}
 <!-- Datatables -->
 {!! Html::script('assets/admin/js/plugins/dataTables/datatables.min.js') !!}
+<!-- Sweetalert -->
+{!! Html::script('assets/admin/js/plugins/sweetalert/sweetalert.min.js') !!}
 @yield('script')
