@@ -103,6 +103,32 @@
                         </div>
                     </div>
 
+                    <div class="date-time-campaign">
+                        <div class="form-group">
+                            {{ Form::label(
+                                'time_campaign',
+                                trans('admin/article.label.time_campaign'),
+                                [
+                                    'class' => 'col-sm-2 control-label',
+                                ]
+                            ) }}
+                            <div class="col-sm-5 width30">
+                                {{ Form::text(
+                                    'start_campaign',
+                                    $articleLocale->start_campaign,
+                                    ['class' => 'form-control datetime-picker'])
+                                }}
+                            </div>
+                            <div class="col-sm-5 width30">
+                                {{ Form::text(
+                                    'end_campaign',
+                                    $articleLocale->end_campaign,
+                                    ['class' => 'form-control datetime-picker'])
+                                }}
+                            </div>
+                        </div>
+                    </div>
+
                     {{ Form::hidden('locale', $localeId) }}
                     {{ Form::hidden('articleLocaleId', $articleLocale->id) }}
 

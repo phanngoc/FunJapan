@@ -42,7 +42,8 @@ class ArticlesController extends Controller
             $article->locale->id,
             config('limitation.comment.per_page')
         );
-        if ($article->post_photo) {
+
+        if ($article->type == config('article.type.photo')) {
             $this->viewData['postPhotos'] = ArticleService::getPostPhotosList(
                 $article->id,
                 $this->currentLocaleId,

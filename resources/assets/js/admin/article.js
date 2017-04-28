@@ -77,4 +77,24 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('.datetime-picker').datetimepicker({
+        format: 'Y-m-d H:i'
+    });
+
+    addAutoApprovePhoto($('.select-type'));
+
+    $('.select-type').on('change', function () {
+        addAutoApprovePhoto($(this));
+    });
 });
+
+function addAutoApprovePhoto (element) {
+    if (typeof typePhoto != 'undefined') {
+        if (element.val() == typePhoto) {
+            $('.auto-approve-photo').removeClass('hidden');
+        } else {
+            $('.auto-approve-photo').addClass('hidden');
+        }
+    }
+}

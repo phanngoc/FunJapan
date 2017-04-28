@@ -1,4 +1,5 @@
 {!! Html::style('assets/admin/css/bootstrap.min.css') !!}
+{!! Html::style('assets/admin/css/jquery-datetimepicker/jquery.datetimepicker.min.css') !!}
 {!! Html::style('assets/admin/font-awesome/css/font-awesome.css') !!}
 {!! Html::style('assets/admin/css/plugins/toastr/toastr.min.css') !!}
 {!! Html::style('assets/admin/css/plugins/dataTables/datatables.min.css') !!}

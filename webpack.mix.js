@@ -24,6 +24,8 @@ var assetsCopy = [
     ['mock/front/dist/images', 'images', false],
     ['node_modules/font-awesome/css', 'font-awesome', false],
     ['resources/assets/js/web', 'js/web', false],
+    ['node_modules/jquery-datetimepicker/build/jquery.datetimepicker.min.css', 'admin/css/jquery-datetimepicker', false],
+    ['node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js', 'admin/js/jquery-datetimepicker', false],
 ];
 
 for (var i = 0; i < assetsCopy.length; i++) {

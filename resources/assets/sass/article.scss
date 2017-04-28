@@ -36,3 +36,54 @@
         width: 50%;
     }
 }
+
+.dz-image-preview {
+    display: table !important;
+    margin: 8px !important;
+    border: 1px solid #ddd;
+    box-shadow: 1px 1px 5px 0 #a2958a;
+    padding: 6px;
+    text-align: center;
+    vertical-align: middle !important;
+}
+.dz-image {
+    width: auto !important;
+    height: auto !important;
+    border-radius: 0 !important;
+}
+.dz-image {
+    img {
+        height: 160px !important;
+    }
+}
+.upload-photo {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 0px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    width: 300px;
+    height: 160px;
+    text-align: right;
+    padding-top: 2px;
+}
+.close {
+    span {
+        cursor: pointer !important;
+        padding-right: 5px;
+        padding-top: 2px;
+    }
+}
+.alert-login {
+    margin-left: 45px;
+    font-size: 12px;
+}

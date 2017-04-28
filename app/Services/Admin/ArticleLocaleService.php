@@ -114,6 +114,8 @@ class ArticleLocaleService extends BaseService
             'content' => $inputs['content'],
             'summary' => $inputs['summary'],
             'published_at' => $inputs['publish_date'],
+            'start_campaign' => $inputs['start_campaign'],
+            'end_campaign' => $inputs['end_campaign'],
         ];
 
         if (isset($inputs['is_top_article'])) {

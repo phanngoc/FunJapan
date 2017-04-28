@@ -48,17 +48,18 @@ class CommentsController extends Controller
         }
 
         $articleLocale = ArticleService::getArticleLocaleDetails($input['articleId'], $this->currentLocaleId);
-        $comment = Comment::where('user_id', auth()->id())
-            ->where('article_locale_id', $articleLocale->id)
-            ->whereNull('parent_id')
-            ->first();
 
-        if ($comment && !$input['parentId']) {
+        $lastCommentKey = 'last_comment_' . auth()->id() . '.' . $articleLocale->id;
+        $lastTimeComment = session()->get($lastCommentKey);
+
+        if ($lastCommentKey && (time() - $lastTimeComment) < config('limitation.comment.next_time')) {
             return [
                 'success' => false,
                 'message' => [trans('web/comment.messages.only_once')],
             ];
         }
+
+        session()->put($lastCommentKey, time());
 
         if (!$articleLocale) {
             return [

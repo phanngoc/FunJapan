@@ -18,6 +18,8 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::get('articles/setOtherLanguage/{article}', 'ArticlesController@setOtherLanguage');
     Route::post('articles/updateOtherLanguage/{article}', 'ArticlesController@updateOtherLanguage');
     Route::get('getArticles', 'ArticlesController@getListArticles');
+    Route::get('articles/edit-global/{article}', 'ArticlesController@editGlobalInfo');
+    Route::post('articles/edit-global/{article}', 'ArticlesController@updateGlobalInfo');
 
     Route::resource('tags', 'TagsController');
     Route::get('tagsSuggest', 'TagsController@suggest');

@@ -17,6 +17,7 @@
     "laravel-mix": "0.*",
     "lodash": "^4.17.4",
     "font-awesome": "^4.6.3",
+    "jquery-datetimepicker": "^2.5.4",
     "vue": "^2.1.10"
   }
 }

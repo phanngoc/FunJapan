@@ -9,6 +9,8 @@
 {{ Html::script('assets/js/web/infinite-scroll/jquery.infinitescroll.js') }}
 {{ Html::script('assets/admin/js/plugins/dropzone/dropzone.js') }}
 {{ Html::script('assets/js/web/article.js') }}
+{{ Html::script('assets/js/web/post_photo.js') }}
+
 <script>
 $(function() {
     // Navbar

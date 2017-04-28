@@ -60,7 +60,7 @@
                                 @yield('content')
                                 @include('web.includes._side_bar_detail')
                             </div>
-                            @if ($article->post_photo)
+                            @if ($article->type == config('article.type.photo'))
                                 @include('web.articles._post_photo', [
                                     'articleLocale' => $article->locale ?? null,
                                     'postPhotos' => $postPhotos ?? null,
