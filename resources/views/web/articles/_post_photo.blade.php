@@ -4,6 +4,7 @@
         <div class="alert post-photo-alert hidden"></div>
         <form action="{{ action('Web\ArticlePhotosController@store', $articleLocale->article_id) }}" method="POST"
             id="upload-photo-{{ $articleLocale->article_id }}"
+            data-message-not-file="{{ trans('web/post_photo.messages.not_file') }}"
             data-article-id="{{ $articleLocale->article_id }}" class="upload-photo dropzone">
             <div class="close fileinput-remove"><span>×</span></div>
         </form>
@@ -84,7 +85,7 @@
     @else
         <div class="row article-list-photo">
             <div class="articlephoto-area col-xs-12">
-                No photo
+                {{ trans('web/post_photo.messages.no_photo') }}
             </div>
         </div>
     @endif

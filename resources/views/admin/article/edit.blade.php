@@ -116,15 +116,21 @@
                                 {{ Form::text(
                                     'start_campaign',
                                     $articleLocale->start_campaign,
-                                    ['class' => 'form-control datetime-picker'])
-                                }}
+                                    [
+                                        'class' => 'form-control datetime-picker',
+                                        'placeholder' => trans('admin/article.placeholder.start_time'),
+                                    ]
+                                ) }}
                             </div>
                             <div class="col-sm-5 width30">
                                 {{ Form::text(
                                     'end_campaign',
                                     $articleLocale->end_campaign,
-                                    ['class' => 'form-control datetime-picker'])
-                                }}
+                                    [
+                                        'class' => 'form-control datetime-picker',
+                                        'placeholder' => trans('admin/article.placeholder.start_time'),
+                                    ]
+                                ) }}
                             </div>
                         </div>
                     </div>

@@ -61,19 +61,27 @@ class ArticlePhotosController extends Controller
             config('post_photo.status.waiting');
 
         if ($postPhoto = ArticleService::postPhoto($input)) {
-            $postPhoto->with('user');
             $html = '';
 
             if ($articleLocale->article->auto_approve_photo) {
-                $html = View::make('web.articles._single_post_photo')
-                        ->with('postPhoto', $postPhoto)
-                        ->render();
+                $postPhotos = ArticleService::getPostPhotosList(
+                    $articleId,
+                    $this->currentLocaleId,
+                    null,
+                    PostPhoto::ORDER_BY_CREATED_DESC,
+                    config('limitation.post_photo.per_page')
+                );
+
+                $html = View::make('web.articles._list_post_photos')
+                    ->with('postPhotos', $postPhotos)
+                    ->render();
             }
 
             return [
                 'success' => true,
                 'message' => [trans('web/post_photo.messages.upload_success')],
                 'html' => $html,
+                'postPhotos' => $postPhotos,
             ];
         }
     }
