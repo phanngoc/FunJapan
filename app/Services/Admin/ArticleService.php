@@ -13,17 +13,20 @@ class ArticleService extends BaseService
     public static function validate($inputs, $article = null)
     {
         $validationRules = [
+            'locale' => 'required',
+            'summary' => 'required|min:1|max:1000',
             'title' => 'required|min:10|max:255',
             'content' => 'required|min:20',
-            'summary' => 'required|min:1|max:1000',
-            'locale' => 'required',
             'category' => 'required',
             'thumbnail' => 'image|max:' . config('article.thumbnail.upload.max_size'),
             'tags.*' => 'min:3|max:15',
             'type' => 'in:' . implode(',', array_values(config('article.type'))),
-            'start_campaign' => 'required|date_format:"Y-m-d H:i"',
-            'end_campaign' => 'date_format:"Y-m-d H:i"|after:start_campaign',
         ];
+
+        if ($inputs['type'] != config('article.type.normal')) {
+            $validationRules['start_campaign'] = 'required|date_format:"Y-m-d H:i"';
+            $validationRules['end_campaign'] = 'date_format:"Y-m-d H:i"|after:start_campaign';
+        }
 
         if (!$article) {
             $validationRules['thumbnail'] = 'required|image|max:' . config('article.thumbnail.upload.max_size');
@@ -38,6 +41,7 @@ class ArticleService extends BaseService
         $rules = [
             'category_id' => 'required',
             'type' => 'in:' . implode(',', array_values(config('article.type'))),
+
         ];
 
         return Validator::make($input, $rules)
@@ -54,7 +58,6 @@ class ArticleService extends BaseService
                 'type' => $inputs['type'],
                 'auto_approve_photo' => $inputs['auto_approve_photo'],
             ];
-
             if ($article = Article::create($articleData)) {
                 $articleLocaleData = [
                     'locale_id' => (int)$inputs['locale'],
@@ -62,12 +65,20 @@ class ArticleService extends BaseService
                     'title' => $inputs['title'],
                     'content' => $inputs['content'],
                     'summary' => $inputs['summary'],
-                    'published_at' => $inputs['publish_date'] ?? Carbon::now(),
-                    'start_campaign' => $inputs['start_campaign'],
-                    'end_campaign' => $inputs['end_campaign'],
+                    'published_at' => $inputs['publish_date'] ? $inputs['publish_date'] . ':00' : Carbon::now(),
+                    'start_campaign' => $inputs['start_campaign'] ? $inputs['start_campaign'] . ':00' : null,
+                    'end_campaign' => $inputs['end_campaign'] ? $inputs['end_campaign'] . ':00' : null,
                 ];
                 if (isset($inputs['is_top_article'])) {
                     $articleLocaleData['is_top_article'] = $inputs['is_top_article'];
+                }
+
+                if (isset($inputs['is_alway_hide'])) {
+                    $articleLocaleData['hide_alway'] = $inputs['is_alway_hide'];
+                }
+
+                if (isset($inputs['is_member_only'])) {
+                    $articleLocaleData['is_member_only'] = $inputs['is_member_only'];
                 }
 
                 if ($articleLocale = ArticleLocaleService::create($articleLocaleData, $inputs['thumbnail'])) {
@@ -83,7 +94,7 @@ class ArticleService extends BaseService
             return false;
         } catch (\Exception $e) {
             DB::rollback();
-
+            dd($e);
             return false;
         }
     }
@@ -100,13 +111,19 @@ class ArticleService extends BaseService
                     'title' => $inputs['title'],
                     'content' => $inputs['content'],
                     'summary' => $inputs['summary'],
-                    'published_at' => $inputs['publish_date'],
                     'is_top_article' => isset($inputs['is_top_article']) ? $inputs['is_top_article'] : 0,
-                    'start_campaign' => $inputs['start_campaign'],
-                    'end_campaign' => $inputs['end_campaign'],
+                    'hide_alway' => isset($inputs['is_alway_hide']) ? $inputs['is_alway_hide'] : 0,
+                    'is_member_only' => isset($inputs['is_member_only']) ? $inputs['is_member_only'] : 0,
+                    'start_campaign' => $inputs['start_campaign'] ? $inputs['start_campaign'] . ':00' : null,
+                    'end_campaign' => $inputs['end_campaign'] ? $inputs['end_campaign'] . ':00' : null,
                 ];
+
                 if (isset($inputs['thumbnail'])) {
                     $articleLocaleData['thumbnail'] = $inputs['thumbnail'];
+                }
+
+                if (isset($inputs['publish_date'])) {
+                    $articleLocaleData['published_at'] = $inputs['publish_date'] . ':00';
                 }
                 if (ArticleLocaleService::update($articleLocaleData, $inputs['articleLocaleId'])) {
                     if (ArticleTagService::update($article, $inputs['articleLocaleId'], $inputs['tags'] ?? [])) {

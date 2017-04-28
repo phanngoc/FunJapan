@@ -12,11 +12,11 @@
                 <table class="table table-striped table-bordered table-hover" id="category-table">
                     <thead>
                         <tr>
-                            <th class="text-center">{{ trans('admin/category.no') }}</th>                        
+                            <th class="text-center">{{ trans('admin/category.no') }}</th>
                             <th class="text-center">{{ trans('admin/category.category_name') }}</th>
                             <th class="text-center">{{ trans('admin/category.short_name') }}</th>
                             <th class="text-center">{{ trans('admin/category.img') }}</th>
-                            <th class="text-center">{{ trans('admin/category.locale') }}</th>                            
+                            <th class="text-center">{{ trans('admin/category.locale') }}</th>
                             <th class="text-center">{{ trans('admin/category.created_at') }}</th>
                             <th class="text-center">{{ trans('admin/category.action') }}</th>
                         </tr>
@@ -31,7 +31,7 @@
                                 <td><img src="{{asset($category->photo)}}"></td>
                             @else
                                 <td></td>
-                            @endif                            
+                            @endif
                             <td>{{$category->locale}}</td>
                             <td class="text-center">{{$category->created_at}}</td>
                             <td class="text-center">

@@ -7,7 +7,14 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
-                <div class="ibox-title"><h2>{{ trans('admin/article.list_language') . $article->id }}</h2></div>
+                <div class="ibox-title">
+                    <h2>
+                        {{ trans('admin/article.list_language') }}
+                        <a href="{{ action('Admin\ArticlesController@index') }}" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true" class="fa fa-times"></span>
+                        </a>
+                    </h2>
+                </div>
                 <div class="ibox-content">
                     <div class="tabs-container">
                         <div class="tab-content">
@@ -18,12 +25,12 @@
                             <hr>
                             <strong>{{ trans('admin/article.label.type') }}:</strong>
                             {{ $types[$article->type] ?? null }}
-                            <hr>
                             @if ($article->type == config('article.type.photo'))
+                            <hr>
                                 <strong>{{ trans('admin/article.label.auto_approve_photo') }}:</strong>
                                 {{ $article->auto_approve_photo ? trans('admin/article.label.yes') : trans('admin/article.label.no') }}
-                            <hr>
                             @endif
+                            <hr>
                             <a href="{{ action('Admin\ArticlesController@editGlobalInfo',
                                 [$article->id, 'locale' => $article->articleLocales->first()->locale_id]) }}" class="btn btn-w-m btn-primary">
                                 {{ trans('admin/article.button.edit') }}
@@ -70,6 +77,12 @@
                                         <hr>
                                         <strong>{{ trans('admin/article.published_at') }}: </strong>
                                         {{ $articleLocale->published_at }}
+                                        <hr>
+                                        <strong>{{ trans('admin/article.label.is_alway_hide') }}:</strong>
+                                        {{ $articleLocale->hide_alway ? trans('admin/article.label.yes') : trans('admin/article.label.no') }}
+                                        <hr>
+                                        <strong>{{ trans('admin/article.label.is_member_only') }}:</strong>
+                                        {{ $articleLocale->is_member_only ? trans('admin/article.label.yes') : trans('admin/article.label.no') }}
                                         <hr>
                                         @if ($articleLocale->start_campaign || $articleLocale->end_campaign)
                                             <strong>{{ trans('admin/article.label.start_campaign') }}: </strong>

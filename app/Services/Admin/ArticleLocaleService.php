@@ -10,6 +10,7 @@ use File;
 use Illuminate\Support\Facades\Storage;
 use DB;
 use App\Services\Admin\LocaleService;
+use Carbon\Carbon;
 
 class ArticleLocaleService extends BaseService
 {
@@ -113,14 +114,23 @@ class ArticleLocaleService extends BaseService
             'title' => $inputs['title'],
             'content' => $inputs['content'],
             'summary' => $inputs['summary'],
-            'published_at' => $inputs['publish_date'],
-            'start_campaign' => $inputs['start_campaign'],
-            'end_campaign' => $inputs['end_campaign'],
+            'published_at' => $inputs['publish_date'] ? $inputs['publish_date'] . ':00' : Carbon::now(),
+            'start_campaign' => $inputs['start_campaign'] ? $inputs['start_campaign'] . ':00' : null,
+            'end_campaign' => $inputs['end_campaign'] ? $inputs['end_campaign'] . ':00' : null,
         ];
 
         if (isset($inputs['is_top_article'])) {
             $articleLocaleData['is_top_article'] = $inputs['is_top_article'];
         }
+
+        if (isset($inputs['is_alway_hide'])) {
+            $articleLocaleData['hide_alway'] = $inputs['is_alway_hide'];
+        }
+
+        if (isset($inputs['is_member_only'])) {
+            $articleLocaleData['is_member_only'] = $inputs['is_member_only'];
+        }
+
         DB::beginTransaction();
         try {
             if ($articleLocale = static::create($articleLocaleData, $inputs['thumbnail'])) {

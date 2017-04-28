@@ -9,31 +9,19 @@
         <div class="ibox">
             <div class="ibox-title"><h2>{{ trans('admin/tag.tag_list') }}</h2></div>
             <div class="ibox-content">
-                <table class="table table-striped table-bordered table-hover" id="tag-table" data-url="{{action('Admin\TagsController@getListTags')}}">
-                    <thead>
-                        <tr>
-                            <th class="text-center">{{ trans('admin/tag.no') }}</th>
-                            <th class="text-center">{{ trans('admin/tag.name') }}</th>
-                            <th class="text-center">{{ trans('admin/tag.status') }}</th>
-                            <th class="text-center">{{ trans('admin/tag.created_at') }}</th>
-                            <th class="text-center">{{ trans('admin/tag.edit') }}</th>
-                            <th class="text-center">{{ trans('admin/tag.delete') }}</th>
-                            <th class="text-center">{{ trans('admin/tag.block') }}</th>
-                        </tr>
-                    </thead>
-
-                    <tfoot>
-                        <tr>
-                            <th>{{ trans('admin/tag.no') }}</th>
-                            <th>{{ trans('admin/tag.name') }}</th>
-                            <th>{{ trans('admin/tag.status') }}</th>
-                            <th>{{ trans('admin/tag.created_at') }}</th>
-                            <th>{{ trans('admin/tag.edit') }}</th>
-                            <th>{{ trans('admin/tag.delete') }}</th>
-                            <th>{{ trans('admin/tag.block') }}</th>
-                        </tr>
-                    </tfoot>
-                </table>
+                <div class="table-responsive">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="tag-table" data-url="{{action('Admin\TagsController@getListTags')}}">
+                        <thead>
+                            <tr>
+                                <th>{{ trans('admin/tag.no') }}</th>
+                                <th class="text-center">{{ trans('admin/tag.name') }}</th>
+                                <th class="text-center">{{ trans('admin/tag.status') }}</th>
+                                <th class="text-center">{{ trans('admin/tag.created_at') }}</th>
+                                <th class="text-center">{{ trans('admin/tag.action') }}</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

@@ -33,6 +33,8 @@ class ArticleLocale extends BaseModel
         'recommended',
         'start_campaign',
         'end_campaign',
+        'hide_alway',
+        'is_member_only',
     ];
 
     protected $appends = [
@@ -41,7 +43,11 @@ class ArticleLocale extends BaseModel
         'html_content',
     ];
 
-    protected $dates = ['published_at'];
+    protected $dates = [
+        'published_at',
+        'start_campaign',
+        'end_campaign',
+    ];
 
     public function locale()
     {

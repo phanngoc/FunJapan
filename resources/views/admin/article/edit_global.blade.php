@@ -56,10 +56,11 @@
                                     'auto_approve_photo',
                                     1,
                                     $article->auto_approve_photo
-                                ) }}
+                                ) }}&nbsp;
                             </label>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <div class="col-sm-2 col-sm-offset-2">
                             {{ Form::submit(trans('admin/article.button.update'), ['class' => 'btn btn-primary']) }}

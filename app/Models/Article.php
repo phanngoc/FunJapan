@@ -17,7 +17,6 @@ class Article extends BaseModel
     protected $fillable = [
         'user_id',
         'category_id',
-        'is_top_article',
         'auto_approve_photo',
         'type',
     ];

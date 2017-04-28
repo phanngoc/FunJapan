@@ -29,7 +29,7 @@ class Tag extends BaseModel
         parent::boot();
 
         static::deleting(function ($tag) {
-            $tag->articlesTags->delete();
+            $tag->articlesTags()->delete();
         });
     }
 }
