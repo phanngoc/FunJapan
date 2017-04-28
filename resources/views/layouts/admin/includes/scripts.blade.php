@@ -51,4 +51,5 @@
 <!-- adminjs -->
 {!! Html::script('assets/admin/js/admin.js') !!}
 
+{!! Html::script('assets/admin/js/plugins/sweetalert/sweetalert.min.js') !!}
 @yield('script')
