@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Storage;
 use GrahamCampbell\Markdown\Facades\Markdown;
 
@@ -35,12 +36,14 @@ class ArticleLocale extends BaseModel
         'end_campaign',
         'hide_alway',
         'is_member_only',
+        'is_popular',
     ];
 
     protected $appends = [
         'thumbnail_urls',
         'category_locale_name',
         'html_content',
+        'is_show_able',
     ];
 
     protected $dates = [
@@ -83,5 +86,15 @@ class ArticleLocale extends BaseModel
     public function getHtmlContentAttribute($value)
     {
         return Markdown::convertToHtml($this->content);
+    }
+
+    public function getShortTitle()
+    {
+        return Str::limit($this->title, config('article.limit_short_title'));
+    }
+
+    public function getIsShowAbleAttribute()
+    {
+        return Carbon::now()->gt($this->published_at) && !$this->hide_alway;
     }
 }

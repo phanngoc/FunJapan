@@ -19,8 +19,8 @@ return [
                     'height' => 200,
                 ],
                 'small_' => [
-                    'width' => 200,
-                    'height' => 100,
+                    'width' => 96,
+                    'height' => 60,
                 ],
             ],
         ],
@@ -33,5 +33,6 @@ return [
     'type' => [
         'normal' => 0,
         'photo' => 1,
-    ]
+    ],
+    'limit_short_title' => 37,
 ];

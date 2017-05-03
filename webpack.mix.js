@@ -40,5 +40,6 @@ mix.js('resources/assets/js/app.js', assetPath + 'js')
     .js('resources/assets/js/admin/article.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/tag.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/recommend_article.js', assetPath + 'admin/js')
+    .js('resources/assets/js/admin/popular_article.js', assetPath + 'admin/js')
     .sass('resources/assets/sass/admin/article.scss', assetPath + 'admin/css')
     .js('resources/assets/js/admin/category.js', assetPath + 'admin/js');

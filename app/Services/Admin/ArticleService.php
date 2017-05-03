@@ -3,10 +3,12 @@
 namespace App\Services\Admin;
 
 use App\Models\Article;
+use App\Models\ArticleLocale;
 use Validator;
 use DB;
 use Carbon\Carbon;
 use Auth;
+use Illuminate\Support\Facades\View;
 
 class ArticleService extends BaseService
 {
@@ -94,7 +96,7 @@ class ArticleService extends BaseService
             return false;
         } catch (\Exception $e) {
             DB::rollback();
-
+            
             return false;
         }
     }
@@ -151,5 +153,96 @@ class ArticleService extends BaseService
         }
 
         return $result;
+    }
+
+    public static function getListArticleForPopularPost($input)
+    {
+        return ArticleLocale::where('locale_id', $input['locale_id'] ?? $input['default_locale_id'])
+            ->where(function ($query) use ($input) {
+                $query->where('title', 'like', '%' . $input['keyword'] . '%')
+                    ->orWhere('article_id', $input['keyword']);
+            })
+            ->where('published_at', '<=', Carbon::now())
+            ->where('hide_alway', false)
+            ->paginate(config('limitation.popular_article.per_page'));
+    }
+
+    public static function getPopularPost($localeId, $limit = null)
+    {
+        $query = ArticleLocale::where('is_popular', true)
+            ->where('locale_id', $localeId);
+
+        if ($limit) {
+            $query->limit($limit);
+        }
+
+        return $query->get();
+    }
+
+    public static function addPopularPost($articleLocaleId)
+    {
+        $articleLocale = ArticleLocale::find($articleLocaleId);
+
+        if (!$articleLocale) {
+            return [
+                'success' => false,
+                'message' => trans('admin/popular_article.messages.not_found'),
+            ];
+        }
+
+        if (!$articleLocale->is_show_able) {
+            return [
+                'success' => false,
+                'message' => trans('admin/popular_article.messages.not_show'),
+            ];
+        }
+
+        if (!$articleLocale->is_popular && config('limitation.popular_article.limit') > 0) {
+            $countPopular = ArticleLocale::where('is_popular', true)
+                ->where('locale_id', $articleLocale->locale_id)
+                ->count();
+
+            if ($countPopular >= config('limitation.popular_article.limit')) {
+                return [
+                    'success' => false,
+                    'message' => trans('admin/popular_article.messages.max_setting'),
+                ];
+            }
+        }
+
+        $articleLocale->timestamps = false;
+        $articleLocale->is_popular = true;
+        $updated = $articleLocale->save();
+
+        $html = View::make('admin.article.popular._tr_article')
+            ->with('articleLocale', $articleLocale)
+            ->render();
+
+        return [
+            'success' => $updated,
+            'message' => $updated ? trans('admin/popular_article.messages.success') : trans('admin/popular_article.messages.fail'),
+            'html' => $updated ? $html : '',
+        ];
+    }
+
+    public static function deletePopularPost($articleLocaleId)
+    {
+        $articlesLocale = ArticleLocale::find($articleLocaleId);
+
+        if (!$articlesLocale || !$articlesLocale->is_popular) {
+            return [
+                'success' => false,
+                'message' => trans('admin/popular_article.messages.not_found'),
+            ];
+        }
+
+        $articlesLocale->timestamps = false;
+        $articlesLocale->is_popular = false;
+        $updated = $articlesLocale->save();
+
+        return [
+            'success' => $updated,
+            'message' => $updated ? trans('admin/popular_article.messages.success') : trans('admin/popular_article.messages.fail'),
+        ];
     }
 }
