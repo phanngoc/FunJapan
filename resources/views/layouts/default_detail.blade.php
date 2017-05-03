@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <!-- EOF CONFIRM GIF MODAL -->
-                <div class="top-body" id="article-body-{{ $article->id ?? '' }}">
+                <div class="top-body" id="article-body-{{ $article->id ?? '' }}" data-article-title="{{ $article->locale->title }}" data-article-url="{{ action('Web\ArticlesController@show',  $article->id) }}">
                     @if ($errors->any() || session()->has('message') || session()->has('error'))
                         @include('web.articles._notice_messages')
                     @else

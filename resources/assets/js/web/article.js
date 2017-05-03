@@ -1,32 +1,77 @@
+var pagesLoaded = pagesLoaded || [window.location.href];
+
 $(document).ready(function (e) {
+    function changeDocumentState()
+    {
+        var pages = $('div[id^="article-body-"]');
+        var index = 0;
+
+        if (pages.length > 0) {
+            pages.each(function (itemIndex, item) {
+                var articleId = $(item).attr('id');
+                if (visibleY(articleId) === true) {
+                    index = itemIndex;
+                }
+            })
+
+            var item = pages.eq(index);
+
+            var itemTitle = item.data('article-title');
+            var itemUrl = item.data('article-url');
+            var currentTitle = window.location.href;
+
+            var titleIndex = pagesLoaded.indexOf(itemUrl);
+            var currentTitleIndex = pagesLoaded.indexOf(currentTitle);
+
+            if (titleIndex != currentTitleIndex) {
+                var domainSite = document.title.substring(0, document.title.indexOf('-'));
+                document.title = domainSite === "" ? itemTitle : domainSite + "- " + itemTitle;
+                window.history.pushState(null, null, itemUrl);
+            }
+        }
+    }
+
+    $(window).scroll(changeDocumentState).resize(changeDocumentState);
+
     $('div.container:first').infinitescroll({
         nextSelector: ".next-page a",
         navSelector: ".next-page",
         itemSelector: "div.top-body",
-        bufferPx: 0,
         finished: function () {
             $("#infscr-loading").remove();
-            console.log('finished');
-
         },
-        path: function() {
+        path: function () {
             var nextHref = $(".next-page:last").children('a');
             if (nextHref.length > 0) {
-                nextHref = nextHref.attr("href");
-                window.history.pushState(null, null, nextHref);
-                return nextHref;
+                return nextHref.attr("href");
             }
         }
-    }, function() {
+    }, function (elements, data, url) {
         if ($(".next-page:last").children('a').length == 0) {
             $('div.container:first').infinitescroll('destroy');
         }
-
+        pagesLoaded.push(url);
         initDropzone();
     });
+
 });
 
-function changeLike(articleId) {
+function visibleY(n)
+{
+    var t = document.getElementById(n),
+        i = t.getBoundingClientRect().top,
+        r, t = t.parentNode;
+    do {
+        if (r = t.getBoundingClientRect(), i <= r.bottom == !1) {
+            return !1;
+        }
+        t = t.parentNode
+    } while (t != document.body);
+    return i <= document.documentElement.clientHeight
+}
+
+function changeLike(articleId)
+{
     $.ajax({
         url: baseUrlLocale() + 'articles/' + articleId + '/like',
         type: 'GET',
