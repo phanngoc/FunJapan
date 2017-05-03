@@ -27,7 +27,7 @@ class CommentService
     {
         return Comment::create([
             'type' => $input['type'],
-            'content' => strip_tags($input['content']),
+            'content' => $input['content'],
             'parent_id' => $input['parentId'],
             'article_id' => $input['articleId'],
             'article_locale_id' => $input['articleLocaleId'],
