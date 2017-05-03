@@ -7,6 +7,8 @@ return [
         'not_found' => 'Article was not found.',
         'no_description' => 'Photo description is required.',
         'only_once' => 'You only can upload one photo',
+        'no_photo' => 'There are no photos.',
+        'not_file' => 'The file must be a file of type: jpeg, png, jpg',
     ],
     'label' => [
         'photo_post' => 'PHOTO POSTS',

@@ -14,7 +14,7 @@ class ImageService
     public static function uploadFile($image, $type, $path, $delete = false)
     {
         try {
-            $storage = Storage::disk(env('IMAGE_SAVE_DISK', 's3'));
+            $storage = Storage::disk(config('filesystem.default'));
 
             if ($delete) {
                 $storage->deleteDirectory($path);
@@ -69,7 +69,7 @@ class ImageService
     public static function delete($path, $image = null)
     {
         try {
-            $storage = Storage::disk(env('IMAGE_SAVE_DISK', 's3'));
+            $storage = Storage::disk(config('filesystem.default'));
 
             if ($image) {
                 $storage->delete($path . '/' . $image);
@@ -87,6 +87,6 @@ class ImageService
 
     public static function imageUrl($filePath)
     {
-        return Storage::disk(env('IMAGE_SAVE_DISK', 's3'))->url($filePath);
+        return Storage::disk(config('filesystem.default'))->url($filePath);
     }
 }

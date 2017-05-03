@@ -33,7 +33,20 @@ var dropzoneOptions = {
             currentSection.find('.file-caption-name').html('').append('<span class="glyphicon glyphicon-file"></span>' + file.name);
             currentSection.find('.btn-upload-photo').removeClass('hidden');
             currentSection.find('.upload-photo').removeClass('hidden');
-        })
+        });
+
+        this.on('error', function (errorMessage) {
+            var currentSection = $('#' + this.element.getAttribute('id')).parents('.main-content');
+
+            if (errorMessage.status == 'error' && errorMessage.type.match('image/*') == null) {
+                currentSection.find('.post-photo-alert').addClass('alert-danger').removeClass('hidden alert-success')
+                    .html('').append($('#' + this.element.getAttribute('id')).attr('data-message-not-file'));
+                $('.dropzone').addClass('hidden');
+            } else if (errorMessage.status == 'canceled') {
+                $('.dropzone').addClass('hidden');
+                currentSection.find('.file-caption-name').html('');
+            }
+        });
     },
     sending: function (file, xhr, formData) {
         var currentSection = $('#' + this.element.getAttribute('id')).parents('.main-content');
@@ -46,7 +59,14 @@ var dropzoneOptions = {
         if (response.success) {
             currentSection.find('.post-photo-alert').addClass('alert-success').removeClass('hidden alert-danger').html('').append(response.message);
             currentSection.find('.photo-description').val('');
-            currentSection.find('.articlephoto-area').prepend(response.html);
+            currentSection.find('.articlephoto-area').html('').append(response.html);
+            currentSection.find('.articlephoto-more').attr('data-current-page', response.postPhotos.current_page);
+
+            if (response.postPhotos.current_page == response.postPhotos.last_page || response.postPhotos.last_page == 0) {
+                currentSection.find('.articlephoto-more').addClass('hidden');
+            } else {
+                currentSection.find('.articlephoto-more').removeClass('hidden');
+            }
         } else {
             var message = '';
             for (let key in response.message) {
@@ -56,7 +76,7 @@ var dropzoneOptions = {
             currentSection.find('.post-photo-alert').addClass('alert-danger').removeClass('hidden alert-success').html('').append(message);
         }
 
-        $('.upload-photo').css('display', 'none');
+        $('.dropzone').addClass('hidden');
         currentSection.find('.file-caption-name').html('');
         currentSection.find('.btn-upload-photo').addClass('hidden');
     },

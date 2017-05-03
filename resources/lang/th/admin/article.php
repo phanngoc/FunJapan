@@ -50,6 +50,9 @@ return [
         'auto_approve_photo' => 'Auto Approve Photo',
         'yes' => 'Yes',
         'no' => 'No',
+        'time_campaign' => 'Campaign Time',
+        'start_campaign' => 'Campaign start at',
+        'end_campaign' => 'Campaign end at',
     ],
     'type' => [
         'normal' => 'Normal Article',
@@ -60,6 +63,8 @@ return [
         'content' => 'Input Content',
         'locale' => 'Locale',
         'category' => 'Category',
+        'start_time' => 'Start Time',
+        'end_time' => 'End Time',
     ],
     'set_language' => 'Set language of Article',
 ];
