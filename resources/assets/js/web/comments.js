@@ -139,8 +139,15 @@ $(function () {
     });
 
     $('body').on('click', '.comment-reply-panel', function () {
-        $(this).parents('ul').find('.comment-reply-container').css('display', 'none');
+        // $(this).parents('ul').find('.comment-reply-container').css('display', 'none');
         $(this).parents('li').find('.comment-reply-container').css('display', 'block');
+    });
+
+    $('body').on('click', '.show-comment', function () {
+        var currentArea = $(this).parents('.body-comment');
+        currentArea.find('.limited-text').addClass('hidden');
+        $(this).addClass('hidden');
+        currentArea.find('.full-text').removeClass('hidden');
     });
 
     $('body').on('keydown', '.reply-comment-input', function (e) {
@@ -164,9 +171,17 @@ $(function () {
                             commentsListArea.append('<li class="media no-overflow-hidden">' + response.htmlComments + '</li>');
                             currentParrentComment.find('.comment-reply-panel .reply-count').html(response.total);
                             var reply = commentsListArea.find('li:last').find('.comment-body.text-comment');
-                            reply.html(twemoji.parse(reply.text()));
+                            reply.each(function () {
+                                $(this).html(twemoji.parse($(this).html()));
+                            });
                         } else {
-                            alertArea.removeClass('hidden').html('').append('<ul><li>' + response.message + '</li></ul>');
+                            var message = '';
+
+                            for (let key in response.message) {
+                                message += '<p>' + response.message[key] + '</p>';
+                            }
+
+                            alertArea.removeClass('hidden').html('').append('<ul><li>' + message + '</li></ul>');
                         }
                     }
                 });
@@ -226,6 +241,10 @@ $(function () {
 
     $('body').on('click', '.comment-area .pagination a', function (e) {
         e.preventDefault();
+        if ($(this).parents('li').hasClass('disabled')) {
+            return;
+        }
+
         $('.comment-posting-form').find('.alert-danger:first').addClass('hidden').html('');
         var element = $(this).parents('.comment-area');
         var page = $(this).attr('href').split('page=')[1];
@@ -335,7 +354,7 @@ function getEmoji(dataCategory) {
     }
 
     thisEmojiSection.find('li').each(function () {
-        var emoji = twemoji.parse($(this).text());
+        var emoji = twemoji.parse($(this).html());
         $(this).html(emoji);
     });
 
@@ -345,7 +364,7 @@ function getEmoji(dataCategory) {
 function parseEmojiComment() {
     $('body').find('.comment-body').each(function () {
         if ($(this).hasClass('text-comment')) {
-            var emoji = twemoji.parse($(this).text());
+            var emoji = twemoji.parse($(this).html());
             $(this).html(emoji);
         }
     });

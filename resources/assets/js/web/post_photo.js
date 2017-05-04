@@ -176,7 +176,7 @@ function initDropzone () {
         });
     });
 
-    $('body').on('click', '.fileinput-remove', function () {
+    $('body').on('click', '.fileinput-remove span', function () {
         var currentSection = $(this).parents('.main-content');
         currentSection.find('.upload-photo').addClass('hidden');
         currentSection.find('.file-caption-name').html('');

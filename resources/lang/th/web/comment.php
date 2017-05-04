@@ -27,6 +27,7 @@ return [
         'delete' => 'delete',
         'next' => 'NEXT',
         'prev' => 'PREV',
+        'more' => 'More',
     ],
     'place_holder' => [
         'reply_comment' => 'Reply comment',

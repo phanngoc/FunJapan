@@ -6,7 +6,7 @@
     @endif
 </div>
 <div class="media-body">
-    <p class="h4 media-heading">{{ $comment->user->name }}</p>
+    <p class="h4 media-heading width-85-pc break-word">{{ $comment->user->name }}</p>
     <div class="pull-right">
         @if ($comment->canBeDeleted())
             <a class="btn-delete" href="javascript:void(0);" data-article-id="{{ $comment->article_id }}"
@@ -16,7 +16,15 @@
         @endif
     </div>
     @if ($comment->type == config('comment.type.text'))
-        <p class="comment-body text-comment break-word">{{ $comment->content }}</p>
+        @if (strlen($comment->content) >= config('limitation.comment.content'))
+            <div class="body-comment">
+                <p class="limited-text comment-body text-comment break-word">{{ str_limit($comment->content, config('limitation.comment.content')) }}</p>
+                <a href="javascript:;" class="show-comment">{{ trans('web/comment.button.more') }}</a>
+                <p class="full-text comment-body text-comment break-word hidden">{{ $comment->content }}</p>
+            </div>
+        @else
+            <p class="comment-body text-comment break-word">{{ $comment->content }}</p>
+        @endif
     @elseif ($comment->type == config('comment.type.gif'))
         <p class="comment-body"><img class="gif-image" src="{{ $comment->content }}"></p>
     @endif

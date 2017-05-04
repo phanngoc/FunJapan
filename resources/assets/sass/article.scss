@@ -58,29 +58,31 @@
 }
 .upload-photo {
     border-radius: 5px;
-    border: 1px solid #ddd;
-    padding: 0px;
+    border: 1px solid #ddd !important;
+    padding: 0px !important;
     width: 100%;
     margin-bottom: 5px;
-}
-.close {
-    float: right;
-    font-size: 21px;
-    font-weight: bold;
-    line-height: 1;
-    color: #000;
-    text-shadow: 0 1px 0 #fff;
-    opacity: .2;
-    width: 300px;
-    height: 160px;
-    text-align: right;
-    padding-top: 2px;
-}
-.close {
-    span {
-        cursor: pointer !important;
-        padding-right: 5px;
+
+    .close {
+        float: right;
+        font-size: 21px;
+        font-weight: bold;
+        line-height: 1;
+        color: #000;
+        text-shadow: 0 1px 0 #fff;
+        opacity: .2;
+        width: 300px;
+        height: 160px;
+        text-align: right;
         padding-top: 2px;
+    }
+
+    .close {
+        span {
+            cursor: pointer !important;
+            padding-right: 5px;
+            padding-top: 2px;
+        }
     }
 }
 .alert-login {
@@ -90,5 +92,13 @@
 .articlephoto-message {
     p {
         height: 17px;
+    }
+}
+.width-85-pc {
+    width: 85%;
+}
+.body-comment {
+    .limited-text {
+        display:inline;
     }
 }

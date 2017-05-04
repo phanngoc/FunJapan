@@ -5,6 +5,7 @@ return [
         'link_pagination' => 7,
         'per_page' => 10,
         'next_time' => 60, // second
+        'content' => 100,
     ],
     'post_photo' => [
         'description' => 50,

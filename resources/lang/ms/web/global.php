@@ -4,7 +4,7 @@ return [
     'error' => 'The requested document was not found.',
     'posted_by' => 'Posted by',
     'link' => [
-        'facebook' => 'https://www.facebook.com/malaysia.fun-japan',
+        'facebook' => 'https://www.facebook.com/malaysia.funjapan',
         'twitter' => 'https://twitter.com/FunJapanTravel',
         'instagram' => 'https://www.instagram.com/fun_japan_travel',
         'youtube' => 'https://www.youtube.com/c/Funjapantravel',

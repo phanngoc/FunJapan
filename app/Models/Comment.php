@@ -33,13 +33,16 @@ class Comment extends BaseModel
         parent::boot();
 
         static::created(function ($comment) {
-            if (!$comment->parent_id) {
+            if (!$comment->parent_id && $comment->articleLocale) {
                 $comment->articleLocale->increment('comment_count');
             }
         });
 
         static::deleting(function ($comment) {
-            $comment->articleLocale->decrement('comment_count');
+            if (!$comment->parent_id && $comment->articleLocale) {
+                $comment->articleLocale->decrement('comment_count');
+            }
+
             $comment->children()->delete();
             $comment->favoriteComments()->delete();
         });
