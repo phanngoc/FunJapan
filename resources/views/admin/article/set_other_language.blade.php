@@ -35,41 +35,6 @@
 
                     {{ Form::hidden('category', $article->category_id) }}
 
-                    <div class="form-group">
-                        {{ Form::label(
-                            'tags',
-                            trans('admin/article.label.tags'),
-                            ['class' => 'col-sm-2 control-label'])
-                        }}
-                        <div class="col-sm-10">
-                            {{ Form::select(
-                                'tags[]',
-                                old('tags') ? array_flip(old('tags')) : [],
-                                null,
-                                [
-                                    'class' => 'form-control article-tag',
-                                    'multiple' => 'multiple',
-                                    'data-url' => action('Admin\TagsController@suggest')
-                                ])
-                            }}
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        {{ Form::label(
-                            'publish_date',
-                            trans('admin/article.label.publish_date'),
-                            ['class' => 'col-sm-2 control-label'])
-                        }}
-                        <div class="col-sm-10 width30">
-                            {{ Form::date(
-                                'publish_date',
-                                null,
-                                ['class' => 'form-control'])
-                            }}
-                        </div>
-                    </div>
-
                     <div class="form-group required">
                         {{ Form::label(
                             'thumbnail',
@@ -102,7 +67,79 @@
                         </div>
                     </div>
 
-                    <div class="date-time-campaign">
+                    <div class="form-group">
+                        {{ Form::label(
+                            'publish_date',
+                            trans('admin/article.label.publish_date'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-10 width30">
+                            {{ Form::text(
+                                'publish_date',
+                                null,
+                                ['class' => 'form-control datetime-picker'])
+                            }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label(
+                            'is_alway_hide',
+                            trans('admin/article.label.is_alway_hide'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-10">
+                            <label class="checkbox-inline">
+                                {{ Form::checkbox(
+                                    'is_alway_hide',
+                                    1,
+                                    false)
+                                }}&nbsp;
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label(
+                            'is_member_only',
+                            trans('admin/article.label.is_member_only'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-10">
+                            <label class="checkbox-inline">
+                                {{ Form::checkbox(
+                                    'is_member_only',
+                                    1,
+                                    false)
+                                }}&nbsp;
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label(
+                            'tags',
+                            trans('admin/article.label.tags'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-10">
+                            {{ Form::select(
+                                'tags[]',
+                                old('tags') ? array_flip(old('tags')) : [],
+                                null,
+                                [
+                                    'class' => 'form-control article-tag',
+                                    'multiple' => 'multiple',
+                                    'data-url' => action('Admin\TagsController@suggest')
+                                ])
+                            }}
+                        </div>
+                    </div>
+
+                    <div class="date-time-campaign
+                        @if ($article->type == config('article.type.normal'))
+                            hidden
+                        @endif">
                         <div class="form-group">
                             {{ Form::label(
                                 'time_campaign',
@@ -127,6 +164,8 @@
                             </div>
                         </div>
                     </div>
+
+                    {{ Form::hidden('type', $article->type) }}
 
                     <div class="form-group">
                         <div class="col-sm-2 col-sm-offset-2">

@@ -27,6 +27,22 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        {{ Form::label(
+                            'type',
+                            trans('admin/article.label.type'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-10">
+                            {{ Form::select(
+                                'type',
+                                $types,
+                                null,
+                                ['class' => 'form-control select-type'])
+                            }}
+                        </div>
+                    </div>
+
                     @include('admin.elements._article_inputs_form')
 
                     <div class="form-group required">
@@ -39,41 +55,6 @@
                             {{ Form::select(
                                 'category',
                                 $categories,
-                                null,
-                                ['class' => 'form-control'])
-                            }}
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        {{ Form::label(
-                            'tags',
-                            trans('admin/article.label.tags'),
-                            ['class' => 'col-sm-2 control-label'])
-                        }}
-                        <div class="col-sm-10">
-                            {{ Form::select(
-                                'tags[]',
-                                old('tags') ? array_flip(old('tags')) : [],
-                                null,
-                                [
-                                    'class' => 'form-control article-tag',
-                                    'multiple' => 'multiple',
-                                    'data-url' => action('Admin\TagsController@suggest')
-                                ])
-                            }}
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        {{ Form::label(
-                            'publish_date',
-                            trans('admin/article.label.publish_date'),
-                            ['class' => 'col-sm-2 control-label'])
-                        }}
-                        <div class="col-sm-10 width30">
-                            {{ Form::date(
-                                'publish_date',
                                 null,
                                 ['class' => 'form-control'])
                             }}
@@ -114,16 +95,70 @@
 
                     <div class="form-group">
                         {{ Form::label(
-                            'type',
-                            trans('admin/article.label.type'),
+                            'publish_date',
+                            trans('admin/article.label.publish_date'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-10 width30">
+                            {{ Form::text(
+                                'publish_date',
+                                null,
+                                ['class' => 'form-control datetime-picker'])
+                            }}
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        {{ Form::label(
+                            'is_alway_hide',
+                            trans('admin/article.label.is_alway_hide'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-10">
+                            <label class="checkbox-inline">
+                                {{ Form::checkbox(
+                                    'is_alway_hide',
+                                    1,
+                                    false)
+                                }}&nbsp;
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label(
+                            'is_member_only',
+                            trans('admin/article.label.is_member_only'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-10">
+                            <label class="checkbox-inline">
+                                {{ Form::checkbox(
+                                    'is_member_only',
+                                    1,
+                                    false)
+                                }}&nbsp;
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label(
+                            'tags',
+                            trans('admin/article.label.tags'),
                             ['class' => 'col-sm-2 control-label'])
                         }}
                         <div class="col-sm-10">
                             {{ Form::select(
-                                'type',
-                                $types,
+                                'tags[]',
+                                old('tags') ? array_flip(old('tags')) : [],
                                 null,
-                                ['class' => 'form-control select-type'])
+                                [
+                                    'class' => 'form-control article-tag',
+                                    'multiple' => 'multiple',
+                                    'data-url' => action('Admin\TagsController@suggest')
+                                ])
                             }}
                         </div>
                     </div>
@@ -142,11 +177,11 @@
                                     'auto_approve_photo',
                                     1,
                                     false
-                                ) }}
+                                ) }}&nbsp;
                             </label>
                         </div>
                     </div>
-                    <div class="date-time-campaign">
+                    <div class="date-time-campaign hidden">
                         <div class="form-group">
                             {{ Form::label(
                                 'time_campaign',

@@ -12,26 +12,23 @@
                     <table class="table table-striped table-bordered table-hover" id="article-table">
                         <thead>
                             <tr>
-                                <th>{{ trans('admin/article.no') }}</th>
-                                <th>{{ trans('admin/article.title') }}</th>
-                                <th>{{ trans('admin/article.language') }}</th>
-                                <th>{{ trans('admin/article.created_at') }}</th>
-                                <th>{{ trans('admin/article.action') }}</th>
+                                <th class="text-center">{{ trans('admin/article.no') }}</th>
+                                <th class="text-center">{{ trans('admin/article.title') }}</th>
+                                <th class="text-center">{{ trans('admin/article.language') }}</th>
+                                <th class="text-center">{{ trans('admin/article.created_at') }}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($articlesOfTag as $article)
+                            @foreach ($articlesOfTag as $key => $article)
                                 <tr>
-                                    <td>{{ $article->id }}</td>
-                                    <td>{{ $article->title }}</td>
-                                    <td>{{ $article->locale->name }}</td>
-                                    <td>{{ $article->created_at }}</td>
-                                    <td>
-                                        <a href="{{ action('Admin\ArticlesController@show',
+                                    <td class="text-center">{{ $key + 1 }}</td>
+                                    <td><a href="{{ action('Admin\ArticlesController@show',
                                                 [$article->article_id, 'locale' => $article->locale->id]) }}">
-                                            {{ trans('admin/article.detail') }}
+                                            {{ $article->title }}
                                         </a>
                                     </td>
+                                    <td>{{ $article->locale->name }}</td>
+                                    <td class="text-center">{{ $article->created_at }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

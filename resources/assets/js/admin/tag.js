@@ -23,14 +23,6 @@ $(document).ready(function (e) {
             'class': 'text-center',
         },
         {
-            'targets': 1,
-            'class': 'text-center',
-        },
-        {
-            'targets': 2,
-            'class': 'text-center',
-        },
-        {
             'targets': 3,
             'class': 'text-center',
         },
@@ -41,48 +33,35 @@ $(document).ready(function (e) {
             'data': function () {
                 return '';
             }
-        },
-        {
-            'targets': 5,
-            'sortable': false,
-            'class': 'text-center',
-            'data': function () {
-                return '';
-            }
-        },
-        {
-            'targets': 6,
-            'sortable': false,
-            'class': 'text-center',
-            'data': function () {
-                return '';
-            }
         }],
         'createdRow': function (row, data, index) {
-            $('td', row).eq(0).empty().append(index + 1);
+            var pageInfo = table.page.info();
+            $('td', row).eq(0).empty().append(pageInfo.page * pageInfo.length + index + 1);
             editLink = baseUrl() + '/admin/tags/' + data.id + '/edit';
-            $('td', row).eq(1).empty().append('<a href="' + baseUrl() + '/admin/tags/' + data.id + '">' + data.name + '</a>');
-            $('td', row).eq(4).empty().append('<a href="'
-                + editLink
-                +'" class="edit"><i class="fa fa-pencil-square-o fa fa-lg"></i></a>');
-            $('td', row).eq(5).empty().append('<a href="#" class="delete"><i data-id="'
-                + data.id
-                + '" class="fa fa-trash fa fa-lg"></i></a>');
             blockAction = baseUrl() + '/admin/tagBlock/' + data.id;
+            var appendText = '';
             if (data.status == 0) {
                 $('td', row).eq(2).empty().append($('#tag-not-block').data('message'));
 
-                $('td', row).eq(6).empty().append('<a href="#" class="ban"><i data-url="'
+                appendText = '<a data-toggle="tooltip" title="" data-original-title="Block" href="#" class="ban"><i data-url="'
                     + blockAction
-                    + '" class="fa fa-ban fa fa-lg"></i></a>');
+                    + '" class="fa fa-ban fa fa-lg"></i></a>';
             } else {
                 $('td', row).eq(2).empty().append($('#tag-block').data('message'));
 
-                $('td', row).eq(6).empty().append('<a href="#" class="unBan"><i data-url="'
+                appendText ='<a data-toggle="tooltip" data-placement="right" title="" data-original-title="Un Block" href="#" class="unBan"><i data-url="'
                     + blockAction
-                    + '" class="fa fa-undo fa fa-lg"></i></a>');
+                    + '" class="fa fa-undo fa fa-lg"></i></a>';
             }
-        }
+            $('td', row).eq(1).empty().append('<a href="' + baseUrl() + '/admin/tags/' + data.id + '">' + data.name + '</a>');
+            $('td', row).eq(4).empty().append('<a data-toggle="tooltip" data-placement="left" title="" data-original-title="Edit" href="'
+                + editLink
+                + '" class="edit"><i class="fa fa-pencil-square-o fa fa-lg"></i></a>'
+                + '<a data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#" class="delete"><i data-id="'
+                + data.id
+                + '" class="fa fa-trash fa fa-lg"></i></a>'
+                + appendText);
+        },
     });
 
     $(document).on('click', '.delete', function (e) {
@@ -128,5 +107,10 @@ $(document).ready(function (e) {
         function(){
             $('#blockForm').attr('action', blockAction).submit();
         });
+    });
+
+    $('.tooltip-demo').tooltip({
+        selector: "[data-toggle=tooltip]",
+        container: "body"
     });
 })
