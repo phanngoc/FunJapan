@@ -2,5 +2,5 @@
 
 return [
     'posted_time' => 'm/d/Y, h:i:s A',
-    'time_zone' => 'UTC',
+    'time_zone' => 'Asia/Bangkok',
 ];
