@@ -27,6 +27,7 @@
     </div>
 </div>
 <div id="delete-confirm" data-message="{{ trans('admin/tag.delete_confirm') }}"></div>
+<div id="delete-warning" data-message="{{ trans('admin/tag.delete_warning') }}"></div>
 <div id="block-confirm" data-message="{{ trans('admin/tag.block_confirm') }}"></div>
 <div id="un-block-confirm" data-message="{{ trans('admin/tag.un_block_confirm') }}"></div>
 <div id="tag-block" data-message="{{ trans('admin/tag.tag_block') }}"></div>

@@ -96,7 +96,7 @@ class ArticleService extends BaseService
             return false;
         } catch (\Exception $e) {
             DB::rollback();
-            
+
             return false;
         }
     }

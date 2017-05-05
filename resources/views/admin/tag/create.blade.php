@@ -10,12 +10,13 @@
             <div class="ibox-title"><h2>{{ trans('admin/tag.create') }}</h2></div>
             <div class="ibox-content">
                 {{ Form::open(['action' => 'Admin\TagsController@store', 'class' => 'form-horizontal']) }}
-                    <div class="form-group">
-                        {!! Form::label('name', trans('admin/tag.label.tag_name'), ['class' => 'col-sm-2 control-label']) !!}
+                    <div class="form-group required">
+                        {!! Form::label('name', trans('admin/tag.label.tag_name'), ['class' => 'col-sm-2 control-label required']) !!}
                         <div class="col-sm-10">
                             {!! Form::text('name', '', [
                                 'class' => 'form-control',
                                 'placeholder' => trans('admin/tag.placeholder.input_tag_name'),
+                                'required',
                             ]) !!}
                         </div>
                     </div>

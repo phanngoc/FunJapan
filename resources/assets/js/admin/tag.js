@@ -1,6 +1,6 @@
 $(document).ready(function (e) {
     var table = $('#tag-table').DataTable({
-        'order': [[ 1, "desc" ]],
+        'order': [[ 3, "desc" ]],
         'processing': true,
         'serverSide': true,
         'searchDelay': 400,
@@ -53,7 +53,7 @@ $(document).ready(function (e) {
                     + blockAction
                     + '" class="fa fa-undo fa fa-lg"></i></a>';
             }
-            $('td', row).eq(1).empty().append('<a href="' + baseUrl() + '/admin/tags/' + data.id + '">' + data.name + '</a>');
+            $('td', row).eq(1).empty().append('<a href="' + baseUrl() + '/admin/tags/' + data.id + '">' + escapeHtml(data.name) + '</a>');
             $('td', row).eq(4).empty().append('<a data-toggle="tooltip" data-placement="left" title="" data-original-title="Edit" href="'
                 + editLink
                 + '" class="edit"><i class="fa fa-pencil-square-o fa fa-lg"></i></a>'
@@ -68,6 +68,7 @@ $(document).ready(function (e) {
         deleteAction = baseUrl() + '/admin/tags/' + $(e.target).data('id');
         swal({
             title: $('#delete-confirm').data('message'),
+            text: $('#delete-warning').data('message'),
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
@@ -109,8 +110,12 @@ $(document).ready(function (e) {
         });
     });
 
-    $('.tooltip-demo').tooltip({
-        selector: "[data-toggle=tooltip]",
-        container: "body"
-    });
+    function escapeHtml(text) {
+        return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
 })
