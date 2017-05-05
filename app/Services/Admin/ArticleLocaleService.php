@@ -124,7 +124,7 @@ class ArticleLocaleService extends BaseService
         }
 
         if (isset($inputs['is_alway_hide'])) {
-            $articleLocaleData['hide_alway'] = $inputs['is_alway_hide'];
+            $articleLocaleData['hide_always'] = $inputs['is_alway_hide'];
         }
 
         if (isset($inputs['is_member_only'])) {

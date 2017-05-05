@@ -76,7 +76,7 @@ class ArticleService extends BaseService
                 }
 
                 if (isset($inputs['is_alway_hide'])) {
-                    $articleLocaleData['hide_alway'] = $inputs['is_alway_hide'];
+                    $articleLocaleData['hide_always'] = $inputs['is_alway_hide'];
                 }
 
                 if (isset($inputs['is_member_only'])) {
@@ -96,7 +96,7 @@ class ArticleService extends BaseService
             return false;
         } catch (\Exception $e) {
             DB::rollback();
-            
+
             return false;
         }
     }
@@ -114,7 +114,7 @@ class ArticleService extends BaseService
                     'content' => $inputs['content'],
                     'summary' => $inputs['summary'],
                     'is_top_article' => isset($inputs['is_top_article']) ? $inputs['is_top_article'] : 0,
-                    'hide_alway' => isset($inputs['is_alway_hide']) ? $inputs['is_alway_hide'] : 0,
+                    'hide_always' => isset($inputs['is_alway_hide']) ? $inputs['is_alway_hide'] : 0,
                     'is_member_only' => isset($inputs['is_member_only']) ? $inputs['is_member_only'] : 0,
                     'start_campaign' => $inputs['start_campaign'] ? $inputs['start_campaign'] . ':00' : null,
                     'end_campaign' => $inputs['end_campaign'] ? $inputs['end_campaign'] . ':00' : null,
@@ -163,7 +163,7 @@ class ArticleService extends BaseService
                     ->orWhere('article_id', $input['keyword']);
             })
             ->where('published_at', '<=', Carbon::now())
-            ->where('hide_alway', false)
+            ->where('hide_always', 0)
             ->paginate(config('limitation.popular_article.per_page'));
     }
 
