@@ -6,10 +6,11 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
+        "barryvdh/laravel-debugbar": "^2.3",
         "doctrine/dbal": "^2.5",
         "graham-campbell/markdown": "^7.1",
-        "intervention/image": "^2.3",
         "guzzlehttp/guzzle": "^6.2",
+        "intervention/image": "^2.3",
         "laravel/framework": "5.4.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
@@ -29,7 +30,8 @@
             "App\\": "app/"
         },
         "files": [
-            "app/Helpers/NavHelper.php"
+            "app/Helpers/NavHelper.php",
+            "app/Helpers/functions.php"
         ]
     },
     "autoload-dev": {

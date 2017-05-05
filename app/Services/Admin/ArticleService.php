@@ -20,7 +20,7 @@ class ArticleService extends BaseService
             'title' => 'required|min:10|max:255',
             'content' => 'required|min:20',
             'category' => 'required',
-            'thumbnail' => 'image|max:' . config('article.thumbnail.upload.max_size'),
+            'thumbnail' => 'image|max:' . config('images.validate.article_thumbnail.max_size'),
             'tags.*' => 'min:3|max:15',
             'type' => 'in:' . implode(',', array_values(config('article.type'))),
         ];
@@ -31,7 +31,7 @@ class ArticleService extends BaseService
         }
 
         if (!$article) {
-            $validationRules['thumbnail'] = 'required|image|max:' . config('article.thumbnail.upload.max_size');
+            $validationRules['thumbnail'] = 'required|image|max:' . config('images.validate.article_thumbnail.max_size');
         }
 
         return Validator::make($inputs, $validationRules)

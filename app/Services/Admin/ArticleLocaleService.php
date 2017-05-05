@@ -11,21 +11,33 @@ use Illuminate\Support\Facades\Storage;
 use DB;
 use App\Services\Admin\LocaleService;
 use Carbon\Carbon;
+use App\Services\ImageService;
 
 class ArticleLocaleService extends BaseService
 {
     public static function list($conditions)
     {
-        $keyword = $conditions['search']['value'];
+        $keyword = escape_like($conditions['search']['value']);
         $searchColumns = ['id', 'title'];
         $limit = $conditions['length'];
         $page = $conditions['start'] / $conditions['length'] + 1;
         $orderParams = $conditions['order'];
         $orderConditions['column'] = $conditions['columns'][$orderParams[0]['column']]['data'];
         $orderConditions['dir'] = $orderParams[0]['dir'];
-        $query = ArticleLocale::query();
+        $query = ArticleLocale::with('article.user');
+
+        if (isset($conditions['locale_id'])) {
+            $query = $query->where('locale_id', $conditions['locale_id']);
+        }
+
+        if (isset($conditions['recommended'])) {
+            $query = $query->where('recommended', true);
+        }
+
         foreach ($conditions['columns'] as $column) {
-            if ($column['data'] !== 'locale_id' && $column['data'] !== 'function') {
+            if ($column['data'] == 'user_id') {
+                // TO DO
+            } elseif ($column['data'] !== 'locale_id' && $column['data'] !== 'function') {
                 $query->where($column['data'], 'like', '%' . $column['search']['value'] . '%');
             } elseif ($column['data'] === 'locale_id') {
                 $locales = Locale::where('name', 'like', '%' . $column['search']['value'] . '%')->pluck('id');
@@ -50,60 +62,34 @@ class ArticleLocaleService extends BaseService
 
     public static function create($inputs, $thumbnail)
     {
-        $articleLocale = ArticleLocale::create($inputs);
+        $thumbnailPath = config('images.paths.article_thumbnail') . '/' . $inputs['article_id'] . '/' . $inputs['locale_id'];
+        $fileName = ImageService::uploadFile($thumbnail, 'article_thumbnail', $thumbnailPath);
 
-        if ($articleLocale) {
-            $fileName = static::uploadImage($thumbnail, $articleLocale);
-            $articleLocale->photo = $fileName;
-            $articleLocale->save();
+        if ($fileName) {
+            $inputs['photo'] = $fileName;
+
+            return ArticleLocale::create($inputs);
         }
 
-        return $articleLocale;
+        return false;
     }
 
     public static function update($inputs, $articleLocaleId)
     {
         $articleLocale = ArticleLocale::findOrFail($articleLocaleId);
 
-        if ($articleLocale->update($inputs)) {
-            if (isset($inputs['thumbnail'])) {
-                Storage::exists(config('article.thumbnail.upload.upload_path') . $articleLocale->id)
-                    ? '' : Storage::makeDirectory(config('article.thumbnail.upload.upload_path') . $articleLocale->id);
-                if (Storage::deleteDirectory(config('article.thumbnail.upload.upload_path') . $articleLocale->id)) {
-                    $fileName = static::uploadImage($inputs['thumbnail'], $articleLocale);
-                    $articleLocale->photo = $fileName;
-                    $articleLocale->save();
+        if (isset($inputs['thumbnail'])) {
+            $thumbnailPath = config('images.paths.article_thumbnail') . '/' . $articleLocale->article_id . '/' . $articleLocale->locale_id;
+            $fileName = ImageService::uploadFile($inputs['thumbnail'], 'article_thumbnail', $thumbnailPath, true);
 
-                    return true;
-                }
+            if ($fileName) {
+                $inputs['photo'] = $fileName;
+            } else {
+                return false;
             }
-
-            return true;
         }
 
-        return false;
-    }
-
-    public static function uploadImage($thumbnail, $articleLocale)
-    {
-        $fileExtension = $thumbnail->getClientOriginalExtension();
-        $fileName  = time() . '.' . $fileExtension;
-        $path = config('article.thumbnail.upload.upload_path') . $articleLocale->id . '/';
-        $demensions = config('article.thumbnail.upload.demensions');
-        foreach ($demensions as $key => $demension) {
-            $fullFileName = $key . $fileName;
-            if ($key === 'original_') {
-                $file = Image::make($thumbnail)->encode($fileExtension);
-                Storage::put($path . $fullFileName, $file->__toString());
-                continue;
-            }
-            $file = Image::make($thumbnail)
-            ->resize($demension['width'], $demension['height'])
-            ->encode($fileExtension);
-            Storage::put($path . $fullFileName, $file->__toString());
-        }
-
-        return $fileName;
+        return $articleLocale->update($inputs);
     }
 
     public static function createArticleOtherLanguage($article, $inputs)

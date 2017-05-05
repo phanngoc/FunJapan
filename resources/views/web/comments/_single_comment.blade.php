@@ -16,7 +16,7 @@
         @endif
     </div>
     @if ($comment->type == config('comment.type.text'))
-        @if (strlen($comment->content) >= config('limitation.comment.content'))
+        @if (strlen($comment->content) > config('limitation.comment.content'))
             <div class="body-comment">
                 <p class="limited-text comment-body text-comment break-word">{{ str_limit($comment->content, config('limitation.comment.content')) }}</p>
                 <a href="javascript:;" class="show-comment">{{ trans('web/comment.button.more') }}</a>

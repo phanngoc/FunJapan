@@ -57,8 +57,13 @@
                 </a>
                 <ul class="nav nav-second-level collapse">
                     <li>
-                        <a href="{{action('Admin\RecommendedArticlesController@index')}}">
-                            {{ trans('admin/recommend_article.label.list') }}
+                        <a href="{{ action('Admin\RecommendedArticlesController@index') }}">
+                            {{ trans('admin/recommend_article.label.set_recommend') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ action('Admin\RecommendedArticlesController@recommendedLists') }}">
+                            {{ trans('admin/recommend_article.label.recommended_list') }}
                         </a>
                     </li>
                 </ul>

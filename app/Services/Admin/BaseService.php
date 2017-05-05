@@ -14,7 +14,11 @@ class BaseService
             });
         }
 
-        $query->orderBy($order['column'], $order['dir']);
+        if ($order['column'] == 'user_id') {
+            // TO DO
+        } else {
+            $query->orderBy($order['column'], $order['dir']);
+        }
 
         return $query->paginate($limit, ['*'], 'page', $page);
     }
