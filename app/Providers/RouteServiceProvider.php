@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Carbon\Carbon;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -55,6 +56,11 @@ class RouteServiceProvider extends ServiceProvider
         $locale = $request->segment(1);
         if ($locale) {
             $this->app->setLocale($locale);
+
+            //Set timezone
+            config(['app.timezone' => trans('datetime.time_zone')]);
+            date_default_timezone_set(config('app.timezone', 'UTC'));
+            Carbon::setLocale($locale);
 
             Route::middleware('web')
                 ->namespace($this->namespace)
