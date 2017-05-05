@@ -34,7 +34,7 @@ class ArticleLocale extends BaseModel
         'recommended',
         'start_campaign',
         'end_campaign',
-        'hide_alway',
+        'hide_always',
         'is_member_only',
         'is_popular',
     ];
@@ -95,6 +95,6 @@ class ArticleLocale extends BaseModel
 
     public function getIsShowAbleAttribute()
     {
-        return Carbon::now()->gt($this->published_at) && !$this->hide_alway;
+        return Carbon::now()->gt($this->published_at) && !$this->hide_always;
     }
 }

@@ -80,7 +80,7 @@
                                 {{ Form::checkbox(
                                     'is_alway_hide',
                                     1,
-                                    $articleLocale->hide_alway)
+                                    $articleLocale->hide_always)
                                 }}&nbsp;
                             </label>
                         </div>

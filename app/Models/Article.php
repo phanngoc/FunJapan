@@ -75,7 +75,7 @@ class Article extends BaseModel
                 $subQueryLocale->select('article_id')
                     ->from('article_locales')
                     ->where('locale_id', $localeId)
-                    ->where('hide_always', false)
+                    ->where('hide_always', 0)
                     ->where('published_at', '<=', Carbon::now());
             })
             ->limit($limit);

@@ -15,12 +15,12 @@ class AlterArticlesAndArticleLocalesTable extends Migration
     {
         Schema::table('article_locales', function(Blueprint $table) {
             $table->dropColumn('published_at');
-            $table->tinyInteger('hide_alway')->default(0);
+            $table->tinyInteger('hide_always')->default(0);
             $table->tinyInteger('is_member_only')->default(0);
         });
 
         Schema::table('article_locales', function(Blueprint $table) {
-            $table->dateTime('published_at');
+            $table->dateTime('published_at')->nullable();
         });
 
         Schema::table('articles', function(Blueprint $table) {
@@ -37,12 +37,12 @@ class AlterArticlesAndArticleLocalesTable extends Migration
     {
         Schema::table('article_locales', function(Blueprint $table) {
             $table->dropColumn('published_at');
-            $table->dropColumn('hide_alway');
+            $table->dropColumn('hide_always');
             $table->dropColumn('is_member_only');
         });
 
         Schema::table('article_locales', function(Blueprint $table) {
-            $table->timestamp('published_at');
+            $table->timestamp('published_at')->nullable();
         });
 
         Schema::table('articles', function(Blueprint $table) {

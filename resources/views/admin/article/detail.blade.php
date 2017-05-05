@@ -79,7 +79,7 @@
                                         {{ $articleLocale->published_at }}
                                         <hr>
                                         <strong>{{ trans('admin/article.label.is_alway_hide') }}:</strong>
-                                        {{ $articleLocale->hide_alway ? trans('admin/article.label.yes') : trans('admin/article.label.no') }}
+                                        {{ $articleLocale->hide_always ? trans('admin/article.label.yes') : trans('admin/article.label.no') }}
                                         <hr>
                                         <strong>{{ trans('admin/article.label.is_member_only') }}:</strong>
                                         {{ $articleLocale->is_member_only ? trans('admin/article.label.yes') : trans('admin/article.label.no') }}
