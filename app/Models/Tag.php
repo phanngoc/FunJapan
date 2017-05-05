@@ -21,7 +21,7 @@ class Tag extends BaseModel
 
     public function articlesTags()
     {
-        return $this->hasMany(articleTag::class);
+        return $this->hasMany(ArticleTag::class);
     }
 
     protected static function boot()
