@@ -32,7 +32,7 @@ class AddColumnTableCategories extends Migration
         Schema::table('categories', function(Blueprint $table){
             $table->dropColumn('name');
             $table->dropColumn('short_name');
-            $table->dropColumn('locale_iso_code');                       
+            $table->dropColumn('locale_iso_code');
         });
     }
 }
