@@ -107,15 +107,17 @@ class TagsController extends Controller
             $inputs = [
                 'status' => config('tag.status.un_block'),
             ];
+            $message = ['message' => trans('admin/tag.unblock_success')];
         } else {
             $inputs = [
                 'status' => config('tag.status.blocked'),
             ];
+            $message = ['message' => trans('admin/tag.block_success')];
         }
 
         if (TagService::update($inputs, $tag->id)) {
             return redirect()
-                ->action('Admin\TagsController@index')->with(['message' => trans('admin/tag.block_success')]);
+                ->action('Admin\TagsController@index')->with($message);
         }
 
         return redirect()

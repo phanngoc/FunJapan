@@ -11,8 +11,8 @@
             <div class="ibox-content">
                 {{ Form::open(['action' => ['Admin\TagsController@update', $tag->id], 'class' => 'form-horizontal']) }}
                     {{ method_field('PUT') }}
-                    <div class="form-group">
-                        {!! Form::label('name', '', ['class' => 'col-sm-2 control-label']) !!}
+                    <div class="form-group required">
+                        {!! Form::label('name', trans('admin/tag.label.tag_name'), ['class' => 'col-sm-2 control-label']) !!}
                         <div class="col-sm-10">
                             {!! Form::text('name', $tag->name, ['class' => 'form-control', 'required']) !!}
                         </div>
