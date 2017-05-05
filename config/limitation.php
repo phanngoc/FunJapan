@@ -15,4 +15,9 @@ return [
         'per_page' => 10,
         'limit' => 0,
     ],
+    'popular_article' => [
+        'per_page' => 10,
+        'limit' => 0,
+    ],
+
 ];

@@ -62,6 +62,23 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="{{ set_active(['admin/setting*']) }}">
+                <a href="#">
+                    <i class="fa fa-thumbs-up"></i>
+                    <span class="nav-label">
+                        {{ trans('admin/popular_article.setting_management') }}
+                    </span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="{{ action('Admin\PopularArticlesController@index') }}">
+                            {{ trans('admin/popular_article.popular_setting') }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </nav>

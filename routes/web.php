@@ -1,9 +1,5 @@
 <?php
 
-Route::get('/', function () {
-    return view('web.home.index');
-});
-
 Route::get('/register/jmb_1', function (Request $request) {
     return view('web.users.register.jmb_1');
 });
@@ -12,6 +8,8 @@ Route::get('/register/jmb_2', function (Request $request) {
 });
 
 Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
+    Route::get('/', 'HomesController@index');
+
     // Authentication Routes...
     Route::get('account/login', 'LoginController@showLoginForm')->name('login');
     Route::post('account/login', 'LoginController@login');

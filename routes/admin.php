@@ -27,6 +27,9 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::put('tagBlock/{tag}', 'TagsController@block');
 
     Route::resource('categories', 'CategoriesController');
+
+    Route::resource('setting/popular-articles', 'PopularArticlesController');
+
     Route::get('{action?}', 'DashboardController@index');
 
 });
