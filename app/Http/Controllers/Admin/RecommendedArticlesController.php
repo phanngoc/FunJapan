@@ -6,33 +6,47 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ArticleLocale;
 use App\Services\Admin\LocaleService;
+use App\Services\Admin\ArticleLocaleService;
 use Illuminate\Support\Facades\View;
+use Validator;
 
 class RecommendedArticlesController extends Controller
 {
     public function index(Request $request)
     {
-        $input = $request->only('locale_id', 'keyword');
+        $input = $request->only('locale_id');
         $locales = LocaleService::getAllLocales();
         reset($locales);
         $input['default_locale_id'] = key($locales);
 
-        $articlesLocale = ArticleLocale::where('locale_id', $input['locale_id'] ?? $input['default_locale_id'])
-            ->where(function ($query) use ($input) {
-                $query->where('title', 'like', '%' . $input['keyword'] . '%')
-                    ->orWhere('article_id', $input['keyword']);
-            })->paginate(config('limitation.recommended_article.per_page'));
-
-        $recommendedArticles = ArticleLocale::where('recommended', true)
-            ->where('locale_id', $input['locale_id'] ?? $input['default_locale_id'])
-            ->get();
-
-        $this->viewData['recommendedArticles'] = $recommendedArticles;
-        $this->viewData['articlesLocale'] = $articlesLocale;
         $this->viewData['input'] = $input;
         $this->viewData['locales'] = $locales;
 
         return view('admin.recommend_articles.index', $this->viewData);
+    }
+
+    public function recommendedLists(Request $request)
+    {
+        $input = $request->only('locale_id');
+        $locales = LocaleService::getAllLocales();
+        reset($locales);
+        $input['default_locale_id'] = key($locales);
+
+        $this->viewData['input'] = $input;
+        $this->viewData['locales'] = $locales;
+
+        return view('admin.recommend_articles.show', $this->viewData);
+    }
+
+    public function lists(Request $request)
+    {
+        $params = $request->input();
+        $draw = $params['draw'];
+        $params['recommended'] = true;
+        $articlesData = ArticleLocaleService::list($params);
+        $articlesData['draw'] = (int)$draw;
+
+        return $articlesData;
     }
 
     public function store(Request $request)
@@ -73,14 +87,9 @@ class RecommendedArticlesController extends Controller
             'recommended' => $articleLocale->recommended ? false : true,
         ]);
 
-        $html = View::make('admin.recommend_articles._tr_article')
-            ->with('articleLocale', $articleLocale)
-            ->render();
-
         return [
             'success' => $updated,
             'message' => $updated ? trans('admin/recommend_article.messages.success') : trans('admin/recommend_article.messages.fail'),
-            'html' => $updated && $articleLocale->recommended ? $html : '',
             'recommended' => $articleLocale->recommended,
         ];
     }

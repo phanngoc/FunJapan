@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Storage;
 use GrahamCampbell\Markdown\Facades\Markdown;
+use App\Services\ImageService;
+use Log;
 
 class ArticleLocale extends BaseModel
 {
@@ -69,13 +71,31 @@ class ArticleLocale extends BaseModel
 
     public function getThumbnailUrlsAttribute($value)
     {
-        $thumbnailUrls = [];
-        foreach (config('article.thumbnail.upload.demensions') as $key => $value) {
-            $thumbnailUrls[$key] = Storage::url(config('article.thumbnail.upload.upload_path')
-                . $this->id . '/' . $key . $this->photo);
+        if ($this->photo) {
+            $results = [];
+
+            try {
+                foreach (config('images.dimensions.article_thumbnail') as $key => $value) {
+                    if ($key == 'original') {
+                        $filePath = config('images.paths.article_thumbnail') . '/' . $this->article_id . '/' . $this->locale_id . '/' . $this->photo;
+                    } else {
+                        $filePath = config('images.paths.article_thumbnail') . '/' . $this->article_id . '/' . $this->locale_id . '/' . $key . '_' . $this->photo;
+                    }
+
+                    $results[$key] = ImageService::imageUrl($filePath);
+                }
+
+                return $results;
+            } catch (Exception $e) {
+                Log::debug($e);
+            }
         }
 
-        return $thumbnailUrls;
+        foreach (config('images.dimensions.article_thumbnail') as $key => $value) {
+            $results[$key] = null;
+        }
+
+        return $results;
     }
 
     public function getCategoryLocaleNameAttribute($value)

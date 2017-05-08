@@ -1,4 +1,72 @@
 $(function () {
+    $.fn.dataTable.ext.errMode = 'none';
+
+    var table = $('#article-table').DataTable({
+        'order': [[ 3, 'desc' ]],
+        'processing': true,
+        'serverSide': true,
+        'searchDelay': 400,
+        'language': {
+            'infoFiltered': ''
+        },
+        'ajax': {
+            'url': $('#article-table').data('url'),
+            'type': 'GET',
+        },
+        'columns': [
+            { 'data': 'id' },
+            { 'data': 'title' },
+            { 'data': 'user_id' },
+            { 'data': 'created_at' },
+            { 'data': 'published_at' },
+        ],
+        'columnDefs': [{
+            'targets': 0,
+            'sortable': false,
+            'class': 'text-center',
+        },
+        {
+            'targets': 2,
+            'sortable': false,
+            'class': 'text-center',
+        },
+        {
+            'targets': 3,
+            'class': 'text-center',
+        },
+        {
+            'targets': 4,
+            'class': 'text-center',
+        },
+        {
+            'targets': 5,
+            'sortable': false,
+            'searchable': false,
+            'class': 'text-center',
+            'data': function () {
+                return '';
+            }
+        }],
+        'createdRow': function (row, data, index) {
+            var pageInfo = table.page.info();
+            $('td', row).eq(0).empty().append(pageInfo.page * pageInfo.length + index + 1);
+            var detailLink = baseUrl() + '/admin/articles/' + data.article_id + '?locale=' + data.locale_id;
+            $('td', row).eq(1).empty().append('<a href="' + detailLink + '">' + data.title + '</a>');
+            $('td', row).eq(2).empty().append(data.article.user.name);
+
+            if (typeof flag != 'undefined' && flag) {
+                $('td', row).eq(5).empty().append('<input type="checkbox" class="select-article"' +
+                    'data-article-locale-id="' + data.id + '"' +
+                    (data.recommended ? 'checked>' : '>'));
+            } else {
+                $('td', row).eq(5).empty().append('<a href="javascript:;" class="remove-recommended-article"' +
+                'data-id="{{ $articleLocale->id }}"' +
+                'data-url="' + baseUrl() + '/admin/recommend-articles/' + data.id + '">' +
+                '<i class="fa fa-times-circle text-danger"></i></a>');
+            }
+        }
+    });
+
     $('.select-locale').on('change', function () {
         $('form.articles-list').submit();
     });
@@ -6,9 +74,10 @@ $(function () {
     $('body').on('click', '.select-article', function () {
         var element = $(this);
         var articleLocaleId = element.attr('data-article-locale-id');
+        var url = $('#article-table').attr('data-url-set-recommend');
 
         $.ajax({
-            'url': element.attr('data-url'),
+            'url': url,
             'type': 'POST',
             'data': {
                 articleLocaleId: articleLocaleId,
@@ -17,26 +86,18 @@ $(function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
             },
             success: (response) => {
-                if (response.success) {
-                    if (response.recommended) {
-                        $('.recommended-articles-list').prepend(response.html);
-                    } else {
-                        $('.recommended-articles-list').find('tr').each(function () {
-                            if (articleLocaleId == $(this).attr('data-id')) {
-                                $(this).remove();
-                            }
-                        });
-                    }
-                } else {
+                if (!response.success) {
                     swal(response.message, '', 'error');
+                    element.attr('checked', false);
                 }
             }
         });
     });
 
     $('body').on('click', '.remove-recommended-article', function () {
-        var element = $(this);
-        var articleLocaleId = element.attr('data-id');
+        var element = $('#article-table');
+        var thisElement = $(this);
+        var articleLocaleId = thisElement.attr('data-id');
 
         swal({
             title: element.attr('data-title-confirm'),
@@ -50,7 +111,7 @@ $(function () {
         }, function (isConfirm) {
             if (isConfirm) {
                 $.ajax({
-                    'url': element.attr('data-url'),
+                    'url': thisElement.attr('data-url'),
                     'type': 'DELETE',
                     'headers': {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -58,13 +119,7 @@ $(function () {
                     success: (response) => {
                         if (response.success) {
                             swal(response.message, '', 'success');
-                            element.parents('tr').remove();
-
-                            $('.articles-list').find('tr').each(function () {
-                                if (articleLocaleId == $(this).attr('data-id')) {
-                                    $(this).find('.select-article').attr('checked', false);
-                                }
-                            });
+                            thisElement.parents('tr').remove();
                         } else {
                             swal(response.message, '', 'error');
                         }

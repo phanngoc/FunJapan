@@ -47,5 +47,4 @@
         var locales = {!! $locales !!};
     </script>
     {!! Html::script('assets/admin/js/article.js') !!}
-    {!! Html::script('assets/admin/js/recommend_article.js') !!}
 @stop
