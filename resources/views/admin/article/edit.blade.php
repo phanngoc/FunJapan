@@ -34,7 +34,7 @@
                             ['class' => 'col-sm-2 control-label'])
                         }}
                         <div class="col-sm-4">
-                            <img src="{{ $articleLocale->thumbnail_urls['small_'] }}">
+                            <img src="{{ $articleLocale->thumbnail_urls['small'] }}">
                         </div>
                     </div>
 

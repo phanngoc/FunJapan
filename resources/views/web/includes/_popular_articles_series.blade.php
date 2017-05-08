@@ -22,7 +22,7 @@
                                 <div class="row gutter-12">
                                     <div class="col-md-39 pp-item-thumbnail">
                                       <a href="{{ action('Web\ArticlesController@show', ['id' => $post->article_id]) }}">
-                                        <img class="img-thumbnail" src="{{ $post->thumbnail_urls['small_'] }}">
+                                        <img class="img-thumbnail" src="{{ $post->thumbnail_urls['small'] }}">
                                       </a>
                                     </div>
                                     <div class="col-md-61">

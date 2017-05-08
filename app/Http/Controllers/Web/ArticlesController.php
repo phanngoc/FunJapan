@@ -19,7 +19,7 @@ class ArticlesController extends Controller
     {
         $article = ArticleService::getArticleDetail($id, $this->currentLocaleId);
         if (!$article) {
-            return view('web.articles.show', $this->viewData)->withErrors(trans('web/global.error'));
+            return response(trans('web/global.error'), 404);
         }
 
         if (isset($article->category)) {
