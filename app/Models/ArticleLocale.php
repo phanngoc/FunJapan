@@ -43,7 +43,6 @@ class ArticleLocale extends BaseModel
 
     protected $appends = [
         'thumbnail_urls',
-        'category_locale_name',
         'html_content',
         'is_show_able',
     ];
@@ -96,11 +95,6 @@ class ArticleLocale extends BaseModel
         }
 
         return $results;
-    }
-
-    public function getCategoryLocaleNameAttribute($value)
-    {
-        return $this->article->category->categoryLocales->where('locale_id', $this->locale_id)->first()->name;
     }
 
     public function getHtmlContentAttribute($value)
