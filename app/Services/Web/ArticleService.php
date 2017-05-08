@@ -166,4 +166,15 @@ class ArticleService
 
         return $postPhotos->paginate($limit);
     }
+
+    public static function getNewArticles($localeId, $limit = 12)
+    {
+        return ArticleLocale::with('article', 'article.category', 'articleTags', 'articleTags.tag')
+            ->where('locale_id', $localeId)
+            ->where('hide_always', 0)
+            ->whereNotNull('published_at')
+            ->where('published_at', '<', Carbon::now())
+            ->orderBy('created_at', 'desc')
+            ->paginate($limit);
+    }
 }

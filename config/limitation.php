@@ -19,5 +19,7 @@ return [
         'per_page' => 10,
         'limit' => 0,
     ],
-
+    'new_post' => [
+        'per_page' => 12,
+    ],
 ];

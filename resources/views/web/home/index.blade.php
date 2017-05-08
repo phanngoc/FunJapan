@@ -9,22 +9,9 @@
                 <!-- MAIN -->
                 <div class="list-group article-cards">
                     <div class="list-group-header">
-                        <p class="list-group-title">NEW POST</p>
+                        <p class="list-group-title">{{ trans('web/top_page.new_post') }}</p>
                     </div>
-                    <div class="list-infinity">
-                        <div class="list-group-article">
-                            <div class="row gutter-16">
-                                @include('web.includes._single_article')
-                                @include('web.includes._single_article')
-                            </div>
-                        </div>
-                        <div class="list-group-article">
-                            <div class="row gutter-16">
-                                @include('web.includes._single_article')
-                                @include('web.includes._single_article')
-                            </div>
-                        </div>
-                    </div>
+                    @include('web.includes._list_new_posts', ['newArticles' => $newArticles])
                 </div>
                 <!-- EOF MAIN -->
             </div>
