@@ -23,6 +23,7 @@ RUN docker-php-ext-configure gd \
     --with-freetype-dir=/usr/include/freetype2
 
 RUN docker-php-ext-install \
+    exif \
     mcrypt \
     mysqli \
     pdo_mysql \

@@ -7,6 +7,7 @@
 {!! Html::style('assets/admin/css/plugins/steps/jquery.steps.css') !!}
 {!! Html::style('assets/admin/css/plugins/bootstrap-markdown/bootstrap-markdown.min.css') !!}
 {!! Html::style('assets/admin/css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') !!}
+{!! Html::style('assets/admin/css/plugins/select2/select2.min.css') !!}
 {!! Html::style('assets/admin/js/plugins/gritter/jquery.gritter.css') !!}
 {!! Html::style('assets/admin/css/animate.css') !!}
 {!! Html::style('assets/admin/css/style.css') !!}

@@ -107,6 +107,11 @@ class ArticleLocale extends BaseModel
         return Str::limit($this->title, config('article.limit_short_title'));
     }
 
+    public function getShortSummary()
+    {
+        return Str::limit($this->summary, config('article.limit_short_summary'));
+    }
+
     public function getIsShowAbleAttribute()
     {
         return Carbon::now()->gt($this->published_at) && !$this->hide_always;

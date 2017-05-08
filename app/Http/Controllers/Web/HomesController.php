@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Services\Admin\ArticleService;
+use App\Services\Admin\BannerSettingService;
 
 class HomesController extends Controller
 {
@@ -14,6 +15,7 @@ class HomesController extends Controller
     public function index()
     {
         $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
+        $this->viewData['banners'] = BannerSettingService::getBannerViaLocale($this->currentLocaleId);
 
         return view('web.home.index', $this->viewData);
     }
