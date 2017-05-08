@@ -18,7 +18,7 @@ return [
     'create_error' => 'Create Category Error',
     'create_success' => 'Create Category Success',
     'error_duplication' => 'Name is duplication',
-    'delete_confirm' => 'Do you want to delete this category?',
+    'delete_confirm' => 'Are you sure to delete ',
     'delete_success' => 'Delete Category Success',
     'delete_error' => 'Delete Category Error',
     'label' => [
@@ -40,5 +40,7 @@ return [
     'button' => [
         'update' => 'Update',
         'create' => 'Create',
+        'cancel' => 'Cancel',
+        'edit' => 'Edit',
     ]
 ];

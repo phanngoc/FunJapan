@@ -17,6 +17,7 @@ class AlterColumnTableCategories extends Migration
             $table->dropColumn('photo');
             $table->string('icon')->nullable();
             $table->string('locale_id')->nullable();
+            $table->dropColumn('locale_iso_code');
         });
     }
 
@@ -31,6 +32,7 @@ class AlterColumnTableCategories extends Migration
             $table->string('photo');
             $table->dropColumn('icon');
             $table->dropColumn('locale_id');
+            $table->string('locale_iso_code')->nullable();
         });
     }
 }
