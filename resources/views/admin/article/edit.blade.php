@@ -28,12 +28,10 @@
                                 ['class' => 'form-control'])
                             }}
                         </div>
-                        {{ Form::label(
-                            'current_thumnail',
-                            trans('admin/article.label.current_thumbnail'),
-                            ['class' => 'col-sm-2 control-label'])
-                        }}
-                        <div class="col-sm-4">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-2">
                             <img src="{{ $articleLocale->thumbnail_urls['small'] }}">
                         </div>
                     </div>
