@@ -10,6 +10,11 @@ Route::get('/register/jmb_2', function (Request $request) {
 Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
     Route::get('/', 'HomesController@index');
 
+    Route::group(['prefix' => 'guide'], function () {
+        Route::get('/about', 'GuidesController@about');
+        Route::get('/footprint', 'GuidesController@footPrint');
+    });
+
     // Authentication Routes...
     Route::get('account/login', 'LoginController@showLoginForm')->name('login');
     Route::post('account/login', 'LoginController@login');

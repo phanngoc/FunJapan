@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class="top-container" id="top-container">
-            <div class="container dark-background">
+            <div class="container {{ isset($defaultBackground) && $defaultBackground ? '' : 'dark-background' }}">
                 @include('layouts.includes.header_toppage')
                 <div class="top-body">
                     @yield('content')
