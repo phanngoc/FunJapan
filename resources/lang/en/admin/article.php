@@ -30,7 +30,7 @@ return [
     'title_global' => 'General informations',
     'hide_alway' => 'Hide Alway',
     'is_member_only' => 'Only For Member',
-    'is_top_article' => 'Alway On Article',
+    'is_top_article' => 'Alway On Top',
     'button' => [
         'create' => 'Save',
         'set_language' => 'Set Other Language',
@@ -41,7 +41,7 @@ return [
         'cancel' => 'Cancel',
     ],
     'label' => [
-        'is_top' => 'Alway On Article?',
+        'is_top' => 'Alway On Top?',
         'title' => 'Article Title',
         'content' => 'Article Content',
         'locale' => 'Language',
@@ -61,6 +61,7 @@ return [
         'is_member_only' => 'Only For Member',
         'comment_limit' => 'Comment Limit Per User',
         'tags.*' => 'Tags',
+        'current_thumbnail' => 'Current Thumbnail',
     ],
     'type' => [
         'normal' => 'Normal Article',

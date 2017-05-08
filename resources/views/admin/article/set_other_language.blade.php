@@ -31,7 +31,7 @@
                         </div>
                     </div>
 
-                    @include('admin.elements._article_inputs_form')
+                    {{ Form::hidden('type', $article->type) }}
 
                     {{ Form::hidden('category', $article->category_id) }}
 
@@ -50,20 +50,25 @@
                         </div>
                     </div>
 
+                    @include('admin.elements._article_inputs_form')
+
                     <div class="form-group">
                         {{ Form::label(
-                            'is_top_article',
-                            trans('admin/article.label.is_top'),
+                            'tags',
+                            trans('admin/article.label.tags'),
                             ['class' => 'col-sm-2 control-label'])
                         }}
                         <div class="col-sm-10">
-                            <label class="checkbox-inline">
-                                {{ Form::checkbox(
-                                    'is_top_article',
-                                    1,
-                                    false)
-                                }}&nbsp;
-                            </label>
+                            {{ Form::select(
+                                'tags[]',
+                                old('tags') ? array_flip(old('tags')) : [],
+                                null,
+                                [
+                                    'class' => 'form-control article-tag',
+                                    'multiple' => 'multiple',
+                                    'data-url' => action('Admin\TagsController@suggest')
+                                ])
+                            }}
                         </div>
                     </div>
 
@@ -79,6 +84,23 @@
                                 null,
                                 ['class' => 'form-control datetime-picker'])
                             }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label(
+                            'is_top_article',
+                            trans('admin/article.label.is_top'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-10">
+                            <label class="checkbox-inline">
+                                {{ Form::checkbox(
+                                    'is_top_article',
+                                    1,
+                                    false)
+                                }}&nbsp;
+                            </label>
                         </div>
                     </div>
 
@@ -116,25 +138,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        {{ Form::label(
-                            'tags',
-                            trans('admin/article.label.tags'),
-                            ['class' => 'col-sm-2 control-label'])
-                        }}
-                        <div class="col-sm-10">
-                            {{ Form::select(
-                                'tags[]',
-                                old('tags') ? array_flip(old('tags')) : [],
-                                null,
-                                [
-                                    'class' => 'form-control article-tag',
-                                    'multiple' => 'multiple',
-                                    'data-url' => action('Admin\TagsController@suggest')
-                                ])
-                            }}
-                        </div>
-                    </div>
 
                     <div class="date-time-campaign
                         @if ($article->type == config('article.type.normal'))
@@ -165,7 +168,6 @@
                         </div>
                     </div>
 
-                    {{ Form::hidden('type', $article->type) }}
 
                     <div class="form-group">
                         <div class="col-sm-2 col-sm-offset-2">

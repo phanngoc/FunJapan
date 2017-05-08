@@ -60,6 +60,8 @@ class ArticlesController extends Controller
         $inputs['auto_approve_photo'] = isset($inputs['auto_approve_photo']) && $inputs['auto_approve_photo'] ?
             $inputs['auto_approve_photo'] : false;
 
+        $inputs['summary'] = str_replace(["\r\n", "\n\r"], "\n", $inputs['summary']);
+
         $validator = ArticleService::validate($inputs);
 
         if ($validator->fails()) {
@@ -100,6 +102,9 @@ class ArticlesController extends Controller
     public function update(Request $request, Article $article)
     {
         $inputs = $request->all();
+
+        $inputs['summary'] = str_replace(["\r\n", "\n\r"], "\n", $inputs['summary']);
+
         $validator = ArticleService::validate($inputs, $article);
 
         if ($validator->fails()) {
@@ -129,6 +134,8 @@ class ArticlesController extends Controller
     public function updateOtherLanguage(Request $request, Article $article)
     {
         $inputs = $request->all();
+
+        $inputs['summary'] = str_replace(["\r\n", "\n\r"], "\n", $inputs['summary']);
 
         $validator = ArticleService::validate($inputs);
 

@@ -33,7 +33,7 @@
                             trans('admin/article.label.type'),
                             ['class' => 'col-sm-2 control-label'])
                         }}
-                        <div class="col-sm-10">
+                        <div class="col-sm-10 width30">
                             {{ Form::select(
                                 'type',
                                 $types,
@@ -43,15 +43,13 @@
                         </div>
                     </div>
 
-                    @include('admin.elements._article_inputs_form')
-
                     <div class="form-group required">
                         {{ Form::label(
                             'category',
                             trans('admin/article.label.category'),
                             ['class' => 'col-sm-2 control-label'])
                         }}
-                        <div class="col-sm-10">
+                        <div class="col-sm-10 width30">
                             {{ Form::select(
                                 'category',
                                 $categories,
@@ -76,22 +74,28 @@
                         </div>
                     </div>
 
+                    @include('admin.elements._article_inputs_form')
+
                     <div class="form-group">
                         {{ Form::label(
-                            'is_top_article',
-                            trans('admin/article.label.is_top'),
+                            'tags',
+                            trans('admin/article.label.tags'),
                             ['class' => 'col-sm-2 control-label'])
                         }}
                         <div class="col-sm-10">
-                            <label class="checkbox-inline">
-                                {{ Form::checkbox(
-                                    'is_top_article',
-                                    1,
-                                    false)
-                                }}&nbsp;
-                            </label>
+                            {{ Form::select(
+                                'tags[]',
+                                old('tags') ? array_flip(old('tags')) : [],
+                                null,
+                                [
+                                    'class' => 'form-control article-tag',
+                                    'multiple' => 'multiple',
+                                    'data-url' => action('Admin\TagsController@suggest')
+                                ])
+                            }}
                         </div>
                     </div>
+
 
                     <div class="form-group">
                         {{ Form::label(
@@ -108,6 +112,22 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        {{ Form::label(
+                            'is_top_article',
+                            trans('admin/article.label.is_top'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-10">
+                            <label class="checkbox-inline">
+                                {{ Form::checkbox(
+                                    'is_top_article',
+                                    1,
+                                    false)
+                                }}&nbsp;
+                            </label>
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         {{ Form::label(
@@ -143,25 +163,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        {{ Form::label(
-                            'tags',
-                            trans('admin/article.label.tags'),
-                            ['class' => 'col-sm-2 control-label'])
-                        }}
-                        <div class="col-sm-10">
-                            {{ Form::select(
-                                'tags[]',
-                                old('tags') ? array_flip(old('tags')) : [],
-                                null,
-                                [
-                                    'class' => 'form-control article-tag',
-                                    'multiple' => 'multiple',
-                                    'data-url' => action('Admin\TagsController@suggest')
-                                ])
-                            }}
-                        </div>
-                    </div>
 
                     <div class="form-group auto-approve-photo hidden">
                         {{ Form::label(

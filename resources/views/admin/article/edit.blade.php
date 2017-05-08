@@ -12,12 +12,6 @@
             <div class="ibox-content">
                 {{ Form::open(['action' => ['Admin\ArticlesController@update', $article->id], 'id' => 'create-article-form', 'class' => 'form-horizontal', 'files' => true]) }}
                     {{ method_field('PUT') }}
-                    @include('admin.elements._article_inputs_form',
-                        [
-                            'title' => $articleLocale->title,
-                            'content' => $articleLocale->content,
-                            'summary' => $articleLocale->summary,
-                        ])
 
                     {{ Form::hidden('category', $article->category_id) }}
 
@@ -27,11 +21,61 @@
                             trans('admin/article.label.thumbnail'),
                             ['class' => 'col-sm-2 control-label'])
                         }}
-                        <div class="col-sm-10 pt5">
+                        <div class="col-sm-2 pt5">
                             {{ Form::file(
                                 'thumbnail',
                                 null,
                                 ['class' => 'form-control'])
+                            }}
+                        </div>
+                        {{ Form::label(
+                            'current_thumnail',
+                            trans('admin/article.label.current_thumbnail'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-4">
+                            <img src="{{ $articleLocale->thumbnail_urls['small_'] }}">
+                        </div>
+                    </div>
+
+                    @include('admin.elements._article_inputs_form',
+                        [
+                            'title' => $articleLocale->title,
+                            'content' => $articleLocale->content,
+                            'summary' => $articleLocale->summary,
+                        ])
+
+                    <div class="form-group">
+                        {{ Form::label(
+                            'tags',
+                            trans('admin/article.label.tags'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-10">
+                            {{ Form::select(
+                                'tags[]',
+                                old('tags') ? array_flip(old('tags')) : $tags,
+                                null,
+                                [
+                                    'class' => 'form-control article-tag',
+                                    'multiple' => 'multiple',
+                                    'data-url' => action('Admin\TagsController@suggest')
+                                ])
+                            }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label(
+                            'publish_date',
+                            trans('admin/article.label.publish_date'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-10 width30">
+                            {{ Form::text(
+                                'publish_date',
+                                $articleLocale->published_at->format('Y-m-d H:i'),
+                                ['class' => 'form-control datetime-picker'])
                             }}
                         </div>
                     </div>
@@ -53,21 +97,6 @@
                         </div>
                     </div>
 
-
-                    <div class="form-group">
-                        {{ Form::label(
-                            'publish_date',
-                            trans('admin/article.label.publish_date'),
-                            ['class' => 'col-sm-2 control-label'])
-                        }}
-                        <div class="col-sm-10 width30">
-                            {{ Form::text(
-                                'publish_date',
-                                $articleLocale->published_at->format('Y-m-d H:i'),
-                                ['class' => 'form-control datetime-picker'])
-                            }}
-                        </div>
-                    </div>
 
                     <div class="form-group">
                         {{ Form::label(
@@ -103,25 +132,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        {{ Form::label(
-                            'tags',
-                            trans('admin/article.label.tags'),
-                            ['class' => 'col-sm-2 control-label'])
-                        }}
-                        <div class="col-sm-10">
-                            {{ Form::select(
-                                'tags[]',
-                                old('tags') ? array_flip(old('tags')) : $tags,
-                                null,
-                                [
-                                    'class' => 'form-control article-tag',
-                                    'multiple' => 'multiple',
-                                    'data-url' => action('Admin\TagsController@suggest')
-                                ])
-                            }}
-                        </div>
-                    </div>
 
                     <div class="date-time-campaign
                         @if ($articleLocale->article->type == config('article.type.normal'))
