@@ -9279,8 +9279,8 @@ ul.engagement li > a:focus {
   margin-right: 5px;
 }
 .detail-engagement .detail-favorite li .post-author {
-  font-family: helvetica;
-  font-weight: 700;
+  font-family: josefinsans-semibold;
+  font-size: 13px;
   color: #dd280d;
 }
 .sns-container {
@@ -9821,7 +9821,7 @@ ul.engagement li > a:focus {
 }
 .show-comment-modal > p .comment-count,
 .hide-comment-modal > p .comment-count {
-  font-size: 13px;
+  font-size: 11px;
   color: #ff6666;
 }
 .show-comment-modal > p .suggest-text,
@@ -10304,6 +10304,7 @@ ul.engagement li > a:focus {
   color: #dd280d;
 }
 .pagination-sm li a {
+  font-family: opensans-regular;
   font-size: 11px;
   font-weight: bold;
   padding: 2px 6px;
@@ -10380,6 +10381,7 @@ ul.engagement li > a:focus {
   }
 }
 .media-list-comments p.time .post-date {
+  font-family: opensans-regular;
   color: rgba(0, 0, 0, 0.6);
   font-size: 11px;
 }
@@ -10392,6 +10394,7 @@ ul.engagement li > a:focus {
   font-size: 12px;
 }
 .media-list-comments p.time .comment-reply-panel .reply-count {
+  font-family: opensans-regular;
   font-size: 11px;
   color: #999999;
 }
@@ -10409,6 +10412,7 @@ ul.engagement li > a:focus {
   background-color: transparent;
 }
 .media-list-comments .comment-favorite {
+  font-family: opensans-regular;
   position: absolute;
   top: 0;
   right: 0;
@@ -10507,6 +10511,7 @@ ul.engagement li > a:focus {
   color: #33ccff;
 }
 .list-group ul.engagement li span.engagement-count {
+  font-family: opensans-regular;
   color: #999999;
   font-size: 11px;
   font-weight: normal;
@@ -10633,13 +10638,12 @@ ul.engagement li > a:focus {
   margin-top: 25px;
 }
 .list-group-popular-category .show-more {
-  font-family: 'Roboto', sans-serif;
+  font-family: opensans-regular;
   font-size: 12px;
   text-transform: none;
   text-decoration: underline;
   position: relative;
   float: right;
-  top: 4px;
   color: #999999;
 }
 @media only screen and (max-width: 1024px) {
@@ -10815,6 +10819,7 @@ body.modal-open {
   bottom: 2px;
 }
 .placeholder-header-mobile {
+  font-family: opensans-regular;
   color: #333333;
   font-size: 11px;
   opacity: 0.5;
@@ -11100,24 +11105,28 @@ body.modal-open {
 }
 .top-header-mobile > form > input::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
+  font-family: opensans-regular;
   color: #333333;
   font-size: 11px;
   opacity: 0.5;
 }
 .top-header-mobile > form > input::-moz-placeholder {
   /* Firefox 19+ */
+  font-family: opensans-regular;
   color: #333333;
   font-size: 11px;
   opacity: 0.5;
 }
 .top-header-mobile > form > input:-ms-input-placeholder {
   /* IE 10+ */
+  font-family: opensans-regular;
   color: #333333;
   font-size: 11px;
   opacity: 0.5;
 }
 .top-header-mobile > form > input:-moz-placeholder {
   /* Firefox 18- */
+  font-family: opensans-regular;
   color: #333333;
   font-size: 11px;
   opacity: 0.5;
@@ -12005,7 +12014,7 @@ body.modal-open {
 .related-post {
   margin-top: 60px;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   .related-post {
     margin-top: 10px;
     margin-bottom: 40px;
@@ -12279,7 +12288,7 @@ body.modal-open {
   padding-right: 8px;
   padding-left: 8px;
 }
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .col-md-22,
   .col-md-30,
   .col-md-70,
@@ -12555,7 +12564,8 @@ body .sidebar ulul.engagement li > a:focus {
   padding-left: 2px;
 }
 .sidebar-footer .footer-list li {
-  font-size: 11px;
+  font-family: opensans-regular;
+  font-size: 10px;
   display: inline-block;
 }
 @media only screen and (max-width: 1024px) {
@@ -12571,6 +12581,7 @@ body .sidebar ulul.engagement li > a:focus {
     margin-top: 5px;
   }
   .sidebar-footer .copyright .year {
+    font-family: opensans-regular;
     font-size: 10px;
   }
 }
@@ -12589,6 +12600,7 @@ body .sidebar ulul.engagement li > a:focus {
   margin: 0 4px;
 }
 .sidebar-footer .copyright .year {
+  font-family: opensans-regular;
   font-size: 11px;
 }
 .placeholder-form-input {
@@ -12816,7 +12828,7 @@ body .sidebar ulul.engagement li > a:focus {
 }
 .step-1 .intro-area .intro-card .card-info .card-description {
   font-family: opensans-regular;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.3;
   color: #666666;
 }
@@ -13003,6 +13015,7 @@ body .sidebar ulul.engagement li > a:focus {
   top: 1px;
 }
 .step-1 .signup-area.bottom {
+  margin-top: 40px;
   height: 180px;
   background: url('../images/registration/registration_banner_bottom.png');
 }
@@ -13583,14 +13596,13 @@ textarea.step-2 .form-group select {
 }
 .guide-text {
   font-family: opensans-regular;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.5;
   color: #666666;
   margin-bottom: 35px;
 }
 @media only screen and (max-width: 768px) {
   .guide-text {
-    font-size: 12px;
     margin-bottom: 15px;
   }
 }
@@ -14191,6 +14203,7 @@ textarea.step-2 .form-group select {
   }
 }
 .article-body {
+  font-family: opensans-regular;
   margin-top: 35px;
   margin-bottom: 20px;
 }
@@ -14217,7 +14230,6 @@ textarea.step-2 .form-group select {
   background-color: #33f;
 }
 .article-body p {
-  font-family: opensans-regular;
   font-size: 13px;
   color: #666666;
 }
@@ -14233,6 +14245,8 @@ textarea.step-2 .form-group select {
   }
 }
 .comment-area .comment-count {
+  font-family: opensans-regular;
+  font-weight: 600;
   color: #dd280d;
 }
 .banner-sidebar-top-japanican {
