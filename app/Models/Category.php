@@ -45,9 +45,10 @@ class Category extends BaseModel
             try {
                 foreach (config('images.dimensions.category_icon') as $key => $value) {
                     if ($key == 'original') {
-                        $filePath = config('images.paths.category_icon') . $this->icon;
+                        $filePath = config('images.paths.category_icon') . '/' . $this->id . '/' . $this->icon;
                     } else {
-                        $filePath = config('images.paths.category_icon') . $key . '_' . $this->icon;
+                        $filePath = config('images.paths.category_icon') . '/' . $this->id . '/' . $key . '_' .
+                        $this->icon;
                     }
                     $results[$key] = ImageService::imageUrl($filePath);
                 }

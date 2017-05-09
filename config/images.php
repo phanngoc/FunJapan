@@ -3,7 +3,7 @@
 return [
     'paths' => [
         'post_photo' => 'uploads/articles/post_photos',
-        'category_icon' => 'uploads/categories/icons/',
+        'category_icon' => 'uploads/categories/icons',
         'article_thumbnail' => 'uploads/articles/thumbnail',
         'banner' => 'uploads/banner',
     ],
@@ -14,6 +14,7 @@ return [
         ],
         'category_icon' => [
             'mimes' => 'jpeg,png,jpg',
+            'max_size' => 10240,
         ],
         'article_thumbnail' => [
             'max_size' => 10240,

@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="ibox">
-            <div class="ibox-title"></div>
+            <div class="ibox-title"><h2>{{ trans('admin/category.category_list') }}</h2></div>
             <div class="ibox-content">
                 <table class="table table-striped table-bordered table-hover" id="category-table">
                     <thead>
@@ -25,7 +25,7 @@
                     @foreach($categories as $category)
                         <tr>
                             <td class="text-center">{{ $category->id }}</td>
-                            <td>{{ $category->name }}</td>
+                            <td><a href="{{ action('Admin\CategoriesController@show', [$category->id]) }}">{{ $category->name }}</a></td>
                             <td>{{ $category->short_name }}</td>
                             @if (!empty($category->icon))
                                 <td><img src="{{ $category->iconUrls['normal'] }}"></td>
@@ -35,13 +35,10 @@
                             <td>{{ $category->localeName }}</td>
                             <td class="text-center">{{ $category->created_at }}</td>
                             <td class="text-center">
-                                <a href="{{ action('Admin\CategoriesController@show', [$category->id]) }}" class="detail">
-                                    &nbsp;<i class="fa fa-eye fa-lg"></i>
+                                <a href="{{ action('Admin\CategoriesController@edit', [$category->id]) }}" class="edit" data-toggle="tooltip" title="Edit">
+                                    <i class="fa fa-pencil-square-o fa-lg"></i>
                                 </a>
-                                <a href="{{ action('Admin\CategoriesController@edit', [$category->id]) }}" class="edit">
-                                    &nbsp;<i class="fa fa-pencil-square-o fa-lg"></i>
-                                </a>
-                                <a href="#" data-url="{{ action('Admin\CategoriesController@destroy', [$category->id]) }}" class="delete">
+                                <a href="#" data-url="{{ action('Admin\CategoriesController@destroy', [$category->id]) }}" data-confirm="{{ trans('admin/category.delete_confirm') . $category->name . ' ?'}}" class="delete" data-toggle="tooltip" title="Delete">
                                     &nbsp;<i class="fa fa-trash-o fa-lg"></i>
                                 </a>
                             </td>

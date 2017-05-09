@@ -3,8 +3,9 @@ $(document).ready(function (e) {
         var url = $(this).data('url');
         var token = $('meta[name="csrf-token"]').attr('content');
         var urlRedirect = $('#url-redirect').data('url');
+        var confirm=$(this).data('confirm')
         swal({
-            title: $('#delete-confirm').data('confirm-message'),
+            title: confirm,
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
@@ -28,8 +29,19 @@ $(document).ready(function (e) {
     });
 
     $('#category-table').DataTable( {
-        aLengthMenu: [[20, 50, 100], [20, 50, 100]],
+        aLengthMenu: [[10, 25, 50], [10, 25, 50]],
         paging: true,
-        order: []
+        pagingType: 'full_numbers',
+        order: [],
+        'columnDefs': [{
+            'targets': 3,
+            'sortable': false,
+            'searchable': false
+        },
+        {
+            'targets': 6,
+            'sortable': false,
+            'searchable': false
+        }]
     });
 });

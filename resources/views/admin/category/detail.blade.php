@@ -23,7 +23,10 @@
                     <strong>{{ trans('admin/category.label.created_at') }}: </strong> {{ $category->created_at }}
                     <hr>
                     <a href="{{ action('Admin\CategoriesController@edit', [$category->id]) }}" class="btn btn-w-m btn-primary">
-                            {{ trans('admin/article.button.edit') }}
+                            {{ trans('admin/category.button.edit') }}
+                    </a>
+                    <a href="{{ action('Admin\CategoriesController@index') }}" class="btn btn-w-m btn-primary">
+                            {{ trans('admin/category.button.cancel') }}
                     </a>
                 </div>
             </div>

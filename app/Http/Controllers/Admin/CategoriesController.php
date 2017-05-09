@@ -57,13 +57,13 @@ class CategoriesController extends Controller
     public function update(Request $request)
     {
         $inputs = $request->all();
-        $validator = CategoryService::validate($inputs);
+        $validator = CategoryService::validate($inputs, 'update');
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput($inputs);
         }
 
         if (CategoryService::update($inputs)) {
-            return redirect()->action('Admin\CategoriesController@index')
+            return redirect()->action('Admin\CategoriesController@show', $inputs['id'])
                 ->with(['message' => trans('admin/category.update_success')]);
         }
 

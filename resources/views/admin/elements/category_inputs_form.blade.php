@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="form-group required">
     {{ Form::label(
         'name',
         trans('admin/category.label.name'),
@@ -10,12 +10,13 @@
             $category->name ?? '',
             [
                 'class' => 'form-control',
-                'placeholder' => trans('admin/category.placeholder.name')
+                'placeholder' => trans('admin/category.placeholder.name'),
+                'required'
             ])
         }}
     </div>
 </div>
-<div class="form-group">
+<div class="form-group required">
     {{ Form::label(
         'short_name',
         trans('admin/category.label.short_name'),
@@ -27,7 +28,8 @@
             $category->short_name ?? '',
             [
                 'class' => 'form-control',
-                'placeholder' => trans('admin/category.placeholder.short_name')
+                'placeholder' => trans('admin/category.placeholder.short_name'),
+                'required'
             ])
         }}
     </div>

@@ -12,6 +12,7 @@ use App\Models\ArticleLocale;
 use App\Models\CategoryLocale;
 use App\Models\Article;
 use App\Models\InterestUser;
+use App\Models\Locale;
 use App\Services\ImageService;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -37,13 +38,20 @@ class CategoryService extends BaseService
         return $categories;
     }
 
-    public static function validate($inputs, $rule = [])
+    public static function validate($inputs, $key = null)
     {
         $validationRules = [
-            'name' => 'required|unique:categories',
-            'short_name' => 'required',
+            'name' => 'required|max:255|unique:categories',
+            'short_name' => 'required|max:20',
+            'image' => 'required|image|max:' . config('images.validate.category_icon.max_size'),
         ];
-        $validationRules = array_merge($validationRules, $rule);
+        if ($key) {
+            $validationRules = [
+                'name' => 'required|max:255|unique:categories,name,' . $inputs['id'],
+                'short_name' => 'required|max:20',
+                'image' => 'image|max:' . config('images.validate.category_icon.max_size'),
+            ];
+        }
 
         return Validator::make($inputs, $validationRules);
     }
@@ -53,10 +61,26 @@ class CategoryService extends BaseService
         try {
             $category = Category::find($inputs['id']);
             if ($category) {
+                $icon = '';
+                if (isset($inputs['image'])) {
+                    $iconPath = config('images.paths.category_icon') . '/' . $category->id;
+                    if ($category->icon) {
+                        ImageService::delete($iconPath);
+                    }
+                    $icon = ImageService::uploadFile($inputs['image'], 'category_icon', $iconPath);
+                }
+                if ($icon) {
+                    return $category->update([
+                        'name' => $inputs['name'],
+                        'short_name' => $inputs['short_name'],
+                        'icon' => $icon,
+                    ]);
+                }
+
                 return $category->update([
-                    'name' => $inputs['name'],
-                    'short_name' => $inputs['short_name'],
-                ]);
+                        'name' => $inputs['name'],
+                        'short_name' => $inputs['short_name'],
+                    ]);
             }
 
             return false;
@@ -78,19 +102,30 @@ class CategoryService extends BaseService
             if (isset($inputs['locale_id'])) {
                 $category->locale_id = $inputs['locale_id'];
             }
-            if (isset($inputs['img'])) {
-                $photoUploadPath = config('images.paths.category_icon');
-                $icon = ImageService::uploadFile($inputs['img'], 'category_icon', $photoUploadPath);
-                if ($icon) {
-                    $category->icon = $icon;
-                }
-            }
-            if ($category->save()) {
-                DB::commit();
-                return $category->id;
-            }
+            $category->save();
 
-            return false;
+            if ($category->id) {
+                if (isset($inputs['image'])) {
+                    $photoUploadPath = config('images.paths.category_icon') . '/' . $category->id;
+                    $icon = ImageService::uploadFile($inputs['image'], 'category_icon', $photoUploadPath);
+                    if ($icon) {
+                        $category->update([
+                            'icon' => $icon,
+                        ]);
+                    } else {
+                        DB::rollback();
+
+                        return false;
+                    }
+                }
+            } else {
+                DB::rollback();
+
+                return false;
+            }
+            DB::commit();
+
+            return $category->id;
         } catch (\Exception $e) {
             DB::rollback();
             Log::error($e);
@@ -106,7 +141,7 @@ class CategoryService extends BaseService
 
     public static function getLocale()
     {
-        return ['' => ''] + LocaleService::getAllLocales();
+        return ['' => ''] + Locale::orderBy('name', 'ASC')->pluck('name', 'id')->toArray();
     }
 
     public static function delete($categoryId)
