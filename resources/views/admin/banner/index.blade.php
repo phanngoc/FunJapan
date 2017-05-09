@@ -67,6 +67,12 @@
                                                             </div>
                                                             <div class="row text-center form-upload margin-top-10">
                                                                 <input type="file" accept="image/jpeg,image/png,image/jpg" name="banner[{{ $bannerSetting->id }}][photo]" class="upload-file" style="display:none">
+                                                                <input
+                                                                    type="hidden"
+                                                                    class="is_uploaded_photo"
+                                                                    name="banner[{{ $bannerSetting->id }}][is_uploaded_photo]"
+                                                                    value="{{ $bannerSetting->photo ? 1 : 0 }}"
+                                                                >
                                                                 <button class="btn btn-success btn-upload" type="button">
                                                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                                                     <span class="bold">{{ trans('admin/banner.label_upload') }}</span>
@@ -76,7 +82,7 @@
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="row">
-                                                                <p>{{ trans('admin/banner.search_by') }} : <span class="text-danger">*<span></p>
+                                                                <p>{{ trans('admin/banner.search_by') }}  <span class="text-danger">*<span></p>
                                                                 <select
                                                                     name="article[{{ $bannerSetting->id }}]"
                                                                     class="article-select2"
@@ -89,9 +95,7 @@
                                                                         </option>
                                                                     @endif
                                                                 </select>
-                                                                <p class="text-danger font-bold m-xxs error-message" id="article_locale_id_error_{{ $bannerSetting->id }}">
-                                                                    {{ isset($messages) ? dd($messages) : '' }}
-                                                                </p>
+                                                                <p class="text-danger font-bold m-xxs error-message" id="article_locale_id_error_{{ $bannerSetting->id }}"></p>
                                                                 <input
                                                                     type="hidden"
                                                                     name="banner[{{ $bannerSetting->id }}][article_locale_id]"
@@ -125,6 +129,12 @@
                                                             </div>
                                                             <div class="row text-center form-upload margin-top-10">
                                                                 <input type="file" accept="image/jpeg,image/png,image/jpg" name="banner[{{ $key }}][photo]" class="upload-file" style="display:none">
+                                                                <input
+                                                                    type="hidden"
+                                                                    class="is_uploaded_photo"
+                                                                    name="banner[{{ $key }}][is_uploaded_photo]"
+                                                                    value="0"
+                                                                >
                                                                 <button class="btn btn-success btn-upload" type="button">
                                                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                                                     <span class="bold">{{ trans('admin/banner.label_upload') }}</span>
@@ -134,7 +144,7 @@
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="row">
-                                                                <p>{{ trans('admin/banner.search_by') }} : <span class="text-danger">*<span></p>
+                                                                <p>{{ trans('admin/banner.search_by') }} <span class="text-danger">*<span></p>
                                                                 <select
                                                                     name="article[{{ $key }}]"
                                                                     class="article-select2"

@@ -12,7 +12,7 @@
         <!-- MAIN IMAGES -->
         <div id="banner-top-slider">
             @foreach($banners as $banner)
-                <a class="lazyImage" href="{{ $banner->photo_urls['larger'] ? : ($banner->articleLocale ? $banner->articleLocale->thumbnail_urls['larger_'] : null) }}" title="#htmlcaption{{ $banner->id }}"></a>
+                <a class="lazyImage" href="{{ $banner->photo_urls['larger'] }}" title="#htmlcaption{{ $banner->id }}"></a>
             @endforeach
         </div>
         <!-- MAIN IMAGES -->
@@ -39,7 +39,7 @@
         <!-- THUMBNAIS -->
         <div id="banner-top-thumbs">
             @foreach($banners as $banner)
-                <div class="thumb" style="background-image: url('{{ $banner->photo_urls['small'] ? : ($banner->articleLocale ? $banner->articleLocale->thumbnail_urls['small_'] : null) }}');">
+                <div class="thumb" style="background-image: url('{{ $banner->photo_urls['small'] }}');">
                     <div class="thumb-content-wrapper">
                         <div class="thumb-content">
                             <p>{{ $banner->articleLocale ? $banner->articleLocale->getShortTitle() : '' }}</p>

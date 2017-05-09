@@ -23,11 +23,20 @@ class BannerSettingService extends BaseService
             'photo' => 'mimes:' . $mimes . '|max:' . $maxSize,
         ];
 
-        foreach ($inputs as $key => $input) {
-            $validate = Validator::make($input, $rules)->messages()->toArray();
+        $messages = [
+            'article_locale_id.required' => trans('admin/banner.validate.required.article_locale_id'),
+        ];
 
-            if (in_array($input['article_locale_id'], $listArticle)) {
-                $validate['article_locale_id'][] = trans('admin/banner.validate.duplicate');
+        foreach ($inputs as $key => $input) {
+            $validate = Validator::make($input, $rules, $messages)->messages()->toArray();
+
+            if ($input['article_locale_id'] && $duplicateKey = array_search($input['article_locale_id'], $listArticle)) {
+                $validate['article_locale_id']['duplicate'] = trans('admin/banner.validate.duplicate');
+                $result[$duplicateKey]['article_locale_id']['duplicate'] = trans('admin/banner.validate.duplicate');
+            }
+
+            if (!isset($input['is_uploaded_photo']) || !$input['is_uploaded_photo']) {
+                $validate['photo'][] = trans('admin/banner.validate.required.photo');
             }
 
             $article = ArticleLocale::find($input['article_locale_id']);
@@ -39,7 +48,7 @@ class BannerSettingService extends BaseService
                 $result[$key] = $validate;
             }
 
-            $listArticle[] = $input['article_locale_id'];
+            $listArticle[$key] = $input['article_locale_id'];
         }
 
 
