@@ -22,6 +22,7 @@ var assetsCopy = [
     ['mock/front/dist/css', 'css', false],
     ['mock/front/dist/fonts', 'fonts', false],
     ['mock/front/dist/images', 'images', false],
+    [ 'resources/assets/images/guide', 'images/guide', false],
     ['node_modules/font-awesome/css', 'font-awesome', false],
     ['resources/assets/js/web', 'js/web', false],
     ['node_modules/jquery-datetimepicker/build/jquery.datetimepicker.min.css', 'admin/css/jquery-datetimepicker', false],
