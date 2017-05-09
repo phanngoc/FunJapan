@@ -22,10 +22,14 @@ class ArticlesController extends Controller
             return response(trans('web/global.error'), 404);
         }
 
+        if (!auth()->check()
+            && isset($article->locale->is_member_only)
+            && $article->locale->is_member_only == 1) {
+            return redirect()->action('Web\LoginController@showLoginForm');
+        }
+
         if (isset($article->category)) {
-            $categoryId = $article->category->id;
-            $categoryName = CategoryService::getCategoryName($categoryId, $this->currentLocaleId);
-            $this->viewData['categoryName'] = $categoryName;
+            $this->viewData['categoryName'] = $article->category->name;
         } else {
             return view('web.articles.show', $this->viewData)->withErrors(trans('web/global.error'));
         }

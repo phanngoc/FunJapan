@@ -10,14 +10,6 @@
     border-color: #c0c0c0;
 }
 
-.margin-top-10 {
-    margin-top: 10px;
-}
-
-.article-select2 {
-    width: 100%;
-}
-
 @media screen and (max-width: 1600px) {
     .image-banner {
         height:150px;

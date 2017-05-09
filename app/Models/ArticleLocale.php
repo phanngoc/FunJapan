@@ -97,6 +97,11 @@ class ArticleLocale extends BaseModel
         return $results;
     }
 
+    public function getCategoryAttribute()
+    {
+        return isset($this->article) ? $this->article->category : '';
+    }
+
     public function getHtmlContentAttribute($value)
     {
         return Markdown::convertToHtml($this->content);
@@ -114,6 +119,6 @@ class ArticleLocale extends BaseModel
 
     public function getIsShowAbleAttribute()
     {
-        return Carbon::now()->gt($this->published_at) && !$this->hide_always;
+        return Carbon::now()->gt(Carbon::parse($this->published_at)) && !$this->hide_always;
     }
 }

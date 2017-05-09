@@ -88,6 +88,11 @@
                             {{ trans('admin/banner.label_banner') }}
                         </a>
                     </li>
+                    <li>
+                        <a href="{{action('Admin\ArticleRanksController@index')}}">
+                            {{ trans('admin/article_rank.label') }}
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>
