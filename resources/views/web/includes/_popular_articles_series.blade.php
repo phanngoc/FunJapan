@@ -28,13 +28,13 @@
                                     <div class="col-md-61">
                                         <div class="pp-item-info">
                                             <p class="pp-item-title">
-                                                <a href="#">{{ $post->getShortTitle() }}</a>
+                                                <a href="{{ action('Web\ArticlesController@show', ['id' => $post->article_id]) }}">{{ $post->getShortTitle() }}</a>
                                             </p>
                                             <div class="loader-engagement"></div>
                                         </div>
                                     </div>
                                 </div>
-                                <img class="pp-icon" src="{{ $post->article->category->icon ? : '' }}">
+                                <img class="pp-icon" src="{{ $post->article->category->icon_urls['normal'] ? : '' }}">
                             </div>
                         </div>
                         </div>

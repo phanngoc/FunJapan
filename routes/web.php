@@ -13,6 +13,8 @@ Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
     Route::group(['prefix' => 'guide'], function () {
         Route::get('/about', 'GuidesController@about');
         Route::get('/footprint', 'GuidesController@footPrint');
+        Route::get('/staff', 'GuidesController@staff');
+        Route::get('/previous-campaigns', 'GuidesController@previousCampaigns');
     });
 
     // Authentication Routes...
