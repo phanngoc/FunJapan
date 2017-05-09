@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Web;
 
-use Illuminate\Http\Request;
-use App\Services\Admin\LocaleService;
 use App\Services\Admin\ArticleRankService;
 use App\Services\Admin\ArticleService;
 use App\Services\Admin\BannerSettingService;
