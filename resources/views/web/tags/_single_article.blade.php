@@ -2,32 +2,32 @@
   <!-- CARD_ITEM -->
   <div class="list-group-item list-group-item-cards">
     @php
-      if (!Auth::check() && $article->articleLocales[0]->is_member_only) {
+      if (!Auth::check() && $article->articleLocale->is_member_only) {
         $url = route('login');
       } else {
-        $url = route('article_detail', $article->id);
+        $url = route('article_detail', $article->article->id);
       }
     @endphp
     <a href="{{ $url }}">
       <div class="img-card card-item">
-          <img src="{{ asset($article->articleLocales[0]->thumbnail_urls['normal']) }}">
-          <p class="card-title"><span>{{ $article->articleLocales[0]->title }}</span> </p>
-          <p class="card-title-sm"><span>{{ $article->articleLocales[0]->title }}</span></p>
+          <img src="{{ asset($article->articleLocale->thumbnail_urls['normal']) }}">
+          <p class="card-title"><span>{{$article->articleLocale->title}}</span> </p>
+          <p class="card-title-sm"><span>{{$article->articleLocale->title}}</span></p>
       </div>
     </a>
+
     <div class="article-info">
       <div class="article-summary">
         <div class="article-engagement">
-          <p class="article-category"><img class="category-icon" src="{{ asset($category->icon_urls['normal']) }}" />{{ $category->name }} <span class="verticle-bar">|</span></p>
+          <p class="article-category"><img class="category-icon" src="{{ asset($article->article->category->icon_urls['normal']) }}" />{{$article->article->category->name}} <span class="verticle-bar">|</span></p>
           <!-- ENGAGEMENT -->
           <ul class="engagement">
-            @if (count($article->articleLocales) > 0)
               <li>
                 <a class="engagement-favorite" href="{{ $url }}">
                   <i class="fa fa-heart"></i>
                 </a>
                 <span class="engagement-count">
-                  {{ $article->articleLocales[0]->like_count }}
+                  {{ $article->articleLocale->like_count }}
                 </span>
               </li>
 
@@ -36,7 +36,7 @@
                   <i class="fa fa-comment"></i>
                 </a>
                 <span class="engagement-count">
-                  {{ $article->articleLocales[0]->comment_count }}
+                  {{ $article->articleLocale->comment_count }}
                 </span>
               </li>
 
@@ -45,20 +45,19 @@
                   <i class="fa fa-share-alt"></i>
                 </a>
                 <span class="engagement-count">
-                  {{ $article->articleLocales[0]->share_count }}
+                  {{ $article->articleLocale->share_count }}
                 </span>
               </li>
-            @endif
           </ul>
           <!-- EOF ENGAGEMENT -->
         </div>
         <!-- TAGS -->
         <div class="article-tags">
           <ul>
-            @foreach ($article->articleTags as $tag)
+            @foreach ($article->articleLocale->tags as $tag)
               <li class="hot-tag">
-                <a href="{{ route('tag_detail', $tag->tag->name) }}">
-                  <span class="hashtag"># </span>{{$tag->tag->name}}
+                <a href="{{ route('tag_detail', $tag->name) }}">
+                  <span class="hashtag"># </span>{{$tag->name}}
                 </a>
               </li>
             @endforeach
