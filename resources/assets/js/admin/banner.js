@@ -103,6 +103,9 @@ $(document).ready(function () {
             };
 
             reader.readAsDataURL(input.files[0]);
+
+            $(input).siblings('input.is_uploaded_photo').val(1);
+            $(imgPreview).siblings('p.text-danger').text('')
         }
     }
 
@@ -128,7 +131,7 @@ $(document).ready(function () {
                 swal(labelUpdateSuccess, "", "success");
 
                 $.each(response.data, function(key, object) {
-                    element.parent().children().find('input[name="banner[' + key + '][photo]"]')[0].value = '';
+                    element.parent().children().find('input[name="banner[' + key + '][photo]"]')[0].value = object.photo;
                     element.parent().children().find('input[name="banner[' + key + '][id]"]').val(object.id);
                 });
 
@@ -148,12 +151,19 @@ $(document).ready(function () {
                 var messages = response.responseJSON.message;
 
                 $.each(messages, function(bannerId, message) {
+                    var currentElement = element.parent();
+
                     if (message.article_locale_id) {
-                        $('#article_locale_id_error_'+ bannerId).text(message.article_locale_id[0]);
+                        if (message.article_locale_id['duplicate']) {
+                            currentElement.find('#article_locale_id_error_'+ bannerId).text(message.article_locale_id['duplicate']);
+                        } else {
+                            currentElement.find('#article_locale_id_error_'+ bannerId).text(message.article_locale_id[0]);
+                        }
+
                     }
 
                     if (message.photo) {
-                        $('#photo_error_'+ bannerId).text(message.photo[0]);
+                        currentElement.find('#photo_error_'+ bannerId).text(message.photo[0]);
                     }
                 });
 
