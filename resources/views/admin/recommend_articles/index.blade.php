@@ -32,7 +32,10 @@
                 <div class="table-responsive">
                     <table width="100%" class="table table-striped table-bordered table-hover" id="article-table"
                         data-url-set-recommend="{{ action('Admin\RecommendedArticlesController@store') }}"
-                        data-url="{{ action('Admin\ArticlesController@getListArticles', ['locale_id' => $input['locale_id'] ?? $input['default_locale_id']]) }}">
+                        data-url="{{ action('Admin\ArticlesController@getListArticles', [
+                            'locale_id' => $input['locale_id'] ?? $input['default_locale_id'],
+                            'list_set_recommend' => true,
+                        ]) }}">
                         <thead>
                             <tr>
                                 <th class="text-center">{{ trans('admin/recommend_article.label.no') }}</th>
