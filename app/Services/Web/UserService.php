@@ -8,6 +8,9 @@ use App\Services\EmailService;
 use Carbon\Carbon;
 use Validator;
 use Illuminate\Support\Facades\DB;
+use Auth;
+use App\Models\InterestUser;
+use Hash;
 
 class UserService
 {
@@ -100,6 +103,36 @@ class UserService
             return $user;
         } catch (\Exception $e) {
             DB::rollBack();
+            return false;
+        }
+    }
+
+    public static function update($id, $data)
+    {
+        $result = User::find($id)->update($data);
+
+        return $result;
+    }
+
+    public static function updateInterest($id, $data)
+    {
+        $result = User::find($id)->interests()->sync($data);
+
+        return $result;
+    }
+
+    /**
+     * Update password for user.
+     * @param  [array] $data [description]
+     * @return [type]       [description]
+     */
+    public static function updatePassword($id, $data)
+    {
+        $user = User::find($id);
+        if (Hash::check($data['password'], $user->password)) {
+            $result = $user->update(['password' => $data['new_password']]);
+            return $result;
+        } else {
             return false;
         }
     }

@@ -58,6 +58,13 @@ Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
         Route::resource('comments', 'CommentsController');
 
         Route::get('/photo/{id}/favorite', 'ArticlePhotosController@favorite');
+        Route::get('Account/BasicProfile', 'UsersController@index')->name('profile');
+        Route::post('Account/BasicProfile', 'UsersController@update');
+        Route::get('Account/Interest', 'UsersController@interest')->name('interest');
+        Route::post('Account/Interest', 'UsersController@updateInterest');
+
+        Route::get('Account/ChangePassword', 'UsersController@password')->name('change_password');
+        Route::post('Account/ChangePassword', 'UsersController@updatePassword');
     });
 
     Route::get('/articles/{id}', 'ArticlesController@show')->name('article_detail');

@@ -6,6 +6,7 @@ return [
             'name' => 'Please enter your name.',
             'email' => 'Please enter your e-mail address.',
             'password' => 'Please enter the password.',
+            'new_password' => 'Please enter the new password.',
             'password_confirmation' => 'Please enter the password for confirmation.',
             'gender' => 'Please select your gender.',
             'location_id' => 'Please enter the location where you live, eat and sleep.',
@@ -14,13 +15,18 @@ return [
         ],
         'min' => [
             'password' => 'Password needs to be longer, at least 6 letters.',
+            'new_password' => 'Password needs to be longer, at least 6 letters.',
             'password_confirmation' => 'Password confirmation needs to be longer, at least 6 letters.',
         ],
         'max' => [
             'name' => 'Please enter your name in 50 characters or less.',
             'password' => 'Please enter your password in 50 characters or less.',
+            'new_password' => 'Please enter your new password in 50 characters or less.',
             'password_confirmation' => 'Please enter your password confirmation in 50 characters or less.',
             'email' => 'Please enter your email address in 100 characters or less.',
+        ],
+        'same' => [
+            'password_confirmation' => 'The password for confirmation does not match with the password.',
         ],
         'unique' => [
             'email' => 'Your account is already activated.',
@@ -71,6 +77,7 @@ return [
         'month' => 'Month',
         'day' => 'Day',
         'year' => 'Year',
+        'birthday' => 'Birthday',
         'location_title' => 'Location',
         'religion_title' => 'Religion',
         'subscription_title' => 'Subscription',
@@ -88,4 +95,18 @@ return [
         ],
         'term_title' => 'Terms and Conditions and Privacy Policy'
     ],
+    'profile_page' => [
+        'setting' => 'Settings',
+        'profile' => 'Profile',
+        'interest' => 'Interest',
+        'madatory_field' => 'These are mandatory fields.',
+        'password' => 'Password',
+        'new_password' => 'New Password',
+        'new_password_again' => 'New Password, Again',
+        'update_complete' => 'Update completed!!',
+        'title_interest' => 'What are your interest?',
+        'update_setting' => 'Update Setting',
+        'change_password_page_error' => 'The password of :name account cannot be set up here.
+If you want to change the password of :name account, please set up a password on :name.'
+    ]
 ];

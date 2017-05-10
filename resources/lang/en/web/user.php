@@ -6,6 +6,7 @@ return [
             'name' => 'Please enter your name.',
             'email' => 'Please enter your e-mail address.',
             'password' => 'Please enter the password.',
+            'new_password' => 'Please enter the new password.',
             'password_confirmation' => 'Please enter the password for confirmation.',
             'gender' => 'Please select your gender.',
             'location_id' => 'Please enter the location where you live, eat and sleep.',
@@ -14,13 +15,18 @@ return [
         ],
         'min' => [
             'password' => 'Password needs to be longer, at least 6 letters.',
+            'new_password' => 'Password needs to be longer, at least 6 letters.',
             'password_confirmation' => 'Password confirmation needs to be longer, at least 6 letters.',
         ],
         'max' => [
-            'name' => 'Your name needs to be shorter, at most 50 letters.',
-            'password' => 'Your password needs to be shorter, at most 50 letters.',
-            'password_confirmation' => 'Your password confirmation needs to be shorter, at most 50 letters.',
-            'email' => 'Your email needs to be shorter, at most 100 letters.',
+            'name' => 'Please enter your name in 50 characters or less.',
+            'password' => 'Please enter your password in 50 characters or less.',
+            'new_password' => 'Please enter your new password in 50 characters or less.',
+            'password_confirmation' => 'Please enter your password confirmation in 50 characters or less.',
+            'email' => 'Please enter your email address in 100 characters or less.',
+        ],
+        'same' => [
+            'password_confirmation' => 'The password for confirmation does not match with the password.',
         ],
         'unique' => [
             'email' => 'Your account is already activated.',
@@ -39,7 +45,7 @@ return [
     'lost_password' => [
         'title' => 'Lupa Kata Sandi?',
         'title_requested' => 'Terima Kasih!',
-        'title_reset_password' => 'Terima Kasih!',
+        'title_reset_password' => 'Reset Kata Sandi',
         'description' => 'Silakan masukkan alamat emailmu. Kamu akan menerima link untuk membuat kata sandi baru melalui email.',
         'description_requested' => 'Silakan periksa emailmu untuk konfirmasi link.',
         'description_reset_password' => 'Silahkan masukkan kata sandi barumu.',
@@ -54,12 +60,12 @@ return [
         'facebook_login_text' => 'Login with Facebook',
         'or' => 'ATAU',
         'email_login_title' => 'Sign in dengan e mail address',
-        'login_title' => 'Login to Fun! Japan',
+        'login_title' => 'Login ke Fun! Japan',
     ],
     'label' => [
         'name_title' => 'Your Name',
-        'email_title' => 'E-Mail Address',
-        'gender_title' => 'E-Mail Address',
+        'email_title' => 'E-Mail',
+        'gender_title' => 'Gender',
         'password_title' => 'Password',
         're_password_title' => 'Password, Again',
         're_password_placeholder' => 'Confirm your password',
@@ -71,6 +77,7 @@ return [
         'month' => 'Month',
         'day' => 'Day',
         'year' => 'Year',
+        'birthday' => 'Birthday',
         'location_title' => 'Location',
         'religion_title' => 'Religion',
         'subscription_title' => 'Subscription',
@@ -86,6 +93,20 @@ return [
             'step_3_title' => 'Registration completed',
             'text_country' => 'Japan',
         ],
-        'term_title' => 'Terms and Conditions and Privacy policy'
+        'term_title' => 'Terms and Conditions and Privacy Policy'
     ],
+    'profile_page' => [
+        'setting' => 'Settings',
+        'profile' => 'Profile',
+        'interest' => 'Interest',
+        'madatory_field' => 'These are mandatory fields.',
+        'password' => 'Password',
+        'new_password' => 'New Password',
+        'new_password_again' => 'New Password, Again',
+        'update_complete' => 'Update completed!!',
+        'title_interest' => 'What are your interest?',
+        'update_setting' => 'Update Setting',
+        'change_password_page_error' => 'The password of :name account cannot be set up here.
+If you want to change the password of :name account, please set up a password on :name.',
+    ]
 ];
