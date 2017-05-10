@@ -10,6 +10,8 @@
 {{ Html::script('assets/js/main/slider.js') }}
 <!-- Carousel-->
 {{ Html::script('assets/js/main/slick-carousel-custom.js') }}
+{{ Html::script('assets/js/web/infinite-scroll/jquery.infinitescroll.js') }}
+{{ Html::script('assets/js/web/top_page.js') }}
 <script>
 $(function() {
     // Navbar
