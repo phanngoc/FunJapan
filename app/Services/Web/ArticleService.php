@@ -177,4 +177,16 @@ class ArticleService
             ->orderBy('created_at', 'desc')
             ->paginate($limit);
     }
+
+    public static function getRecommendArticles($localeId)
+    {
+        return ArticleLocale::with('article')
+            ->where('locale_id', $localeId)
+            ->where('recommended', 1)
+            ->where('hide_always', 0)
+            ->whereNotNull('published_at')
+            ->where('published_at', '<', Carbon::now())
+            ->orderBy('created_at', 'desc')
+            ->get();
+    }
 }

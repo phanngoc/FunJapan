@@ -1,7 +1,7 @@
 @extends('layouts/default_toppage')
 
 @section('content')
-    @include('web.includes._recommended_articles')
+    @include('web.includes._recommended_articles', ['recommendArticles' => $recommendArticles])
     @include('web.includes._articles_ranking')
     <div class="main-content">
         <div class="row gutter-32">
