@@ -49,17 +49,17 @@ $(function () {
         }],
         'createdRow': function (row, data, index) {
             var pageInfo = table.page.info();
-            $('td', row).eq(0).empty().append(pageInfo.page * pageInfo.length + index + 1);
+            $('td', row).eq(0).empty().html(pageInfo.page * pageInfo.length + index + 1);
             var detailLink = baseUrl() + '/admin/articles/' + data.article_id + '?locale=' + data.locale_id;
-            $('td', row).eq(1).empty().append('<a href="' + detailLink + '">' + data.title + '</a>');
-            $('td', row).eq(2).empty().append(data.article.user.name);
+            $('td', row).eq(1).empty().html('<a href="' + detailLink + '">' + encodeHTML(data.title) + '</a>');
+            $('td', row).eq(2).empty().text(data.article.user.name);
 
             if (typeof flag != 'undefined' && flag) {
-                $('td', row).eq(5).empty().append('<input type="checkbox" class="select-article"' +
+                $('td', row).eq(5).empty().html('<input type="checkbox" class="select-article"' +
                     'data-article-locale-id="' + data.id + '"' +
                     (data.recommended ? 'checked>' : '>'));
             } else {
-                $('td', row).eq(5).empty().append('<a href="javascript:;" class="remove-recommended-article"' +
+                $('td', row).eq(5).empty().html('<a href="javascript:;" class="remove-recommended-article"' +
                 'data-id="{{ $articleLocale->id }}"' +
                 'data-url="' + baseUrl() + '/admin/recommend-articles/' + data.id + '">' +
                 '<i class="fa fa-times-circle text-danger"></i></a>');

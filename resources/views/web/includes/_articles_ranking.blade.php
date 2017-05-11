@@ -7,7 +7,7 @@
                     @if (isset($articleRank->rank) && $articleRank->rank == 1)
                         <a href="{{ action ('Web\ArticlesController@show', ['id' => $articleRank->articleLocale->article_id]) }}">
                             <div class="img-card first-ranking-img">
-                                <img src="{{ $articleRank->articleLocale->photo }}">
+                                <img src="{{ $articleRank->articleLocale->thumbnail_urls['original'] }}">
                                 <p class="card-title"><span>{{ $articleRank->articleLocale->title }}</span> </p>
                                 <p class="card-title-sm"><span>{{ $articleRank->articleLocale->title }}  </span></p>
                                 <p class="first-ranking-num">
@@ -16,7 +16,7 @@
                                 <div class="triangle-bottomright-1"></div>
                             </div>
                             <div class="first-ranking-info">
-                                <p class="first-ranking-topic"><img src="{{ $articleRank->articleLocale->category->icon }}"> {{ $articleRank->articleLocale->category->name }}</p>
+                                <p class="first-ranking-topic"><img src="{{ $articleRank->articleLocale->category->iconUrls['normal'] }}"> {{ $articleRank->articleLocale->category->name }}</p>
                                 <p class="first-ranking-des">
                                     {{ $articleRank->articleLocale->summary }}
                                 </p>
@@ -34,7 +34,7 @@
                             <div class="rest-ranking">
                                 <a href="{{ action ('Web\ArticlesController@show', ['id' => $articleRank->articleLocale->article_id]) }}">
                                     <div class="img-card list-group-ranking-item">
-                                        <img src="{{ $articleRank->articleLocale->photo }}">
+                                        <img src="{{ $articleRank->articleLocale->thumbnail_urls['original'] }}">
                                         <p class="card-title"><span>{{ $articleRank->articleLocale->title }}</span> </p>
                                         <p class="card-title-sm"><span>{{ $articleRank->articleLocale->title }}</span></p>
                                         <p class="rest-ranking-num">
@@ -53,7 +53,7 @@
                             <div class="rest-ranking">
                                 <a href="{{ action ('Web\ArticlesController@show', ['id' => $articleRank->articleLocale->article_id]) }}">
                                     <div class="img-card list-group-ranking-item">
-                                        <img src="{{ $articleRank->articleLocale->photo }}">
+                                        <img src="{{ $articleRank->articleLocale->thumbnail_urls['original'] }}">
                                         <p class="card-title"><span>{{ $articleRank->articleLocale->title }}</span> </p>
                                         <p class="card-title-sm"><span>{{ $articleRank->articleLocale->title }}</span></p>
                                         <p class="rest-ranking-num">
