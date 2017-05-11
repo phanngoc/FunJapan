@@ -34,4 +34,39 @@ class GuidesController extends Controller
     {
         return view('web.guide.' . $this->currentLocale . '.previous_campaigns', $this->viewData);
     }
+
+    public function faq()
+    {
+        return view('web.guide.' . $this->currentLocale . '.faq', $this->viewData);
+    }
+
+    public function contactUs()
+    {
+        return view('web.guide.' . $this->currentLocale . '.contact_us', $this->viewData);
+    }
+
+    public function privacyPolicies()
+    {
+        return view('web.guide.' . $this->currentLocale . '.privacy_policies', $this->viewData);
+    }
+
+    public function aboutFunJapanPoints()
+    {
+        return view('web.guide.' . $this->currentLocale . '.point', $this->viewData);
+    }
+
+    public function inquiry()
+    {
+        return view('web.guide.inquiry', $this->viewData);
+    }
+
+    public function termsAndConditions()
+    {
+        return view('web.guide.' . $this->currentLocale . '.terms_conditions', $this->viewData);
+    }
+
+    public function articleSeries()
+    {
+        return view('web.guide.' . $this->currentLocale . '.article_series', $this->viewData);
+    }
 }

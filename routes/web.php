@@ -16,6 +16,13 @@ Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
         Route::get('/footprint', 'GuidesController@footPrint');
         Route::get('/staff', 'GuidesController@staff');
         Route::get('/previous-campaigns', 'GuidesController@previousCampaigns');
+        Route::get('/faq', 'GuidesController@faq');
+        Route::get('/contact-us', 'GuidesController@contactUs');
+        Route::get('/privacy-policies', 'GuidesController@privacyPolicies');
+        Route::get('/inquiry', 'GuidesController@inquiry');
+        Route::get('/about-funjapan-points', 'GuidesController@aboutFunJapanPoints');
+        Route::get('/terms-and-conditions', 'GuidesController@termsAndConditions');
+        Route::get('/article-series', 'GuidesController@articleSeries');
     });
 
     // Authentication Routes...
