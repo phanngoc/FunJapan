@@ -9,6 +9,12 @@
         var labelUpdateSuccess = '{{ trans('admin/banner.label_update_success') }}';
         var labelWrongFileType = '{{ trans('admin/banner.validate.file_type') }}';
         var labelUnauthorized = '{{ trans('admin/banner.validate.unauthorized') }}';
+        var labelMaxSize = '{{ trans('validation.max.file', ['attribute' => 'photo', 'max' => config('images.validate.banner.max_size')]) }}';
+        var lblConfirmRemove = '{{ trans('admin/banner.label_delete_question_title') }}';
+        var lblConfirmRemoveTitle = '{{ trans('admin/banner.label_delete_question') }}';
+        var lblButtonYes = '{{ trans('admin/banner.label_yes') }}';
+        var lblButtonNo = '{{ trans('admin/banner.label_no') }}';
+        var labelDeleteSuccess = '{{ trans('admin/banner.label_delete_success') }}';
     </script>
 @endsection
 
@@ -66,7 +72,14 @@
                                                                 <p class="text-danger font-bold m-xxs error-message" id="photo_error_{{ $bannerSetting->id }}"></p>
                                                             </div>
                                                             <div class="row text-center form-upload margin-top-10">
-                                                                <input type="file" accept="image/jpeg,image/png,image/jpg" name="banner[{{ $bannerSetting->id }}][photo]" class="upload-file" style="display:none">
+                                                                <input
+                                                                    type="file"
+                                                                    accept="image/jpeg,image/png,image/jpg"
+                                                                    max-size="{{ config('images.validate.banner.max_size') }}"
+                                                                    name="banner[{{ $bannerSetting->id }}][photo]"
+                                                                    class="upload-file"
+                                                                    style="display:none"
+                                                                >
                                                                 <input
                                                                     type="hidden"
                                                                     class="is_uploaded_photo"
@@ -128,7 +141,13 @@
                                                                 <p class="text-danger font-bold m-xxs error-message" id="photo_error_{{ $key }}"></p>
                                                             </div>
                                                             <div class="row text-center form-upload margin-top-10">
-                                                                <input type="file" accept="image/jpeg,image/png,image/jpg" name="banner[{{ $key }}][photo]" class="upload-file" style="display:none">
+                                                                <input
+                                                                    type="file"
+                                                                    accept="image/jpeg,image/png,image/jpg"
+                                                                    max-size="{{ config('images.validate.banner.max_size') }}"
+                                                                    name="banner[{{ $key }}][photo]"
+                                                                    class="upload-file" style="display:none"
+                                                                >
                                                                 <input
                                                                     type="hidden"
                                                                     class="is_uploaded_photo"
@@ -164,7 +183,7 @@
                                                 </div>
                                             @endforeach
                                         @endif
-                                        <button class="btn btn-primary margin-top-10 update-banner-all" type="button">
+                                        <button class="btn btn-primary margin-top-10 update-banner-all" type="button" disabled>
                                             <i class="fa fa-spinner fa-pulse fa-fw hidden"></i>
                                             <i class="fa fa-check"></i>&nbsp;
                                             <strong>{{ trans('admin/banner.label_update_all') }}</strong>
