@@ -174,7 +174,9 @@ class ArticleService
             ->where('hide_always', 0)
             ->whereNotNull('published_at')
             ->where('published_at', '<', Carbon::now())
-            ->orderBy('created_at', 'desc')
+            ->orderBy('is_top_article', 'desc')
+            ->orderBy('published_at', 'desc')
+            ->orderBy('title', 'desc')
             ->paginate($limit);
     }
 

@@ -1,7 +1,13 @@
 <div class="top-header-mobile">
-    <span class="header-title-text"><a href="/"><img src="assets/images/brand-icon.png" alt="brand-icon"><span>&nbsp;FUN!<small
-                        class="title-country">&nbsp;Japan Indonesia
-                </small></span></a>
+    <span class="header-title-text">
+        <a href="/">
+            <img src="assets/images/brand-icon.png" alt="brand-icon">
+            <span>
+                {!! trans('web/global.app_name', [
+                    'sitename' => '<small class="title-country">' . trans('web/global.site_name') . '</small>'
+                ]) !!}
+            </span>
+        </a>
     </span>
     <div class="user-setting pull-right">
         <div class="user-preference">

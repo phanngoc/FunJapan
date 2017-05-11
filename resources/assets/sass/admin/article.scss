@@ -26,3 +26,13 @@ div.dataTables_length select {
 .filter-input {
     width: 100% !important;
 }
+div.dataTables_wrapper {
+    div.dataTables_length {
+        select {
+            width: 100px !important;
+        }
+    }
+}
+.min-width-160 {
+    min-width: 160px;
+}

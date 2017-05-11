@@ -84,7 +84,7 @@ return [
             'step_1_title' => 'Check member benefit',
             'step_2_title' => 'Fill your information',
             'step_3_title' => 'Registration completed',
-            'text_country' => 'Japan Indonesia',
+            'text_country' => 'Japan Malaysia',
         ],
         'term_title' => 'Terms and Conditions and Privacy policy'
     ],
