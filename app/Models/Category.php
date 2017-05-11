@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 use App\Services\ImageService;
+use App\Models\Article;
 
 class Category extends BaseModel
 {
@@ -31,6 +32,11 @@ class Category extends BaseModel
     public function categoryLocales()
     {
         return $this->hasMany(CategoryLocale::class);
+    }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
     }
 
     public function interestUsers()

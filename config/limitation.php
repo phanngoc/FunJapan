@@ -22,4 +22,7 @@ return [
     'new_post' => [
         'per_page' => 12,
     ],
+    'article_category' => [
+        'per_page' => 6,
+    ]
 ];

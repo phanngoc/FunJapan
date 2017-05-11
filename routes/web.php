@@ -8,7 +8,8 @@ Route::get('/register/jmb_2', function (Request $request) {
 });
 
 Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
-    Route::get('/', 'HomesController@index');
+
+    Route::get('/', 'HomesController@index')->name('index');
 
     Route::group(['prefix' => 'guide'], function () {
         Route::get('/about', 'GuidesController@about');
@@ -51,6 +52,9 @@ Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
         Route::resource('comments', 'CommentsController');
     });
 
-    Route::get('/articles/{id}', 'ArticlesController@show');
+    Route::get('/articles/{id}', 'ArticlesController@show')->name('article_detail');
     Route::get('/articles/{id}/like', 'ArticlesController@countLike');
+
+
 });
+
