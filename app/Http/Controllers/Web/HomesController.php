@@ -20,6 +20,12 @@ class HomesController extends Controller
         $this->viewData['banners'] = BannerSettingService::getBannerViaLocale($this->currentLocaleId);
         $this->viewData['articleRanks'] = ArticleRankService::getArticleRanksLocale($this->currentLocaleId);
         $this->viewData['newArticles'] = WebArticleService::getNewArticles($this->currentLocaleId, config('limitation.new_post.per_page'));
+        $this->viewData['recommendArticles'] = WebArticleService::getRecommendArticles($this->currentLocaleId);
+
+        $this->viewData['advertisementSrc'] = config('advertisement_banner.src.en');
+        if (in_array($this->currentLocale, array_keys(config('advertisement_banner.src')))) {
+            $this->viewData['advertisementSrc'] = config('advertisement_banner.src.' . $this->currentLocale);
+        }
 
         return view('web.home.index', $this->viewData);
     }

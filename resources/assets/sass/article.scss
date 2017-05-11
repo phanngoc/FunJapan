@@ -102,3 +102,33 @@
         display:inline;
     }
 }
+.advertisement-br {
+    margin-bottom: -20px;
+
+    iframe {
+        -ms-transform: scale(0.93);
+        -moz-transform: scale(0.93);
+        -o-transform: scale(0.93);
+        -webkit-transform: scale(0.93);
+        transform: scale(0.9);
+        -ms-transform-origin: 0 0;
+        -moz-transform-origin: 0 0;
+        -o-transform-origin: 0 0;
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        height: 302px;
+        border-width: 0px;
+        padding-right: 9px;
+        overflow-x: hidden;
+    }
+}
+@-moz-document url-prefix() {
+    .advertisement-br {
+        margin-bottom: -25px !important;
+
+        iframe {
+            height: 345px !important;
+            padding-bottom: 2px;
+        }
+    }
+}
