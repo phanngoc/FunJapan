@@ -16,6 +16,10 @@ $(document).ready(function () {
         elementInfoArticle.children("p:first").text(e.params.data.title);
         elementInfoArticle.children("p:nth-child(4)").text(e.params.data.summary);
 
+        if ($(this).siblings('input').val() != e.target.value) {
+            $(this).parents().eq(4).find('.update-banner-all').removeAttr('disabled');
+        }
+
         $(this).siblings('input').val(e.target.value);
         $(this).siblings('p.text-danger').text('');
     });
@@ -90,9 +94,17 @@ $(document).ready(function () {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             var fileAcceptType = $(input).attr('accept').split(',');
+            var maxSizeImage = $(input).attr('max-size');
 
             if (fileAcceptType.indexOf(input.files[0].type) == -1) {
                 swal("Cancelled", labelWrongFileType, "error");
+                input.value = '';
+
+                return false;
+            }
+
+            if (input.files[0].size > maxSizeImage * 1024) {
+                swal("Cancelled", labelMaxSize, "error");
                 input.value = '';
 
                 return false;
@@ -106,6 +118,7 @@ $(document).ready(function () {
 
             $(input).siblings('input.is_uploaded_photo').val(1);
             $(imgPreview).siblings('p.text-danger').text('')
+            $(input).parents().eq(4).find('.update-banner-all').removeAttr('disabled');
         }
     }
 
@@ -125,14 +138,13 @@ $(document).ready(function () {
                 $('.error-message').text('');
             },
             success: function (response) {
-                element.removeAttr('disabled');
                 element.children('i:first').addClass('hidden');
                 element.siblings('button').removeAttr('disabled');
                 swal(labelUpdateSuccess, "", "success");
 
                 $.each(response.data, function(key, object) {
-                    element.parent().children().find('input[name="banner[' + key + '][photo]"]')[0].value = object.photo;
                     element.parent().children().find('input[name="banner[' + key + '][id]"]').val(object.id);
+                    element.parent().children().find('input[name="banner[' + key + '][photo]"]')[0].value = '';
                 });
 
             },
@@ -174,39 +186,54 @@ $(document).ready(function () {
     $(document).on('click', '.delete-banner-all', function() {
         var element = $(this);
 
-        $.ajax({
-            url: element.attr('action'),
-            type: 'DELETE',
-            processData: false,
-            contentType: false,
-            beforeSend: function () {
-                element.attr('disabled', true);
-                element.children('i:first').removeClass('hidden');
-            },
-            success: function (response) {
-                element.children('i:first').addClass('hidden');
-                swal(labelUpdateSuccess, "", "success");
+        swal({
+            title: lblConfirmRemove,
+            text: lblConfirmRemoveTitle,
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: lblButtonYes,
+            cancelButtonText: lblButtonNo,
+            closeOnConfirm: false,
+            closeOnCancel: true
+        }, function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: element.attr('action'),
+                    type: 'DELETE',
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function () {
+                        element.attr('disabled', true);
+                        element.children('i:first').removeClass('hidden');
+                    },
+                    success: function (response) {
+                        element.children('i:first').addClass('hidden');
+                        swal(labelDeleteSuccess, "", "success");
 
-                element.siblings('div').find('img').attr('src', '');
-                element.siblings('div').find('input[type=hidden]').val(0);
-                element.siblings('div').find('input[type=file]').value = '';
-                element.siblings('div').find('.article-select2').each(function() {
-                    $(this).val(null).trigger("change");
-                })
-            },
-            error: function (response) {
-                element.removeAttr('disabled');
-                element.children('i:first').addClass('hidden');
+                        element.siblings('div').find('img').attr('src', '');
+                        element.siblings('div').find('input[type=hidden]').val(0);
+                        element.siblings('div').find('input[type=file]').value = '';
+                        element.siblings('div').find('.article-select2').each(function() {
+                            $(this).val(null).trigger("change");
+                        })
+                    },
+                    error: function (response) {
+                        element.removeAttr('disabled');
+                        element.children('i:first').addClass('hidden');
 
-                if (response.status == 401) {
-                    swal("UNAUTHORIZED", response.responseJSON.message, "error");
-                } else if (response.status == 500) {
-                    swal("UNAUTHORIZED", labelUnauthorized, "error");
-                } else {
-                    swal("ERROR", response.responseJSON.message, "error");
-                }
-            },
+                        if (response.status == 401) {
+                            swal("UNAUTHORIZED", response.responseJSON.message, "error");
+                        } else if (response.status == 500) {
+                            swal("UNAUTHORIZED", labelUnauthorized, "error");
+                        } else {
+                            swal("ERROR", response.responseJSON.message, "error");
+                        }
+                    },
+                });
+            }
         });
+
+
     });
 
 });

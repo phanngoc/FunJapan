@@ -22,4 +22,9 @@ return [
     'label_summary' => 'Summary',
     'label_banner' => 'Banner Setting',
     'search_by' => 'Search by title of article',
+    'label_delete_success' => 'Banner has been delete successfully!',
+    'label_yes' => 'Yes',
+    'label_no' => 'No',
+    'label_delete_question' => 'Are you sure to delete banner ?',
+    'label_delete_question_title' => 'Delete Banner',
 ];
