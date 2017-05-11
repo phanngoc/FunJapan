@@ -47,6 +47,14 @@
                 </ul>
             </li>
 
+            <li class="{{ set_active(['admin/omikujis*']) }}">
+                <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/omikuji.omikuji_management') }}</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{ action('Admin\OmikujisController@index') }}">{{ trans('admin/omikuji.omikuji_list') }}</a></li>
+                    <li><a href="{{ action('Admin\OmikujisController@create') }}">{{ trans('admin/omikuji.add_omikuji') }}</a></li>
+                </ul>
+            </li>
+
             <li class="{{ set_active(['admin/recommend-articles*']) }}">
                 <a href="#">
                     <i class="fa fa-thumbs-up"></i>

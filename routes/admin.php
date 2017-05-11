@@ -50,6 +50,12 @@ Route::group(['namespace' => 'Admin'], function () {
 
     Route::resource('setting/popular-articles', 'PopularArticlesController');
 
+    Route::resource('omikujis', 'OmikujisController');
+    Route::get('getOmikujis', 'OmikujisController@getListOmikujis');
+    Route::delete('/omikujis/delete/{id}', 'OmikujisController@destroyOmikuji');
+
+    Route::resource('setting/popular-articles', 'PopularArticlesController');
+
     Route::get('setting/banner', 'BannerSettingsController@index');
     Route::post('setting/banner/{localeId}/locale', 'BannerSettingsController@update');
     Route::delete('setting/banner/{localeId}/locale', 'BannerSettingsController@delete');

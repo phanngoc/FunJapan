@@ -7,6 +7,8 @@ return [
         'article_thumbnail' => 'uploads/articles/thumbnail',
         'banner' => 'uploads/banner',
         'menu_icon' => 'uploads/menu',
+        'omikuji_image' => 'uploads/omikujis/image',
+        'omikuji_item_image' => 'uploads/omikujis/omikuji_items/image',
     ],
     'validate' => [
         'post_photo' => [
@@ -25,6 +27,14 @@ return [
             'max_size' => 10240,
         ],
         'menu_icon' => [
+            'max_size' => 10240
+        ],
+        'omikuji_image' => [
+            'mimes' => 'jpeg,png,jpg',
+            'max_size' => 10240,
+        ],
+        'omikuji_item_image' => [
+            'mimes' => 'jpeg,png,jpg',
             'max_size' => 10240,
         ],
     ],
@@ -40,6 +50,16 @@ return [
         'category_icon' => [
             'normal' => [22, 26],
             'larger' => [90, 90],
+        ],
+        'omikuji_image' => [
+            'original' => '',
+            'normal' => [200, 200],
+            'small' => [32, 32],
+        ],
+        'omikuji_item_image' => [
+            'original' => '',
+            'normal' => [200, 200],
+            'small' => [32, 32],
         ],
         'article_thumbnail' => [
             'original' => '',
