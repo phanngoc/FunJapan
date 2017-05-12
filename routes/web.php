@@ -57,6 +57,8 @@ Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
 
         Route::get('/comments/favorite/{userId}', 'CommentsController@favorite');
         Route::resource('comments', 'CommentsController');
+
+        Route::get('/photo/{id}/favorite', 'ArticlePhotosController@favorite');
     });
 
     Route::get('/articles/{id}', 'ArticlesController@show')->name('article_detail');

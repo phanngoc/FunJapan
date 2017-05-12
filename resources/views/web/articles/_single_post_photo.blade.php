@@ -7,9 +7,13 @@
     <div>
         <div class="text-left articlephoto-meta">
             <span class="datetime">{{ $postPhoto->posted_time }}</span>
-            <a href="javascript:void(0)" class="engagement-favorite articlephoto-like">
+            <a href="{{ auth()->check() ? 'javascript:void(0)' : route('login') }}"
+                class="engagement-favorite articlephoto-like {{ $postPhoto->isFavorite() ? 'liked' : '' }}"
+                data-url="{{ action('Web\ArticlePhotosController@favorite', $postPhoto->id) }}">
                 <i class="fa fa-heart"></i>
-                <span><b>&nbsp;&nbsp;&nbsp;3</b></span>
+                <span>&nbsp;&nbsp;&nbsp;
+                    <b class="favorite-count">{{ $postPhoto->favorite_count }}</b>
+                </span>
             </a>
         </div>
         <strong>

@@ -182,6 +182,30 @@ function initDropzone () {
         currentSection.find('.file-caption-name').html('');
         myDropzone.destroy();
     });
+
+    $('body').off('click', '.engagement-favorite.articlephoto-like')
+        .on('click', '.engagement-favorite.articlephoto-like', function () {
+        var element = $(this);
+        var url = element.attr('data-url');
+
+        $.ajax({
+            'url': url,
+            'type': 'GET',
+            success: (response) => {
+                if (response.success) {
+                    var favoriteCount = parseInt(element.find('.favorite-count').text());
+
+                    if (element.hasClass('liked')) {
+                        element.removeClass('liked');
+                        element.find('.favorite-count').text(favoriteCount - 1);
+                    } else {
+                        element.addClass('liked');
+                        element.find('.favorite-count').text(favoriteCount + 1);
+                    }
+                }
+            }
+        });
+    });
 }
 
 
