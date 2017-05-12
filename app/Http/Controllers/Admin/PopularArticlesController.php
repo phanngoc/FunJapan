@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Services\Admin\ArticleLocaleService;
 use App\Services\Admin\ArticleService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,12 +18,7 @@ class PopularArticlesController extends Controller
 
         $input = $request->only('locale_id', 'keyword');
         $input['default_locale_id'] = key($locales);
-        
-        $articlesLocale = ArticleService::getListArticleForPopularPost($input);
-        $popularPosts = ArticleService::getPopularPost($input['locale_id'] ? : $input['default_locale_id']);
 
-        $this->viewData['popularPosts'] = $popularPosts;
-        $this->viewData['articlesLocale'] = $articlesLocale;
         $this->viewData['input'] = $input;
         $this->viewData['locales'] = $locales;
 
@@ -53,5 +49,29 @@ class PopularArticlesController extends Controller
         }
 
         return ArticleService::deletePopularPost($id);
+    }
+
+    public function popularLists(Request $request)
+    {
+        $input = $request->only('locale_id');
+        $locales = LocaleService::getAllLocales();
+        reset($locales);
+        $input['default_locale_id'] = key($locales);
+
+        $this->viewData['input'] = $input;
+        $this->viewData['locales'] = $locales;
+
+        return view('admin.article.popular.show', $this->viewData);
+    }
+
+    public function lists(Request $request)
+    {
+        $params = $request->input();
+        $draw = $params['draw'];
+        $params['is_popular'] = true;
+        $articlesData = ArticleLocaleService::list($params);
+        $articlesData['draw'] = (int)$draw;
+
+        return $articlesData;
     }
 }

@@ -69,6 +69,28 @@
                 </a>
             </li>
 
+            <li class="{{ set_active(['admin/popular*']) }}">
+                <a href="#">
+                    <i class="fa fa-thumbs-up"></i>
+                    <span class="nav-label">
+                        {{ trans('admin/popular_article.label.management') }}
+                    </span>
+                    <span class="fa arrow"></span>
+                    <ul class="nav nav-second-level collapse">
+                        <li>
+                            <a href="{{ action('Admin\PopularArticlesController@index') }}">
+                                {{ trans('admin/popular_article.label.set_recommend') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ action('Admin\PopularArticlesController@popularLists') }}">
+                                {{ trans('admin/popular_article.label.recommended_list') }}
+                            </a>
+                        </li>
+                    </ul>
+                </a>
+            </li>
+
             <li class="{{ set_active(['admin/setting*', 'admin/banner']) }}">
                 <a href="#">
                     <i class="fa fa-thumbs-up"></i>
@@ -78,11 +100,6 @@
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                    <li>
-                        <a href="{{ action('Admin\PopularArticlesController@index') }}">
-                            {{ trans('admin/popular_article.popular_setting') }}
-                        </a>
-                    </li>
                     <li>
                         <a href="{{action('Admin\BannerSettingsController@index')}}">
                             {{ trans('admin/banner.label_banner') }}

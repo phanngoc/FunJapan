@@ -30,7 +30,9 @@ Route::group(['namespace' => 'Admin'], function () {
 
     Route::resource('categories', 'CategoriesController');
 
-    Route::resource('setting/popular-articles', 'PopularArticlesController');
+    Route::get('popular-list', 'PopularArticlesController@popularLists');
+    Route::get('popular-articles/list', 'PopularArticlesController@lists');
+    Route::resource('popular-articles', 'PopularArticlesController');
 
     Route::get('setting/banner', 'BannerSettingsController@index');
     Route::post('setting/banner/{localeId}/locale', 'BannerSettingsController@update');

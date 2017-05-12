@@ -1,101 +1,137 @@
 $(function () {
+    $.fn.dataTable.ext.errMode = 'none';
+
+    var table = $('#article-table').DataTable({
+        'order': [[ 3, 'desc' ]],
+        'processing': true,
+        'serverSide': true,
+        'searchDelay': 400,
+        'language': {
+            'infoFiltered': ''
+        },
+        'ajax': {
+            'url': $('#article-table').data('url'),
+            'type': 'GET',
+        },
+        'columns': [
+            { 'data': 'id' },
+            { 'data': 'title' },
+            { 'data': 'user_id' },
+            { 'data': 'created_at' },
+            { 'data': 'published_at' },
+        ],
+        'columnDefs': [{
+            'targets': 0,
+            'sortable': false,
+            'class': 'text-center',
+        },
+            {
+                'targets': 2,
+                'sortable': false,
+                'class': 'text-center',
+            },
+            {
+                'targets': 3,
+                'class': 'text-center',
+            },
+            {
+                'targets': 4,
+                'class': 'text-center',
+            },
+            {
+                'targets': 5,
+                'sortable': false,
+                'searchable': false,
+                'class': 'text-center',
+                'data': function () {
+                    return '';
+                }
+            }],
+        'createdRow': function (row, data, index) {
+            var pageInfo = table.page.info();
+            $('td', row).eq(0).empty().html(pageInfo.page * pageInfo.length + index + 1);
+            var detailLink = baseUrl() + '/admin/articles/' + data.article_id + '?locale=' + data.locale_id;
+            $('td', row).eq(1).empty().html('<a href="' + detailLink + '">' + encodeHTML(data.title) + '</a>');
+            $('td', row).eq(2).empty().text(data.article.user.name);
+
+            if (typeof flag != 'undefined' && flag) {
+                $('td', row).eq(5).empty().html('<input type="checkbox" class="select-article"' +
+                    'data-article-locale-id="' + data.id + '"' +
+                    (data.is_popular ? 'checked>' : '>'));
+            } else {
+                $('td', row).eq(5).empty().html('<a href="javascript:;" class="remove-popular-article"' +
+                    'data-id="{{ $articleLocale->id }}"' +
+                    'data-url="' + baseUrl() + '/admin/popular-articles/' + data.id + '">' +
+                    '<i class="fa fa-times-circle text-danger"></i></a>');
+            }
+        }
+    });
+
     $('.select-locale').on('change', function () {
         $('form.articles-list').submit();
     });
 
     $('body').on('click', '.select-article', function () {
         var element = $(this);
-
-        if (element.prop('checked') == true) {
-            addPopular(element);
-        } else {
-            deletePopular(element, true)
-        }
-    });
-
-    $('body').on('click', '.remove-popular-article', function () {
-        deletePopular($(this), false)
-    });
-
-    function addPopular(element)
-    {
         var articleLocaleId = element.attr('data-article-locale-id');
 
+        var url = $('#article-table').attr('data-url-set-recommend');
+        var method = 'POST';
+        if (!element.prop('checked') == true) {
+            url += '/' + articleLocaleId;
+            method = 'DELETE';
+        }
+
         $.ajax({
-            'url': element.attr('data-url'),
-            'type': 'POST',
+            'url': url,
+            'type': method,
             'data': {
                 articleLocaleId: articleLocaleId,
             },
-            'headers': {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            },
-            success: function (response) {
-                if (response.success) {
-                    $('.popular-articles-list').prepend(response.html);
-                } else {
-                    element.prop('checked', false);
+            success: function(response) {
+                if (!response.success) {
                     swal(response.message, '', 'error');
+                    if (element.prop('checked') == true) {
+                        element.attr('checked', false);
+                    } else {
+                        element.attr('checked', true);
+                    }
                 }
             }
         });
-    }
+    });
 
-    function deletePopular(element, fromArticleList)
-    {
-        var articleLocaleId = element.attr('data-article-locale-id');
+    $('body').on('click', '.remove-popular-article', function () {
+        var element = $('#article-table');
+        var thisElement = $(this);
 
         swal({
-            title: lblConfirmRemovePopular,
-            text: lblConfirmRemovePopularTitle,
+            title: element.attr('data-title-confirm'),
+            text: element.attr('data-message-confirm'),
             type: 'warning',
             showCancelButton: true,
-            confirmButtonText: lblButtonYes,
-            cancelButtonText: lblButtonNo,
+            confirmButtonText: element.attr('data-yes-confirm'),
+            cancelButtonText: element.attr('data-no-confirm'),
             closeOnConfirm: false,
             closeOnCancel: true
         }, function (isConfirm) {
             if (isConfirm) {
-                var url = element.attr('data-url');
-
-                if (fromArticleList) {
-                    url = url + '/' + articleLocaleId;
-                }
-
                 $.ajax({
-                    'url': url,
+                    'url': thisElement.attr('data-url'),
                     'type': 'DELETE',
-                    'headers': {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                    },
-                    success: function (response) {
+                    success: function(response){
                         if (response.success) {
                             swal(response.message, '', 'success');
-
-                            $('.popular-articles-list').find('tr').each(function () {
-                                if (articleLocaleId == $(this).attr('data-id')) {
-                                    $(this).remove();
-                                }
-                            });
-
-                            $('.articles-list').find('tr').each(function () {
-                                if (articleLocaleId == $(this).attr('data-id')) {
-                                    $(this).find('.select-article').attr('checked', false);
-                                }
-                            });
+                            thisElement.parents('tr').remove();
                         } else {
                             swal(response.message, '', 'error');
-                            if (fromArticleList) {
-                                element.prop('checked', true);
-                            }
                         }
                     }
                 });
-            } else {
-                if (fromArticleList) {
-                    element.prop('checked', true);
-                }
             }
         });
-    }
+    });
 });
+
+
+
