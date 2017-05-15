@@ -35,8 +35,7 @@ class ArticlesController extends Controller
         }
 
         $this->viewData['nextArticleId'] = ArticleService::getNextArticleId(
-            $id,
-            $article->locale->published_at,
+            $article,
             $this->currentLocaleId
         );
         $this->viewData['article'] = $article;

@@ -55,25 +55,33 @@ class ArticleService
         ]);
     }
 
-    public static function getNextArticleId($id, $publishedAt, $localeId)
+    public static function getNextArticleId($article, $localeId)
     {
-        $article = DB::table('articles as a')
-            ->join('article_locales as al', 'a.id', '=', 'al.article_id')
+        $articleNext = DB::table('article_locales as al')
+            ->where('al.article_id', '!=', $article->id)
             ->where('al.locale_id', $localeId)
-            ->where('a.id', '<', $id)
-            ->where('al.published_at', '<=', Carbon::now())
-            ->where('al.hide_always', 0);
+            ->where('al.hide_always', 0)
+            ->where(function ($query) use ($article) {
+                $query->where('is_top_article', '<=', $article->locale->is_top_article)
+                    ->where(function ($query) use ($article) {
+                        $query->where('published_at', '<', $article->locale->published_at)
+                            ->orWhere(function ($query) use ($article) {
+                                $query->where('published_at', '=', $article->locale->published_at)
+                                    ->where('title', '<', $article->locale->title);
+                            });
+                    });
+            });
 
         if (!auth()->check()) {
-            $article = $article->where('is_member_only', 0);
+            $articleNext = $articleNext->where('is_member_only', 0);
         }
 
-        $article = $article->orderBy('al.published_at', 'desc')
-        ->orderBy('al.is_top_article', 'desc')
-        ->orderBy('a.id', 'desc')
-        ->first();
+        $articleNext = $articleNext->orderBy('al.is_top_article', 'desc')
+            ->orderBy('al.published_at', 'desc')
+            ->orderBy('al.title', 'desc')
+            ->first();
 
-        return $article->article_id ?? 0;
+        return $articleNext->article_id ?? 0;
     }
 
     public static function getArticleDetail($id, $localeId)
