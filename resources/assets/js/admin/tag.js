@@ -53,7 +53,7 @@ $(document).ready(function (e) {
                     + blockAction
                     + '" class="fa fa-undo fa fa-lg"></i></a>';
             }
-            $('td', row).eq(1).empty().append('<a href="' + baseUrl() + '/admin/tags/' + data.id + '">' + escapeHtml(data.name) + '</a>');
+            $('td', row).eq(1).empty().append('<a href="' + baseUrl() + '/admin/tags/' + data.id + '">' + encodeHTML(data.name) + '</a>');
             $('td', row).eq(4).empty().append('<a data-toggle="tooltip" data-placement="left" title="" data-original-title="Edit" href="'
                 + editLink
                 + '" class="edit"><i class="fa fa-pencil-square-o fa fa-lg"></i></a>'
@@ -109,13 +109,4 @@ $(document).ready(function (e) {
             $('#blockForm').attr('action', blockAction).submit();
         });
     });
-
-    function escapeHtml(text) {
-        return text
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    }
 })

@@ -59,7 +59,9 @@
                                     <div class="panel-body">
                                         <h2>{{ $articleLocale->title }}</h2>
                                         <hr>
-                                        {!! $articleLocale->html_content !!}
+                                        <div class="article-content">
+                                            {!! $articleLocale->html_content !!}
+                                        </div>
                                         <hr>
                                         {{ $articleLocale->summary }}
                                         <hr>

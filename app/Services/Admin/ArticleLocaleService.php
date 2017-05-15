@@ -47,7 +47,7 @@ class ArticleLocaleService extends BaseService
             if ($column['data'] == 'user_id') {
                 // TO DO
             } elseif ($column['data'] !== 'locale_id' && $column['data'] !== 'function') {
-                $query->where($column['data'], 'like', '%' . $column['search']['value'] . '%');
+                $query->where($column['data'], 'like', '%' . escape_like($column['search']['value']) . '%');
             } elseif ($column['data'] === 'locale_id') {
                 $locales = Locale::where('name', 'like', '%' . $column['search']['value'] . '%')->pluck('id');
                 $query->whereIn($column['data'], $locales);

@@ -28,6 +28,16 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::get('getTags', 'TagsController@getListTags');
     Route::put('tagBlock/{tag}', 'TagsController@block');
 
+    Route::resource('menus', 'MenusController');
+    Route::get('menus/createSubMenu/{menu}', 'MenusController@createSubMenu');
+    Route::post('menus/createSubMenu/{menu}', 'MenusController@storeSubMenu');
+    Route::get('menus/editSubMenu/{menu}', 'MenusController@editSubMenu');
+    Route::put('menus/updateSubMenu/{menu}', 'MenusController@updateSubMenu');
+    Route::post('menus/updateOrder', 'MenusController@updateOrder');
+    Route::get('menus/showSubMenu/{menu}', 'MenusController@showSubMenu');
+    Route::get('menus/setOtherLanguage/{menu}', 'MenusController@setLanguageSubMenu');
+    Route::post('menus/storeOtherLanguage/{menu}', 'MenusController@storeLanguageSubMenu');
+
     Route::resource('categories', 'CategoriesController');
 
     Route::get('popular-list', 'PopularArticlesController@popularLists');
@@ -38,6 +48,8 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::post('setting/banner/{localeId}/locale', 'BannerSettingsController@update');
     Route::delete('setting/banner/{localeId}/locale', 'BannerSettingsController@delete');
     Route::get('setting/banner/get-article', 'BannerSettingsController@getArticle');
+
+    Route::get('getCategories', 'CategoriesController@getCategories');
 
     Route::get('{action?}', 'DashboardController@index');
 

@@ -18,6 +18,7 @@ class MenuLocale extends BaseModel
         'locale_id',
         'menu_id',
         'name',
+        'link',
     ];
 
     public function locale()

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\App;
 use App\Services\Web\LocaleService;
+use App\Models\Menu;
 
 class Controller extends BaseController
 {

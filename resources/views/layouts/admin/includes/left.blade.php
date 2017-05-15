@@ -112,6 +112,19 @@
                     </li>
                 </ul>
             </li>
+
+             <li class="{{ set_active(['admin/menus*', 'admin/menus/create']) }}">
+                <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/menu.menu_management') }}</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="{{action('Admin\MenusController@index')}}">{{ trans('admin/menu.menu_list') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{action('Admin\MenusController@create')}}">{{ trans('admin/menu.add_menu') }}</a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
     </div>
 </nav>
