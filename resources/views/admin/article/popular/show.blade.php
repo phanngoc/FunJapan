@@ -14,7 +14,7 @@
             <div class="ibox-content">
                 <div class="row">
                     {{ Form::open([
-                        'action' => 'Admin\RecommendedArticlesController@recommendedLists',
+                        'action' => 'Admin\PopularArticlesController@popularLists',
                         'method' => 'GET',
                         'class' => 'articles-list',
                     ]) }}
@@ -23,7 +23,7 @@
                                 $locales,
                                 $input['locale_id'] ?? $input['default_locale_id'],
                                 [
-                                    'class' => 'input-sm form-control input-s-sm inline select-locale',
+                                    'class' => 'input-sm form-control input-s-sm inline select-locale height-35',
                                 ]
                             ) }}
                         </div>

@@ -10,7 +10,7 @@ return [
         'not_show' => 'The article not setup for show in front!',
         'required' => [
             'article_locale_id' => 'Please, select a article!',
-            'photo' => 'The photo required',
+            'photo' => 'Please, upload image!',
         ],
     ],
     'label_update_success' => 'Updated successfully!',
