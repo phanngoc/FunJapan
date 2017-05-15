@@ -75,6 +75,7 @@ class UserService
     public static function create($data)
     {
         $data['point'] = config('user.default_point');
+        $data['invite_code'] = uniqid(rand(), false);
 
         try {
             DB::beginTransaction();
