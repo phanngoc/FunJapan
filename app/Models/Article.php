@@ -51,6 +51,11 @@ class Article extends BaseModel
         return $this->belongsTo(Category::class);
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'article_tags', 'article_id', 'tag_id');
+    }
+
     public function getRelateArticle($localeId)
     {
         $result = [];

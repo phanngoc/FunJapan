@@ -8,7 +8,6 @@ Route::get('/register/jmb_2', function (Request $request) {
 });
 
 Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
-
     Route::get('/', 'HomesController@index')->name('index');
 
     Route::group(['prefix' => 'guide'], function () {
@@ -64,6 +63,7 @@ Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
     Route::get('/articles/{id}', 'ArticlesController@show')->name('article_detail');
     Route::get('/articles/{id}/like', 'ArticlesController@countLike');
 
-
+    Route::get('/tag/{name}', 'TagsController@show')->name('tag_detail');
+    Route::get('/category/{name}', 'CategoriesController@show')->name('category_detail');
 });
 

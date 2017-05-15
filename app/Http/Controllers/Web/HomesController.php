@@ -9,6 +9,8 @@ use App\Services\Admin\BannerSettingService;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Services\Web\CategoryService;
+use App\Models\Tag;
+use App\Services\Web\TagService;
 
 class HomesController extends Controller
 {
@@ -22,6 +24,7 @@ class HomesController extends Controller
         $this->viewData['popularPost'] = AdminArticleService::getPopularPost($this->currentLocaleId);
         $this->viewData['banners'] = BannerSettingService::getBannerViaLocale($this->currentLocaleId);
         $this->viewData['articleRanks'] = ArticleRankService::getArticleRanksLocale($this->currentLocaleId);
+
         $this->viewData['newArticles'] = WebArticleService::getNewArticles($this->currentLocaleId, config('limitation.new_post.per_page'));
         $this->viewData['recommendArticles'] = WebArticleService::getRecommendArticles($this->currentLocaleId);
 
@@ -34,24 +37,6 @@ class HomesController extends Controller
             );
         }
 
-        if ($request->has('category')) {
-            return $this->category($request->get('category'));
-        }
-
         return view('web.home.index', $this->viewData);
-    }
-
-    public function category($categoryName)
-    {
-        $category = Category::where('short_name', $categoryName)->first();
-
-        if ($category) {
-            $this->viewData['articles'] = CategoryService::getArticleByCategory($category, $this->currentLocaleId);
-            $this->viewData['category'] = $category;
-
-            return view('web.categories.show', $this->viewData);
-        } else {
-            return response(trans('web/global.error'), 404);
-        }
     }
 }

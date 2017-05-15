@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ArticleLocale;
 
 class ArticleTag extends BaseModel
 {
@@ -28,5 +29,10 @@ class ArticleTag extends BaseModel
     public function tag()
     {
         return $this->belongsTo(Tag::class);
+    }
+
+    public function articleLocale()
+    {
+        return $this->belongsTo(ArticleLocale::class, 'article_locale_id', 'id');
     }
 }

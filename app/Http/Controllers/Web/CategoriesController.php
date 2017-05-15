@@ -16,9 +16,10 @@ class CategoriesController extends Controller
         parent::__construct();
     }
 
-    public function show($categoryName, Request $request)
+    public function show($categoryName)
     {
         $category = Category::where('short_name', $categoryName)->first();
+
         if ($category) {
             $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
             $this->viewData['articles'] = CategoryService::getArticleByCategory($category, $this->currentLocaleId);

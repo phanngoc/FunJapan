@@ -24,5 +24,8 @@ return [
     ],
     'article_category' => [
         'per_page' => 6,
+    ],
+    'article_tag' => [
+        'per_page' => 6,
     ]
 ];

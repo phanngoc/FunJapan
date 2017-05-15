@@ -73,6 +73,11 @@ class ArticleLocale extends BaseModel
         return $this->hasMany(Comment::class)->whereNull('parent_id');
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'article_tags', 'article_locale_id', 'tag_id');
+    }
+
     public function getThumbnailUrlsAttribute($value)
     {
         if ($this->photo) {
