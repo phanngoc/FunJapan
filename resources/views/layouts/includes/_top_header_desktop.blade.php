@@ -3,8 +3,10 @@
         <p class="header-title-text">
             <a href="/">
                 <img src="assets/images/brand-icon.png" alt="brand-icon">
-                    <span>&nbsp;FUN!
-                        <span class="title-country">&nbsp;Japan Indonesia</span>
+                    <span>
+                        {!! trans('web/global.app_name', [
+                            'sitename' => '<span class="title-country">' . trans('web/global.site_name') . '</span>'
+                        ]) !!}
                     </span>
             </a>
         </p>

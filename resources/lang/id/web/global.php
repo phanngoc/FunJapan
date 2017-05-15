@@ -9,4 +9,6 @@ return [
         'instagram' => 'https://www.instagram.com/fun_japan_travel',
         'youtube' => 'https://www.youtube.com/c/Funjapantravel',
     ],
+    'site_name' => 'Japan Indonesia',
+    'app_name' => 'Fun! :sitename',
 ];

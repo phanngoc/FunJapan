@@ -18,21 +18,24 @@
                     <!-- ENGAGEMENT -->
                     <ul class="engagement">
                         <li>
-                            <a class="engagement-favorite">
+                            <a class="engagement-favorite"
+                                href="{{ action('Web\ArticlesController@show', ['id' => $article->article_id]) }}">
                                 <i class="fa fa-heart"></i>
                             </a>
                             <span class="engagement-count">{{ $article->like_count }}</span>
                             <span>{{ trans('web/top_page.favorites') }}</span>
                         </li>
                         <li>
-                            <a class="engagement-comment">
+                            <a class="engagement-comment"
+                                href="{{ action('Web\ArticlesController@show', ['id' => $article->article_id]) }}#comment-area-desktop">
                                 <i class="fa fa-comment"></i>
                             </a>
                             <span class="engagement-count">{{ $article->comment_count }}</span>
                             <span>{{ trans('web/top_page.comments') }}</span>
                         </li>
                         <li>
-                            <a class="engagement-share">
+                            <a class="engagement-share"
+                                href="{{ action('Web\ArticlesController@show', ['id' => $article->article_id]) }}">
                                 <i class="fa fa-share-alt"></i>
                             </a>
                             <span class="engagement-count">{{ $article->share_count }}</span>

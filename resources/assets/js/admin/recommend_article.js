@@ -28,15 +28,15 @@ $(function () {
         {
             'targets': 2,
             'sortable': false,
-            'class': 'text-center',
+            'class': 'min-width-160',
         },
         {
             'targets': 3,
-            'class': 'text-center',
+            'class': 'text-center min-width-160',
         },
         {
             'targets': 4,
-            'class': 'text-center',
+            'class': 'text-center min-width-160',
         },
         {
             'targets': 5,
@@ -60,7 +60,8 @@ $(function () {
                     (data.recommended ? 'checked>' : '>'));
             } else {
                 $('td', row).eq(5).empty().html('<a href="javascript:;" class="remove-recommended-article"' +
-                'data-id="{{ $articleLocale->id }}"' +
+                'data-id="' + data.id + '"' +
+                'data-title="' + encodeHTML(data.title) + '"' +
                 'data-url="' + baseUrl() + '/admin/recommend-articles/' + data.id + '">' +
                 '<i class="fa fa-times-circle text-danger"></i></a>');
             }
@@ -100,12 +101,12 @@ $(function () {
         var articleLocaleId = thisElement.attr('data-id');
 
         swal({
-            title: element.attr('data-title-confirm'),
-            text: element.attr('data-message-confirm'),
+            title: element.attr('data-message-confirm') + thisElement.attr('data-title'),
+            text: '',
             type: 'warning',
             showCancelButton: true,
             confirmButtonText: element.attr('data-yes-confirm'),
-            cancelButtonText: element.attr('data-no-confirm'),
+            cancelButtonText: element.attr('data-cancel-confirm'),
             closeOnConfirm: false,
             closeOnCancel: true
         }, function (isConfirm) {

@@ -34,7 +34,7 @@
                         data-title-confirm="{{ trans('admin/recommend_article.messages.confirm_title') }}"
                         data-message-confirm="{{ trans('admin/recommend_article.messages.confirm_remove') }}"
                         data-yes-confirm="{{ trans('admin/recommend_article.button.yes') }}"
-                        data-no-confirm="{{ trans('admin/recommend_article.button.no') }}"
+                        data-cancel-confirm="{{ trans('admin/recommend_article.button.cancel') }}"
                         data-url="{{ action('Admin\RecommendedArticlesController@lists', ['locale_id' => $input['locale_id'] ?? $input['default_locale_id']]) }}">
                         <thead>
                             <tr>

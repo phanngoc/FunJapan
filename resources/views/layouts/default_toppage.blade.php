@@ -2,7 +2,7 @@
 <html lang="{{ config('app.locale') }}">
     <head>
         @include('layouts.includes.head')
-        <title>Fun! Japan</title>
+        <title>{{ trans('web/global.app_name', ['sitename' => trans('web/global.site_name')]) }}</title>
         @include('layouts.includes.scripts_toppage')
         @include('layouts.includes.styles')
     </head>
