@@ -57,31 +57,59 @@ class ArticleService
 
     public static function getNextArticleId($article, $localeId)
     {
-        $articleNext = DB::table('article_locales as al')
-            ->where('al.article_id', '!=', $article->id)
-            ->where('al.locale_id', $localeId)
-            ->where('al.hide_always', 0)
-            ->where(function ($query) use ($article) {
-                $query->where('is_top_article', '<=', $article->locale->is_top_article)
-                    ->where(function ($query) use ($article) {
-                        $query->where('published_at', '<', $article->locale->published_at)
-                            ->orWhere(function ($query) use ($article) {
-                                $query->where('published_at', '=', $article->locale->published_at)
-                                    ->where('title', '<', $article->locale->title);
-                            });
-                    });
-            });
+        $articleNext = null;
 
-        if (!auth()->check()) {
-            $articleNext = $articleNext->where('is_member_only', 0);
+        if ($article->locale->is_top_article) {
+            $articleIsTop =  DB::table('article_locales as al')
+                ->where('al.article_id', '!=', $article->id)
+                ->where('al.locale_id', $localeId)
+                ->where('al.hide_always', 0)
+                ->where('al.is_top_article', 1)
+                ->where('al.published_at', '<=', $article->locale->published_at)
+                ->orderBy('al.published_at', 'desc')
+                ->orderBy('al.title', 'desc')
+                ->limit(1);
+
+            $articleNonTop =  DB::table('article_locales as al')
+                ->where('al.article_id', '!=', $article->id)
+                ->where('al.locale_id', $localeId)
+                ->where('al.hide_always', 0)
+                ->where('al.is_top_article', 0)
+                ->orderBy('al.published_at', 'desc')
+                ->orderBy('al.title', 'desc')
+                ->limit(1);
+
+            if (!auth()->check()) {
+                $articleIsTop = $articleIsTop->where('is_member_only', 0);
+                $articleNonTop = $articleNonTop->where('is_member_only', 0);
+            }
+
+            $articleNext = $articleIsTop->union($articleNonTop);
+        } else {
+            $articleNext =  DB::table('article_locales as al')
+                ->where('al.article_id', '!=', $article->id)
+                ->where('al.locale_id', $localeId)
+                ->where('al.hide_always', 0)
+                ->where('al.is_top_article', 0)
+                ->where(function ($query) use ($article) {
+                    $query->where('al.published_at', '<', $article->locale->published_at)
+                        ->orWhere(function ($query) use ($article) {
+                            $query->where('al.published_at', '=', $article->locale->published_at)
+                                ->where('al.title', '<', $article->locale->title);
+                        });
+                })
+                ->orderBy('al.published_at', 'desc')
+                ->orderBy('al.title', 'desc')
+                ->limit(1);
+
+            if (!auth()->check()) {
+                $articleNext = $articleNext->where('is_member_only', 0);
+            }
         }
 
-        $articleNext = $articleNext->orderBy('al.is_top_article', 'desc')
-            ->orderBy('al.published_at', 'desc')
-            ->orderBy('al.title', 'desc')
-            ->first();
+        $articleNext = $articleNext->first();
 
-        return $articleNext->article_id ?? 0;
+        return $articleNext ? $articleNext->article_id : 0;
     }
 
     public static function getArticleDetail($id, $localeId)
