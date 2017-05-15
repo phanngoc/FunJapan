@@ -214,14 +214,9 @@ class ArticleService extends BaseService
         $articleLocale->is_popular = true;
         $updated = $articleLocale->save();
 
-        $html = View::make('admin.article.popular._tr_article')
-            ->with('articleLocale', $articleLocale)
-            ->render();
-
         return [
             'success' => $updated,
             'message' => $updated ? trans('admin/popular_article.messages.success') : trans('admin/popular_article.messages.fail'),
-            'html' => $updated ? $html : '',
         ];
     }
 

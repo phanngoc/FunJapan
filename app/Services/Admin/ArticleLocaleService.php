@@ -34,6 +34,10 @@ class ArticleLocaleService extends BaseService
             $query = $query->where('recommended', true);
         }
 
+        if (isset($conditions['is_popular'])) {
+            $query = $query->where('is_popular', $conditions['is_popular']);
+        }
+
         if (isset($conditions['list_set_recommend'])) {
             $query = $query->where('published_at', '<=', Carbon::now())
                 ->where('hide_always', 0);
