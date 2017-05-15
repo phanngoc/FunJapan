@@ -14,16 +14,16 @@
             <div class="legal">
                 <label class="footer-label">LEGAL<span class="colon">:</span></label>
                 <ul class="footer-list">
-                    <li><a href="#">Terms&Conditions</a></li>
-                    <li><a href="#">-&nbsp;Privacy Policies</a></li>
+                    <li><a href="{{ action('Web\GuidesController@termsAndConditions') }}">Terms&Conditions</a></li>
+                    <li><a href="{{ action('Web\GuidesController@privacyPolicies') }}">-&nbsp;Privacy Policies</a></li>
                 </ul>
             </div>
             <div class="info">
                 <label class="footer-label">FURTHER INFO<span class="colon">:</span></label>
                 <ul class="footer-list">
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">-&nbsp;Privacy Policies</a></li>
-                    <li><a href="#">-&nbsp;For Marketers</a></li>
+                    <li><a href="{{ action('Web\GuidesController@faq') }}">FAQ</a></li>
+                    <li><a href="{{ action('Web\GuidesController@contactUs') }}">-&nbsp;Contact Us </a></li>
+                    <li><a href="{{ action('Web\GuidesController@inquiry') }}">-&nbsp;For Marketers</a></li>
                 </ul>
             </div>
             <div class="guide">
