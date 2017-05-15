@@ -25,6 +25,9 @@ return [
     'article_category' => [
         'per_page' => 6,
     ],
+    'tags' => [
+        'hot_tags' => 20,
+    ],
     'article_tag' => [
         'per_page' => 6,
     ]

@@ -9,6 +9,7 @@ use App\Services\Admin\LocaleService;
 use App\Services\Admin\MenuLocaleService;
 use App\Models\Menu;
 use App\Models\MenuLocale;
+use App\Models\Category;
 
 class MenusController extends Controller
 {
@@ -69,6 +70,15 @@ class MenusController extends Controller
     public function edit(Menu $menu)
     {
         $this->viewData['menu'] = $menu;
+        if ($menu->type == config('menu.parent_type.category')) {
+            $this->viewData['categories'] = Category::where('locale_id', $menu->locale_id)
+                                                ->pluck('name', 'id')
+                                                ->toArray();
+            $this->viewData['selectedCategoriesId'] = $menu->children()
+                                                        ->orderBy('order', 'asc')
+                                                        ->pluck('link')
+                                                        ->toArray();
+        }
 
         return view('admin.menu.edit', $this->viewData);
     }
@@ -195,5 +205,19 @@ class MenusController extends Controller
         }
 
         return response()->json(['message' => trans('admin/menu.order_errors')]);
+    }
+
+    public function getCategories(Request $request)
+    {
+        $localeId = $request->get('localeId');
+
+        $categories = Category::where('locale_id', $localeId)
+            ->pluck('name', 'id')
+            ->toArray();
+
+        return [
+            'success' => true,
+            'categories' => $categories,
+        ];
     }
 }

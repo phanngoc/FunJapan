@@ -76,4 +76,75 @@ $(document).ready(function() {
 
         $('.menus-list').submit();
     });
+
+    $('#type').on('change', function () {
+        getCategoriesList();
+    });
+
+    $('#locale_id').on('change', function () {
+        getCategoriesList();
+    });
+
+    $('.category-list').on('change', 'select', function () {
+        var categoriesId = $(this).val();
+
+        $('.category-selected table tbody').find('tr').each(function () {
+            $(this).removeClass('hidden');
+            if ($.inArray($(this).attr('data-id'), categoriesId) < 0) {
+                $(this).addClass('hidden');
+            }
+        });
+
+        var selectedCategories = [];
+        $('.category-selected table tbody').find('tr').each(function () {
+            if (!$(this).hasClass('hidden')) {
+                selectedCategories.push($(this).attr('data-id'));
+            }
+        });
+
+        $('.category-selected-hidden').val(selectedCategories.join(','));
+    });
+
+    $('.sortable-category').sortable({
+        stop: function(event, ui) {
+            var selectedCategories = [];
+            $('.category-selected table tbody').find('tr').each(function () {
+                if (!$(this).hasClass('hidden')) {
+                    selectedCategories.push($(this).attr('data-id'));
+                }
+            });
+            $('.category-selected-hidden').val(selectedCategories.join(','));
+        }
+    });
 });
+
+getCategoriesList = function () {
+    if ($('#type').val() == 'category') {
+        $.ajax({
+            'url': urlGetCategories,
+            'type': 'GET',
+            'data': {
+                localeId: $('#locale_id').val(),
+            },
+            success: (response) => {
+                if (response.success) {
+                    var options = '';
+                    var tbody = '';
+
+                    for (let key in response.categories) {
+                        options += '<option value="' + key + '">' + response.categories[key] + '</option>';
+                        tbody += '<tr class="hidden" data-id="' + key + '"><td>' + response.categories[key] + '</td></tr>';
+                    }
+
+                    $('.category-list').removeClass('hidden');
+                    $('.category-selected').removeClass('hidden');
+                    $('.category-list select').empty().append(options);
+                    $('.category-selected table tbody').empty().append(tbody);
+                }
+            }
+        });
+    } else {
+        $('.category-list').addClass('hidden');
+        $('.category-selected').addClass('hidden');
+    }
+}

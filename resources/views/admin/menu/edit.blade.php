@@ -61,6 +61,43 @@
                         </div>
                     </div>
 
+                    @if ($menu->type == config('menu.parent_type.category'))
+                        <div class="form-group required category-list">
+                            {{ Form::label('category', trans('admin/menu.label.category'), [
+                                'class' => 'col-sm-2 control-label'
+                            ]) }}
+                            <div class="col-sm-10">
+                                {{ Form::select('category', $categories, $selectedCategoriesId, ['class' => 'form-control', 'multiple']) }}
+                            </div>
+                        </div>
+
+                        <div class="form-group category-selected">
+                            {{ Form::label('category', trans('admin/menu.label.selected_category'), [
+                                'class' => 'col-sm-2 control-label'
+                            ]) }}
+                            {{ Form::hidden('selectedCategories', implode(',', $selectedCategoriesId), ['class' => 'category-selected-hidden']) }}
+                            <div class="col-sm-10">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>{{ trans('admin/menu.label.category_name') }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="sortable-category">
+                                        @foreach ($selectedCategoriesId as $key => $categoryId)
+                                            <tr data-id="{{ $categoryId }}"><td>{{ $categories[$categoryId] }}</td></tr>
+                                        @endforeach
+                                        @foreach ($categories as $id => $name)
+                                            @if (!in_array($id, $selectedCategoriesId))
+                                                <tr class="hidden" data-id="{{ $id }}"><td>{{ $name }}</td></tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="form-group">
                         {{ Form::label(
                             'icon',
@@ -82,6 +119,20 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        {{ Form::label(
+                            'icon_class',
+                            trans('admin/menu.label.icon_class'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-10">
+                            {{ Form::text(
+                                'icon_class',
+                                $menu->icon_class,
+                                ['class' => 'form-control'])
+                            }}
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <div class="col-sm-2 col-sm-offset-2">
@@ -107,7 +158,8 @@
 @stop
 @section('script')
     <script type="text/javascript">
-        var oldInputs = {!! json_encode(old()) !!}
+        var oldInputs = {!! json_encode(old()) !!};
+        var urlGetCategories = "{!! action('Admin\MenusController@getCategories') !!}";
     </script>
     {!! Html::script('assets/admin/js/menu.js') !!}
 @stop

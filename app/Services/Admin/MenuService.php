@@ -10,6 +10,8 @@ use Validator;
 use App\Services\ImageService;
 use App\Services\Admin\MenuLocaleService;
 use Illuminate\Validation\Rule;
+use App\Models\Category;
+use Carbon\Carbon;
 
 class MenuService extends BaseService
 {
@@ -86,6 +88,34 @@ class MenuService extends BaseService
                 if ($fileName) {
                     $menu->icon = $fileName;
                     $menu->save();
+
+                    if ($menu->type == config('menu.parent_type.category')) {
+                        $selectedCategories = explode(',', $inputs['selectedCategories']);
+                        $categories = Category::where('locale_id', $menu->locale_id)
+                            ->whereIn('id', $selectedCategories)
+                            ->get();
+
+                        $subMenuCategory = [];
+
+                        foreach ($selectedCategories as $key => $categoryId) {
+                            $category = $categories->find($categoryId);
+                            $subMenuCategory[] = [
+                                'parent_id' => $menu->id,
+                                'link' => $categoryId,
+                                'locale_id' => $menu->locale_id,
+                                'name' => $categories->find($categoryId)->name,
+                                'type' => config('menu.parent_type.link'),
+                                'order' => $key + 1,
+                                'updated_at' => Carbon::now(),
+                                'created_at' => Carbon::now(),
+                            ];
+                        }
+
+                        if ($subMenuCategory) {
+                            Menu::insert($subMenuCategory);
+                        }
+                    }
+
                     DB::commit();
 
                     return true;
@@ -114,6 +144,48 @@ class MenuService extends BaseService
                 $inputs['icon'] = $fileName;
             } else {
                 return false;
+            }
+        }
+
+        if ($menu->type == config('menu.parent_type.category')) {
+            $selectedCategories = explode(',', $inputs['selectedCategories']);
+            $oldCategoriesId = $menu->children->pluck('link')->toArray();
+            $deletedCategories = array_diff($oldCategoriesId, $selectedCategories);
+
+            if ($deletedCategories) {
+                Menu::where('parent_id', $menu->id)
+                    ->whereIn('link', $deletedCategories)
+                    ->delete();
+            }
+
+            $categories = Category::where('locale_id', $menu->locale_id)
+                ->whereIn('id', $selectedCategories)
+                ->get();
+
+            $subMenuCategory = [];
+
+            foreach ($selectedCategories as $key => $categoryId) {
+                if (in_array($categoryId, $oldCategoriesId)) {
+                    Menu::where('parent_id', $menu->id)
+                        ->where('link', $categoryId)
+                        ->update(['order' => $key + 1]);
+                } else {
+                    $category = $categories->find($categoryId);
+                    $subMenuCategory[] = [
+                        'parent_id' => $menu->id,
+                        'link' => $categoryId,
+                        'locale_id' => $menu->locale_id,
+                        'name' => $categories->find($categoryId)->name,
+                        'type' => config('menu.parent_type.link'),
+                        'order' => $key + 1,
+                        'updated_at' => Carbon::now(),
+                        'created_at' => Carbon::now(),
+                    ];
+                }
+            }
+
+            if ($subMenuCategory) {
+                Menu::insert($subMenuCategory);
             }
         }
 
