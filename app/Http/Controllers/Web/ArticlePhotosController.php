@@ -6,6 +6,7 @@ use App\Services\Web\ArticleService;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\Models\PostPhoto;
+use App\Services\Web\PhotoService;
 
 class ArticlePhotosController extends Controller
 {
@@ -107,6 +108,28 @@ class ArticlePhotosController extends Controller
             'message' => [],
             'html' => $html,
             'postPhotos' => $postPhotos,
+        ];
+    }
+
+    public function favorite($photoId)
+    {
+        if (!auth()->check()) {
+            return [
+                'success' => false,
+                'message' => trans('web/articles.messages.no_permission'),
+            ];
+        }
+
+        if (PhotoService::favorite($photoId, auth()->id())) {
+            return [
+                'success' => true,
+                'message' => '',
+            ];
+        }
+
+        return [
+            'success' => false,
+            'message' => trans('web/articles.messages.like_error'),
         ];
     }
 }

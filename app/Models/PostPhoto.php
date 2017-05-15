@@ -27,6 +27,7 @@ class PostPhoto extends BaseModel
         'content',
         'user_id',
         'status',
+        'favorite_count',
     ];
 
     protected $appends = [
@@ -76,5 +77,19 @@ class PostPhoto extends BaseModel
         }
 
         return $results;
+    }
+
+    public function favoritePhotos()
+    {
+        return $this->hasMany(FavoritePhoto::class, 'post_photo_id', 'id');
+    }
+
+    public function isFavorite()
+    {
+        if (!$this->favoritePhotos->count() || !auth()->check()) {
+            return false;
+        }
+
+        return $this->favoritePhotos->where('user_id', auth()->id())->count() > 0;
     }
 }
