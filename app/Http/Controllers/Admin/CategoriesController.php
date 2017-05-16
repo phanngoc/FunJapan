@@ -93,7 +93,9 @@ class CategoriesController extends Controller
             'status' => false,
             'message' => trans('admin/category.delete_error'),
         ];
-        if (CategoryService::delete($id)) {
+        if (CategoryService::checkCategoryUsed($id)) {
+            Session::flash('error', trans('admin/category.delete_another_action'));
+        } elseif (CategoryService::delete($id)) {
             $response = [
                 'status' => true,
                 'message' => trans('admin/category.delete_success'),
@@ -102,6 +104,7 @@ class CategoriesController extends Controller
         } else {
             Session::flash('error', trans('admin/category.delete_error'));
         }
+
 
         return response()->json($response);
     }
