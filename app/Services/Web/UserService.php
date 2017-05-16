@@ -80,6 +80,15 @@ class UserService
         try {
             DB::beginTransaction();
 
+            if ($data['referralId']) {
+                $inviteUser = User::where('invite_code', $data['referralId'])
+                    ->first();
+                if ($inviteUser) {
+                    //TODO : After will be process plus point
+                    $data['invite_user_id'] = $inviteUser->id;
+                }
+            }
+
             $user =  User::create($data);
             if ($data['social_id']) {
                 SocialAccount::create([
