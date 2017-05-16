@@ -13,12 +13,17 @@ use App\Services\Admin\CategoryService;
 use App\Models\Article;
 use App\Models\ArticleTag;
 use Carbon\Carbon;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class ArticlesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $this->viewData['locales'] = json_encode(LocaleService::getAllLocales());
+        $localeId = $request->input('locale_id') ?? array_first(array_keys(LocaleService::getAllLocales()));
+        $this->viewData['locales'] = LocaleService::getAllLocales();
+        $this->viewData['localeId'] = $localeId;
+        $this->viewData['types'] = json_encode(ArticleService::getArticleTypes());
 
         return view('admin.article.index', $this->viewData);
     }
@@ -119,7 +124,7 @@ class ArticlesController extends Controller
         return redirect()->back()->withErrors(['errors' => trans('admin/article.update_error')]);
     }
 
-    public function setOtherLanguage(Article $article)
+    public function setOtherLanguage(Request $request, Article $article)
     {
         $existLanguages = [];
         foreach ($article->articleLocales as $key => $value) {
@@ -127,6 +132,16 @@ class ArticlesController extends Controller
         }
         $this->viewData['locales'] = array_diff(LocaleService::getAllLocales(), $existLanguages);
         $this->viewData['article'] = $article;
+        $this->viewData['tags'] = [];
+        if ($request->input('clone')) {
+            $this->viewData['cloneInputs'] = $article->articleLocales->first();
+            $tagLocales = $article->articleTags->where('article_locale_id', $article->articleLocales->first()->id);
+            foreach ($tagLocales as $tagLocale) {
+                $this->viewData['tags'][$tagLocale->tag->name] = $tagLocale->tag->name;
+            }
+        } else {
+            $this->viewData['cloneInputs'] = null;
+        }
 
         return view('admin.article.set_other_language', $this->viewData);
     }

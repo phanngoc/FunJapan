@@ -16,6 +16,10 @@ return [
         'create' => 'Save',
         'edit' => 'Update',
         'cancel' => 'Cancel',
+        'block' => 'Block',
+        'unblock' => 'Unblock',
+        'edit' => 'Edit',
+        'delete' => 'Delete',
     ],
     'placeholder' => [
         'input_tag_name' => 'Tag Name',

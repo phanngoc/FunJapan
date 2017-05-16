@@ -43,24 +43,35 @@ $(document).ready(function (e) {
             if (data.status == 0) {
                 $('td', row).eq(2).empty().append($('#tag-not-block').data('message'));
 
-                appendText = '<a data-toggle="tooltip" title="" data-original-title="Block" href="#" class="ban"><i data-url="'
+                appendText = '<a data-toggle="tooltip" data-placement="right" title="'
+                    + $('#button-block').data('message')
+                    + '" href="#" class="ban"><i data-url="'
                     + blockAction
                     + '" class="fa fa-ban fa fa-lg"></i></a>';
             } else {
                 $('td', row).eq(2).empty().append($('#tag-block').data('message'));
 
-                appendText ='<a data-toggle="tooltip" data-placement="right" title="" data-original-title="Un Block" href="#" class="unBan"><i data-url="'
+                appendText ='<a data-toggle="tooltip" data-placement="right" title="'
+                    + $('#button-unblock').data('message')
+                    + '" href="#" class="unBan"><i data-url="'
                     + blockAction
                     + '" class="fa fa-undo fa fa-lg"></i></a>';
             }
             $('td', row).eq(1).empty().append('<a href="' + baseUrl() + '/admin/tags/' + data.id + '">' + encodeHTML(data.name) + '</a>');
-            $('td', row).eq(4).empty().append('<a data-toggle="tooltip" data-placement="left" title="" data-original-title="Edit" href="'
+            $('td', row).eq(4).empty().append('<a data-toggle="tooltip" data-placement="left" title="'
+                + $('#button-edit').data('message')
+                +'" href="'
                 + editLink
                 + '" class="edit"><i class="fa fa-pencil-square-o fa fa-lg"></i></a>'
-                + '<a data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#" class="delete"><i data-id="'
+                + '<a data-toggle="tooltip" data-placement="top" title="'
+                + $('#button-delete').data('message')
+                +'" href="#" class="delete"><i data-id="'
                 + data.id
                 + '" class="fa fa-trash fa fa-lg"></i></a>'
                 + appendText);
+        },
+        'fnDrawCallback': function (data, type, full, meta) {
+            $('[data-toggle="tooltip"]').tooltip();
         },
     });
 

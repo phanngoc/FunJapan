@@ -73,6 +73,11 @@
                             }}
                         </div>
                     </div>
+                    <div class="form-group" hidden id="preview-section">
+                        <div class="col-sm-4 col-sm-offset-2">
+                            <img id="blah" src="#" alt="your image" />
+                        </div>
+                    </div>
 
                     @include('admin.elements._article_inputs_form')
 
@@ -229,6 +234,8 @@
 @section('script')
     <script type="text/javascript">
         var typePhoto = {!! config('article.type.photo') !!};
+        var typeCampaign = {!! config('article.type.campaign') !!};
+        var typeCoupon = {!! config('article.type.coupon') !!};
     </script>
     {!! Html::script('assets/admin/js/article.js') !!}
 @stop

@@ -41,6 +41,9 @@ return [
         'add' => 'Add',
         'update' => 'Update',
         'cancel' => 'Cancel',
+        'delete' => 'Delete',
+        'create_new' => 'Create New',
+        'clone' => 'Clone First Tab'
     ],
     'label' => [
         'is_top' => 'Always On Top?',
@@ -68,6 +71,9 @@ return [
     'type' => [
         'normal' => 'Normal Article',
         'photo' => 'Photo Article',
+        'campaign' => 'Campaign Article',
+        'coupon' => 'Coupon Article',
+        'location' => 'Location Article',
     ],
     'placeholder' => [
         'title' => 'Input Title',
@@ -78,4 +84,6 @@ return [
         'end_time' => 'End Time',
     ],
     'set_language' => 'Set language of Article',
+    'author' => 'Author',
+    'article_type' => 'Article Type',
 ];

@@ -6,6 +6,8 @@ use App\Models\ArticleLocale;
 use App\Models\ArticleTag;
 use App\Models\BannerSetting;
 use App\Models\Locale;
+use App\Models\User;
+use App\Models\Article;
 use Image;
 use File;
 use Illuminate\Support\Facades\Storage;
@@ -46,12 +48,12 @@ class ArticleLocaleService extends BaseService
 
         foreach ($conditions['columns'] as $column) {
             if ($column['data'] == 'user_id') {
-                // TO DO
-            } elseif ($column['data'] !== 'locale_id' && $column['data'] !== 'function') {
+                $userIds = User::where('name', 'like', '%' . escape_like($column['search']['value']) . '%')
+                    ->pluck('id');
+                $articleIds = Article::whereIn('user_id', $userIds)->pluck('id');
+                $query->whereIn('article_id', $articleIds);
+            } elseif ($column['data'] !== 'function') {
                 $query->where($column['data'], 'like', '%' . escape_like($column['search']['value']) . '%');
-            } elseif ($column['data'] === 'locale_id') {
-                $locales = Locale::where('name', 'like', '%' . $column['search']['value'] . '%')->pluck('id');
-                $query->whereIn($column['data'], $locales);
             }
         }
 

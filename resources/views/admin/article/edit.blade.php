@@ -30,6 +30,12 @@
                         </div>
                     </div>
 
+                    <div class="form-group" hidden id="preview-section">
+                        <div class="col-sm-4 col-sm-offset-2">
+                            <img id="blah" src="#" alt="your image" />
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-2">
                             <img src="{{ $articleLocale->thumbnail_urls['small'] }}">
@@ -132,7 +138,8 @@
 
 
                     <div class="date-time-campaign
-                        @if ($articleLocale->article->type == config('article.type.normal'))
+                        @if ($articleLocale->article->type == config('article.type.normal')
+                            || $articleLocale->article->type == config('article.type.location'))
                             hidden
                         @endif">
                         <div class="form-group">
