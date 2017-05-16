@@ -20,23 +20,24 @@ $(function () {
             { 'data': 'created_at' },
             { 'data': 'published_at' },
         ],
-        'columnDefs': [{
+        'columnDefs': [
+            {
             'targets': 0,
             'sortable': false,
             'class': 'text-center',
-        },
+            },
             {
                 'targets': 2,
                 'sortable': false,
-                'class': 'text-center',
+                'class': 'min-width-160',
             },
             {
                 'targets': 3,
-                'class': 'text-center',
+                'class': 'text-center min-width-160',
             },
             {
                 'targets': 4,
-                'class': 'text-center',
+                'class': 'text-center min-width-160',
             },
             {
                 'targets': 5,
