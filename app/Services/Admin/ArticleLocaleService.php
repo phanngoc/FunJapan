@@ -4,6 +4,7 @@ namespace App\Services\Admin;
 
 use App\Models\ArticleLocale;
 use App\Models\ArticleTag;
+use App\Models\BannerSetting;
 use App\Models\Locale;
 use Image;
 use File;
@@ -113,7 +114,26 @@ class ArticleLocaleService extends BaseService
             }
         }
 
-        return $articleLocale->update($inputs);
+        $isUpdated = $articleLocale->update($inputs);
+
+        if (!$isUpdated) {
+            return false;
+        }
+
+        if (!$articleLocale->is_show_able) {
+            $articleLocale->is_popular = false;
+            $articleLocale->recommended = false;
+            $articleLocale->save();
+
+            $removeInBanner = BannerSetting::where('article_locale_id', $articleLocale->id)
+                ->update(['article_locale_id' => 0]);
+
+            if (!$removeInBanner) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static function createArticleOtherLanguage($article, $inputs)

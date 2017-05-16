@@ -2,6 +2,7 @@
 
 return [
     'title' => 'Banner setting',
+    'note' => ' If you doesn\'t setting article , photo will be empty',
     'image_suggest_sie' => 'Standard dimention: 1000*400',
     'validate' => [
         'file_type' => 'The photo must be a file of type: jpeg, png, jpg!',

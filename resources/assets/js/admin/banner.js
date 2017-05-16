@@ -30,6 +30,7 @@ $(document).ready(function () {
         }
 
         var elementInfoArticle = $(this).parents().eq(2).children("div:first");
+        $(this).parents().eq(4).find('.update-banner-all').removeAttr('disabled');
         elementInfoArticle.children("p:first").text('');
         elementInfoArticle.children("p:nth-child(4)").text('');
 
@@ -145,8 +146,8 @@ $(document).ready(function () {
                 $.each(response.data, function(key, object) {
                     element.parent().children().find('input[name="banner[' + key + '][id]"]').val(object.id);
                     element.parent().children().find('input[name="banner[' + key + '][photo]"]')[0].value = '';
+                    element.parent().find('#photo_error_' + key).siblings('img').attr('src', object.photo_urls.larger)
                 });
-
             },
             error: function (response) {
                 element.removeAttr('disabled');

@@ -19,7 +19,6 @@ class BannerSettingService extends BaseService
         $maxSize = config('images.validate.banner.max_size');
 
         $rules = [
-            'article_locale_id' => 'required',
             'photo' => 'mimes:' . $mimes . '|max:' . $maxSize,
         ];
 
@@ -35,7 +34,7 @@ class BannerSettingService extends BaseService
                 $result[$duplicateKey]['article_locale_id']['duplicate'] = trans('admin/banner.validate.duplicate');
             }
 
-            if (!isset($input['is_uploaded_photo']) || !$input['is_uploaded_photo']) {
+            if ($input['article_locale_id'] && (!isset($input['is_uploaded_photo']) || !$input['is_uploaded_photo'])) {
                 $validate['photo'][] = trans('admin/banner.validate.required.photo');
             }
 
@@ -69,9 +68,15 @@ class BannerSettingService extends BaseService
                     $banner = BannerSetting::create(['locale_id' => $localeId]);
                 }
 
-                if (isset($input['photo']) && $input['photo'] instanceof UploadedFile) {
+                if ($input['article_locale_id']) {
+                    if (isset($input['photo']) && $input['photo'] instanceof UploadedFile) {
+                        $photoUploadPath = config('images.paths.banner') . '/' . $banner->id;
+                        $input['photo'] = ImageService::uploadFile($input['photo'], 'banner', $photoUploadPath, true);
+                    }
+                } else {
                     $photoUploadPath = config('images.paths.banner') . '/' . $banner->id;
-                    $input['photo'] = ImageService::uploadFile($input['photo'], 'banner', $photoUploadPath, true);
+                    $input['photo'] = null;
+                    ImageService::delete($photoUploadPath);
                 }
 
                 $banner->update($input);
@@ -82,19 +87,21 @@ class BannerSettingService extends BaseService
 
             return $result;
         } catch (\Exception $e) {
-            \Log::debug($e->getMessage());
             DB::rollBack();
 
             return false;
         }
     }
 
-    public static function getBannerViaLocale($localeId)
+    public static function getBannerViaLocale($localeId, $isFront = true)
     {
-        return BannerSetting::where('locale_id', $localeId)
-            ->limit(config('banner.limit'))
-            ->orderBy('order')
-            ->get();
+        $query = BannerSetting::where('locale_id', $localeId);
+
+        if ($isFront) {
+            $query = $query->where('article_locale_id', '!=', 0);
+        }
+
+        return $query->limit(config('banner.limit'))->get();
     }
 
     public static function getAllBanner($locales)
@@ -102,7 +109,7 @@ class BannerSettingService extends BaseService
         $result = [];
 
         foreach ($locales as $localeId => $localeName) {
-            $result[$localeId] = self::getBannerViaLocale($localeId);
+            $result[$localeId] = self::getBannerViaLocale($localeId, false);
         }
 
         return $result;
