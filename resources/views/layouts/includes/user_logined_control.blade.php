@@ -12,7 +12,7 @@
                                 <a href="#">My Coupons</a>
                             </li>
                             <li>
-                                <a href="#">Settings</a>
+                                <a href="{{ route('profile') }}">Settings</a>
                             </li>
                             <li>
                                 <a href="#">About Member Program</a>

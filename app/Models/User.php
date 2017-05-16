@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
+use App\Models\SocialAccount;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -49,6 +51,8 @@ class User extends Authenticatable
 
     protected $appends = [
         'avatar_url',
+        'birthday_parse',
+        'social',
     ];
 
     public function articles()
@@ -59,6 +63,11 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function interests()
+    {
+        return $this->belongsToMany(Category::class, 'interest_users', 'user_id', 'category_id');
     }
 
     public function setPasswordAttribute($value)
@@ -80,6 +89,17 @@ class User extends Authenticatable
         return null;
     }
 
+    public function getSocialAttribute()
+    {
+        switch ($this->registered_by) {
+            case config('user.social_provider.facebook'):
+                return 'Facebook';
+                break;
+            default:
+                return null;
+        }
+    }
+
     public static function getByCondition($conditions, $getOne = false)
     {
         $query = self::select('*');
@@ -93,5 +113,16 @@ class User extends Authenticatable
         }
 
         return $query->get();
+    }
+
+    public function getBirthdayParseAttribute()
+    {
+        $date = Carbon::parse($this->birthday);
+        return $date;
+    }
+
+    public function registeredBySocial()
+    {
+        return $this->registered_by != 0;
     }
 }
