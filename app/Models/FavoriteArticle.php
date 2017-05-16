@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class FavoriteArticle extends BaseModel
 {
-
+    use SoftDeletes;
     protected $table = 'favorite_articles';
 
     /**
@@ -20,6 +21,17 @@ class FavoriteArticle extends BaseModel
         'article_locale_id',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($favorite) {
+            if ($favorite->articleLocale) {
+                $favorite->articleLocale->decrement('like_count');
+            }
+        });
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -28,5 +40,10 @@ class FavoriteArticle extends BaseModel
     public function article()
     {
         return $this->belongsTo(Article::class);
+    }
+
+    public function articleLocale()
+    {
+        return $this->belongsTo(ArticleLocale::class);
     }
 }

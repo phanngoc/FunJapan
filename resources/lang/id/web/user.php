@@ -107,6 +107,12 @@ return [
         'title_interest' => 'What are your interest?',
         'update_setting' => 'Update Setting',
         'change_password_page_error' => 'The password of :name account cannot be set up here.
-If you want to change the password of :name account, please set up a password on :name.'
-    ]
+If you want to change the password of :name account, please set up a password on :name.',
+    ],
+    'close_page' => [
+        'close_complete' => 'Your account left membership on this site.',
+        'info_close' => 'We\'re disappointed you want to cancel membership in this website !',
+        'sub_info_close' => 'Please wait a minutes before completing input to form, doesn\'t it :)',
+        'title' => 'Close Account',
+    ],
 ];

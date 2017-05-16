@@ -7,10 +7,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 use App\Models\SocialAccount;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -55,6 +57,8 @@ class User extends Authenticatable
         'social',
     ];
 
+    protected $dates = ['deleted_at'];
+
     public function articles()
     {
         return $this->hasMany(Article::class);
@@ -68,6 +72,26 @@ class User extends Authenticatable
     public function interests()
     {
         return $this->belongsToMany(Category::class, 'interest_users', 'user_id', 'category_id');
+    }
+
+    public function postPhotos()
+    {
+        return $this->hasMany(PostPhoto::class);
+    }
+
+    public function favoriteComments()
+    {
+        return $this->hasMany(FavoriteComment::class);
+    }
+
+    public function favoriteArticles()
+    {
+        return $this->hasMany(FavoriteArticle::class);
+    }
+
+    public function favoritePhotos()
+    {
+        return $this->hasMany(FavoritePhoto::class);
     }
 
     public function setPasswordAttribute($value)
@@ -124,5 +148,45 @@ class User extends Authenticatable
     public function registeredBySocial()
     {
         return $this->registered_by != 0;
+    }
+
+    public function deleteItAndRelation()
+    {
+        try {
+            DB::beginTransaction();
+
+            $this->comments()->each(function ($comment) {
+                $comment->delete();
+            });
+
+            $this->postPhotos()->each(function ($postPhoto) {
+                $postPhoto->delete();
+            });
+
+            $this->favoriteArticles()->each(function ($favoriteArticle) {
+                $favoriteArticle->delete();
+            });
+
+            $this->favoritePhotos()->each(function ($favoritePhoto) {
+                $favoritePhoto->delete();
+            });
+
+            $favoriteComments = $this->favoriteComments();
+            $favoriteComments->each(function ($favoriteComment) {
+                if ($favoriteComment->comment) {
+                    $favoriteComment->comment->decrement('favorite_count');
+                }
+            });
+
+            $favoriteComments->delete();
+            $this->delete();
+
+            DB::commit();
+
+            return true;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return false;
+        }
     }
 }
