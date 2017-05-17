@@ -26,7 +26,10 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
-                <div class="ibox-title"><h2>{{ trans('admin/banner.title') }}</h2></div>
+                <div class="ibox-title">
+                    <h2>{{ trans('admin/banner.title') }}</h2>
+                    <p class="text-danger font-bold m-xxs">* {{ trans('admin/banner.note') }}</p>
+                </div>
                 <div class="ibox-content">
                     <div class="tabs-container">
                         <ul class="nav nav-tabs">
@@ -95,7 +98,7 @@
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="row">
-                                                                <p>{{ trans('admin/banner.search_by') }}  <span class="text-danger">*<span></p>
+                                                                <p>{{ trans('admin/banner.search_by') }} </p>
                                                                 <select
                                                                     name="article[{{ $bannerSetting->id }}]"
                                                                     class="article-select2"
