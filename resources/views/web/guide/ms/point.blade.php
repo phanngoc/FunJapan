@@ -48,20 +48,16 @@
         </div>
         <br>
         <p >
-            <strong><span style="color: #c0504d;">What Is Fun!Japan Point?</span></strong>
+            <strong><span style="color: #c0504d;">What are Fun! Japan Points (FJP)?</span></strong>
         </p>
         <p class="style-1">
-            Fun! Japan Point (FP) is a point system. You can get points by taking survey (Fun! Japan Rewards), and joining other activities in this website.</p>
-        You cannot exchange FP to cash/prize, but you can use FPs to apply for campaigns that will&nbsp;<br>
-        take place in our website.<br>
-        <p class="style-1">We will hold many special campaigns that you can enjoy by using FPs!&nbsp;</p>
-        <p class="style-1">Get your FPs and save them today for those future campaigns!</p>
-        We offer you the chance to enter our campaigns as many times as you want by using the FPs you have collected.&nbsp;<br>
-        <p class="style-1">We appreciate your support of Fun! Japan.&nbsp;</p>
+            We have a special reward points program. You can get points by participating in one of our surveys (Fun! Japan Rewards) or by joining other activities on this Website.</p>
+        You cannot exchange FJP for cash or prizes, but you can use FJP for campaigns that we will hold on this site.<br>
+        <p class="style-1">Collect as many FJP as you can, and save them for those future campaigns. You can enter our campaigns as many as times as you want and use the FJP you have collected.&nbsp;</p>
         <br>
         <div style="text-align: center;">
             <p class="style-2"><strong><span style="color: #c0504d;">How to check your FP balance</span></strong></p>
-            <p class="style-2">To check your point balance, please look at the top of the screen, to the left of your&nbsp;username</p>
+            <p class="style-2">Login to the Fun! Japan Website, look at the top right of the screen and you will see your FJP balance just to the left of your username.</p>
             <p class="style-2">
                 <img height="165" alt="20161027-20-13-howtouses2" width="500" src="/assets/images/guide/guide_point_2.jpg">
             </p>
@@ -83,7 +79,7 @@
             </div>
             <div style="margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline; text-align: left;">
             </div>
-            <img height="208" alt="About_FP_get_MY_2017_01" width="341" src="/assets/images/guide/guide_point_1.jpg"><br>
+            <img height="208" alt="About_FP_get_MY_2017_01" width="341" src="/assets/images/guide/guide_point_en_1.jpg"><br>
         </div>
         <p style="margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline; text-align: left;"><strong><span style="text-align: left; color: #c00000;">Expiration date of FP</span></strong></p>
         <p class="style-4">

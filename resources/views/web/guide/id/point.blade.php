@@ -58,7 +58,7 @@
                     </span></p>
                 <div style="text-align: left;"><br>
                     <div style="text-align: center;">
-                        <img height="208" alt="About_FP_get_new" width="341" src="/assets/images/guide/guide_point_1.jpg"><br>
+                        <img height="208" alt="About_FP_get_new" width="341" src="/assets/images/guide/guide_point_en_1.jpg"><br>
                         <br>
                     </div>
                 </div>

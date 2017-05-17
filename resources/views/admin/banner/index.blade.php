@@ -166,7 +166,7 @@
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="row">
-                                                                <p>{{ trans('admin/banner.search_by') }} <span class="text-danger">*<span></p>
+                                                                <p>{{ trans('admin/banner.search_by') }}</p>
                                                                 <select
                                                                     name="article[{{ $key }}]"
                                                                     class="article-select2"
