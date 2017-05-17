@@ -152,3 +152,30 @@
         height: 95%;
     }
 }
+
+.invite-links {
+    cursor: pointer;
+    .invite-facebook i {
+        color: #00008b;
+        margin: 0 5px 0 5px;
+        font-size: 50px;
+    }
+
+    .invite-twitter i {
+        color: #00ced1;
+        margin: 0 5px 0 5px;
+        font-size: 50px;
+    }
+
+    .invite-email i {
+        color: #6495ed;
+        margin: 0 5px 0 5px;
+        font-size: 50px;
+    }
+
+    .invite-link i {
+        color: #06b;
+        margin: 0 5px 0 5px;
+        font-size: 50px;
+    }
+}

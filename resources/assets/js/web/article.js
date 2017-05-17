@@ -87,3 +87,13 @@ function changeLike(articleId)
         }
     });
 }
+
+function countShare(articleId)
+{
+    $.ajax({
+        url: baseUrlLocale() + 'articles/' + articleId + '/share',
+        type: 'GET',
+        success: function (response) {
+        }
+    });
+}

@@ -55,6 +55,16 @@ class ArticleService
         ]);
     }
 
+    public static function countShare($userId, $articleId, $localeId)
+    {
+        $articleLocale = ArticleService::getArticleLocaleDetails($articleId, $localeId);
+        $articleLocale->increment('share_count');
+
+        return response()->json([
+            'count' => $articleLocale->share_count,
+        ]);
+    }
+
     public static function getNextArticleId($article, $localeId)
     {
         $articleNext = null;
