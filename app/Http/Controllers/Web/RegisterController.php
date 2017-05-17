@@ -17,9 +17,11 @@ class RegisterController extends Controller
         config(['services.facebook.redirect' => route('facebook_callback')]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $this->viewData['step'] = 1;
+        $this->viewData['referralId'] = $request->get('referralId');
+
         return view('web.users.register.step_1', $this->viewData);
     }
 
@@ -30,6 +32,7 @@ class RegisterController extends Controller
             'provider',
             'email',
             'name',
+            'referralId',
         ]);
 
         $this->viewData['step'] = 2;
@@ -39,6 +42,7 @@ class RegisterController extends Controller
         $this->viewData['provider'] = $data['provider'];
         $this->viewData['email'] = $data['email'];
         $this->viewData['name'] = $data['name'];
+        $this->viewData['referralId'] = $data['referralId'];
 
         return view('web.users.register.step_2', $this->viewData);
     }
@@ -61,6 +65,7 @@ class RegisterController extends Controller
             'subscription_new_letter',
             'subscription_reply_noti',
             'accept_policy',
+            'referralId',
         ]);
         $data['birthday'] = $data['birthday_year'] . '-' . $data['birthday_month'] . '-' . $data['birthday_day'];
         $data['locale_id'] = $this->currentLocaleId;
@@ -136,16 +141,17 @@ class RegisterController extends Controller
         return view('web.users.register.step_3', $this->viewData);
     }
 
-    public function storeViaFaceBook()
+    public function storeViaFaceBook(Request $request)
     {
         return Socialite::driver('facebook')
+            ->with(['state' => $request->get('referralId')])
             ->redirect();
     }
 
-    public function storeViaFaceBookCallBack()
+    public function storeViaFaceBookCallBack(Request $request)
     {
         try {
-            $validate = UserService::validateSocialUser(Socialite::driver('facebook')->user());
+            $validate = UserService::validateSocialUser(Socialite::driver('facebook')->stateless()->user());
 
             if ($validate['success']) {
                 auth()->login($validate['data']);
@@ -170,6 +176,7 @@ class RegisterController extends Controller
                     'email' => $validate['email'],
                     'name' => $validate['name'],
                     'provider' => config('user.social_provider.facebook'),
+                    'referralId' => $request->get('state'),
                 ]
             );
         } catch (\Exception $e) {

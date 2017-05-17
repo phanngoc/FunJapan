@@ -37,6 +37,7 @@ class User extends Authenticatable
         'subscription_reply_noti',
         'locale_id',
         'registered_by',
+        'invite_user_id',
     ];
 
     /**

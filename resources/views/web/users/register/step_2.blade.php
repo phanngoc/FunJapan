@@ -32,6 +32,7 @@
                     <label class="help-block">{{ $errors->has('email') ? $errors->first('email') : '' }}</label>
                     <input type="hidden" value="{{ $socialId }}" name="social_id" readonly>
                     <input type="hidden" value="{{ $provider }}" name="provider" readonly>
+                    <input type="hidden" value="{{ $referralId }}" name="referralId" readonly>
                 </div>
             </div>
             <div class="row">
