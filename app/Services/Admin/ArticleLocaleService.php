@@ -66,6 +66,8 @@ class ArticleLocaleService extends BaseService
     {
         return ArticleLocale::where('locale_id', $condition['locale_id'])
             ->where('title', 'like', '%' . $condition['key_search'] . '%')
+            ->where('published_at', '<=', Carbon::now())
+            ->where('hide_always', 0)
             ->whereNotIn('id', function ($subquery) use ($condition) {
                 $subquery->select('article_locale_id')
                     ->from('article_ranks')

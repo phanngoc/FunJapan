@@ -14,4 +14,5 @@
 {!! Html::style('assets/admin/css/plugins/sweetalert/sweetalert.css') !!}
 {!! Html::style('assets/admin/css/plugins/select2/select2.min.css') !!}
 {!! Html::style('assets/admin/css/admin.css') !!}
+{!! Html::style('assets/admin/css/survey.css') !!}
 @yield('style')

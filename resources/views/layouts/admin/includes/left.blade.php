@@ -91,6 +91,14 @@
                 </a>
             </li>
 
+            <li class="{{ set_active(['admin/surveys*', 'admin/surveys/create']) }}">
+                <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/survey.survey_management') }}</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{ action('Admin\SurveysController@index') }}">{{ trans('admin/survey.survey_list') }}</a></li>
+                    <li><a href="{{ action('Admin\SurveysController@create') }}">{{ trans('admin/survey.add_survey') }}</a></li>
+                </ul>
+            </li>
+
             <li class="{{ set_active(['admin/setting*', 'admin/banner']) }}">
                 <a href="#">
                     <i class="fa fa-thumbs-up"></i>
