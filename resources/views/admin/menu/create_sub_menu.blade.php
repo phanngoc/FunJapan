@@ -44,7 +44,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group required">
+                    <div class="form-group">
                         {{ Form::label(
                             'description',
                             trans('admin/menu.label.description'),
@@ -54,7 +54,7 @@
                             {{ Form::textarea(
                                 'description',
                                 '',
-                                ['class' => 'form-control', 'required'])
+                                ['class' => 'form-control'])
                             }}
                         </div>
                     </div>

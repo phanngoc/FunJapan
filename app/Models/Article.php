@@ -26,8 +26,12 @@ class Article extends BaseModel
         return $this->hasMany(ArticleLocale::class);
     }
 
-    public function articleTags()
+    public function articleTags($limit = null)
     {
+        if ($limit) {
+            return $this->hasMany(ArticleTag::class)->limit($limit);
+        }
+
         return $this->hasMany(ArticleTag::class);
     }
 

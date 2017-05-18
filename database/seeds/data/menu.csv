@@ -1,41 +1,85 @@
 id,description,parent_id,icon,link,type,name,order,locale_id,icon_class
-1,Link to Facebook,,35197e8cd80fe71313fd27bc50972974e4dd44f3.png,https://www.facebook.com/,link,Link Fb,1,1,zmdi zmdi-widgets zmdi-layers
-2,Menu 2,,fbaed31d8e7e41d2ef80b3027a04270eeb55db52.png,,mix,Menu 2,2,1,zmdi zmdi-widgets zmdi-layers
-3,Sub menu 1,2,,https://www.facebook.com/indonesia.funjapan,link,Sub menu 1,1,1,
-4,Sub menu 2,2,,http://dev-funjapan-renewal.cloudapp.net/id/articles/110,link,Sub menu 2,2,1,
-5,Sub menu 3,2,,http://dev-funjapan-renewal.cloudapp.net/id/articles/105,link,Sub menu 3,3,1,
-6,Menu Tags,,37d12ceeeadac6b27c37830d09a745f23ad72bf4.png,,tag,Tags,3,1,zmdi zmdi-tag-more
-7,Categories,,9eeb87f71291a2e7ba46696f778477e0059aec0e.png,,category,Categories,4,1,zmdi zmdi-layers
-8,,7,,1,link,Category name 1,1,1,
-9,,7,,2,link,Category name 2,2,1,
-10,,7,,3,link,Category name 3,3,1,
-11,Link to Facebook,,35197e8cd80fe71313fd27bc50972974e4dd44f3.png,https://www.facebook.com/,link,Link Fb,1,2,zmdi zmdi-widgets zmdi-layers
-12,Menu 2,,fbaed31d8e7e41d2ef80b3027a04270eeb55db52.png,,mix,Menu 2,2,2,zmdi zmdi-widgets zmdi-layers
-13,Sub menu 1,12,,https://www.facebook.com/indonesia.funjapan,link,Sub menu 1,1,2,
-14,Sub menu 2,12,,http://dev-funjapan-renewal.cloudapp.net/id/articles/110,link,Sub menu 2,2,2,
-15,Sub menu 3,12,,http://dev-funjapan-renewal.cloudapp.net/id/articles/105,link,Sub menu 3,3,2,
-16,Menu Tags,,37d12ceeeadac6b27c37830d09a745f23ad72bf4.png,,tag,Tags,3,2,zmdi zmdi-tag-more
-17,Categories,,9eeb87f71291a2e7ba46696f778477e0059aec0e.png,,category,Categories,4,2,zmdi zmdi-layers
-18,,17,,1,link,Category name 1,1,2,
-19,,17,,2,link,Category name 2,2,2,
-20,,17,,3,link,Category name 3,3,2,
-21,Link to Facebook,,35197e8cd80fe71313fd27bc50972974e4dd44f3.png,https://www.facebook.com/,link,Link Fb,1,3,zmdi zmdi-widgets zmdi-layers
-22,Menu 2,,fbaed31d8e7e41d2ef80b3027a04270eeb55db52.png,,mix,Menu 2,2,3,zmdi zmdi-widgets zmdi-layers
-23,Sub menu 1,22,,https://www.facebook.com/indonesia.funjapan,link,Sub menu 1,1,3,
-24,Sub menu 2,22,,http://dev-funjapan-renewal.cloudapp.net/id/articles/110,link,Sub menu 2,2,3,
-25,Sub menu 3,22,,http://dev-funjapan-renewal.cloudapp.net/id/articles/105,link,Sub menu 3,3,3,
-26,Menu Tags,,37d12ceeeadac6b27c37830d09a745f23ad72bf4.png,,tag,Tags,3,3,zmdi zmdi-tag-more
-27,Categories,,9eeb87f71291a2e7ba46696f778477e0059aec0e.png,,category,Categories,4,3,zmdi zmdi-layers
-28,,27,,1,link,Category name 1,1,3,
-29,,27,,2,link,Category name 2,2,3,
-30,,27,,3,link,Category name 3,3,3,
-31,Link to Facebook,,35197e8cd80fe71313fd27bc50972974e4dd44f3.png,https://www.facebook.com/,link,Link Fb,1,4,zmdi zmdi-widgets zmdi-layers
-32,Menu 2,,fbaed31d8e7e41d2ef80b3027a04270eeb55db52.png,,mix,Menu 2,2,4,zmdi zmdi-widgets zmdi-layers
-33,Sub menu 1,32,,https://www.facebook.com/indonesia.funjapan,link,Sub menu 1,1,4,
-34,Sub menu 2,32,,http://dev-funjapan-renewal.cloudapp.net/id/articles/110,link,Sub menu 2,2,4,
-35,Sub menu 3,32,,http://dev-funjapan-renewal.cloudapp.net/id/articles/105,link,Sub menu 3,3,4,
-36,Menu Tags,,37d12ceeeadac6b27c37830d09a745f23ad72bf4.png,,tag,Tags,3,4,zmdi zmdi-tag-more
-37,Categories,,9eeb87f71291a2e7ba46696f778477e0059aec0e.png,,category,Categories,4,4,zmdi zmdi-layers
-38,,37,,1,link,Category name 1,1,4,
-39,,37,,2,link,Category name 2,2,4,
-40,,37,,3,link,Category name 3,3,4,
+1,Campaign,,,/id,link,Campaign,1,1,zmdi zmdi-ticket-star
+2,Rewards,,,/id,link,Rewards,2,1,zmdi zmdi-card-giftcard
+3,Coupons,,,,mix,Coupons,3,1,zmdi zmdi-labels
+4,Get Coupons,3,,/id,link,Get Coupons,1,1,
+5,My Coupons,3,,/id,link,My Coupons,2,1,
+6,Coupon Map,3,,/id,link,Coupon Map,3,1,
+7,How to use,3,,/id,link,How to use,4,1,
+8,Other Menus,,,,mix,Other Menus,4,1,zmdi zmdi-widgets zmdi-layers
+9,Series,8,,/id/guide/article-series,link,Series,1,1,
+10,FJ Points,8,,/id/guide/about-funjapan-points,link,FJ Points,2,1,
+11,FJ Talk,8,,/id,link,FJ Talk,3,1,
+12,Japan Guide,8,,/id,link,Japan Guide,4,1,
+13,Invite Friends,8,,/id,link,Invite Friends,5,1,
+14,Omikuji,8,,/id,link,Omikuji,6,1,
+15,Map,8,,/id,link,Map,7,1,
+16,Personality Test,8,,/id,link,Personality Test,8,1,
+17,Categories,,,,category,Categories,5,1,zmdi zmdi-layers
+18,,17,,1,link,Category name 1,1,1,
+19,,17,,2,link,Category name 2,2,1,
+20,,17,,3,link,Category name 3,3,1,
+21,Tags,,,,tag,Tags,6,1,zmdi zmdi-tag-more
+22,Campaign,,,/th,link,Campaign,1,2,zmdi zmdi-ticket-star
+23,Rewards,,,/th,link,Rewards,2,2,zmdi zmdi-card-giftcard
+24,Coupons,,,,mix,Coupons,3,2,zmdi zmdi-labels
+25,Get Coupons,24,,/th,link,Get Coupons,1,2,
+26,My Coupons,24,,/th,link,My Coupons,2,2,
+27,Coupon Map,24,,/th,link,Coupon Map,3,2,
+28,How to use,24,,/th,link,How to use,4,2,
+29,Other Menus,,,,mix,Other Menus,4,2,zmdi zmdi-widgets zmdi-layers
+30,Series,29,,/th/guide/article-series,link,Series,1,2,
+31,FJ Points,29,,/th/guide/about-funjapan-points,link,FJ Points,2,2,
+32,FJ Talk,29,,/th,link,FJ Talk,3,2,
+33,Japan Guide,29,,/th,link,Japan Guide,4,2,
+34,Invite Friends,29,,/th,link,Invite Friends,5,2,
+35,Omikuji,29,,/th,link,Omikuji,6,2,
+36,Map,29,,/th,link,Map,7,2,
+37,Personality Test,29,,/th,link,Personality Test,8,2,
+38,Categories,,,,category,Categories,5,2,zmdi zmdi-layers
+39,,38,,1,link,Category name 1,1,2,
+40,,38,,2,link,Category name 2,2,2,
+41,,38,,3,link,Category name 3,3,2,
+42,Tags,,,,tag,Tags,6,2,zmdi zmdi-tag-more
+43,Campaign,,,/ms,link,Campaign,1,3,zmdi zmdi-ticket-star
+44,Rewards,,,/ms,link,Rewards,2,3,zmdi zmdi-card-giftcard
+45,Coupons,,,,mix,Coupons,3,3,zmdi zmdi-labels
+46,Get Coupons,45,,/ms,link,Get Coupons,1,3,
+47,My Coupons,45,,/ms,link,My Coupons,2,3,
+48,Coupon Map,45,,/ms,link,Coupon Map,3,3,
+49,How to use,45,,/ms,link,How to use,4,3,
+50,Other Menus,,,,mix,Other Menus,4,3,zmdi zmdi-widgets zmdi-layers
+51,Series,50,,/ms/guide/article-series,link,Series,1,3,
+52,FJ Points,50,,/ms/guide/about-funjapan-points,link,FJ Points,2,3,
+53,FJ Talk,50,,/ms,link,FJ Talk,3,3,
+54,Japan Guide,50,,/ms,link,Japan Guide,4,3,
+55,Invite Friends,50,,/ms,link,Invite Friends,5,3,
+56,Omikuji,50,,/ms,link,Omikuji,6,3,
+57,Map,50,,/ms,link,Map,7,3,
+58,Personality Test,50,,/ms,link,Personality Test,8,3,
+59,Categories,,,,category,Categories,5,3,zmdi zmdi-layers
+60,,59,,1,link,Category name 1,1,3,
+61,,59,,2,link,Category name 2,2,3,
+62,,59,,3,link,Category name 3,3,3,
+63,Tags,,,,tag,Tags,6,3,zmdi zmdi-tag-more
+64,参加活動,,,/tw,link,参加活動,1,4,zmdi zmdi-ticket-star
+65,問卷調査,,,/tw,link,問卷調査,2,4,zmdi zmdi-card-giftcard
+66,Coupons,,,,mix,Coupons,3,4,zmdi zmdi-labels
+67,取得優惠券,66,,/tw,link,取得優惠券,1,4,
+68,我的優惠券,66,,/tw,link,我的優惠券,2,4,
+69,優惠券地圖,66,,/tw,link,優惠券地圖,3,4,
+70,如何使用優惠券,66,,/tw,link,如何使用優惠券,4,4,
+71,其他選單,,,,mix,其他選單,4,4,zmdi zmdi-widgets zmdi-layers
+72,系列,71,,/tw/guide/article-series,link,系列,1,4,
+73,FJ 點數,71,,/tw/guide/about-funjapan-points,link,FJ 點數,2,4,
+74,FJ 討論主題,71,,/tw,link,FJ 討論主題,3,4,
+75,日本旅遊導覽,71,,/tw,link,日本旅遊導覽,4,4,
+76,邀請朋友,71,,/tw,link,邀請朋友,5,4,
+77,抽籤,71,,/tw,link,抽籤,6,4,
+78,地圖,71,,/tw,link,地圖,7,4,
+79,心理測驗,71,,/tw,link,心理測驗,8,4,
+80,分類,,,,category,分類,5,4,zmdi zmdi-layers
+81,,80,,1,link,Category name 1,1,4,
+82,,80,,2,link,Category name 2,2,4,
+83,,80,,3,link,Category name 3,3,4,
+84,Tags,,,,tag,Tags,6,4,zmdi zmdi-tag-more

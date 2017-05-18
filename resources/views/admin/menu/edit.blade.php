@@ -46,7 +46,7 @@
                         </div>
                     @endif
 
-                    <div class="form-group required">
+                    <div class="form-group">
                         {{ Form::label(
                             'description',
                             trans('admin/menu.label.description'),
@@ -56,13 +56,13 @@
                             {{ Form::textarea(
                                 'description',
                                 $menu->description,
-                                ['class' => 'form-control', 'required'])
+                                ['class' => 'form-control'])
                             }}
                         </div>
                     </div>
 
                     @if ($menu->type == config('menu.parent_type.category'))
-                        <div class="form-group required category-list">
+                        <div class="form-group category-list">
                             {{ Form::label('category', trans('admin/menu.label.category'), [
                                 'class' => 'col-sm-2 control-label'
                             ]) }}
@@ -85,7 +85,9 @@
                                     </thead>
                                     <tbody class="sortable-category">
                                         @foreach ($selectedCategoriesId as $key => $categoryId)
-                                            <tr data-id="{{ $categoryId }}"><td>{{ $categories[$categoryId] }}</td></tr>
+                                            @if (isset($categories[$categoryId]))
+                                                <tr data-id="{{ $categoryId }}"><td>{{ $categories[$categoryId] }}</td></tr>
+                                            @endif
                                         @endforeach
                                         @foreach ($categories as $id => $name)
                                             @if (!in_array($id, $selectedCategoriesId))

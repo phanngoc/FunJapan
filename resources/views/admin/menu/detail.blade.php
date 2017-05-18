@@ -43,6 +43,11 @@
                                         <img src="{{ $menu->icon_url['normal'] }}">
                                         <hr>
                                     @endif
+                                    @if ($menu->icon_class)
+                                        <strong>{{ trans('admin/menu.label.icon_class') }}</strong>:
+                                            {{ $menu->icon_class }}
+                                        <hr>
+                                    @endif
                                 </div>
                             </div>
                         </div>

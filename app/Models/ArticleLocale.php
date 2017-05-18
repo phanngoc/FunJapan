@@ -58,8 +58,12 @@ class ArticleLocale extends BaseModel
         return $this->belongsTo(Locale::class);
     }
 
-    public function articleTags()
+    public function articleTags($limit = null)
     {
+        if ($limit) {
+            return $this->hasMany(ArticleTag::class)->limit($limit);
+        }
+
         return $this->hasMany(ArticleTag::class);
     }
 
@@ -73,8 +77,12 @@ class ArticleLocale extends BaseModel
         return $this->hasMany(Comment::class)->whereNull('parent_id');
     }
 
-    public function tags()
+    public function tags($limit = null)
     {
+        if ($limit) {
+            return $this->belongsToMany(Tag::class, 'article_tags', 'article_locale_id', 'tag_id')->limit($limit);
+        }
+
         return $this->belongsToMany(Tag::class, 'article_tags', 'article_locale_id', 'tag_id');
     }
 

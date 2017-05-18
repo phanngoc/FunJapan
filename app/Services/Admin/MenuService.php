@@ -18,8 +18,8 @@ class MenuService extends BaseService
     public static function validate($inputs, $menu = null)
     {
         $validationRules = [
-            'description' => 'required|min:5|max:50',
-            'icon' => 'required|image|max:' . config('images.validate.menu_icon.max_size'),
+            'description' => 'max:50',
+            'icon' => 'image|max:' . config('images.validate.menu_icon.max_size'),
             'link' => 'required_if:type,' . config('menu.parent_type.link'),
         ];
 
@@ -49,7 +49,7 @@ class MenuService extends BaseService
     public static function validateSubMenu($inputs, $menu = null)
     {
         $validationRules = [
-            'description' => 'required|max:50',
+            'description' => 'max:50',
             'link' => 'required',
         ];
 
@@ -82,48 +82,46 @@ class MenuService extends BaseService
         DB::beginTransaction();
         try {
             if ($menu = Menu::create($inputs)) {
-                $iconPath = config('images.paths.menu_icon') . '/' . $menu->id;
-                $fileName = ImageService::uploadFile($inputs['icon'], 'menu_icon', $iconPath);
-
-                if ($fileName) {
-                    $menu->icon = $fileName;
-                    $menu->save();
-
-                    if ($menu->type == config('menu.parent_type.category')) {
-                        $selectedCategories = explode(',', $inputs['selectedCategories']);
-                        $categories = Category::where('locale_id', $menu->locale_id)
-                            ->whereIn('id', $selectedCategories)
-                            ->get();
-
-                        $subMenuCategory = [];
-
-                        foreach ($selectedCategories as $key => $categoryId) {
-                            $category = $categories->find($categoryId);
-                            $subMenuCategory[] = [
-                                'parent_id' => $menu->id,
-                                'link' => $categoryId,
-                                'locale_id' => $menu->locale_id,
-                                'name' => $categories->find($categoryId)->name,
-                                'type' => config('menu.parent_type.link'),
-                                'order' => $key + 1,
-                                'updated_at' => Carbon::now(),
-                                'created_at' => Carbon::now(),
-                            ];
-                        }
-
-                        if ($subMenuCategory) {
-                            Menu::insert($subMenuCategory);
-                        }
-                    }
-
-                    DB::commit();
-
-                    return true;
+                if (isset($inputs['icon'])) {
+                    $iconPath = config('images.paths.menu_icon') . '/' . $menu->id;
+                    $fileName = ImageService::uploadFile($inputs['icon'], 'menu_icon', $iconPath);
                 }
 
-                DB::rollback();
+                if (isset($fileName)) {
+                    $menu->icon = $fileName;
+                    $menu->save();
+                }
 
-                return false;
+                if (($menu->type == config('menu.parent_type.category')) && $inputs['selectedCategories']) {
+                    $selectedCategories = explode(',', $inputs['selectedCategories']);
+                    $categories = Category::where('locale_id', $menu->locale_id)
+                        ->whereIn('id', $selectedCategories)
+                        ->get();
+
+                    $subMenuCategory = [];
+
+                    foreach ($selectedCategories as $key => $categoryId) {
+                        $category = $categories->find($categoryId);
+                        $subMenuCategory[] = [
+                            'parent_id' => $menu->id,
+                            'link' => $categoryId,
+                            'locale_id' => $menu->locale_id,
+                            'name' => $categories->find($categoryId)->name,
+                            'type' => config('menu.parent_type.link'),
+                            'order' => $key + 1,
+                            'updated_at' => Carbon::now(),
+                            'created_at' => Carbon::now(),
+                        ];
+                    }
+
+                    if ($subMenuCategory) {
+                        Menu::insert($subMenuCategory);
+                    }
+                }
+
+                DB::commit();
+
+                return true;
             }
 
             return false;
@@ -147,7 +145,7 @@ class MenuService extends BaseService
             }
         }
 
-        if ($menu->type == config('menu.parent_type.category')) {
+        if (($menu->type == config('menu.parent_type.category')) && $inputs['selectedCategories']) {
             $selectedCategories = explode(',', $inputs['selectedCategories']);
             $oldCategoriesId = $menu->children->pluck('link')->toArray();
             $deletedCategories = array_diff($oldCategoriesId, $selectedCategories);

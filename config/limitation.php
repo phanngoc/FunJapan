@@ -14,6 +14,7 @@ return [
     'recommended_article' => [
         'per_page' => 10,
         'limit' => 0,
+        'title_limit' => 37,
     ],
     'popular_article' => [
         'per_page' => 10,
@@ -27,6 +28,7 @@ return [
     ],
     'tags' => [
         'hot_tags' => 20,
+        'single_artile' => 3,
     ],
     'article_tag' => [
         'per_page' => 6,

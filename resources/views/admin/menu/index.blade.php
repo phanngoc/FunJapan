@@ -34,6 +34,7 @@
                             <th class="text-center">{{ trans('admin/menu.label.description') }}</th>
                             <th class="text-center">{{ trans('admin/menu.label.type') }}</th>
                             <th class="text-center">{{ trans('admin/menu.label.icon') }}</th>
+                            <th class="text-center">{{ trans('admin/menu.label.icon_class') }}</th>
                             <th class="text-center">{{ trans('admin/menu.created_at') }}</th>
                             <th class="text-center">{{ trans('admin/menu.action') }}</th>
                         </tr>
@@ -52,6 +53,7 @@
                                 </td>
                                 <td>{{ $menu->type }}</td>
                                 <td><img src="{{ $menu->icon_url['normal'] }}"></td>
+                                <td>{{ $menu->icon_class }}</td>
                                 <td class="text-center">{{ $menu->created_at }}</td>
                                 <td class="text-center">
                                     @if ($menu->type === 'mix')
