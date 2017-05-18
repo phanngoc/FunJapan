@@ -50,7 +50,18 @@
                         </div>
                     </div>
 
-                    @include('admin.elements._article_inputs_form')
+                    <div class="form-group" hidden id="preview-section">
+                        <div class="col-sm-4 col-sm-offset-2">
+                            <img id="blah" src="#" alt="your image" />
+                        </div>
+                    </div>
+
+                    @include('admin.elements._article_inputs_form',
+                            [
+                                'title' => $cloneInputs->title ?? null,
+                                'content' => $cloneInputs->content ?? null,
+                                'summary' => $cloneInputs->summary ?? null,
+                            ])
 
                     <div class="form-group">
                         {{ Form::label(
@@ -61,7 +72,7 @@
                         <div class="col-sm-10">
                             {{ Form::select(
                                 'tags[]',
-                                old('tags') ? array_flip(old('tags')) : [],
+                                old('tags') ? array_flip(old('tags')) : $tags,
                                 null,
                                 [
                                     'class' => 'form-control article-tag',
@@ -81,7 +92,7 @@
                         <div class="col-sm-10 width30">
                             {{ Form::text(
                                 'publish_date',
-                                null,
+                                $cloneInputs ? $cloneInputs->published_at->format('Y-m-d H:i') : null,
                                 ['class' => 'form-control datetime-picker'])
                             }}
                         </div>
@@ -98,7 +109,7 @@
                                 {{ Form::checkbox(
                                     'is_top_article',
                                     1,
-                                    false)
+                                    $cloneInputs->is_top_article ?? false)
                                 }}&nbsp;
                             </label>
                         </div>
@@ -115,7 +126,7 @@
                                 {{ Form::checkbox(
                                     'is_alway_hide',
                                     1,
-                                    false)
+                                    $cloneInputs->hide_always ?? false)
                                 }}&nbsp;
                             </label>
                         </div>
@@ -132,7 +143,7 @@
                                 {{ Form::checkbox(
                                     'is_member_only',
                                     1,
-                                    false)
+                                    $cloneInputs->is_member_only ?? false)
                                 }}&nbsp;
                             </label>
                         </div>
@@ -154,14 +165,14 @@
                             <div class="col-sm-5 width30">
                                 {{ Form::text(
                                     'start_campaign',
-                                    null,
+                                    $cloneInputs ? ($cloneInputs->start_campaign ? $cloneInputs->start_campaign->format('Y-m-d H:i') : null) : null,
                                     ['class' => 'form-control datetime-picker'])
                                 }}
                             </div>
                             <div class="col-sm-5 width30">
                                 {{ Form::text(
                                     'end_campaign',
-                                    null,
+                                    $cloneInputs ? ($cloneInputs->end_campaign ? $cloneInputs->end_campaign->format('Y-m-d H:i') : null) : null,
                                     ['class' => 'form-control datetime-picker'])
                                 }}
                             </div>

@@ -81,6 +81,8 @@
 @section('script')
     <script type="text/javascript">
         var typePhoto = {!! config('article.type.photo') !!};
+        var typeCampaign = {!! config('article.type.campaign') !!};
+        var typeCoupon = {!! config('article.type.coupon') !!};
     </script>
     {!! Html::script('assets/admin/js/article.js') !!}
 @stop

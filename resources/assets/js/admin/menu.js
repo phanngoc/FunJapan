@@ -71,9 +71,6 @@ $(document).ready(function() {
     });
 
     $('.select-locale').on('change', function (e) {
-        // var locale = $(this).val();
-        // var action = $('.menus-list').attr('action');
-
         $('.menus-list').submit();
     });
 

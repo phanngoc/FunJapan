@@ -1,5 +1,7 @@
 <!-- Mainly scripts -->
 {!! Html::script('assets/admin/js/jquery-2.1.1.js') !!}
+<!-- jQuery UI -->
+{!! Html::script('assets/admin/js/plugins/jquery-ui/jquery-ui.min.js') !!}
 {!! Html::script('assets/admin/js/bootstrap.min.js') !!}
 {!! Html::script('assets/admin/js/plugins/metisMenu/jquery.metisMenu.js') !!}
 {!! Html::script('assets/admin/js/plugins/slimscroll/jquery.slimscroll.min.js') !!}
@@ -18,9 +20,6 @@
 <!-- Custom and plugin javascript -->
 {!! Html::script('assets/admin/js/inspinia.js') !!}
 {!! Html::script('assets/admin/js/plugins/pace/pace.min.js') !!}
-
-<!-- jQuery UI -->
-{!! Html::script('assets/admin/js/plugins/jquery-ui/jquery-ui.min.js') !!}
 
 <!-- GITTER -->
 {!! Html::script('assets/admin/js/plugins/gritter/jquery.gritter.min.js') !!}

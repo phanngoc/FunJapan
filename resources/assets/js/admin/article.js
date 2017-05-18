@@ -33,6 +33,8 @@ $(document).ready(function () {
         }
     });
 
+    $.fn.dataTable.ext.errMode = 'none';
+
     var table = $('#article-table').DataTable({
         'order': [[ 3, "desc" ]],
         'processing': true,
@@ -48,7 +50,7 @@ $(document).ready(function () {
         'columns': [
             { 'data': 'id' },
             { 'data': 'title' },
-            { 'data': 'locale_id' },
+            { 'data': 'user_id' },
             { 'data': 'created_at' },
             { 'data': 'published_at' },
         ],
@@ -56,6 +58,13 @@ $(document).ready(function () {
             'targets': 0,
             'sortable': false,
             'class': 'text-center',
+        },
+        {
+            'targets': 2,
+            'sortable': false,
+            'data': function () {
+                return '';
+            }
         },
         {
             'targets': 3,
@@ -97,20 +106,37 @@ $(document).ready(function () {
             'data': function () {
                 return '';
             }
+        },
+        {
+            'targets': 9,
+            'sortable': false,
+            'searchable': false,
+            'class': 'text-center',
+            'data': function () {
+                return '';
+            }
         }],
         'createdRow': function (row, data, index) {
             var pageInfo = table.page.info();
             $('td', row).eq(0).empty().append(pageInfo.page * pageInfo.length + index + 1);
             var detailLink = baseUrl() + '/admin/articles/' + data.article_id + '?locale=' + data.locale_id;
             $('td', row).eq(1).empty().append('<a href="' + detailLink + '">' + encodeHTML(data.title) + '</a>');
-            $('td', row).eq(2).empty().append(locales[data.locale_id]);
-            $('td', row).eq(5).empty().append(data.is_top_article ? 'Yes' : 'No');
-            $('td', row).eq(6).empty().append(data.hide_always ? 'Yes' : 'No');
-            $('td', row).eq(7).empty().append(data.is_member_only ? 'Yes' : 'No');
+            $('td', row).eq(2).empty().append(data.article.user.name);
+            $('td', row).eq(5).empty().append(articleTypes[data.article.type]);
+            $('td', row).eq(6).empty().append(data.is_top_article ? 'Yes' : 'No');
+            $('td', row).eq(7).empty().append(data.hide_always ? 'Yes' : 'No');
+            $('td', row).eq(8).empty().append(data.is_member_only ? 'Yes' : 'No');
             var editLink = baseUrl() + '/admin/articles/' + data.article_id + '/edit/?locale=' + data.locale_id;
-            $('td', row).eq(8).empty().append('<a href="' + editLink + '" class="edit"><i class="fa fa-pencil-square-o fa fa-lg"></i></a>'
-                + '<a href="#" class="delete"><i class="fa fa-trash-o fa fa-lg"></i></a>');
-        }
+            $('td', row).eq(9).empty().append('<a data-toggle="tooltip" data-placement="left" title="'
+                + $('#button-edit').data('message')
+                +'" href="' + editLink + '" class="edit"><i class="fa fa-pencil-square-o fa fa-lg"></i></a>'
+                + '<a data-toggle="tooltip" data-placement="top" title="'
+                + $('#button-delete').data('message')
+                +'" href="#" class="delete"><i class="fa fa-trash-o fa fa-lg"></i></a>');
+        },
+        'fnDrawCallback': function (data, type, full, meta) {
+            $('[data-toggle="tooltip"]').tooltip();
+        },
     });
 
     table.columns().every( function () {
@@ -134,6 +160,14 @@ $(document).ready(function () {
     $('.select-type').on('change', function () {
         addAutoApprovePhoto($(this));
     });
+
+    $('.select-locale').on('change', function (e) {
+        $('.articles-list').submit();
+    });
+
+    $('#thumbnail').on('change', function (e) {
+        readUrl(this);
+    });
 });
 
 function addAutoApprovePhoto (element) {
@@ -141,9 +175,27 @@ function addAutoApprovePhoto (element) {
         if (element.val() == typePhoto) {
             $('.auto-approve-photo').removeClass('hidden');
             $('.date-time-campaign').removeClass('hidden');
+        } else if (element.val() == typeCampaign || element.val() == typeCoupon) {
+            $('.auto-approve-photo').addClass('hidden');
+            $('.date-time-campaign').removeClass('hidden');
         } else {
             $('.auto-approve-photo').addClass('hidden');
             $('.date-time-campaign').addClass('hidden');
         }
+    }
+}
+
+function readUrl (input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#preview-section').show();
+            $('#blah').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        $('#preview-section').hide();
     }
 }

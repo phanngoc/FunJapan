@@ -25,7 +25,9 @@ class ArticleService extends BaseService
             'type' => 'in:' . implode(',', array_values(config('article.type'))),
         ];
 
-        if ($inputs['type'] != config('article.type.normal')) {
+        if ($inputs['type'] == config('article.type.photo')
+            || $inputs['type'] == config('article.type.campaign')
+            || $inputs['type'] == config('article.type.coupon')) {
             $validationRules['start_campaign'] = 'required|date_format:"Y-m-d H:i"';
             $validationRules['end_campaign'] = 'date_format:"Y-m-d H:i"|after:start_campaign';
         }

@@ -45,11 +45,19 @@
                                 <li class="@if ($tab == $articleLocale->locale->id) active @endif"><a data-toggle="tab" href="#{{ $articleLocale->locale->name }}">{{ $articleLocale->locale->name }}</a></li>
                             @endforeach
                             @if (count($article->articleLocales) !== count($locales))
-                            <li>
-                                <a href="{{ action('Admin\ArticlesController@setOtherLanguage', [$article->id]) }}">
-                                    <i class="fa fa-plus"></i>
-                                    {{ trans('admin/article.button.set_language') }}
-                                </a>
+                            <li class="dropdown">
+                                    <a id="set-language" data-target="#" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-plus"></i>
+                                        {{ trans('admin/article.button.set_language') }}
+                                    </a>
+                                    <ul class="dropdown-menu set-language" aria-labelledby="set-language">
+                                        <li>
+                                            <a href="{{ action('Admin\ArticlesController@setOtherLanguage', [$article->id]) }}">{{ trans('admin/article.button.create_new') }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ action('Admin\ArticlesController@setOtherLanguage', [$article->id, 'clone' => 1]) }}">{{ trans('admin/article.button.clone') }}</a>
+                                        </li>
+                                    </ul>
                             </li>
                             @endif
                         </ul>

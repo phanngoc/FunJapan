@@ -34,6 +34,9 @@ return [
     'type' => [
         'normal' => 0,
         'photo' => 1,
+        'campaign' => 2,
+        'coupon' => 3,
+        'location' => 4,
     ],
 
     'limit_short_title' => 37,

@@ -32,6 +32,10 @@
 <div id="un-block-confirm" data-message="{{ trans('admin/tag.un_block_confirm') }}"></div>
 <div id="tag-block" data-message="{{ trans('admin/tag.tag_block') }}"></div>
 <div id="tag-not-block" data-message="{{ trans('admin/tag.tag_not_block') }}"></div>
+<div id="button-block" data-message="{{ trans('admin/tag.button.block') }}"></div>
+<div id="button-unblock" data-message="{{ trans('admin/tag.button.unblock') }}"></div>
+<div id="button-edit" data-message="{{ trans('admin/tag.button.edit') }}"></div>
+<div id="button-delete" data-message="{{ trans('admin/tag.button.delete') }}"></div>
 <div>
     {{ Form::open(['id' => 'deleteForm']) }}
         {{ method_field('DELETE') }}
