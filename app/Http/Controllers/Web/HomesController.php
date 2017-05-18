@@ -23,9 +23,20 @@ class HomesController extends Controller
     {
         $this->viewData['popularPost'] = AdminArticleService::getPopularPost($this->currentLocaleId);
         $this->viewData['banners'] = BannerSettingService::getBannerViaLocale($this->currentLocaleId);
-        $this->viewData['articleRanks'] = ArticleRankService::getArticleRanksLocale($this->currentLocaleId);
+        $articleRanks = ArticleRankService::getArticleRanksLocale($this->currentLocaleId);
+        $checkDisplay = 0;
+        foreach ($articleRanks as $articleRank) {
+            if (isset($articleRank->articleLocale)) {
+                $checkDisplay += 1;
+            }
+        }
 
-        $this->viewData['newArticles'] = WebArticleService::getNewArticles($this->currentLocaleId, config('limitation.new_post.per_page'));
+        $this->viewData['checkDisplay'] = $checkDisplay;
+        $this->viewData['articleRanks'] = $articleRanks;
+        $this->viewData['newArticles'] = WebArticleService::getNewArticles(
+            $this->currentLocaleId,
+            config('limitation.new_post.per_page')
+        );
         $this->viewData['recommendArticles'] = WebArticleService::getRecommendArticles($this->currentLocaleId);
 
         $this->viewData['advertisementSrc'] = config('advertisement_banner.src.en');

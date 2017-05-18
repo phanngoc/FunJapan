@@ -21,6 +21,7 @@ class Survey extends Model
         'description',
         'type',
         'point',
+        'multiple_join',
     ];
 
     protected $appends = [

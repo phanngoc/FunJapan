@@ -27,4 +27,5 @@ return [
     	'cancel' => 'Cancel',
     ],
     'create' => 'Add Survey',
+    'multiple_join' => 'Can Multiple Join',
 ];

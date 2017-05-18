@@ -6,7 +6,9 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
-                <div class="ibox-title"><h2>{{ trans('admin/question.add_question') }}</h2></div>
+                <div class="ibox-title">
+                    <h2><strong>{{ trans('admin/survey.title') }}: </strong> {{ $survey->title }}</h2>
+                </div>
                 <div class="ibox-content">
                     {{ Form::open(
                         [
@@ -47,7 +49,7 @@
 @section('script')
     {!! Html::script('assets/admin/js/question.js') !!}
     <script type="text/javascript">
-    var checkbox = {{ config('question.type_value.checkbox') }};
-    var radio = {{ config('question.type_value.radio') }};
+        var checkbox = {{ config('question.type_value.checkbox') }};
+        var radio = {{ config('question.type_value.radio') }};
     </script>
 @stop
