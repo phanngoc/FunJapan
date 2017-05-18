@@ -21,10 +21,10 @@
                 alt="TW_Series-Campaign"
                 width="180"
                 vertical-align="text-top"
-                src="/assets/images/guide/article-series-en-1.jpg"
+                src="/assets/images/guide/article-series-tw-1.jpg"
                 style="margin-right: 10px; float: left;">
         </a>
-        {{ trans('web/guide.article_series.des_campaign') }}<br><br><br><br>
+        {!! trans('web/guide.article_series.des_campaign') !!}<br><br><br><br>
         <strong>
             <span style="color: #ffc000;"><br>{!! trans('web/guide.article_series.title_how_to') !!}</span>
         </strong><br>
@@ -34,7 +34,7 @@
                 alt="TW_Series-Howto"
                 width="180"
                 vertical-align="text-top"
-                src="/assets/images/guide/article-series-en-2.jpg"
+                src="/assets/images/guide/article-series-tw-2.jpg"
                 style="margin-right: 10px; float: left; height: 90px; width: 180px;"
             >
         </a>{{ trans('web/guide.article_series.des_how_to') }}<br>
@@ -51,7 +51,7 @@
                 alt="TW_Series-Howto"
                 width="180"
                 vertical-align="text-top"
-                src="/assets/images/guide/article-series-en-3.jpg"
+                src="/assets/images/guide/article-series-tw-3.jpg"
                 style="margin-right: 10px; float: left; height: 90px; width: 180px;">
         </a>
         {{ trans('web/guide.article_series.des_photo') }}
@@ -68,7 +68,7 @@
                 alt="TW_Series-Howto"
                 width="180"
                 vertical-align="text-top"
-                src="/assets/images/guide/article-series-en-4.jpg"
+                src="/assets/images/guide/article-series-tw-4.jpg"
                 style="margin-right: 10px; float: left;"
             >
         </a>
@@ -86,7 +86,7 @@
                 alt="TW_Series-Howto"
                 width="180"
                 vertical-align="text-top"
-                src="/assets/images/guide/article-series-en-5.jpg"
+                src="/assets/images/guide/article-series-tw-5.jpg"
                 style="margin-right: 10px; float: left;"
             >
         </a>
@@ -101,7 +101,7 @@
                 alt="TW_Series-Howto"
                 width="180"
                 vertical-align="text-top"
-                src="/assets/images/guide/article-series-en-6.jpg"
+                src="/assets/images/guide/article-series-tw-6.jpg"
                 style="margin-right: 10px; float: left;">
         </a>{{ trans('web/guide.article_series.des_word') }}<br>
         <br><br><br>
@@ -116,7 +116,7 @@
                 alt="TW_Series-Howto"
                 width="180"
                 vertical-align="text-top"
-                src="/assets/images/guide/article-series-en-7.jpg"
+                src="/assets/images/guide/article-series-tw-7.jpg"
                 style="margin-right: 10px; float: left;">
         </a>
         {!! trans('web/guide.article_series.des_talk') !!}<br><br>
@@ -132,7 +132,7 @@
                 alt="TW_Series-Howto"
                 width="180"
                 vertical-align="text-top"
-                src="/assets/images/guide/article-series-en-8.jpg"
+                src="/assets/images/guide/article-series-tw-8.jpg"
                 style="margin-right: 10px; float: left;"
             >
         </a>
@@ -148,7 +148,7 @@
             alt="TW_Series-Howto"
             width="180"
             vertical-align="text-top"
-            src="/assets/images/guide/article-series-en-9.jpg"
+            src="/assets/images/guide/article-series-tw-9.jpg"
             style="margin-right: 10px; float: left; height: 90px; width: 180px;">
     </a>{{ trans('web/guide.article_series.des_test') }}<br><br><br><br>
 
@@ -166,7 +166,7 @@
             alt="TW_Series-Howto"
             width="180"
             vertical-align="text-top"
-            src="/assets/images/guide/article-series-en-10.jpg"
+            src="/assets/images/guide/article-series-tw-10.jpg"
             style="margin-right: 10px; float: left;"
         ></a>
     {{ trans('web/guide.article_series.des_rewards') }}<br><br><br><br><br><br>

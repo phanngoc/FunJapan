@@ -20,7 +20,7 @@
         <br>
         感謝您對Fun！Japan的支持！<br>
         如何檢查您的 FJ點數呢？<br>
-        請查看網站右上方的會員帳號區。<br>
+        請查看網站右上方的會員帳號區。<br><br>
         <div>
             <div><strong><span style="color: #e36c09;">如何獲取和保存FJ點數</span></strong><br>
             </div>

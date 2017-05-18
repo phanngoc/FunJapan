@@ -12,7 +12,7 @@
                     <div>
                         <div style="padding-bottom: 30px; text-align: left;">
                             <h1>{{ trans('web/guide.inquiry.japan_company') }}</h1>
-                            <p>{!! trans('web/guide.inquiry.japan_company_des1', ['email' => 'inquiry-tw@fun-japan.jp']) !!}</p>
+                            <p>{!! trans('web/guide.inquiry.japan_company_des1') !!}</p>
                             <span>
                                 ● {{ trans('web/guide.inquiry.japan_company_des5') }}<br>
                                 ● {{ trans('web/guide.inquiry.japan_company_des6') }}<br>

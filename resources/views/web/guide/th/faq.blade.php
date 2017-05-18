@@ -46,7 +46,7 @@
         <h2>
             {{ trans('web/guide.faq.change_pass_help') }}
         </h2>
-            {!! trans('web/guide.faq.change_pass', ['url' => '#']) !!}
+            {!! trans('web/guide.faq.change_pass', ['url' => action('Web\UsersController@password')]) !!}
             <br>
             <img class="img-responsive" alt="faq-line-01" src="assets/images/guide/faq-line-01.jpg">
         </p>
