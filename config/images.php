@@ -38,7 +38,7 @@ return [
             'thumbnail' => [640, 640],
         ],
         'category_icon' => [
-            'normal' => [32, 32],
+            'normal' => [22, 26],
         ],
         'article_thumbnail' => [
             'original' => '',

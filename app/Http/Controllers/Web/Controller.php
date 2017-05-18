@@ -8,7 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\App;
 use App\Services\Web\LocaleService;
-use App\Models\Menu;
+use App\Services\Web\MenuService;
 
 class Controller extends BaseController
 {
@@ -24,5 +24,6 @@ class Controller extends BaseController
         $currentLocale = LocaleService::getLocaleByIsoCode(App::getLocale());
         $this->currentLocaleId = $currentLocale->id;
         $this->currentLocale = $currentLocale->iso_code;
+        $this->viewData['menu'] = MenuService::getMenu($currentLocale->id);
     }
 }

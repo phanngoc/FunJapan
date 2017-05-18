@@ -28,6 +28,7 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::get('getTags', 'TagsController@getListTags');
     Route::put('tagBlock/{tag}', 'TagsController@block');
 
+    Route::get('menus/getCategories', 'MenusController@getCategories');
     Route::resource('menus', 'MenusController');
     Route::get('menus/createSubMenu/{menu}', 'MenusController@createSubMenu');
     Route::post('menus/createSubMenu/{menu}', 'MenusController@storeSubMenu');
