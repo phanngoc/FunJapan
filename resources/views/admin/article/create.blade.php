@@ -75,7 +75,7 @@
                     </div>
                     <div class="form-group" hidden id="preview-section">
                         <div class="col-sm-4 col-sm-offset-2">
-                            <img id="blah" src="#" alt="your image" />
+                            <img id="preview-img" src="#" alt="your image" />
                         </div>
                     </div>
 
@@ -219,7 +219,7 @@
                         </div>
 
                         <div class="col-sm-3">
-                            <a class="btn btn-primary" href="{{ action('Admin\ArticlesController@index') }}">
+                            <a class="btn btn-primary cancel" data-message="{{ trans('admin/article.cancel_message') }}" href="{{ action('Admin\ArticlesController@index') }}">
                                 {{ trans('admin/article.button.cancel') }}
                             </a>
                         </div>

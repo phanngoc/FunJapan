@@ -19,6 +19,7 @@
                             <th class="text-center">{{ trans('admin/menu.order') }}</th>
                             <th class="text-center">{{ trans('admin/menu.label.name') }}</th>
                             <th class="text-center">{{ trans('admin/menu.label.description') }}</th>
+                            <th class="text-center">{{ trans('admin/menu.label.link') }}</th>
                             <th class="text-center">{{ trans('admin/menu.created_at') }}</th>
                             <th class="text-center">{{ trans('admin/menu.action') }}</th>
                         </tr>
@@ -26,19 +27,20 @@
                     <tbody id="sortable">
                         @foreach ($menuItems as $key => $menu)
                             <tr id="order_{{ $menu->id }}">
-                                <td>{{ $key + 1 }}</td>
+                                <td class="text-center">{{ $key + 1 }}</td>
                                 <td>
                                     <a href="{{ action('Admin\MenusController@show', $menu->id) }}">
                                         {{ $menu->name }}
                                     </a>
                                 </td>
                                 <td>{{ $menu->description }}</td>
+                                <td>{{ $menu->link }}</td>
                                 <td class="text-center">{{ $menu->created_at }}</td>
                                 <td class="text-center">
-                                    <a href="{{ action('Admin\MenusController@editSubMenu', $menu->id) }}">
+                                    <a data-placement="top" data-toggle="tooltip" title="{{ trans('admin/menu.menu_edit') }}" href="{{ action('Admin\MenusController@editSubMenu', $menu->id) }}">
                                         <span class="fa fa-pencil-square-o fa fa-lg"></span>
                                     </a>
-                                    <a href="#" class="delete" data-url="{{ action('Admin\MenusController@destroy', $menu->id) }}">
+                                    <a data-placement="top" data-toggle="tooltip" title="{{ trans('admin/menu.delete_menu') }}" href="#" class="delete" data-url="{{ action('Admin\MenusController@destroy', $menu->id) }}">
                                         <span class="fa fa-trash-o fa fa-lg"></span>
                                     </a>
                                 </td>
@@ -58,8 +60,11 @@
 {{ Form::open(['id' => 'delete-menu-form']) }}
     {{ method_field('DELETE') }}
 {{ Form::close() }}
+
+{{ Form::open(['id' => 'update-order-form']) }}
+    {{ method_field('POST') }}
+{{ Form::close() }}
 <div id="delete-confirm" data-message="{{ trans('admin/menu.delete_confirm') }}"></div>
-<div id="delete-warning" data-message="{{ trans('admin/menu.delete_warning') }}"></div>
 @stop
 @section('script')
     {!! Html::script('assets/admin/js/menu.js') !!}

@@ -18,7 +18,7 @@
                         }}
                             <div class="col-sm-5 m-b-xs">
                                 {{ Form::select('locale_id', $locales, $localeId, [
-                                        'class' => 'input-sm form-control input-s-sm inline select-locale',
+                                        'class' => 'input-sm form-control input-s-sm inline select-locale height-35',
                                     ])
                                 }}
                             </div>
@@ -40,18 +40,6 @@
                                     <th class="text-center">{{ trans('admin/article.action') }}</th>
                                 </tr>
                             </thead>
-                            <tfoot>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tfoot>
                         </table>
                     </div>
                 </div>

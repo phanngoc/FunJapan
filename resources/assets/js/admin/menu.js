@@ -9,26 +9,7 @@ $(document).ready(function() {
         var data = $('#sortable').sortable('serialize');
         var url = $(e.target).data('url');
 
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: data,
-        })
-        .done(function(data) {
-            var  message = data;
-            swal(
-                {
-                    title: data.message,
-                    timer: 40000,
-                },
-                function() {
-                    location.reload();
-                }
-            );
-        })
-        .fail(function() {
-
-        })
+        $('#update-order-form').attr('action', url + '?' + data).submit();
     })
 
     if ((typeof oldInputs != 'undefined') && (typeof oldInputs.type != 'undefined')) {
@@ -51,9 +32,10 @@ $(document).ready(function() {
 
     $('.delete').on('click', function(e) {
         var url = $(this).data('url');
+        var text = $(this).data('warning');
         swal({
             title: $('#delete-confirm').data('message'),
-            text: $('#delete-warning').data('message'),
+            text: text,
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
@@ -63,11 +45,6 @@ $(document).ready(function() {
         function(){
             $('#delete-menu-form').attr('action', url).submit();
         });
-    });
-
-    $('.info').on('click', function(e) {
-        var data = $(this).data('info');
-        $('#infoModal').modal('show');
     });
 
     $('.select-locale').on('change', function (e) {
@@ -113,7 +90,47 @@ $(document).ready(function() {
             $('.category-selected-hidden').val(selectedCategories.join(','));
         }
     });
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+
+    $('.cancel').on('click', function(e) {
+        e.preventDefault();
+        var message = $(this).data('message');
+        url = $(this).attr('href');;
+        swal({
+            title: message,
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes",
+            closeOnConfirm: false
+        },
+        function(){
+            location.href = url;
+        });
+    });
+
+    $('#icon').on('change', function (e) {
+        readUrl(this);
+    });
 });
+
+function readUrl (input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#preview-section').show();
+            $('#preview-img').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        $('#preview-section').hide();
+    }
+}
 
 getCategoriesList = function () {
     if ($('#type').val() == 'category') {

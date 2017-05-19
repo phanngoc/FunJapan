@@ -51,7 +51,7 @@
                             ['class' => 'col-sm-2 control-label'])
                         }}
                         <div class="col-sm-10">
-                            {{ Form::textarea(
+                            {{ Form::text(
                                 'description',
                                 '',
                                 ['class' => 'form-control'])
@@ -70,7 +70,7 @@
                         </div>
 
                         <div class="col-sm-3">
-                            <a class="btn btn-primary" href="{{ action('Admin\MenusController@showSubMenu', $menu->id) }}">
+                            <a class="btn btn-primary cancel" data-message="{{ trans('admin/menu.cancel_message') }}" href="{{ action('Admin\MenusController@showSubMenu', $menu->id) }}">
                             {{ trans('admin/menu.button.cancel') }}
                             </a>
                         </div>

@@ -20,7 +20,7 @@
                                 $locales,
                                 $localeId,
                                 [
-                                    'class' => 'input-sm form-control input-s-sm inline select-locale',
+                                    'class' => 'input-sm form-control input-s-sm inline select-locale height-35',
                                 ]
                             ) }}
                         </div>
@@ -42,7 +42,7 @@
                     <tbody id="sortable">
                         @foreach ($menus as $key => $menu)
                             <tr id="order_{{ $menu->id }}">
-                                <td>{{ $key + 1 }}</td>
+                                <td class="text-center">{{ $key + 1 }}</td>
                                 <td>
                                     <a href="{{ action('Admin\MenusController@show', $menu->id) }}">
                                         {{ $menu->name }}
@@ -52,24 +52,30 @@
                                     {{ $menu->description }}
                                 </td>
                                 <td>{{ $menu->type }}</td>
-                                <td><img src="{{ $menu->icon_url['normal'] }}"></td>
+                                <td class="text-center"><img src="{{ $menu->icon_url['normal'] }}"></td>
                                 <td>{{ $menu->icon_class }}</td>
                                 <td class="text-center">{{ $menu->created_at }}</td>
                                 <td class="text-center">
                                     @if ($menu->type === 'mix')
-                                        <a href="{{ action('Admin\MenusController@createSubMenu', $menu->id) }}">
+                                        <a data-placement="top" data-toggle="tooltip" title="{{ trans('admin/menu.add_sub_menu') }}" href="{{ action('Admin\MenusController@createSubMenu', $menu->id) }}">
                                             <span class="fa fa-plus-square-o fa-lg"></span>
                                         </a>
 
-                                        <a href="{{ action('Admin\MenusController@showSubMenu', $menu->id) }}">
+                                        <a data-placement="top" data-toggle="tooltip" title="{{ trans('admin/menu.show_sub_menu') }}" href="{{ action('Admin\MenusController@showSubMenu', $menu->id) }}">
                                             <span class="fa fa-list fa-lg"></span>
                                         </a>
                                     @endif
-                                    <a href="{{ action('Admin\MenusController@edit', $menu->id) }}">
+                                    <a data-placement="top" data-toggle="tooltip" title="{{ trans('admin/menu.menu_edit') }}" href="{{ action('Admin\MenusController@edit', $menu->id) }}">
                                         <span class="fa fa-pencil-square-o fa fa-lg"></span>
                                     </a>
-                                    <a href="#" class="delete" data-url="{{ action('Admin\MenusController@destroy', $menu->id) }}">
-                                        <span class="fa fa-trash-o fa fa-lg"></span>
+                                    <a
+                                        @if ($menu->type === 'mix')
+                                            data-warning="{{ trans('admin/menu.delete_warning') }}"
+                                        @endif
+                                        data-placement="top" data-toggle="tooltip"
+                                        title="{{ trans('admin/menu.delete_menu') }}" href="#" class="delete"
+                                        data-url="{{ action('Admin\MenusController@destroy', $menu->id) }}">
+                                            <span class="fa fa-trash-o fa fa-lg"></span>
                                     </a>
                                 </td>
                             </tr>
@@ -89,8 +95,11 @@
 {{ Form::open(['id' => 'delete-menu-form']) }}
     {{ method_field('DELETE') }}
 {{ Form::close() }}
+
+{{ Form::open(['id' => 'update-order-form']) }}
+    {{ method_field('POST') }}
+{{ Form::close() }}
 <div id="delete-confirm" data-message="{{ trans('admin/menu.delete_confirm') }}"></div>
-<div id="delete-warning" data-message="{{ trans('admin/menu.delete_warning') }}"></div>
 @stop
 @section('script')
     {!! Html::script('assets/admin/js/menu.js') !!}

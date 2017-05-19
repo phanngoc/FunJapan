@@ -8,6 +8,6 @@ class LocaleService extends BaseService
 {
     public static function getAllLocales()
     {
-        return Locale::pluck('name', 'id')->all();
+        return Locale::orderBy('name')->pluck('name', 'id')->all();
     }
 }

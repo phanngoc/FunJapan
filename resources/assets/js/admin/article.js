@@ -26,12 +26,6 @@ $(document).ready(function () {
     });
 
     //datatable setting
-    $('#article-table tfoot th').each(function(index, element) {
-        var title = $(this).text();
-        if (index == 1 || index == 2 || index == 3 || index == 4) {
-            $(this).html( '<input type="text" class="form-control filter-input" placeholder="Search '+title+'" />' );
-        }
-    });
 
     $.fn.dataTable.ext.errMode = 'none';
 
@@ -139,18 +133,6 @@ $(document).ready(function () {
         },
     });
 
-    table.columns().every( function () {
-        var that = this;
-
-        $( 'input', this.footer() ).on( 'keyup change', function () {
-            if ( that.search() !== this.value ) {
-                that
-                    .search( this.value )
-                    .draw();
-            }
-        });
-    });
-
     $('.datetime-picker').datetimepicker({
         format: 'Y-m-d H:i'
     });
@@ -167,6 +149,23 @@ $(document).ready(function () {
 
     $('#thumbnail').on('change', function (e) {
         readUrl(this);
+    });
+
+    $('.cancel').on('click', function(e) {
+        e.preventDefault();
+        var message = $(this).data('message');
+        url = $(this).attr('href');;
+        swal({
+            title: message,
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes",
+            closeOnConfirm: false
+        },
+        function(){
+            location.href = url;
+        });
     });
 });
 
@@ -191,7 +190,7 @@ function readUrl (input) {
 
         reader.onload = function (e) {
             $('#preview-section').show();
-            $('#blah').attr('src', e.target.result);
+            $('#preview-img').attr('src', e.target.result);
         }
 
         reader.readAsDataURL(input.files[0]);
