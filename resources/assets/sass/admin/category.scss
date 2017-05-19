@@ -1,4 +1,20 @@
 .pt6 {
     padding-top: 6px;
 }
+.item-hide {
+    display: none;
+}
 
+.box-content-category {
+    border-bottom : 1px solid #ccc;
+    overflow: hidden;
+    padding: 20px 0px;
+}
+
+.first-padding {
+    padding: 0px 0px 20px 0px !important;
+}
+
+.table > tbody > tr > td {
+     vertical-align: middle;
+}

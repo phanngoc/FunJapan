@@ -39,6 +39,7 @@ return [
         ],
         'category_icon' => [
             'normal' => [22, 26],
+            'larger' => [90, 90],
         ],
         'article_thumbnail' => [
             'original' => '',

@@ -1,3 +1,9 @@
+<div id="imageMimes" data-mimes="{{ config('images.validate.category_icon.mimes') }}"
+    data-message="{{ trans('admin/category.icon_message',['type' => config('images.validate.category_icon.mimes')]) }}"
+    data-message-size="{{ trans('admin/category.icon_message_size',['size' => config('images.validate.category_icon.max_size')]) }}"
+    data-max-size="{{ config('images.validate.category_icon.max_size') }}">
+</div>
+<div id="statusForm" data-status=""></div>
 <div class="form-group required">
     {{ Form::label(
         'name',

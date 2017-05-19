@@ -141,7 +141,7 @@ class CategoryService extends BaseService
 
     public static function getLocale()
     {
-        return ['' => ''] + Locale::orderBy('name', 'ASC')->pluck('name', 'id')->toArray();
+        return Locale::orderBy('name', 'ASC')->pluck('name', 'id')->toArray();
     }
 
     public static function delete($categoryId)
@@ -180,5 +180,10 @@ class CategoryService extends BaseService
         Log::error("Category doesn't exist");
 
         return false;
+    }
+
+    public static function checkCategoryUsed($categoryId)
+    {
+        return Article::where('category_id', '=', $categoryId)->count();
     }
 }

@@ -24,13 +24,18 @@
                             {{ Form::file('image', null, ['class' => 'form-control'])}}
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-2">
+                            <img id="image-preview" width="90" height="90" src="{{ $category->iconUrls['larger'] ?? '' }}" title="Preview Image">
+                        </div>
+                    </div>
                     {{ Form::hidden('id', $category->id) }}
                     <div class="form-group">
                         <div class="col-sm-2 col-sm-offset-2">
                             {{ Form::submit(trans('admin/category.button.update'), ['class' => 'btn btn-primary']) }}
                         </div>
                         <div class="col-sm-3">
-                            <a href="{{ action('Admin\CategoriesController@index') }}" class="btn-primary btn">{{ trans('admin/category.button.cancel') }}</a>
+                            <a href="#" data-confirm="{{ trans('admin/category.cancel_confirm') }}" data-url="{{ action('Admin\CategoriesController@index') }}" class="cancel btn-primary btn">{{ trans('admin/category.button.cancel') }}</a>
                         </div>
                     </div>
                 {{ Form::close() }}
@@ -40,5 +45,5 @@
 </div>
 @stop
 @section('script')
-
+    {!! Html::script('assets/admin/js/category.js') !!}
 @stop
