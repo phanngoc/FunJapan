@@ -16,8 +16,10 @@
                             'class' => 'form-horizontal',
                         ]
                     ) }}
-                        @include('admin.questions._form_edit')
-                        <span class="option-question"></span>
+                        <div class="form-create">
+                            @include('admin.questions._form_edit')
+                            <div class="option-question"></div>
+                        </div>
                         <div class="form-group">
                             <div class="col-sm-2 col-sm-offset-1">
                                 {{ Form::submit(trans('admin/survey.button.update'), ['class' => 'btn btn-primary']) }}
@@ -36,4 +38,8 @@
 @endsection
 @section('script')
     {!! Html::script('assets/admin/js/question.js') !!}
+    <script type="text/javascript">
+        var checkbox = {{ config('question.type_value.checkbox') }};
+        var radio = {{ config('question.type_value.radio') }};
+    </script>
 @stop

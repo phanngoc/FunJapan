@@ -83,3 +83,19 @@
         }}
     </div>
 </div>
+<div class="form-group">
+    {{ Form::label(
+        'multiple_join',
+        trans('admin/survey.multiple_join'),
+        ['class' => 'col-sm-2 control-label'])
+    }}
+    <div class="col-sm-10">
+        <label class="checkbox-inline">
+            {{ Form::checkbox(
+                'multiple_join',
+                1,
+                $survey->multiple_join ?? 0)
+            }}&nbsp;
+        </label>
+    </div>
+</div>

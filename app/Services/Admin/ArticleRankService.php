@@ -22,10 +22,17 @@ class ArticleRankService extends BaseService
 
     public static function getArticleRanksLocale($localeId)
     {
-        return ArticleRank::where('locale_id', $localeId)
-            ->limit(config('article.per_page'))
-            ->orderBy('rank')
-            ->get();
+        return ArticleRank::with([
+            'articleLocale' => function ($query) {
+                $query->where('hide_always', 0);
+                if (!auth()->check()) {
+                    $query->where('is_member_only', 0);
+                }
+            },
+        ])->where('locale_id', $localeId)
+        ->limit(config('article.per_page'))
+        ->orderBy('rank')
+        ->get();
     }
 
     public static function store($input)

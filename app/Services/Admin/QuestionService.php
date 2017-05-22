@@ -32,8 +32,9 @@ class QuestionService extends BaseService
         $question = Question::find($id);
         if ($question) {
             return $question->update([
+                'question_type' => $inputs['question_type'],
                 'title' => $inputs['title'],
-                'option_name' => $inputs['option_name'],
+                'option_name' => $inputs['option_name'] ?? null,
             ]);
         } else {
             return false;

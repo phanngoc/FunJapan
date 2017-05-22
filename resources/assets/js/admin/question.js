@@ -24,7 +24,7 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.add-option', function () {
-        $(this).parents('.option-question').append(option);
+        $(this).parents('.input-option').after(option);
     });
 
     $(document).on('click', '.delete-option', function () {
