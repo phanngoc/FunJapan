@@ -72,6 +72,9 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::get('popular-series/getSuggest', 'PopularSeriesController@getSuggest');
     Route::get('popular-series/getListSeries', 'PopularSeriesController@getListSeries');
 
+    Route::resource('coupons', 'CouponsController');
+    Route::get('list-coupon', 'CouponsController@getListCoupons');
+
     Route::get('{action?}', 'DashboardController@index');
 
     Route::get('setting/ranks', 'ArticleRanksController@index');
