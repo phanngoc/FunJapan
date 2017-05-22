@@ -303,4 +303,15 @@ class UserService
             return false;
         }
     }
+
+    /**
+     * Check password for user.
+     * @param  [array] $data [description]
+     * @return [type]       [description]
+     */
+    public static function checkPassword($id, $password)
+    {
+        $user = User::find($id);
+        return Hash::check($password, $user->password);
+    }
 }

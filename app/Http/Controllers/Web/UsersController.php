@@ -15,6 +15,11 @@ use Auth;
 use Hash;
 use App\Http\Requests\Web\UpdateProfileRequest;
 use App\Http\Requests\Web\UpdatePasswordRequest;
+use App\Services\Web\CategoryService;
+use App\Services\Web\TagService;
+use Illuminate\Support\Facades\View;
+use App\Http\Requests\Web\CloseAccountRequest;
+use Session;
 
 class UsersController extends Controller
 {
@@ -87,5 +92,34 @@ class UsersController extends Controller
         return redirect()->back()->withErrors(['password' => trans('web/user.password_wrong'),
             'updated_fail' => trans('web/user.updated_fail'),
             ])->withInput($request->all());
+    }
+
+    public function close()
+    {
+        $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
+        return view('web.users.close_account', $this->viewData);
+    }
+
+    public function closeAccount(CloseAccountRequest $request)
+    {
+        if (UserService::checkPassword(Auth::id(), $request->password)) {
+            $user = Auth::user();
+            Auth::logout();
+            $user->deleteItAndRelation();
+
+            return redirect()->route('close_complete')->with('status', 'close_account');
+        } else {
+            return redirect()->route('close_account')->with('error', trans('web/user.password_wrong'));
+        }
+    }
+
+    public function closeComplete()
+    {
+        if (Session::has('status') && Session::get('status') == 'close_account') {
+            $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
+            return view('web.users.close_complete', $this->viewData);
+        } else {
+            return route()->redirect('index');
+        }
     }
 }

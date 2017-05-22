@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 use App\Services\ImageService;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PostPhoto extends BaseModel
 {
-
+    use SoftDeletes;
     protected $table = 'post_photos';
 
     const ORDER_BY_CREATED_DESC = 'created_desc';
@@ -34,6 +35,16 @@ class PostPhoto extends BaseModel
         'photo_urls',
         'posted_time',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($postPhoto) {
+            $path = config('images.paths.post_photo') . '/' . $postPhoto->article_locale_id . '/' . $postPhoto->user_id;
+            ImageService::delete($path, $postPhoto->photo);
+        });
+    }
 
     public function user()
     {

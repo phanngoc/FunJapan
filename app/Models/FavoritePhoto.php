@@ -19,6 +19,17 @@ class FavoritePhoto extends BaseModel
         'post_photo_id',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($favorite) {
+            if ($favorite->photo) {
+                $favorite->photo->decrement('favorite_count');
+            }
+        });
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
