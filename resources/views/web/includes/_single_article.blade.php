@@ -13,7 +13,8 @@
                 <div class="article-engagement">
                     <p class="article-category">
                         <img class="category-icon" src="{{ $article->article->category->iconUrls['normal'] }}" />
-                        {{ $article->article->category->name }}
+                        {{ $article->article->category->name }} / {{ $article->article->category->short_name }}
+                        <span class="verticle-bar">|</span>
                     </p>
                     <!-- ENGAGEMENT -->
                     <ul class="engagement">
@@ -48,7 +49,7 @@
                 <div class="article-tags">
                     @if ($article->articleTags->count())
                         <ul>
-                            @foreach ($article->articleTags as $articleTag)
+                            @foreach ($article->articleTags(config('limitation.tags.single_artile'))->get() as $articleTag)
                             <li class="hot-tag">
                                 <a href="#">
                                     <span class="hashtag">#</span> {{ $articleTag->tag->name }}

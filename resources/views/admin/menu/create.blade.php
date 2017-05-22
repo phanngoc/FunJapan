@@ -74,7 +74,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group required">
+                    <div class="form-group">
                         {{ Form::label(
                             'description',
                             trans('admin/menu.label.description'),
@@ -84,12 +84,12 @@
                             {{ Form::textarea(
                                 'description',
                                 '',
-                                ['class' => 'form-control', 'required'])
+                                ['class' => 'form-control'])
                             }}
                         </div>
                     </div>
 
-                    <div class="form-group required category-list hidden">
+                    <div class="form-group category-list hidden">
                         {{ Form::label('category', trans('admin/menu.label.category'), [
                             'class' => 'col-sm-2 control-label'
                         ]) }}
@@ -117,7 +117,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group required">
+                    <div class="form-group">
                         {{ Form::label(
                             'icon',
                             trans('admin/menu.label.icon'),

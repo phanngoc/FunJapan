@@ -21,9 +21,9 @@
                                 @if ($m->type == config('menu.parent_type.mix'))
                                     <a data-toggle="tab" href="#dropdown-{{ $m->id }}" class="fj-tab">
                                 @elseif ($m->type == config('menu.parent_type.category'))
-                                    <a data-toggle="tab" href="#dropdown-category" class="fj-tab">
+                                    <a data-toggle="tab" href="#dropdown-category-{{ $m->id }}" class="fj-tab">
                                 @elseif ($m->type == config('menu.parent_type.tag'))
-                                    <a data-toggle="tab" href="#dropdown-tags" class="fj-tab">
+                                    <a data-toggle="tab" href="#dropdown-tags-{{ $m->id }}" class="fj-tab">
                                 @endif
                                 @if ($m->icon_class)
                                     <i class="{{ $m->icon_class }}"></i>{{ $m->name }} <i class="fa fa-chevron-down"></i>
@@ -76,8 +76,10 @@
                             </ul>
                         </div>
                     @elseif ($m->type == config('menu.parent_type.category'))
-                        <div id="dropdown-category" class="tab-pane navbar-tab fade">
+                        <div id="dropdown-category-{{ $m->id }}" class="tab-pane navbar-tab fade">
                             <ul class="tab-content-menu">
+                                <li class="vertical-bar"><a href="#">|</a></li>
+                                <li><a href="{{ action('Web\HomesController@index') }}">{{ trans('web/top_page.all') }}</a></li>
                                 @if (!is_null($m->categories))
                                     @foreach ($m->categories as $category)
                                         <li class="vertical-bar"><a href="#">|</a></li>
@@ -88,7 +90,7 @@
                             </ul>
                         </div>
                     @elseif ($m->type == config('menu.parent_type.tag'))
-                        <div id="dropdown-tags" class="tab-pane navbar-tab fade">
+                        <div id="dropdown-tags-{{ $m->id }}" class="tab-pane navbar-tab fade">
                             <ul class="tab-content-menu">
                                 @if (!is_null($m->tags))
                                     @foreach ($m->tags as $tag)
@@ -129,9 +131,9 @@
                             @if ($m->type == config('menu.parent_type.mix'))
                                 <a data-toggle="tab" href="#sm-dropdown-{{ $m->id }}" class="fj-tab">
                             @elseif ($m->type == config('menu.parent_type.category'))
-                                <a data-toggle="tab" href="#sm-dropdown-category" class="fj-tab">
+                                <a data-toggle="tab" href="#sm-dropdown-category-{{ $m->id }}" class="fj-tab">
                             @elseif ($m->type == config('menu.parent_type.tag'))
-                                <a data-toggle="tab" href="#sm-dropdown-tags" class="fj-tab">
+                                <a data-toggle="tab" href="#sm-dropdown-tags-{{ $m->id }}" class="fj-tab">
                             @endif
                             @if ($m->icon_class)
                                 <i class="{{ $m->icon_class }}"></i>{{ $m->name }} <i class="fa fa-chevron-down"></i>
@@ -162,8 +164,10 @@
                         </ul>
                     </div>
                 @elseif ($m->type == config('menu.parent_type.category'))
-                    <div id="sm-dropdown-category" class="tab-pane navbar-tab fade">
+                    <div id="sm-dropdown-category-{{ $m->id }}" class="tab-pane navbar-tab fade">
                         <ul class="tab-content-menu">
+                            <li class="vertical-bar"><a href="#">|</a></li>
+                            <li><a href="{{ action('Web\HomesController@index') }}">{{ trans('web/top_page.all') }}</a></li>
                             @if (!is_null($m->categories))
                                 @foreach ($m->categories as $category)
                                     <li class="vertical-bar"><a href="#">|</a></li>
@@ -174,7 +178,7 @@
                         </ul>
                     </div>
                 @elseif ($m->type == config('menu.parent_type.tag'))
-                    <div id="sm-dropdown-tags" class="tab-pane navbar-tab fade">
+                    <div id="sm-dropdown-tags-{{ $m->id }}" class="tab-pane navbar-tab fade">
                         <ul class="tab-content-menu">
                             @if (!is_null($m->tags))
                                 @foreach ($m->tags as $tag)

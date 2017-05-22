@@ -5,4 +5,5 @@ return [
     'favorites' => 'favorites',
     'comments' => 'comments',
     'shares' => 'shares',
+    'all' => 'All',
 ];
