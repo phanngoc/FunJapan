@@ -54,6 +54,7 @@ return [
         ],
         'menu_icon' => [
             'normal' => [20, 20],
+            'larger' => [96, 60],
         ],
     ],
     'not_resize' => [

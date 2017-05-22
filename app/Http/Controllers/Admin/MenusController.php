@@ -126,12 +126,13 @@ class MenusController extends Controller
     {
         $inputs = $request->all();
 
+        $inputs['parent_id'] = $menu->id;
+
         $validator = MenuService::validateSubMenu($inputs);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput($inputs);
         }
-        $inputs['parent_id'] = $menu->id;
 
         if (MenuService::createSubMenu($inputs, $menu->id)) {
             return redirect()->action('Admin\MenusController@showSubMenu', $menu->id)
@@ -201,10 +202,10 @@ class MenusController extends Controller
     {
         $inputs = $request->all();
         if (MenuService::updateOrder($inputs)) {
-            return response()->json(['message' => trans('admin/menu.order_success')]);
+            return redirect()->back()->with(['message' => trans('admin/menu.order_success')]);
         }
 
-        return response()->json(['message' => trans('admin/menu.order_errors')]);
+        return redirect()->back()->withErrors(['message' => trans('admin/menu.order_errors')]);
     }
 
     public function getCategories(Request $request)

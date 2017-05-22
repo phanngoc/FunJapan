@@ -14,6 +14,7 @@ class MenuService
         $menu = Menu::with('children')
             ->whereNull('parent_id')
             ->where('locale_id', $localeId)
+            ->orderBy('order')
             ->get();
 
         foreach ($menu as $key => $m) {

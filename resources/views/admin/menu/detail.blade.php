@@ -20,38 +20,48 @@
                 </h2>
             </div>
             <div class="ibox-content">
-                <div class="tabs-container">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#{{ $menu->name }}">{{ $menu->name }}</a></li>
-                        </ul>
-                        <div class="tab-content">
-                            <div id="{{ $menu->name }}" class="tab-pane active">
-                                <div class="panel-body">
-                                    <strong>{{ trans('admin/menu.label.name') }}</strong>:
-                                    {{ $menu->name }}
-                                    <hr>
-                                    @if ($menu->link)
-                                        <strong>{{ trans('admin/menu.label.link') }}</strong>:
-                                        {!! $menu->link !!}
-                                        <hr>
-                                    @endif
-                                    <strong>{{ trans('admin/menu.created_at') }}</strong>:
-                                    {{ $menu->created_at }}
-                                    <hr>
-                                    @if ($menu->icon_url['normal'])
-                                        <strong>{{ trans('admin/menu.label.icon') }}</strong>:
-                                        <img src="{{ $menu->icon_url['normal'] }}">
-                                        <hr>
-                                    @endif
-                                    @if ($menu->icon_class)
-                                        <strong>{{ trans('admin/menu.label.icon_class') }}</strong>:
-                                            {{ $menu->icon_class }}
-                                        <hr>
-                                    @endif
-                                </div>
+                <div class="">
+                    <div class="tab-content">
+                        <div id="{{ $menu->name }}" class="tab-pane active">
+                            <div class="panel-body">
+                                <strong>{{ trans('admin/menu.label.type') }}</strong>:
+                                {{ trans('admin/menu.parent_type' . '.' . $menu->type) }}
+                                <hr>
+                                <strong>{{ trans('admin/menu.label.name') }}</strong>:
+                                {{ $menu->name }}
+                                <hr>
+                                @if ($menu->link)
+                                <strong>{{ trans('admin/menu.label.link') }}</strong>:
+                                {!! $menu->link !!}
+                                <hr>
+                                @endif
+                                @if ($menu->description)
+                                <strong>{{ trans('admin/menu.label.description') }}</strong>:
+                                {!! $menu->description !!}
+                                <hr>
+                                @endif
+                                @if ($menu->parent_id)
+                                <strong>{{ trans('admin/menu.label.parent') }}</strong>:
+                                {!! $menu->parent->name !!}
+                                <hr>
+                                @endif
+                                @if ($menu->icon_url['larger'])
+                                <strong>{{ trans('admin/menu.label.icon') }}</strong>:
+                                <img src="{{ $menu->icon_url['larger'] }}">
+                                <hr>
+                                @endif
+                                @if ($menu->icon_class)
+                                <strong>{{ trans('admin/menu.label.icon_class') }}</strong>:
+                                {{ $menu->icon_class }}
+                                <hr>
+                                @endif
+                                <strong>{{ trans('admin/menu.created_at') }}</strong>:
+                                {{ $menu->created_at }}
+                                <hr>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>

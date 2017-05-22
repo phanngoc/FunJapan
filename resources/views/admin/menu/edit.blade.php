@@ -53,7 +53,7 @@
                             ['class' => 'col-sm-2 control-label'])
                         }}
                         <div class="col-sm-10">
-                            {{ Form::textarea(
+                            {{ Form::text(
                                 'description',
                                 $menu->description,
                                 ['class' => 'form-control'])
@@ -115,9 +115,15 @@
                         </div>
                     </div>
 
+                    <div class="form-group" hidden id="preview-section">
+                        <div class="col-sm-4 col-sm-offset-2">
+                            <img id="preview-img" src="#" alt="your image" />
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="col-sm-10 col-sm-offset-2">
-                            <img src="{{ $menu->icon_url['normal'] }}">
+                            <img src="{{ $menu->icon_url['larger'] }}">
                         </div>
                     </div>
 
@@ -147,7 +153,7 @@
                         </div>
 
                         <div class="col-sm-3">
-                            <a class="btn btn-primary" href="{{ action('Admin\MenusController@index') }}">
+                            <a class="btn btn-primary cancel" data-message="{{ trans('admin/menu.cancel_message') }}" href="{{ action('Admin\MenusController@index') }}">
                             {{ trans('admin/menu.button.cancel') }}
                             </a>
                         </div>

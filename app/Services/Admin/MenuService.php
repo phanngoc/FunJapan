@@ -20,14 +20,15 @@ class MenuService extends BaseService
         $validationRules = [
             'description' => 'max:50',
             'icon' => 'image|max:' . config('images.validate.menu_icon.max_size'),
-            'link' => 'required_if:type,' . config('menu.parent_type.link'),
+            'link' => 'max:255|required_if:type,' . config('menu.parent_type.link'),
         ];
 
         $validationRules['name'] = [
             'required',
             'max:20',
             Rule::unique('menu')->where(function ($query) use ($inputs) {
-                $query->where('locale_id', $inputs['locale_id']);
+                $query->where('locale_id', $inputs['locale_id'])
+                    ->where('parent_id', null);
             }),
         ];
 
@@ -37,7 +38,8 @@ class MenuService extends BaseService
                 'required',
                 'max:20',
                 Rule::unique('menu')->where(function ($query) use ($inputs) {
-                    $query->where('locale_id', $inputs['locale_id']);
+                    $query->where('locale_id', $inputs['locale_id'])
+                        ->where('parent_id', null);
                 })->ignore($menu->id),
             ];
         }
@@ -50,14 +52,15 @@ class MenuService extends BaseService
     {
         $validationRules = [
             'description' => 'max:50',
-            'link' => 'required',
+            'link' => 'required|max:255',
         ];
 
         $validationRules['name'] = [
             'required',
             'max:20',
             Rule::unique('menu')->where(function ($query) use ($inputs) {
-                $query->where('locale_id', $inputs['locale_id']);
+                $query->where('locale_id', $inputs['locale_id'])
+                    ->where('parent_id', $inputs['parent_id']);
             }),
         ];
 
@@ -65,8 +68,9 @@ class MenuService extends BaseService
             $validationRules['name'] = [
                 'required',
                 'max:20',
-                Rule::unique('menu')->where(function ($query) use ($inputs) {
-                    $query->where('locale_id', $inputs['locale_id']);
+                Rule::unique('menu')->where(function ($query) use ($inputs, $menu) {
+                    $query->where('locale_id', $inputs['locale_id'])
+                        ->where('parent_id', $menu->parent->id);
                 })->ignore($menu->id),
             ];
         }
@@ -218,6 +222,9 @@ class MenuService extends BaseService
 
     public static function delete($menu)
     {
+        $iconPath = config('images.paths.menu_icon') . '/' . $menu->id;
+        ImageService::delete($iconPath);
+
         return $menu->delete();
     }
 

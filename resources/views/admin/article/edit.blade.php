@@ -32,7 +32,7 @@
 
                     <div class="form-group" hidden id="preview-section">
                         <div class="col-sm-4 col-sm-offset-2">
-                            <img id="blah" src="#" alt="your image" />
+                            <img id="preview-img" src="#" alt="your image" />
                         </div>
                     </div>
 
@@ -182,7 +182,8 @@
                             {{ Form::submit(trans('admin/article.button.update'), ['class' => 'btn btn-primary']) }}
                         </div>
                         <div class="col-sm-3">
-                            <a class="btn btn-primary" href="{{ action('Admin\ArticlesController@show',
+                            <a class="btn btn-primary cancel" data-message="{{ trans('admin/article.cancel_message') }}"
+                                href="{{ action('Admin\ArticlesController@show',
                                 [$articleLocale->article_id, 'locale' => $localeId]) }}">
                                 {{ trans('admin/article.button.cancel') }}
                             </a>

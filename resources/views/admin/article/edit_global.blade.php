@@ -66,7 +66,8 @@
                             {{ Form::submit(trans('admin/article.button.update'), ['class' => 'btn btn-primary']) }}
                         </div>
                         <div class="col-sm-3">
-                            <a class="btn btn-primary" href="{{ action('Admin\ArticlesController@show',
+                            <a class="btn btn-primary cancel" data-message="{{ trans('admin/article.cancel_message') }}"
+                                href="{{ action('Admin\ArticlesController@show',
                                 [$article->id, 'locale' => $localeId]) }}">
                                 {{ trans('admin/article.button.cancel') }}
                             </a>

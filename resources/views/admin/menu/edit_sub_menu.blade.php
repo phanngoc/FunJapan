@@ -49,14 +49,13 @@
                             ['class' => 'col-sm-2 control-label'])
                         }}
                         <div class="col-sm-10">
-                            {{ Form::textarea(
+                            {{ Form::text(
                                 'description',
                                 $menu->description,
                                 ['class' => 'form-control'])
                             }}
                         </div>
                     </div>
-
 
                     <div class="form-group">
                         <div class="col-sm-2 col-sm-offset-2">
@@ -65,10 +64,9 @@
                                     'class' => 'btn btn-primary',
                                 ])
                             }}
-
                         </div>
                         <div class="col-sm-3">
-                            <a class="btn btn-primary" href="{{ action('Admin\MenusController@showSubMenu', $menu->parent_id) }}">
+                            <a class="btn btn-primary cancel" data-message="{{ trans('admin/menu.cancel_message') }}" href="{{ action('Admin\MenusController@showSubMenu', $menu->parent_id) }}">
                                 {{ trans('admin/menu.button.cancel') }}
                             </a>
                         </div>
@@ -79,3 +77,6 @@
     </div>
 </div>
 @stop
+@section('script')
+    {!! Html::script('assets/admin/js/menu.js') !!}
+@endsection

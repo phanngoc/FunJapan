@@ -21,7 +21,7 @@ class ArticleLocaleService extends BaseService
     public static function list($conditions)
     {
         $keyword = escape_like($conditions['search']['value']);
-        $searchColumns = ['id', 'title'];
+        $searchColumns = ['title'];
         $limit = $conditions['length'];
         $page = $conditions['start'] / $conditions['length'] + 1;
         $orderParams = $conditions['order'];
@@ -57,7 +57,7 @@ class ArticleLocaleService extends BaseService
             }
         }
 
-        $results = static::listItems($query, $keyword, $searchColumns, $orderConditions, $limit, $page);
+        $results = static::listItems($query, $keyword, $searchColumns, $orderConditions, $limit, $page, true);
 
         return $returnData = [
             'recordsFiltered' => $results->total(),

@@ -86,4 +86,5 @@ return [
     'set_language' => 'Set language of Article',
     'author' => 'Author',
     'article_type' => 'Article Type',
+    'cancel_message' => 'Are you sure you want to cancel?',
 ];
