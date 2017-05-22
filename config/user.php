@@ -7,4 +7,7 @@ return [
     ],
     'token_expire' => 1,
     'old_default' => 18,
+    'mail_template' => [
+        'invite_friends' => 'InviteFriends',
+    ],
 ];

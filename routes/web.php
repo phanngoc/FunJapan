@@ -53,7 +53,7 @@ Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
 
     Route::group(['middleware' => 'auth'], function () {
         Route::get('account/logout', 'LoginController@logout')->name('logout');
-
+        Route::get('account/invite-friends', 'InviteFriendsController@index');
         Route::get('/comments/favorite/{userId}', 'CommentsController@favorite');
         Route::resource('comments', 'CommentsController');
 
@@ -75,6 +75,7 @@ Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
 
     Route::get('/articles/{id}', 'ArticlesController@show')->name('article_detail');
     Route::get('/articles/{id}/like', 'ArticlesController@countLike');
+    Route::get('/articles/{id}/share', 'ArticlesController@countShare');
 
     Route::get('/tag/{name}', 'TagsController@show')->name('tag_detail');
     Route::get('/category/{name}', 'CategoriesController@show')->name('category_detail');
