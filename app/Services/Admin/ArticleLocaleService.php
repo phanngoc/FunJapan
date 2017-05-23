@@ -33,6 +33,11 @@ class ArticleLocaleService extends BaseService
             $query = $query->where('locale_id', $conditions['locale_id']);
         }
 
+        if (isset($conditions['tag_id'])) {
+            $listArticleLocaleIds = ArticleTag::where('tag_id', $conditions['tag_id'])->pluck('article_locale_id');
+            $query = $query->whereIn('id', $listArticleLocaleIds);
+        }
+
         if (isset($conditions['recommended'])) {
             $query = $query->where('recommended', true);
         }

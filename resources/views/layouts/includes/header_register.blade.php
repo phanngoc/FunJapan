@@ -1,7 +1,9 @@
 <div class="registration-header">
     <div class="registration-title">
         <a href="#">
-            <p class="registration-logo">FJ</p>
+            <p class="registration-logo">
+                <span>FJ</span>
+            </p>
             <p class="web-title">
                 <span class="text-fun">FUN!</span>
                 <span class="text-country">{{ trans('web/user.register_page.banner.text_country') }}</span>

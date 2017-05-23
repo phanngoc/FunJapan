@@ -35,9 +35,13 @@ Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
     Route::get('account/confirm/{userId}/{socialId}/{provider}', 'RegisterController@createStep2ConfirmPass');
     Route::post('account/confirm', 'RegisterController@confirmPass');
 
-    Route::get('account/create/success', 'RegisterController@createSuccess');
     Route::get('account/facebook', 'RegisterController@storeViaFaceBook');
     Route::get('facebook/callback', 'RegisterController@storeViaFaceBookCallBack')->name('facebook_callback');
+    Route::post('account/create/jmb', 'RegisterController@storeJmb');
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('account/create/success', 'RegisterController@createSuccess');
+        Route::get('account/create/final', 'RegisterController@finalStep');
+    });
 
     Route::get('/comments/lists/{articleId}', 'CommentsController@lists');
     Route::get('/comments/getEmoji', 'CommentsController@getEmoji');

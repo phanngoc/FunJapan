@@ -12,7 +12,7 @@
         </div>
         <p class="guide-text">As the standard JAL Mileage Bank membership card, the JMB Card provides the ability to earn miles as well as easy access to both the JAL Touch & Go Service and electronic money.</p>
         <div class="step-btn-container nav">
-            <a class="btn" role="button" href="#">
+            <a class="btn" role="button" href="{{ $currentLocale }}">
                 <span>Go to FUN! Japan</span>
             </a>
             <a class="btn" role="button" hef="#">

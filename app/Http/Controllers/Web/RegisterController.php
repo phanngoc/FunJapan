@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Web;
 
 use App\Models\Location;
 use App\Models\Religion;
+use App\Models\JmbCity;
+use App\Models\JmbCountry;
 use Laravel\Socialite\Facades\Socialite;
 use Symfony\Component\HttpFoundation\Request;
 use App\Services\Web\UserService;
+use App\Services\Admin\LocaleService;
+use App\Services\Web\JmbService;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -135,10 +140,52 @@ class RegisterController extends Controller
 
     public function createSuccess()
     {
-        $this->viewData['step'] = 3;
+        $jmbUser = JmbService::findByUserId(Auth::id());
+        if (count($jmbUser) > 0) {
+            return redirect()->action('Web\RegisterController@finalStep');
+        }
+        $this->viewData['step'] = 2;
         $this->viewData['currentLocale'] = $this->currentLocale;
+        $allJmbCountries = JmbCountry::where('available', 1);
+        $allJmbCountriesCode = $allJmbCountries->pluck('code', 'id');
+        $allJmbCities = JmbCity::all()->groupBy('jmb_country_id');
+        foreach ($allJmbCountriesCode as $key => $cityCode) {
+            $this->viewData['allCities'][$cityCode] = $allJmbCities[$key]->pluck('name', 'id');
+        }
+        $this->viewData['initCity'] = $this->viewData['allCities'][$this->currentLocale]->prepend('---', '');
+        $this->viewData['locales'] = $allJmbCountries->pluck('name', 'code')->prepend('---', '');
 
-        return view('web.users.register.step_3', $this->viewData);
+        return view('web.users.register.jmb_1', $this->viewData);
+    }
+
+    public function storeJmb(Request $request)
+    {
+        $inputs = $request->all();
+
+        $validator = UserService::validateJmbInput($inputs);
+
+
+        if (count($validator)) {
+            return redirect()->back()->withErrors($validator)->withInput($inputs);
+        }
+        $inputs['user_id'] = Auth::id();
+
+        if (JmbService::create($inputs)) {
+            return redirect()->action('Web\RegisterController@finalStep');
+        }
+    }
+
+    public function finalStep()
+    {
+        $jmbUser = JmbService::findByUserId(Auth::id());
+        if (count($jmbUser) > 0) {
+            $this->viewData['step'] = 3;
+            $this->viewData['currentLocale'] = $this->currentLocale;
+
+            return view('web.users.register.jmb_2', $this->viewData);
+        }
+
+        return redirect()->action('Web\RegisterController@createSuccess');
     }
 
     public function storeViaFaceBook(Request $request)

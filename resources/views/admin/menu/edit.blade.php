@@ -13,6 +13,7 @@
                     {{ method_field('PUT') }}
 
                     {{ Form::hidden('locale_id', $menu->locale_id) }}
+                    {{ Form::hidden('type', $menu->type) }}
 
                     <div class="form-group required">
                         {{ Form::label(
@@ -71,7 +72,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group category-selected">
+                        <div class="form-group category-selected required">
                             {{ Form::label('category', trans('admin/menu.label.selected_category'), [
                                 'class' => 'col-sm-2 control-label'
                             ]) }}

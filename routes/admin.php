@@ -26,7 +26,7 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::resource('tags', 'TagsController');
     Route::get('tagsSuggest', 'TagsController@suggest');
     Route::get('getTags', 'TagsController@getListTags');
-    Route::put('tagBlock/{tag}', 'TagsController@block');
+    Route::post('tagBlock/{tag}', 'TagsController@block');
 
     Route::get('menus/getCategories', 'MenusController@getCategories');
     Route::resource('menus', 'MenusController');

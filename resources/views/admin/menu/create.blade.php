@@ -100,7 +100,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group category-selected hidden">
+                    <div class="form-group category-selected required hidden">
                         {{ Form::label('category', trans('admin/menu.label.selected_category'), [
                             'class' => 'col-sm-2 control-label'
                         ]) }}
