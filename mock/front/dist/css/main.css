@@ -13062,6 +13062,7 @@ body .sidebar ulul.engagement li > a:focus {
 }
 .step-2 .form-group .col-form-label.alR {
   padding-left: 25px;
+  padding-right: 7px;
 }
 @media only screen and (max-width: 768px) {
   .step-2 .form-group .col-form-label.alR {
