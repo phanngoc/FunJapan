@@ -31,7 +31,7 @@ return [
         'list' => 'Articles list',
         'published_date' => 'Published Date',
         'articles_list' => 'Articles list in :locale',
-        'recommendation_articles_list' => 'Selected recommendation articles in :locale',
+        'popular_articles_list' => 'Selected popular articles in :locale',
     ],
     'setting_management' => 'Setting Management',
     'popular_setting' => 'Popular post',

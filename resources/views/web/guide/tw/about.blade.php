@@ -15,7 +15,7 @@
                 </span>
             </strong>
             <a href="{{ action('Web\GuidesController@footPrint') }}" target="_blank">
-                <img height="200" alt="20150728-18-01-about" width="550" src="/assets/images/guide/guide-about-event.jpg">
+                <img height="200" alt="20150728-18-01-about" width="550" src="/assets/images/guide/guide-about-staff.jpg">
             </a>
             <br>
         </p>
