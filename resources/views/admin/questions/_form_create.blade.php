@@ -17,7 +17,7 @@
             }}
         </div>
     </div>
-    <div class="form-group required">
+    <div class="form-group required question">
         {{ Form::label(
             'title',
             trans('admin/question.question'),
@@ -28,10 +28,11 @@
                 'title',
                 '',
                 [
-                    'class' => 'form-control title',
+                    'class' => 'score form-control title',
                     'required',
                 ])
             }}
         </div>
     </div>
+    <p class="text-danger font-bold error-question"></p>
 </div>

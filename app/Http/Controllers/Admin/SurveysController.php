@@ -10,9 +10,12 @@ use App\Models\Survey;
 
 class SurveysController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $this->viewData['surveys'] = SurveyService::getAll();
+        $localeId = $request->input('locale_id') ?? array_first(array_keys(LocaleService::getAllLocales()));
+        $this->viewData['locales'] = LocaleService::getAllLocales();
+        $this->viewData['localeId'] = $localeId;
+        $this->viewData['surveys'] = SurveyService::getAllViaLocale($localeId);
 
         return view('admin.surveys.index', $this->viewData);
     }
@@ -41,6 +44,7 @@ class SurveysController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->all();
+        $inputs['point'] = $inputs['point'] ?? 0;
         $validator = SurveyService::validate($inputs);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput($inputs);
@@ -74,7 +78,7 @@ class SurveysController extends Controller
         $inputs = $request->all();
         $validator = SurveyService::validate($inputs);
         if ($validator->fails()) {
-            return redirect()->back()->withErrors(['errors' => trans('admin/survey.update_error')]);
+            return redirect()->back()->withErrors($validator)->withInput($inputs);
         }
 
         if (SurveyService::update($inputs, $id)) {

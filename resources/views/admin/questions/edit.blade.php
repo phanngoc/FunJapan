@@ -18,7 +18,6 @@
                     ) }}
                         <div class="form-create">
                             @include('admin.questions._form_edit')
-                            <div class="option-question"></div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-2 col-sm-offset-1">

@@ -203,3 +203,23 @@
         }
     }
 }
+
+.first-ranking-img {
+    img {
+        width: 100% !important;
+        height: auto !important;
+        margin-top: -77.5px;
+    }
+}
+
+.list-group-ranking-item {
+    img {
+        width: 100% !important;
+        height: auto !important;
+        margin-top: -3px;
+    }
+}
+
+.first-ranking-des {
+    word-wrap: break-word;
+}

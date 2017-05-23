@@ -32,7 +32,7 @@ return [
         'deploy'  => [
             function ($task) {
                 $task->runForCurrentRelease('sudo service php7.0-fpm restart');
-                $task->runForCurrentRelease('sudo service supervisord restart');
+                $task->runForCurrentRelease('sudo service supervisor restart');
             },
             'php artisan queue:restart',
         ],

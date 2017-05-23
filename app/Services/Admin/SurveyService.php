@@ -13,27 +13,31 @@ class SurveyService extends BaseService
         $validationRules = [
             'title' => 'required|min:10|max:255',
             'type' => 'required|in:' . implode(',', array_keys(config('survey.type'))),
-            'point' => 'numeric',
+            'point' => 'integer|min:0|max:999999999',
         ];
 
-        return Validator::make($inputs, $validationRules);
+        return Validator::make($inputs, $validationRules)->setAttributeNames([
+            'title' => trans('admin/survey.title'),
+            'type' => trans('admin/survey.type'),
+            'point' => trans('admin/survey.point'),
+        ]);
     }
 
-    public static function getAll()
+    public static function getAllViaLocale($localeId)
     {
-        return Survey::all();
+        return Survey::whereLocaleId($localeId)->get();
     }
 
     public static function store($inputs)
     {
-        return Survey::create([
+        return Survey::firstOrCreate([
             'title' => $inputs['title'],
             'description' => $inputs['description'],
             'type' => $inputs['type'],
             'point' => $inputs['point'],
             'user_id' => auth()->user()->id,
             'locale_id' => $inputs['locale'],
-            'multiple_join' => $inputs['multiple_join'],
+            'multiple_join' => $inputs['multiple_join'] ?? 0,
         ]);
     }
 

@@ -1,16 +1,34 @@
 .add-option {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .delete-option {
-	margin-left: 20px;
-	cursor: pointer;
+    margin-left: 20px;
+    cursor: pointer;
 }
 
 .show-nothing {
-	padding:10px;
+    padding:10px;
 }
 
 .list-option {
-	margin: 10px 0 0 30px;
+    margin-top: 10px;
+}
+
+.other-option {
+    div {
+        margin: 7px 0 0 0;
+    }
+}
+
+.error-question {
+    margin-left: 132px;
+}
+
+.error-score {
+    margin: 12px 0 -30px 807px;
+}
+
+.error-option {
+    margin: 39px 0 -30px 147px;
 }

@@ -19,7 +19,7 @@ class CreateSurveysTable extends Migration
             $table->integer('locale_id');
             $table->integer('type')->default(0);
             $table->string('title');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->integer('point')->default(0);
             $table->timestamps();
         });

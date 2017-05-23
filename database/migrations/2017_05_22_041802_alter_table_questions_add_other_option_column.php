@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticleRanksTable extends Migration
+class AlterTableQuestionsAddOtherOptionColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateArticleRanksTable extends Migration
      */
     public function up()
     {
-        Schema::create('article_ranks', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('locale_id');
-            $table->integer('article_locale_id')->nullable();
-            $table->integer('rank');
-            $table->timestamps();
+        Schema::table('questions', function (Blueprint $table) {
+            $table->boolean('other_option')->default(0);
         });
     }
 
@@ -29,6 +25,8 @@ class CreateArticleRanksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('article_ranks');
+        Schema::table('questions', function (Blueprint $table) {
+            $table->dropColumn('other_option');
+        });
     }
 }

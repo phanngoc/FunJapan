@@ -20,5 +20,6 @@ class FakeDataSeeder extends Seeder
         $this->call(TagSeeder::class);
         $this->call(MenuSeeder::class);
         $this->call(MailTemplateSeeder::class);
+        $this->call(ArticleRankSeeder::class);
     }
 }

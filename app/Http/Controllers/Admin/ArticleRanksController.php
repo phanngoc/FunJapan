@@ -24,7 +24,6 @@ class ArticleRanksController extends Controller
         $condition = [
             'key_search' => $request->q,
             'locale_id' => $localeId,
-            'rank' => $request->rank,
         ];
 
         return ArticleLocaleService::getListForRank($condition);
@@ -36,13 +35,14 @@ class ArticleRanksController extends Controller
         $message = [];
         if (isset($request->articleRank)) {
             foreach ($request->articleRank as $rank => $articleLocaleId) {
-                if (in_array($articleLocaleId, $arrayArticleLocaleId)) {
+                if (isset($articleLocaleId) && $position = array_search($articleLocaleId, $arrayArticleLocaleId)) {
                     $message[] = [
+                        $position => trans('admin/article_rank.duplicate'),
                         $rank => trans('admin/article_rank.duplicate'),
                     ];
                 }
 
-                $arrayArticleLocaleId[] = $articleLocaleId;
+                $arrayArticleLocaleId[$rank] = $articleLocaleId;
             }
 
             if ($message) {
@@ -60,10 +60,5 @@ class ArticleRanksController extends Controller
                 }
             }
         }
-    }
-
-    public function destroy(Request $request, $localeId)
-    {
-        return ArticleRankService::destroy($request, $localeId);
     }
 }

@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
-                <div class="ibox-title"><h2>{{ trans('admin/article_rank.title') }}</h2></div>
+                <div class="ibox-title"><h2>{{ trans('admin/article_rank.label') }}</h2></div>
                 <div class="ibox-content">
                     <div class="tabs-container">
                         <ul class="nav nav-tabs rank-tabs">
@@ -24,7 +24,7 @@
                                         <div class="panel-body">
                                             <div class="row">
                                                 <div class="col-md-2 col-sm-2 col-xs-2">
-                                                    <label class="btn btn-primary btn-md">Rank {{ $rank }}</label>
+                                                    <label class="label-ranking">Rank {{ $rank }}</label>
                                                 </div>
                                                 <div class="col-md-8 col-sm-8 col-xs-8">
                                                     <select
@@ -34,8 +34,8 @@
                                                         data-locale-id="{{ $localeId }}">
                                                         @if (count($articleRank))
                                                             @foreach($articleRank as $ar)
-                                                                @if($ar->rank == $rank)
-                                                                    <option value="{{$ar->article_locale_id}}" selected>
+                                                                @if($ar->rank == $rank && isset($ar->article_locale_id))
+                                                                    <option value="{{ $ar->article_locale_id }}" selected>
                                                                         {{ $ar['articleLocale']->title }}
                                                                     </option>
                                                                 @endif

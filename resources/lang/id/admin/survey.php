@@ -25,6 +25,7 @@ return [
     	'create' => 'Create',
     	'update' => 'Update',
     	'cancel' => 'Cancel',
+        'save' => 'Save',
     ],
     'create' => 'Add Survey',
     'multiple_join' => 'Can Multiple Join',

@@ -1,39 +1,38 @@
 $(document).ready(function () {
-    var articleRank = {};
     var localeId = 1;
+    var articleRank = {};
     changeSelect(localeId, articleRank);
     processSelect2(localeId);
-    unselect2(localeId);
     saveRanks(localeId, articleRank);
 
     $('.rank-tabs li').click(function () {
         var localeId = $(this).data('tab');
         changeSelect(localeId, articleRank);
         processSelect2(localeId);
-        unselect2(localeId);
         saveRanks(localeId, articleRank);
-        $('.choose-article-' + localeId).on('select2:select', function() {
-            $('#save-ranks-' + localeId).removeAttr('disabled');
-        });
-
         $('#save-ranks-' + localeId).attr('disabled', 'disabled');
-    });
-
-    $('.choose-article-' + localeId).on('select2:select', function() {
-        $('#save-ranks-' + localeId).removeAttr('disabled');
     });
 
     $('#save-ranks-' + localeId).attr('disabled', 'disabled');
 });
 
 function changeSelect(localeId, articleRank) {
-    $('.choose-article-' + localeId).change(function() {
+    $('.choose-article-' + localeId).each(function () {
         var rank = $(this).data('rank');
-        var articleLocaleId = $(this).children().last().val();
-        if (articleRank.hasOwnProperty(rank)) {
-            delete articleRank[rank];
-        }
-        articleRank[rank] = articleLocaleId;
+        articleRank[rank] = $(this).val();
+    });
+
+    $('.choose-article-' + localeId).on("select2:select", function(e) {
+        $('#save-ranks-' + localeId).removeAttr('disabled');
+        var rank = $(this).data('rank');
+        articleRank[rank] = $(this).val();
+    });
+
+    $('.choose-article-' + localeId).on("select2:unselect", function(e) {
+        $('#save-ranks-' + localeId).removeAttr('disabled');
+        var rank = $(this).data('rank');
+        $(this).parent().find('#error-' + rank + '-' + localeId).text('');
+        articleRank[rank] = null;
     });
 }
 
@@ -62,28 +61,6 @@ function processSelect2(localeId) {
             },
         }
     });
-}
-
-function unselect2(localeId) {
-    $('.choose-article-' + localeId).on('select2:unselecting', function() {
-        var unselect = $(this).val();
-        var rank = $(this).data('rank');
-        $(this).find('option').remove();
-        $('#save-ranks-' + localeId).removeAttr('disabled');
-        $('#save-ranks-' + localeId).click(function () {
-            $.ajax({
-                url: baseUrl() + '/admin/setting/ranks/' + localeId + '/delete',
-                type: 'POST',
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data: {
-                    articleLocaleId: unselect,
-                    rank: rank
-                },
-                success: function (data) {
-                }
-            });
-        });
-    }).trigger('change');
 }
 
 function saveRanks(localeId, articleRank) {

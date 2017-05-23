@@ -18,9 +18,7 @@
                     ) }}
                         <div class="form-create">
                             @include('admin.questions._form_create')
-                            <div class="option-question"></div>
                         </div>
-                        <div class="add-form"></div>
                         <div class="form-group">
                             <div class="col-sm-2">
                                 <a href="javascript:;" class="add-more"><b>{{ trans('admin/question.add_more') }}</b></a>
@@ -29,8 +27,8 @@
                         <div class="form-group button-question">
                             <div class="col-sm-2 col-sm-offset-1">
                                 <a href="javascript:;" class="btn btn-primary" id="create-question"
-                                    data-url="{{ action('Admin\QuestionsController@store', [$survey->id]) }}">
-                                    {{ trans('admin/survey.button.create') }}
+                                    data-url="{{ action('Admin\QuestionsController@store', [$survey->id]) }}" data-survey-id="{{ $survey->id }}">
+                                    {{ trans('admin/survey.button.save') }}
                                 </a>
                             </div>
                             <div class="col-sm-2">
