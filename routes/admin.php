@@ -48,7 +48,7 @@ Route::group(['namespace' => 'Admin'], function () {
 
     Route::resource('surveys.questions', 'QuestionsController');
 
-    Route::resource('setting/popular-articles', 'PopularArticlesController');
+    Route::resource('popular-articles', 'PopularArticlesController');
 
     Route::get('setting/banner', 'BannerSettingsController@index');
     Route::post('setting/banner/{localeId}/locale', 'BannerSettingsController@update');

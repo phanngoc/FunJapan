@@ -17,7 +17,7 @@ return [
     'label_update_success' => 'Banner has been update successfully!',
     'label_update' => 'Update',
     'label_update_all' => 'Update',
-    'label_delete_all' => 'Clear',
+    'label_delete_all' => 'Delete',
     'label_upload' => 'Upload',
     'label_title' => 'Title',
     'label_summary' => 'Summary',

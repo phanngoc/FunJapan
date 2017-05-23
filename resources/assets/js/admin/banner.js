@@ -146,7 +146,10 @@ $(document).ready(function () {
                 $.each(response.data, function(key, object) {
                     element.parent().children().find('input[name="banner[' + key + '][id]"]').val(object.id);
                     element.parent().children().find('input[name="banner[' + key + '][photo]"]')[0].value = '';
-                    element.parent().find('#photo_error_' + key).siblings('img').attr('src', object.photo_urls.larger)
+                    element.parent().find('#photo_error_' + key).siblings('img').attr('src', object.photo_urls.larger);
+                    if (!object.photo) {
+                        element.parent().children().find('input[name="banner[' + key + '][is_uploaded_photo]"]').val(0);
+                    }
                 });
             },
             error: function (response) {
@@ -206,6 +209,7 @@ $(document).ready(function () {
                     beforeSend: function () {
                         element.attr('disabled', true);
                         element.children('i:first').removeClass('hidden');
+                        $('.error-message').text('');
                     },
                     success: function (response) {
                         element.children('i:first').addClass('hidden');
@@ -216,7 +220,8 @@ $(document).ready(function () {
                         element.siblings('div').find('input[type=file]').value = '';
                         element.siblings('div').find('.article-select2').each(function() {
                             $(this).val(null).trigger("change");
-                        })
+                        });
+                        element.siblings('button').attr('disabled', true);
                     },
                     error: function (response) {
                         element.removeAttr('disabled');

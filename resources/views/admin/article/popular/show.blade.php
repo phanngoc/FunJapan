@@ -6,7 +6,7 @@
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <h5>
-                    {{ trans('admin/popular_article.label.recommendation_articles_list', [
+                    {{ trans('admin/popular_article.label.popular_articles_list', [
                         'locale' => $locales[$input['locale_id'] ?? $input['default_locale_id']] ?? null
                     ]) }}
                 </h5>
