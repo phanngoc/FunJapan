@@ -8,6 +8,8 @@ return [
     'token_expire' => 1,
     'old_default' => 18,
     'mail_template' => [
-        'invite_friends' => 'InviteFriends',
+        'invite_friends' => '1',
+        'after_register' => '2',
+        'forgot_password' => '3',
     ],
 ];

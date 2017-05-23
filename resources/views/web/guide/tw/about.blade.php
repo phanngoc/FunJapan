@@ -8,13 +8,13 @@
         <p>
             <strong>
                 <span style="font-size: 24px;">
-                    <a href="{{ action('Web\GuidesController@footPrint') }}" target="_blank">
-                        <span style="color: #ff0000;">{{ trans('web/guide.about.event') }}</span>
+                    <a href="{{ action('Web\GuidesController@staff') }}" target="_blank">
+                        <span style="color: #ff0000;">{{ trans('web/guide.about.team_staff') }}</span>
                     </a>
                     <br>
                 </span>
             </strong>
-            <a href="{{ action('Web\GuidesController@footPrint') }}" target="_blank">
+            <a href="{{ action('Web\GuidesController@staff') }}" target="_blank">
                 <img height="200" alt="20150728-18-01-about" width="550" src="/assets/images/guide/guide-about-staff.jpg">
             </a>
             <br>

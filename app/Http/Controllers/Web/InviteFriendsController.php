@@ -23,9 +23,12 @@ class InviteFriendsController extends Controller
         $mail = MailTemplate::where('locale_id', $this->currentLocaleId)
             ->where('key', config('user.mail_template.invite_friends'))
             ->first();
-        $this->viewData['subject'] = rawurlencode(str_replace('{username}', auth()->user()->name, $mail->subject));
+
+        $url = action('Web\RegisterController@create', ['referralId' => auth()->user()->invite_code]);
         $content = str_replace('{username}', auth()->user()->name, $mail->content);
-        $this->viewData['content'] = rawurlencode(str_replace('{referralId}', auth()->user()->invite_code, $content));
+
+        $this->viewData['subject'] = rawurlencode(str_replace('{username}', auth()->user()->name, $mail->subject));
+        $this->viewData['content'] = rawurlencode(str_replace('{url}', $url, $content));
 
         return view('web.invite_friends.' . $this->currentLocale . '.content', $this->viewData);
     }

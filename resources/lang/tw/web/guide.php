@@ -2,9 +2,9 @@
 
 return [
     'about' => [
-        'event' => '團隊 成員',
+        'event' => 'Event',
         'pre_campaigns' => 'Previous Campaigns',
-        'team_staff' => 'Team Staff',
+        'team_staff' => '團隊 成員',
     ],
     'footprint' => [
         'title' => 'Fun!Japan Footprint<br>Koleksi Foto'

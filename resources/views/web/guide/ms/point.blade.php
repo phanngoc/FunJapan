@@ -56,14 +56,14 @@
         <p class="style-1">Collect as many FJP as you can, and save them for those future campaigns. You can enter our campaigns as many as times as you want and use the FJP you have collected.&nbsp;</p>
         <br>
         <div style="text-align: center;">
-            <p class="style-2"><strong><span style="color: #c0504d;">How to check your FP balance</span></strong></p>
+            <p class="style-2"><strong><span style="color: #c0504d;">How to check your FJP balance</span></strong></p>
             <p class="style-2">Login to the Fun! Japan Website, look at the top right of the screen and you will see your FJP balance just to the left of your username.</p>
             <p class="style-2">
                 <img height="165" alt="20161027-20-13-howtouses2" width="500" src="/assets/images/guide/guide_point_2.jpg">
             </p>
-            <p class="style-3" style="font-weight: bold;"><span style="color: #c00000;">How to get and save FP</span></p>
+            <p class="style-3" style="font-weight: bold;"><span style="color: #c00000;">How to get and save FJP</span></p>
             <p class="style-3"><span class="style-5"></span></p>
-            <p class="style-4"><strong>First, you need to register to get FP</strong></p>
+            <p class="style-4"><strong>First, you need to register to get FJP</strong></p>
             <p class="style-3"><span class="style-5"></span></p>
             <p class="style-4">•Register as a member in our website: 5,000 FPs</p>
             <p class="style-3"><span class="style-5"></span></p>
@@ -83,7 +83,7 @@
         </div>
         <p style="margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline; text-align: left;"><strong><span style="text-align: left; color: #c00000;">Expiration date of FP</span></strong></p>
         <p class="style-4">
-            <span style="color: #ff0000;">Caution</span>: Your Fun!Japan Point (FP) will expire 365 days after your last log in
+            <span style="color: #ff0000;">Caution</span>: Your Fun!Japan Point (FJP) will expire 365 days after your last log in
         </p>
     </div>
 @endsection
