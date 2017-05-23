@@ -30,6 +30,9 @@ return [
         'hot_tags' => 20,
         'single_artile' => 3,
     ],
+    'role' => [
+        'per_page' => 20,
+    ],
     'article_tag' => [
         'per_page' => 6,
     ]

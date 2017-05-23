@@ -87,7 +87,7 @@ class UsersController extends Controller
 
     public function close()
     {
-        return view('web.users.close_account');
+        return view('web.users.close_account', $this->viewData);
     }
 
     public function closeAccount(CloseAccountRequest $request)

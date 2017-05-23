@@ -40,6 +40,7 @@ class User extends Authenticatable
         'locale_id',
         'registered_by',
         'invite_user_id',
+        'role_id',
     ];
 
     /**
@@ -200,5 +201,28 @@ class User extends Authenticatable
     public function isNewUser()
     {
         return $this->created_at->isToday();
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id', 'id');
+    }
+
+    public function hasDefinePrivilege($permission)
+    {
+        if (!$permission || !$this->role) {
+            return false;
+        }
+
+        return $this->role->hasDefinePrivilege($permission);
+    }
+
+    public function isAccessAdmin()
+    {
+        if (!$this->role) {
+            return false;
+        }
+
+        return $this->role->isAccessAdmin();
     }
 }

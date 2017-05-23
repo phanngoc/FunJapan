@@ -37,6 +37,24 @@ class LoginController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
     }
 
+    protected function sendLoginResponse(Request $request)
+    {
+        $user = $this->guard()->user();
+
+        if (!$user->isAccessAdmin()) {
+            $this->guard()->logout();
+
+            return abort(403, 'Unauthorized action.');
+        }
+
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        return $this->authenticated($request, $user)
+            ?: redirect()->intended($this->redirectPath());
+    }
+
     protected function validateLogin(Request $request)
     {
         $this->validate(
