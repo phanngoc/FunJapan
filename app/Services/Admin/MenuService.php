@@ -18,9 +18,10 @@ class MenuService extends BaseService
     public static function validate($inputs, $menu = null)
     {
         $validationRules = [
-            'description' => 'max:50',
+            'description' => 'max:255',
             'icon' => 'image|max:' . config('images.validate.menu_icon.max_size'),
             'link' => 'max:255|required_if:type,' . config('menu.parent_type.link'),
+            'icon_class' => 'max:255',
         ];
 
         $validationRules['name'] = [
@@ -51,8 +52,9 @@ class MenuService extends BaseService
     public static function validateSubMenu($inputs, $menu = null)
     {
         $validationRules = [
-            'description' => 'max:50',
+            'description' => 'max:255',
             'link' => 'required|max:255',
+            'icon_class' => 'max:255',
         ];
 
         $validationRules['name'] = [

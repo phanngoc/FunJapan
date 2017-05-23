@@ -129,11 +129,11 @@ class ArticleLocaleService extends BaseService
             $articleLocale->recommended = false;
             $articleLocale->save();
 
-            $removeInBanner = BannerSetting::where('article_locale_id', $articleLocale->id)
-                ->update(['article_locale_id' => 0]);
-
-            if (!$removeInBanner) {
-                return false;
+            $removeInBanner = BannerSetting::where('article_locale_id', $articleLocale->id);
+            if (count($removeInBanner->get()) > 0) {
+                if (!$removeInBanner->update(['article_locale_id' => 0])) {
+                    return false;
+                }
             }
         }
 

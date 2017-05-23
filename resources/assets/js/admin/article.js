@@ -185,16 +185,16 @@ function addAutoApprovePhoto (element) {
 }
 
 function readUrl (input) {
+    var oldSrc = $('#preview-img').data('url');
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-            $('#preview-section').show();
             $('#preview-img').attr('src', e.target.result);
         }
 
         reader.readAsDataURL(input.files[0]);
     } else {
-        $('#preview-section').hide();
+        $('#preview-img').attr('src', oldSrc);
     }
 }

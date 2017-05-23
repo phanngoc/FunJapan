@@ -118,17 +118,22 @@ $(document).ready(function() {
 });
 
 function readUrl (input) {
+    var oldSrc = $('#preview-img').data('url');
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-            $('#preview-section').show();
+            $('#preview-section').removeClass('hidden');
             $('#preview-img').attr('src', e.target.result);
         }
 
         reader.readAsDataURL(input.files[0]);
     } else {
-        $('#preview-section').hide();
+        if (oldSrc == '') {
+            $('#preview-section').addClass('hidden');
+        } else {
+            $('#preview-img').attr('src', oldSrc);
+        }
     }
 }
 
@@ -146,8 +151,8 @@ getCategoriesList = function () {
                     var tbody = '';
 
                     for (let key in response.categories) {
-                        options += '<option value="' + key + '">' + response.categories[key] + '</option>';
-                        tbody += '<tr class="hidden" data-id="' + key + '"><td>' + response.categories[key] + '</td></tr>';
+                        options += '<option value="' + key + '">' + encodeHTML(response.categories[key]) + '</option>';
+                        tbody += '<tr class="hidden" data-id="' + key + '"><td>' + encodeHTML(response.categories[key]) + '</td></tr>';
                     }
 
                     $('.category-list').removeClass('hidden');

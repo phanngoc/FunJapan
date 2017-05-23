@@ -3,7 +3,7 @@ return [
     'menu_list' => 'Top Level Menu List',
     'add_menu' => 'Add Top Level Menu',
     'menu_management' => 'Menu Management',
-    'top_menu_create' => 'Create Top Level Menu',
+    'top_menu_create' => 'Add Menu',
     'menu_edit' => 'Edit Menu',
     'sub_menu_create'=> 'Create Sub Menu Of ',
     'sub_menu_edit'=> 'Edit Sub Menu',

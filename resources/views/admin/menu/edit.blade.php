@@ -115,15 +115,11 @@
                         </div>
                     </div>
 
-                    <div class="form-group" hidden id="preview-section">
-                        <div class="col-sm-4 col-sm-offset-2">
-                            <img id="preview-img" src="#" alt="your image" />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
+                    <div class="form-group @if (!$menu->icon_url['larger'])
+                        hidden
+                    @endif" id="preview-section">
                         <div class="col-sm-10 col-sm-offset-2">
-                            <img src="{{ $menu->icon_url['larger'] }}">
+                            <img id="preview-img" src="{{ $menu->icon_url['larger'] }}" data-url={{ $menu->icon_url['larger'] }}>
                         </div>
                     </div>
 

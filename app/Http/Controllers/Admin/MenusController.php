@@ -51,6 +51,12 @@ class MenusController extends Controller
     public function show(Request $request, Menu $menu)
     {
         $this->viewData['menu'] = $menu;
+        if ($menu->type == 'category') {
+            $this->viewData['selectedCategory'] = [];
+            foreach ($menu->children as $key => $value) {
+                $this->viewData['selectedCategory'][] = Category::find($value->link);
+            }
+        }
 
         return view('admin.menu.detail', $this->viewData);
     }
