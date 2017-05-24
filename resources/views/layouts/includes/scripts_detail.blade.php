@@ -10,6 +10,7 @@
 {{ Html::script('assets/admin/js/plugins/dropzone/dropzone.js') }}
 {{ Html::script('assets/js/web/article.js') }}
 {{ Html::script('assets/js/web/post_photo.js') }}
+{{ Html::script('assets/fancybox/js/jquery.fancybox.js') }}
 
 <script>
 $(function() {

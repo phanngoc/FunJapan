@@ -7,4 +7,5 @@
 {!! Html::style('assets/css/main.css') !!}
 {!! Html::style('assets/css/article.css') !!}
 <!-- EOF Resource -->
+{{ Html::style('assets/fancybox/css/jquery.fancybox.css') }}
 @yield('style')

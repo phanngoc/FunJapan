@@ -58,13 +58,27 @@ class ArticleLocale extends BaseModel
         return $this->belongsTo(Locale::class);
     }
 
-    public function articleTags($limit = null)
+    public function articleTags($limit = null, $blocked = true)
     {
-        if ($limit) {
-            return $this->hasMany(ArticleTag::class)->limit($limit);
+        $results = $this->hasMany(ArticleTag::class);
+
+        if ($blocked) {
+            if ($limit) {
+                return $results->limit($limit);
+            }
+
+            return $results;
         }
 
-        return $this->hasMany(ArticleTag::class);
+        $results = $results->whereHas('tag', function ($query) {
+            $query->where('status', config('tag.status.un_block'));
+        });
+
+        if ($limit) {
+            return $results->limit($limit);
+        }
+
+        return $results;
     }
 
     public function article()
@@ -77,13 +91,25 @@ class ArticleLocale extends BaseModel
         return $this->hasMany(Comment::class)->whereNull('parent_id');
     }
 
-    public function tags($limit = null)
+    public function tags($limit = null, $blocked = true)
     {
-        if ($limit) {
-            return $this->belongsToMany(Tag::class, 'article_tags', 'article_locale_id', 'tag_id')->limit($limit);
+        $results = $this->belongsToMany(Tag::class, 'article_tags', 'article_locale_id', 'tag_id');
+
+        if ($blocked) {
+            if ($limit) {
+                return $results->limit($limit);
+            }
+
+            return $results;
         }
 
-        return $this->belongsToMany(Tag::class, 'article_tags', 'article_locale_id', 'tag_id');
+        $results = $results->where('status', config('tag.status.un_block'));
+
+        if ($limit) {
+            return $results->limit($limit);
+        }
+
+        return $results;
     }
 
     public function getThumbnailUrlsAttribute($value)
