@@ -77,6 +77,10 @@ Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
 
         Route::get('notifications/list', 'NotificationsController@list');
         Route::get('notifications/dismiss', 'NotificationsController@dismiss');
+
+        Route::get('Account/Omikuji', 'OmikujisController@index');
+        Route::post('Account/Omikuji', 'OmikujisController@create');
+
     });
 
     Route::get('/Account/CloseComplete', 'UsersController@closeComplete')->name('close_complete');

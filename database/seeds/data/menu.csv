@@ -12,7 +12,7 @@ id,description,parent_id,icon,link,type,name,order,locale_id,icon_class
 11,FJ Talk,8,,/id,link,FJ Talk,3,1,
 12,Japan Guide,8,,/id,link,Japan Guide,4,1,
 13,Invite Friends,8,,/id,link,Invite Friends,5,1,
-14,Omikuji,8,,/id,link,Omikuji,6,1,
+14,Omikuji,8,,/id/Account/Omikuji,link,Omikuji,6,1,
 15,Map,8,,/id,link,Map,7,1,
 16,Personality Test,8,,/id,link,Personality Test,8,1,
 17,Categories,,,,category,Categories,5,1,zmdi zmdi-layers
@@ -33,7 +33,7 @@ id,description,parent_id,icon,link,type,name,order,locale_id,icon_class
 32,FJ Talk,29,,/th,link,FJ Talk,3,2,
 33,Japan Guide,29,,/th,link,Japan Guide,4,2,
 34,Invite Friends,29,,/th,link,Invite Friends,5,2,
-35,Omikuji,29,,/th,link,Omikuji,6,2,
+35,Omikuji,29,,/th/Account/Omikuji,link,Omikuji,6,2,
 36,Map,29,,/th,link,Map,7,2,
 37,Personality Test,29,,/th,link,Personality Test,8,2,
 38,Categories,,,,category,Categories,5,2,zmdi zmdi-layers
@@ -54,7 +54,7 @@ id,description,parent_id,icon,link,type,name,order,locale_id,icon_class
 53,FJ Talk,50,,/ms,link,FJ Talk,3,3,
 54,Japan Guide,50,,/ms,link,Japan Guide,4,3,
 55,Invite Friends,50,,/ms,link,Invite Friends,5,3,
-56,Omikuji,50,,/ms,link,Omikuji,6,3,
+56,Omikuji,50,,/ms/Account/Omikuji,link,Omikuji,6,3,
 57,Map,50,,/ms,link,Map,7,3,
 58,Personality Test,50,,/ms,link,Personality Test,8,3,
 59,Categories,,,,category,Categories,5,3,zmdi zmdi-layers
@@ -75,7 +75,7 @@ id,description,parent_id,icon,link,type,name,order,locale_id,icon_class
 74,FJ 討論主題,71,,/tw,link,FJ 討論主題,3,4,
 75,日本旅遊導覽,71,,/tw,link,日本旅遊導覽,4,4,
 76,邀請朋友,71,,/tw,link,邀請朋友,5,4,
-77,抽籤,71,,/tw,link,抽籤,6,4,
+77,抽籤,71,,/tw/Account/Omikuji,link,抽籤,6,4,
 78,地圖,71,,/tw,link,地圖,7,4,
 79,心理測驗,71,,/tw,link,心理測驗,8,4,
 80,分類,,,,category,分類,5,4,zmdi zmdi-layers
