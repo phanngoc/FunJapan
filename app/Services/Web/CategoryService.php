@@ -31,7 +31,9 @@ class CategoryService
             },
             'articleTags' => function ($query) use ($localeId) {
                 return $query->join('article_locales as al', 'al.id', '=', 'article_tags.article_locale_id')
-                    ->where('al.locale_id', $localeId);
+                    ->join('tags as ta', 'ta.id', '=', 'article_tags.tag_id')
+                    ->where('al.locale_id', $localeId)
+                    ->where('ta.status', config('tag.status.un_block'));
             },
             ])
             ->where('al.hide_always', 0)

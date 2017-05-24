@@ -102,14 +102,14 @@ class UsersController extends Controller
 
     public function closeAccount(CloseAccountRequest $request)
     {
-        if (UserService::checkPassword(Auth::id(), $request->password)) {
+        if (UserService::checkPassword(Auth::id(), $request->password) || Auth::user()->registeredBySocial()) {
             $user = Auth::user();
             Auth::logout();
             $user->deleteItAndRelation();
 
             return redirect()->route('close_complete')->with('status', 'close_account');
         } else {
-            return redirect()->route('close_account')->with('error', trans('web/user.password_wrong'));
+            return redirect()->route('close_account')->withErrors([trans('web/user.password_wrong')]);
         }
     }
 

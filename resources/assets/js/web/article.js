@@ -78,11 +78,11 @@ function changeLike(articleId)
         url: baseUrlLocale() + 'articles/' + articleId + '/like',
         type: 'GET',
         success: function (response) {
-            $('.engagement-count').text(response.count);
+            $('.engagement-count-article').text(response.count);
             if (response.check) {
-                $('.engagement-count, .engagement-favorite').addClass('active');
+                $('.engagement-count-article, .engagement-favorite').addClass('active');
             } else {
-                $('.engagement-count, .engagement-favorite').removeClass('active');
+                $('.engagement-count-article, .engagement-favorite').removeClass('active');
             }
         }
     });

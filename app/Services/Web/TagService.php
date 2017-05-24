@@ -18,7 +18,15 @@ class TagService
     public static function getArticleByTag($tag, $localeId)
     {
         return $tag->articlesTags()
-            ->with(['articleLocale', 'articleLocale.tags', 'article', 'article.category'])
+            ->with(['articleLocale.tags' => function ($query) {
+                return $query->where('tags.status', config('tag.status.un_block'));
+            },
+            ])
+            ->with([
+                'article',
+                'article.category',
+                'articleLocale',
+            ])
             ->select('article_tags.*')
             ->join('article_locales as al', 'al.id', '=', 'article_tags.article_locale_id')
             ->where('al.hide_always', 0)

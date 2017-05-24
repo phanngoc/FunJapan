@@ -96,6 +96,7 @@ return [
         'term_title' => 'Terms and Conditions and Privacy Policy'
     ],
     'profile_page' => [
+        'please_correct' => 'Please, correct the followings errors',
         'setting' => 'Settings',
         'profile' => 'Profile',
         'interest' => 'Interest',
@@ -110,6 +111,7 @@ return [
 If you want to change the password of :name account, please set up a password on :name.',
     ],
     'close_page' => [
+        'close_complete_title' => 'Success!!',
         'close_complete' => 'Your account left membership on this site.',
         'info_close' => 'We\'re disappointed you want to cancel membership in this website !',
         'sub_info_close' => 'Please wait a minutes before completing input to form, doesn\'t it :)',

@@ -9,7 +9,7 @@
         <div class="row gutter-32">
             <div class="col-md-70 main-column">
                 <div>
-                    <h3>{{ trans('web/user.close_page.title') }}</h3>
+                    <h3>{{ trans('web/user.close_page.close_complete_title') }}</h3>
                     <div id="ContentWrapper">
                         <p>{{ trans('web/user.close_page.close_complete') }}</p>
                     </div>
