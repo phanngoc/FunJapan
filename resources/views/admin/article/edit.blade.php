@@ -30,15 +30,9 @@
                         </div>
                     </div>
 
-                    <div class="form-group" hidden id="preview-section">
+                    <div class="form-group" id="preview-section">
                         <div class="col-sm-4 col-sm-offset-2">
-                            <img id="preview-img" src="#" alt="your image" />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-4 col-sm-offset-2">
-                            <img src="{{ $articleLocale->thumbnail_urls['small'] }}">
+                            <img id="preview-img" src="{{ $articleLocale->thumbnail_urls['small'] }}" data-url="{{ $articleLocale->thumbnail_urls['small'] }}">
                         </div>
                     </div>
 
