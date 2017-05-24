@@ -10,7 +10,7 @@
 @registration-gray-4: #f8f8f8;
 @registration-dark-gray-2: #ccc;
 @registration-red-4: #ff5c5c;
-@registration-green: #6ec07d;
+@registration-green: #79c487;
 @registration-red-5: #ff4747;
 @registration-light-blue: #85d6ff;
 @registration-light-blue-2: #79bee1;
@@ -437,7 +437,7 @@
           padding-left: 8px;
         }
         padding-left: 25px;
-        padding-right: 7px;
+        padding-right: 2px;
       }
     }
     .form-input {
@@ -794,12 +794,12 @@
           width: 100%;
         }
         .banner-dk {
-          @media only screen and (max-width: 768px) {
+          @media only screen and (max-width: 476px) {
             display: none;
           }
         }
         .banner-mb {
-          @media only screen and (max-width: 768px) {
+          @media only screen and (max-width: 476px) {
             display: inline;
           }
           display: none;
@@ -1066,12 +1066,22 @@
     width: 100%;
   }
   .ribbon-text {
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+      width: 180px;
+    }
     position: absolute;
-    width: 150px;
+    width: 210px;
     left: 50%;
     text-align: center;
     color: @registration-white;
-    text-shadow: 1px 0 1px @registration-gradient, -1px 0 1px @registration-gradient, 0 1px 1px @registration-gradient, 0 -1px 1px @registration-gradient, 1px 1px 1px @registration-gradient, -1px -1px 1px @registration-gradient, 1px -1px 1px @registration-gradient, -1px 1px 1px @registration-gradient;
+    text-shadow: 1px 0 1px @registration-gradient,
+    -1px 0 1px @registration-gradient,
+    0 1px 1px @registration-gradient,
+    0 -1px 1px @registration-gradient,
+    1px 1px 1px @registration-gradient,
+    -1px -1px 1px @registration-gradient,
+    1px -1px 1px @registration-gradient,
+    -1px 1px 1px @registration-gradient;
     .stars-group {
       font-size: 6px;
       margin-top: 8px;
@@ -1083,26 +1093,32 @@
       }
     }
     .text {
+      @media only screen and (min-width: 768px) and (max-width: 1024px) {
+        font-size: 10px;
+      }
       font-size: 12px;
     }
   }
   .dialog {
     position: absolute;
     top: 40px;
-    max-width: 175px;
+    max-width: 150px;
     p {
       margin-bottom: 0;
     }
     .title {
-      font-family: josefinsans-semibold;
-      text-shadow: 1px 0 0 @registration-white, -1px 0 0 @registration-white, 0 1px 0 @registration-white, 0 -1px 0 @registration-white, 1px 1px @registration-white, -1px -1px 0 @registration-white, 1px -1px 0 @registration-white, -1px 1px 0 @registration-white;
-      color: @registration-black;
+      font-family: opensans-semibold;
+      color: @registration-gray-2;
       .red-text {
         color: @registration-red-2;
       }
+      .large-text {
+        color: @registration-black;
+      }
     }
     .green-text {
-      font-weight: bold;
+      font-family: opensans-bold;
+      text-transform: uppercase;
       color: @registration-green;
     }
   }
@@ -1180,33 +1196,43 @@
     .card-banner {
       margin-top: 75px;
       .ribbon-text {
+        @media only screen and (min-width: 768px) and (max-width: 1030px) {
+          top: 80%;
+          margin-left: -78px;
+        }
         top: 82%;
-        margin-left: -65px;
+        margin-left: -90px;
       }
       .dialog {
         @media only screen and (min-width: 768px) and (max-width: 1030px) {
           left: 8%;
           top: 20px;
-          max-width: 125px;
+          max-width: 145px;
         }
-        left: 7%;
+        left: 10%;
         .title {
           @media only screen and (min-width: 768px) and (max-width: 1030px) {
-            font-size: 12px;
+            font-size: 11px;
           }
-          font-size: 14px;
+          font-size: 12px;
           .red-text {
             @media only screen and (min-width: 768px) and (max-width: 1030px) {
               font-size: 15px;
             }
-            font-size: 18px;
+            font-size: 16px;
+          }
+          .large-text {
+            font-size: 14px;
           }
         }
-        .green-text {
-          @media only screen and (min-width: 768px) and (max-width: 1030px) {
-            font-size: 10px;
+        .register-now {
+          margin-top: 5px;
+          .green-text {
+            @media only screen and (min-width: 768px) and (max-width: 1030px) {
+              font-size: 10px;
+            }
+            font-size: 11px;
           }
-          font-size: 13px;
         }
       }
     }
@@ -1279,26 +1305,28 @@
           top: 70%;
         }
         position: absolute;
-        width: 150px;
-        top: 69%;
-        margin-left: -75px;
+        width: 210px;
+        top: 69.5%;
+        margin-left: -106px;
       }
       .dialog {
-        @media only screen and (min-width: 480px) and (max-width: 768px) {
-          top: 10%;
-          left: 40%;
-        }
         @media only screen and (min-width: 300px) and (max-width: 350px) {
-          top: 7%;
+          top: 5%;
           left: 35%;
           max-width: 150px;
         }
         top: 8%;
-        left: 35%;
+        left: 40%;
         .title {
+          @media only screen and  (max-width: 768px) {
+            font-size: 12px;
+          }
           font-size: 15px;
           .red-text {
             font-size: 19px;
+          }
+          .large-text {
+            font-size: 14px;  
           }
         }
         .green-text {
