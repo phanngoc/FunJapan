@@ -190,4 +190,9 @@ class User extends Authenticatable
             return false;
         }
     }
+
+    public function isNewUser()
+    {
+        return $this->created_at->isToday();
+    }
 }

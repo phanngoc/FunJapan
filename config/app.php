@@ -66,6 +66,8 @@ return [
 
     'timezone' => 'UTC',
 
+    'global_timezone' => env('APP_GLOBAL_TIME_ZONE', 'UTC'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
