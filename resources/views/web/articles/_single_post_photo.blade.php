@@ -1,6 +1,6 @@
 <div class="articlephoto col-xs-3 text-center">
     <div class="articlephoto-image" style="height: 227px;">
-        <a class="image-popup-vertical-fit" href="{{ $postPhoto->photo_urls['original'] }}" target="_blank" title="{{ $postPhoto->content }}">
+        <a class="image-popup-vertical-fit fancybox" href="{{ $postPhoto->photo_urls['original'] }}" target="_blank" title="{{ $postPhoto->content }}">
             <img class="img-thumbnail" src="{{ $postPhoto->photo_urls['thumbnail'] }}">
         </a>
     </div>

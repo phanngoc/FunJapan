@@ -49,9 +49,9 @@
                 <div class="article-tags">
                     @if ($article->articleTags->count())
                         <ul>
-                            @foreach ($article->articleTags(config('limitation.tags.single_artile'))->get() as $articleTag)
+                            @foreach ($article->articleTags(config('limitation.tags.single_artile'), false)->get() as $articleTag)
                             <li class="hot-tag">
-                                <a href="#">
+                                <a href="{{ action('Web\TagsController@show', ['name' => $articleTag->tag->name]) }}">
                                     <span class="hashtag">#</span> {{ $articleTag->tag->name }}
                                 </a>
                             </li>

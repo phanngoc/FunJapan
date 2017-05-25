@@ -58,10 +58,10 @@
                 <!-- TAGS -->
                 <div class="article-tags">
                     <ul>
-                        @foreach ($article->articleLocale->tags(config('limitation.tags.single_artile'))->get() as $tag)
+                        @foreach ($article->articleLocale->tags(config('limitation.tags.single_artile'), false)->get() as $tag)
                             <li class="hot-tag">
                                 <a href="{{ route('tag_detail', $tag->name) }}">
-                                        <span class="hashtag"># </span>{{$tag->name}}
+                                    <span class="hashtag"># </span>{{ $tag->name }}
                                 </a>
                             </li>
                         @endforeach

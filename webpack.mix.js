@@ -28,6 +28,7 @@ var assetsCopy = [
     ['node_modules/jquery-datetimepicker/build/jquery.datetimepicker.min.css', 'admin/css/jquery-datetimepicker', false],
     ['node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js', 'admin/js/jquery-datetimepicker', false],
     ['resources/assets/sass/admin/banner.css', 'admin/css', false],
+    ['node_modules/fancybox/dist', 'fancybox', false],
 ];
 
 for (var i = 0; i < assetsCopy.length; i++) {

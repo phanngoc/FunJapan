@@ -79,12 +79,15 @@ var dropzoneOptions = {
         $('.dropzone').addClass('hidden');
         currentSection.find('.file-caption-name').html('');
         currentSection.find('.btn-upload-photo').addClass('hidden');
+        $('body .fancybox').fancybox();
     },
 }
 
 var myDropzone = undefined;
 
 function initDropzone () {
+    $('body .fancybox').fancybox();
+
     if ($('.upload-photo').length > 0) {
         if (typeof myDropzone != 'undefined') {
             myDropzone.destroy();
@@ -227,6 +230,8 @@ function getPostPhotos(currentSection, url, data = {}) {
                     currentSection.find('.articlephoto-more').removeClass('hidden');
                 }
             }
+
+            $('body .fancybox').fancybox();
         }
     });
 }

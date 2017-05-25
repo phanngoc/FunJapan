@@ -179,3 +179,27 @@
         font-size: 50px;
     }
 }
+
+.article-tags {
+    ul {
+        li.hot-tag {
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.list-group-article {
+    .list-group-item.list-group-item-cards {
+        .article-info {
+            height: 150px !important;
+        }
+    }
+}
+
+.article-tags {
+    ul {
+        li:first-child {
+            margin-left: 3px !important;
+        }
+    }
+}
