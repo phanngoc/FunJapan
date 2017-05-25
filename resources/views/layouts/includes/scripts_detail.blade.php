@@ -17,12 +17,12 @@ $(function() {
     // Navbar
     $('.fj-navbar').affix({
         offset: {
-            top: 504
+            top: 104
         }
     });
     $('.fj-navbar-mobile').affix({
         offset: {
-            top: 215
+            top: 40
         }
     });
 });
