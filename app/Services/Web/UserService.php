@@ -104,9 +104,9 @@ class UserService
             DB::commit();
 
             EmailService::sendMail(
-                'user.register_email',
+                config('user.mail_template.after_register'),
                 $user->email,
-                trans('web/email.register_mail_subject'),
+                $data['locale_id'],
                 ['name' => $user->name]
             );
 
@@ -223,7 +223,7 @@ class UserService
         return [];
     }
 
-    public static function lostPassProcess($email)
+    public static function lostPassProcess($email, $localeId)
     {
         try {
             DB::beginTransaction();
@@ -239,10 +239,13 @@ class UserService
             ]);
 
             EmailService::sendMail(
-                'user.lost_password',
+                config('user.mail_template.forgot_password'),
                 $request->email,
-                trans('web/email.lost_password_mail_subject'),
-                ['email' => $request->email, 'token' => $request->token]
+                $localeId,
+                [
+                    'email' => $request->email,
+                    'url' => action('Web\ResetPasswordController@resetPassword', ['token' => $request->token]),
+                ]
             );
 
             DB::commit();

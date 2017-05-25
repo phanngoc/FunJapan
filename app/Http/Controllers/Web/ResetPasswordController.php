@@ -21,7 +21,7 @@ class ResetPasswordController extends Controller
             return redirect()->back()->withErrors($validate)->withInput($input);
         }
 
-        if (!UserService::lostPassProcess($input['email'])) {
+        if (!UserService::lostPassProcess($input['email'], $this->currentLocaleId)) {
             return redirect()->back()->withErrors(['updated_fail' => trans('web/user.updated_fail')]);
         }
 
