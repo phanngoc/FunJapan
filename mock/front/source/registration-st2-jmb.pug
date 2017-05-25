@@ -26,16 +26,18 @@ block registration-patial
             span.stars-group.left
               i.fa.fa-star(aria-hidden='true')
               i.fa.fa-star(aria-hidden='true')
-            span.text FJ member limited
+            span.text Special card for FJ members
             span.stars-group.right
               i.fa.fa-star(aria-hidden='true')
               i.fa.fa-star(aria-hidden='true')
           .dialog
-            p.title
+            p.title 
+              | Get
               span.red-text Fun!
-              |  Japan ONLY
-            p
-              span.green-text We give JAL mileage bank card as present! Let's register now!
+              span.large-text Japan
+              |  members only special JAL mileage bank card!
+            p.register-now
+              span.green-text Let's register now!
         p.summary
           span
             | With JAL mileage bank service, you can exchange miles for many attractive rewards. Miles can be earned through boarding, lodging or shopping activities.
@@ -46,7 +48,7 @@ block registration-patial
             p.description Earn miles by boarding flight or shopping.
           .guide.green-circle
             p.title Exchange miles
-            p.description Miles can be exchanged for flight ticket, coupons and more.
+            p.description Exchange miles for flight tickets, coupons and more.
       .jmb-intro-mobile
         .intro-title
           p.sm-text Earn miles by boarding, lodging or shopping!
@@ -59,18 +61,18 @@ block registration-patial
             span.stars-group.left
               i.fa.fa-star(aria-hidden='true')
               i.fa.fa-star(aria-hidden='true')
-              i.fa.fa-star(aria-hidden='true')
-            span.text FJ member limited
+            span.text Special card for FJ members
             span.stars-group.right
               i.fa.fa-star(aria-hidden='true')
               i.fa.fa-star(aria-hidden='true')
-              i.fa.fa-star(aria-hidden='true')
           .dialog
-            p.title
+            p.title 
+              | Get
               span.red-text Fun!
-              |  Japan ONLY
-            p
-              span.green-text We give JAL mileage bank card as present! Let's register now!
+              span.large-text Japan
+              |  members only special JAL mileage bank card!
+            p.register-now
+              span.green-text Let's register now!
         p.summary
           span
             | With JAL mileage bank service, you can exchange miles for many attractive rewards. Miles can be earned through boarding, lodging or shopping activities.
@@ -89,39 +91,39 @@ block registration-patial
             .col-md-6
               .form-group.row.has-info
                 label.col-md-36.col-form-label(for='firstName')
-                  | Given name
+                  | Given Name
                   span.require *
                 .col-md-64.col-xs-11
-                  input#jmbFirstName.form-control(type='text', name='firstName', placeholder='10 character or less')
+                  input#jmbFirstName.form-control(type='text', name='firstName', placeholder='10 characters or less')
                   i#addFn_2.zmdi.zmdi-plus-circle-o.control-btn
                   i#addFn_3.zmdi.zmdi-plus-circle-o.control-btn
                   i#firstName1Info.fa.fa-question-circle.info-tooltip-btn(aria-hidden='true')
             #firstName2_block.col-md-22.col-xs-11.hidden
               .form-group.has-info
                 .col-md-12.no-padding
-                  input#jmbFirstName2.form-control(type='text', name='firstName2', placeholder='9 character or less')
+                  input#jmbFirstName2.form-control(type='text', name='firstName2', placeholder='9 characters or less')
                   i#rmFn_2.zmdi.zmdi-minus-circle-outline.control-btn
                   i#firstName2Info.fa.fa-question-circle.info-tooltip-btn(aria-hidden='true')
             #firstName3_block.col-md-22.col-xs-11.hidden
               .form-group.has-info
                 .col-md-12.no-padding
-                  input#jmbFirstName3.form-control(type='text', name='firstName3', placeholder='9 character or less')
+                  input#jmbFirstName3.form-control(type='text', name='firstName3', placeholder='9 characters or less')
                   i#rmFn_3.zmdi.zmdi-minus-circle-outline.control-btn
                   i#firstName3Info.fa.fa-question-circle.info-tooltip-btn(aria-hidden='true')
           .row
             .col-md-6
               .form-group.row.has-info
                 label.col-md-36.col-form-label(for='lastName')
-                  | Family name
+                  | Family Name
                   span.require *
                 .col-md-64
-                  input#jmbLastName.form-control(type='text', name='lastName', placeholder='9 character or less')
+                  input#jmbLastName.form-control(type='text', name='lastName', placeholder='9 characters or less')
                   i#lastNameInfo.fa.fa-question-circle.info-tooltip-btn(aria-hidden='true')
             .col-md-6
               .form-group.row.has-info
-                label.col-md-36.col-form-label.alR(for='midName') Middle name
+                label.col-md-36.col-form-label.alR(for='midName') Middle Name
                 .col-md-64
-                  input#jmbMidName.form-control(type='text', name='midName', placeholder='9 character or less')
+                  input#jmbMidName.form-control(type='text', name='midName', placeholder='9 characters or less')
                   i#midNameInfo.fa.fa-question-circle.info-tooltip-btn(aria-hidden='true')
           .row
             .col-md-6
@@ -130,15 +132,15 @@ block registration-patial
                   | Personal Identification Number (PIN)
                   span.require *
                 .col-md-64
-                  input#jmbPassword.form-control(type='password', name='password', placeholder='Must be 6 numeric characters')
+                  input#jmbPassword.form-control(type='password', name='password', placeholder='Enter 6 numeric characters')
                   i#pwInfo.fa.fa-question-circle.info-tooltip-btn(aria-hidden='true')
             .col-md-6
               .form-group.row
                 label.col-md-36.col-form-label.alR(for='confirmPassword')
-                  | PIN confirmation
+                  | PIN Confirmation
                   span.require *
                 .col-md-64
-                  input#jmbConfirmPassword.form-control(type='password', name='confirmPassword', placeholder='Must be 6 numeric characters')
+                  input#jmbConfirmPassword.form-control(type='password', name='confirmPassword', placeholder='Enter 6 numeric characters')
           .form-group.row
             label.col-md-18.col-form-label(for='address1')
               | Address 1
@@ -164,11 +166,11 @@ block registration-patial
             .col-md-6
               .form-group.row
                 label.col-md-36.col-form-label(for='city')
-                  | Residence City
+                  | City of Residence
                   span.require *
                 .col-md-64
                   select#jmbCity(name='city')
-                    option(value='', selected='', hidden='') Select
+                    option(value='', selected='', hidden='') ---
                     option Location 1
                     option Location 2
                     option Location 3
@@ -187,7 +189,7 @@ block registration-patial
                   span.require *
                 .col-md-55
                   select#jmbCountry(name='country')
-                    option(value='', selected='', hidden='') Select
+                    option(value='', selected='', hidden='') ---
                     option Location 1
                     option Location 2
                     option Location 3
@@ -201,10 +203,10 @@ block registration-patial
                     option Location 11
           .form-group.row
             label.col-md-18.col-form-label(for='phoneNumber')
-              | Phone number
+              | Phone Number
               span.require *
             .col-md-82
-              input#jmbPhoneNumber.form-control(type='text', name='phoneNumber', placeholder='Phone number')
+              input#jmbPhoneNumber.form-control(type='text', name='phoneNumber', placeholder='Phone Number')
           .form-group.term
             p.term-title
               label.col-form-label(for='term') Acceptance of Rules and Conditions
@@ -219,7 +221,7 @@ block registration-patial
               input(name='isAcceptPolicy', type='hidden', value='false')
               label.checkbox-label.tick(for='jmbIsAcceptPolicy')
               label.checkbox-label
-                span I agree to above Terms of use & Conditions
+                span I agree to the above Rules & Conditions
             p.feedback
               span#jmbRequireMessage
           .step-btn-container
