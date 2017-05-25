@@ -10,21 +10,21 @@ mixin card-item(card_item)
         p.card-title-sm
           span=card_item.sm_title
     .article-info
-      .article-summary
-        .article-engagement
-          p.article-category
-            img.category-icon(src=card_item.category_icon_src)
-            | #{card_item.category}
-            span.verticle-bar |
-          // ENGAGEMENT
-          +engagement
-          // EOF ENGAGEMENT
-        // TAGS
-        .article-tags
-          ul
-            each tag in card_item.tags
-              li.hot-tag
-                a(href='#')
-                  span.hashtag # 
-                  | #{tag}
-        // EOF TAGS
+      .article-engagement
+        p.article-category
+          img.category-icon(src=card_item.category_icon_src)
+          | #{card_item.category}
+          span.verticle-bar |
+        // ENGAGEMENT
+        +engagement
+        // EOF ENGAGEMENT
+      span.posted-date=card_item.posted_date
+      // TAGS
+      .article-tags
+        ul
+          each tag in card_item.tags
+            li.hot-tag
+              a(href='#')
+                span.hashtag # 
+                | #{tag}
+      // EOF TAGS
