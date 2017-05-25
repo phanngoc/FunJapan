@@ -54,4 +54,5 @@ mix.js('resources/assets/js/app.js', assetPath + 'js')
     .js('resources/assets/js/admin/survey.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/question.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/omikuji.js', assetPath + 'admin/js')
-    .sass('resources/assets/sass/admin/omikuji.scss', assetPath + 'admin/css');
+    .sass('resources/assets/sass/admin/omikuji.scss', assetPath + 'admin/css')
+    .js('resources/assets/js/admin/setting_hot_tags.js', assetPath + 'admin/js');

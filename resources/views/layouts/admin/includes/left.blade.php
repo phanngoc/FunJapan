@@ -29,12 +29,19 @@
                     </li>
                 </ul>
             </li>
-            <li class="{{ set_active(['admin/tags*', 'admin/tags/create']) }}">
+            <li class="{{ set_active(['admin/tags*', 'admin/tags/create', 'admin/settingHotTags', 'admin/showHotTags']) }}">
                 <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/tag.tag_management') }}</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li class="{{ set_active(['admin/tags']) }}"><a href="{{action('Admin\TagsController@index')}}">{{ trans('admin/tag.tag_list') }}</a></li>
                     <li class="{{ set_active(['admin/tags/create']) }}">
                         <a href="{{action('Admin\TagsController@create')}}">{{ trans('admin/tag.add_tag') }}</a>
+                    </li>
+                    <li class="{{ set_active(['admin/settingHotTags']) }}">
+                        <a href="{{action('Admin\TagsController@settingHotTags')}}">{{ trans('admin/tag.setting_hot_tags') }}</a>
+                    </li>
+
+                    <li class="{{ set_active(['admin/showHotTags']) }}">
+                        <a href="{{action('Admin\TagsController@showHotTags')}}">{{ trans('admin/tag.list_hot_tags') }}</a>
                     </li>
                 </ul>
             </li>

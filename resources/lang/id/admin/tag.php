@@ -44,4 +44,9 @@ return [
     'status' => 'Status',
     'block' => 'Action Block',
     'edit_tag' => 'Edit Tag',
+    'setting_hot_tags' => 'Setting Hot Tags',
+    'list_hot_tags' => 'List Hot Tags',
+    'setting_success' => 'Setting Successfully',
+    'setting_error' => 'Setting Error',
+    'remove-hot-tags' => 'Remove Hot Tags',
 ];
