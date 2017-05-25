@@ -27,6 +27,7 @@ class Comment extends BaseModel
 
     protected $appends = [
         'posted_time',
+        'confirm',
     ];
 
     protected static function boot()
@@ -67,6 +68,11 @@ class Comment extends BaseModel
     public function getPostedTimeAttribute()
     {
         return $this->created_at->format(trans('datetime.posted_time'));
+    }
+
+    public function getConfirmAttribute()
+    {
+        return trans('admin/article_comment.confirm', ['name' => $this->content]);
     }
 
     public function canBeDeleted()

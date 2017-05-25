@@ -29,6 +29,9 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::post('articles/edit-global/{article}', 'ArticlesController@updateGlobalInfo');
         Route::get('getCategoryLocale', 'ArticlesController@getCategoryLocale');
 
+        Route::resource('article-comments', 'ArticleCommentsController');
+        Route::get('getArticleComments', 'ArticleCommentsController@getListArticleComments');
+
         Route::resource('tags', 'TagsController');
         Route::get('tagsSuggest', 'TagsController@suggest');
         Route::get('getTags', 'TagsController@getListTags');
