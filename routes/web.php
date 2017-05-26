@@ -73,6 +73,9 @@ Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
 
         Route::get('/Account/Close', 'UsersController@close')->name('close_account');
         Route::post('/Account/Close', 'UsersController@closeAccount');
+
+        Route::get('notifications/list', 'NotificationsController@list');
+        Route::get('notifications/dismiss', 'NotificationsController@dismiss');
     });
 
     Route::get('/Account/CloseComplete', 'UsersController@closeComplete')->name('close_complete');

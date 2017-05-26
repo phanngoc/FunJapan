@@ -1,10 +1,11 @@
 <div class="user-preference">
     <ul class="nav navbar-nav navbar-right">
+        @include('layouts.includes.notifications')
         <li class="dropdown">
             <a class="dropdown-toggle" href="#" data-toggle="dropdown">
                 <span><i class="fa fa-user-circle"></i></span>
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu settings">
                 <li>
                     <div class="dropdown-menu-global">
                         <ul class="list-items">

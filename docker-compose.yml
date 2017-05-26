@@ -81,6 +81,8 @@ services:
             - "6379"
         volumes_from:
             - data
+        ports:
+            - "6379:6379"
     phpmyadmin:
         container_name: renewal_phpmyadmin
         build:

@@ -20,3 +20,4 @@ Homestead.yaml
 *.log
 *.swp
 .DS_Store
+laravel-echo-server.json

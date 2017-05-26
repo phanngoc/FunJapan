@@ -1,15 +1,13 @@
 <div class="top-header">
     <div class="header-text">
-        <p class="header-title-text">
-            <a href="/">
-                <img src="assets/images/brand-icon.png" alt="brand-icon">
-                    <span>
-                        {!! trans('web/global.app_name', [
-                            'sitename' => '<span class="title-country">' . trans('web/global.site_name') . '</span>'
-                        ]) !!}
-                    </span>
-            </a>
-        </p>
+        <a href="/">
+            <img src="assets/images/brand-icon.png" alt="brand-icon">
+            <span>
+                {!! trans('web/global.app_name', [
+                    'sitename' => '<span class="title-country">' . trans('web/global.site_name') . '</span>'
+                ]) !!}
+            </span>
+        </a>
     </div>
     <div class="header-right">
         <form role="form" action="/Search" method="get">
