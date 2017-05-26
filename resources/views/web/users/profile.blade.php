@@ -29,35 +29,47 @@
                 </div>
 
                 {!! Form::open(['url' => action('Web\UsersController@update')]) !!}
+                    @if (count($errors) > 0)
+                        <div class="validation-summary-errors panel panel-danger text-left" data-valmsg-summary="true">
+                            <div class="panel-heading">
+                                {{ trans('web/user.profile_page.please_correct') }}
+                            </div>
+                            <div class="panel-body">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li style="white-space:pre-wrap;">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
+
                     <p class="text-danger">* These are mandatory fields.</p>
                     <div class="form-group">
                         {{ Form::label('Your Name', null, ['class' => 'required']) }}
-                        {{ Form::text('name', $user->name, ['class' => 'form-control', 'placeholder' => 'Enter your name']) }}
-                        <label class="help-block">{{ $errors->has('name') ? $errors->first('name') : '' }}</label>
+                        {{ Form::text('name', old('name', $user->name), ['class' => 'form-control', 'placeholder' => 'Enter your name']) }}
                     </div>
 
                     <div class="form-group">
                         {{ Form::label('Email', null, ['class' => 'required']) }}
                         {{ Form::text('email', $user->email, ['class' => 'form-control', 'readonly' => 'readonly']) }}
-                        <label class="help-block">{{ $errors->has('email') ? $errors->first('email') : '' }}</label>
                     </div>
 
                     <div class="form-group">
                         {{ Form::label('Gender', null, ['class' => 'required']) }}
                         <select class="form-control" id="gender" name="gender">
-                            <option value="">---</option>
-                            <option {{ ($user->gender == 0 ? 'selected' : '') }} value="0">Male</option>
-                            <option {{ ($user->gender == 1 ? 'selected' : '') }} value="1">Female</option>
+                            <option value="" {{ (is_null(old('gender', $user->gender)) ? 'selected' : '') }}>---</option>
+                            <option {{ (old('gender', $user->gender . '') === '1' ? 'selected' : '') }} value="1">Male</option>
+                            <option {{ (old('gender', $user->gender . '') === '0' ? 'selected' : '') }} value="0">Female</option>
                         </select>
-                        <label class="help-block">{{ $errors->has('gender') ? $errors->first('gender') : '' }}</label>
                     </div>
                     <div class="form-group">
                         @php
-                            $monthV = (old('birthday_month') == null) ? $user->birthday_parse->month : old('birthday_month');
-                            $dayV = (old('birthday_day') == null) ? $user->birthday_parse->day : old('birthday_day');
-                            $yearV = (old('birthday_year') == null) ? $user->birthday_parse->year : old('birthday_year');
-                            $locationV = (old('location_id') == null) ? $user->location_id : old('location_id');
-                            $religionV = (old('religion_id') == null) ? $user->religion_id : old('religion_id');
+                            $monthV = old('birthday_month', $user->birthday_parse->month);
+                            $dayV = old('birthday_day', $user->birthday_parse->day);
+                            $yearV = old('birthday_year', $user->birthday_parse->year);
+                            $locationV = old('location_id', $user->location_id);
+                            $religionV = old('religion_id', $user->religion_id);
 
                             $subscriptionNewLetterV = (old('subscription_new_letter') == null) ? ($user->subscription_new_letter ? 'checked' : '') : (old('subscription_new_letter') ? 'checked' : '');
                             $subscriptionReplyNotiV = (old('subscription_reply_noti') == null) ? ($user->subscription_reply_noti ? 'checked' : '') : (old('subscription_reply_noti') ? 'checked' : '');
@@ -66,7 +78,7 @@
                         <div class="row">
                             <div class="col-xs-4">
                                 <select class="form-control" id="BirthdayMonth" name="birthday_month">
-                                    <option disabled selected>{{ trans('web/user.label.month') }}</option>
+                                    <option {{ $monthV == '' ? 'selected' : '' }}>{{ trans('web/user.label.month') }}</option>
                                     @foreach (range(1, 12) as $month)
                                         <option
                                             value="{{ $month }}"
@@ -80,7 +92,7 @@
 
                             <div class="col-xs-4">
                                 <select class="form-control" id="birthday_day" name="birthday_day">
-                                    <option disabled selected>{{ trans('web/user.label.day') }}</option>
+                                    <option {{ $dayV == '' ? 'selected' : '' }}>{{ trans('web/user.label.day') }}</option>
                                     @foreach (range(1, 31) as $date)
                                         <option
                                             value="{{ $date }}"
@@ -94,7 +106,7 @@
 
                             <div class="col-xs-4">
                                <select class="form-control" id="birthday_year" name="birthday_year">
-                                    <option disabled selected>{{ trans('web/user.label.year') }}</option>
+                                    <option {{ $yearV == '' ? 'selected' : '' }}>{{ trans('web/user.label.year') }}</option>
                                     @foreach (range(1900, date("Y")) as $year)
                                         <option
                                             value="{{ $year }}"
@@ -105,9 +117,6 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
-                        <div class="row" style="padding-left: 8px; padding-right: 8px">
-                            <label class="help-block">{{ $errors->has('birthday') ? $errors->first('birthday') : '' }}</label>
                         </div>
                     </div>
 
@@ -124,7 +133,6 @@
                                 </option>
                             @endforeach
                         </select>
-                        <label class="help-block">{{ $errors->has('location_id') ? $errors->first('location_id') : '' }}</label>
                     </div>
 
                     <div class="form-group">

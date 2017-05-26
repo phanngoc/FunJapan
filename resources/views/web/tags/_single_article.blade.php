@@ -36,7 +36,7 @@
                             </li>
 
                             <li>
-                                <a class="engagement-comment" href="{{ $url . '#comment-area' }}">
+                                <a class="engagement-comment" href="{{ $url . '#comment-area-desktop' }}">
                                     <i class="fa fa-comment"></i>
                                 </a>
                                 <span class="engagement-count">

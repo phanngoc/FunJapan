@@ -96,6 +96,7 @@ return [
         'term_title' => 'Terms and Conditions and Privacy Policy'
     ],
     'profile_page' => [
+        'please_correct' => 'Please, correct the followings errors',
         'setting' => 'Settings',
         'profile' => 'Profile',
         'interest' => 'Interest',
@@ -110,9 +111,10 @@ return [
 If you want to change the password of :name account, please set up a password on :name.',
     ],
     'close_page' => [
-        'close_complete' => 'Your account left membership on this site.',
-        'info_close' => 'We\'re disappointed you want to cancel membership in this website !',
-        'sub_info_close' => 'Please wait a minutes before completing input to form, doesn\'t it :)',
-        'title' => 'Close Account',
+        'close_complete_title' => 'Berhasil!',
+        'close_complete' => 'Akun kamu sudah tidak terhubung dengan website ini.',
+        'info_close' => 'Kami sangat menyesal kamu membatalkan keanggotaan di website ini!',
+        'sub_info_close' => 'Silakan tunggu beberapa menit sebelum menyelesaikan pengisian formulir :)',
+        'title' => 'Tutup Akun',
     ],
 ];

@@ -96,6 +96,7 @@ return [
         'term_title' => 'Terms and Conditions and Privacy Policy'
     ],
     'profile_page' => [
+        'please_correct' => 'Please, correct the followings errors',
         'setting' => 'Settings',
         'profile' => 'Profile',
         'interest' => 'Interest',

@@ -72,7 +72,9 @@ class User extends Authenticatable
 
     public function interests()
     {
-        return $this->belongsToMany(Category::class, 'interest_users', 'user_id', 'category_id');
+        return $this->belongsToMany(Category::class, 'interest_users', 'user_id', 'category_id')
+            ->whereNull('interest_users.deleted_at')
+            ->withTimestamps();
     }
 
     public function postPhotos()
@@ -166,6 +168,7 @@ class User extends Authenticatable
 
             $this->favoriteArticles()->each(function ($favoriteArticle) {
                 $favoriteArticle->delete();
+                $favoriteArticle->articleLocale->decrement('like_count');
             });
 
             $this->favoritePhotos()->each(function ($favoritePhoto) {
@@ -178,6 +181,8 @@ class User extends Authenticatable
                     $favoriteComment->comment->decrement('favorite_count');
                 }
             });
+
+            InterestUser::where('user_id', $this->id)->delete();
 
             $favoriteComments->delete();
             $this->delete();

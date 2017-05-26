@@ -25,7 +25,6 @@ class UpdateProfileRequest extends FormRequest
     {
         return [
             'name' => 'required|max:50',
-            'email' => 'required|max:100|email',
             'gender' => 'required',
             'location_id' => 'required',
             'birthday' => 'required|date',
@@ -42,8 +41,6 @@ class UpdateProfileRequest extends FormRequest
         return [
             'name.required' => trans('web/user.validate.required.name'),
             'name.max' => trans('web/user.validate.max.name'),
-            'email.required' => trans('web/user.validate.required.email'),
-            'email.email' => trans('web/user.validate.email'),
             'gender.required' => trans('web/user.validate.required.gender'),
             'location_id.required' => trans('web/user.validate.required.location_id'),
             'birthday.required' => trans('web/user.validate.required.birthday'),
@@ -63,7 +60,6 @@ class UpdateProfileRequest extends FormRequest
             'birthday_month',
             'birthday_day',
             'name',
-            'email',
             'gender',
             'location_id',
             'religion_id',

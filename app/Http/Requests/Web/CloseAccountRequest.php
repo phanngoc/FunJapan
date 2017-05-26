@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Web;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Auth;
 
 class CloseAccountRequest extends FormRequest
 {
@@ -23,10 +24,16 @@ class CloseAccountRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'password' => 'required|min:6|max:50',
-            'confirm_password' => 'required|min:6|max:50|same:password',
-        ];
+        if (!Auth::user()->registeredBySocial()) {
+            $rules = [
+                'password' => 'required|min:6|max:50',
+                'confirm_password' => 'required|min:6|max:50|same:password',
+            ];
+        } else {
+            $rules = [];
+        }
+
+        return $rules;
     }
 
     /**

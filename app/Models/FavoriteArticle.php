@@ -24,12 +24,6 @@ class FavoriteArticle extends BaseModel
     protected static function boot()
     {
         parent::boot();
-
-        static::deleting(function ($favorite) {
-            if ($favorite->articleLocale) {
-                $favorite->articleLocale->decrement('like_count');
-            }
-        });
     }
 
     public function user()
