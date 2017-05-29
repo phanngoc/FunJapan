@@ -82,7 +82,7 @@ class ArticlePhotosController extends Controller
                 'success' => true,
                 'message' => [trans('web/post_photo.messages.upload_success')],
                 'html' => $html,
-                'postPhotos' => $postPhotos,
+                'postPhotos' => isset($postPhotos) ? $postPhotos : '',
             ];
         }
     }

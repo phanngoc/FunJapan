@@ -57,15 +57,17 @@ var dropzoneOptions = {
         var currentSection = $('#' + this.element.getAttribute('id')).parents('.main-content');
 
         if (response.success) {
-            currentSection.find('.post-photo-alert').addClass('alert-success').removeClass('hidden alert-danger').html('').append(response.message);
-            currentSection.find('.photo-description').val('');
-            currentSection.find('.articlephoto-area').html('').append(response.html);
-            currentSection.find('.articlephoto-more').attr('data-current-page', response.postPhotos.current_page);
+            if (response.postPhotos) {
+                currentSection.find('.post-photo-alert').addClass('alert-success').removeClass('hidden alert-danger').html('').append(response.message);
+                currentSection.find('.photo-description').val('');
+                currentSection.find('.articlephoto-area').html('').append(response.html);
+                currentSection.find('.articlephoto-more').attr('data-current-page', response.postPhotos.current_page);
 
-            if (response.postPhotos.current_page == response.postPhotos.last_page || response.postPhotos.last_page == 0) {
-                currentSection.find('.articlephoto-more').addClass('hidden');
-            } else {
-                currentSection.find('.articlephoto-more').removeClass('hidden');
+                if (response.postPhotos.current_page == response.postPhotos.last_page || response.postPhotos.last_page == 0) {
+                    currentSection.find('.articlephoto-more').addClass('hidden');
+                } else {
+                    currentSection.find('.articlephoto-more').removeClass('hidden');
+                }
             }
         } else {
             var message = '';
@@ -165,7 +167,7 @@ function initDropzone () {
                 page: page
             },
             success: (response) => {
-                if (response.success) {
+                if (response.success && response.postPhotos) {
                     currentSection.find('.articlephoto-area').append(response.html);
                     currentSection.find('.articlephoto-more').attr('data-current-page', response.postPhotos.current_page);
 
@@ -220,7 +222,7 @@ function getPostPhotos(currentSection, url, data = {}) {
         'type': 'GET',
         'data': data,
         success: (response) => {
-            if (response.success) {
+            if (response.success && response.postPhotos) {
                 currentSection.find('.articlephoto-area').html('').append(response.html);
                 currentSection.find('.articlephoto-more').attr('data-current-page', response.postPhotos.current_page);
 
