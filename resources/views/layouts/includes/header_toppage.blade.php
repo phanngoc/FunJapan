@@ -54,8 +54,6 @@
     @endif
 
     <!-- EOF SLIDER -->
-    <div class="notification">
-    </div>
     @include('layouts.includes.menu')
 </header>
 <!-- EOF Menu bars -->

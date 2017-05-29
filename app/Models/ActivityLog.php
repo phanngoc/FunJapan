@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class ActivityLog extends Model
 {
@@ -29,8 +30,28 @@ class ActivityLog extends Model
         'created_global_date',
     ];
 
+    protected $appends = [
+        'email',
+    ];
+
+    protected $hidden = ['created_at', 'updated_at', 'user', 'created_unix_time'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getEmailAttribute()
+    {
+        if ($this->user) {
+            return $this->user->email;
+        }
+
+        return '';
+    }
+
+    public function getLastAccessAttribute($value)
+    {
+        return Carbon::createFromTimestamp($value, config('app.global_timezone'))->toDateTimeString();
     }
 }

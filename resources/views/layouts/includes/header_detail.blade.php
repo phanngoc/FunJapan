@@ -5,8 +5,6 @@
 
   <!-- Top header bar mobile -->
   @include('layouts.includes._top_header_mobile')
-  <div class="notification">
-  </div>
   @include('layouts.includes.menu')
 </header>
 <!-- EOF Menu bars -->
