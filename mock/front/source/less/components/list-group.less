@@ -320,18 +320,28 @@
           }
         }
       }
-      .article-summary {
-        .article-engagement {
-          position: absolute;
-          top: 10px;
+      .article-engagement {
+        position: absolute;
+        top: 10px;
+      }
+      .posted-date {
+        @media only screen and (max-width: 768px) {
+          top: 38px;
+          left: 18px;
         }
-        .article-tags {
-          @media only screen and (max-width: 768px) {
-            top: 50px;
-          }
-          position: absolute;
-          top: 80px;
+        font-family: opensans-semibold;
+        color: @list-group-gray-2;
+        font-size: 11px;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+      }
+      .article-tags {
+        @media only screen and (max-width: 768px) {
+          top: 65px;
         }
+        position: absolute;
+        top: 80px;
       }
       .article-category {
         @media only screen and (max-width: 768px) {

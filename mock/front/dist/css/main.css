@@ -15877,17 +15877,31 @@ ul.engagement li > a:focus {
     display: inline;
   }
 }
-.list-group-article .list-group-item.list-group-item-cards .article-summary .article-engagement {
+.list-group-article .list-group-item.list-group-item-cards .article-engagement {
   position: absolute;
   top: 10px;
 }
-.list-group-article .list-group-item.list-group-item-cards .article-summary .article-tags {
+.list-group-article .list-group-item.list-group-item-cards .posted-date {
+  font-family: opensans-semibold;
+  color: #666666;
+  font-size: 11px;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+@media only screen and (max-width: 768px) {
+  .list-group-article .list-group-item.list-group-item-cards .posted-date {
+    top: 38px;
+    left: 18px;
+  }
+}
+.list-group-article .list-group-item.list-group-item-cards .article-tags {
   position: absolute;
   top: 80px;
 }
 @media only screen and (max-width: 768px) {
-  .list-group-article .list-group-item.list-group-item-cards .article-summary .article-tags {
-    top: 50px;
+  .list-group-article .list-group-item.list-group-item-cards .article-tags {
+    top: 65px;
   }
 }
 .list-group-article .list-group-item.list-group-item-cards .article-category {
