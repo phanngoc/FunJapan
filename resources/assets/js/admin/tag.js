@@ -45,17 +45,17 @@ $(document).ready(function (e) {
 
                 appendText = '<a data-toggle="tooltip" data-placement="right" title="'
                     + $('#button-block').data('message')
-                    + '" href="#" class="ban"><i data-url="'
+                    + '" href="#"><i data-url="'
                     + blockAction
-                    + '" class="fa fa-ban fa fa-lg"></i></a>';
+                    + '" class="fa fa-ban fa fa-lg ban"></i></a>';
             } else {
                 $('td', row).eq(2).empty().append($('#tag-block').data('message'));
 
                 appendText ='<a data-toggle="tooltip" data-placement="right" title="'
                     + $('#button-unblock').data('message')
-                    + '" href="#" class="unBan"><i data-url="'
+                    + '" href="#"><i data-url="'
                     + blockAction
-                    + '" class="fa fa-undo fa fa-lg"></i></a>';
+                    + '" class="fa fa-undo fa fa-lg unBan"></i></a>';
             }
             $('td', row).eq(1).empty().append('<a href="' + baseUrl() + '/admin/tags/' + data.id + '">' + encodeHTML(data.name) + '</a>');
             $('td', row).eq(4).empty().append('<a data-toggle="tooltip" data-placement="left" title="'
@@ -102,7 +102,24 @@ $(document).ready(function (e) {
             closeOnConfirm: false
         },
         function(){
-            $('#blockForm').attr('action', blockAction).submit();
+            $.ajax({
+                url: blockAction,
+                type: 'POST',
+            })
+            .done(function(response) {
+                if (response.status == 1) {
+                    $(e.target).removeClass('ban');
+                    $(e.target).removeClass('fa-ban');
+                    $(e.target).addClass('unBan');
+                    $(e.target).addClass('fa-undo');
+                    $(e.target).parent().attr('data-original-title', $('#button-unblock').data('message'));
+                    swal.close();
+                } else {
+                    swal($('#button-error').data('message'));
+                }
+            })
+            .fail(function() {
+            })
         });
     });
 
@@ -117,7 +134,25 @@ $(document).ready(function (e) {
             closeOnConfirm: false
         },
         function(){
-            $('#blockForm').attr('action', blockAction).submit();
+            $.ajax({
+                url: blockAction,
+                type: 'POST',
+            })
+            .done(function(response) {
+                if (response.status == 1) {
+                    $(e.target).removeClass('unBan');
+                    $(e.target).removeClass('fa-undo');
+                    $(e.target).addClass('ban');
+                    $(e.target).addClass('fa-ban');
+                    $(e.target).parent().attr('data-original-title', $('#button-block').data('message'));
+                    swal.close();
+                } else {
+                    swal($('#button-error').data('message'));
+                }
+            })
+            .fail(function() {
+            })
         });
+
     });
 })

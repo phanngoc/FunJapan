@@ -36,6 +36,7 @@
 <div id="button-unblock" data-message="{{ trans('admin/tag.button.unblock') }}"></div>
 <div id="button-edit" data-message="{{ trans('admin/tag.button.edit') }}"></div>
 <div id="button-delete" data-message="{{ trans('admin/tag.button.delete') }}"></div>
+<div id="button-error" data-message="Something wrong!"></div>
 <div>
     {{ Form::open(['id' => 'deleteForm']) }}
         {{ method_field('DELETE') }}

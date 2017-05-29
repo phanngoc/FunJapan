@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\Admin\TagService;
 use App\Services\Admin\ArticleLocaleService;
+use App\Services\Admin\ArticleService;
+use App\Services\Admin\LocaleService;
 use App\Models\Tag;
 
 class TagsController extends Controller
@@ -15,10 +17,13 @@ class TagsController extends Controller
         return view('admin.tag.index');
     }
 
-    public function show(Tag $tag)
+    public function show(Request $request, Tag $tag)
     {
-        $this->viewData['articlesOfTag'] = ArticleLocaleService::listArticleByTags($tag);
-        $this->viewData['tag'] = $tag;
+        $localeId = $request->input('locale_id') ?? array_first(array_keys(LocaleService::getAllLocales()));
+        $this->viewData['locales'] = LocaleService::getAllLocales();
+        $this->viewData['localeId'] = $localeId;
+        $this->viewData['tagId'] = $tag->id;
+        $this->viewData['types'] = json_encode(ArticleService::getArticleTypes());
 
         return view('admin.tag.articles_of_tag', $this->viewData);
     }
@@ -107,21 +112,21 @@ class TagsController extends Controller
             $inputs = [
                 'status' => config('tag.status.un_block'),
             ];
-            $message = ['message' => trans('admin/tag.unblock_success')];
+            $message = ['message' => trans('admin/tag.unblock_success'), 'status' => 1];
         } else {
             $inputs = [
                 'status' => config('tag.status.blocked'),
             ];
-            $message = ['message' => trans('admin/tag.block_success')];
+            $message = ['message' => trans('admin/tag.block_success'), 'status' => 1];
         }
 
         if (TagService::update($inputs, $tag->id)) {
-            return redirect()
-                ->action('Admin\TagsController@index')->with($message);
+            return response()
+                ->json($message);
         }
 
-        return redirect()
-            ->back()->withErrors(['errors' => trans('admin/tag.block_error')]);
+        return respons()
+            ->json(['errors' => trans('admin/tag.block_error'), 'status' => 0]);
     }
 
     public function getTags(Request $request)

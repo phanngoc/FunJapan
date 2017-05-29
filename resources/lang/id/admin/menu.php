@@ -24,6 +24,7 @@ return [
         'sub_menu_link'=> 'Sub Menu Link',
         'locale' => 'Language',
         'selected_category' => 'Selected Categories',
+        'selectedCategories' => 'Selected Categories',
         'category_name' => 'Category name',
         'icon_class' => 'Icon class name',
         'category' => 'Category',

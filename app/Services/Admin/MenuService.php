@@ -21,6 +21,7 @@ class MenuService extends BaseService
             'description' => 'max:255',
             'icon' => 'image|max:' . config('images.validate.menu_icon.max_size'),
             'link' => 'max:255|required_if:type,' . config('menu.parent_type.link'),
+            'selectedCategories' => 'required_if:type,' . config('menu.parent_type.category'),
             'icon_class' => 'max:255',
         ];
 

@@ -88,10 +88,10 @@ return [
     ],
     'register_page' => [
         'banner' => [
-            'step_1_title' => 'Check member benefit',
-            'step_2_title' => 'Fill your information',
-            'step_3_title' => 'Registration completed',
-            'text_country' => 'Japan Thailand',
+            'step_1_title' => 'Cek benefit member Fun! Japan',
+            'step_2_title' => 'Isi datamu',
+            'step_3_title' => 'Registrasi selesai',
+            'text_country' => 'Japan Indonesia',
         ],
         'term_title' => 'Terms and Conditions and Privacy Policy'
     ],
@@ -117,4 +117,77 @@ If you want to change the password of :name account, please set up a password on
         'sub_info_close' => 'รบกวนเวลาสักครู่ในการกรอกแบบฟอร์มนะคะ',
         'title' => 'Close Account',
     ],
+    'jmb' => [
+        'label' => [
+            'given_name' => 'Given Name',
+            'family_name' => 'Family Name',
+            'middle_name' => 'Middle Name',
+            'pin_password' => 'Personal Identification Number (PIN)',
+            'pin_confirm' => 'PIN confirmation',
+            'address1' => 'Address 1',
+            'address2' => 'Address 2',
+            'address3' => 'Address 3',
+            'address4' => 'Address 4',
+            'zipcode' => 'Zip Code',
+            'city' => 'Residence City',
+            'country' => 'Country Of Residence',
+            'phone' => 'Phone Number',
+            'terms' => 'I agree to above Terms of use & Conditions',
+        ],
+        'text' => [
+            'accept_terms' => 'Acceptance of Rules and Conditions',
+            'accept_terms_warning' => 'Please agree to the JMB Rules and Conditions to continue',
+        ],
+        'placeholder' => [
+        ''
+        ],
+        'validate' => [
+            'required' => [
+                'first_name1' => 'Please enter your given name',
+                'first_name2' => 'This field is required',
+                'first_name3' => 'This field is required',
+                'last_name' => 'Please enter your family name',
+                'password' => 'Please enter the password.',
+                'password_confirmation' => 'Please enter the password for confirmation.',
+                'address1' => 'This field is required',
+                'address2' => 'This field is required',
+                'zipcode' => 'Please enter Zip Code',
+                'city' => 'Please enter your city',
+                'country' => 'Please enter your country',
+                'phone' => 'Please enter your phone number',
+            ],
+            'max' => [
+                'first_name1' => 'Please enter 10 characters or less',
+                'first_name2' => 'Please enter 9 characters or less',
+                'first_name3' => 'Please enter 9 characters or less',
+                'last_name' => 'Please enter 9 characters or less',
+                'mid_name' => 'Please enter 9 characters or less',
+                'address1' => 'Please enter 30 characters or less',
+                'address2' => 'Please enter 30 characters or less',
+                'address3' => 'Please enter 30 characters or less',
+                'address4' => 'Please enter 30 characters or less',
+                'phone' => 'Please enter Phone Number in 20 characters or less',
+            ],
+            'size' => [
+                'password' => 'Please input 6 numbers',
+                'password_confirmation' => 'Please input 6 numbers',
+            ],
+            'regex' => [
+                'zipcode' => 'Please enter a valid Zip Code',
+                'phone' => 'Please enter a valid phone number',
+            ],
+            'accepted' => [
+                'terms' => 'Please agree to the JMB Rules and Conditions above',
+            ],
+            'confirmed' => [
+                'password' => 'The password for confirmation does not match with the password.',
+            ],
+            'invalid_sequence_number' => [
+                'password' => 'Jmb Password cannot be sequential numbers such as 123456 or 654321',
+            ],
+            'invalid_sequence_string' => [
+                'password' => 'Jmb Password cannot be string like 111111',
+            ],
+        ],
+    ]
 ];

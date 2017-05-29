@@ -183,24 +183,24 @@ $(function() {
     midName.prop('disabled', false);
   });
 
-  // 2. address 
-  var addAddressBtn = $('.control-btn.address');
-  var addressCount = 3;
-  addAddressBtn.click(function() {
-    var parent_block = $(this).parents('.form-group');
-    var inserted_block = parent_block.clone(true, true);
-    inserted_block.find('.col-form-label').attr('for', 'address' + addressCount).text('Address ' + addressCount);
-    inserted_block.find('input').attr({
-      'id': 'jmbAddress' + addressCount,
-      'name': 'address' + addressCount,
-      'placeholder': 'Address ' + addressCount
-    });
-    inserted_block.find('input').val('');
-    // inserted_block.find('input').
-    inserted_block.insertAfter(parent_block);
-    $(this).addClass('hidden');
-    addressCount = addressCount + 1;
-  });
+  // 2. address
+  // var addAddressBtn = $('.control-btn.address');
+  // var addressCount = 3;
+  // addAddressBtn.click(function() {
+  //   var parent_block = $(this).parents('.form-group');
+  //   var inserted_block = parent_block.clone(true, true);
+  //   inserted_block.find('.col-form-label').attr('for', 'address' + addressCount).text('Address ' + addressCount);
+  //   inserted_block.find('input').attr({
+  //     'id': 'jmbAddress' + addressCount,
+  //     'name': 'address' + addressCount,
+  //     'placeholder': 'Address ' + addressCount
+  //   });
+  //   inserted_block.find('input').val('');
+  //   // inserted_block.find('input').
+  //   inserted_block.insertAfter(parent_block);
+  //   $(this).addClass('hidden');
+  //   addressCount = addressCount + 1;
+  // });
 
   // Check term checkbox when clicking term banner
   $(".term-banner>a").click(function(e) {

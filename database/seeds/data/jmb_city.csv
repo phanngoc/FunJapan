@@ -1,0 +1,146 @@
+id,name,ssz,ssu,jmb_country_id
+1,"Taipei City",TPE,TPE,4
+2,"Keelung City",TPE,TPE,4
+3,"New Taipei City",TPE,TPE,4
+4,"Lienchiang County ",TPE,TPE,4
+5,"Yilan County ",TPE,TPE,4
+6,"Hsinchu City ",TPE,TPE,4
+7,"Hsinchu County ",TPE,TPE,4
+8,"Taoyuan County ",TPE,TPE,4
+9,"Miaoli County ",TPE,TPE,4
+10,"Taichung City ",TPE,TPE,4
+11,"Changhua County ",TPE,TPE,4
+12,"Nantou County ",TPE,TPE,4
+13,"Kinmen County ",TPE,TPE,4
+14,"Hualien County ",TPE,TPE,4
+15,"Chiayi City ",KHH,KHH,4
+16,"Chiayi County ",KHH,KHH,4
+17,"Yunlin County ",KHH,KHH,4
+18,"Tainan City ",KHH,KHH,4
+19,"Kaohsiung City",KHH,KHH,4
+20,"Penghu County ",KHH,KHH,4
+21,"Pingtung County ",KHH,KHH,4
+22,"Taitung County ",KHH,KHH,4
+23,"Kuala Lumpur	",KUL,KUL,5
+24,Kedah,KUL,KUL,5
+25,Kelantan,KUL,KUL,5
+26,Malacca,KUL,KUL,5
+27,"Negeri Sembilan",KUL,KUL,5
+28,Pahang,KUL,KUL,5
+29,Perak,KUL,KUL,5
+30,Perlis,KUL,KUL,5
+31,"Pulau Pinang",KUL,KUL,5
+32,Sabah,KUL,KUL,5
+33,Sarawak,KUL,KUL,5
+34,Selangor,KUL,KUL,5
+35,Terengganu,KUL,KUL,5
+36,Johor,SIN,JHB,5
+37,Bangkok,BKK,BKK,1
+38,"Amnat Charoen",BKK,BKK,1
+39,"Ang Thong",BKK,BKK,1
+40,"Bueng Kan",BKK,BKK,1
+41,"Buri Ram",BKK,BKK,1
+42,Chaiyaphum,BKK,BKK,1
+43,Chanthaburi,BKK,BKK,1
+44,"Chiang Mai",BKK,BKK,1
+45,"Chiang Rai",BKK,BKK,1
+46,Chonburi,BKK,BKK,1
+47,Chumphon,BKK,BKK,1
+48,Kalasin,BKK,BKK,1
+49,"Kamphaeng Phet",BKK,BKK,1
+50,Kanchanaburi,BKK,BKK,1
+51,"Khon Kaen",BKK,BKK,1
+52,Krabi,BKK,BKK,1
+53,Lampang,BKK,BKK,1
+54,Lamphun,BKK,BKK,1
+55,Loei,BKK,BKK,1
+56,Lopburi,BKK,BKK,1
+57,"Mae Hong Son",BKK,BKK,1
+58,"Maha Sarakham",BKK,BKK,1
+59,Mukdahan,BKK,BKK,1
+60,"Nakhon Nayok",BKK,BKK,1
+61,"Nakhon Pathom",BKK,BKK,1
+62,"Nakhon Phanom",BKK,BKK,1
+63,"Nakhon Ratchasima",BKK,BKK,1
+64,"Nakhon Sawan",BKK,BKK,1
+65,"Nakhon Si Thammarat",BKK,BKK,1
+66,Nan,BKK,BKK,1
+67,Narathiwat,BKK,BKK,1
+68,"Nong Bua Lam Phu",BKK,BKK,1
+69,"Nong Khai",BKK,BKK,1
+70,Nonthaburi,BKK,BKK,1
+71,"Pathum Thani",BKK,BKK,1
+72,Pattani,BKK,BKK,1
+73,"Phang Nga",BKK,BKK,1
+74,Phatthalung,BKK,BKK,1
+75,Phayao,BKK,BKK,1
+76,Phetchabun,BKK,BKK,1
+77,Phetchaburi,BKK,BKK,1
+78,Phichit,BKK,BKK,1
+79,Phitsanulok,BKK,BKK,1
+80,"Phra Nakhon Si Ayutthaya",BKK,BKK,1
+81,Phrae,BKK,BKK,1
+82,Phuket,BKK,BKK,1
+83,"Prachin Buri",BKK,BKK,1
+84,"Prachuap Khiri Khan",BKK,BKK,1
+85,Ranong,BKK,BKK,1
+86,Ratchaburi,BKK,BKK,1
+87,Rayong,BKK,BKK,1
+88,"Roi Et",BKK,BKK,1
+89,"Sa Kaeo",BKK,BKK,1
+90,"Sakon Nakhon",BKK,BKK,1
+91,"Samut Prakan",BKK,BKK,1
+92,"Samut Sakhon",BKK,BKK,1
+93,"Samut Songkhram",BKK,BKK,1
+94,Saraburi,BKK,BKK,1
+95,Satun,BKK,BKK,1
+96,"Sing Buri",BKK,BKK,1
+97,"Si Sa Ket",BKK,BKK,1
+98,Songkhla,BKK,BKK,1
+99,Sukhothai,BKK,BKK,1
+100,"Suphan Buri",BKK,BKK,1
+101,"Surat Thani",BKK,BKK,1
+102,Surin,BKK,BKK,1
+103,Tak,BKK,BKK,1
+104,Trang,BKK,BKK,1
+105,Trat,BKK,BKK,1
+106,"Ubon Ratchathani",BKK,BKK,1
+107,"Udon Thani",BKK,BKK,1
+108,"Uthai Thani",BKK,BKK,1
+109,Uttaradit,BKK,BKK,1
+110,Yala,BKK,BKK,1
+111,Yasothon,BKK,BKK,1
+112,Aceh,JKT,JKT,3
+113,Bali,JKT,JKT,3
+114,Babel,JKT,JKT,3
+115,Banten,JKT,JKT,3
+116,Bengkulu,JKT,JKT,3
+117,Jateng,JKT,JKT,3
+118,Kalteng,JKT,JKT,3
+119,Sulteng,JKT,JKT,3
+120,Jatim,JKT,JKT,3
+121,Kaltim,JKT,JKT,3
+122,NTT,JKT,JKT,3
+123,Gorontalo,JKT,JKT,3
+124,DKI,JKT,JKT,3
+125,Jambi,JKT,JKT,3
+126,Lampung,JKT,JKT,3
+127,Maluku,JKT,JKT,3
+128,Kaltara,JKT,JKT,3
+129,Malut,JKT,JKT,3
+130,Sulut,JKT,JKT,3
+131,Sumut,JKT,JKT,3
+132,Papua,JKT,JKT,3
+133,Riau,JKT,JKT,3
+134,Kepri,JKT,JKT,3
+135,Sultra,JKT,JKT,3
+136,Kalsel,JKT,JKT,3
+137,Sulsel,JKT,JKT,3
+138,Sumsel,JKT,JKT,3
+139,Jabar,JKT,JKT,3
+140,Kalbar,JKT,JKT,3
+141,NTB,JKT,JKT,3
+142,Papuabarat,JKT,JKT,3
+143,Sulbar,JKT,JKT,3
+144,Sumbar,JKT,JKT,3
+145,DIY,JKT,JKT,3

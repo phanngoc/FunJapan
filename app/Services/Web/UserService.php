@@ -53,6 +53,73 @@ class UserService
         return Validator::make($input, $rules, $messages)->messages()->toArray();
     }
 
+    public static function validateJmbInput($inputs)
+    {
+        $rules = [
+            'first_name1' => 'required|max:10',
+            'mid_name' => 'max:9',
+            'password' => 'required|size:6|regex:/^[0-9]*$/|invalid_sequence_string|invalid_sequence_number|confirmed',
+            'password_confirmation' => 'required|size:6',
+            'address1' => 'required|max:30',
+            'address2' => 'required|max:30',
+            'address3' => 'max:30',
+            'address4' => 'max:30',
+            'city' => 'required',
+            'country' => 'required',
+            'zipcode' => 'required|regex:/\b\d{5}\b/',
+            'phone' => 'required|regex:/^[0-9]*$/|max:20',
+            'terms' => 'accepted',
+        ];
+
+        if (array_key_exists('first_name2', $inputs)) {
+            $rules['first_name2'] = 'required|max:9';
+        }
+
+        if (array_key_exists('first_name3', $inputs)) {
+            $rules['first_name3'] = 'required|max:9';
+        }
+
+        if (array_key_exists('last_name', $inputs)) {
+            $rules['last_name'] = 'required|max:9';
+        }
+
+        $messages = [
+            'first_name1.required' => trans('web/user.jmb.validate.required.first_name1'),
+            'first_name1.max' => trans('web/user.jmb.validate.max.first_name1'),
+            'first_name2.required' => trans('web/user.jmb.validate.required.first_name2'),
+            'first_name2.max' => trans('web/user.jmb.validate.max.first_name2'),
+            'first_name3.required' => trans('web/user.jmb.validate.required.first_name3'),
+            'first_name3.max' => trans('web/user.jmb.validate.max.first_name3'),
+            'last_name.required' => trans('web/user.jmb.validate.required.last_name'),
+            'last_name.max' => trans('web/user.jmb.validate.max.last_name'),
+            'mid_name.max' => trans('web/user.jmb.validate.max.mid_name'),
+            'password.required' => trans('web/user.jmb.validate.required.password'),
+            'password.confirmed' => trans('web/user.jmb.validate.confirmed.password'),
+            'password.size' => trans('web/user.jmb.validate.size.password'),
+            'password.regex' => trans('web/user.jmb.validate.regex.password'),
+            'password.invalid_sequence_number' => trans('web/user.jmb.validate.invalid_sequence_number.password'),
+            'password.invalid_sequence_string' => trans('web/user.jmb.validate.invalid_sequence_string.password'),
+            'password_confirmation.required' => trans('web/user.jmb.validate.required.password_confirmation'),
+            'password_confirmation.size' => trans('web/user.jmb.validate.size.password_confirmation'),
+            'city.required' => trans('web/user.jmb.validate.required.city'),
+            'country.required' => trans('web/user.jmb.validate.required.country'),
+            'zipcode.required' => trans('web/user.jmb.validate.required.zipcode'),
+            'zipcode.regex' => trans('web/user.jmb.validate.regex.zipcode'),
+            'address1.required' => trans('web/user.jmb.validate.required.address1'),
+            'address1.max' => trans('web/user.jmb.validate.max.address1'),
+            'address2.required' => trans('web/user.jmb.validate.required.address2'),
+            'address2.max' => trans('web/user.jmb.validate.max.address2'),
+            'address3.max' => trans('web/user.jmb.validate.max.address3'),
+            'address4.max' => trans('web/user.jmb.validate.max.address4'),
+            'phone.required' => trans('web/user.jmb.validate.required.phone'),
+            'phone.regex' => trans('web/user.jmb.validate.regex.phone'),
+            'phone.max' => trans('web/user.jmb.validate.max.phone'),
+            'terms.accepted' => trans('web/user.jmb.validate.accepted.terms'),
+        ];
+
+        return Validator::make($inputs, $rules, $messages)->messages()->toArray();
+    }
+
     public static function loginValidate($input)
     {
         $rules = [
