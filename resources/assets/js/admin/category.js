@@ -67,14 +67,14 @@ $(document).ready(function (e) {
     var categoryTable = $('#category-table').DataTable( {
         aLengthMenu: [[10, 25, 50], [10, 25, 50]],
         paging: true,
-        order: [[ 5, 'desc' ]],
+        order: [[ 4, 'desc' ]],
         'columnDefs': [{
             'targets': [0,3],
             'sortable': false,
             'searchable': false
         },
         {
-            'targets': 6,
+            'targets': 5,
             'sortable': false,
             'searchable': false
         }],
@@ -113,5 +113,9 @@ $(document).ready(function (e) {
         } else {
             window.location.href = action;
         }
+    });
+
+    $('.select-locale').on('change', function (e) {
+        $('#category-list').submit();
     });
 });

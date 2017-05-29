@@ -3,6 +3,29 @@ $(document).ready(function () {
         autofocus:false,
         savable:false
     });
+    $('#locale').change(function() {
+        getCategory();
+    });
+
+    function getCategory() {
+        var id = $('#locale').val();
+        var placeHolderCategory = $('#infor').data('place-holder');
+        var urlAjax = $('#infor').data('url-ajax');
+        $.ajax({
+            type: 'GET',
+            url: urlAjax,
+            data: {'locale_id':id},
+            success: function (response) {
+                $("#category").html("");
+                $("#category").append('<option selected="selected" disabled="disabled" hidden="hidden" value="">'+ placeHolderCategory +'</option>');
+                $.each(response, function(key, value) {
+                      $("#category").append('<option value="'+key+'">'+encodeHTML(value)+'</option>');
+                });
+            },
+            error: function (e) {
+            }
+        });
+    }
 
     $('.article-tag').tagsinput({
         cancelConfirmKeysOnEmpty: false,
@@ -26,7 +49,6 @@ $(document).ready(function () {
     });
 
     //datatable setting
-
     $.fn.dataTable.ext.errMode = 'none';
 
     var table = $('#article-table').DataTable({
@@ -170,6 +192,9 @@ $(document).ready(function () {
 });
 
 function addAutoApprovePhoto (element) {
+    var typePhoto = $('#infor').data('type-photo');
+    var typeCampaign = $('#infor').data('type-campaign');
+    var typeCoupon = $('#infor').data('type-coupon');
     if (typeof typePhoto != 'undefined') {
         if (element.val() == typePhoto) {
             $('.auto-approve-photo').removeClass('hidden');

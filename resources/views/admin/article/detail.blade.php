@@ -20,9 +20,6 @@
                         <div class="tab-content">
                             <h3>{{ trans('admin/article.title_global') }}</h3>
                             <hr>
-                            <strong>{{ trans('admin/article.category') }}: </strong>
-                            {{ $article->category->name }}
-                            <hr>
                             <strong>{{ trans('admin/article.label.type') }}:</strong>
                             {{ $types[$article->type] ?? null }}
                             @if ($article->type == config('article.type.photo'))
@@ -81,6 +78,9 @@
                                                 {{ $articleTag->tag->status ? '' : '#' . $articleTag->tag->name }}
                                             @endif
                                         @endforeach
+                                        <hr>
+                                        <strong>{{ trans('admin/article.category') }}: </strong>
+                                            {{ $articleLocale->categoryName }}
                                         <hr>
                                         <strong>{{ trans('admin/article.label.is_top') }}:</strong>
                                         {{ $articleLocale->is_top_article ? trans('admin/article.label.yes') : trans('admin/article.label.no') }}

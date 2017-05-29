@@ -30,6 +30,7 @@
                         </div>
                     </div>
                     {{ Form::hidden('id', $category->id) }}
+                    {{ Form::hidden('locale_id', $category->locale_id) }}
                     <div class="form-group">
                         <div class="col-sm-2 col-sm-offset-2">
                             {{ Form::submit(trans('admin/category.button.update'), ['class' => 'btn btn-primary']) }}

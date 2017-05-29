@@ -14,16 +14,23 @@ use Session;
 
 class CategoriesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $this->viewData['categories'] = CategoryService::listCategory();
+        $inputs =$request->all();
+        $locales = LocaleService::getLocaleSort();
+        if (empty($inputs['locale_id'])) {
+            $inputs['locale_id'] = key($locales);
+        }
+
+        $this->viewData['locales'] = $locales;
+        $this->viewData['categories'] = CategoryService::listCategoryLocale($inputs['locale_id']);
 
         return view('admin.category.index', $this->viewData);
     }
 
     public function create()
     {
-        $this->viewData['locales'] = CategoryService::getLocale();
+        $this->viewData['locales'] = LocaleService::getLocaleSort();
 
         return view('admin.category.create', $this->viewData);
     }

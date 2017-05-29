@@ -49,10 +49,24 @@ class ArticlesController extends Controller
         return $articlesData;
     }
 
+    public function getCategoryLocale(Request $request)
+    {
+        $params = $request->input();
+
+        $response = CategoryService::getCategoryLocaleDropList($params['locale_id']);
+
+        return response()->json($response);
+    }
+
     public function create()
     {
-        $this->viewData['locales'] = LocaleService::getAllLocales();
-        $this->viewData['categories'] = CategoryService::getAllCategories();
+        $locales = LocaleService::getLocaleSort();
+        $localeId = key($locales);
+        if (old('locale')) {
+            $localeId = old('locale');
+        }
+        $this->viewData['locales'] = $locales;
+        $this->viewData['categories'] = CategoryService::getCategoryLocaleDropList($localeId);
         $this->viewData['types'] = ArticleService::getArticleTypes();
 
         return view('admin.article.create', $this->viewData);
@@ -90,7 +104,7 @@ class ArticlesController extends Controller
             $this->viewData['article'] = $article;
             $articleLocale = $article->articleLocales->where('locale_id', $localeId)->first();
             $this->viewData['articleLocale'] = $articleLocale;
-            $this->viewData['categories'] = CategoryService::getAllCategories();
+            $this->viewData['categories'] = CategoryService::getCategoryLocaleDropList($localeId);
             $tagLocales = $article->articleTags->where('article_locale_id', $articleLocale->id);
             $this->viewData['tags'] = [];
             foreach ($tagLocales as $tagLocale) {
@@ -130,7 +144,15 @@ class ArticlesController extends Controller
         foreach ($article->articleLocales as $key => $value) {
             $existLanguages[] = $value->locale->name;
         }
-        $this->viewData['locales'] = array_diff(LocaleService::getAllLocales(), $existLanguages);
+        $locales = array_diff(LocaleService::getAllLocales(), $existLanguages);
+
+        $this->viewData['locales'] = $locales;
+        $localeId = key($locales);
+        if (old('locale')) {
+            $localeId = old('locale');
+        }
+        $this->viewData['categories'] = CategoryService::getCategoryLocaleDropList($localeId);
+
         $this->viewData['article'] = $article;
         $this->viewData['tags'] = [];
         if ($request->input('clone')) {

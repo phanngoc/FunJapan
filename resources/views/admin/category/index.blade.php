@@ -10,6 +10,26 @@
         <div class="ibox">
             <div class="ibox-title"><h2>{{ trans('admin/category.category_list') }}</h2></div>
             <div class="ibox-content">
+                <div class="row">
+                    {{ Form::open([
+                                'action' => 'Admin\CategoriesController@index',
+                                'method' => 'GET',
+                                'id' => 'category-list',
+                            ])
+                    }}
+                        <div class="col-sm-3 m-b-xs">
+                            {{ Form::select(
+                                'locale_id',
+                                $locales,
+                                $locale_id ?? '',
+                                [
+                                    'class' => 'form-control inline select-locale'
+                                ])
+                            }}
+                        </div>
+
+                    {{ Form::close() }}
+                </div>
                 <table class="table table-striped table-bordered table-hover" id="category-table">
                     <thead>
                         <tr>
@@ -17,7 +37,6 @@
                             <th class="col-lg-4 text-center">{{ trans('admin/category.category_name') }}</th>
                             <th class="col-lg-3 text-center">{{ trans('admin/category.short_name') }}</th>
                             <th class="col-lg-1 text-center">{{ trans('admin/category.img') }}</th>
-                            <th class="col-lg-1 text-center">{{ trans('admin/category.locale') }}</th>
                             <th class="col-lg-2 text-center">{{ trans('admin/category.created_at') }}</th>
                             <th class="text-center">{{ trans('admin/category.action') }}</th>
                         </tr>
@@ -33,7 +52,6 @@
                             @else
                                 <td></td>
                             @endif
-                            <td>{{ $category->localeName }}</td>
                             <td class="text-center">{{ $category->created_at }}</td>
                             <td class="text-center">
                                 <a href="{{ action('Admin\CategoriesController@edit', [$category->id]) }}" class="edit" data-toggle="tooltip" title="Edit">

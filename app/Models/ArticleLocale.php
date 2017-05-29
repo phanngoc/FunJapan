@@ -39,6 +39,7 @@ class ArticleLocale extends BaseModel
         'hide_always',
         'is_member_only',
         'is_popular',
+        'category_id',
     ];
 
     protected $appends = [
@@ -141,10 +142,10 @@ class ArticleLocale extends BaseModel
         return $results;
     }
 
-    public function getCategoryAttribute()
-    {
-        return isset($this->article) ? $this->article->category : '';
-    }
+    // public function getCategoryAttribute()
+    // {
+    //     return isset($this->article) ? $this->article->category : '';
+    // }
 
     public function getHtmlContentAttribute($value)
     {
@@ -164,5 +165,19 @@ class ArticleLocale extends BaseModel
     public function getIsShowAbleAttribute()
     {
         return Carbon::now()->gt(Carbon::parse($this->published_at)) && !$this->hide_always;
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function getCategoryNameAttribute()
+    {
+        if ($this->category_id) {
+            return $this->category->name;
+        }
+
+        return '';
     }
 }

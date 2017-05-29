@@ -33,8 +33,6 @@
 
                     {{ Form::hidden('type', $article->type) }}
 
-                    {{ Form::hidden('category', $article->category_id) }}
-
                     <div class="form-group required">
                         {{ Form::label(
                             'thumbnail',
@@ -53,6 +51,22 @@
                     <div class="form-group" hidden id="preview-section">
                         <div class="col-sm-4 col-sm-offset-2">
                             <img id="preview-img" src="#" alt="your image" />
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        {{ Form::label(
+                            'category',
+                            trans('admin/article.label.category'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-10 width30">
+                            {{ Form::select(
+                                'category',
+                                $categories ?? [],
+                                null,
+                                ['class' => 'form-control', 'placeholder' => trans('admin/article.select_category')])
+                            }}
                         </div>
                     </div>
 
@@ -199,5 +213,9 @@
     </div>
 @stop
 @section('script')
+    <script type="text/javascript">
+        var placeHolderCategory = {!! json_encode(trans('admin/article.select_category')) !!};
+        var urlAjax = {!! json_encode(action('Admin\ArticlesController@getCategoryLocale')) !!};
+    </script>
     {!! Html::script('assets/admin/js/article.js') !!}
 @stop
