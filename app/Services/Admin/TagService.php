@@ -121,4 +121,11 @@ class TagService extends BaseService
 
         return $tags;
     }
+
+    public static function getTag($tagId)
+    {
+        $tag = Tag::select('id', 'name')->where('id', $tagId)->first();
+
+        return $tag;
+    }
 }

@@ -190,11 +190,16 @@ function readUrl (input) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
+            $('#preview-section').removeClass('hidden');
             $('#preview-img').attr('src', e.target.result);
         }
 
         reader.readAsDataURL(input.files[0]);
     } else {
-        $('#preview-img').attr('src', oldSrc);
+        if (oldSrc == '') {
+            $('#preview-section').addClass('hidden');
+        } else {
+            $('#preview-img').attr('src', oldSrc);
+        }
     }
 }

@@ -20,6 +20,7 @@ use App\Services\Web\TagService;
 use Illuminate\Support\Facades\View;
 use App\Http\Requests\Web\CloseAccountRequest;
 use Session;
+use App\Services\Web\PopularSeriesService;
 
 class UsersController extends Controller
 {
@@ -31,6 +32,7 @@ class UsersController extends Controller
     public function index()
     {
         $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
+        $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);
         $this->viewData['user'] = Auth::user();
         $this->viewData['religions'] = Religion::all();
         $this->viewData['locations'] = Location::all($this->currentLocaleId);
@@ -53,6 +55,7 @@ class UsersController extends Controller
     {
         $user = Auth::user();
         $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
+        $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);
         $this->viewData['categories'] = Category::where('locale_id', $this->currentLocaleId)->get();
         $this->viewData['user'] = $user;
         $this->viewData['interests'] = InterestUser::where('user_id', $user->id)
@@ -78,6 +81,7 @@ class UsersController extends Controller
         }
 
         $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
+        $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);
         $this->viewData['user'] = $user;
 
         return view('web.users.password', $this->viewData);

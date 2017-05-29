@@ -132,9 +132,9 @@
                         </div>
                     </div>
 
-                    <div class="form-group" hidden id="preview-section">
+                    <div class="form-group hidden" id="preview-section">
                         <div class="col-sm-4 col-sm-offset-2">
-                            <img id="preview-img" src="#" alt="your image" />
+                            <img id="preview-img" src="#" alt="your image" data-url=""/>
                         </div>
                     </div>
 

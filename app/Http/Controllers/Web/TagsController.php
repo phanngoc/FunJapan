@@ -8,6 +8,7 @@ use App\Services\Web\TagService;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\Models\Tag;
+use App\Services\Web\PopularSeriesService;
 
 class TagsController extends Controller
 {
@@ -24,6 +25,7 @@ class TagsController extends Controller
             $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
             $this->viewData['articles'] = TagService::getArticleByTag($tag, $this->currentLocaleId);
             $this->viewData['tag'] = $tag;
+            $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);
 
             return view('web.tags.show', $this->viewData);
         } else {
