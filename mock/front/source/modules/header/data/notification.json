@@ -1,0 +1,64 @@
+{
+  "notification": [
+    {
+      "img_src": "images/profile_image_01.jpg",
+      "user_name": "David Federer",
+      "action": "liked your comment post.",
+      "time": "2 hours ago"
+    },
+    {
+      "img_src": "images/profile_image_2.jpg",
+      "user_name": "Minh Hue",
+      "action": "replied to your comment post.",
+      "time": "3 hours ago"
+    },
+    {
+      "img_src": "images/profile_image_3.jpg",
+      "user_name": "Phan Khai",
+      "action": "liked your comment post.",
+      "time": "3 hours ago"
+    },
+    {
+      "img_src": "images/profile_image_4.jpg",
+      "user_name": "Son Tung",
+      "action": "liked your comment post.",
+      "time": "3 hours ago"
+    },
+    {
+      "img_src": "images/profile_image_5.jpg",
+      "user_name": "Minh Anh",
+      "action": "liked your comment post.",
+      "time": "3 hours ago"
+    },
+    {
+      "img_src": "images/profile_image_01.jpg",
+      "user_name": "David Federer",
+      "action": "liked your comment post.",
+      "time": "2 hours ago"
+    },
+    {
+      "img_src": "images/profile_image_2.jpg",
+      "user_name": "Minh Hue",
+      "action": "replied to your comment post.",
+      "time": "3 hours ago"
+    },
+    {
+      "img_src": "images/profile_image_3.jpg",
+      "user_name": "Phan Khai",
+      "action": "liked your comment post.",
+      "time": "3 hours ago"
+    },
+    {
+      "img_src": "images/profile_image_4.jpg",
+      "user_name": "Son Tung",
+      "action": "liked your comment post.",
+      "time": "3 hours ago"
+    },
+    {
+      "img_src": "images/profile_image_5.jpg",
+      "user_name": "Minh Anh",
+      "action": "liked your comment post.",
+      "time": "3 hours ago"
+    }
+  ]
+}
