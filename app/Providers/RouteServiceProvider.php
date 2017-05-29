@@ -67,7 +67,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix($locale)
                 ->group(base_path('routes/web.php'));
         } else {
-            Route::get('/', function () {
+            Route::middleware('web')->get('/', function () {
                 return view('welcome');
             });
         }

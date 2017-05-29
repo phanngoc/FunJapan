@@ -12,4 +12,5 @@ return [
         'after_register' => '2',
         'forgot_password' => '3',
     ],
+    'session_user_life_time' => 5256000,
 ];
