@@ -15966,6 +15966,27 @@ a:focus {
   font-size: 11px;
   opacity: 0.5;
 }
+.single-line {
+  overflow: hidden;
+  position: relative;
+  line-height: 1.2em;
+  max-height: 1.2em;
+  text-align: justify;
+}
+.single-line .elap {
+  float: right;
+  clear: right;
+  color: #666;
+}
+.single-line:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  background: white;
+}
 .notification-list {
   height: 270px;
   width: 350px !important;
