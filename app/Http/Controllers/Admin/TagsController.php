@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\Admin\TagService;
+use App\Services\Admin\LocaleService;
+use App\Services\Admin\HotTagService;
 use App\Services\Admin\ArticleLocaleService;
 use App\Services\Admin\ArticleService;
-use App\Services\Admin\LocaleService;
 use App\Models\Tag;
 
 class TagsController extends Controller
@@ -136,5 +137,34 @@ class TagsController extends Controller
         $dataReturn['items'] = TagService::getTagsByQuery($query);
 
         return $dataReturn;
+    }
+
+    public function settingHotTags(Request $request)
+    {
+        $localeId = $request->input('locale_id') ?? array_first(array_keys(LocaleService::getAllLocales()));
+        $this->viewData['locales'] = LocaleService::getAllLocales();
+        $this->viewData['localeId'] = $localeId;
+
+        return view('admin.tag.setting_hot_tags', $this->viewData);
+    }
+
+    public function showHotTags(Request $request)
+    {
+        $localeId = $request->input('locale_id') ?? array_first(array_keys(LocaleService::getAllLocales()));
+        $this->viewData['locales'] = LocaleService::getAllLocales();
+        $this->viewData['localeId'] = $localeId;
+
+        return view('admin.tag.list_hot_tags', $this->viewData);
+    }
+
+    public function updateHotTag(Request $request)
+    {
+        $inputs = $request->all();
+
+        if (HotTagService::setting($inputs)) {
+            return response()->json(['message' => trans('admin/tag.setting_success'), 'status' => 1]);
+        }
+
+        return response()->json(['message' => trans('admin/tag.setting_error'), 'status' => 0]);
     }
 }

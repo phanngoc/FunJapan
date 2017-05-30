@@ -28,6 +28,10 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::get('getTags', 'TagsController@getListTags');
     Route::post('tagBlock/{tag}', 'TagsController@block');
 
+    Route::get('showHotTags', 'TagsController@showHotTags');
+    Route::get('settingHotTags', 'TagsController@settingHotTags');
+    Route::post('updateHotTag', 'TagsController@updateHotTag');
+
     Route::get('menus/getCategories', 'MenusController@getCategories');
     Route::resource('menus', 'MenusController');
     Route::get('menus/createSubMenu/{menu}', 'MenusController@createSubMenu');

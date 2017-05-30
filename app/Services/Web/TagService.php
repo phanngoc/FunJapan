@@ -5,6 +5,7 @@ namespace App\Services\Web;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Tag;
 use App\Models\ArticleTag;
+use App\Models\HotTag;
 use App\Models\CategoryLocale;
 use App\Models\ArticleLocales;
 use DB;
@@ -41,25 +42,12 @@ class TagService
 
     public static function getHotTags($localeId, $limit = 20)
     {
-        $hotTagsId = ArticleTag::select('tag_id', DB::raw('count(tag_id) as total_tags'))
-            ->whereIn('article_locale_id', ArticleLocale::where('locale_id', $localeId)
-                                                        // ->where('hide_always', 0)
-                                                        // ->whereNotNull('published_at')
-                                                        // ->where('published_at', '<', Carbon::now())
-                                                        ->pluck('id')->toArray())
-            ->groupBy('tag_id')
-            ->orderBy('total_tags', 'desc')
-            ->get();
-
-        $hotTagsId = array_pluck($hotTagsId, 'tag_id');
+        $hotTagsId = HotTag::where('locale_id', $localeId)->pluck('tag_id');
 
         if (empty($hotTagsId)) {
             return null;
         }
 
-        return Tag::whereIn('id', $hotTagsId)
-            ->orderByRaw(DB::raw('FIELD(id, ' . implode(',', $hotTagsId) . ')'))
-            ->limit($limit)
-            ->get();
+        return Tag::whereIn('id', $hotTagsId)->where('status', config('tag.status.un_block'))->get();
     }
 }

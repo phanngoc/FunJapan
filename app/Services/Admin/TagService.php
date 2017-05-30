@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Log;
 use DB;
 use Validator;
 use Illuminate\Validation\Rule;
+use App\Models\ArticleLocale;
+use App\Models\ArticleTag;
+use App\Models\HotTag;
 
 class TagService extends BaseService
 {
@@ -21,6 +24,23 @@ class TagService extends BaseService
         $orderConditions['column'] = $conditions['columns'][$orderParams[0]['column']]['data'];
         $orderConditions['dir'] = $orderParams[0]['dir'];
         $query = Tag::query();
+        if (isset($conditions['locale_id'])) {
+            $localeId = $conditions['locale_id'];
+            if (isset($conditions['is_hot_tag'])) {
+                $listTagIds = HotTag::where('locale_id', $localeId)->pluck('tag_id');
+                $query = $query->where('status', config('tag.status.un_block'))->whereIn('id', $listTagIds);
+            } else {
+                $query = Tag::with([
+                    'hotTags' => function ($currentQuery) use ($localeId) {
+                        $currentQuery->where('locale_id', $localeId);
+                    },
+                ]);
+                $listArticleLocaleIds = ArticleLocale::where('locale_id', $localeId)->pluck('id');
+                $listTagIds = ArticleTag::whereIn('article_locale_id', $listArticleLocaleIds)->pluck('tag_id');
+                $query = $query->where('status', config('tag.status.un_block'))->whereIn('id', $listTagIds);
+            }
+        }
+
         $results = static::listItems($query, $keyword, $searchColumns, $orderConditions, $limit, $page);
 
         return $returnData = [

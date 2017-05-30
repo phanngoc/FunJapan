@@ -11,7 +11,7 @@
                 <div class="ibox-content">
                     <div class="row">
                         {{ Form::open([
-                                'action' => 'Admin\ArticlesController@index',
+                                'action' => ['Admin\TagsController@show', $tagId, 'locale_id' => $localeId],
                                 'method' => 'GET',
                                 'class' => 'articles-list',
                             ])
@@ -40,18 +40,6 @@
                                     <th class="text-center">{{ trans('admin/article.action') }}</th>
                                 </tr>
                             </thead>
-                            <tfoot>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tfoot>
                         </table>
                     </div>
                 </div>

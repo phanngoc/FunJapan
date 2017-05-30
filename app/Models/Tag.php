@@ -24,12 +24,18 @@ class Tag extends BaseModel
         return $this->hasMany(ArticleTag::class);
     }
 
+    public function hotTags()
+    {
+        return $this->hasMany(HotTag::class);
+    }
+
     protected static function boot()
     {
         parent::boot();
 
         static::deleting(function ($tag) {
             $tag->articlesTags()->delete();
+            $tag->hotTags()->delete();
         });
     }
 }
