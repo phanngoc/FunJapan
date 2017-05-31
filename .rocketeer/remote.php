@@ -35,6 +35,7 @@ return [
         'public/uploads',
         '.env',
         '.htpasswd',
+        'laravel-echo-server.json',
     ],
 
     // Execution

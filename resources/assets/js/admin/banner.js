@@ -1,13 +1,18 @@
 function formatRepo (repo) {
     if (repo.loading) return repo.text;
 
-    return '<div class="clearfix">'+ repo.title + '</div>';
+    return '<div class="clearfix">'+ encodeHTML(repo.title) + '</div>';
 }
 
 function formatRepoSelection (repo) {
     if (repo.selected) return repo.text;
 
-    return repo.title || repo.summary ;
+    var textShow = repo.title || repo.summary;
+
+    if (textShow) {
+        textShow = encodeHTML(textShow);
+    }
+    return textShow;
 }
 
 $(document).ready(function () {
@@ -88,7 +93,17 @@ $(document).ready(function () {
 
     $(".upload-file").change(function(){
         var imgPreview = $(this).parents('.preview-image').find('img:first');
-        readURL(this, imgPreview);
+        var isSuccess = readURL(this, imgPreview);
+
+        if (isSuccess) {
+            $(this).siblings('input.is_uploaded_photo').val(1);
+            $(imgPreview).siblings('p.text-danger').text('');
+            $(this).parents().eq(4).find('.update-banner-all').removeAttr('disabled');
+        } else {
+            $(this).siblings('input.is_uploaded_photo').val(0);
+            imgPreview.attr('src', '');
+            $(this).parents().eq(4).find('.update-banner-all').removeAttr('disabled');
+        }
     });
 
     function readURL(input, imgPreview) {
@@ -117,9 +132,7 @@ $(document).ready(function () {
 
             reader.readAsDataURL(input.files[0]);
 
-            $(input).siblings('input.is_uploaded_photo').val(1);
-            $(imgPreview).siblings('p.text-danger').text('')
-            $(input).parents().eq(4).find('.update-banner-all').removeAttr('disabled');
+            return true;
         }
     }
 
