@@ -35,20 +35,31 @@
                     </div>
                 @else
                     {!! Form::open(['url' => action('Web\UsersController@updatePassword')]) !!}
+                        @if (count($errors) > 0)
+                            <div class="validation-summary-errors panel panel-danger text-left" data-valmsg-summary="true">
+                                <div class="panel-heading">
+                                    {{ trans('web/user.profile_page.please_correct') }}
+                                </div>
+                                <div class="panel-body">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li style="white-space:pre-wrap;">{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        @endif
                         <div class="form-group">
                             <label for="OldPassword">{{ trans('web/user.profile_page.password') }}</label>
                             <input class="form-control" id="OldPassword" name="password" placeholder="Enter the current password." type="password">
-                            <label class="help-block">{{ $errors->has('password') ? $errors->first('password') : '' }}</label>
                         </div>
                         <div class="form-group">
                             <label for="NewPassword">{{ trans('web/user.profile_page.new_password') }}</label>
                             <input class="form-control" id="NewPassword" name="new_password" placeholder="Minimum 6 letters" type="password">
-                            <label class="help-block">{{ $errors->has('new_password') ? $errors->first('new_password') : '' }}</label>
                         </div>
                         <div class="form-group">
                             <label for="ConfirmNewPassword">{{ trans('web/user.profile_page.new_password_again') }}</label>
                             <input class="form-control" id="ConfirmNewPassword" name="confirm_new_password" placeholder="Confirm your password" type="password">
-                            <label class="help-block">{{ $errors->has('confirm_new_password') ? $errors->first('confirm_new_password') : '' }}</label>
                         </div>
                         <p class="text-center">
                             <button type="submit" class="btn btn-primary">{{ trans('web/user.profile_page.update_setting') }}</button>

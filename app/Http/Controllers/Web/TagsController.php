@@ -22,7 +22,6 @@ class TagsController extends Controller
         $tag = Tag::where('name', $tagName)->first();
 
         if ($tag) {
-            $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
             $this->viewData['articles'] = TagService::getArticleByTag($tag, $this->currentLocaleId);
             $this->viewData['tag'] = $tag;
             $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);

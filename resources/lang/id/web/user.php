@@ -12,6 +12,9 @@ return [
             'location_id' => 'Please enter the location where you live, eat and sleep.',
             'birthday' => 'The birthday is non-existent.',
             'accept_policy' => 'Please accept the terms of use and the privacy policy',
+            'birthday_day' => 'Please enter the day your birthday.',
+            'birthday_month' => 'Please enter the month of your birthday.',
+            'birthday_year' => 'Please enter the year of your birthday.',
         ],
         'min' => [
             'password' => 'Password needs to be longer, at least 6 letters.',

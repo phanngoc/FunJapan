@@ -16,11 +16,24 @@ class ViewServiceProvider extends ServiceProvider
             'web.users.interest',
             'web.users.password',
             'web.users.profile',
+            'web.home.index',
             ], 'App\Http\ViewComposers\BannerComposer');
 
         view()->composer([
             'web.tags.show',
             'web.categories.show',
+            'web.home.index',
             ], 'App\Http\ViewComposers\AdvertisementComposer');
+
+        view()->composer([
+            'web.home.index',
+            'web.categories.show',
+            'web.tags.show',
+            'web.users.profile',
+            'web.users.close_account',
+            'web.users.interest',
+            'web.users.password',
+            'web.users.close_complete',
+            ], 'App\Http\ViewComposers\PopularPostComposer');
     }
 }

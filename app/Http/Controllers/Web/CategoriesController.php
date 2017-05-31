@@ -22,7 +22,6 @@ class CategoriesController extends Controller
         $category = Category::where('short_name', $categoryName)->first();
 
         if ($category) {
-            $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
             $this->viewData['articles'] = CategoryService::getArticleByCategory($category, $this->currentLocaleId);
             $this->viewData['category'] = $category;
             $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);

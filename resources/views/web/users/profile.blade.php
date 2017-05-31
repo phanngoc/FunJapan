@@ -71,14 +71,14 @@
                             $locationV = old('location_id', $user->location_id);
                             $religionV = old('religion_id', $user->religion_id);
 
-                            $subscriptionNewLetterV = (old('subscription_new_letter') == null) ? ($user->subscription_new_letter ? 'checked' : '') : (old('subscription_new_letter') ? 'checked' : '');
-                            $subscriptionReplyNotiV = (old('subscription_reply_noti') == null) ? ($user->subscription_reply_noti ? 'checked' : '') : (old('subscription_reply_noti') ? 'checked' : '');
+                            $subscriptionNewLetterV = is_null(old('subscription_new_letter')) ? ($user->subscription_new_letter ? 'checked' : '') : (old('subscription_new_letter') ? 'checked' : '');
+                            $subscriptionReplyNotiV = is_null(old('subscription_reply_noti')) ? ($user->subscription_reply_noti ? 'checked' : '') : (old('subscription_reply_noti') ? 'checked' : '');
                         @endphp
                         <label class="required" for="BirthdayMonth">{{ trans('web/user.label.birthday') }}</label>
                         <div class="row">
                             <div class="col-xs-4">
                                 <select class="form-control" id="BirthdayMonth" name="birthday_month">
-                                    <option {{ $monthV == '' ? 'selected' : '' }}>{{ trans('web/user.label.month') }}</option>
+                                    <option {{ $monthV == '' ? 'selected' : '' }} value="">{{ trans('web/user.label.month') }}</option>
                                     @foreach (range(1, 12) as $month)
                                         <option
                                             value="{{ $month }}"
@@ -92,7 +92,7 @@
 
                             <div class="col-xs-4">
                                 <select class="form-control" id="birthday_day" name="birthday_day">
-                                    <option {{ $dayV == '' ? 'selected' : '' }}>{{ trans('web/user.label.day') }}</option>
+                                    <option {{ $dayV == '' ? 'selected' : '' }} value="">{{ trans('web/user.label.day') }}</option>
                                     @foreach (range(1, 31) as $date)
                                         <option
                                             value="{{ $date }}"
@@ -106,7 +106,7 @@
 
                             <div class="col-xs-4">
                                <select class="form-control" id="birthday_year" name="birthday_year">
-                                    <option {{ $yearV == '' ? 'selected' : '' }}>{{ trans('web/user.label.year') }}</option>
+                                    <option {{ $yearV == '' ? 'selected' : '' }} value="">{{ trans('web/user.label.year') }}</option>
                                     @foreach (range(1900, date("Y")) as $year)
                                         <option
                                             value="{{ $year }}"
