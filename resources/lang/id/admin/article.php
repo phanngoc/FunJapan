@@ -86,5 +86,7 @@ return [
     'set_language' => 'Set language of Article',
     'author' => 'Author',
     'article_type' => 'Article Type',
-    'cancel_message' => 'Are you sure you want to cancel?'
+    'cancel_message' => 'Are you sure you want to cancel?',
+    'mimes_message' => 'The photo must be a file of type: jpeg,png,jpg!',
+    'size_message' => 'The photo size must not greater than 10MB',
 ];

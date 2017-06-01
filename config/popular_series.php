@@ -1,7 +1,7 @@
 <?php
 return [
     'type' => [
-        'tag' => 'tag',
-        'category' => 'category',
+        'category' => 'Category',
+        'tag' => 'Tag',
     ],
 ];

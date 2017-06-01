@@ -28,3 +28,12 @@
     cursor: not-allowed;
 }
 
+.bw {
+    word-wrap: break-word;
+}
+
+@-moz-document url-prefix() {
+    .max100 {
+        max-width: 100%;
+    }
+}

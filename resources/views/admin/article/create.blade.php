@@ -229,6 +229,10 @@
         </div>
     </div>
 </div>
+<div id="extension" data-extension="{{ config('images.validate.article_thumbnail.mimes') }}"></div>
+<div id="size" data-size="{{ config('images.validate.article_thumbnail.max_size') }}"></div>
+<div id="mimes-message" data-message="{{ trans('admin/article.mimes_message') }}"></div>
+<div id="size-message" data-message="{{ trans('admin/article.size_message') }}"></div>
 @stop
 @section('script')
     {!! Html::script('assets/admin/js/article.js') !!}

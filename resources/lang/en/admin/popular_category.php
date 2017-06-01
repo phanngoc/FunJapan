@@ -4,11 +4,13 @@ return [
     'setting_category' => 'Setting Popular Category',
     'edit_category' => 'Edit Popular Category',
     'popular_category_management' => 'Popular Category Management',
+    'select_category' => 'Select Category',
     'label' => [
         'locale' => 'Language',
         'name' => 'Name',
         'photo' => 'Photo',
-        'link' => 'Link',
+        'category' => 'Category',
+        'link' => 'Category',
     ],
     'button' => [
         'create' => 'Save',
@@ -20,7 +22,7 @@ return [
     'no' => 'No',
     'name' => 'Name',
     'image' => 'Image',
-    'link' => 'Link',
+    'category' => 'Category',
     'created_at' => 'Created_at',
     'action' => 'Action',
     'delete_confirm' => 'Do you want to delete this item?',

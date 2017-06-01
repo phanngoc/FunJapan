@@ -66,8 +66,6 @@ $(document).ready(function () {
             if (response.status == 0) {
                 swal($('#button-error').data('message'));
                 location.reload();
-            } else {
-                swal($('#button-success').data('message'));
             }
         })
         .fail(function() {
@@ -78,22 +76,30 @@ $(document).ready(function () {
         var element = $(this);
         var tag = element.data('tag-id');
         var url = $('#tag-table').data('setting-url');
-
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: {tag_id: tag, locale_id: localeId},
-        })
-        .done(function(response) {
-            if (response.status == 0) {
-                swal($('#button-error').data('message'));
-                location.reload();
-            } else {
-                swal($('#button-success').data('message'));
-                location.reload();
-            }
-        })
-        .fail(function() {
-        })
+        swal({
+            title: $('#button-confirm').data('message'),
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes",
+            closeOnConfirm: false
+        },
+        function(){
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {tag_id: tag, locale_id: localeId},
+            })
+            .done(function(response) {
+                if (response.status == 0) {
+                    swal($('#button-error').data('message'));
+                } else {
+                    swal($('#button-success').data('message'));
+                    location.reload();
+                }
+            })
+            .fail(function() {
+            })
+        });
     });
 });

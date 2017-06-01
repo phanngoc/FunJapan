@@ -25,19 +25,23 @@
                         <div id="{{ $menu->name }}" class="tab-pane active">
                             <div class="panel-body">
                                 <strong class="col-sm-2">{{ trans('admin/menu.label.type') }}:</strong>
-                                {{ trans('admin/menu.parent_type' . '.' . $menu->type) }}
+                                <p class="col-sm-10">{{ trans('admin/menu.parent_type' . '.' . $menu->type) }}</p>
+                                <div class="clearfix"></div>
                                 <hr>
                                 <strong class="col-sm-2">{{ trans('admin/menu.label.name') }}:</strong>
-                                {{ $menu->name }}
+                                <p class="col-sm-10">{{ $menu->name }}</p>
+                                <div class="clearfix"></div>
                                 <hr>
                                 @if ($menu->link)
                                 <strong class="col-sm-2">{{ trans('admin/menu.label.link') }}:</strong>
-                                {!! $menu->link !!}
+                                <p class="col-sm-10">{{ $menu->link }}</p>
+                                <div class="clearfix"></div>
                                 <hr>
                                 @endif
                                 @if ($menu->description)
                                 <strong class="col-sm-2">{{ trans('admin/menu.label.description') }}:</strong>
-                                {!! $menu->description !!}
+                                <p class="col-sm-10 bw">{{ $menu->description }}</p>
+                                <div class="clearfix"></div>
                                 <hr>
                                 @endif
                                 @if ($menu->type == 'category')
@@ -53,22 +57,29 @@
                                 @endif
                                 @if ($menu->parent_id)
                                 <strong class="col-sm-2">{{ trans('admin/menu.label.parent') }}:</strong>
-                                {!! $menu->parent->name !!}
+                                <p class="col-sm-10">{{ $menu->parent->name }}</p>
+                                <div class="clearfix"></div>
                                 <hr>
                                 @endif
                                 @if ($menu->icon_url['larger'])
                                 <strong class="col-sm-2">{{ trans('admin/menu.label.icon') }}:</strong>
-                                <img src="{{ $menu->icon_url['normal'] }}">
+                                <div class="col-sm-10"><img src="{{ $menu->icon_url['normal'] }}"></div>
+                                <div class="clearfix"></div>
                                 <hr>
                                 @endif
                                 @if ($menu->icon_class)
                                 <strong class="col-sm-2">{{ trans('admin/menu.label.icon_class') }}:</strong>
-                                {{ $menu->icon_class }}
+                                <p class="col-sm-10 bw">{{ $menu->icon_class }}</p>
+                                <div class="clearfix"></div>
                                 <hr>
                                 @endif
                                 <strong class="col-sm-2">{{ trans('admin/menu.created_at') }}:</strong>
-                                {{ $menu->created_at }}
+                                <p class="col-sm-10">{{ $menu->created_at }}</p>
+                                <div class="clearfix"></div>
                                 <hr>
+                                <a href="{{ action('Admin\MenusController@edit', [$menu->id]) }}" class="btn btn-w-m btn-primary">
+                                    {{ trans('admin/menu.menu_edit') }}
+                                </a>
                             </div>
                         </div>
                     </div>

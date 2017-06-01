@@ -29,9 +29,8 @@
                         <thead>
                             <tr>
                                 <th class="text-center">{{ trans('admin/popular_category.no') }}</th>
-                                <th class="text-center">{{ trans('admin/popular_category.name') }}</th>
                                 <th class="text-center">{{ trans('admin/popular_category.image') }}</th>
-                                <th class="text-center">{{ trans('admin/popular_category.link') }}</th>
+                                <th class="text-center">{{ trans('admin/popular_category.category') }}</th>
                                 <th class="text-center">{{ trans('admin/popular_category.created_at') }}</th>
                                 <th class="text-center">{{ trans('admin/popular_category.action') }}</th>
                             </tr>

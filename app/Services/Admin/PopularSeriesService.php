@@ -121,7 +121,7 @@ class PopularSeriesService extends BaseService
     {
         $results = [];
         $q = escape_like($inputs['q']);
-        if ($inputs['type'] == config('popular_series.type.category')) {
+        if ($inputs['type'] == strtolower(config('popular_series.type.category'))) {
             $results = Category::select('id', 'name')
                 ->where('locale_id', $inputs['locale_id'])->where('name', 'like', "%$q%")->get()->toArray();
         } else {
