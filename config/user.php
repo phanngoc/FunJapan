@@ -11,6 +11,7 @@ return [
         'invite_friends' => '1',
         'after_register' => '2',
         'forgot_password' => '3',
+        'notification' => '4',
     ],
     'session_user_life_time' => 5256000,
 ];

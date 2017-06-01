@@ -26,6 +26,11 @@ class Notification extends BaseModel
         return $this->belongsTo(User::class, 'sender_id', 'id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
     public function targetItem()
     {
         return $this->belongsTo(Comment::class, 'reference_id', 'id');
