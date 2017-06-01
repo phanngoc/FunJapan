@@ -69,7 +69,7 @@
         <div class="flex-center position-ref full-height top-header">
             <div class="content header-text">
                 <div class="title m-b-md header-title-text">
-                    <p class="header-title-text">
+                    <p class="header-text">
                         <a href="/">
                             <img src="/assets/images/brand-icon.png" alt="brand-icon">
                             <span>&nbsp;FUN!

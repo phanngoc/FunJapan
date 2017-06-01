@@ -11,6 +11,7 @@ use App\Models\Comment;
 use App\Services\Web\ArticleService;
 use Exception;
 use DB;
+use App\Services\NotificationService;
 
 class CommentService
 {
@@ -25,7 +26,7 @@ class CommentService
 
     public static function create($input)
     {
-        return Comment::create([
+        $comment = Comment::create([
             'type' => $input['type'],
             'content' => $input['content'],
             'parent_id' => $input['parentId'],
@@ -33,6 +34,24 @@ class CommentService
             'article_locale_id' => $input['articleLocaleId'],
             'user_id' => $input['userId'],
         ]);
+
+        try {
+            if ($comment && $comment->parent_id) {
+                $parentComment = Comment::find($comment->parent_id);
+
+                if ($parentComment && $parentComment->user_id != $input['userId']) {
+                    NotificationService::sendNotification(
+                        $input['userId'],
+                        config('notification.type.reply_comment'),
+                        $parentComment
+                    );
+                }
+            }
+        } catch (Exception $e) {
+            Log::debug($e);
+        }
+
+        return $comment;
     }
 
     public static function lists($articleLocaleId, $limit = 10)
@@ -92,6 +111,14 @@ class CommentService
                 ]);
 
                 $comment->increment('favorite_count');
+
+                if ($comment->user_id != $userId) {
+                    NotificationService::sendNotification(
+                        $userId,
+                        config('notification.type.like_comment'),
+                        $comment
+                    );
+                }
             }
 
             DB::commit();

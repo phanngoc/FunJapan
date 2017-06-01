@@ -1,5 +1,5 @@
 <div class="top-header-mobile">
-    <span class="header-title-text">
+    <span class="header-text">
         <a href="/">
             <img src="assets/images/brand-icon.png" alt="brand-icon">
             <span>

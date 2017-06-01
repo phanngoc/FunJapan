@@ -14,7 +14,7 @@ class ImageService
     public static function uploadFile($image, $type, $path, $delete = false)
     {
         try {
-            $storage = Storage::disk(config('filesystem.default'));
+            $storage = Storage::disk(config('filesystems.default'));
 
             if ($delete) {
                 $storage->deleteDirectory($path);
