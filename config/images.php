@@ -12,6 +12,7 @@ return [
         'popular_series_image' => 'uploads/popular_series',
         'coupon_image' => 'uploads/coupons/images',
         'popular_category_image' => 'uploads/categories/popular',
+        'result_survey' => 'uploads/results',
     ],
     'validate' => [
         'post_photo' => [
@@ -48,6 +49,10 @@ return [
             'max_size' => 10240,
         ],
         'popular_category_image' => [
+            'max_size' => 10240,
+        ],
+        'result_survey' => [
+            'mimes' => 'jpeg,png,jpg',
             'max_size' => 10240,
         ],
     ],
@@ -100,6 +105,11 @@ return [
         'popular_category_image' => [
             'normal' => [400, 150],
             'small' => [32, 32],
+        ],
+        'result_survey' => [
+            'original' => '',
+            'normal' => [480, 318],
+            'small' => [96, 60],
         ],
     ],
     'not_resize' => [

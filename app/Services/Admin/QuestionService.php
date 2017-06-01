@@ -62,6 +62,12 @@ class QuestionService extends BaseService
                         'score' => $input['score'] ?? null,
                         'other_option' => $input['other_option'] ?? 0,
                     ]);
+
+                    if ($question) {
+                        $question->update([
+                            'order' => QuestionService::getLastId($input['survey_id']) + 1,
+                        ]);
+                    }
                 }
                 DB::commit();
 
@@ -88,5 +94,37 @@ class QuestionService extends BaseService
         } else {
             return false;
         }
+    }
+
+    public static function updateOrder($inputs)
+    {
+        $listIds = $inputs['order'];
+        $placeholders = implode(',', array_fill(0, count($listIds), '?'));
+        $questions = Question::whereIn('id', $listIds)
+            ->orderByRaw("field (id, {$placeholders})", $listIds)
+            ->get();
+        DB::beginTransaction();
+        try {
+            foreach ($questions as $key => $question) {
+                $question->order = $key + 1;
+                $question->save();
+            }
+            DB::commit();
+
+            return true;
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            return false;
+        }
+    }
+
+    public static function getLastId($surveyId)
+    {
+        $question = Question::whereSurveyId($surveyId)
+            ->orderBy('order', 'desc')
+            ->first();
+
+        return $question->order;
     }
 }

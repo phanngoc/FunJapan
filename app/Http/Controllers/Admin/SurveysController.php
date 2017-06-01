@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Services\Admin\SurveyService;
 use App\Services\Admin\LocaleService;
 use App\Models\Survey;
+use App\Models\Question;
+use Session;
 
 class SurveysController extends Controller
 {
@@ -28,8 +30,9 @@ class SurveysController extends Controller
             return redirect()->action('Admin\SurveysController@index')
                 ->withErrors(['errors' => trans('admin/survey.survey_not_exist')]);
         }
-
+        $questions = Question::whereSurveyId($survey->id)->orderBy('order')->get();
         $this->viewData['survey'] = $survey;
+        $this->viewData['questions'] = $questions;
 
         return view('admin.surveys.detail', $this->viewData);
     }
@@ -87,5 +90,14 @@ class SurveysController extends Controller
         }
 
         return redirect()->back()->withErrors(['errors' => trans('admin/survey.update_error')]);
+    }
+
+    public function destroy($id)
+    {
+        if (SurveyService::destroy($id)) {
+            Session::flash('message', trans('admin/survey.delete_success'));
+        } else {
+            Session::flash('error', trans('admin/survey.delete_error'));
+        }
     }
 }

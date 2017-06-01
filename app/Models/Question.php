@@ -24,6 +24,7 @@ class Question extends Model
         'option_name',
         'score',
         'other_option',
+        'order',
     ];
 
     public function survey()

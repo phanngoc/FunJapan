@@ -58,7 +58,7 @@
                                         <a data-toggle="tooltip" data-placement="left" title="Edit" href="{{ action('Admin\SurveysController@edit', [$survey->id]) }}" class="edit">
                                             &nbsp;<i class="fa fa-pencil-square-o fa-lg"></i>
                                         </a>
-                                        <a data-toggle="tooltip" data-placement="top" title="Delete" href="#" data-url="" class="delete">
+                                        <a data-toggle="tooltip" data-placement="top" title="Delete" href="javascript:;" data-url="{{ action('Admin\SurveysController@destroy', [$survey->id]) }}" data-confirm="{{ trans('admin/category.delete_confirm', [ 'name' => $survey->name]) }}" class="delete">
                                             &nbsp;<i class="fa fa-trash-o fa-lg"></i>
                                         </a>
                                     </td>
@@ -66,6 +66,8 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div id="delete-confirm" data-confirm-message="{{ trans('admin/category.delete_confirm') }}"></div>
+                    <div id="url-redirect" data-url="{{ url()->current() }}"></div>
                 </div>
             </div>
         </div>
