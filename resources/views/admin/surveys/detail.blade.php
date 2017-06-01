@@ -10,9 +10,18 @@
                 <div class="ibox-title"><h2>{{ trans('admin/survey.detail') }}</h2></div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <strong>{{ trans('admin/survey.title') }}: </strong> {{ $survey->title }}
                         </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <strong>{{ trans('admin/survey.description') }}:</strong> {!! $survey->html_description !!}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
                         <div class="col-lg-6">
                             <strong>{{ trans('admin/survey.type') }}: </strong>
                             @foreach(config('survey.type') as $key => $type)
@@ -21,11 +30,8 @@
                                 @endif
                             @endforeach
                         </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <strong>{{ trans('admin/survey.description') }}: </strong> {!! $survey->html_description !!}
+                        <div class="col-lg-6">
+                            <strong>{{ trans('admin/survey.multiple_join') }}:</strong> {{ $survey->multiple_join ? 'Yes' : 'No' }}
                         </div>
                     </div>
                     <hr>

@@ -1,5 +1,5 @@
 <div class="form-question">
-        <div class="form-group">
+    <div class="form-group">
         {{ Form::label(
             'type',
             trans('admin/question.type'),
@@ -34,8 +34,6 @@
             }}
         </div>
     </div>
-</div>
-<div class="option-question">
     @if(isset($question->option_name))
         @foreach ($question->option_name as $key => $value)
             <div class="form-group input-option">
@@ -44,10 +42,25 @@
                     trans('admin/question.option'),
                     ['class' => 'col-sm-1 control-label'])
                 }}
-                <div class="col-sm-9">
+                <div class="col-sm-4">
                     {{ Form::text(
                         'option_name[]',
                         $value ?: '',
+                        [
+                            'class' => 'form-control',
+                            'required',
+                        ])
+                    }}
+                </div>
+                {{ Form::label(
+                    'option',
+                    trans('admin/question.option'),
+                    ['class' => 'col-sm-1 control-label'])
+                }}
+                <div class="col-sm-4">
+                    {{ Form::text(
+                        'score[]',
+                        $question->score[$key] ?: '',
                         [
                             'class' => 'form-control',
                             'required',
@@ -60,5 +73,19 @@
                 </div>
             </div>
         @endforeach
+        <div class="form-group other-option">
+            {{ Form::label(
+                'option',
+                trans('admin/question.other_option'),
+                ['class' => 'col-sm-1 control-label'])
+            }}
+            <div class="col-sm-9">
+                {{ Form::checkbox(
+                    'other_option',
+                    1,
+                    $question->other_option ?? 0)
+                }}
+            </div>
+        </div>
     @endif
 </div>

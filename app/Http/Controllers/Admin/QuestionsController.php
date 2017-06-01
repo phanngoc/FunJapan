@@ -20,13 +20,16 @@ class QuestionsController extends Controller
 
     public function store(Request $request, Survey $survey)
     {
-        $inputs = $request->all();
-        $validator = QuestionService::validate($inputs);
-        if ($validator->fails()) {
-            Session::flash('error', $validator->errors()->first('title'));
+        $inputs = $request->input('question');
+        $message = QuestionService::validate($inputs);
+
+        if ($message) {
+            return response()->json([
+                'message' => $message,
+            ]);
         }
 
-        if ($survey->questions()->create($inputs)) {
+        if (QuestionService::store($inputs)) {
             Session::flash('message', trans('admin/survey.create_success'));
         } else {
             Session::flash('error', trans('admin/survey.create_error'));
@@ -44,10 +47,6 @@ class QuestionsController extends Controller
     public function update(Request $request, Survey $survey, $questionId)
     {
         $inputs = $request->all();
-        $validator = QuestionService::validate($inputs);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInputs($inputs);
-        }
 
         if (QuestionService::update($inputs, $questionId)) {
             return redirect()->action('Admin\SurveysController@show', [$survey->id])

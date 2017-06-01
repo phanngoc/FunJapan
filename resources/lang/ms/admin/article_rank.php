@@ -1,7 +1,6 @@
 <?php
 
 return [
-	'label' => 'Ranking Settings',
-	'duplicate' => 'Duplicate data',
-	'title' => 'Article Ranking',
+	'label' => 'Ranking Setting',
+	'duplicate' => 'The article duplicate!',
 ];

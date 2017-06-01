@@ -9,6 +9,7 @@ class Question extends Model
     protected $table = 'questions';
     protected $casts = [
         'option_name' => 'array',
+        'score' => 'array',
     ];
 
     /**
@@ -21,6 +22,8 @@ class Question extends Model
         'title',
         'question_type',
         'option_name',
+        'score',
+        'other_option',
     ];
 
     public function survey()

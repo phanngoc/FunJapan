@@ -54,3 +54,19 @@ div.dataTables_wrapper {
 .set-language a:hover{
     background-color: #f5f5f5 !important;
 }
+
+.label-ranking {
+    background-color: #1ab394;
+    border-color: #1ab394;
+    color: #FFFFFF;
+    border-radius: 3px;
+    padding-top: 3px;
+    font-weight: 400;
+    text-align: center;
+    width: 60px;
+    height: 27px;
+}
+
+.select2-selection__clear {
+    position: relative;
+}

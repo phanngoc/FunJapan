@@ -80,12 +80,8 @@ class ArticlesController extends Controller
 
     public function countShare(Request $request, $articleId)
     {
-        if (!auth()->check()) {
-            return response('', 404);
-        } else {
-            if ($request->ajax()) {
-                return ArticleService::countShare(auth()->user()->id, $articleId, $this->currentLocaleId);
-            }
+        if ($request->ajax()) {
+            return ArticleService::countShare($articleId, $this->currentLocaleId);
         }
     }
 }
