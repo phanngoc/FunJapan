@@ -84,7 +84,7 @@
                 </a>
             </li>
 
-            <li class="{{ set_active(['admin/popular*']) }}">
+            <li class="{{ set_active(['admin/setting/popular-articles', 'admin/popular-list']) }}">
                 <a href="#">
                     <i class="fa fa-thumbs-up"></i>
                     <span class="nav-label">
@@ -114,7 +114,7 @@
                 </ul>
             </li>
 
-            <li class="{{ set_active(['admin/setting*', 'admin/banner']) }}">
+            <li class="{{ set_active(['admin/setting/banner', 'admin/setting/rank']) }}">
                 <a href="#">
                     <i class="fa fa-thumbs-up"></i>
                     <span class="nav-label">
@@ -136,7 +136,7 @@
                 </ul>
             </li>
 
-             <li class="{{ set_active(['admin/menus*', 'admin/menus/create']) }}">
+            <li class="{{ set_active(['admin/menus*', 'admin/menus/create']) }}">
                 <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/menu.menu_management') }}</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li>
@@ -144,6 +144,22 @@
                     </li>
                     <li>
                         <a href="{{action('Admin\MenusController@create')}}">{{ trans('admin/menu.add_menu') }}</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="{{ set_active(['admin/popular-series*']) }}">
+                <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/popular_series.popular_series_management') }}</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="{{action('Admin\PopularSeriesController@index')}}">
+                            {{ trans('admin/popular_series.list_series') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{action('Admin\PopularSeriesController@create')}}">
+                            {{ trans('admin/popular_series.setting_series') }}
+                        </a>
                     </li>
                 </ul>
             </li>

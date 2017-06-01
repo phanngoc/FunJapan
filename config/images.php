@@ -9,6 +9,7 @@ return [
         'menu_icon' => 'uploads/menu',
         'omikuji_image' => 'uploads/omikujis/image',
         'omikuji_item_image' => 'uploads/omikujis/omikuji_items/image',
+        'popular_series_image' => 'uploads/popular_series',
     ],
     'validate' => [
         'post_photo' => [
@@ -35,6 +36,9 @@ return [
         ],
         'omikuji_item_image' => [
             'mimes' => 'jpeg,png,jpg',
+            'max_size' => 10240,
+        ],
+        'popular_series_image' => [
             'max_size' => 10240,
         ],
     ],
@@ -75,6 +79,10 @@ return [
         'menu_icon' => [
             'normal' => [20, 20],
             'larger' => [96, 60],
+        ],
+        'popular_series_image' => [
+            'normal' => [180, 90],
+            'small' => [32, 32],
         ],
     ],
     'not_resize' => [

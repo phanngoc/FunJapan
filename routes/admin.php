@@ -63,6 +63,15 @@ Route::group(['namespace' => 'Admin'], function () {
 
     Route::get('getCategories', 'CategoriesController@getCategories');
 
+    Route::get('popular-series', 'PopularSeriesController@index');
+    Route::get('popular-series/create', 'PopularSeriesController@create');
+    Route::post('popular-series/store', 'PopularSeriesController@store');
+    Route::get('popular-series/edit/{popularSeries}', 'PopularSeriesController@edit');
+    Route::post('popular-series/update/{popularSeries}', 'PopularSeriesController@update');
+    Route::post('popular-series/delete/{popularSeries}', 'PopularSeriesController@delete');
+    Route::get('popular-series/getSuggest', 'PopularSeriesController@getSuggest');
+    Route::get('popular-series/getListSeries', 'PopularSeriesController@getListSeries');
+
     Route::get('{action?}', 'DashboardController@index');
 
     Route::get('setting/ranks', 'ArticleRanksController@index');

@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Services\Web\CategoryService;
 use App\Models\Tag;
 use App\Services\Web\TagService;
+use App\Services\Web\PopularSeriesService;
 
 class HomesController extends Controller
 {
@@ -23,6 +24,7 @@ class HomesController extends Controller
     {
         $this->viewData['popularPost'] = AdminArticleService::getPopularPost($this->currentLocaleId);
         $this->viewData['banners'] = BannerSettingService::getBannerViaLocale($this->currentLocaleId);
+        $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);
         $articleRanks = ArticleRankService::getArticleRanksLocale($this->currentLocaleId);
         $checkDisplay = 0;
         foreach ($articleRanks as $articleRank) {

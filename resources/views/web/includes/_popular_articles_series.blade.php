@@ -6,9 +6,11 @@
                 <a data-toggle="tab" href="#popular-posts">POPULAR POSTS</a>
             </li>
         @endif
-        <li class="{{ !$popularPost->count() ? 'active' : '' }}">
-            <a data-toggle="tab" href="#popular-series">POPULAR SERIES</a>
-        </li>
+        @if ($popularSeries->count())
+            <li class="{{ !$popularPost->count() ? 'active' : '' }}">
+                <a data-toggle="tab" href="#popular-series">POPULAR SERIES</a>
+            </li>
+        @endif
     </ul>
     <div class="tab-content">
       <!-- POPULAR POSTS -->
@@ -45,71 +47,44 @@
     <!-- EOF POPULAR POSTS -->
 
     <!-- POPULAR SERIES -->
-    <div id="popular-series" class="list-group tab-pane fade {{ !$popularPost->count() ? 'in active' : '' }}">
-      <div class="list-group-popular-series">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="list-group-item">
-              <div class="row">
-                <div class="col-xs-4 col-sm-5">
-                  <a href="#">
-                    <img src="https://indonesia.fun-japan.jp/~/media/Mpf/Website/Guide/ArticleSeries/reward.ashx" class="img-thumbnail">
-                  </a>
+    @if ($popularSeries->count() > 0)
+        <div id="popular-series" class="list-group tab-pane fade {{ !$popularPost->count() ? 'in active' : '' }}">
+            <div class="list-group-popular-series">
+                <div class="row">
+                    <div class="col-xs-12">
+                        @foreach ($popularSeries as $item)
+                            <div class="list-group-item">
+                                <div class="row">
+                                @if ($item->type == config('popular_series.type.tag'))
+                                    <div class="col-xs-4 col-sm-5">
+                                        <a href="{{ action('Web\TagsController@show', $item->name_link) }}">
+                                            <img src="{{ $item->photo_urls['normal'] }}" class="img-thumbnail">
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-8 col-sm-7">
+                                        <p class="pp-item-title">
+                                            <a href="{{ action('Web\TagsController@show', $item->name_link) }}">{{ $item->summary }}</a>
+                                        </p>
+                                    </div>
+                                @else
+                                    <div class="col-xs-4 col-sm-5">
+                                        <a href="{{ action('Web\CategoriesController@show', $item->name_link) }}">
+                                            <img src="{{ $item->photo_urls['normal'] }}" class="img-thumbnail">
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-8 col-sm-7">
+                                        <p class="pp-item-title">
+                                            <a href="{{ action('Web\CategoriesController@show', $item->name_link) }}">{{ $item->summary }}</a>
+                                        </p>
+                                    </div>
+                                @endif
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-                <div class="col-xs-8 col-sm-7">
-                  <p class="pp-item-title">
-                    <a href="#">You will earn FP, and join present campaign program.</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="list-group-item">
-              <div class="row">
-                <div class="col-xs-4 col-sm-5">
-                  <a href="#">
-                    <img src="https://indonesia.fun-japan.jp/~/media/Mpf/Website/Guide/ArticleSeries/Personality.ashx" class="img-thumbnail">
-                  </a>
-                </div>
-                <div class="col-xs-8 col-sm-7">
-                  <p class="pp-item-title">
-                    <a href="#">The test will give your idea about what it means to be you!</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="list-group-item">
-              <div class="row">
-                <div class="col-xs-4 col-sm-5">
-                  <a href="#">
-                    <img src="https://indonesia.fun-japan.jp/~/media/Mpf/Website/Guide/ArticleSeries/words.ashx" class="img-thumbnail">
-                  </a>
-                </div>
-                <div class="col-xs-8 col-sm-7">
-                  <p class="pp-item-title">
-                    <a href="#">If you're interested in Japanese language, you'll like this series!</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="list-group-item">
-              <div class="row">
-                <div class="col-xs-4 col-sm-5">
-                  <a href="#">
-                    <img src="https://indonesia.fun-japan.jp/~/media/Mpf/Website/Guide/ArticleSeries/FJ_Photos.ashx" class="img-thumbnail">
-                  </a>
-                </div>
-                <div class="col-xs-8 col-sm-7">
-                  <p class="pp-item-title">
-                    <a href="#">Upload fun photos and see who will gain many favorites.</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- EOF SERIES -->
+        <!-- EOF SERIES -->
+    @endif
   </div>
 </div>
 <!-- EOF POPULAR POST -->

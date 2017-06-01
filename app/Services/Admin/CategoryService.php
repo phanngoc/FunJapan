@@ -186,4 +186,9 @@ class CategoryService extends BaseService
     {
         return Article::where('category_id', '=', $categoryId)->count();
     }
+
+    public static function getCategory($categoryId)
+    {
+        return Category::select('id', 'name', 'short_name')->where('id', $categoryId)->first();
+    }
 }
