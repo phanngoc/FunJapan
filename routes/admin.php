@@ -108,5 +108,11 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::get('setting/ranks/{locale}', 'ArticleRanksController@getArticleLocales');
         Route::post('setting/ranks/{locale}/store', 'ArticleRanksController@store');
         Route::post('setting/ranks/{locale}/delete', 'ArticleRanksController@destroy');
+
+        Route::get('setting/api-token-list', 'ApiTokenController@index');
+        Route::get('setting/api-token/list', 'ApiTokenController@lists');
+        Route::post('setting/api-token', 'ApiTokenController@store');
+        Route::get('setting/api-token/delete/{id}', 'ApiTokenController@destroy');
+        Route::get('setting/api-token/get-user', 'ApiTokenController@getUser');
     });
 });

@@ -47,5 +47,6 @@ return [
         'menus' => 'Menu Management',
         'roles' => 'Role Management',
         'users' => 'User Management',
+        'api' => 'Api Token Management',
     ],
 ];

@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\ActivityLogEvent;
 use App\Models\ActivityLog as ActivityLogModel;
 use App\Libraries\Browser;
+use App\Services\Web\LocaleService;
 use Illuminate\Session\Store;
 use Carbon\Carbon;
 
@@ -35,6 +36,10 @@ class ActivityLogListener
         } else {
             $now = time();
             $toDay = Carbon::createFromTimestamp($now, config('app.global_timezone'))->toDateString();
+            $locale = $event->request->segment(1);
+            if ($locale) {
+                $currentLocale = LocaleService::getLocaleByIsoCode($locale);
+            }
 
             $data = [
                 'is_login' => false,
@@ -46,6 +51,7 @@ class ActivityLogListener
                 'last_access' => $now,
                 'created_unix_time' => $now,
                 'created_global_date' => $toDay,
+                'locale_id' => isset($currentLocale) && $currentLocale ? $currentLocale->id : null,
             ];
 
             if ($event->user) {
@@ -67,13 +73,17 @@ class ActivityLogListener
 
                     ActivityLogModel::create(array_merge($data, $userInfo));
                 } else {
-                    $oldActivity->update(
-                        [
-                            'last_access' => $now,
-                            'user_ip' => $event->request->ip(),
-                            'referral' => $event->request->headers->get('referer'),
-                        ]
-                    );
+                    $updateData = [
+                        'last_access' => $now,
+                        'user_ip' => $event->request->ip(),
+                        'referral' => $event->request->headers->get('referer'),
+                    ];
+
+                    if (!$oldActivity->locale_id && (isset($currentLocale) && $currentLocale)) {
+                        $updateData['locale_id'] = $currentLocale->id;
+                    }
+
+                    $oldActivity->update($updateData);
                 }
             } else {
                 $oldActivity = ActivityLogModel::where('user_ip', $event->request->ip())
@@ -86,13 +96,17 @@ class ActivityLogListener
                 if (!$oldActivity) {
                     ActivityLogModel::create($data);
                 } else {
-                    $oldActivity->update(
-                        [
-                            'last_access' => $now,
-                            'user_ip' => $event->request->ip(),
-                            'referral' => $event->request->headers->get('referer'),
-                        ]
-                    );
+                    $updateData = [
+                        'last_access' => $now,
+                        'user_ip' => $event->request->ip(),
+                        'referral' => $event->request->headers->get('referer'),
+                    ];
+
+                    if (!$oldActivity->locale_id && (isset($currentLocale) && $currentLocale)) {
+                        $updateData['locale_id'] = $currentLocale->id;
+                    }
+
+                    $oldActivity->update($updateData);
                 }
             }
         }

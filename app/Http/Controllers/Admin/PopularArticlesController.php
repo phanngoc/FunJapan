@@ -6,14 +6,15 @@ use App\Services\Admin\ArticleLocaleService;
 use App\Services\Admin\ArticleService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\ArticleLocale;
 use App\Services\Admin\LocaleService;
-use Illuminate\Support\Facades\View;
+use Gate;
 
 class PopularArticlesController extends Controller
 {
     public function index(Request $request)
     {
+        abort_if(Gate::denies('permission', 'popular.change'), 403, 'Unauthorized action.');
+
         $locales = LocaleService::getAllLocales();
 
         $input = $request->only('locale_id', 'keyword');
@@ -28,7 +29,7 @@ class PopularArticlesController extends Controller
     public function store(Request $request)
     {
         //check login and permission (latter)
-        if (!auth()->check()) {
+        if (!auth()->check() || Gate::denies('permission', 'popular.change')) {
             return [
                 'success' => false,
                 'message' => trans('admin/popular_article.messages.not_permission'),
@@ -41,7 +42,7 @@ class PopularArticlesController extends Controller
     public function destroy($id)
     {
         //check login and permission (latter)
-        if (!auth()->check()) {
+        if (!auth()->check() || Gate::denies('permission', 'popular.change')) {
             return [
                 'success' => false,
                 'message' => trans('admin/popular_article.messages.not_permission'),

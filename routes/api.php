@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['namespace' => 'Api'], function () {
+Route::group(['namespace' => 'Api', 'middleware' => 'jwt.auth'], function () {
     Route::get('activities/dau_csv', 'ActivityLogsController@dauCsv');
 });
 

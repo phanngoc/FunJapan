@@ -32,4 +32,12 @@ class UserService extends BaseService
 
         return false;
     }
+
+    public static function getUserForApi($condition)
+    {
+        return User::where('name', 'like', '%' . $condition['key_word'] . '%')
+            ->where('access_api', true)
+            ->paginate(config('banner.article_suggest'))
+            ->toArray();
+    }
 }
