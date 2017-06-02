@@ -63,7 +63,7 @@
                         <div class="col-sm-10 width30">
                             {{ Form::select(
                                 'category',
-                                $categories ?? [],
+                                $categories == null ? ['' => trans('admin/article.select_category') ] : $categories,
                                 null,
                                 ['class' => 'form-control', 'placeholder' => trans('admin/article.select_category')])
                             }}
@@ -213,9 +213,5 @@
     </div>
 @stop
 @section('script')
-    <script type="text/javascript">
-        var placeHolderCategory = {!! json_encode(trans('admin/article.select_category')) !!};
-        var urlAjax = {!! json_encode(action('Admin\ArticlesController@getCategoryLocale')) !!};
-    </script>
     {!! Html::script('assets/admin/js/article.js') !!}
 @stop

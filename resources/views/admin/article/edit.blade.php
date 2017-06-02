@@ -13,8 +13,6 @@
                 {{ Form::open(['action' => ['Admin\ArticlesController@update', $article->id], 'id' => 'create-article-form', 'class' => 'form-horizontal', 'files' => true]) }}
                     {{ method_field('PUT') }}
 
-                    {{ Form::hidden('category', $article->category_id) }}
-
                     <div class="form-group">
                         {{ Form::label(
                             'thumbnail',
@@ -33,6 +31,22 @@
                     <div class="form-group" id="preview-section">
                         <div class="col-sm-4 col-sm-offset-2">
                             <img id="preview-img" src="{{ $articleLocale->thumbnail_urls['small'] }}" data-url="{{ $articleLocale->thumbnail_urls['small'] }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        {{ Form::label(
+                            'category',
+                            trans('admin/article.label.category'),
+                            ['class' => 'col-sm-2 control-label'])
+                        }}
+                        <div class="col-sm-10 width30">
+                            {{ Form::select(
+                                'category',
+                                $categories == null ? ['' => trans('admin/article.select_category') ] : $categories,
+                                $articleLocale->category_id ?? '',
+                                ['class' => 'form-control', 'placeholder' => trans('admin/article.select_category')])
+                            }}
                         </div>
                     </div>
 
