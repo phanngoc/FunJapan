@@ -22,9 +22,8 @@ class HomesController extends Controller
 
     public function index(Request $request)
     {
-        $this->viewData['popularPost'] = AdminArticleService::getPopularPost($this->currentLocaleId);
-        $this->viewData['banners'] = BannerSettingService::getBannerViaLocale($this->currentLocaleId);
         $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);
+
         $articleRanks = ArticleRankService::getArticleRanksLocale($this->currentLocaleId);
         $checkDisplay = 0;
         foreach ($articleRanks as $articleRank) {
@@ -41,7 +40,6 @@ class HomesController extends Controller
         );
         $this->viewData['recommendArticles'] = WebArticleService::getRecommendArticles($this->currentLocaleId);
 
-        $this->viewData['advertisementSrc'] = config('advertisement_banner.src.en');
         if (in_array($this->currentLocale, array_keys(config('advertisement_banner.src')))) {
             $this->viewData['advertisementSrc'] = config('advertisement_banner.src.' . $this->currentLocale);
             $this->viewData['newArticles'] = WebArticleService::getNewArticles(

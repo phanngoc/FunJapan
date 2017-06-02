@@ -28,6 +28,9 @@ class UpdateProfileRequest extends FormRequest
             'gender' => 'required',
             'location_id' => 'required',
             'birthday' => 'required|date',
+            'birthday_day' => 'required',
+            'birthday_month' => 'required',
+            'birthday_year' => 'required',
         ];
     }
 
@@ -43,9 +46,11 @@ class UpdateProfileRequest extends FormRequest
             'name.max' => trans('web/user.validate.max.name'),
             'gender.required' => trans('web/user.validate.required.gender'),
             'location_id.required' => trans('web/user.validate.required.location_id'),
-            'birthday.required' => trans('web/user.validate.required.birthday'),
             'birthday.date' => trans('web/user.validate.required.birthday'),
             'email.max' => trans('web/user.validate.max.email'),
+            'birthday_day.required' => trans('web/user.validate.required.birthday_day'),
+            'birthday_year.required' => trans('web/user.validate.required.birthday_year'),
+            'birthday_month.required' => trans('web/user.validate.required.birthday_month'),
         ];
     }
 

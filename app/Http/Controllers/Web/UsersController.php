@@ -31,8 +31,8 @@ class UsersController extends Controller
 
     public function index()
     {
-        $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
         $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);
+
         $this->viewData['user'] = Auth::user();
         $this->viewData['religions'] = Religion::all();
         $this->viewData['locations'] = Location::all($this->currentLocaleId);
@@ -54,7 +54,6 @@ class UsersController extends Controller
     public function interest()
     {
         $user = Auth::user();
-        $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
         $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);
         $this->viewData['categories'] = Category::where('locale_id', $this->currentLocaleId)->get();
         $this->viewData['user'] = $user;
@@ -80,7 +79,6 @@ class UsersController extends Controller
             $this->viewData['message_error'] = trans('web/user.profile_page.change_password_page_error', ['name' => $user->social]);
         }
 
-        $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
         $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);
         $this->viewData['user'] = $user;
 
@@ -100,8 +98,7 @@ class UsersController extends Controller
 
     public function close()
     {
-        $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
-        return view('web.users.close_account', $this->viewData);
+        return view('web.users.close_account');
     }
 
     public function closeAccount(CloseAccountRequest $request)
@@ -120,7 +117,6 @@ class UsersController extends Controller
     public function closeComplete()
     {
         if (Session::has('status') && Session::get('status') == 'close_account') {
-            $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
             return view('web.users.close_complete', $this->viewData);
         } else {
             return route()->redirect('index');

@@ -72,21 +72,25 @@ function visibleY(n)
     return i <= document.documentElement.clientHeight
 }
 
-function changeLike(articleId)
-{
+$('html').on('click', '.like_elem', function() {
+    var $that = $(this);
+    var articleId = $that.data('id');
+
     $.ajax({
         url: baseUrlLocale() + 'articles/' + articleId + '/like',
         type: 'GET',
         success: function (response) {
-            $('.engagement-count-article').text(response.count);
+            var $likeElem = $('[data-id="' + articleId + '"]');
+            $likeElemText = $likeElem.parent().next();
+            $likeElemText.text(response.count);
             if (response.check) {
-                $('.engagement-count-article, .engagement-favorite').addClass('active');
+                $likeElem.parent().addClass('active');
             } else {
-                $('.engagement-count-article, .engagement-favorite').removeClass('active');
+                $likeElem.parent().removeClass('active');
             }
         }
     });
-}
+});
 
 function countShare(articleId)
 {
