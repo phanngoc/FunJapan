@@ -116,6 +116,7 @@ class ArticleService extends BaseService
                     'title' => $inputs['title'],
                     'content' => $inputs['content'],
                     'summary' => $inputs['summary'],
+                    'category_id' => $inputs['category'],
                     'is_top_article' => isset($inputs['is_top_article']) ? $inputs['is_top_article'] : 0,
                     'hide_always' => isset($inputs['is_alway_hide']) ? $inputs['is_alway_hide'] : 0,
                     'is_member_only' => isset($inputs['is_member_only']) ? $inputs['is_member_only'] : 0,
