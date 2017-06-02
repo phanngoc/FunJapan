@@ -12,9 +12,9 @@
                     <span class="name">{{ $notification->sender->name }}</span>
                     <span class="action">{{ trans('web/notification.messages.' . $notification->type) }}</span>
                 </p>
-                <p class="time">
+                <p class="time" data-time="{{ $notification->created_at }}">
                     <i class="fa fa-clock-o"></i>
-                    <span>{{ $notification->time }}</span>
+                    <span>{{ $notification->created_at }}</span>
                 </p>
             </div>
         </div>

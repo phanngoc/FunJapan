@@ -1,11 +1,12 @@
 $(function () {
     Echo.private('notification.' + channel)
         .listen('NotificationEvent', (e) => {
-            $('#notifications').removeClass('open');
-            $('#notifications').find('.notifications').removeClass('hidden');
             $('#notifications').find('.notification-list').prepend(e.html);
-            var currentTotal = parseInt($('#notifications').find('.badge-number').text());
+            $('#notifications').find('.no-notifications').empty();
+            var currentTotal = $('#notifications').find('.badge-number').text();
+            currentTotal = currentTotal == '' ? 0 : parseInt(currentTotal);
             $('#notifications').find('.badge-number').empty().append(currentTotal + 1);
+            timeDiffHuman();
         });
 
     $.ajax({
@@ -13,8 +14,12 @@ $(function () {
         'type': 'GET',
         success: (response) => {
             if (response.success) {
-                $('#notifications').find('.badge-number').empty().append(response.total);
+                if (response.total > 0) {
+                    $('#notifications').find('.badge-number').empty().append(response.total);
+                }
+
                 $('#notifications').append(response.htmlNotifications);
+                timeDiffHuman();
             }
         }
     });
@@ -25,9 +30,20 @@ $(function () {
             'type': 'GET',
             success: (response) => {
                 if (response.success) {
-                    $('#notifications').find('.badge-number').empty().append(0);
+                    $('#notifications').find('.badge-number').empty();
                 }
             }
         });
     });
+
+    setInterval(function () {
+        timeDiffHuman();
+    }, 60000);
 });
+
+function timeDiffHuman() {
+    $('#notifications').find('.notification').each(function () {
+        var thisTime = $(this).find('.time');
+        thisTime.find('span').text(moment(thisTime.attr('data-time'), 'YYYY-MM-DD H:i:s').fromNow());
+    });
+}

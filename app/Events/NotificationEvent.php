@@ -15,15 +15,17 @@ class NotificationEvent implements ShouldBroadcast
     use InteractsWithSockets, SerializesModels;
 
     protected $notification;
+    protected $locale;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($notification)
+    public function __construct($notification, $locale)
     {
         $this->notification = $notification;
+        $this->locale = $locale;
     }
 
     /**
@@ -33,7 +35,7 @@ class NotificationEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('notification.' . $this->notification->user_id);
+        return new PrivateChannel('notification.' . $this->locale->iso_code . '.' . $this->notification->user_id);
     }
 
     /**

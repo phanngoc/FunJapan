@@ -5,6 +5,8 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use ErrorException;;
 
 class Handler extends ExceptionHandler
 {
@@ -44,6 +46,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        $locale = $request->segment(1);
+        if ($locale && in_array($locale, config('app.locales'))) {
+            if ($exception instanceof ErrorException || $exception instanceof NotFoundHttpException) {
+                return redirect()->route('not_found');
+            }
+        }
+
         return parent::render($request, $exception);
     }
 

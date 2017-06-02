@@ -16,7 +16,7 @@ class NotificationsController extends Controller
     public function list()
     {
         if (auth()->check()) {
-            $notifications = NotificationService::getNotifications(auth()->id());
+            $notifications = NotificationService::getNotifications(auth()->id(), $this->currentLocaleId);
             $htmlNotifications = View::make('layouts.includes._notification_header_list')
                 ->with('notifications', $notifications['notifications'])
                 ->render();
@@ -33,7 +33,7 @@ class NotificationsController extends Controller
     {
         if (auth()->check()) {
             return [
-                'success' => NotificationService::dismissNotifications(auth()->id()),
+                'success' => NotificationService::dismissNotifications(auth()->id(), $this->currentLocaleId),
             ];
         }
     }

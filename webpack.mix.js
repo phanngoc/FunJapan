@@ -29,6 +29,8 @@ var assetsCopy = [
     ['node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js', 'admin/js/jquery-datetimepicker', false],
     ['resources/assets/sass/admin/banner.css', 'admin/css', false],
     ['node_modules/fancybox/dist', 'fancybox', false],
+    ['node_modules/moment/min/moment.min.js', 'momentjs', false],
+    ['node_modules/moment/min/moment-with-locales.js', 'momentjs', false],
 ];
 
 for (var i = 0; i < assetsCopy.length; i++) {
