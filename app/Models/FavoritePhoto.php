@@ -37,6 +37,6 @@ class FavoritePhoto extends BaseModel
 
     public function photo()
     {
-        return $this->belongsTo(PostPhoto::class);
+        return $this->belongsTo(PostPhoto::class, 'post_photo_id', 'id');
     }
 }
