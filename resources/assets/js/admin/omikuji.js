@@ -8,7 +8,7 @@ $(document).ready(function (e) {
         'processing': true,
         'serverSide': true,
         'searchDelay': 400,
-        'aaSorting': [[ 1, 'desc' ]],
+        'aaSorting': [[ 6, 'desc' ]],
         "language": {
             "infoFiltered": ''
         },
@@ -23,7 +23,7 @@ $(document).ready(function (e) {
             { 'data': 'start_time' },
             { 'data': 'end_time' },
             { 'data': 'recover_time' },
-            { 'data': 'locale_id' },
+            { 'data': 'created_at' },
             { 'data': 'status' },
         ],
         'columnDefs': [{
@@ -32,7 +32,7 @@ $(document).ready(function (e) {
             'class': 'text-center',
         },
         {
-            'targets': [3,4,5],
+            'targets': [3,4,5,6],
             'class': 'text-center',
         },
         {
@@ -48,19 +48,17 @@ $(document).ready(function (e) {
             var pageInfo = tableOmikuji.page.info();
             $('td', row).eq(0).empty().append(pageInfo.page * pageInfo.length + index + 1);
             var detailLink = baseUrl() + '/admin/omikujis/' + data.id ;
-            $('td', row).eq(1).empty().append('<a href="' + detailLink + '">' + data.name + '</a>');
+            $('td', row).eq(1).empty().append('<a href="' + detailLink + '">' + encodeHTML(data.name) + '</a>');
             $('td', row).eq(2).empty().append('<img src="' + data.imageUrl + '">');
-            $('td', row).eq(6).empty().append(locales[data.locale_id]);
             $('td', row).eq(3).empty().append(data.start_time);
             $('td', row).eq(4).empty().append(data.end_time);
             $('td', row).eq(5).empty().append(data.recover_time);
+            $('td', row).eq(6).empty().append(data.created_at);
             $('td', row).eq(7).empty().append(data.status);
             $('td', row).eq(8).empty().append('<div class="text-center"><a href="' + data.urlEdit + '" class="edit" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil-square-o fa fa-lg"></i></a>'
-                + ' <a href="#" data-url="'+ data.url +'" data-confirm="'+ data.confirm +'" class="deleteOmikuji" data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o fa fa-lg"></i></a></div>');
+                + ' <a href="#" data-url="'+ data.url +'" data-confirm="'+ encodeHTML(data.confirm) +'" class="deleteOmikuji" data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o fa fa-lg"></i></a></div>');
         },
     });
-
-
 
     var detailTableOmikuji  = $('#detail-omikuji-table').DataTable({
         paging: true,
@@ -81,16 +79,7 @@ $(document).ready(function (e) {
     } ).draw();
 
     function addRowCreateForm() {
-        var countTable =$('#omikuji-item-table tr').length;
-        $('#omikuji-item-table').append(
-            '<tr>' +
-            '<td class="text-center">' + (countTable ) + '</td>' +
-            '<td><input class="form-control " name="item[' + (countTable ) + ']" type="text" ></td>' +
-            '<td><input class="form-control " name="rate_weight[' + (countTable ) + ']" type="text" ></td>' +
-            '<td><input class="form-control " name="point[' + (countTable ) + ']" type="text" ></td>' +
-            '<td><input class="mt5 upload-image-item" name="item_image[' + (countTable ) + ']" type="file"  data-index="' + (countTable ) + '"> '+
-            '<img id="image-item-preview-'+ (countTable ) +'" class="item-hide" src="" width="32" height="32"  title="Preview Image"></td>' +
-            '</tr>');
+        addRowEditForm();
     }
 
     function addRowEditForm() {
@@ -103,63 +92,128 @@ $(document).ready(function (e) {
             '<td><input class="form-control " name="point[' + countTable + ']" type="text" ></td>' +
             '<td><input class="mt5 upload-image-item" name="item_image[' + countTable + ']" type="file"  data-index="' + countTable + '"> '+
             '<img id="image-item-preview-'+ countTable +'" class="item-hide" src="" width="32" height="32"  title="Preview Image"></td>' +
-            '<td class="text-center"><a href="#" class="delete-new-row" data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o fa fa-lg"></i></a><input name="omikujiItem_id[' + countTable + ']" type="hidden" value=""></td>' +
+            '<td class="text-center"><a href="javascript:void(0)" class="delete-new-row" data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o fa fa-lg"></i></a><input name="omikujiItem_id[' + countTable + ']" type="hidden" value=""></td>' +
             '</tr>');
+        focusScroll();
+        checkRow();
     }
+
+    function focusScroll(){
+        $("html, body").animate({ scrollTop: $(document).height() }, 400);
+        $('.table input[type=text][name^=item]:last')[0].focus();
+    }
+
+    $('.select-locale').on('change', function (e) {
+        $('.omikuji-list').submit();
+    });
 
     $(".add-row-create-form").click(function(){
         addRowCreateForm();
+        $('#statusForm').data('status','change');
     });
 
     $(".add-row-edit-form").click(function(){
         addRowEditForm();
+        $('#statusForm').data('status','change');
     });
 
     $( 'body' ).on( 'click', '.delete-new-row', function (e) {
-        //var confirm = $(this).data('confirm');
-        var confirm = 'Are you want to delete it';
-        swal({
-            title: confirm,
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes",
-            closeOnConfirm: true
-        },
-        function(){
-            $(e.target).closest('tr').remove();
-            $('#omikuji-item-table tbody tr').each(function(index) {
-                console.log(index);
-                $(this).find('td:nth-child(1)').html(index+1);
-                $(this).find('td:nth-child(2) input').attr('name','item[' + (index + 1) +']');
-                $(this).find('td:nth-child(3) input').attr('name','rate_weight[' + (index + 1) +']');
-                $(this).find('td:nth-child(4) input').attr('name','point[' + (index + 1) +']');
-                $(this).find('td:nth-child(5) input').attr('name','item_image[' + (index + 1) +']');
-                $(this).find('td:nth-child(5) img').attr('id','image-item-preview-' + (index + 1));
-                $(this).find('td:nth-child(6) input').attr('name','omikujiItem_id[' + (index + 1) +']');
-
+        if (checkRow()) {
+            var confirm = $('#delMessage').data('msg');
+            var check = false;
+            $(this).closest('tr').find('input').each (function() {
+                if ($(this).val()) {
+                    check = true;
+                }
             });
-        });
+            if (check) {
+                swal({
+                        title: confirm,
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes",
+                        closeOnConfirm: true
+                    },
+                    function(){
+                        $(e.target).closest('tr').remove();
+                        reDrawTable();
+                    });
+            } else {
+                $(e.target).closest('tr').remove();
+                reDrawTable();
+            }
+            checkRow();
+        }
     });
 
-    $('input,select').change(function() {
+    function reDrawTable() {
+        $('#omikuji-item-table tbody tr').each(function(index) {
+            $(this).find('td:nth-child(1)').html(index+1);
+            $(this).find('td:nth-child(2) input').attr('name','item[' + (index + 1) +']');
+            $(this).find('td:nth-child(3) input').attr('name','rate_weight[' + (index + 1) +']');
+            $(this).find('td:nth-child(4) input').attr('name','point[' + (index + 1) +']');
+            $(this).find('td:nth-child(5) input').attr('name','item_image[' + (index + 1) +']');
+            $(this).find('td:nth-child(5) img').attr('id','image-item-preview-' + (index + 1));
+            $(this).find('td:nth-child(6) input').attr('name','omikujiItem_id[' + (index + 1) +']');
+        });
+    }
+
+    function checkRow() {
+        var count = 0;
+        $('#omikuji-item-table tbody tr').each(function(index) {
+            count++;
+        });
+        if (count == 1) {
+            $('#omikuji-item-table tbody tr td:last a').addClass('cursor-not-allowed');
+            return false;
+        }
+        $('#omikuji-item-table tbody tr td a').removeClass('cursor-not-allowed');
+        return true;
+    }
+
+    checkRow();
+
+    $( 'body' ).on('change', 'input,select', function (e) {
         $('#statusForm').data('status','change');
     });
 
     $(".delete-omikuji-item").click(function(){
-        var action = $(this).data('url');
-        var confirm = $(this).data('confirm');
-        swal({
-            title: confirm,
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes",
-            closeOnConfirm: false
-        },
-        function(){
-            $('#delete-omikuji-item-form').attr('action', action).submit();
-        });
+        if (checkRow()) {
+            var action = $(this).data('url');
+            var confirm = $(this).data('confirm');
+            var token = $('meta[name="csrf-token"]').attr('content');
+            var trElement = $(this).closest('tr');
+            swal({
+                title: confirm,
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes",
+                closeOnConfirm: false
+            },
+            function(){
+                $.ajax({
+                    headers: { 'X-CSRF-TOKEN' : token },
+                    type: 'DELETE',
+                    url: action,
+                    data: {},
+                    success: function (response) {
+                        if (response.status) {
+                            trElement.remove();
+                            reDrawTable();
+                            checkRow();
+                            swal(response.message, "", "success");
+                        } else {
+                            swal(response.message, "", "error");
+                        }
+                    },
+                    error: function (e) {
+                        swal("ERROR", "", "error");
+                    }
+                });
+            });
+        }
     });
 
     $(".cancel").click(function(){
@@ -246,5 +300,4 @@ $(document).ready(function (e) {
             imagePreview.hide();
         }
     }
-
 });

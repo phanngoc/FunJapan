@@ -71,12 +71,12 @@ return [
         ],
         'omikuji_image' => [
             'original' => '',
-            'normal' => [200, 200],
+            'larger' => [100, 100],
             'small' => [32, 32],
         ],
         'omikuji_item_image' => [
             'original' => '',
-            'normal' => [200, 200],
+            'larger' => [100, 100],
             'small' => [32, 32],
         ],
         'article_thumbnail' => [
