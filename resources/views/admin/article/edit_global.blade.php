@@ -11,21 +11,6 @@
                 {{ Form::open(['action' => ['Admin\ArticlesController@updateGlobalInfo', $article->id],
                     'class' => 'form-horizontal', 'method' => 'POST']) }}
                     {{ Form::hidden('locale', $localeId) }}
-                    <div class="form-group required">
-                        {{ Form::label(
-                            'category',
-                            trans('admin/article.label.category'),
-                            ['class' => 'col-sm-2 control-label'])
-                        }}
-                        <div class="col-sm-10">
-                            {{ Form::select(
-                                'category_id',
-                                $categories,
-                                $article->category_id,
-                                ['class' => 'form-control', 'required'])
-                            }}
-                        </div>
-                    </div>
                     <div class="form-group">
                         {{ Form::label(
                             'type',
@@ -74,16 +59,17 @@
                         </div>
                     </div>
                 {{ Form::close() }}
+                <div id="infor" data-type-photo="{!! config('article.type.photo') !!}"
+                    data-type-campaign="{!! config('article.type.campaign') !!}"
+                    data-type-coupon="{!! config('article.type.coupon') !!}"
+                    data-place-holder="{!! trans('admin/article.select_category') !!}"
+                    data-url-ajax="{!! action('Admin\ArticlesController@getCategoryLocale') !!}">
+                </div>
             </div>
         </div>
     </div>
 </div>
 @stop
 @section('script')
-    <script type="text/javascript">
-        var typePhoto = {!! config('article.type.photo') !!};
-        var typeCampaign = {!! config('article.type.campaign') !!};
-        var typeCoupon = {!! config('article.type.coupon') !!};
-    </script>
     {!! Html::script('assets/admin/js/article.js') !!}
 @stop

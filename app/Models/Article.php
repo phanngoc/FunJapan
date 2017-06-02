@@ -16,6 +16,7 @@ class Article extends BaseModel
      */
     protected $fillable = [
         'user_id',
+        // delete category_id after
         'category_id',
         'auto_approve_photo',
         'type',

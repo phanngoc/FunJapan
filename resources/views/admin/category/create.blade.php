@@ -12,7 +12,7 @@
             </div>
             <div class="ibox-content">
                 {{ Form::open(['action' => 'Admin\CategoriesController@store', 'id' => 'create-category-form', 'class' => 'form-horizontal', 'files' => true]) }}
-                    <div class="form-group">
+                    <div class="form-group required">
                         {{ Form::label(
                             'locale_id',
                             trans('admin/category.label.locale'),
@@ -24,8 +24,7 @@
                                 $locales,
                                 null,
                                 [
-                                    'class' => 'form-control',
-                                    'placeholder' => trans('admin/category.placeholder.locale_select')
+                                    'class' => 'form-control'
                                 ])
                             }}
                         </div>
@@ -61,6 +60,5 @@
 </div>
 @stop
 @section('script')
-    {!! Html::script('assets/admin/js/jquery.dirtyforms.min.js') !!}
     {!! Html::script('assets/admin/js/category.js') !!}
 @stop

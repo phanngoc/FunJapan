@@ -23,16 +23,18 @@ return [
     'delete_error' => 'Deleted unsuccessfully!',
     'icon_message' => 'The photo must be a file of type: :type!',
     'icon_message_size' => 'The photo may not be greater than :size kilobytes.',
-    'delete_another_action' => 'Can\'t delete this category. it is being used by another function.',
+    'delete_another_action' => 'Can\'t delete this category. It is being used by another function.',
     'cancel_confirm' => 'Are you sure you want to cancel?',
     'label' => [
         'name' => 'Name',
         'short_name' => 'Short Name',
-        'locale' => 'Locale',
+        'locale' => 'Language',
         'category' => 'Category',
         'img' => 'Image',
         'is_locale' => 'Is Locale?',
         'created_at' => 'Created Date',
+        'image' => 'Image',
+        'locale_id' => 'Language'
     ],
     'placeholder' => [
         'name' => 'Input Name',
@@ -40,6 +42,7 @@ return [
         'locale' => 'Locale',
         'category' => 'Category',
         'img' => 'Image',
+        'locale_select' => 'Select Locale'
     ],
     'button' => [
         'update' => 'Update',
@@ -47,5 +50,6 @@ return [
         'cancel' => 'Cancel',
         'edit' => 'Edit',
         'save' => 'Save',
-    ]
+    ],
+    'unique_message' => 'The :attribute has already been taken.',
 ];

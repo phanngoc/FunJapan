@@ -26,7 +26,6 @@
                             }}
                         </div>
                     </div>
-
                     <div class="form-group">
                         {{ Form::label(
                             'type',
@@ -54,7 +53,7 @@
                                 'category',
                                 $categories,
                                 null,
-                                ['class' => 'form-control'])
+                                ['class' => 'form-control', 'placeholder' => trans('admin/article.select_category')])
                             }}
                         </div>
                     </div>
@@ -226,16 +225,17 @@
                     </div>
 
                 {{ Form::close() }}
+                <div id="infor" data-type-photo="{!! config('article.type.photo') !!}"
+                    data-type-campaign="{!! config('article.type.campaign') !!}"
+                    data-type-coupon="{!! config('article.type.coupon') !!}"
+                    data-place-holder="{!! trans('admin/article.select_category') !!}"
+                    data-url-ajax="{!! action('Admin\ArticlesController@getCategoryLocale') !!}">
+                </div>
             </div>
         </div>
     </div>
 </div>
 @stop
 @section('script')
-    <script type="text/javascript">
-        var typePhoto = {!! config('article.type.photo') !!};
-        var typeCampaign = {!! config('article.type.campaign') !!};
-        var typeCoupon = {!! config('article.type.coupon') !!};
-    </script>
     {!! Html::script('assets/admin/js/article.js') !!}
 @stop

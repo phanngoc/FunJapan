@@ -145,6 +145,7 @@ class ArticleLocaleService extends BaseService
             'article_id' => $article->id,
             'title' => $inputs['title'],
             'content' => $inputs['content'],
+            'category_id' => $inputs['category'],
             'summary' => $inputs['summary'],
             'published_at' => $inputs['publish_date'] ? $inputs['publish_date'] . ':00' : Carbon::now(),
             'start_campaign' => $inputs['start_campaign'] ? $inputs['start_campaign'] . ':00' : null,

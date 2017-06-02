@@ -22,6 +22,7 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::get('getArticles', 'ArticlesController@getListArticles');
     Route::get('articles/edit-global/{article}', 'ArticlesController@editGlobalInfo');
     Route::post('articles/edit-global/{article}', 'ArticlesController@updateGlobalInfo');
+    Route::get('getCategoryLocale', 'ArticlesController@getCategoryLocale');
 
     Route::resource('tags', 'TagsController');
     Route::get('tagsSuggest', 'TagsController@suggest');

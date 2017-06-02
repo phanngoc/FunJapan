@@ -30,6 +30,20 @@ class CategoryService extends BaseService
         return $categories;
     }
 
+    public static function listCategoryLocale($localeID)
+    {
+        $categories = Category::where('locale_id', $localeID)->get();
+
+        return $categories;
+    }
+
+    public static function getCategoryLocaleDropList($localeID)
+    {
+        $categories = Category::where('locale_id', $localeID)->pluck('name', 'id')->toArray();
+
+        return $categories;
+    }
+
     public static function getAllCategories()
     {
         $add = trans('admin/article.select_category');
@@ -41,19 +55,21 @@ class CategoryService extends BaseService
     public static function validate($inputs, $key = null)
     {
         $validationRules = [
-            'name' => 'required|max:255|unique:categories',
+            'name' => 'required|max:255|unique_name_category:'.$inputs['locale_id'] ?? '',
             'short_name' => 'required|max:20',
             'image' => 'required|image|max:' . config('images.validate.category_icon.max_size'),
+            'locale_id' => 'required',
         ];
         if ($key) {
             $validationRules = [
-                'name' => 'required|max:255|unique:categories,name,' . $inputs['id'],
+                'name' => 'required|max:255|unique_name_category:' . $inputs['locale_id'] . ',' . $inputs['id'],
                 'short_name' => 'required|max:20',
                 'image' => 'image|max:' . config('images.validate.category_icon.max_size'),
             ];
         }
 
-        return Validator::make($inputs, $validationRules);
+        return Validator::make($inputs, $validationRules)
+            ->setAttributeNames(trans('admin/category.label'));
     }
 
     public static function update($inputs)
@@ -99,9 +115,7 @@ class CategoryService extends BaseService
             $category->name = $inputs['name'];
             $category->short_name = $inputs['short_name'];
             $category->user_id = Auth::user()->id;
-            if (isset($inputs['locale_id'])) {
-                $category->locale_id = $inputs['locale_id'];
-            }
+            $category->locale_id = $inputs['locale_id'];
             $category->save();
 
             if ($category->id) {
@@ -137,11 +151,6 @@ class CategoryService extends BaseService
     public static function find($id)
     {
         return Category::find($id);
-    }
-
-    public static function getLocale()
-    {
-        return Locale::orderBy('name', 'ASC')->pluck('name', 'id')->toArray();
     }
 
     public static function delete($categoryId)

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Category;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,6 +32,15 @@ class AppServiceProvider extends ServiceProvider
 
             return !preg_match($regex, $value);
         });
+
+        Validator::extend('unique_name_category', function ($attribute, $value, $parameters, $validator) {
+            if (isset($parameters[1])) {
+                return !Category::where('name', $value)->where('locale_id', $parameters[0])
+                    ->where('id', '<>', $parameters[1])->exists();
+            }
+
+            return !Category::where('name', $value)->where('locale_id', $parameters[0])->exists();
+        }, trans('admin/category.unique_message'));
     }
 
     /**

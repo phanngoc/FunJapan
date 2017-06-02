@@ -43,9 +43,7 @@ class ArticleService extends BaseService
     public static function validateGlobal($input)
     {
         $rules = [
-            'category_id' => 'required',
             'type' => 'in:' . implode(',', array_values(config('article.type'))),
-
         ];
 
         return Validator::make($input, $rules)
@@ -58,6 +56,7 @@ class ArticleService extends BaseService
         try {
             $articleData = [
                 'user_id' => Auth::id(),
+                // delete after
                 'category_id' => $inputs['category'],
                 'type' => $inputs['type'],
                 'auto_approve_photo' => $inputs['auto_approve_photo'],
@@ -66,6 +65,7 @@ class ArticleService extends BaseService
                 $articleLocaleData = [
                     'locale_id' => (int)$inputs['locale'],
                     'article_id' => $article->id,
+                    'category_id' => $inputs['category'],
                     'title' => $inputs['title'],
                     'content' => $inputs['content'],
                     'summary' => $inputs['summary'],
@@ -108,6 +108,7 @@ class ArticleService extends BaseService
         DB::beginTransaction();
         try {
             $articleData = [
+                // delete after
                 'category_id' => $inputs['category'],
             ];
             if ($article->update($articleData)) {
