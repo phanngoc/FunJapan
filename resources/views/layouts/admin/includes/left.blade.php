@@ -163,7 +163,17 @@
                     </li>
                 </ul>
             </li>
-
+            <li class="{{ set_active(['admin/coupons*']) }}">
+                <a href="#"><i class="fa fa-tags"></i> <span class="nav-label">{{ trans('admin/coupon.coupon_management') }}</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="{{action('Admin\CouponsController@index')}}">{{ trans('admin/coupon.coupon_list') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{action('Admin\CouponsController@create')}}">{{ trans('admin/coupon.add_coupon') }}</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </nav>

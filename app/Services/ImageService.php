@@ -85,6 +85,29 @@ class ImageService
         }
     }
 
+    public static function deleteAll($type, $path, $image = null)
+    {
+        try {
+            $storage = Storage::disk(config('filesystem.default'));
+
+            foreach (config('images.dimensions.' . $type) as $key => $dimension) {
+                if ($key == 'original') {
+                    $fileName = $image;
+                } else {
+                    $fileName = $key . '_' . $image;
+                }
+                $filePath = $path . '/' . $fileName;
+                $storage->delete($filePath);
+            }
+
+            return true;
+        } catch (Exception $e) {
+            Log::debug($e);
+
+            return false;
+        }
+    }
+
     public static function imageUrl($filePath)
     {
         return Storage::disk(config('filesystem.default'))->url($filePath);

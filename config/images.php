@@ -10,6 +10,7 @@ return [
         'omikuji_image' => 'uploads/omikujis/image',
         'omikuji_item_image' => 'uploads/omikujis/omikuji_items/image',
         'popular_series_image' => 'uploads/popular_series',
+        'coupon_image' => 'uploads/coupons/images',
     ],
     'validate' => [
         'post_photo' => [
@@ -41,6 +42,10 @@ return [
         'popular_series_image' => [
             'max_size' => 10240,
         ],
+        'coupon_image' => [
+            'mimes' => 'image/png,image/jpg,image/jpeg',
+            'max_size' => 10240,
+        ]
     ],
     'accept_extension' => '.jpeg,.png,.jpg',
     'default' => [
@@ -83,6 +88,10 @@ return [
         'popular_series_image' => [
             'normal' => [180, 90],
             'small' => [32, 32],
+        ],
+        'coupon_image' => [
+            'original' => '',
+            'normal' => [96, 60],
         ],
     ],
     'not_resize' => [
