@@ -1,19 +1,14 @@
 $(document).ready(function (e) {
-    var url = $('#suggest-url').data('url') + '/?locale_id=' + $('#locale').val() + '&type=' + $('#type').val();
+    var url = $('#suggest-url').data('url') + '/?locale_id=' + $('#locale').val();
     settingSelect2(url);
     $('#locale').on('change', function (e) {
-        var url = $('#suggest-url').data('url') + '/?locale_id=' + $('#locale').val() + '&type=' + $('#type').val();
-        $('#link').empty();
-        settingSelect2(url);
-    });
-    $('#type').on('change', function (e) {
-        var url = $('#suggest-url').data('url') + '/?locale_id=' + $('#locale').val() + '&type=' + $('#type').val();
+        var url = $('#suggest-url').data('url') + '/?locale_id=' + $('#locale').val();
         $('#link').empty();
         settingSelect2(url);
     });
 
     var table = $('#series-table').DataTable({
-        'order': [[ 5, "desc" ]],
+        'order': [[ 4, "desc" ]],
         'processing': true,
         'serverSide': true,
         'searchDelay': 400,
@@ -26,10 +21,9 @@ $(document).ready(function (e) {
         },
         'columns': [
             { 'data': 'id' },
-            { 'data': 'summary' },
+            { 'data': 'name' },
             { 'data': 'photo' },
             { 'data': 'link' },
-            { 'data': 'type' },
             { 'data': 'created_at' },
         ],
         'columnDefs': [{
@@ -43,11 +37,12 @@ $(document).ready(function (e) {
             'class': 'text-center',
         },
         {
-            'targets': 5,
+            'targets': 4,
+            'sortable': false,
             'class': 'text-center',
         },
         {
-            'targets': 6,
+            'targets': 5,
             'sortable': false,
             'class': 'text-center',
             'data': function () {
@@ -59,8 +54,8 @@ $(document).ready(function (e) {
             $('td', row).eq(0).empty().append(pageInfo.page * pageInfo.length + index + 1);
             $('td', row).eq(2).empty().append('<img src="' + data.photo_urls.small + '">');
             $('td', row).eq(3).empty().append(data.name_link);
-            editLink = baseUrl() + '/admin/popular-series/edit/' + data.id;
-            $('td', row).eq(6).empty().append('<a data-toggle="tooltip" data-placement="left" title="'
+            editLink = baseUrl() + '/admin/popular-category/edit/' + data.id;
+            $('td', row).eq(5).empty().append('<a data-toggle="tooltip" data-placement="left" title="'
                 + $('#button-edit').data('message')
                 +'" href="'
                 + editLink
@@ -76,7 +71,7 @@ $(document).ready(function (e) {
         },
     });
     $('.select-locale').on('change', function () {
-        $('.series-list').submit();
+        $('.category-list').submit();
     });
     $('#photo').on('change', function () {
         readUrl(this);
@@ -100,7 +95,7 @@ $(document).ready(function (e) {
     });
 
     $(document).on('click', '.delete', function (e) {
-        deleteAction = baseUrl() + '/admin/popular-series/delete/' + $(e.target).data('id');
+        deleteAction = baseUrl() + '/admin/popular-category/delete/' + $(e.target).data('id');
         swal({
             title: $('#delete-confirm').data('message'),
             type: "warning",

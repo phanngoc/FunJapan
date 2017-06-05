@@ -76,6 +76,15 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::resource('coupons', 'CouponsController');
     Route::get('list-coupon', 'CouponsController@getListCoupons');
 
+    Route::get('popular-category', 'PopularCategoriesController@index');
+    Route::get('popular-category/create', 'PopularCategoriesController@create');
+    Route::post('popular-category/store', 'PopularCategoriesController@store');
+    Route::get('popular-category/edit/{popularCategory}', 'PopularCategoriesController@edit');
+    Route::post('popular-category/update/{popularCategory}', 'PopularCategoriesController@update');
+    Route::post('popular-category/delete/{popularCategory}', 'PopularCategoriesController@delete');
+    Route::get('popular-category/getSuggest', 'PopularCategoriesController@getSuggest');
+    Route::get('popular-category/getListCategories', 'PopularCategoriesController@getListCategories');
+
     Route::get('{action?}', 'DashboardController@index');
 
     Route::get('setting/ranks', 'ArticleRanksController@index');

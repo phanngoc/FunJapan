@@ -163,6 +163,7 @@
                     </li>
                 </ul>
             </li>
+
             <li class="{{ set_active(['admin/coupons*']) }}">
                 <a href="#"><i class="fa fa-tags"></i> <span class="nav-label">{{ trans('admin/coupon.coupon_management') }}</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
@@ -171,6 +172,22 @@
                     </li>
                     <li>
                         <a href="{{action('Admin\CouponsController@create')}}">{{ trans('admin/coupon.add_coupon') }}</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="{{ set_active(['admin/popular-category*']) }}">
+                <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/popular_category.popular_category_management') }}</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="{{action('Admin\PopularCategoriesController@index')}}">
+                            {{ trans('admin/popular_category.list_category') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{action('Admin\PopularCategoriesController@create')}}">
+                            {{ trans('admin/popular_category.setting_category') }}
+                        </a>
                     </li>
                 </ul>
             </li>

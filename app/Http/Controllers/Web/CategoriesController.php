@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Services\Web\PopularSeriesService;
+use App\Services\Web\PopularCategoryService;
 
 class CategoriesController extends Controller
 {
@@ -25,6 +26,7 @@ class CategoriesController extends Controller
             $this->viewData['articles'] = CategoryService::getArticleByCategory($category, $this->currentLocaleId);
             $this->viewData['category'] = $category;
             $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);
+            $this->viewData['popularCategories'] = PopularCategoryService::getPopularCategories($this->currentLocaleId);
 
             return view('web.categories.show', $this->viewData);
         } else {

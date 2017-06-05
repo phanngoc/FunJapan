@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\View;
 use App\Http\Requests\Web\CloseAccountRequest;
 use Session;
 use App\Services\Web\PopularSeriesService;
+use App\Services\Web\PopularCategoryService;
 
 class UsersController extends Controller
 {
@@ -36,6 +37,7 @@ class UsersController extends Controller
         $this->viewData['user'] = Auth::user();
         $this->viewData['religions'] = Religion::all();
         $this->viewData['locations'] = Location::all($this->currentLocaleId);
+        $this->viewData['popularCategories'] = PopularCategoryService::getPopularCategories($this->currentLocaleId);
 
         return view('web.users.profile', $this->viewData);
     }
@@ -59,6 +61,7 @@ class UsersController extends Controller
         $this->viewData['user'] = $user;
         $this->viewData['interests'] = InterestUser::where('user_id', $user->id)
             ->pluck('category_id')->toArray();
+        $this->viewData['popularCategories'] = PopularCategoryService::getPopularCategories($this->currentLocaleId);
 
         return view('web.users.interest', $this->viewData);
     }
@@ -81,6 +84,7 @@ class UsersController extends Controller
 
         $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);
         $this->viewData['user'] = $user;
+        $this->viewData['popularCategories'] = PopularCategoryService::getPopularCategories($this->currentLocaleId);
 
         return view('web.users.password', $this->viewData);
     }

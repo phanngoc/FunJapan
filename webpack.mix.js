@@ -38,18 +38,14 @@ for (var i = 0; i < assetsCopy.length; i++) {
 }
 
 mix.js('resources/assets/js/app.js', assetPath + 'js')
-
     .js('resources/assets/js/admin/admin.js', assetPath + 'admin/js')
-
     .js('resources/assets/js/admin/article.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/banner.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/tag.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/recommend_article.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/popular_article.js', assetPath + 'admin/js')
-
     .js('resources/assets/js/admin/category.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/article_rank.js', assetPath + 'admin/js')
-
     .js('resources/assets/js/admin/menu.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/survey.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/question.js', assetPath + 'admin/js')
@@ -57,13 +53,12 @@ mix.js('resources/assets/js/app.js', assetPath + 'js')
     .sass('resources/assets/sass/admin/omikuji.scss', assetPath + 'admin/css')
     .js('resources/assets/js/admin/setting_hot_tags.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/popular_series.js', assetPath + 'admin/js')
-
     .js('resources/assets/js/admin/coupon.js', assetPath + 'admin/js')
-
     .sass('resources/assets/sass/admin/article.scss', assetPath + 'admin/css')
     .sass('resources/assets/sass/admin/survey.scss', assetPath + 'admin/css')
     .sass('resources/assets/sass/admin.scss', assetPath + 'admin/css')
     .sass('resources/assets/sass/article.scss', assetPath + 'css')
     .sass('resources/assets/sass/app.scss', assetPath + 'css')
     .sass('resources/assets/sass/admin/coupon.scss', assetPath + 'admin/css')
-    .sass('resources/assets/sass/admin/category.scss', assetPath + 'admin/css');
+    .sass('resources/assets/sass/admin/category.scss', assetPath + 'admin/css')
+    .js('resources/assets/js/admin/popular_category.js', assetPath + 'admin/js');

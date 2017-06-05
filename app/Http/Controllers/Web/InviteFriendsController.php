@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Services\Admin\BannerSettingService;
 use App\Services\Admin\ArticleService;
 use App\Models\MailTemplate;
+use App\Services\Web\PopularSeriesService;
+use App\Services\Web\PopularCategoryService;
 
 class InviteFriendsController extends Controller
 {
@@ -14,6 +16,8 @@ class InviteFriendsController extends Controller
         parent::__construct();
 
         $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
+        $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);
+        $this->viewData['popularCategories'] = PopularCategoryService::getPopularCategories($this->currentLocaleId);
         $this->viewData['banners'] = BannerSettingService::getBannerViaLocale($this->currentLocaleId);
         $this->viewData['url'] = str_replace('invite-friends', 'create', request()->url());
     }
