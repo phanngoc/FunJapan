@@ -17,6 +17,8 @@ class ViewServiceProvider extends ServiceProvider
             'web.users.password',
             'web.users.profile',
             'web.home.index',
+            'web.invite_friends.*',
+            'web.guide.*',
             ], 'App\Http\ViewComposers\BannerComposer');
 
         view()->composer([
@@ -34,6 +36,26 @@ class ViewServiceProvider extends ServiceProvider
             'web.users.interest',
             'web.users.password',
             'web.users.close_complete',
+            'web.invite_friends.*',
+            'web.guide.*',
             ], 'App\Http\ViewComposers\PopularPostComposer');
+
+        view()->composer([
+            'web.home.index',
+            'web.invite_friends.*',
+            'web.guide.*',
+            'web.categories.show',
+            'web.tags.show',
+            'web.users.*',
+        ], 'App\Http\ViewComposers\PopularSeriesComposer');
+
+        view()->composer([
+            'web.home.index',
+            'web.invite_friends.*',
+            'web.guide.*',
+            'web.categories.show',
+            'web.tags.show',
+            'web.users.*',
+        ], 'App\Http\ViewComposers\PopularCategoriesComposer');
     }
 }

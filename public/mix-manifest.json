@@ -23,7 +23,5 @@
   "/assets/admin/js/banner.js": "/assets/admin/js/banner.js",
   "/assets/admin/js/article_rank.js": "/assets/admin/js/article_rank.js",
   "/assets/admin/js/article.js": "/assets/admin/js/article.js",
-  "/assets/admin/js/admin.js": "/assets/admin/js/admin.js",
-  "/assets/admin/css/coupon.css": "/assets/admin/css/coupon.css",
-  "/assets/admin/js/coupon.js": "/assets/admin/js/coupon.js"
+  "/assets/admin/js/admin.js": "/assets/admin/js/admin.js"
 }
