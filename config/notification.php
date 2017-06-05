@@ -9,6 +9,7 @@ return [
         'un_read' => 0,
         'read' => 1,
     ],
+    'time_send_mail' => 24, //hours
     'echo_server_url' => env('ECHO_SERVER_URL', 'http://localhost:6001'),
     'echo_server_enable' => env('ECHO_SERVER_ENABLE', false),
 ];

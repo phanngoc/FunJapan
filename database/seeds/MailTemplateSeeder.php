@@ -48,6 +48,15 @@ class MailTemplateSeeder extends Seeder
                         <p><a href="{url}">{url}</a><p>
                         <p>Please do not reply to this e-mail address. We can\'t receive.<p>',
                 ],
+                [
+                    'key' => config('user.mail_template.notification'),
+                    'locale_id' => $locale->id,
+                    'subject' => trans('web/email.notification_mail.subject'),
+                    'content' => '<p>Hello {name}. You received some notifications in the last {time} hours:<p>
+                        {reply_comment}
+                        {like_comment}
+                    <p>Please do not reply to this e-mail address. We can\'t receive.<p>',
+                ],
             ];
 
             $importData = array_merge($importData, $data);
