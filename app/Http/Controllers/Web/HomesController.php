@@ -50,4 +50,9 @@ class HomesController extends Controller
 
         return view('web.home.index', $this->viewData);
     }
+
+    public function error()
+    {
+        return view('web.errors.404', $this->viewData);
+    }
 }

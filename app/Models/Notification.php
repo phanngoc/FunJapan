@@ -13,6 +13,7 @@ class Notification extends BaseModel
         'type',
         'reference_id',
         'status',
+        'locale_id',
         'created_at',
         'updated_at',
     ];

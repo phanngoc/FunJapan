@@ -58,6 +58,7 @@ class CommentsController extends Controller
 
         $input['userId'] = auth()->id();
         $input['articleLocaleId'] = $articleLocale->id;
+        $input['localeId'] = $this->currentLocaleId;
 
         $validate = CommentService::validate($input);
 

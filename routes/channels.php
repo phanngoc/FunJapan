@@ -15,6 +15,6 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-Broadcast::channel('notification.{userId}', function ($user, $userId) {
+Broadcast::channel('notification.{locale}.{userId}', function ($user, $locale, $userId) {
     return $user->id == $userId;
 });

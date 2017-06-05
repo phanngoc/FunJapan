@@ -42,6 +42,7 @@ class CommentService
                 if ($parentComment && $parentComment->user_id != $input['userId']) {
                     NotificationService::sendNotification(
                         $input['userId'],
+                        $input['localeId'],
                         config('notification.type.reply_comment'),
                         $parentComment
                     );
@@ -115,6 +116,7 @@ class CommentService
                 if ($comment->user_id != $userId) {
                     NotificationService::sendNotification(
                         $userId,
+                        $comment->articleLocale->locale_id,
                         config('notification.type.like_comment'),
                         $comment
                     );

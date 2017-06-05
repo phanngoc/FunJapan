@@ -19,7 +19,7 @@ class ArticlesController extends Controller
     {
         $article = ArticleService::getArticleDetail($id, $this->currentLocaleId);
         if (!$article) {
-            return response(trans('web/global.error'), 404);
+            return abort(404);
         }
 
         if (!auth()->check()

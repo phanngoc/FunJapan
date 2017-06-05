@@ -9,6 +9,7 @@ Route::get('/register/jmb_2', function (Request $request) {
 
 Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
     Route::get('/', 'HomesController@index')->name('index');
+    Route::get('/errors', 'HomesController@error')->name('not_found');
 
     Route::group(['prefix' => 'guide'], function () {
         Route::get('/about', 'GuidesController@about');

@@ -54,7 +54,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes(Request $request)
     {
         $locale = $request->segment(1);
-        if ($locale) {
+        if ($locale && in_array($locale, config('app.locales'))) {
             $this->app->setLocale($locale);
 
             //Set timezone

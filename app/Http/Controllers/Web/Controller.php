@@ -25,5 +25,6 @@ class Controller extends BaseController
         $this->currentLocaleId = $currentLocale->id;
         $this->currentLocale = $currentLocale->iso_code;
         $this->viewData['menu'] = MenuService::getMenu($currentLocale->id);
+        $this->viewData['currentLocale'] = $currentLocale->iso_code;
     }
 }
