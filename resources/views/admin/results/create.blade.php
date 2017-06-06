@@ -33,7 +33,7 @@
                                 </a>
                             </div>
                             <div class="col-sm-1">
-                                <a href="{{ action('Admin\SurveysController@index') }}" class="btn btn-primary">
+                                <a href="#" data-url="{{ action('Admin\SurveysController@show', [$survey->id]) }}" data-confirm="{{ trans('admin/category.cancel_confirm') }}" class="cancel btn btn-primary">
                                     {{ trans('admin/survey.button.cancel') }}
                                 </a>
                             </div>

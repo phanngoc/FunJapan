@@ -17,6 +17,7 @@ class HomesController extends Controller
     public function index(Request $request)
     {
         $articleRanks = ArticleRankService::getArticleRanksLocale($this->currentLocaleId);
+        $rank1 = $articleRanks->splice(0, 1);
         $checkDisplay = 0;
         foreach ($articleRanks as $articleRank) {
             if (isset($articleRank->articleLocale)) {
@@ -25,7 +26,8 @@ class HomesController extends Controller
         }
 
         $this->viewData['checkDisplay'] = $checkDisplay;
-        $this->viewData['articleRanks'] = $articleRanks;
+        $this->viewData['rank1'] = $rank1;
+        $this->viewData['articleRanks'] = $articleRanks->all();
         $this->viewData['newArticles'] = WebArticleService::getNewArticles(
             $this->currentLocaleId,
             config('limitation.new_post.per_page')

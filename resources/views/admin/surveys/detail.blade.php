@@ -60,8 +60,11 @@
                         {{ trans('admin/question.add_question') }}
                     </a>
                     @if ($survey->type == config('survey.psychological'))
+                        <a href="{{ action('Admin\ResultsController@create', [$survey->id]) }}" class="btn btn-w-m btn-primary">
+                            {{ trans('admin/result.button.create') }}
+                        </a>
                         <a href="{{ action('Admin\ResultsController@index', [$survey->id])}}" class="btn btn-w-m btn-primary">
-                            Show Results
+                            {{ trans('admin/result.button.show') }}
                         </a>
                     @endif
                 </div>

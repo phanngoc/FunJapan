@@ -22,7 +22,7 @@
 }
 
 .error-question, .error-score-from, .error-score-to, .error-title {
-    margin-left: 132px;
+    margin-left: 132px !important;
 }
 
 .error-score {
@@ -30,7 +30,7 @@
 }
 
 .error-option {
-    margin: 39px 0 -30px 147px;
+    margin: 45px 0 -30px 147px;
 }
 
 .photo {
@@ -41,4 +41,8 @@
 .preview-img {
     width: 96px;
     height: 60px;
+}
+
+.error {
+    height: 10px;
 }

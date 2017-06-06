@@ -25,22 +25,14 @@
                             </div>
                         </div>
                         <div class="form-group button-question">
-                            <div class="col-sm-1"></div>
-                            <div class="col-sm-1">
-                                <a href="javascript:;" class="btn btn-w-m btn-primary" id="create-question"
+                            <div class="col-sm-2 col-sm-offset-1">
+                                <a href="javascript:;" class="btn btn-primary" id="create-question"
                                     data-url="{{ action('Admin\QuestionsController@store', [$survey->id]) }}" data-survey-id="{{ $survey->id }}">
                                     {{ trans('admin/survey.button.save') }}
                                 </a>
                             </div>
-                            @if ($survey->type == config('survey.psychological'))
-                                <div class="col-sm-1">
-                                    <a href="{{ action('Admin\ResultsController@create', [$survey->id]) }}" class="btn btn-w-m btn-primary">
-                                        Create Result
-                                    </a>
-                                </div>
-                            @endif
-                            <div class="col-sm-1">
-                                <a href="{{ action('Admin\SurveysController@show', [$survey->id]) }}" class="btn btn-w-m btn-primary">
+                            <div class="col-sm-2">
+                                <a href="#" data-url="{{ action('Admin\SurveysController@show', [$survey->id]) }}" data-confirm="{{ trans('admin/category.cancel_confirm') }}" class="cancel btn btn-primary">
                                     {{ trans('admin/survey.button.cancel') }}
                                 </a>
                             </div>

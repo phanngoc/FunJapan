@@ -24,7 +24,7 @@
                                 {{ Form::submit(trans('admin/survey.button.update'), ['class' => 'btn btn-primary']) }}
                             </div>
                             <div class="col-sm-2">
-                                <a href="{{ action('Admin\SurveysController@show', [$survey->id]) }}" class="btn btn-primary">
+                                <a href="#" data-url="{{ action('Admin\SurveysController@show', [$survey->id]) }}" data-confirm="{{ trans('admin/category.cancel_confirm') }}" class="cancel btn btn-primary">
                                     {{ trans('admin/survey.button.cancel') }}
                                 </a>
                             </div>

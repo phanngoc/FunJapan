@@ -12,10 +12,10 @@
                                         {{ $key + 1 }} - {{ $question->title }}
                                     </a>
                                     <div class="pull-right">
-                                        <a href="{{ action('Admin\QuestionsController@edit', [$survey->id, $question->id]) }}" class="edit">
+                                        <a data-toggle="tooltip" data-placement="left" title="Edit" href="{{ action('Admin\QuestionsController@edit', [$survey->id, $question->id]) }}" class="edit">
                                             &nbsp;<i class="fa fa-pencil-square-o fa-lg"></i>
                                         </a>
-                                        <a href="javascript:;" data-url="{{ action('Admin\QuestionsController@destroy', [$survey->id, $question->id]) }}" class="delete">
+                                        <a data-toggle="tooltip" data-placement="top" title="Delete" href="javascript:;" data-url="{{ action('Admin\QuestionsController@destroy', [$survey->id, $question->id]) }}" class="delete">
                                             &nbsp;<i class="fa fa-trash-o fa-lg"></i>
                                         </a>
                                     </div>

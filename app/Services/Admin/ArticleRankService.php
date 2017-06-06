@@ -27,6 +27,7 @@ class ArticleRankService extends BaseService
                 $query->where('hide_always', 0);
             },
         ])->where('locale_id', $localeId)
+        ->where('article_locale_id', '<>', null)
         ->limit(config('article.per_page'))
         ->orderBy('rank')
         ->get();

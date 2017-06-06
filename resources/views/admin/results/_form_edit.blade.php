@@ -3,7 +3,7 @@
     <div class="form-group">
         {{ Form::label(
             'require_point',
-            'Score From',
+            trans('admin/result.score_from'),
             ['class' => 'col-sm-1 control-label'])
         }}
         <div class="col-sm-4">
@@ -18,7 +18,7 @@
         </div>
         {{ Form::label(
             'require_point',
-            'Score To',
+            trans('admin/result.score_to'),
             ['class' => 'col-sm-1 control-label'])
         }}
         <div class="col-sm-4">
@@ -40,7 +40,7 @@
     <div class="form-group required">
         {{ Form::label(
             'title',
-            'Title',
+            trans('admin/result.title'),
             ['class' => 'col-sm-1 control-label'])
         }}
         <div class="col-sm-9">
@@ -58,7 +58,7 @@
     <div class="form-group">
         {{ Form::label(
             'photo',
-            'Image',
+            trans('admin/result.image'),
             ['class' => 'col-sm-1 control-label'])
         }}
         <div class="col-sm-9 pt5">
@@ -78,7 +78,7 @@
     <div class="form-group">
         {{ Form::label(
             'description',
-            'Detail',
+            trans('admin/result.detail'),
             ['class' => 'col-sm-1 control-label'])
         }}
         <div class="col-sm-9">
@@ -94,7 +94,7 @@
     <div class="form-group">
         {{ Form::label(
             'bottom_text',
-            'Bottom Text',
+            trans('admin/result.bottom_text'),
             ['class' => 'col-sm-1 control-label'])
         }}
         <div class="col-sm-9">
@@ -112,3 +112,4 @@
 </div>
 
 @endforeach
+<div id="statusForm" data-status=""></div>
