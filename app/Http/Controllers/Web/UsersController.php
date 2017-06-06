@@ -3,9 +3,6 @@
 namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
-use App\Services\Admin\LocaleService;
-use App\Services\Admin\ArticleService;
-use App\Services\Admin\BannerSettingService;
 use App\Services\Web\UserService;
 use App\Models\Religion;
 use App\Models\Location;
@@ -15,13 +12,8 @@ use Auth;
 use Hash;
 use App\Http\Requests\Web\UpdateProfileRequest;
 use App\Http\Requests\Web\UpdatePasswordRequest;
-use App\Services\Web\CategoryService;
-use App\Services\Web\TagService;
-use Illuminate\Support\Facades\View;
 use App\Http\Requests\Web\CloseAccountRequest;
 use Session;
-use App\Services\Web\PopularSeriesService;
-use App\Services\Web\PopularCategoryService;
 
 class UsersController extends Controller
 {
@@ -32,12 +24,9 @@ class UsersController extends Controller
 
     public function index()
     {
-        $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);
-
         $this->viewData['user'] = Auth::user();
         $this->viewData['religions'] = Religion::all();
         $this->viewData['locations'] = Location::all($this->currentLocaleId);
-        $this->viewData['popularCategories'] = PopularCategoryService::getPopularCategories($this->currentLocaleId);
 
         return view('web.users.profile', $this->viewData);
     }
@@ -56,12 +45,10 @@ class UsersController extends Controller
     public function interest()
     {
         $user = Auth::user();
-        $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);
         $this->viewData['categories'] = Category::where('locale_id', $this->currentLocaleId)->get();
         $this->viewData['user'] = $user;
         $this->viewData['interests'] = InterestUser::where('user_id', $user->id)
             ->pluck('category_id')->toArray();
-        $this->viewData['popularCategories'] = PopularCategoryService::getPopularCategories($this->currentLocaleId);
 
         return view('web.users.interest', $this->viewData);
     }
@@ -82,9 +69,7 @@ class UsersController extends Controller
             $this->viewData['message_error'] = trans('web/user.profile_page.change_password_page_error', ['name' => $user->social]);
         }
 
-        $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);
         $this->viewData['user'] = $user;
-        $this->viewData['popularCategories'] = PopularCategoryService::getPopularCategories($this->currentLocaleId);
 
         return view('web.users.password', $this->viewData);
     }

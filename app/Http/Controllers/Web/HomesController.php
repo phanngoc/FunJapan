@@ -5,14 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Services\Admin\ArticleRankService;
 use App\Services\Admin\ArticleService as AdminArticleService;
 use App\Services\Web\ArticleService as WebArticleService;
-use App\Services\Admin\BannerSettingService;
 use Illuminate\Http\Request;
-use App\Models\Category;
-use App\Services\Web\CategoryService;
-use App\Models\Tag;
-use App\Services\Web\TagService;
-use App\Services\Web\PopularSeriesService;
-use App\Services\Web\PopularCategoryService;
 
 class HomesController extends Controller
 {
@@ -23,8 +16,6 @@ class HomesController extends Controller
 
     public function index(Request $request)
     {
-        $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);
-        $this->viewData['popularCategories'] = PopularCategoryService::getPopularCategories($this->currentLocaleId);
         $articleRanks = ArticleRankService::getArticleRanksLocale($this->currentLocaleId);
         $checkDisplay = 0;
         foreach ($articleRanks as $articleRank) {

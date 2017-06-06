@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Services\Admin\BannerSettingService;
-use App\Services\Admin\ArticleService;
-
 class GuidesController extends Controller
 {
     public function __construct()
     {
         parent::__construct();
-
-        $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
-        $this->viewData['banners'] = BannerSettingService::getBannerViaLocale($this->currentLocaleId);
     }
 
     public function about()

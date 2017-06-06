@@ -2,14 +2,8 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Services\Web\CommentService;
-use App\Services\Admin\ArticleService;
 use App\Services\Web\CategoryService;
-use Illuminate\Support\Facades\View;
-use Illuminate\Http\Request;
 use App\Models\Category;
-use App\Services\Web\PopularSeriesService;
-use App\Services\Web\PopularCategoryService;
 
 class CategoriesController extends Controller
 {
@@ -25,8 +19,6 @@ class CategoriesController extends Controller
         if ($category) {
             $this->viewData['articles'] = CategoryService::getArticleByCategory($category, $this->currentLocaleId);
             $this->viewData['category'] = $category;
-            $this->viewData['popularSeries'] = PopularSeriesService::getPopularSeries($this->currentLocaleId);
-            $this->viewData['popularCategories'] = PopularCategoryService::getPopularCategories($this->currentLocaleId);
 
             return view('web.categories.show', $this->viewData);
         } else {
