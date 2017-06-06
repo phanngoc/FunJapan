@@ -85,6 +85,7 @@ class ArticleService
                 ->where('al.locale_id', $localeId)
                 ->where('al.hide_always', 0)
                 ->where('al.is_top_article', 0)
+                ->where('published_at', '<=', Carbon::now())
                 ->orderBy('al.published_at', 'desc')
                 ->orderBy('al.title', 'desc')
                 ->limit(1);
