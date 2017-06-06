@@ -163,4 +163,17 @@ $(document).ready(function() {
             }
         });
     });
+
+    var table = $('#sortable').sortable({
+        stop: function(event, ui) {
+            $('#update-order').removeClass('hidden');
+        }
+    });
+
+    $('#update-order').on('click', function (e) {
+        var data = $('#sortable').sortable('serialize');
+        var url = $(e.target).data('url');
+
+        $('#update-order-form').attr('action', url + '?' + data).submit();
+    });
 });

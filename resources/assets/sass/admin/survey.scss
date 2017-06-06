@@ -21,7 +21,7 @@
     }
 }
 
-.error-question {
+.error-question, .error-score-from, .error-score-to, .error-title {
     margin-left: 132px;
 }
 
@@ -31,4 +31,14 @@
 
 .error-option {
     margin: 39px 0 -30px 147px;
+}
+
+.photo {
+    border: none;
+    margin-left: -12px;
+}
+
+.preview-img {
+    width: 96px;
+    height: 60px;
 }

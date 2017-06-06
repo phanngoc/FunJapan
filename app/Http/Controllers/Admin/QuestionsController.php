@@ -64,4 +64,14 @@ class QuestionsController extends Controller
             Session::flash('error', trans('admin/survey.delete_error'));
         }
     }
+
+    public function updateOrder(Request $request)
+    {
+        $inputs = $request->all();
+        if (QuestionService::updateOrder($inputs)) {
+            return redirect()->back()->with(['message' => trans('admin/question.order_success')]);
+        }
+
+        return redirect()->back()->withErrors(['message' => trans('admin/question.order_errors')]);
+    }
 }

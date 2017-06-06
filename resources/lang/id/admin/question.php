@@ -23,4 +23,6 @@ return [
         'required' => 'The Option field is required',
     ],
     'score' => 'Score',
+    'order_success' => 'Ordered Successfully',
+    'order_errors' => 'Ordered Error',
 ];

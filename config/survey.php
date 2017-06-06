@@ -7,4 +7,6 @@ return [
         'Quiz',
         'Psychological',
     ],
+
+    'psychological' => 3,
 ];

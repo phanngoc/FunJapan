@@ -12,35 +12,28 @@
                 <div class="ibox-content">
                     {{ Form::open(
                         [
-                            'id' => 'create-question-form',
+                            'id' => 'create-result-form',
                             'class' => 'form-horizontal',
+                            'files' => true
                         ]
                     ) }}
                         <div class="form-create">
-                            @include('admin.questions._form_create')
+                            @include('admin.results._form_create')
                         </div>
                         <div class="form-group">
                             <div class="col-sm-2">
-                                <a href="javascript:;" class="add-more"><b>{{ trans('admin/question.add_more') }}</b></a>
+                                <a href="javascript:;" class="add-more"><b>Add more result?</b></a>
                             </div>
                         </div>
-                        <div class="form-group button-question">
-                            <div class="col-sm-1"></div>
-                            <div class="col-sm-1">
-                                <a href="javascript:;" class="btn btn-w-m btn-primary" id="create-question"
-                                    data-url="{{ action('Admin\QuestionsController@store', [$survey->id]) }}" data-survey-id="{{ $survey->id }}">
+                        <div class="form-group">
+                            <div class="col-sm-2 col-sm-offset-1">
+                                <a href="javascript:;" class="btn btn-primary" id="create-result"
+                                    data-url="{{ action('Admin\ResultsController@store', [$survey->id]) }}" data-survey-id="{{ $survey->id }}">
                                     {{ trans('admin/survey.button.save') }}
                                 </a>
                             </div>
-                            @if ($survey->type == config('survey.psychological'))
-                                <div class="col-sm-1">
-                                    <a href="{{ action('Admin\ResultsController@create', [$survey->id]) }}" class="btn btn-w-m btn-primary">
-                                        Create Result
-                                    </a>
-                                </div>
-                            @endif
                             <div class="col-sm-1">
-                                <a href="{{ action('Admin\SurveysController@show', [$survey->id]) }}" class="btn btn-w-m btn-primary">
+                                <a href="{{ action('Admin\SurveysController@index') }}" class="btn btn-primary">
                                     {{ trans('admin/survey.button.cancel') }}
                                 </a>
                             </div>
@@ -53,9 +46,9 @@
     </div>
 @endsection
 @section('script')
-    {!! Html::script('assets/admin/js/question.js') !!}
+    {!! Html::script('assets/admin/js/article.js') !!}
+    {!! Html::script('assets/admin/js/result.js') !!}
     <script type="text/javascript">
-        var checkbox = {{ config('question.type_value.checkbox') }};
-        var radio = {{ config('question.type_value.radio') }};
+        var id = {{ $id }};
     </script>
 @stop

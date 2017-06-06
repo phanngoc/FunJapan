@@ -52,6 +52,9 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::resource('surveys', 'SurveysController');
 
     Route::resource('surveys.questions', 'QuestionsController');
+    Route::post('questions/updateOrder', 'QuestionsController@updateOrder');
+
+    Route::resource('surveys.results', 'ResultsController');
 
     Route::resource('omikujis', 'OmikujisController');
     Route::get('getOmikujis', 'OmikujisController@getListOmikujis');

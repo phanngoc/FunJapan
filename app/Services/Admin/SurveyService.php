@@ -3,6 +3,8 @@
 namespace App\Services\Admin;
 
 use App\Models\Survey;
+use App\Models\Question;
+use App\Models\Result;
 use DB;
 use Validator;
 
@@ -56,6 +58,34 @@ class SurveyService extends BaseService
             ]);
         } else {
             return false;
+        }
+    }
+
+    public static function destroy($id)
+    {
+        if ($id) {
+            DB::beginTransaction();
+            try {
+                $questions = Question::whereSurveyId($id)->get();
+                $results = Result::whereSurveyId($id)->get();
+                foreach ($questions as $question) {
+                    $question->delete();
+                }
+
+                foreach ($results as $result) {
+                    $result->delete();
+                }
+
+                $survey = Survey::find($id);
+                $survey->delete();
+                DB::commit();
+
+                return true;
+            } catch (\Exception $e) {
+                DB::rollback();
+
+                return false;
+            }
         }
     }
 }
