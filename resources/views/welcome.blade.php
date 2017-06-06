@@ -73,7 +73,7 @@
                         <a href="/">
                             <img src="/assets/images/brand-icon.png" alt="brand-icon">
                             <span>&nbsp;FUN!
-                        <span class="title-country">&nbsp;Japan Indonesia</span>
+                        <span class="title-country">&nbsp;Japan</span>
                     </span>
                         </a>
                     </p>
