@@ -15,7 +15,7 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::get('login', 'LoginController@showLoginForm')->name('login');
     Route::post('login', 'LoginController@login');
 
-    Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => 'auth.admin'], function () {
         Route::get('logout', 'LoginController@logout')->name('logout');
 
         Route::get('recommend-articles/lists', 'RecommendedArticlesController@lists');
@@ -89,6 +89,12 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::post('popular-category/delete/{popularCategory}', 'PopularCategoriesController@delete');
         Route::get('popular-category/getSuggest', 'PopularCategoriesController@getSuggest');
         Route::get('popular-category/getListCategories', 'PopularCategoriesController@getListCategories');
+
+        Route::get('roles/users', 'RolesController@getUsersRole');
+        Route::post('roles/users', 'RolesController@postUsersRole');
+        Route::get('roles/{role}/change-permission', 'RolesController@getChangePermission');
+        Route::post('roles/{role}/change-permission', 'RolesController@postChangePermission');
+        Route::resource('roles', 'RolesController');
 
         Route::get('{action?}', 'DashboardController@index');
 

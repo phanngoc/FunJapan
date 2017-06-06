@@ -191,6 +191,31 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="{{ set_active(['admin/roles*']) }}">
+                <a href="javascript:;">
+                    <i class="fa fa-wrench"></i>
+                    <span class="nav-label">{!! trans('admin/roles.label.management') !!}</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="{!! action('Admin\RolesController@index') !!}">
+                            {!! trans('admin/roles.label.list') !!}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{!! action('Admin\RolesController@create') !!}">
+                            {!! trans('admin/roles.label.add') !!}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{!! action('Admin\RolesController@getUsersRole') !!}">
+                            {!! trans('admin/roles.label.user_role') !!}
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </nav>
