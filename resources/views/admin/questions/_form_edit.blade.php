@@ -89,3 +89,4 @@
         </div>
     @endif
 </div>
+<div id="statusForm" data-status=""></div>

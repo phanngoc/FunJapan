@@ -15,8 +15,8 @@ $(document).ready(function() {
                 '<input name="score[]" id="score[]" type="text" class="form-control input-field">' +
             '</div>' +
             '<div class="col-sm-2">' +
-                '<a class="add-option"><i class="fa fa-plus-square-o fa-lg"></i></a>' +
-                '<a class="delete-option"><i class="fa fa-trash fa-lg"></i></a>' +
+                '<a data-toggle="tooltip" data-placement="left" title="Add Option" class="add-option"><i class="fa fa-plus-square-o fa-lg"></i></a>' +
+                '<a data-toggle="tooltip" data-placement="top" title="Delete Option" class="delete-option"><i class="fa fa-trash fa-lg"></i></a>' +
             '</div>' +
             error +
         '</div>';
@@ -31,7 +31,7 @@ $(document).ready(function() {
         '</div>';
     var deleteQuestion =
         '<div class="col-sm-2">' +
-            '<a class="delete-question"><i class="fa fa-trash fa-lg"></i></a>' +
+            '<a data-toggle="tooltip" data-placement="top" title="Delete Option" class="delete-question"><i class="fa fa-trash fa-lg"></i></a>' +
         '</div>';
 
     $(document).on('change', '.question-type', function () {
@@ -42,10 +42,12 @@ $(document).ready(function() {
         if (selected_option == checkbox || selected_option == radio) {
             form_question.append(option + otherOption);
         }
+        $('[data-toggle="tooltip"]').tooltip();
     });
 
     $(document).on('click', '.add-option', function () {
         $(this).parents('.input-option').after(option);
+        $('[data-toggle="tooltip"]').tooltip();
     });
 
     $(document).on('click', '.delete-option', function () {
@@ -63,6 +65,7 @@ $(document).ready(function() {
                 $(this).append(deleteQuestion);
             }
         });
+        $('[data-toggle="tooltip"]').tooltip();
     });
 
     $(document).on('click', '.delete-question', function () {
@@ -154,6 +157,7 @@ $(document).ready(function() {
                             });
                         }
                     });
+                    $(window).scrollTop(0);
                 } else {
                     window.location.href = $('#redirect-show').data('url');
                 }
@@ -175,5 +179,31 @@ $(document).ready(function() {
         var url = $(e.target).data('url');
 
         $('#update-order-form').attr('action', url + '?' + data).submit();
+    });
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $('input, select').change(function () {
+        $('#statusForm').data('status', 'change');
+    });
+
+    $(".cancel").click(function () {
+        var status = $('#statusForm').data('status');
+        var action = $(this).data('url');
+        if (status == 'change') {
+            var confirm = $(this).data('confirm');
+            swal({
+                title: confirm,
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes",
+                closeOnConfirm: false
+            }, function () {
+                window.location.href = action;
+            });
+        } else {
+            window.location.href = action;
+        }
     });
 });

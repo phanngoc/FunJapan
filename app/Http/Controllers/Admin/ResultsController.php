@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Survey;
 use App\Services\Admin\ResultService;
 use App\Models\Result;
+use Session;
 
 class ResultsController extends Controller
 {
@@ -35,10 +36,9 @@ class ResultsController extends Controller
         }
 
         if (ResultService::create($inputs)) {
-            return redirect()->action('Admin\SurveysController@show', $survey->id)
-                ->with(['message' => trans('admin/article.create_success')]);
+            Session::flash('message', trans('admin/survey.create_success'));
+        } else {
+            Session::flash('error', trans('admin/survey.create_error'));
         }
-
-        return redirect()->back()->withErrors(['errors' => trans('admin/article.create_error')]);
     }
 }

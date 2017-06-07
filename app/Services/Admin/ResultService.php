@@ -20,15 +20,15 @@ class ResultService extends BaseService
         ];
 
         foreach ($inputs['result'] as $key => $input) {
-            $message[$key] = Validator::make($input, $validationRules)->setAttributeNames([
-                'required_point_from' => 'Score From',
-                'required_point_to' => 'Score To',
-                'title' => 'Title',
+            $message[$key-1] = Validator::make($input, $validationRules)->setAttributeNames([
+                'required_point_from' => trans('admin/result.score_from'),
+                'required_point_to' => trans('admin/result.score_to'),
+                'title' => trans('admin/result.title'),
             ])->messages()->toArray();
             if (is_numeric($input['required_point_from'])
                 && is_numeric($input['required_point_to'])
                 && $input['required_point_from'] > $input['required_point_to']) {
-                $message[$key]['required_point_from'][] = 'Must be smaller';
+                $message[$key-1]['required_point_from'][] = trans('admin/result.not_greater_message');
             }
         }
 

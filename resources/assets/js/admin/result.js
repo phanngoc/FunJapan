@@ -25,6 +25,7 @@ $(document).ready(function () {
         var surveyId = $(this).data('survey-id');
         var result = [];
         var formData = new FormData($('#create-result-form')[0]);
+        formData.append('survey_id', surveyId);
 
         $('.error-score-from').text('');
         $('.error-score-to').text('');
@@ -44,6 +45,7 @@ $(document).ready(function () {
                         $('.form-result:eq(' + key + ')').find('.error-score-to').text(value.required_point_to);
                         $('.form-result:eq(' + key + ')').find('.error-title').text(value.title);
                     });
+                    $(window).scrollTop(0);
                 } else {
                     window.location.href = $('#redirect-show').data('url');
                 }
@@ -52,6 +54,30 @@ $(document).ready(function () {
                 window.location.href = window.location.href;
             }
         });
+    });
+
+    $('input, .article-content, select').change(function () {
+        $('#statusForm').data('status', 'change');
+    });
+
+    $(".cancel").click(function () {
+        var status = $('#statusForm').data('status');
+        var action = $(this).data('url');
+        if (status == 'change') {
+            var confirm = $(this).data('confirm');
+            swal({
+                title: confirm,
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes",
+                closeOnConfirm: false
+            }, function () {
+                window.location.href = action;
+            });
+        } else {
+            window.location.href = action;
+        }
     });
 });
 

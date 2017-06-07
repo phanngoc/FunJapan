@@ -1,21 +1,23 @@
-<div class="form-group">
-    {{ Form::label(
-        'locale',
-        trans('admin/survey.language'),
-        ['class' => 'col-sm-2 control-label'])
-    }}
-    <div class="col-sm-10">
-        {{ Form::select(
+@if(!isset($survey))
+    <div class="form-group">
+        {{ Form::label(
             'locale',
-            $locales,
-            $survey->locale_id ?? null,
-            [
-                'class' => 'form-control',
-                'required',
-            ])
+            trans('admin/survey.language'),
+            ['class' => 'col-sm-2 control-label'])
         }}
+        <div class="col-sm-10">
+            {{ Form::select(
+                'locale',
+                $locales,
+                $survey->locale_id ?? null,
+                [
+                    'class' => 'form-control',
+                    'required',
+                ])
+            }}
+        </div>
     </div>
-</div>
+@endif
 <div class="form-group">
     {{ Form::label(
         'type',
