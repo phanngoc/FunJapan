@@ -44,4 +44,5 @@ return [
     'rank' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     'per_page' => 10,
     'rank_1' => 1,
+    'view_count_key' => 'view_count',
 ];

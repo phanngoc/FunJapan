@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Events\ViewCountEvent;
 use App\Services\Web\ArticleService;
 use App\Services\Web\CommentService;
 use App\Services\Web\CategoryService;
@@ -63,6 +64,8 @@ class ArticlesController extends Controller
                 $article->locale->id
             );
         }
+
+        event(new ViewCountEvent($article->locale));
 
         return view('web.articles.show', $this->viewData);
     }
