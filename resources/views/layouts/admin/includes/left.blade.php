@@ -20,12 +20,15 @@
                     IN+
                 </div>
             </li>
-            <li class="{{ set_active(['admin/articles*', 'admin/articles/create']) }}">
+            <li class="{{ set_active(['admin/articles*', 'admin/articles/create', 'admin/article-comments']) }}">
                 <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/article.article_management') }}</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li class="{{ set_active(['admin/articles']) }}"><a href="{{action('Admin\ArticlesController@index')}}">{{ trans('admin/article.article_list') }}</a></li>
                     <li class="{{ set_active(['admin/articles/create']) }}">
                         <a href="{{action('Admin\ArticlesController@create')}}">{{ trans('admin/article.add_article') }}</a>
+                    </li>
+                    <li class="{{ set_active(['admin/article-comments']) }}">
+                        <a href="{{action('Admin\ArticleCommentsController@index')}}">{{ trans('admin/article_comment.comment_list') }}</a>
                     </li>
                 </ul>
             </li>
@@ -49,16 +52,16 @@
             <li class="{{ set_active(['admin/categories*', 'admin/categories/create']) }}">
                 <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/category.category_management') }}</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="{{ action('Admin\CategoriesController@index') }}">{{ trans('admin/category.category_list') }}</a></li>
-                    <li><a href="{{ action('Admin\CategoriesController@create') }}">{{ trans('admin/category.add_category') }}</a></li>
+                    <li class="{{ set_active(['admin/categories']) }}"><a href="{{ action('Admin\CategoriesController@index') }}">{{ trans('admin/category.category_list') }}</a></li>
+                    <li class="{{ set_active(['admin/categories/create']) }}"><a href="{{ action('Admin\CategoriesController@create') }}">{{ trans('admin/category.add_category') }}</a></li>
                 </ul>
             </li>
 
-            <li class="{{ set_active(['admin/omikujis*']) }}">
+            <li class="{{ set_active(['admin/omikujis*', 'admin/omikujis/create']) }}">
                 <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/omikuji.omikuji_management') }}</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="{{ action('Admin\OmikujisController@index') }}">{{ trans('admin/omikuji.omikuji_list') }}</a></li>
-                    <li><a href="{{ action('Admin\OmikujisController@create') }}">{{ trans('admin/omikuji.add_omikuji') }}</a></li>
+                    <li class="{{ set_active(['admin/omikujis']) }}"><a href="{{ action('Admin\OmikujisController@index') }}">{{ trans('admin/omikuji.omikuji_list') }}</a></li>
+                    <li class="{{ set_active(['admin/omikujis/create']) }}"><a href="{{ action('Admin\OmikujisController@create') }}">{{ trans('admin/omikuji.add_omikuji') }}</a></li>
                 </ul>
             </li>
 
@@ -70,12 +73,12 @@
                     </span>
                     <span class="fa arrow"></span>
                     <ul class="nav nav-second-level collapse">
-                        <li>
+                        <li class="{{ set_active(['admin/recommend-articles']) }}">
                             <a href="{{ action('Admin\RecommendedArticlesController@index') }}">
                                 {{ trans('admin/recommend_article.label.set_recommend') }}
                             </a>
                         </li>
-                        <li>
+                        <li class="{{ set_active(['admin/recommend-articles/recommendedLists']) }}">
                             <a href="{{ action('Admin\RecommendedArticlesController@recommendedLists') }}">
                                 {{ trans('admin/recommend_article.label.recommended_list') }}
                             </a>

@@ -63,4 +63,5 @@ mix.js('resources/assets/js/app.js', assetPath + 'js')
     .sass('resources/assets/sass/admin/coupon.scss', assetPath + 'admin/css')
     .sass('resources/assets/sass/admin/category.scss', assetPath + 'admin/css')
     .js('resources/assets/js/admin/popular_category.js', assetPath + 'admin/js')
-    .js('resources/assets/js/admin/result.js', assetPath + 'admin/js');
+    .js('resources/assets/js/admin/result.js', assetPath + 'admin/js')
+    .js('resources/assets/js/admin/article_comment.js', assetPath + 'admin/js');
