@@ -45,7 +45,7 @@
                 </div>
                 <div class="guide green-circle">
                     <p class="title">Exchange miles</p>
-                    <p class="description">Miles can be exchanged for flight ticket, coupons and more.</p>
+                    <p class="description">Exchange miles for flight tickets, coupons and more.</p>
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
                 </div>
                 <div class="guide green-circle">
                     <p class="title">Exchange miles</p>
-                    <p class="description">Miles can be exchanged for flight ticket, coupons and more.</p>
+                    <p class="description">Exchange miles for flight tickets, coupons and more.</p>
                 </div>
             </div>
         </div>
