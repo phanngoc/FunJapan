@@ -127,7 +127,7 @@ class CommentsController extends Controller
     {
         $comment = Comment::find($id);
 
-        if ($comment && $comment->canBeDeleted() && $comment->delete()) {
+        if ($comment && $comment->canBeDeleted() && $comment->forceDelete()) {
             $commentsWithPaginator = CommentService::getCommentsListWithPaginator(
                 $comment->article_id,
                 $this->currentLocaleId,

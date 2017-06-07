@@ -45,7 +45,7 @@ class ArticleService
             FavoriteArticle::create($data);
             $articleLocale->increment('like_count');
         } else {
-            $favorite->delete();
+            $favorite->forceDelete();
             $articleLocale->decrement('like_count');
         }
 

@@ -29,7 +29,7 @@ class PhotoService
 
         try {
             if ($favorite) {
-                $favorite->delete();
+                $favorite->forceDelete();
                 $photo->decrement('favorite_count');
             } else {
                 FavoritePhoto::create([

@@ -103,7 +103,7 @@ class CommentService
 
         try {
             if ($favorite) {
-                $favorite->delete();
+                $favorite->forceDelete();
                 $comment->decrement('favorite_count');
             } else {
                 FavoriteComment::create([
