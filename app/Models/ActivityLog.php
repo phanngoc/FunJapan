@@ -28,13 +28,21 @@ class ActivityLog extends Model
         'last_access',
         'created_unix_time',
         'created_global_date',
+        'locale_id',
     ];
 
     protected $appends = [
         'email',
     ];
 
-    protected $hidden = ['created_at', 'updated_at', 'user', 'created_unix_time'];
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'user',
+        'created_unix_time',
+        'created_global_date',
+        'locale_id',
+    ];
 
     public function user()
     {

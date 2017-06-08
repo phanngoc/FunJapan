@@ -31,11 +31,8 @@ return [
             'recommend.delete',
         ],
         'popular_articles' => [
-            'popular.read',
+            'popular.change',
             'popular.list',
-            'popular.add',
-            'popular.edit',
-            'popular.delete',
         ],
         'surveys' => [
             'survey.read',
@@ -78,6 +75,11 @@ return [
             'role.edit',
             'role.delete',
             'role.change',
+        ],
+        'api' => [
+            'api.list',
+            'api.add',
+            'api.delete',
         ],
     ],
 ];

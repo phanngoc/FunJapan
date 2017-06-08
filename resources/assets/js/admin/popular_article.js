@@ -93,9 +93,9 @@ $(function () {
                 if (!response.success) {
                     swal(response.message, '', 'error');
                     if (element.prop('checked') == true) {
-                        element.attr('checked', false);
+                        element.prop('checked', false);
                     } else {
-                        element.attr('checked', true);
+                        element.prop('checked', true);
                     }
                 }
             }

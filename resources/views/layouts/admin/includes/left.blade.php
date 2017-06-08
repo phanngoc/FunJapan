@@ -87,27 +87,34 @@
                 </a>
             </li>
 
-            <li class="{{ set_active(['admin/setting/popular-articles', 'admin/popular-list']) }}">
-                <a href="#">
-                    <i class="fa fa-thumbs-up"></i>
-                    <span class="nav-label">
-                        {{ trans('admin/popular_article.label.management') }}
-                    </span>
-                    <span class="fa arrow"></span>
-                    <ul class="nav nav-second-level collapse">
-                        <li>
-                            <a href="{{ action('Admin\PopularArticlesController@index') }}">
-                                {{ trans('admin/popular_article.label.set_recommend') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ action('Admin\PopularArticlesController@popularLists') }}">
-                                {{ trans('admin/popular_article.label.recommended_list') }}
-                            </a>
-                        </li>
-                    </ul>
-                </a>
-            </li>
+            @can('permission', [['popular.list', 'popular.change']])
+                <li class="{{ set_active(['admin/popular-articles', 'admin/popular-list']) }}">
+                    <a href="#">
+                        <i class="fa fa-thumbs-up"></i>
+                        <span class="nav-label">
+                            {{ trans('admin/popular_article.label.management') }}
+                        </span>
+                        <span class="fa arrow"></span>
+                        <ul class="nav nav-second-level collapse">
+                            @can('permission', 'popular.change')
+                                <li>
+                                    <a href="{{ action('Admin\PopularArticlesController@index') }}">
+                                        {{ trans('admin/popular_article.label.set_recommend') }}
+                                    </a>
+                                </li>
+                            @endcan
+
+                            @can('permission', 'popular.list')
+                                <li>
+                                    <a href="{{ action('Admin\PopularArticlesController@popularLists') }}">
+                                        {{ trans('admin/popular_article.label.recommended_list') }}
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </a>
+                </li>
+            @endcan
 
             <li class="{{ set_active(['admin/surveys*', 'admin/surveys/create']) }}">
                 <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/survey.survey_management') }}</span><span class="fa arrow"></span></a>
@@ -117,27 +124,42 @@
                 </ul>
             </li>
 
-            <li class="{{ set_active(['admin/setting/banner', 'admin/setting/rank']) }}">
-                <a href="#">
-                    <i class="fa fa-thumbs-up"></i>
-                    <span class="nav-label">
-                        {{ trans('admin/popular_article.setting_management') }}
-                    </span>
-                    <span class="fa arrow"></span>
-                </a>
-                <ul class="nav nav-second-level collapse">
-                    <li>
-                        <a href="{{action('Admin\BannerSettingsController@index')}}">
-                            {{ trans('admin/banner.label_banner') }}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{action('Admin\ArticleRanksController@index')}}">
-                            {{ trans('admin/article_rank.label') }}
-                        </a>
-                    </li>
-                </ul>
-            </li>
+            @can('permission', [['api.list', 'banner.list', 'ranking.list']])
+                <li class="{{ set_active(['admin/setting/*']) }}">
+                    <a href="#">
+                        <i class="fa fa-thumbs-up"></i>
+                        <span class="nav-label">
+                            {{ trans('admin/popular_article.setting_management') }}
+                        </span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level collapse">
+                        @can('permission', 'banner.list')
+                            <li>
+                                <a href="{{action('Admin\BannerSettingsController@index')}}">
+                                    {{ trans('admin/banner.label_banner') }}
+                                </a>
+                            </li>
+                        @endcan
+
+                        @can('permission', 'ranking.list')
+                            <li>
+                                <a href="{{action('Admin\ArticleRanksController@index')}}">
+                                    {{ trans('admin/article_rank.label') }}
+                                </a>
+                            </li>
+                        @endcan
+
+                        @can('permission', 'api.list')
+                            <li>
+                                <a href="{{action('Admin\ApiTokenController@index')}}">
+                                    {{ trans('admin/api_token.label_title') }}
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcan
 
             <li class="{{ set_active(['admin/menus*', 'admin/menus/create']) }}">
                 <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/menu.menu_management') }}</span><span class="fa arrow"></span></a>

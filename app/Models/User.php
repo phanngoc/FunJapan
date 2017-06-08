@@ -41,6 +41,7 @@ class User extends Authenticatable
         'registered_by',
         'invite_user_id',
         'role_id',
+        'access_api',
     ];
 
     /**
