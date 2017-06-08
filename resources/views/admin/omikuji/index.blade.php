@@ -10,17 +10,32 @@
         <div class="ibox">
             <div class="ibox-title"><h2>{{ trans('admin/omikuji.omikuji_list') }}</h2></div>
             <div class="ibox-content">
+                <div class="row">
+                    {{ Form::open([
+                            'action' => 'Admin\OmikujisController@index',
+                            'method' => 'GET',
+                            'class' => 'omikuji-list',
+                        ])
+                    }}
+                        <div class="col-sm-5 m-b-xs">
+                            {{ Form::select('locale_id', $locales, $localeId ?? '', [
+                                    'class' => 'form-control select-locale',
+                                ])
+                            }}
+                        </div>
+                    {{ Form::close() }}
+                </div>
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover" id="omikuji-table" data-url="{{action('Admin\OmikujisController@getListOmikujis')}}">
+                    <table class="table table-striped table-bordered table-hover" id="omikuji-table" data-url="{{action('Admin\OmikujisController@getListOmikujis', ['locale_id' => $localeId])}}">
                         <thead>
                             <tr>
                                 <th class="text-center">{{ trans('admin/omikuji.no') }}</th>
-                                <th class="col-sm-2 text-center">{{ trans('admin/omikuji.omikuji_name') }}</th>
+                                <th class="col-sm-3 text-center">{{ trans('admin/omikuji.omikuji_name') }}</th>
                                 <th class="col-sm-1 text-center">{{ trans('admin/omikuji.image') }}</th>
                                 <th class="col-sm-2 text-center">{{ trans('admin/omikuji.start_time') }}</th>
                                 <th class="col-sm-2 text-center">{{ trans('admin/omikuji.end_time') }}</th>
-                                <th class="col-sm-2 text-center">{{ trans('admin/omikuji.recover_time') }}</th>
-                                <th class="col-sm-1 text-center">{{ trans('admin/omikuji.locale') }}</th>
+                                <th class="col-sm-1 text-center">{{ trans('admin/omikuji.recover_time') }}</th>
+                                <th class="col-sm-2 text-center">{{ trans('admin/omikuji.created_at') }}</th>
                                 <th class="col-sm-1 text-center">{{ trans('admin/omikuji.status') }}</th>
                                 <th class="text-center">{{ trans('admin/omikuji.action') }}</th>
                             </tr>
@@ -39,8 +54,5 @@
 </div>
 @stop
 @section('script')
-    <script type="text/javascript">
-        var locales = {!! $locales !!};
-    </script>
     {!! Html::script('assets/admin/js/omikuji.js') !!}
 @stop

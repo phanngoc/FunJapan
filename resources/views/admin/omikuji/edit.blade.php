@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-2">
-                            <img class="image-preview" id="image-preview" src="{{ $omikuji->imageUrls['normal'] ?? '' }}" width="90" height="90" title="Preview Logo">
+                            <img class="image-preview" id="image-preview" src="{{ $omikuji->imageUrls['larger'] ?? '' }}" width="90" height="90" title="Preview Logo">
                         </div>
                     </div>
 
@@ -34,39 +34,21 @@
                     <table class="table table-striped table-bordered table-hover" id="omikuji-item-table" ">
                         <thead>
                             <tr>
-                                <th class="col-sm-1 text-center">{{ trans('admin/omikuji.no') }}</th>
+                                <th class="text-center">{{ trans('admin/omikuji.no') }}</th>
                                 <th class="col-sm-4 text-center">{{ trans('admin/omikuji.item_name') }}</th>
                                 <th class="col-sm-2 text-center">{{ trans('admin/omikuji.item_rate_weight') }}</th>
                                 <th class="col-sm-2 text-center">{{ trans('admin/omikuji.item_point') }}</th>
                                 <th class="col-sm-3 text-center">{{ trans('admin/omikuji.item_image') }}</th>
-                                <th class="col-sm-3 text-center">{{ trans('admin/omikuji.action') }}</th>
+                                <th class="text-center">{{ trans('admin/omikuji.action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @foreach($omikujiItems as $key => $omikujiItem)
-                                <tr>
-                                    <td class="text-center">{{ ++$key }}</td>
-                                    <td>{{ Form::text('item['.$key.']', $omikujiItem->name, ['class' => 'form-control']) }}</td>
-                                    <td>{{ Form::text('rate_weight['.$key.']', $omikujiItem->rate_weight, ['class' => 'form-control', 'pattern'=> '[0-9]*']) }}</td>
-                                    <td>{{ Form::text('point['.$key.']', $omikujiItem->point, ['class' => 'form-control', 'pattern'=> '[0-9]*']) }}</td>
-                                    <td>{{ Form::file('item_image['.$key.']', ['class' => 'mt5 upload-image-item', 'data-index' => $key]) }}
-                                        <img class="" id="image-item-preview-{{ $key }}" src="{{ $omikujiItem->imageUrls['normal'] ?? '' }}" width="32" height="32"  title="Preview Image">
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="#" data-url="{{ action('Admin\OmikujisController@destroy', [$omikujiItem->id, 'omikuji_id' => $omikuji->id ]) }}" data-confirm="{{ trans('admin/omikuji.delete_confirm', ['name' => $omikujiItem->name]) }}" class="delete-omikuji-item" data-toggle="tooltip" title="Delete">
-                                            &nbsp;<i class="fa fa-trash-o fa-lg"></i>
-                                        </a>
-                                        {{ Form::hidden('omikujiItem_id['.$key.']', $omikujiItem->id) }}
-                                    </td>
-                                </tr>
-                            @endforeach
-                            <?php
-                                $countOld = count(old('item'));
-                                $countOmikuji = count($omikujiItems);
-                            ?>
-                            @if ($countOld > $countOmikuji)
-                                @for ($i = ($countOmikuji + 1); $i <= $countOld; $i++)
+                            @if(old('item'))
+                                <?php
+                                    $countOld = count(old('item'));
+                                ?>
+                                @for ($i = 1; $i <= $countOld; $i++)
                                     <tr>
                                         <td class="text-center">{{ $i }}</td>
                                         <td>{{ Form::text('item['.$i.']', old('item')[$i], ['class' => 'form-control']) }}</td>
@@ -76,27 +58,52 @@
                                             <img class="item-hide" id="image-item-preview-{{ $i }}" src="" width="32" height="32"  title="Preview Image">
                                         </td>
                                         <td class="text-center">
-                                            <a href="#" class="delete-new-row" data-toggle="tooltip" title="Delete">
-                                                &nbsp;<i class="fa fa-trash-o fa-lg"></i>
-                                            </a>
-                                            {{ Form::hidden('omikujiItem_id['.$i.']', '') }}
+                                            @if (old('omikujiItem_id')[$i])
+                                                    <a href="javascript:void(0)" data-url="{{ action('Admin\OmikujisController@destroy', [old('omikujiItem_id')[$i], 'omikuji_id' => $omikuji->id ]) }}" data-confirm="{{ trans('admin/omikuji.delete_confirm', ['name' => old('item')[$i]]) }}" class="delete-omikuji-item" data-toggle="tooltip" title="Delete">
+                                                    <i class="fa fa-trash-o fa-lg"></i>
+                                                </a>
+                                                {{ Form::hidden('omikujiItem_id['.$i.']', old('omikujiItem_id')[$i]) }}
+                                            @else
+                                                <a href="javascript:void(0)" class="delete-new-row" data-toggle="tooltip" title="Delete">
+                                                    <i class="fa fa-trash-o fa-lg"></i>
+                                                </a>
+                                                {{ Form::hidden('omikujiItem_id['.$i.']', '') }}
+                                            @endif
                                         </td>
                                     </tr>
                                 @endfor
+                            @else
+                                @foreach($omikujiItems as $key => $omikujiItem)
+                                    <tr>
+                                        <td class="text-center">{{ ++$key }}</td>
+                                        <td>{{ Form::text('item['.$key.']', $omikujiItem->name, ['class' => 'form-control']) }}</td>
+                                        <td>{{ Form::text('rate_weight['.$key.']', $omikujiItem->rate_weight, ['class' => 'form-control', 'pattern'=> '[0-9]*']) }}</td>
+                                        <td>{{ Form::text('point['.$key.']', $omikujiItem->point, ['class' => 'form-control', 'pattern'=> '[0-9]*']) }}</td>
+                                        <td>{{ Form::file('item_image['.$key.']', ['class' => 'mt5 upload-image-item', 'data-index' => $key]) }}
+                                            <img class="" id="image-item-preview-{{ $key }}" src="{{ $omikujiItem->imageUrls['small'] ?? '' }}" width="32" height="32"  title="Preview Image">
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="javascript:void(0)" data-url="{{ action('Admin\OmikujisController@destroy', [$omikujiItem->id, 'omikuji_id' => $omikuji->id ]) }}" data-confirm="{{ trans('admin/omikuji.delete_confirm', ['name' => $omikujiItem->name]) }}" class="delete-omikuji-item" data-toggle="tooltip" title="Delete">
+                                                <i class="fa fa-trash-o fa-lg"></i>
+                                            </a>
+                                            {{ Form::hidden('omikujiItem_id['.$key.']', $omikujiItem->id) }}
+                                        </td>
+                                    </tr>
+                                @endforeach
                             @endif
                         </tbody>
                     </table>
                     <div class="form-group">
                         <div class="col-sm-2 ">
-                            <a href="#" class="add-row-edit-form"> Add more</a>
+                            <a href="javascript:void(0)" class="add-row-edit-form"> Add more</a>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-2 col-sm-offset-2">
-                            {{ Form::submit(trans('admin/omikuji.button.save'), ['class' => 'btn btn-primary']) }}
+                            {{ Form::submit(trans('admin/omikuji.button.update'), ['class' => 'btn btn-primary']) }}
                         </div>
                         <div class="col-sm-3">
-                            <a href="#" data-confirm="{{ trans('admin/omikuji.cancel_confirm') }}" data-url="{{ action('Admin\OmikujisController@index') }}" class="cancel btn-primary btn">{{ trans('admin/omikuji.button.cancel') }}</a>
+                            <a href="javascript:void(0)" data-confirm="{{ trans('admin/omikuji.cancel_confirm') }}" data-url="{{ action('Admin\OmikujisController@index') }}" class="cancel btn-primary btn">{{ trans('admin/omikuji.button.cancel') }}</a>
                         </div>
                     </div>
                 {{ Form::close() }}

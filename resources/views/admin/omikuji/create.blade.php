@@ -13,6 +13,24 @@
             <div class="ibox-content">
 
                     {{ Form::open(['action' => 'Admin\OmikujisController@store', 'id' => 'create-omikuji-form', 'class' => 'form-horizontal', 'files' => true]) }}
+                        <div class="form-group">
+                            {{ Form::label(
+                                'locale_id',
+                                trans('admin/omikuji.label.locale'),
+                                ['class' => 'col-sm-2 control-label'])
+                            }}
+                            <div class="col-sm-10 width30">
+                                {{ Form::select(
+                                    'locale_id',
+                                    $locales,
+                                    $locale_select ?? '',
+                                    [
+                                        'class' => 'form-control',
+                                    ])
+                                }}
+                            </div>
+                        </div>
+
                         @include('admin.elements.omikuji_inputs_form')
 
                         <div class="form-group required">
@@ -41,6 +59,7 @@
                                     <th class="col-sm-2 text-center">{{ trans('admin/omikuji.item_rate_weight') }}</th>
                                     <th class="col-sm-2 text-center">{{ trans('admin/omikuji.item_point') }}</th>
                                     <th class="col-sm-3 text-center">{{ trans('admin/omikuji.item_image') }}</th>
+                                    <th class="col-sm-3 text-center">{{ trans('admin/omikuji.action') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,6 +74,11 @@
                                                 {{ Form::file('item_image['.$key.']', ['class' => 'mt5 upload-image-item', 'data-index' => $key ]) }}
                                                 <img class="item-hide" id="{{ 'image-item-preview-'.$key }}" src="" width="32" height="32"  title="Preview Image">
                                             </td>
+                                            <td class="text-center">
+                                                <a href="javascript:void(0)" data-confirm="a" class="delete-new-row" data-toggle="tooltip" title="Delete">
+                                                    <i class="fa fa-trash-o fa-lg"></i>
+                                                </a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 @else
@@ -67,13 +91,18 @@
                                         {{ Form::file('item_image[1]', ['class' => 'mt5 upload-image-item', 'data-index' => '1']) }}
                                         <img class="item-hide" id="image-item-preview-1" src="" width="32" height="32"  title="Preview Image">
                                     </td>
+                                    <td class="text-center">
+                                        <a href="javascript:void(0)" data-confirm="a" class="delete-new-row" data-toggle="tooltip" title="Delete">
+                                                    <i class="fa fa-trash-o fa-lg"></i>
+                                                </a>
+                                    </td>
                                 </tr>
                                 @endif
                             </tbody>
                         </table>
                         <div class="form-group">
                             <div class="col-sm-2 ">
-                                <a href="#" class="add-row-create-form"> Add more</a>
+                                <a href="javascript:void(0)" class="add-row-create-form"> Add more</a>
                             </div>
                         </div>
                         <div class="form-group">

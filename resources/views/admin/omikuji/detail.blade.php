@@ -22,7 +22,7 @@
                         <strong class="col-sm-2">{{ trans('admin/omikuji.label.image') }}: </strong>
                         <span class="col-sm-10">
                             @if($omikuji->image)
-                                <img src="{{ $omikuji->imageUrls['normal'] }}">
+                                <img src="{{ $omikuji->imageUrls['larger'] }}">
                             @endif
                         </span>
                     </div>
@@ -45,6 +45,10 @@
                     <div class="box-content-omikuji">
                         <strong class="col-sm-2">{{ trans('admin/omikuji.label.status') }}: </strong>
                         <span class="col-sm-10">{{ $omikuji->status }} </span>
+                    </div>
+                    <div class="box-content-omikuji">
+                        <strong class="col-sm-2">{{ trans('admin/omikuji.label.created_at') }}: </strong>
+                        <span class="col-sm-10">{{ $omikuji->created_at }} </span>
                     </div>
                     <br>
 

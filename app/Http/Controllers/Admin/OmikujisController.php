@@ -8,12 +8,15 @@ use App\Services\Admin\OmikujiService;
 use App\Services\Admin\LocaleService;
 use App\Models\Omikuji;
 use Carbon\Carbon;
+use Auth;
 
 class OmikujisController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $this->viewData['locales'] = json_encode(LocaleService::getLocaleSort());
+        $this->viewData['locales'] = LocaleService::getLocaleSort();
+        $localeId = $request->input('locale_id') ?? array_first(array_keys(LocaleService::getLocaleSort()));
+        $this->viewData['localeId'] = $localeId;
 
         return view('admin.omikuji.index', $this->viewData);
     }
@@ -33,6 +36,23 @@ class OmikujisController extends Controller
         $omikuji = OmikujiService::findOmikuji($id);
         if ($omikuji) {
             $this->viewData['omikuji'] = $omikuji;
+            $omikujiItems = $omikuji->omikujiItems;
+            $sum = collect($omikujiItems)->sum('rate_weight');
+            $count = count($omikujiItems);
+            $i = 1;
+            $percent = 0;
+            foreach ($omikujiItems as $omikujiItem) {
+                if ($i <$count) {
+                    $round = round(($omikujiItem->rate_weight/$sum)*100, 2);
+                    $percent = $percent + $round;
+                    $omikujiItem->rate_weight = $omikujiItem->rate_weight . ' (' . $round . ' %)';
+                }
+                $i++;
+            }
+            if ($count > 0) {
+                $omikujiItems[$count -1]->rate_weight = $omikujiItems[$count -1]->rate_weight
+                    . ' (' . (100 - $percent) . ' %)';
+            }
             $this->viewData['omikujiItems'] = $omikuji->omikujiItems;
 
             return view('admin.omikuji.detail', $this->viewData);
@@ -44,6 +64,10 @@ class OmikujisController extends Controller
 
     public function create()
     {
+        $user = Auth::user();
+        if ($user) {
+            $this->viewData['locale_select'] = $user->locale_id;
+        }
         $this->viewData['locales'] = LocaleService::getLocaleSort();
 
         return view('admin.omikuji.create', $this->viewData);
@@ -98,19 +122,30 @@ class OmikujisController extends Controller
 
     public function destroy(Request $request, $omikujiItemId)
     {
+        $response = [
+            'status' => false,
+            'message' => trans('admin/omikuji.delete_error'),
+        ];
         $inputs = $request->all();
         if (OmikujiService::checkRecord($inputs['omikuji_id'])) {
             if (OmikujiService::deleteOmikujiItem($omikujiItemId)) {
-                return redirect()->action('Admin\OmikujisController@edit', $inputs['omikuji_id'])
-                    ->with(['message' => trans('admin/omikuji.delete_success')]);
+                $response = [
+                    'status' => true,
+                    'message' => trans('admin/omikuji.delete_success'),
+                ];
+
+                return $response;
             }
         } else {
-            return redirect()->action('Admin\OmikujisController@edit', $request->all()['omikuji_id'])
-                ->with(['error' => trans('admin/omikuji.check_record')]);
+            $response = [
+                'status' => false,
+                'message' => trans('admin/omikuji.message_record_count'),
+            ];
+
+            return $response;
         }
 
-        return redirect()->action('Admin\OmikujisController@index')
-                    ->withErrors(['errors' => trans('admin/omikuji.delete_error')]);
+        return $response;
     }
 
     public function destroyOmikuji($id)

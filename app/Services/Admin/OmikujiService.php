@@ -16,7 +16,7 @@ class OmikujiService extends BaseService
     {
         $omikujis = Omikuji::all();
         $keyword = $conditions['search']['value'];
-        $searchColumns = ['name', 'start_time', 'end_time'];
+        $searchColumns = ['name'];
         $limit = $conditions['length'];
         $page = $conditions['start'] / $conditions['length'] + 1;
         $orderParams = $conditions['order'];
@@ -34,9 +34,14 @@ class OmikujiService extends BaseService
                 WHEN $now < start_time  THEN 'Stopped'
                 ELSE ''
             END) AS status");
+
+        if (isset($conditions['locale_id'])) {
+            $query->where('locale_id', $conditions['locale_id']);
+        }
+
         $results = static::listItems($query, $keyword, $searchColumns, $orderConditions, $limit, $page);
         foreach ($results as $result) {
-            $result['imageUrl'] = $result->imageUrls['normal'];
+            $result['imageUrl'] = $result->imageUrls['larger'];
             $result['url'] = action('Admin\OmikujisController@destroyOmikuji', [$result->id]);
             $result['urlEdit'] = action('Admin\OmikujisController@edit', [$result->id]);
             $result['confirm'] = trans('admin/omikuji.delete_confirm', ['name' => $result['name']]);
@@ -59,12 +64,13 @@ class OmikujiService extends BaseService
         $itemSize = config('images.validate.omikuji_item_image.max_size');
         $messages = [
              'record_item.min' => trans('admin/omikuji.message_record_count'),
+             'end_time.after' => trans('admin/omikuji.message_start_date'),
         ];
 
         $validationRules = [
             'name' => 'required|string|max:255',
             'start_time' => 'required|date',
-            'recover_time' => 'required|integer|max:100',
+            'recover_time' => 'required|integer|max:100|min:0',
             'description' => 'max:255',
             'item.*' => 'required|string|max:255',
             'rate_weight.*' => 'required|integer|max:1000|min:1',
@@ -80,6 +86,7 @@ class OmikujiService extends BaseService
             $validationRules['image'] = 'mimes:'. config('images.validate.omikuji_image.mimes') .'|max:' .
                  config('images.validate.omikuji_image.max_size');
         } elseif ($status == 'create') {
+            $validationRules['locale_id'] = 'required';
             $validationRules['image'] = 'required|mimes:'. config('images.validate.omikuji_image.mimes') .'|max:'
                 . config('images.validate.omikuji_image.max_size');
         }
@@ -88,14 +95,14 @@ class OmikujiService extends BaseService
             //except row null
             if (isset($inputs['omikujiItem_id'][$key])) {
                 $item[$key] = $value;
-                $rateWeight[$key] = $inputs['rate_weight'][$key];
-                $point[$key] = $inputs['point'][$key];
+                $rateWeight[$key] = ltrim($inputs['rate_weight'][$key], '0');
+                $point[$key] = ltrim($inputs['point'][$key], '0');
                 $itemImage[$key] = $inputs['item_image'][$key] ?? null;
             } elseif (isset($value) || isset($inputs['rate_weight'][$key]) || isset($inputs['item_image'][$key])
                 || isset($inputs['point'][$key])) {
                 $item[$key] = $value;
-                $rateWeight[$key] = $inputs['rate_weight'][$key];
-                $point[$key] = $inputs['point'][$key];
+                $rateWeight[$key] = ltrim($inputs['rate_weight'][$key], '0');
+                $point[$key] = ltrim($inputs['point'][$key], '0');
                 $itemImage[$key] = $inputs['item_image'][$key] ?? null;
                 $validationRules['item_image.'.$key] = 'required|mimes:'. $itemMimes .'|max:' .$itemSize;
             }
@@ -106,7 +113,31 @@ class OmikujiService extends BaseService
         $inputs['item_image'] = $itemImage;
         $inputs['record_item'] = count($inputs['item']);
 
-        return Validator::make($inputs, $validationRules, $messages);
+        foreach ($inputs['item'] as $key => $value) {
+            $messages['item.'.$key.'.required'] = trans('admin/omikuji.message_require', ['name' => 'Item.'.$key]);
+            $messages['rate_weight.'.$key.'.required'] =
+                trans('admin/omikuji.message_require', ['name' => 'Rate Weight.'.$key]);
+            $messages['point.'.$key.'.required'] = trans('admin/omikuji.message_require', ['name' => 'Point.'.$key]);
+            $messages['item_image.'.$key.'.required'] =
+                trans('admin/omikuji.message_require', ['name' => 'Item Image.'.$key]);
+
+            $messages['rate_weight.'.$key.'.integer'] =
+                trans('admin/omikuji.message_integer', ['name' => 'Rate Weight.'.$key]);
+            $messages['point.'.$key.'.integer'] = trans('admin/omikuji.message_integer', ['name' => 'Point.'.$key]);
+
+            $messages['item.'.$key.'.max'] = trans('admin/omikuji.message_max_string', ['name' => 'Item.'.$key]);
+            $messages['rate_weight.'.$key.'.max'] =
+                trans('admin/omikuji.message_max_integer', ['name' => 'Rate Weight.'.$key]);
+            $messages['point.'.$key.'.max'] = trans('admin/omikuji.message_max_integer', ['name' => 'Point.'.$key]);
+            $messages['item_image.'.$key.'.max'] = trans('admin/omikuji.message_max_image', ['size' => $itemSize]);
+
+            $messages['rate_weight.'.$key.'.min'] =
+                trans('admin/omikuji.message_min_integer', ['name' => 'Rate Weight.'.$key]);
+            $messages['point.'.$key.'.min'] = trans('admin/omikuji.message_min_integer', ['name' => 'Point.'.$key]);
+        }
+
+        return Validator::make($inputs, $validationRules, $messages)
+            ->setAttributeNames(trans('admin/omikuji.label'));
     }
 
     public static function findOmikuji($id)
@@ -211,7 +242,6 @@ class OmikujiService extends BaseService
                         'start_time' => $inputs['start_time'],
                         'end_time' => $inputs['end_time'],
                         'recover_time' => $inputs['recover_time'],
-                        'locale_id' => $inputs['locale_id'],
                     ];
                 if ($image) {
                     $omikujiData['image'] = $image;

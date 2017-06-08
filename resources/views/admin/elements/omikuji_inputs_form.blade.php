@@ -9,24 +9,7 @@
     data-max-size="{{ config('images.validate.omikuji_item_image.max_size') }}">
 </div>
 <div id="statusForm" data-status=""></div>
-<div class="form-group">
-    {{ Form::label(
-        'locale_id',
-        trans('admin/omikuji.label.locale'),
-        ['class' => 'col-sm-2 control-label'])
-    }}
-    <div class="col-sm-10 width30">
-        {{ Form::select(
-            'locale_id',
-            $locales,
-            $omikuji->locale_id ?? '',
-            [
-                'class' => 'form-control',
-                'placeholder' => trans('admin/omikuji.placeholder.locale'),
-            ])
-        }}
-    </div>
-</div>
+<div id="delMessage" data-msg="{{ trans('admin/omikuji.delete_new_confirm') }}"></div>
 
 <div class="form-group required">
     {{ Form::label(
@@ -41,6 +24,7 @@
             [
                 'class' => 'form-control',
                 'placeholder' => trans('admin/omikuji.placeholder.name'),
+                'required',
             ])
         }}
     </div>
@@ -68,13 +52,16 @@
     {{ Form::label(
         'start_time',
         trans('admin/omikuji.label.start_time'),
-        ['class' => 'col-sm-2 control-label'])
+        [ 'class' => 'col-sm-2 control-label' ])
     }}
     <div class="col-sm-10 width30">
         {{ Form::text(
             'start_time',
             $omikuji->start_time ?? '',
-            ['class' => 'form-control datetime-picker'])
+            [
+                'class' => 'form-control datetime-picker',
+                'required'
+            ])
         }}
     </div>
 </div>
@@ -100,14 +87,18 @@
         trans('admin/omikuji.label.recover_time'),
         [
             'class' => 'col-sm-2 control-label',
-            'placeholder' => trans('admin/omikuji.placeholder.recover_time'),
         ])
     }}
     <div class="col-sm-10 width30">
         {{ Form::text(
             'recover_time',
             $omikuji->recover_time ?? '',
-            ['class' => 'form-control'])
+            [
+                'class' => 'form-control',
+                'placeholder' => trans('admin/omikuji.placeholder.recover_time'),
+                'required',
+                'pattern'=> '[0-9]*',
+            ])
         }}
     </div>
 </div>
