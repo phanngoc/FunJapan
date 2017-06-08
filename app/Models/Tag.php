@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\PopularSeries;
+use App\Services\Admin\PopularSeriesService;
 
 class Tag extends BaseModel
 {
@@ -36,6 +38,11 @@ class Tag extends BaseModel
         static::deleting(function ($tag) {
             $tag->articlesTags()->delete();
             $tag->hotTags()->delete();
+            $popularSeries = PopularSeries::where('link', $tag->id)
+                ->where('type', strtolower(config('popular_series.type.tag')))->get();
+            foreach ($popularSeries as $value) {
+                PopularSeriesService::delete($value);
+            }
         });
     }
 }

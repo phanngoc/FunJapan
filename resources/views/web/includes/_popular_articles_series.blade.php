@@ -55,7 +55,7 @@
                         @foreach ($popularSeries as $item)
                             <div class="list-group-item">
                                 <div class="row">
-                                @if ($item->type == config('popular_series.type.tag'))
+                                @if ($item->type == strtolower(config('popular_series.type.tag')))
                                     <div class="col-xs-4 col-sm-5">
                                         <a href="{{ action('Web\TagsController@show', $item->name_link) }}">
                                             <img src="{{ $item->photo_urls['normal'] }}" class="img-thumbnail">

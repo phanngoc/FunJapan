@@ -101,12 +101,7 @@ class PopularCategoryService extends BaseService
 
     public static function delete($popularCategory)
     {
-        $imagePath = config('images.paths.popular_category_image') . '/' . $popularCategory->id;
-        if (ImageService::delete($imagePath)) {
-            return $popularCategory->delete();
-        }
-
-        return false;
+        return $popularCategory->delete();
     }
 
     public static function suggestCategories($inputs)
