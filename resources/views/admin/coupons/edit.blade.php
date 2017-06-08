@@ -1,7 +1,7 @@
 @extends('layouts.admin.default')
 
 @section('style')
-
+    {!! Html::style('assets/admin/css/coupon.css') !!}
 @endsection
 
 @section('content')
