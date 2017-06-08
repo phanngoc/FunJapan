@@ -1,5 +1,4 @@
 <?php
-
 return [
     'paths' => [
         'post_photo' => 'uploads/articles/post_photos',
@@ -72,11 +71,13 @@ return [
         'omikuji_image' => [
             'original' => '',
             'larger' => [100, 100],
+            'normal' => [88, 171],
             'small' => [32, 32],
         ],
         'omikuji_item_image' => [
             'original' => '',
             'larger' => [100, 100],
+            'normal' => [88, 171],
             'small' => [32, 32],
         ],
         'article_thumbnail' => [
