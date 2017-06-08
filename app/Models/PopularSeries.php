@@ -50,14 +50,24 @@ class PopularSeries extends BaseModel
 
     public function getNameLinkAttribute()
     {
-        if ($this->type == config('popular_series.type.tag')) {
+        if ($this->type == strtolower(config('popular_series.type.tag'))) {
             $tag = TagService::getTag($this->link);
 
-            return $tag->name;
+            return $tag ? $tag->name : '';
         } else {
             $category = CategoryService::getCategory($this->link);
 
-            return $category->short_name;
+            return $category ? $category->short_name : '';
         }
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($popularSeries) {
+            $imagePath = config('images.paths.popular_series_image') . '/' . $popularSeries->id;
+            ImageService::delete($imagePath);
+        });
     }
 }

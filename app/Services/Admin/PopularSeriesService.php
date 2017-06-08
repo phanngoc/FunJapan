@@ -108,13 +108,7 @@ class PopularSeriesService extends BaseService
 
     public static function delete($popularSeries)
     {
-        $imagePath = config('images.paths.popular_series_image') . '/' . $popularSeries->id;
-
-        if (ImageService::delete($imagePath)) {
-            return $popularSeries->delete();
-        }
-
-        return false;
+        return $popularSeries->delete();
     }
 
     public static function suggestCategoryOrTags($inputs)

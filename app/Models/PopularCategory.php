@@ -41,6 +41,17 @@ class PopularCategory extends Model
     public function getNameLinkAttribute()
     {
         $category = CategoryService::getCategory($this->link);
-        return $category->short_name;
+
+        return $category ? $category->short_name : '';
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($popularCategory) {
+            $imagePath = config('images.paths.popular_category_image') . '/' . $popularCategory->id;
+            ImageService::delete($imagePath);
+        });
     }
 }
