@@ -34,6 +34,12 @@ class PopularCategoriesController extends Controller
     public function create()
     {
         $this->viewData['locales'] = LocaleService::getAllLocales();
+        $allCategories = CategoryService::listCategory()->groupBy('locale_id');
+        foreach ($allCategories as $key => $item) {
+            $item->prepend(['id' => '', 'name' => trans('admin/popular_category.select_category')]);
+        }
+        $this->viewData['allCategories'] = $allCategories;
+        $this->viewData['localeId'] = key($this->viewData['locales']);
 
         return view('admin.popular_category.create', $this->viewData);
     }
@@ -41,10 +47,6 @@ class PopularCategoriesController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->all();
-
-        if (isset($inputs['link'])) {
-            $inputs['oldLink'] = CategoryService::getCategory($inputs['link']);
-        }
 
         $validator = PopularCategoryService::validate($inputs);
 
@@ -62,7 +64,9 @@ class PopularCategoriesController extends Controller
     public function edit(PopularCategory $popularCategory)
     {
         $this->viewData['popularCategory'] = $popularCategory;
-        $this->viewData['oldLink'] = CategoryService::getCategory($popularCategory->link);
+        $this->viewData['categories'] = CategoryService::listCategory()
+            ->groupBy('locale_id')[$popularCategory->locale_id]
+            ->prepend(['id' => '', 'name' => trans('admin/popular_category.select_category')]);
 
         return view('admin.popular_category.edit', $this->viewData);
     }
@@ -70,9 +74,6 @@ class PopularCategoriesController extends Controller
     public function update(Request $request, PopularCategory $popularCategory)
     {
         $inputs = $request->all();
-        if (isset($inputs['link'])) {
-            $inputs['oldLink'] = CategoryService::getCategory($inputs['link']);
-        }
 
         $validator = PopularCategoryService::validate($inputs, $popularCategory);
 

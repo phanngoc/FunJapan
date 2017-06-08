@@ -12,17 +12,6 @@
                 {{ Form::open(['action' => ['Admin\PopularCategoriesController@update', 'popularCategory' => $popularCategory->id], 'class' => 'form-horizontal', 'files' => true]) }}
                     {{ Form::hidden('locale', $popularCategory->locale_id, ['id' => 'locale']) }}
 
-                    <div class="form-group required">
-                        {{ Form::label(
-                            'name',
-                            trans('admin/popular_category.label.name'),
-                            ['class' => 'col-sm-2 control-label'])
-                        }}
-                        <div class="col-sm-10">
-                            {{ Form::text('name', $popularCategory->name, ['class' => 'form-control', 'required']) }}
-                        </div>
-                    </div>
-
                     <div class="form-group">
                         {{ Form::label(
                             'photo',
@@ -30,7 +19,7 @@
                             ['class' => 'col-sm-2 control-label'])
                         }}
                         <div class="col-sm-10 pt5">
-                            {{ Form::file('photo') }}
+                            {{ Form::file('photo', ['class' => 'max100']) }}
                         </div>
                     </div>
 
@@ -46,26 +35,9 @@
                             trans('admin/popular_category.label.link'),
                             ['class' => 'col-sm-2 control-label'])
                         }}
-                        @if (count(old()))
-                            @if (old('link'))
-                                <div class="col-sm-10">
-                                    <select id="link" class="form-control" name="link">
-                                        <option value="{{ old('oldLink')->id }}" selected="selected">{{ old('oldLink')->name }}</option>
-                                    </select>
-                                </div>
-                            @else
-                                <div class="col-sm-10">
-                                    <select id="link" class="form-control" name="link">
-                                    </select>
-                                </div>
-                            @endif
-                        @else
-                            <div class="col-sm-10">
-                                <select id="link" class="form-control" name="link">
-                                    <option value="{{ $oldLink->id }}" selected="selected">{{ $oldLink->name }}</option>
-                                </select>
-                            </div>
-                        @endif
+                        <div class="col-sm-10">
+                        {{ Form::select('link', array_pluck($categories, 'name', 'id'), count(old()) ? old('link') : $popularCategory->link, ['class' => 'form-control']) }}
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -88,6 +60,10 @@
         </div>
     </div>
 </div>
+<div id="extension" data-extension="{{ config('images.validate.popular_category_image.mimes') }}"></div>
+<div id="size" data-size="{{ config('images.validate.popular_category_image.max_size') }}"></div>
+<div id="mimes-message" data-message="{{ trans('admin/article.mimes_message') }}"></div>
+<div id="size-message" data-message="{{ trans('admin/article.size_message') }}"></div>
 <div id="suggest-url" data-url="{{ action('Admin\PopularCategoriesController@getSuggest') }}"></div>
 @stop
 @section('script')

@@ -111,7 +111,7 @@
                             {{ Form::file(
                                 'icon',
                                 '',
-                                ['class' => 'form-control', 'required'])
+                                ['class' => 'form-control max100', 'required'])
                             }}
                         </div>
                     </div>
@@ -160,6 +160,10 @@
         </div>
     </div>
 </div>
+<div id="extension" data-extension="{{ config('images.validate.menu_icon.mimes') }}"></div>
+<div id="size" data-size="{{ config('images.validate.menu_icon.max_size') }}"></div>
+<div id="mimes-message" data-message="{{ trans('admin/article.mimes_message') }}"></div>
+<div id="size-message" data-message="{{ trans('admin/article.size_message') }}"></div>
 @stop
 @section('script')
     <script type="text/javascript">

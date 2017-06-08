@@ -98,6 +98,10 @@
         </div>
     </div>
 </div>
+<div id="extension" data-extension="{{ config('images.validate.popular_series_image.mimes') }}"></div>
+<div id="size" data-size="{{ config('images.validate.popular_series_image.max_size') }}"></div>
+<div id="mimes-message" data-message="{{ trans('admin/article.mimes_message') }}"></div>
+<div id="size-message" data-message="{{ trans('admin/article.size_message') }}"></div>
 <div id="suggest-url" data-url="{{ action('Admin\PopularSeriesController@getSuggest') }}"></div>
 @stop
 @section('script')

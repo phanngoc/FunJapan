@@ -46,11 +46,11 @@ class PopularSeriesController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->all();
-        if (isset($inputs['link']) && $inputs['type'] == config('popular_series.type.tag')) {
+        if (isset($inputs['link']) && $inputs['type'] == strtolower(config('popular_series.type.tag'))) {
             $inputs['oldLink'] = TagService::getTag($inputs['link']);
         }
 
-        if (isset($inputs['link']) && $inputs['type'] == config('popular_series.type.category')) {
+        if (isset($inputs['link']) && $inputs['type'] == strtolower(config('popular_series.type.category'))) {
             $inputs['oldLink'] = CategoryService::getCategory($inputs['link']);
         }
 
@@ -71,7 +71,7 @@ class PopularSeriesController extends Controller
     {
         $this->viewData['type'] = config('popular_series.type');
         $this->viewData['popularSeries'] = $popularSeries;
-        if ($popularSeries->type == config('popular_series.type.tag')) {
+        if ($popularSeries->type == strtolower(config('popular_series.type.tag'))) {
             $this->viewData['oldLink'] = TagService::getTag($popularSeries->link);
         } else {
             $this->viewData['oldLink'] = CategoryService::getCategory($popularSeries->link);
@@ -83,11 +83,11 @@ class PopularSeriesController extends Controller
     public function update(Request $request, PopularSeries $popularSeries)
     {
         $inputs = $request->all();
-        if (isset($inputs['link']) && $inputs['type'] == config('popular_series.type.tag')) {
+        if (isset($inputs['link']) && $inputs['type'] == strtolower(config('popular_series.type.tag'))) {
             $inputs['oldLink'] = TagService::getTag($inputs['link']);
         }
 
-        if (isset($inputs['link']) && $inputs['type'] == config('popular_series.type.category')) {
+        if (isset($inputs['link']) && $inputs['type'] == strtolower(config('popular_series.type.category'))) {
             $inputs['oldLink'] = CategoryService::getCategory($inputs['link']);
         }
 

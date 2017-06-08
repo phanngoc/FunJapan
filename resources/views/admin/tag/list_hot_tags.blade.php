@@ -31,7 +31,7 @@
                                     <th class="text-center">{{ trans('admin/tag.no') }}</th>
                                     <th class="text-center">{{ trans('admin/tag.name') }}</th>
                                     <th class="text-center">{{ trans('admin/tag.created_at') }}</th>
-                                    <th class="text-center">{{ trans('admin/tag.remove-hot-tags') }}</th>
+                                    <th class="text-center">{{ trans('admin/tag.remove') }}</th>
                                 </tr>
                             </thead>
                         </table>
@@ -40,8 +40,9 @@
             </div>
         </div>
     </div>
-    <div id="button-error" data-message="{{ trans('admin/tag.setting_error') }}"></div>
-    <div id="button-success" data-message="{{ trans('admin/tag.setting_success') }}"></div>
+    <div id="button-error" data-message="{{ trans('admin/tag.remove_error') }}"></div>
+    <div id="button-success" data-message="{{ trans('admin/tag.remove_success') }}"></div>
+    <div id="button-confirm" data-message="{{ trans('admin/tag.remove_hot_tag_message') }}"></div>
 @stop
 @section('script')
     <script type="text/javascript">

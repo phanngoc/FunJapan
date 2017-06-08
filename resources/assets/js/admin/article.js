@@ -213,13 +213,37 @@ function readUrl (input) {
     var oldSrc = $('#preview-img').data('url');
     if (input.files && input.files[0]) {
         var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('#preview-section').removeClass('hidden');
-            $('#preview-img').attr('src', e.target.result);
+        var ext = input.value.split('.').pop().toLowerCase();
+        var mimes = $('#extension').data('extension').split(",");
+        var maxSize = $('#size').data('size');
+        var mess = $('#mimes-message').data('message');
+        var messSize = $('#size-message').data('message');
+        if ($.inArray(ext, mimes) == -1) {
+            input.value = '';
+            swal("Cancelled", mess, "error");
+            if (oldSrc == '') {
+                $('#preview-section').addClass('hidden');
+            } else {
+                $('#preview-img').attr('src', oldSrc);
+            }
+        } else {
+            var size = (input.files[0].size);
+            if ((size/1024) > maxSize) {
+                input.value = '';
+                swal("Cancelled", messSize, "error");
+                if (oldSrc == '') {
+                    $('#preview-section').addClass('hidden');
+                } else {
+                    $('#preview-img').attr('src', oldSrc);
+                }
+            } else {
+                reader.onload = function (e) {
+                    $('#preview-section').removeClass('hidden');
+                    $('#preview-img').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
         }
-
-        reader.readAsDataURL(input.files[0]);
     } else {
         if (oldSrc == '') {
             $('#preview-section').addClass('hidden');

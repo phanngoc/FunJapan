@@ -23,6 +23,7 @@ return [
             'max_size' => 10240,
         ],
         'article_thumbnail' => [
+            'mimes' => 'jpeg,png,jpg',
             'max_size' => 10240,
         ],
         'banner' => [
@@ -30,6 +31,7 @@ return [
             'max_size' => 10240,
         ],
         'menu_icon' => [
+            'mimes' => 'jpeg,png,jpg',
             'max_size' => 10240
         ],
         'omikuji_image' => [
@@ -41,6 +43,7 @@ return [
             'max_size' => 10240,
         ],
         'popular_series_image' => [
+            'mimes' => 'jpeg,png,jpg',
             'max_size' => 10240,
         ],
         'coupon_image' => [
@@ -48,6 +51,7 @@ return [
             'max_size' => 10240,
         ],
         'popular_category_image' => [
+            'mimes' => 'jpeg,png,jpg',
             'max_size' => 10240,
         ],
         'result_survey' => [

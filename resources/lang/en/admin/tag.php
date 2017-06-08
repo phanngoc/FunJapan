@@ -45,8 +45,11 @@ return [
     'block' => 'Action Block',
     'edit_tag' => 'Edit Tag',
     'setting_hot_tags' => 'Setting Hot Tags',
-    'list_hot_tags' => 'List Hot Tags',
+    'list_hot_tags' => 'Hot Tags List',
     'setting_success' => 'Setting Successfully',
     'setting_error' => 'Setting Error',
-    'remove-hot-tags' => 'Remove Hot Tags',
+    'remove_success' => 'Removed Successfully',
+    'remove_error' => 'Removed Error',
+    'remove' => 'Remove',
+    'remove_hot_tag_message' => 'Do you want to remove this hot tag?',
 ];

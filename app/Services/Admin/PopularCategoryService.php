@@ -7,6 +7,7 @@ use App\Models\ArticleTag;
 use App\Models\Tag;
 use App\Models\Category;
 use App\Services\ImageService;
+use App\Services\Admin\CategoryService;
 use Validator;
 use DB;
 use Illuminate\Support\Facades\Log;
@@ -16,7 +17,7 @@ class PopularCategoryService extends BaseService
     public static function list($conditions)
     {
         $keyword = escape_like($conditions['search']['value']);
-        $searchColumns = ['name', 'link'];
+        $searchColumns = ['name'];
         $limit = $conditions['length'];
         $page = $conditions['start'] / $conditions['length'] + 1;
         $orderParams = $conditions['order'];
@@ -26,6 +27,7 @@ class PopularCategoryService extends BaseService
         if (isset($conditions['locale_id'])) {
             $query = $query->where('locale_id', $conditions['locale_id']);
         }
+
         $results = static::listItems($query, $keyword, $searchColumns, $orderConditions, $limit, $page);
 
         return $returnData = [
@@ -37,7 +39,6 @@ class PopularCategoryService extends BaseService
     public static function validate($inputs, $popularCategory = null)
     {
         $validateRules = [
-            'name' => 'required|max:255',
             'photo' => 'required|image|max:' . config('images.validate.popular_category_image.max_size'),
             'link' => 'required',
         ];
@@ -52,8 +53,8 @@ class PopularCategoryService extends BaseService
     public static function create($inputs)
     {
         $popularCategoryData = [
+            'name' => CategoryService::getCategory($inputs['link'])->name,
             'locale_id' => $inputs['locale'],
-            'name' => $inputs['name'],
             'link' => $inputs['link'],
         ];
         DB::beginTransaction();
@@ -83,7 +84,7 @@ class PopularCategoryService extends BaseService
     public static function update($inputs, $popularCategory)
     {
         $popularCategoryData = [
-            'name' => $inputs['name'],
+            'name' => CategoryService::getCategory($inputs['link'])->name,
             'link' => $inputs['link'],
         ];
         if (isset($inputs['photo'])) {
