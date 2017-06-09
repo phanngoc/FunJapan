@@ -6,11 +6,14 @@ use App\Services\Admin\ArticleService;
 use App\Services\Admin\BannerSettingService;
 use App\Services\Admin\LocaleService;
 use Illuminate\Http\Request;
+use Gate;
 
 class BannerSettingsController extends Controller
 {
     public function index()
     {
+        abort_if(Gate::denies('permission', 'banner.change'), 403, 'Unauthorized action.');
+
         $this->viewData['locales'] = LocaleService::getAllLocales();
         $this->viewData['bannerSettingLocales'] = BannerSettingService::getAllBanner($this->viewData['locales']);
 
@@ -26,6 +29,8 @@ class BannerSettingsController extends Controller
 
     public function update($localeId, Request $request)
     {
+        abort_if(Gate::denies('permission', 'banner.change'), 403, 'Unauthorized action.');
+
         if (!auth()->check()) {
             return response()->json(['message' => trans('admin/banner.validate.unauthorized')], 401);
         }
@@ -54,6 +59,8 @@ class BannerSettingsController extends Controller
 
     public function delete($localeId)
     {
+        abort_if(Gate::denies('permission', 'banner.change'), 403, 'Unauthorized action.');
+
         if (!auth()->check()) {
             return response()->json(['message' => trans('admin/banner.validate.unauthorized')], 401);
         }
