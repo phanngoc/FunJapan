@@ -32,6 +32,7 @@
                     'required',
                 ])
             }}
+            <p class="text-danger font-bold error-question"></p>
         </div>
     </div>
     @if(isset($question->option_name))
@@ -48,13 +49,13 @@
                         $value ?: '',
                         [
                             'class' => 'form-control',
-                            'required',
                         ])
                     }}
+                    <p class="text-danger font-bold error-option"></p>
                 </div>
                 {{ Form::label(
                     'option',
-                    trans('admin/question.option'),
+                    trans('admin/question.score'),
                     ['class' => 'col-sm-1 control-label'])
                 }}
                 <div class="col-sm-4">
@@ -63,30 +64,34 @@
                         $question->score[$key] ?: '',
                         [
                             'class' => 'form-control',
-                            'required',
                         ])
                     }}
+                    <p class="text-danger font-bold error-score"></p>
                 </div>
                 <div class="col-sm-2">
-                    <a class="add-option"><i class="fa fa-plus-square-o fa-lg"></i></a>
-                    <a class="delete-option"><i class="fa fa-trash fa-lg"></i></a>
+                    <a data-toggle="tooltip" data-placement="left" title="Add Option" class="add-option"><i class="fa fa-plus-square-o fa-lg"></i></a>
+                    <a data-toggle="tooltip" data-placement="top" title="Delete Option" class="delete-option"><i class="fa fa-trash fa-lg"></i></a>
                 </div>
             </div>
         @endforeach
-        <div class="form-group other-option">
-            {{ Form::label(
-                'option',
-                trans('admin/question.other_option'),
-                ['class' => 'col-sm-1 control-label'])
-            }}
-            <div class="col-sm-9">
-                {{ Form::checkbox(
-                    'other_option',
-                    1,
-                    $question->other_option ?? 0)
+        @if ($survey->type == config('survey.psychological'))
+            <div class="form-group other-option">
+                {{ Form::label(
+                    'option',
+                    trans('admin/question.other_option'),
+                    ['class' => 'col-sm-1 control-label'])
                 }}
+                <div class="col-sm-9">
+                    {{ Form::checkbox(
+                        'other_option',
+                        1,
+                        $question->other_option ?? 0,
+                        [
+                            'class' => 'other',
+                        ])
+                    }}
+                </div>
             </div>
-        </div>
+        @endif
     @endif
 </div>
-<div id="statusForm" data-status=""></div>

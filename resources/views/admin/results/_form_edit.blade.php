@@ -1,4 +1,4 @@
-@foreach($results as $result)
+@foreach($results as $key => $result)
 <div class="form-result">
     <div class="form-group">
         {{ Form::label(
@@ -8,13 +8,14 @@
         }}
         <div class="col-sm-4">
             {{ Form::text(
-                'result['.$result->id.'][required_point_from]',
-                $result->required_point_from ?? '',
+                'result['.$key.'][required_point_from]',
+                ($result->required_point_from != 0) ? $result->required_point_from : '',
                 [
                     'class' => 'form-control score_from',
                     'required',
                 ])
             }}
+            <p class="text-danger font-bold error-score-from"></p>
         </div>
         {{ Form::label(
             'require_point',
@@ -23,20 +24,19 @@
         }}
         <div class="col-sm-4">
             {{ Form::text(
-                'result['.$result->id.'][required_point_to]',
-                $result->required_point_to ?? '',
+                'result['.$key.'][required_point_to]',
+                ($result->required_point_to != 0) ? $result->required_point_to : '',
                 [
                     'class' => 'form-control score_to',
                     'required',
                 ])
             }}
+            <p class="text-danger font-bold error-score-to"></p>
         </div>
         <div class="col-sm-1">
             <a data-toggle="tooltip" data-placement="top" href="javascript:;" title="Delete Result" class="delete"><i class="fa fa-trash fa-lg"></i></a>
         </div>
     </div>
-    <p class="text-danger font-bold error-score-from"></p>
-    <p class="text-danger font-bold error-score-to"></p>
     <div class="form-group required">
         {{ Form::label(
             'title',
@@ -45,16 +45,16 @@
         }}
         <div class="col-sm-9">
             {{ Form::text(
-                'result['.$result->id.'][title]',
+                'result['.$key.'][title]',
                 $result->title ?? '',
                 [
                     'class' => 'form-control title',
                     'required',
                 ])
             }}
+            <p class="text-danger font-bold error-title"></p>
         </div>
     </div>
-    <p class="text-danger font-bold error-title"></p>
     <div class="form-group">
         {{ Form::label(
             'photo',
@@ -63,7 +63,7 @@
         }}
         <div class="col-sm-9 pt5">
             {{ Form::file(
-                'result['.$result->id.'][photo]',
+                'result['.$key.'][photo]',
                 [
                     'class' => 'form-control photo',
                 ])
@@ -83,7 +83,7 @@
         }}
         <div class="col-sm-9">
             {{ Form::textarea(
-                'result['.$result->id.'][description]',
+                'result['.$key.'][description]',
                 $result->description ?? '',
                 [
                     'class' => 'article-content description',
@@ -99,7 +99,7 @@
         }}
         <div class="col-sm-9">
             {{ Form::text(
-                'result['.$result->id.'][bottom_text]',
+                'result['.$key.'][bottom_text]',
                 $result->bottom_text ?? null,
                 [
                     'class' => 'form-control bottom_text',
@@ -107,7 +107,7 @@
             }}
         </div>
     </div>
-    <input type="hidden" value="{{$result->id}}" name="result[{{$result->id}}][id]" class="result-id">
+    <input type="hidden" value="{{$result->id}}" name="result[{{$key}}][id]" class="result-id">
     <hr>
 </div>
 

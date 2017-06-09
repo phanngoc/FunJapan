@@ -13,6 +13,7 @@ return [
         'create' => 'Create Result',
         'show' => 'Show Result',
     ],
-    'not_greater_message' => 'The Score From field may not greater than the Score To field',
+    'not_greater_message' => 'The Score From field may not greater than the Score To field.',
+    'required_or' => 'You have to enter data in Score From or Score To field.',
     'nothing' => 'Nothing to show.',
 ];

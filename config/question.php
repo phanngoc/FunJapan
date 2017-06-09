@@ -14,5 +14,14 @@ return [
         'checkbox' => 2,
         'radio' => 3,
     ],
-    'max_title' => 255,
+
+    'character' => [
+        'max' => 255,
+        'min' => 10,
+    ],
+
+    'number' => [
+        'max' => 999999999,
+        'min' => 0,
+    ],
 ];

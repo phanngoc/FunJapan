@@ -35,10 +35,28 @@ class ResultsController extends Controller
             return response()->json(['message' => $validator]);
         }
 
-        if (ResultService::create($inputs)) {
-            Session::flash('message', trans('admin/survey.create_success'));
+        $checkUpdate = false;
+        foreach ($inputs['result'] as $key => $input) {
+            if (isset($input['id'])) {
+                $result = Result::find($input['id']);
+                if ($result) {
+                    $checkUpdate = true;
+                    break;
+                }
+            }
+        }
+        if ($checkUpdate) {
+            if (ResultService::update($inputs)) {
+                Session::flash('message', trans('admin/survey.update_success'));
+            } else {
+                Session::flash('error', trans('admin/survey.update_error'));
+            }
         } else {
-            Session::flash('error', trans('admin/survey.create_error'));
+            if (ResultService::create($inputs)) {
+                Session::flash('message', trans('admin/survey.create_success'));
+            } else {
+                Session::flash('error', trans('admin/survey.create_error'));
+            }
         }
     }
 }

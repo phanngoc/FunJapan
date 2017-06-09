@@ -11,25 +11,48 @@ class QuestionService extends BaseService
     public static function validate($inputs)
     {
         $message = [];
+        $validationRules = [
+            'title' => 'required|min:10|max:255',
+        ];
+
         foreach ($inputs as $key => $input) {
+            $message[$key] = Validator::make($input, $validationRules)->setAttributeNames([
+                'title' => trans('admin/question.question'),
+            ])->messages()->toArray();
+
             if ($input['question_type'] == config('question.type_value.checkbox') ||
                 $input['question_type'] == config('question.type_value.radio')) {
                 foreach ($input['option_name'] as $keyOption => $option) {
                     if ($keyOption == 0 && $option == null) {
                         $message[$key]['option_name'][$keyOption] = trans('admin/question.error_option.required');
+                    } elseif ($option != null && strlen($option) > config('question.character.max')) {
+                        $message[$key]['option_name'][$keyOption] = trans('admin/question.error_option.max', [
+                            'value' => config('question.character.max'),
+                        ]);
+                    } elseif ($option != null && strlen($option) < config('question.character.min')) {
+                        $message[$key]['option_name'][$keyOption] = trans('admin/question.error_option.min', [
+                            'value' => config('question.character.min'),
+                        ]);
                     }
                 }
-            }
-            if ($input['title'] == null) {
-                $message[$key]['title'] = trans('admin/question.error_title.required');
-            } elseif (strlen($input['title']) > config('question.max_title')) {
-                $message[$key]['title'] = trans('admin/question.error_title.max');
             }
 
             if (isset($input['score'])) {
                 foreach ($input['score'] as $keyScore => $score) {
-                    if (isset($score) && !is_numeric($score)) {
-                        $message[$key]['score'][$keyScore] = trans('admin/question.error_score.integer');
+                    if (isset($score)) {
+                        if (!is_numeric($score)) {
+                            $message[$key]['score'][$keyScore] = trans('admin/question.error_score.integer');
+                        } else {
+                            if ($score > config('question.number.max')) {
+                                $message[$key]['score'][$keyScore] = trans('admin/question.error_score.max', [
+                                    'value' => config('question.number.max'),
+                                ]);
+                            } elseif ($score < config('question.number.min')) {
+                                $message[$key]['score'][$keyScore] = trans('admin/question.error_score.min', [
+                                    'value' => config('question.number.min'),
+                                ]);
+                            }
+                        }
                     }
                 }
             }
@@ -80,19 +103,21 @@ class QuestionService extends BaseService
         }
     }
 
-    public static function update($inputs, $id)
+    public static function update($inputs)
     {
-        $question = Question::find($id);
-        if ($question) {
-            return $question->update([
-                'question_type' => $inputs['question_type'],
-                'title' => $inputs['title'],
-                'option_name' => $inputs['option_name'] ?? null,
-                'score' => $inputs['score'] ?? null,
-                'other_option' => $inputs['other_option'] ?? 0,
-            ]);
-        } else {
-            return false;
+        foreach ($inputs as $key => $input) {
+            $question = Question::find($input['id']);
+            if ($question) {
+                return $question->update([
+                    'question_type' => $input['question_type'],
+                    'title' => $input['title'],
+                    'option_name' => $input['option_name'] ?? null,
+                    'score' => $input['score'] ?? null,
+                    'other_option' => $input['other_option'] ?? 0,
+                ]);
+            } else {
+                return false;
+            }
         }
     }
 

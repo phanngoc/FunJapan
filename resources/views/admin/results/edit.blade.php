@@ -23,7 +23,7 @@
                         @if(count($results))
                             <div class="form-group">
                                 <div class="col-sm-2 col-sm-offset-1">
-                                    <a href="javascript:;" class="btn btn-primary" id="create-result"
+                                    <a href="javascript:;" class="btn btn-primary" id="edit-result"
                                         data-url="{{ action('Admin\ResultsController@store', [$survey->id]) }}" data-survey-id="{{ $survey->id }}">
                                         {{ trans('admin/survey.button.save') }}
                                     </a>

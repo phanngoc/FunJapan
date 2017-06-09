@@ -9,11 +9,13 @@ use App\Services\Admin\LocaleService;
 use App\Models\Survey;
 use App\Models\Question;
 use Session;
+use Gate;
 
 class SurveysController extends Controller
 {
     public function index(Request $request)
     {
+        abort_if(Gate::denies('permission', 'survey.list'), 403, 'Unauthorized action.');
         $localeId = $request->input('locale_id') ?? array_first(array_keys(LocaleService::getAllLocales()));
         $this->viewData['locales'] = LocaleService::getAllLocales();
         $this->viewData['localeId'] = $localeId;
@@ -24,6 +26,7 @@ class SurveysController extends Controller
 
     public function show($id)
     {
+        abort_if(Gate::denies('permission', 'survey.read'), 403, 'Unauthorized action.');
         $survey = Survey::find($id);
 
         if (!$survey) {
@@ -39,6 +42,7 @@ class SurveysController extends Controller
 
     public function create()
     {
+        abort_if(Gate::denies('permission', 'survey.add'), 403, 'Unauthorized action.');
         $this->viewData['locales'] = LocaleService::getAllLocales();
 
         return view('admin.surveys.create', $this->viewData);
@@ -46,6 +50,7 @@ class SurveysController extends Controller
 
     public function store(Request $request)
     {
+        abort_if(Gate::denies('permission', 'survey.add'), 403, 'Unauthorized action.');
         $inputs = $request->all();
         $inputs['point'] = $inputs['point'] ?? 0;
         $validator = SurveyService::validate($inputs);
@@ -64,6 +69,7 @@ class SurveysController extends Controller
 
     public function edit($id)
     {
+        abort_if(Gate::denies('permission', 'survey.edit'), 403, 'Unauthorized action.');
         $survey = Survey::find($id);
         $this->viewData['locales'] = LocaleService::getAllLocales();
         if (!$survey) {
@@ -78,6 +84,7 @@ class SurveysController extends Controller
 
     public function update(Request $request, $id)
     {
+        abort_if(Gate::denies('permission', 'survey.edit'), 403, 'Unauthorized action.');
         $inputs = $request->all();
         $validator = SurveyService::validate($inputs);
         if ($validator->fails()) {
@@ -94,6 +101,7 @@ class SurveysController extends Controller
 
     public function destroy($id)
     {
+        abort_if(Gate::denies('permission', 'survey.delete'), 403, 'Unauthorized action.');
         if (SurveyService::destroy($id)) {
             Session::flash('message', trans('admin/survey.delete_success'));
         } else {

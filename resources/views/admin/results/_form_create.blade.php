@@ -14,6 +14,7 @@
                     'required',
                 ])
             }}
+            <p class="text-danger font-bold error-score-from"></p>
         </div>
         {{ Form::label(
             'require_point',
@@ -29,13 +30,12 @@
                     'required',
                 ])
             }}
+            <p class="text-danger font-bold error-score-to"></p>
         </div>
         <div class="col-sm-1">
             <a data-toggle="tooltip" data-placement="top" href="javascript:;" title="Delete Result" class="delete"><i class="fa fa-trash fa-lg"></i></a>
         </div>
     </div>
-    <p class="text-danger font-bold error-score-from"></p>
-    <p class="text-danger font-bold error-score-to"></p>
     <div class="form-group required">
         {{ Form::label(
             'title',
@@ -51,9 +51,9 @@
                     'required',
                 ])
             }}
+            <p class="text-danger font-bold error-title"></p>
         </div>
     </div>
-    <p class="text-danger font-bold error-title"></p>
     <div class="form-group">
         {{ Form::label(
             'photo',

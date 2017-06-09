@@ -10,8 +10,6 @@
                 <div class="ibox-content">
                     {{ Form::open(
                         [
-                            'method' => 'PUT',
-                            'action' => ['Admin\QuestionsController@update', $survey->id, $question->id],
                             'id' => 'edit-question-form',
                             'class' => 'form-horizontal',
                         ]
@@ -19,9 +17,15 @@
                         <div class="form-create">
                             @include('admin.questions._form_edit')
                         </div>
+                        <div id="statusForm" data-status=""></div>
                         <div class="form-group">
                             <div class="col-sm-2 col-sm-offset-1">
-                                {{ Form::submit(trans('admin/survey.button.update'), ['class' => 'btn btn-primary']) }}
+                                <a href="javascript:;" class="btn btn-primary" id="edit-question"
+                                    data-url="{{ action('Admin\QuestionsController@store', [$survey->id]) }}"
+                                    data-survey-id="{{ $survey->id }}"
+                                    data-id="{{ $question->id }}">
+                                    {{ trans('admin/survey.button.save') }}
+                                </a>
                             </div>
                             <div class="col-sm-2">
                                 <a href="#" data-url="{{ action('Admin\SurveysController@show', [$survey->id]) }}" data-confirm="{{ trans('admin/category.cancel_confirm') }}" class="cancel btn btn-primary">
@@ -30,6 +34,7 @@
                             </div>
                         </div>
                     {{ Form::close() }}
+                    <div id="redirect-show" data-url="{{ action('Admin\SurveysController@show', [$survey->id]) }}"></div>
                 </div>
             </div>
         </div>

@@ -6,6 +6,7 @@ use App\Models\ArticleLocale;
 use App\Models\ArticleRank;
 use DB;
 use Validator;
+use Carbon\Carbon;
 
 class ArticleRankService extends BaseService
 {
@@ -24,7 +25,8 @@ class ArticleRankService extends BaseService
     {
         return ArticleRank::with([
             'articleLocale' => function ($query) {
-                $query->where('hide_always', 0);
+                $query->where('hide_always', 0)
+                    ->where('published_at', '<=', Carbon::now());
             },
         ])->where('locale_id', $localeId)
         ->where('article_locale_id', '<>', null)
