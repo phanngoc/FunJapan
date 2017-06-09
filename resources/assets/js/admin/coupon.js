@@ -16,9 +16,9 @@ $(document).ready(function (e) {
     var couponTable = $('#coupon-table').DataTable({
         'processing': true,
         'serverSide': true,
-        aLengthMenu: [[10, 25, 50], [10, 25, 50]],
+        aLengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
         paging: true,
-        order: [[ 2, 'asc' ]],
+        order: [[ 2, 'desc' ]],
         'language': {
             'infoFiltered' : ''
         },
@@ -56,21 +56,25 @@ $(document).ready(function (e) {
             $('td', row).eq(1).empty().append('<a href="' + detailLink + '">' + encodeHTML(data.name) + '</a>');
             $('td', row).eq(2).empty().append(data.can_get_from);
             $('td', row).eq(3).empty().append(data.can_get_to);
-            $('td', row).eq(4).empty().append(data.max_coupon);
-            $('td', row).eq(5).empty().append(data.required_point);
+            $('td', row).eq(4).empty().append(commaSeparateNumber(data.max_coupon));
+            $('td', row).eq(5).empty().append(commaSeparateNumber(data.required_point));
             $('td', row).eq(6).empty().append(data.status);
 
             var urlEdit = baseUrl() + '/admin/coupons/' + data.id + '/edit';
             var urlDelete = baseUrl() + '/admin/coupons/' + data.id;
 
             $('td', row).eq(7).empty().append(' \
-                <a href="' + urlEdit + '" class="edit" data-toggle="tooltip" title="Edit"> \
+                <a href="' + urlEdit + '" class="edit" data-placement="left" data-toggle="tooltip" title="Edit"> \
                     <i class="fa fa-pencil-square-o fa-lg"></i> \
                 </a> \
-                <a href="#" data-url="' + urlDelete + '" data-confirm="' + encodeHTML(data.confirmDeleteMessage) + '" class="delete" data-toggle="tooltip" title="Delete"> \
+                <a href="#" data-url="' + urlDelete + '" data-confirm="' + encodeHTML(data.confirmDeleteMessage) + '" class="delete" data-toggle="tooltip" \
+                    data-placement="top" title="Delete"> \
                     &nbsp;<i class="fa fa-trash-o fa-lg"></i> \
                 </a> \
             ');
+        },
+        'fnDrawCallback': function (data, type, full, meta) {
+            $('[data-toggle="tooltip"]').tooltip();
         },
     });
 
@@ -115,6 +119,7 @@ $(document).ready(function (e) {
         var url = $(this).data('url');
         var token = $('meta[name="csrf-token"]').attr('content');
         var confirm = $(this).data('confirm');
+        var urlReload = baseUrl() + '/admin/coupons';
 
         swal({
             title: confirm,
@@ -131,12 +136,11 @@ $(document).ready(function (e) {
                 type: 'DELETE',
                 url: url,
                 success: function (response) {
-                    console.log('response', response);
-                    location.reload();
+                    window.location.href = urlReload;
                 },
                 error: function (e) {
                     console.log('error', e);
-                    location.reload();
+                    window.location.href = urlReload;
                 }
             });
         });
@@ -145,15 +149,15 @@ $(document).ready(function (e) {
     function getHasChanges() {
         var hasChanges = false;
 
-        $(":input:not(:button):not([type=hidden])").each(function () {
+        $('.ibox').find(":input:not(:button):not([type=hidden])").each(function () {
             if ((this.type == "text" || this.type == "textarea" || this.type == "hidden") && this.defaultValue != this.value) {
                 hasChanges = true;
-                return false;             }
-            else {
+                return false;
+            } else {
                 if ((this.type == "radio" || this.type == "checkbox") && this.defaultChecked != this.checked) {
                     hasChanges = true;
-                    return false;                 }
-                else {
+                    return false;
+                } else {
                     if ((this.type == "select-one" || this.type == "select-multiple")) {
                         for (var x = 0; x < this.length; x++) {
                             if (this.options[x].selected != this.options[x].defaultSelected) {

@@ -13,10 +13,11 @@ return [
     'delete_error' => 'Delete error',
     'coupon_list' => 'Coupon list',
     'coupon_not_exists' => 'Coupon is not exists',
-    'image_message_mines' => 'Mine type of image is one of png, jpg, jpeg',
-    'image_message_size' => 'Max size of image are 10MB',
+    'image_message_mines' => 'The photo must be a file of type jpeg, png, jpg!',
+    'image_message_size' => 'The photo may not be greater than 10240 kilobytes',
     'cancel_edit_page' => 'Are you want to cancel editing ?',
-    'delete_confirm' => 'Are you sure want to delete coupon <b><i>:name</i></b> ?',
+    'delete_confirm' => 'Are you sure want to delete this coupon ?',
+    'delete_another_action' => 'Can\'t delete this coupon. It is being used by user.',
     'validate' => [
         'required' => [
             'name' => 'The name is required',
@@ -82,6 +83,7 @@ return [
         'get_from' => 'Coupon get from',
         'get_to' => 'Coupon get to',
         'status' => 'Status',
+        'created_at' => 'Created At',
     ],
     'button' => [
         'update' => 'Update',

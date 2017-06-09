@@ -14,6 +14,8 @@
             <div class="ibox-content">
                 {{ Form::open(['action' => ['Admin\CouponsController@update', $coupon->id], 'id' => 'create-coupon-form', 'class' => 'form-horizontal', 'files' => true]) }}
                     {{ method_field('PUT') }}
+                    <input type="hidden" name="id" value="{{$coupon->id}}" />
+
                     <div class="form-group required">
                         {{ Form::label(
                             'name',
@@ -156,7 +158,7 @@
 
                      <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-2">
-                            <img id="image-preview" src="{{ $coupon->image_all['original'] }}" width="90" height="90" class="item-hide" title="Preview Image">
+                            <img id="image-preview" src="{{ $coupon->image_all['original'] }}" width="90" height="90" title="Preview Image">
                         </div>
                     </div>
 

@@ -98,8 +98,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'can_get_to' => [
+            'after:can_get_from' => 'The Time get coupon: Finished time must be after started time.',
+        ],
+        'can_use_to' => [
+            'after:can_use_from' => 'The Time use coupon: Finished time must be after started time.',
         ],
     ],
 
