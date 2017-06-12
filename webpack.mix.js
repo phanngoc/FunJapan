@@ -31,6 +31,9 @@ var assetsCopy = [
     ['node_modules/fancybox/dist', 'fancybox', false],
     ['node_modules/moment/min/moment.min.js', 'momentjs', false],
     ['node_modules/moment/min/moment-with-locales.js', 'momentjs', false],
+    ['node_modules/moment-timezone/builds/moment-timezone.min.js', 'momentjs', false],
+    ['node_modules/moment-timezone/builds/moment-timezone-with-data.js', 'momentjs', false],
+    ['node_modules/moment-timezone/builds/moment-timezone-with-data-2012-2022.js', 'momentjs', false],
 ];
 
 for (var i = 0; i < assetsCopy.length; i++) {

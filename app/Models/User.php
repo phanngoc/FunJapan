@@ -186,6 +186,9 @@ class User extends Authenticatable
 
             InterestUser::where('user_id', $this->id)->delete();
             CouponUser::where('user_id', $this->id)->delete();
+            Notification::where('sender_id', $this->id)
+                ->orWhere('user_id', $this->id)
+                ->delete();
 
             $favoriteComments->delete();
             $this->delete();
