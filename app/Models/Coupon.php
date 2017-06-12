@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use App\Services\ImageService;
+use GrahamCampbell\Markdown\Facades\Markdown;
 
 class Coupon extends BaseModel
 {
@@ -32,6 +33,7 @@ class Coupon extends BaseModel
     ];
 
     protected $appends = [
+        'html_description',
         'status',
         'image_all',
     ];
@@ -39,6 +41,24 @@ class Coupon extends BaseModel
     public function getNameAttribute()
     {
         return htmlspecialchars($this->attributes['name']);
+    }
+
+    public function getStatusAttribute()
+    {
+        $now = "DATE_FORMAT('" . Carbon::now() . "', '%Y-%m-%d %h:%i:%s') ";
+        $result = Coupon::query()->selectRaw("*,
+            (CASE
+                WHEN $now >= can_get_from && $now <= can_get_to AND  (SELECT COUNT(user_id) FROM coupons
+                    INNER JOIN coupon_users ON coupon_users.coupon_id = coupons.id) < max_coupon THEN '".trans('admin/coupon.running')."'
+                ELSE '".trans('admin/coupon.stopped')."'
+            END) AS `status_at`")->where('id', $this->id);
+
+        return $result->first()->status_at;
+    }
+
+    public function getHtmlDescriptionAttribute($value)
+    {
+        return Markdown::convertToHtml($this->description);
     }
 
     public function users()

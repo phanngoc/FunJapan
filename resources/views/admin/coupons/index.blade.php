@@ -14,11 +14,11 @@
                     <thead>
                         <tr>
                             <th class="text-center">{{ trans('admin/coupon.label.no') }}</th>
-                            <th class="col-lg-2 text-center">{{ trans('admin/coupon.label.name') }}</th>
-                            <th class="col-lg-3 text-center">{{ trans('admin/coupon.label.get_from') }}</th>
-                            <th class="col-lg-3 text-center">{{ trans('admin/coupon.label.get_to') }}</th>
+                            <th class="col-lg-3 text-center">{{ trans('admin/coupon.label.name') }}</th>
+                            <th class="col-lg-2 text-center">{{ trans('admin/coupon.label.get_from') }}</th>
+                            <th class="col-lg-2 text-center">{{ trans('admin/coupon.label.get_to') }}</th>
                             <th class="col-lg-2 text-center">{{ trans('admin/coupon.label.max_coupon') }}</th>
-                            <th class="col-lg-1 text-center">{{ trans('admin/coupon.label.required_point') }}</th>
+                            <th class="col-lg-2 text-center">{{ trans('admin/coupon.label.required_point') }}</th>
                             <th class="col-lg-1 text-center">{{ trans('admin/coupon.label.status') }}</th>
                             <th class="text-center">{{ trans('admin/coupon.action') }}</th>
                         </tr>

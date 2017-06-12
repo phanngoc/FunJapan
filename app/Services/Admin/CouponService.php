@@ -3,6 +3,7 @@
 namespace App\Services\Admin;
 
 use App\Models\Coupon;
+use App\Models\CouponUser;
 use App\Services\ImageService;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -118,7 +119,7 @@ class CouponService extends BaseService
 
     public static function list($conditions)
     {
-        $keyword = $conditions['search']['value'];
+        $keyword = escape_like($conditions['search']['value']);
         $searchColumns = ['name', 'max_coupon', 'required_point', 'status'];
         $limit = $conditions['length'];
         $page = $conditions['start'] / $conditions['length'] + 1;
@@ -142,12 +143,17 @@ class CouponService extends BaseService
         $results = static::listItems($queryEx, $keyword, $searchColumns, $orderConditions, $limit, $page);
 
         foreach ($results as $result) {
-            $result->confirmDeleteMessage = trans('admin/coupon.delete_confirm', ['name' => $result->name]);
+            $result->confirmDeleteMessage = trans('admin/coupon.delete_confirm');
         }
 
         return $returnData = [
             'recordsFiltered' => $results->total(),
             'data' => $results->items(),
         ];
+    }
+
+    public static function checkUsed($couponId)
+    {
+        return CouponUser::where('coupon_id', '=', $couponId)->count();
     }
 }

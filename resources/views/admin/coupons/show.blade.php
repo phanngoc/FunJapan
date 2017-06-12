@@ -16,15 +16,15 @@
                     </div>
                     <div class="box-content-category">
                         <strong class="col-sm-2">{{ trans('admin/coupon.label.description') }}:</strong>
-                        <span class="col-sm-10" >{{ $coupon->description }} &nbsp;</span>
+                        <span class="col-sm-10" >{!! $coupon->html_description !!} &nbsp;</span>
                     </div>
                     <div class="box-content-category">
                         <strong class="col-sm-2">{{ trans('admin/coupon.label.time_get_coupon') }}:</strong>
-                        <span class="col-sm-10" >{{ $coupon->can_get_from . '~' . $coupon->can_use_to }} &nbsp;</span>
+                        <span class="col-sm-10" >{{ $coupon->can_get_from . '&nbsp; &nbsp; ~&nbsp; &nbsp; ' . $coupon->can_use_to }} &nbsp;</span>
                     </div>
                     <div class="box-content-category">
                         <strong class="col-sm-2">{{ trans('admin/coupon.label.time_use_coupon') }}:</strong>
-                        <span class="col-sm-10" >{{ $coupon->can_use_from . '~' . $coupon->can_use_to }} &nbsp;</span>
+                        <span class="col-sm-10" >{{ $coupon->can_use_from . '&nbsp; &nbsp; ~&nbsp; &nbsp; ' . $coupon->can_use_to }} &nbsp;</span>
                     </div>
                     <div class="box-content-category">
                         <strong class="col-sm-2">{{ trans('admin/coupon.label.max_coupon') }}:</strong>
@@ -48,7 +48,17 @@
                     </div>
 
                     <div class="box-content-category">
-                        <strong class="col-sm-2">{{ trans('admin/coupon.label.img') }}:</strong>
+                        <strong class="col-sm-2">{{ trans('admin/coupon.label.created_at') }}:</strong>
+                        <span class="col-sm-10" >{{ $coupon->created_at }} &nbsp;</span>
+                    </div>
+
+                    <div class="box-content-category">
+                        <strong class="col-sm-2">{{ trans('admin/coupon.label.status') }}:</strong>
+                        <span class="col-sm-10" >{{ $coupon->status }} &nbsp;</span>
+                    </div>
+
+                    <div class="box-content-category">
+                        <strong class="col-sm-2">{{ trans('admin/coupon.label.image') }}:</strong>
                         <span class="col-sm-10" >
                             @if($coupon->image)
                                 <img src="{{ $coupon->imageAll['original'] }}" class="image-preview">

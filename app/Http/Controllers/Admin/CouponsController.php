@@ -70,13 +70,17 @@ class CouponsController extends Controller
 
     public function destroy($id)
     {
-        $isDestroy = CouponService::delete($id);
-        if ($isDestroy) {
-            Session::flash('message', trans('admin/coupon.delete_successfully'));
-            return response()->json(['status' => 200, 'success' => true]);
+        if (CouponService::checkUsed($id)) {
+            Session::flash('error', trans('admin/coupon.delete_another_action'));
         } else {
-            Session::flash('error', trans('admin/coupon.delete_error'));
-            return response()->json(['status' => 200, 'success' => false]);
+            $isDestroy = CouponService::delete($id);
+            if ($isDestroy) {
+                Session::flash('message', trans('admin/coupon.delete_successfully'));
+                return response()->json(['status' => 200, 'success' => true]);
+            } else {
+                Session::flash('error', trans('admin/coupon.delete_error'));
+                return response()->json(['status' => 200, 'success' => false]);
+            }
         }
     }
 
