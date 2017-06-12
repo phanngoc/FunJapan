@@ -124,7 +124,7 @@
                 </ul>
             </li>
 
-            @can('permission', [['api.list', 'banner.list', 'ranking.list']])
+            @can('permission', [['api.list', 'banner.change', 'ranking.list']])
                 <li class="{{ set_active(['admin/setting/*']) }}">
                     <a href="#">
                         <i class="fa fa-thumbs-up"></i>
@@ -134,7 +134,7 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level collapse">
-                        @can('permission', 'banner.list')
+                        @can('permission', 'banner.change')
                             <li>
                                 <a href="{{action('Admin\BannerSettingsController@index')}}">
                                     {{ trans('admin/banner.label_banner') }}

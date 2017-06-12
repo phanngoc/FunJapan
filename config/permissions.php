@@ -42,11 +42,7 @@ return [
             'survey.delete',
         ],
         'banner_settings' => [
-            'banner.read',
-            'banner.list',
-            'banner.add',
-            'banner.edit',
-            'banner.delete',
+            'banner.change',
         ],
         'ranking_settings' => [
             'ranking.read',

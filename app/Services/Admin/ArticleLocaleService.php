@@ -129,7 +129,14 @@ class ArticleLocaleService extends BaseService
 
             $removeInBanner = BannerSetting::where('article_locale_id', $articleLocale->id);
             if (count($removeInBanner->get()) > 0) {
-                if (!$removeInBanner->update(['article_locale_id' => 0])) {
+                $isRemoveBanner = $removeInBanner->update(
+                    [
+                        'article_locale_id' => 0,
+                        'photo' => null,
+                    ]
+                );
+
+                if (!$isRemoveBanner) {
                     return false;
                 }
             }
