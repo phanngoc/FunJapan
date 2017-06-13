@@ -46,7 +46,7 @@
                                 @endif
                                 @if ($menu->type == 'category')
                                 <strong class="col-sm-2">{{ trans('admin/menu.label.selected_category') }}:</strong>
-                                <div class="col-sm-2 pl0">
+                                <div class="col-sm-2">
                                     @foreach ($selectedCategory as $category)
                                         <p>{{ $category->name }}</p>
                                         <hr>
