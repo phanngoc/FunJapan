@@ -4,7 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use App\Models\Category;
+use App\Models\ArticleLocale;
+use App\Models\Tag;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -41,6 +44,11 @@ class AppServiceProvider extends ServiceProvider
 
             return !Category::where('name', $value)->where('locale_id', $parameters[0])->exists();
         }, trans('admin/category.unique_message'));
+
+        Relation::morphMap([
+            config('visit_log.relate_type.article') => ArticleLocale::class,
+            config('visit_log.relate_type.tag') => Tag::class,
+        ]);
     }
 
     /**

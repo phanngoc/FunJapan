@@ -180,4 +180,9 @@ class ArticleLocale extends BaseModel
 
         return '';
     }
+
+    public function visitLog()
+    {
+        return $this->morphMany(VisitedLog::class, 'relate_table');
+    }
 }

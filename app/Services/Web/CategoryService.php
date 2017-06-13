@@ -23,6 +23,8 @@ class CategoryService
 
     public static function getArticleByCategory($category, $localeId)
     {
+        //TODO: recode
+
         return $category->articles()
             ->select('articles.*')
             ->leftJoin('article_locales as al', 'al.article_id', '=', 'articles.id')

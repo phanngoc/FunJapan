@@ -173,7 +173,7 @@ class CategoryService extends BaseService
                     $article->postPhotos()->delete();
                     $article->delete();
                 }
-                $category->categoryLocales()->delete();
+                //$category->categoryLocales()->delete();
                 $category->interestUsers()->delete();
                 $category->delete();
                 DB::commit();
