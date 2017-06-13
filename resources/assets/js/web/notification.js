@@ -44,6 +44,6 @@ $(function () {
 function timeDiffHuman() {
     $('#notifications').find('.notification').each(function () {
         var thisTime = $(this).find('.time');
-        thisTime.find('span').text(moment(thisTime.attr('data-time'), 'YYYY-MM-DD H:i:s').fromNow());
+        thisTime.find('span').text(moment.tz(thisTime.attr('data-time'), timezone).fromNow());
     });
 }

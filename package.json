@@ -22,6 +22,7 @@
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "pusher-js": "^4.0.0",
+    "moment-timezone": "^0.5.13",
     "vue": "^2.1.10"
   }
 }
