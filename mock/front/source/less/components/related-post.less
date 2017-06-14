@@ -1,5 +1,6 @@
 @related-black: #333333;
 @related-red: #dd280d;
+@related-white: #fff;
 .related-post {
   @media only screen and (max-width: 767px) {
     margin-top: 10px;
@@ -45,50 +46,32 @@
     margin: 3px 0;
   }
   .first-block {
-    @media only screen and (max-width: 768px) {
-      max-height: 180px;
-      margin-bottom: 15px;
-    }
-    @media only screen and (min-width: 768px) and (max-width: 1030px) {
-      max-height: 255px;
-      margin-bottom: 15px;
-    }
-    max-height: 355px;
-    overflow: hidden;
     .first-block-img {
-      @media only screen and (max-width: 768px) {
-        height: 180px;
-      }
-      @media only screen and (min-width: 768px) and (max-width: 1030px) {
-        height: 255px;
-      }
-      height: 355px;
-      img {
-        width: auto;
-        height: 100%;
+      .card-thumbnail {
+        @media only screen and (max-width: 768px) {
+          height: 143px;
+        }
+        @media only screen and (min-width: 768px) and (max-width: 1030px) {
+          height: 228px;
+        }
+        height: 331px;
       }
       .card-title {
+        .multiLineEllipsis(@lineHeight: 1.3em, @lineCount: 2, @bgColor: @related-white);
         font-size: 14px;
-        height: 70px;
-        padding: 0 8px;
-      }
-      .card-title-sm {
-        font-size: 13px;
-        height: 65px;
-        padding: 0 5px;
+        padding-left: 8px;
+        padding-right: 8px;
+        margin-top: 5px;
+        @media only screen and (max-width: 1030px) {
+          .multiLineEllipsis(@lineHeight: 1.4em, @lineCount: 1, @bgColor: @related-white);
+          font-size: 13px;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
       }
     }
   }
   .second-block {
-    @media only screen and (max-width: 768px) {
-      height: 85px;
-      margin-bottom: 10px;
-    }
-    @media only screen and (min-width: 768px) and (max-width: 1030px) {
-      height: 135px;
-    }
-    height: 189px;
-    overflow: hidden;
     .second-block-img {
       img.adjust-image-center {
         margin-top: -75px;
@@ -96,22 +79,27 @@
           margin-top: -26px;
         }
       }
-      @media only screen and (max-width: 1030px) {
-        height: 118px;
-      }
-      height: 165px;
-      .card-title {
-        font-size: 14px;
-        height: 69px;
-        padding: 0 8px;
-      }
-      .card-title-sm {
+      .card-thumbnail {
         @media only screen and (max-width: 768px) {
-          height: 125px;
+          height: 60px;
         }
-        font-size: 13px;
-        height: 55px;
-        padding: 0 5px;
+        @media only screen and (min-width: 768px) and (max-width: 1030px) {
+          height: 103px;
+        }
+        height: 145px;
+      }
+      .card-title {
+        .multiLineEllipsis(@lineHeight: 1.3em, @lineCount: 2, @bgColor: @related-white);
+        font-size: 14px;
+        padding-left: 8px;
+        padding-right: 8px;
+        margin-top: 5px;
+        @media only screen and (max-width: 1030px) {
+          .multiLineEllipsis(@lineHeight: 1.4em, @lineCount: 1, @bgColor: @related-white);
+          font-size: 13px;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
       }
     }
   }

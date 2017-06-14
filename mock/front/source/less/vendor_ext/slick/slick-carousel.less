@@ -1,7 +1,9 @@
 /* Slider */
-
 @carousel-white: #fff;
 @carousel-black: #333;
+@carousel-gray: #5f5f60;
+@carousel-gray-light: #f8f7f7;
+
 .slick-slider {
   position: relative;
   display: block;
@@ -109,29 +111,28 @@
     margin: 0px 2px;
   }
   .slider-img {
-    @media only screen and (max-width: 768px) {
-      height: 85px;
-    }
-    @media only screen and (min-width: 768px) and (max-width: 1030px) {
-      height: 85px;
-    }
-    height: 120px;
+    background-color: transparent;
+    .card-thumbnail {
+      max-height: 98px;
+    }    
     .card-title {
+      .multiLineEllipsis(@lineHeight: 1.25em, @lineCount: 2, @bgColor: @carousel-gray-light);
+      margin-top: 7px;
+      color: @carousel-gray;
       font-size: 14px;
-      height: 70px;
-      padding: 0 8px;
-    }
-    .card-title-sm {
-      font-size: 13px;
-      height: 56px;
-      padding: 0 5px;
+      padding-left: 3px;
+      padding-right: 3px;
+      @media only screen and (max-width: 1030px) {
+        .multiLineEllipsis(@lineHeight: 1.25em, @lineCount: 1, @bgColor: @carousel-gray-light);
+        font-size: 13px;
+      }
     }
   }
 }
 
 .slick-next,
 .slick-prev {
-  top: 50%;
+  top: 36%;
   @media only screen and (max-width: 768px) {
     display: none;
   }

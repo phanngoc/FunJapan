@@ -5,18 +5,16 @@
         .first-ranking
           a(href='#')
             .img-card.first-ranking-img
-              img(src='images/top/ranking_01.png')
+              .card-thumbnail
+                img(src='images/top/ranking_01.png')
+                p.first-ranking-num
+                  span.no No
+                  span.dot .
+                  span.number-1 1
+                .triangle-bottomright-1
               p.card-title
                 span
                   | Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun!
-              p.card-title-sm
-                span
-                  | Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan
-              p.first-ranking-num
-                span.no No
-                span.dot .
-                span.number-1 1
-              .triangle-bottomright-1
             .first-ranking-info
               p.first-ranking-topic
                 img(src='images/top/icon_bus.png')
@@ -31,26 +29,24 @@
                 .rest-ranking
                   a(href='#')
                     .img-card.list-group-ranking-item
-                      img(src=article.thumb_src)
-                      p.card-title
-                        span= article.title
-                      p.card-title-sm
-                        span= article.title_sm
-                      p.rest-ranking-num
-                        | #{article.rank}
-                      .triangle-bottomright-rest
+                      .card-thumbnail
+                        img(src=article.thumb_src)
+                        p.card-title
+                          span= article.title
+                        p.rest-ranking-num
+                          | #{article.rank}
+                        .triangle-bottomright-rest
                 .rest-ranking
                   a(href='#')
                     .img-card.list-group-ranking-item
                       - var next_article = article_rankings[index+1]
-                      img(src=next_article.thumb_src)
-                      p.card-title
-                        span= next_article.title
-                      p.card-title-sm
-                        span= next_article.title_sm
-                      p.rest-ranking-num
-                        | #{next_article.rank}
-                      .triangle-bottomright-rest          
+                      .card-thumbnail
+                        img(src=next_article.thumb_src)
+                        p.card-title
+                          span= next_article.title
+                        p.rest-ranking-num
+                          | #{next_article.rank}
+                        .triangle-bottomright-rest          
         .vote-button
           p.text-center
             a.btn.btn-default(role='button', href='#', target='_blank')
