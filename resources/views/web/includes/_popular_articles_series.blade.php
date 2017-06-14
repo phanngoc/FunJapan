@@ -29,9 +29,9 @@
                                     </div>
                                     <div class="col-md-61">
                                         <div class="pp-item-info">
-                                            <p class="pp-item-title">
-                                                <a href="{{ action('Web\ArticlesController@show', ['id' => $post->article_id]) }}">{{ $post->getShortTitle() }}</a>
-                                            </p>
+                                            <a href="{{ action('Web\ArticlesController@show', ['id' => $post->article_id]) }}">
+                                                <p class="pp-item-title">{{ $post->getShortTitle() }}</p>
+                                            </a>
                                             <div class="loader-engagement"></div>
                                         </div>
                                     </div>
@@ -62,9 +62,9 @@
                                         </a>
                                     </div>
                                     <div class="col-xs-8 col-sm-7">
-                                        <p class="pp-item-title">
-                                            <a href="{{ action('Web\TagsController@show', $item->name_link) }}">{{ $item->summary }}</a>
-                                        </p>
+                                        <a href="{{ action('Web\TagsController@show', $item->name_link) }}">
+                                            <p class="pp-item-title">{{ $item->summary }}</p>
+                                        </a>
                                     </div>
                                 @else
                                     <div class="col-xs-4 col-sm-5">
@@ -73,9 +73,9 @@
                                         </a>
                                     </div>
                                     <div class="col-xs-8 col-sm-7">
-                                        <p class="pp-item-title">
-                                            <a href="{{ action('Web\CategoriesController@show', $item->name_link) }}">{{ $item->summary }}</a>
-                                        </p>
+                                        <a href="{{ action('Web\CategoriesController@show', $item->name_link) }}">
+                                            <p class="pp-item-title">{{ $item->summary }}</p>
+                                        </a>
                                     </div>
                                 @endif
                                 </div>

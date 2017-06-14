@@ -1,5 +1,5 @@
 <li>
-    <a href="{{ action('Web\ArticlesController@show', $notification->targetItem->articleLocale->article_id) }}">
+    <a href="{{ isset($notification->targetItem) ? action('Web\ArticlesController@show', $notification->targetItem->articleLocale->article_id) : '#' }}">
         <div class="notification">
             @if (isset($notification->sender->avatar))
                 <img src="{{ $notification->sender->avatar_url }}">
@@ -8,7 +8,6 @@
             @endif
             <div class="message">
                 <p class="single-line">
-                    <span class="elap">...</span>
                     <span class="name">{{ $notification->sender->name ?? 'Unknow' }}</span>
                     <span class="action">{{ trans('web/notification.messages.' . $notification->type) }}</span>
                 </p>
