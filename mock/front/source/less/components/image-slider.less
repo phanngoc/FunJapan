@@ -63,18 +63,26 @@
     .content {
       margin: 20px 20px 25px 20px;
       @media only screen and (max-width: 768px) {
-        display: none;
+        margin: 7px 10px;
       }
       .heading {
         @media only screen and (max-width: 768px) {
           margin-bottom: 3px;
+          text-transform: none;
+          font-size: 14px;
+          margin-bottom: 5px;
         }
+        .multiLineEllipsis(@lineHeight: 1.3em, @lineCount: 1, @bgColor: transparent);
         color: @slider-red;
         text-transform: uppercase;
         font-size: 16px;
-        line-height: 1.2;
       }
       .description {
+        @media only screen and (max-width: 768px) {
+          font-size: 12px;
+          margin-bottom: 7px;
+        }
+        .multiLineEllipsis(@lineHeight: 1.3em, @lineCount: 1, @bgColor: transparent);
         font-family: opensans-regular;
         color: @slider-light-black;
         font-size: 14px;
@@ -98,23 +106,6 @@
             color: @slider-red;
             background: transparent;
           }
-        }
-      }
-      &.sm {
-        @media only screen and (max-width: 768px) {
-          display: block;
-          margin: 7px 10px;
-        }
-        display: none;
-        .heading {
-          text-transform: none;
-          font-size: 14px;
-          margin-bottom: 5px;
-        }
-        .description {
-          font-size: 12px;
-          margin-bottom: 7px;
-          line-height: 1.1;
         }
       }
     }
@@ -212,6 +203,7 @@
     background-color: rgba(237, 236, 236, 0.8);
     .thumb-content {
       p {
+        .multiLineEllipsis(@lineHeight: 1.3em, @lineCount: 2, @bgColor: transparent);
         margin: 4px 10px;
       }
     }

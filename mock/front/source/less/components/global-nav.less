@@ -38,30 +38,7 @@ a {
   opacity: 0.5;
 }
 
-// Limit number of lines
-.multiLineEllipsis(@lineHeight: 1.2em, @lineCount: 1, @bgColor: white) {
-  overflow: hidden;
-  position: relative;
-  line-height: @lineHeight;
-  max-height: @lineHeight * @lineCount;
-  text-align: justify;
-  &:after {
-    content: '';
-    position: absolute;
-    right: 0;
-    width: 1em;
-    height: 1em;
-    margin-top: 0.2em;
-    background: @bgColor;
-  }
-}
-
 .single-line {
-  .elap {
-    float: right;
-    clear: right;
-    color: @head-gray-2;
-  }
   .multiLineEllipsis(@lineHeight: 1.2em, @lineCount: 1, @bgColor: white);
 }
 
@@ -362,7 +339,8 @@ a {
         border-left: 1px solid @head-gray;
         border-right: 1px solid @head-gray;
         border-bottom: 1px solid @head-gray;
-        border-radius: 0;
+        border-top: 1px solid @head-gray;
+        border-radius: 3px;
         li {
           display: inline-block;
         }

@@ -36,7 +36,6 @@
                           img(src=noti.img_src)
                           .message
                             p.single-line
-                              span.elap ...
                               span.name=noti.user_name                             
                               span.action=noti.action
                             p.time
@@ -135,8 +134,8 @@
         span.vertical-bar 
         i.fa.fa-search.form-control-feedback
     // SLIDER
-    if hasSlider
-      #banner-top-sliderFrame
+    #banner-top-sliderFrame
+      if hasSlider      
         // MAIN IMAGES
         #banner-top-slider
           each val in slide_images
@@ -152,9 +151,6 @@
                   p.description=val.description 
                   p.read-more
                     span Read more
-                .content.sm
-                  p.heading=val.mobile.heading
-                  p.description=val.mobile.description          
         // EOF CAPTIONS
         // THUMBNAIS
         #banner-top-thumbs
@@ -167,60 +163,60 @@
         // EOF THUMBNAIS
         // EOF SLIDER
         // NAVBAR
-        .fj-navbar.nav-desktop
-          .container
-            nav.navbar.navbar-default
-              ul.nav.navbar-nav
-                li
-                  a(href='/index.html')
-                    i.zmdi.zmdi-ticket-star
-                    | Campaigns
-                li
-                  a(href='#')
-                    i.zmdi.zmdi-card-giftcard
-                    | Rewards
-                each menu in menus
-                  if menu.href_id != "social-dropdown" && menu.href_id != "legal-dropdown" && menu.href_id != "info-dropdown"                     
-                    li.dropdown
-                      a.fj-tab(data-toggle='tab', href=`#${menu.href_id}`)
-                        i.zmdi.zmdi-labels
-                        | #{menu.title}
-                        i.fa.fa-chevron-down
-                      .caret-up
-                        i.fa.fa-caret-up          
-              ul.nav.navbar-nav.navbar-right
-                li
-                  a(href='#')
-                    i.fa.fa-facebook-square
-                li
-                  a(href='#')
-                    i.fa.fa-twitter
-                li
-                  a(href='#')
-                    i.fa.fa-instagram
-                li
-                  a(href='#')
-                    i.fa.fa-youtube-play
-            .tab-content
+      .fj-navbar.nav-desktop
+        .container
+          nav.navbar.navbar-default
+            ul.nav.navbar-nav
+              li
+                a(href='/index.html')
+                  i.zmdi.zmdi-ticket-star
+                  | Campaigns
+              li
+                a(href='#')
+                  i.zmdi.zmdi-card-giftcard
+                  | Rewards
               each menu in menus
-                if menu.href_id != "social-dropdown" && menu.href_id != "legal-dropdown" && menu.href_id != "info-dropdown"
-                  div(class="tab-pane navbar-tab fade", id=`${menu.href_id}`)
-                    ul.tab-content-menu
-                      if menu.href_id === "tags-dropdown"
-                        each submenu in menu.submenus
-                          li.hot-tags
-                            a(href='#')
-                              span.hashtag # 
-                              | #{submenu}
-                      else              
-                        each submenu in menu.submenus
-                          li.vertical-bar
-                            a(href='#') |
-                          li
-                            a(href='#')=submenu
+                if menu.href_id != "social-dropdown" && menu.href_id != "legal-dropdown" && menu.href_id != "info-dropdown"                     
+                  li.dropdown
+                    a.fj-tab(data-toggle='tab', href=`#${menu.href_id}`)
+                      i.zmdi.zmdi-labels
+                      | #{menu.title}
+                      i.fa.fa-chevron-down
+                    .caret-up
+                      i.fa.fa-caret-up          
+            ul.nav.navbar-nav.navbar-right
+              li
+                a(href='#')
+                  i.fa.fa-facebook-square
+              li
+                a(href='#')
+                  i.fa.fa-twitter
+              li
+                a(href='#')
+                  i.fa.fa-instagram
+              li
+                a(href='#')
+                  i.fa.fa-youtube-play
+          .tab-content
+            each menu in menus
+              if menu.href_id != "social-dropdown" && menu.href_id != "legal-dropdown" && menu.href_id != "info-dropdown"
+                div(class="tab-pane navbar-tab fade", id=`${menu.href_id}`)
+                  ul.tab-content-menu
+                    if menu.href_id === "tags-dropdown"
+                      each submenu in menu.submenus
+                        li.hot-tags
+                          a(href='#')
+                            span.hashtag # 
+                            | #{submenu}
+                    else              
+                      each submenu in menu.submenus
                         li.vertical-bar
-                          a(href='#') |          
-        #nav-affix.navigation.fj-navbar-mobile
+                          a(href='#') |
+                        li
+                          a(href='#')=submenu
+                      li.vertical-bar
+                        a(href='#') |          
+      #nav-affix.navigation.fj-navbar-mobile
           .container
             ul.list-inline
               li

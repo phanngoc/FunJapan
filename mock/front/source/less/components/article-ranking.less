@@ -44,36 +44,26 @@
       }
     }
     .first-ranking-img {
-      @media only screen and (max-width: 768px) {
-        height: 116px;
-      }
-      @media only screen and (min-width: 768px)and (max-width: 1030px) {
-        height: 120px;
-      }
-      height: 165px;
       img.adjust-image-center {
         margin-top: -75px;
         @media only screen and (max-width: 768px) {
           margin-top: -26px;
         }
       }
-      .card-title {
-        @media only screen and (min-width: 768px)and (max-width: 1030px) {
-          display: none;
-        }
-        font-size: 15px;
-        height: 82px;
-        padding-left: 10px;
-        padding-right: 100px;
+      .card-thumbnail {
+        max-height: 135px;
       }
-      .card-title-sm {
-        @media only screen and (min-width: 768px)and (max-width: 1030px) {
-          display: flex;
-        }
-        font-size: 14px;
-        height: 70px;
+      .card-title {
+        font-size: 15px;
+        margin-top: 12px;
         padding-left: 10px;
-        padding-right: 85px;
+        padding-right: 10px;
+        .multiLineEllipsis(@lineHeight: 1.4em, @lineCount: 2, @bgColor: @carousel-gray-light);
+        @media only screen and (min-width: 768px)and (max-width: 1030px) {
+          font-size: 14px;
+          margin-top: 10px;
+          .multiLineEllipsis(@lineHeight: 1.3em, @lineCount: 1, @bgColor: @carousel-gray-light);
+        }
       }
       .first-ranking-num {
         @media only screen and (max-width: 768px) {
@@ -152,22 +142,27 @@
     }
   }
   .rest-ranking {
-    .list-group-ranking-item {
-      @media only screen and (max-width: 1030px) {
-        height: 85px;
+    .list-group-ranking-item {      
+      color: @ranking-white;
+      .card-thumbnail {
+        @media only screen and (max-width: 1030px) {
+          height: 73px;
+        }
+        height: 103px;
       }
-      height: 125px;
       .card-title {
+        .multiLineEllipsis(@lineHeight: 1.25em, @lineCount: 1, @bgColor: @ranking-white);
+        position: absolute;
+        bottom: 10px;
+        color: @ranking-white;
         font-size: 14px;
-        height: 70px;
         padding-left: 10px;
         padding-right: 60px;
-      }
-      .card-title-sm {
-        font-size: 13px;
-        height: 57px;
-        padding-left: 10px;
-        padding-right: 50px;
+        @media only screen and (max-width: 1030px) {
+          font-size: 13px;
+          padding-left: 10px;
+          padding-right: 50px;
+        }
       }
       .rest-ranking-num {
         @media only screen and (max-width: 768px) {

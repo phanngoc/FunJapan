@@ -7,3 +7,30 @@
 		filter: none;
 	}
 }
+
+// Limit number of lines
+.multiLineEllipsis(@lineHeight: 1.2em, @lineCount: 1, @bgColor: white) {
+  overflow: hidden;
+  position: relative;
+  line-height: @lineHeight;
+  max-height: @lineHeight * @lineCount;
+  &:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding-right: inherit;
+    background: @bgColor;
+    z-index: 2;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: @bgColor;
+    z-index: 3;
+  }
+}

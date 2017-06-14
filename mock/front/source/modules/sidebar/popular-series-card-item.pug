@@ -5,5 +5,5 @@ mixin popular-series-card-item(series_item)
         a(href=series_item.href)
           img(src=series_item.thumb_src)
       .col-xs-8.col-sm-7
-        p.pp-item-title
-          a(href=series_item.href)=series_item.title
+        a(href=series_item.href)
+          p.pp-item-title=series_item.title
