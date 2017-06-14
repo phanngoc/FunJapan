@@ -137,7 +137,7 @@ $(document).ready(function () {
             $('td', row).eq(0).empty().append(pageInfo.page * pageInfo.length + index + 1);
             var detailLink = baseUrl() + '/admin/articles/' + data.article_id + '?locale=' + data.locale_id;
             $('td', row).eq(1).empty().append('<a href="' + detailLink + '">' + encodeHTML(data.title) + '</a>');
-            $('td', row).eq(2).empty().append(data.article.user.name);
+            $('td', row).eq(2).empty().append(encodeHTML(data.article.user.name));
             $('td', row).eq(5).empty().append(articleTypes[data.article.type]);
             $('td', row).eq(6).empty().append(data.is_top_article ? 'Yes' : 'No');
             $('td', row).eq(7).empty().append(data.hide_always ? 'Yes' : 'No');
@@ -146,7 +146,7 @@ $(document).ready(function () {
             $('td', row).eq(9).empty().append('<a data-toggle="tooltip" data-placement="left" title="'
                 + $('#button-edit').data('message')
                 +'" href="' + editLink + '" class="edit"><i class="fa fa-pencil-square-o fa fa-lg"></i></a>'
-                + '<a data-toggle="tooltip" data-placement="top" title="'
+                + '<a data-toggle="tooltip" data-placement="left" title="'
                 + $('#button-delete').data('message')
                 +'" href="#" class="delete"><i class="fa fa-trash-o fa fa-lg"></i></a>');
         },

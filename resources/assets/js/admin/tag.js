@@ -41,7 +41,7 @@ $(document).ready(function (e) {
             blockAction = baseUrl() + '/admin/tagBlock/' + data.id;
             var appendText = '';
             if (data.status == 0) {
-                $('td', row).eq(2).empty().append($('#tag-not-block').data('message'));
+                $('td', row).eq(2).empty().append('<span>' + $('#tag-not-block').data('message') + '</span>').addClass('status');
 
                 appendText = '<a data-toggle="tooltip" data-placement="right" title="'
                     + $('#button-block').data('message')
@@ -49,7 +49,7 @@ $(document).ready(function (e) {
                     + blockAction
                     + '" class="fa fa-ban fa fa-lg ban"></i></a>';
             } else {
-                $('td', row).eq(2).empty().append($('#tag-block').data('message'));
+                $('td', row).eq(2).empty().append('<span>' + $('#tag-block').data('message') + '</span>').addClass('status');
 
                 appendText ='<a data-toggle="tooltip" data-placement="right" title="'
                     + $('#button-unblock').data('message')
@@ -113,6 +113,7 @@ $(document).ready(function (e) {
                     $(e.target).addClass('unBan');
                     $(e.target).addClass('fa-undo');
                     $(e.target).parent().attr('data-original-title', $('#button-unblock').data('message'));
+                    $(e.target).parent().parent().siblings('.status').empty().append('<span>' + $('#tag-block').data('message') + '</span>');
                     swal.close();
                 } else {
                     swal($('#button-error').data('message'));
@@ -145,6 +146,7 @@ $(document).ready(function (e) {
                     $(e.target).addClass('ban');
                     $(e.target).addClass('fa-ban');
                     $(e.target).parent().attr('data-original-title', $('#button-block').data('message'));
+                    $(e.target).parent().parent().siblings('.status').empty().append('<span>' + $('#tag-not-block').data('message') + '</span>');
                     swal.close();
                 } else {
                     swal($('#button-error').data('message'));

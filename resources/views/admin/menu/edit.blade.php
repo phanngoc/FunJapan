@@ -68,7 +68,11 @@
                                 'class' => 'col-sm-2 control-label'
                             ]) }}
                             <div class="col-sm-10">
-                                {{ Form::select('category', $categories, $selectedCategoriesId, ['class' => 'form-control', 'multiple']) }}
+                                <select name="category" class="form-control" multiple="multiple">
+                                    @foreach ($categories as $key => $category)
+                                        <option value="{{ $key }}" @if (in_array($key, $selectedCategoriesId)) selected @endif>{{ $category }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 

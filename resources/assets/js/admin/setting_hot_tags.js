@@ -94,8 +94,15 @@ $(document).ready(function () {
                 if (response.status == 0) {
                     swal($('#button-error').data('message'));
                 } else {
-                    swal($('#button-success').data('message'));
-                    location.reload();
+                    swal({
+                        title: $('#button-success').data('message'),
+                        closeOnConfirm: false,
+                    },
+                    function(isConfirm) {
+                        if (isConfirm) {
+                            location.reload();
+                        }
+                    });
                 }
             })
             .fail(function() {
