@@ -19,7 +19,7 @@
                             trans('admin/coupon.label.name'),
                             ['class' => 'col-sm-2 control-label'])
                         }}
-                        <div class="col-sm-3">
+                        <div class="col-sm-10">
                             {{ Form::text('name', old('name'), ['class' => 'form-control', 'required' => 'required']) }}
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                             ['class' => 'col-sm-2 control-label'])
                         }}
                         <div class="col-sm-10 pt6">
-                            {{ Form::number('max_coupon', old('max_coupon', 0), ['class' => 'form-control']) }}
+                            {{ Form::text('max_coupon', old('max_coupon', 0), ['class' => 'form-control']) }}
                         </div>
                     </div>
 
@@ -53,7 +53,7 @@
                             ['class' => 'col-sm-2 control-label'])
                         }}
                         <div class="col-sm-10 pt6">
-                            {{ Form::number('max_coupon_per_user', old('max_coupon_per_user', 0), ['class' => 'form-control']) }}
+                            {{ Form::text('max_coupon_per_user', old('max_coupon_per_user', 0), ['class' => 'form-control']) }}
                         </div>
                     </div>
 
@@ -64,7 +64,7 @@
                             ['class' => 'col-sm-2 control-label'])
                         }}
                         <div class="col-sm-10 pt6">
-                            {{ Form::number('required_point', old('required_point', 0), ['class' => 'form-control']) }}
+                            {{ Form::text('required_point', old('required_point', 0), ['class' => 'form-control']) }}
                         </div>
                     </div>
 
@@ -99,14 +99,14 @@
                                     'class' => 'col-sm-2 control-label',
                                 ]
                             ) }}
-                            <div class="col-sm-5 width30">
+                            <div class="col-sm-5 width225">
                                 {{ Form::text(
                                     'can_get_from',
                                     old('can_get_from'),
                                     ['class' => 'form-control datetime-picker', 'required' => 'required'])
                                 }}
                             </div>
-                            <div class="col-sm-5 width30">
+                            <div class="col-sm-5 width225">
                                 {{ Form::text(
                                     'can_get_to',
                                     old('can_get_to'),
@@ -125,14 +125,14 @@
                                     'class' => 'col-sm-2 control-label',
                                 ]
                             ) }}
-                            <div class="col-sm-5 width30">
+                            <div class="col-sm-5 width225">
                                 {{ Form::text(
                                     'can_use_from',
                                     old('can_use_from'),
                                     ['class' => 'form-control datetime-picker'])
                                 }}
                             </div>
-                            <div class="col-sm-5 width30">
+                            <div class="col-sm-5 width225">
                                 {{ Form::text(
                                     'can_use_to',
                                     old('can_use_to'),
