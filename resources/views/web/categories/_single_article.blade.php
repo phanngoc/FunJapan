@@ -10,9 +10,10 @@
         @endphp
         <a href="{{ $url }}">
             <div class="img-card card-item">
+                <div class="card-thumbnail">
                     <img src="{{ asset($article->articleLocales[0]->thumbnail_urls['normal']) }}">
-                    <p class="card-title"><span>{{ $article->articleLocales[0]->title }}</span> </p>
-                    <p class="card-title-sm"><span>{{ $article->articleLocales[0]->title }}</span></p>
+                </div>
+                <p class="card-title"><span>{{ $article->articleLocales[0]->title }}</span> </p>
             </div>
         </a>
         <div class="article-info">

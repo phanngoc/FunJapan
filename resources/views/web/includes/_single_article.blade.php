@@ -3,9 +3,10 @@
     <div class="list-group-item list-group-item-cards">
         <a href="{{ action('Web\ArticlesController@show', ['id' => $article->article_id]) }}">
             <div class="img-card card-item">
-                <img src="{{ $article->thumbnail_urls['original'] }}">
+                <div class="card-thumbnail">
+                    <img src="{{ $article->thumbnail_urls['original'] }}">
+                </div>
                 <p class="card-title"><span>{{ $article->title }}</span> </p>
-                <p class="card-title-sm"><span>{{ $article->title }}</span></p>
             </div>
         </a>
         <div class="article-info">

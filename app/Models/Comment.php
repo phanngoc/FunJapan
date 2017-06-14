@@ -47,6 +47,9 @@ class Comment extends BaseModel
 
             $comment->children()->delete();
             $comment->favoriteComments()->delete();
+
+            Notification::where('reference_id', $comment->id)
+                ->delete();
         });
     }
 
