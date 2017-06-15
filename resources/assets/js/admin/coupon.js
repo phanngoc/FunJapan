@@ -54,8 +54,8 @@ $(document).ready(function (e) {
             var detailLink = baseUrl() + '/admin/coupons/' + data.id ;
 
             $('td', row).eq(1).empty().append('<a href="' + detailLink + '">' + encodeHTML(data.name) + '</a>');
-            $('td', row).eq(2).empty().append(data.can_get_from);
-            $('td', row).eq(3).empty().append(data.can_get_to);
+            $('td', row).eq(2).empty().append(data.can_get_from).addClass('text-center');
+            $('td', row).eq(3).empty().append(data.can_get_to).addClass('text-center');
             $('td', row).eq(4).empty().append(commaSeparateNumber(data.max_coupon));
             $('td', row).eq(5).empty().append(commaSeparateNumber(data.required_point));
             $('td', row).eq(6).empty().append(data.status);
@@ -64,13 +64,15 @@ $(document).ready(function (e) {
             var urlDelete = baseUrl() + '/admin/coupons/' + data.id;
 
             $('td', row).eq(7).empty().append(' \
-                <a href="' + urlEdit + '" class="edit" data-placement="left" data-toggle="tooltip" title="Edit"> \
-                    <i class="fa fa-pencil-square-o fa-lg"></i> \
-                </a> \
-                <a href="#" data-url="' + urlDelete + '" data-confirm="' + encodeHTML(data.confirmDeleteMessage) + '" class="delete" data-toggle="tooltip" \
-                    data-placement="top" title="Delete"> \
-                    &nbsp;<i class="fa fa-trash-o fa-lg"></i> \
-                </a> \
+                <p class="text-center"> \
+                    <a href="' + urlEdit + '" class="edit" data-placement="left" data-toggle="tooltip" title="Edit"> \
+                        <i class="fa fa-pencil-square-o fa-lg"></i> \
+                    </a> \
+                    <a href="#" data-url="' + urlDelete + '" data-confirm="' + encodeHTML(data.confirmDeleteMessage) + '" class="delete" data-toggle="tooltip" \
+                        data-placement="top" title="Delete"> \
+                        &nbsp;<i class="fa fa-trash-o fa-lg"></i> \
+                    </a> \
+                </p> \
             ');
         },
         'fnDrawCallback': function (data, type, full, meta) {
@@ -150,7 +152,7 @@ $(document).ready(function (e) {
         var hasChanges = false;
 
         $('.ibox').find(":input:not(:button):not([type=hidden])").each(function () {
-            if ((this.type == "text" || this.type == "textarea" || this.type == "hidden") && this.defaultValue != this.value) {
+            if ((this.type == "text" || this.type == "textarea" || this.type == "hidden" || this.type == "file") && this.defaultValue != this.value) {
                 hasChanges = true;
                 return false;
             } else {

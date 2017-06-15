@@ -12,3 +12,21 @@
 .datetime-picker {
     width: 210px;
 }
+
+.coupon-description {
+    span {
+        img {
+            max-width: 100%;
+        }
+    }
+}
+
+#coupon-table_wrapper {
+    table {
+        width: 100% !important;
+    }
+}
+
+.width225 {
+    width: 225px !important;
+}

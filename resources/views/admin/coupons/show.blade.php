@@ -14,7 +14,7 @@
                         <strong class="col-sm-2">{{ trans('admin/coupon.label.name') }}: </strong>
                         <span class="col-sm-10" >{{ $coupon->name }} &nbsp; </span>
                     </div>
-                    <div class="box-content-category">
+                    <div class="box-content-category coupon-description">
                         <strong class="col-sm-2">{{ trans('admin/coupon.label.description') }}:</strong>
                         <span class="col-sm-10" >{!! $coupon->html_description !!} &nbsp;</span>
                     </div>
