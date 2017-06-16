@@ -21,6 +21,8 @@ return [
         'required' => 'The Option field is required.',
         'max' => 'The Option must be at least :value characters.',
         'min' => 'The Option must be at least :value characters.',
+        'at_least' => 'The Question must be at least an Option.',
+        'enter' => 'You have to enter data in Option.',
     ],
 
     'score' => 'Score',

@@ -20,24 +20,20 @@
                         <div class="form-create">
                             @include('admin.results._form_edit')
                         </div>
-                        @if(count($results))
-                            <div class="form-group">
-                                <div class="col-sm-2 col-sm-offset-1">
-                                    <a href="javascript:;" class="btn btn-primary" id="edit-result"
-                                        data-url="{{ action('Admin\ResultsController@store', [$survey->id]) }}" data-survey-id="{{ $survey->id }}">
-                                        {{ trans('admin/survey.button.save') }}
-                                    </a>
-                                </div>
-                                <div class="col-sm-2">
-                                    <a href="#" data-url="{{ action('Admin\SurveysController@show', [$survey->id]) }}" data-confirm="{{ trans('admin/category.cancel_confirm') }}" class="cancel btn btn-primary">
-                                        {{ trans('admin/survey.button.cancel') }}
-                                    </a>
-                                </div>
+                        <div id="statusForm" data-status=""></div>
+                        <div class="form-group">
+                            <div class="col-sm-2 col-sm-offset-1">
+                                <a href="javascript:;" class="btn btn-primary" id="edit-result"
+                                    data-url="{{ action('Admin\ResultsController@store', [$survey->id]) }}" data-survey-id="{{ $survey->id }}">
+                                    {{ trans('admin/survey.button.save') }}
+                                </a>
                             </div>
-                        @else
-                            Nothing to show. <a href="{{ action('Admin\ResultsController@create', [$survey->id]) }}"><b>Add result?</b></a>
+                            <div class="col-sm-2">
+                                <a href="#" data-url="{{ action('Admin\SurveysController@show', [$survey->id]) }}" data-confirm="{{ trans('admin/category.cancel_confirm') }}" class="cancel btn btn-primary">
+                                    {{ trans('admin/survey.button.cancel') }}
+                                </a>
+                            </div>
                         </div>
-                        @endif
                     {{ Form::close() }}
                     <div id="redirect-show" data-url="{{ action('Admin\SurveysController@show', [$survey->id]) }}"></div>
                 </div>

@@ -27,6 +27,14 @@ class ResultsController extends Controller
         return view('admin.results.create', $this->viewData);
     }
 
+    public function edit(Survey $survey, $id)
+    {
+        $this->viewData['survey'] = $survey;
+        $this->viewData['result'] = Result::find($id);
+
+        return view('admin.results.edit', $this->viewData);
+    }
+
     public function store(Request $request, Survey $survey)
     {
         $inputs = $request->all();
@@ -45,6 +53,7 @@ class ResultsController extends Controller
                 }
             }
         }
+
         if ($checkUpdate) {
             if (ResultService::update($inputs)) {
                 Session::flash('message', trans('admin/survey.update_success'));
@@ -57,6 +66,15 @@ class ResultsController extends Controller
             } else {
                 Session::flash('error', trans('admin/survey.create_error'));
             }
+        }
+    }
+
+    public function destroy(Survey $survey, $id)
+    {
+        if (ResultService::destroy($id)) {
+            Session::flash('message', trans('admin/survey.delete_success'));
+        } else {
+            Session::flash('error', trans('admin/survey.delete_error'));
         }
     }
 }

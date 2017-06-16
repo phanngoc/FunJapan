@@ -84,10 +84,7 @@
                     </a>
                     @if ($survey->type == config('survey.psychological'))
                         <a href="{{ action('Admin\ResultsController@create', [$survey->id]) }}" class="btn btn-w-m btn-primary">
-                            {{ trans('admin/result.button.create') }}
-                        </a>
-                        <a href="{{ action('Admin\ResultsController@index', [$survey->id])}}" class="btn btn-w-m btn-primary">
-                            {{ trans('admin/result.button.show') }}
+                            {{ trans('admin/result.button.add') }}
                         </a>
                     @endif
                 </div>
@@ -95,5 +92,43 @@
         </div>
     </div>
 
-    @include('admin.questions.detail')
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="tabs-container">
+                    <ul class="nav nav-tabs">
+                        <li class="active" data-tab="question">
+                            <a data-toggle="tab" href="#question">Question</a>
+                        </li>
+                        <li data-tab="result">
+                            <a data-toggle="tab" href="#result">Result</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="question" class="tab-pane fade in active">
+                            @include('admin.questions.detail')
+                        </div>
+                        @if ($survey->type == config('survey.psychological'))
+                            <div id="result" class="tab-pane fade">
+                                @include('admin.results.detail')
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@stop
+
+@section('script')
+    {!! Html::script('assets/admin/js/question.js') !!}
+    {!! Html::script('assets/admin/js/result.js') !!}
+    <script type="text/javascript">
+        function showDetail(id) {
+            $('.show-detail-' + id).slideToggle();
+        }
+        function showOption(id) {
+            $('.show-option-' + id).slideToggle();
+        }
+    </script>
 @stop

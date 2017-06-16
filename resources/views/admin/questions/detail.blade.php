@@ -1,8 +1,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="ibox">
-            <div class="ibox-title"><h2>{{ trans('admin/question.question') }}</h2></div>
-            <div class="ibox-content">
+            <div class="ibox-content ibox-question">
                 <table class="table table-striped table-hover">
                     <tbody id="sortable">
                         @forelse($questions as $key => $question)
@@ -67,12 +66,3 @@
 {{ Form::open(['id' => 'update-order-form']) }}
     {{ method_field('POST') }}
 {{ Form::close() }}
-
-@section('script')
-    {!! Html::script('assets/admin/js/question.js') !!}
-    <script type="text/javascript">
-        function showOption(id) {
-            $('.show-option-' + id).slideToggle();
-        }
-    </script>
-@stop

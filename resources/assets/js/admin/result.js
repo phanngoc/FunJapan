@@ -1,6 +1,10 @@
 $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
     var result = $('.form-create').html();
+    var deleteButton =
+        '<div class="col-sm-1">' +
+            '<a data-toggle="tooltip" data-placement="top" href="javascript:;" title="Delete Result" class="delete"><i class="fa fa-trash fa-lg"></i></a>' +
+        '</div>';
     $('.add-more').click(function () {
         var form = $('.form-create').append('<hr>' + result);
         id = id + 1;
@@ -13,6 +17,13 @@ $(document).ready(function () {
         formLast.find('.description').attr('name', 'result[' + id + '][description]');
         formLast.find('.bottom_text').attr('name', 'result[' + id + '][bottom_text]');
         $('[data-toggle="tooltip"]').tooltip();
+        $.each($('.title'), function () {
+            if ($(this).find('.delete').length == 0) {
+                $(this).append(deleteButton);
+            }
+        });
+        deleteResult();
+        disabledDeleteResult();
     });
 
     $('.photo').on('change', function (e) {
@@ -106,4 +117,29 @@ function readUrl (input, element) {
     } else {
         oldImg.attr('src', oldUrl);
     }
+}
+
+function disabledDeleteResult() {
+    $('.delete').hover(function () {
+        $(this).css('cursor', 'pointer');
+    });
+
+    $('.form-result:only-child').find('.delete').hover(function () {
+        $(this).css('cursor', 'not-allowed');
+    });
+}
+
+function deleteResult() {
+    $('.delete').click(function () {
+        formResult = $(this).parents('.form-result');
+        if ($('.form-result').length > 1) {
+            if (formResult.is(':first-child')) {
+                formResult.next('hr').remove();
+            }
+            formResult.prev('hr').remove();
+            formResult.remove();
+        }
+
+        disabledDeleteResult();
+    });
 }
