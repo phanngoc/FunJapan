@@ -72,7 +72,7 @@
                                             <td>{{ Form::text('point['.$key.']', old('point')[$key], ['class' => 'form-control', 'pattern'=> '[0-9]*']) }}</td>
                                             <td>
                                                 {{ Form::file('item_image['.$key.']', ['class' => 'mt5 upload-image-item', 'data-index' => $key ]) }}
-                                                <img class="item-hide" id="{{ 'image-item-preview-'.$key }}" src="" width="32" height="32"  title="Preview Image">
+                                                &nbsp; <img class="item-hide" id="{{ 'image-item-preview-'.$key }}" src="" width="32" height="32"  title="Preview Image">
                                             </td>
                                             <td class="text-center">
                                                 <a href="javascript:void(0)" data-confirm="a" class="delete-new-row" data-toggle="tooltip" title="Delete">
@@ -89,7 +89,7 @@
                                     <td>{{ Form::text('point[1]', null, ['class' => 'form-control', 'pattern'=> '[0-9]*']) }}</td>
                                     <td>
                                         {{ Form::file('item_image[1]', ['class' => 'mt5 upload-image-item', 'data-index' => '1']) }}
-                                        <img class="item-hide" id="image-item-preview-1" src="" width="32" height="32"  title="Preview Image">
+                                        &nbsp; <img class="item-hide" id="image-item-preview-1" src="" width="32" height="32"  title="Preview Image">
                                     </td>
                                     <td class="text-center">
                                         <a href="javascript:void(0)" data-confirm="a" class="delete-new-row" data-toggle="tooltip" title="Delete">

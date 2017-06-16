@@ -18,7 +18,7 @@ return [
     'create_error' => 'Created unsuccessfully!',
     'create_success' => 'Created successfully!',
     'error_duplication' => 'Name is duplication',
-    'delete_confirm' => 'Are you sure to delete :name ?',
+    'delete_confirm' => 'Are you sure to delete :name?',
     'delete_success' => 'Deleted successfully!',
     'delete_error' => 'Deleted unsuccessfully!',
     'icon_message' => 'The photo must be a file of type: :type!',

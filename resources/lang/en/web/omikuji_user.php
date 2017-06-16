@@ -5,6 +5,7 @@ return [
     'about_omikuji' => 'Learn about Omikuji',
     'mess_point' => 'Get :point Fun! Japan Points!!',
     'omikuji' => 'Omikuji',
+    'updating' => 'Updating...',
     'button' => [
         'submit' => 'Submit',
     ]

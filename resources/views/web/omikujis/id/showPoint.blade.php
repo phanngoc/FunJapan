@@ -3,7 +3,7 @@
 @section('content_child')
     <div>
         <h3>
-            Omikuji
+            {{ trans('web/omikuji_user.omikuji') }}
         </h3>
         <div class="col-xs-8 col-xs-offset-2">
             <div class="text-center">
@@ -14,10 +14,10 @@
                     </p>
                 @endif
 
-                <p class="text-center"><a href="#">Dapatkan Fun! Japan Point! Klik di sini!</a>
+                <p class="text-center"><a href="#">{{ trans('web/omikuji_user.get_fun') }}</a>
                     <br>
                     <br>
-                    <a href="#" target="_blank">Win Free Japan trip!</a>
+                    <a href="#" target="_blank">{{ trans('web/omikuji_user.win_free') }}</a>
                 </p>
 
                 <p class="text-center"><a href="#">{{ trans('web/omikuji_user.about_omikuji') }}</a></p>

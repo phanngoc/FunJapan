@@ -77,6 +77,9 @@ class OmikujiService extends BaseService
             'point.*' => 'required|integer|min:1|max:10000',
             'record_item' => 'integer|min:1',
         ];
+        if (isset($inputs['recover_time'])) {
+            $inputs['recover_time'] = intval($inputs['recover_time'], '10');
+        }
 
         if (isset($inputs['end_time'])) {
             $validationRules['end_time'] = 'date|after:start_time';
@@ -91,18 +94,46 @@ class OmikujiService extends BaseService
                 . config('images.validate.omikuji_image.max_size');
         }
 
+        if (empty($inputs['item'])) {
+            $inputs['record_item'] = 0;
+            return Validator::make($inputs, $validationRules, $messages)
+                ->setAttributeNames(trans('admin/omikuji.label'));
+        }
+
         foreach ($inputs['item'] as $key => $value) {
             //except row null
             if (isset($inputs['omikujiItem_id'][$key])) {
                 $item[$key] = $value;
-                $rateWeight[$key] = ltrim($inputs['rate_weight'][$key], '0');
-                $point[$key] = ltrim($inputs['point'][$key], '0');
+
+                if (isset($inputs['rate_weight'][$key])) {
+                    $rateWeight[$key] = intval($inputs['rate_weight'][$key], '10');
+                } else {
+                    $rateWeight[$key] = $inputs['rate_weight'][$key];
+                }
+
+                if (isset($inputs['point'][$key])) {
+                    $point[$key] = intval($inputs['point'][$key], '10');
+                } else {
+                    $point[$key] = $inputs['point'][$key];
+                }
+
                 $itemImage[$key] = $inputs['item_image'][$key] ?? null;
             } elseif (isset($value) || isset($inputs['rate_weight'][$key]) || isset($inputs['item_image'][$key])
                 || isset($inputs['point'][$key])) {
                 $item[$key] = $value;
-                $rateWeight[$key] = ltrim($inputs['rate_weight'][$key], '0');
-                $point[$key] = ltrim($inputs['point'][$key], '0');
+
+                if (isset($inputs['rate_weight'][$key])) {
+                    $rateWeight[$key] = intval($inputs['rate_weight'][$key], '10');
+                } else {
+                    $rateWeight[$key] = $inputs['rate_weight'][$key];
+                }
+
+                if (isset($inputs['point'][$key])) {
+                    $point[$key] = intval($inputs['point'][$key], '10');
+                } else {
+                    $point[$key] = $inputs['point'][$key];
+                }
+
                 $itemImage[$key] = $inputs['item_image'][$key] ?? null;
                 $validationRules['item_image.'.$key] = 'required|mimes:'. $itemMimes .'|max:' .$itemSize;
             }
@@ -154,7 +185,7 @@ class OmikujiService extends BaseService
             $omikuji->description = $inputs['description'];
             $omikuji->start_time = $inputs['start_time'];
             $omikuji->end_time = $inputs['end_time'];
-            $omikuji->recover_time = $inputs['recover_time'];
+            $omikuji->recover_time = intval($inputs['recover_time'], '10');
             if (isset($inputs['locale_id'])) {
                 $omikuji->locale_id = $inputs['locale_id'];
             }
@@ -181,8 +212,8 @@ class OmikujiService extends BaseService
                         || isset($inputs['point'][$key])) {
                         $omikujiItem = new OmikujiItem();
                         $omikujiItem->name = $item;
-                        $omikujiItem->rate_weight = $inputs['rate_weight'][$key];
-                        $omikujiItem->point = $inputs['point'][$key];
+                        $omikujiItem->rate_weight = intval($inputs['rate_weight'][$key], '10');
+                        $omikujiItem->point = intval($inputs['point'][$key], '10');
                         $omikujiItem->omikuji_id = $omikuji->id;
                         $omikujiItem->save();
                         if (isset($inputs['item_image'][$key])) {
@@ -258,8 +289,8 @@ class OmikujiService extends BaseService
                                 || isset($inputs['point'][$key])) {
                                 $omikujiItem = new OmikujiItem();
                                 $omikujiItem->name = $item;
-                                $omikujiItem->rate_weight = $inputs['rate_weight'][$key];
-                                $omikujiItem->point = $inputs['point'][$key];
+                                $omikujiItem->rate_weight = intval($inputs['rate_weight'][$key], '10');
+                                $omikujiItem->point = intval($inputs['point'][$key], '10');
                                 $omikujiItem->omikuji_id = $id;
                                 $omikujiItem->save();
                                 if (isset($inputs['item_image'][$key])) {
@@ -296,8 +327,8 @@ class OmikujiService extends BaseService
                                     if ($imageItem) {
                                         $omikujiItem->update([
                                                 'name' => $item,
-                                                'rate_weight' => $inputs['rate_weight'][$key],
-                                                'point' => $inputs['point'][$key],
+                                                'rate_weight' => intval($inputs['rate_weight'][$key], '10'),
+                                                'point' => intval($inputs['point'][$key], '10'),
                                                 'image' => $imageItem,
                                             ]);
                                     } else {
@@ -308,8 +339,8 @@ class OmikujiService extends BaseService
                                 }
                                  $omikujiItem->update([
                                         'name' => $item,
-                                        'rate_weight' => $inputs['rate_weight'][$key],
-                                        'point' => $inputs['point'][$key],
+                                        'rate_weight' => intval($inputs['rate_weight'][$key], '10'),
+                                        'point' => intval($inputs['point'][$key], '10'),
                                     ]);
                             } else {
                                 DB::rollback();
@@ -323,6 +354,13 @@ class OmikujiService extends BaseService
 
                     return false;
                 }
+
+                // delete item
+                $deleteList = explode(',', $inputs['deleteList']);
+                foreach ($deleteList as $value) {
+                    self::deleteOmikujiItem($value);
+                }
+
                 DB::commit();
 
                 return $omikuji->id;
@@ -361,6 +399,7 @@ class OmikujiService extends BaseService
 
         return false;
     }
+
     public static function deleteOmikuji($id)
     {
         $omikuji = Omikuji::find($id);

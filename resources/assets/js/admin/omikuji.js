@@ -60,15 +60,33 @@ $(document).ready(function (e) {
         },
     });
 
+    jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+        "percent-pre": function ( a ) {
+            return parseFloat( a );
+        },
+
+        "percent-asc": function ( a, b ) {
+            return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+        },
+
+        "percent-desc": function ( a, b ) {
+            return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+        }
+    } );
+
     var detailTableOmikuji  = $('#detail-omikuji-table').DataTable({
         paging: true,
         order: [],
         searching: false,
-        "columnDefs": [
-        {
-            "orderable": false,
-            "targets": [0,4]
-        }
+        "aoColumnDefs": [
+            {
+                "sType": "percent",
+                "aTargets": [ 2 ]
+            },
+            {
+                "orderable": false,
+                "targets": [0,4]
+            }
         ],
     });
 
@@ -91,7 +109,7 @@ $(document).ready(function (e) {
             '<td><input class="form-control " name="rate_weight[' + countTable  + ']" type="text" ></td>' +
             '<td><input class="form-control " name="point[' + countTable + ']" type="text" ></td>' +
             '<td><input class="mt5 upload-image-item" name="item_image[' + countTable + ']" type="file"  data-index="' + countTable + '"> '+
-            '<img id="image-item-preview-'+ countTable +'" class="item-hide" src="" width="32" height="32"  title="Preview Image"></td>' +
+            '&nbsp; <img id="image-item-preview-'+ countTable +'" class="item-hide" src="" width="32" height="32"  title="Preview Image"></td>' +
             '<td class="text-center"><a href="javascript:void(0)" class="delete-new-row" data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o fa fa-lg"></i></a><input name="omikujiItem_id[' + countTable + ']" type="hidden" value=""></td>' +
             '</tr>');
         focusScroll();
@@ -182,39 +200,32 @@ $(document).ready(function (e) {
         if (checkRow()) {
             var action = $(this).data('url');
             var confirm = $(this).data('confirm');
-            var token = $('meta[name="csrf-token"]').attr('content');
-            var trElement = $(this).closest('tr');
+            var id = $(this).closest('td').find('input[name^=omikujiItem_id]').val();
+            var element = $(this).closest('tr');
             swal({
                 title: confirm,
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
                 confirmButtonText: "Yes",
-                closeOnConfirm: false
+                closeOnConfirm: true
             },
             function(){
-                $.ajax({
-                    headers: { 'X-CSRF-TOKEN' : token },
-                    type: 'DELETE',
-                    url: action,
-                    data: {},
-                    success: function (response) {
-                        if (response.status) {
-                            trElement.remove();
-                            reDrawTable();
-                            checkRow();
-                            swal(response.message, "", "success");
-                        } else {
-                            swal(response.message, "", "error");
-                        }
-                    },
-                    error: function (e) {
-                        swal("ERROR", "", "error");
-                    }
-                });
+                element.remove();
+                $('#deleteList').val(addString($('#deleteList').val(), id));
+                reDrawTable();
+                checkRow();
             });
         }
     });
+
+    function addString(str1, str2) {
+        if (str1 == null || str1 == '') {
+            return str2;
+        }
+
+        return str1 + ',' + str2;
+    }
 
     $(".cancel").click(function(){
         var status = $('#statusForm').data('status');
@@ -266,7 +277,11 @@ $(document).ready(function (e) {
     });
 
     $( 'body' ).on( 'change', '.upload-image-item', function (e) {
-        readURL(e.target,'omikuji-item', $(this).data('index'));
+        var str = $(this).attr('name');
+        var start = str.indexOf("[");
+        var end = str.indexOf("]");
+        var index = str.substring(start+1,end);
+        readURL(e.target,'omikuji-item', index);
     });
 
     function imageClick(input, idImageInfor, idImagePreview, index='') {

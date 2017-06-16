@@ -17,6 +17,7 @@ class OmikujiUser extends BaseModel
         'omikuji_play_time',
         'user_id',
         'omikuji_id',
+        'recover_time',
     ];
 
     public function omikuji()

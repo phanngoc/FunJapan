@@ -9,7 +9,7 @@ return [
     'action' => 'Action',
     'article_comment_list' => 'Comment List',
     'comment_date' => 'Comment Date',
-    'confirm' => 'Are you sure to delete :name ?',
+    'confirm' => 'Are you sure to delete this item?',
     'delete_success' => 'Deleted successfully',
     'delete_error' => 'Deleted unsuccessfully',
 ];
