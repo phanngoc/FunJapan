@@ -53,7 +53,6 @@ class SurveyService extends BaseService
                 'type' => $inputs['type'],
                 'point' => $inputs['point'],
                 'user_id' => auth()->user()->id,
-                'locale_id' => $inputs['locale'],
                 'multiple_join' => $inputs['multiple_join'] ?? 0,
             ]);
         } else {

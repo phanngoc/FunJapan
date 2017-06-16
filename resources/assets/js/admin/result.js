@@ -19,7 +19,7 @@ $(document).ready(function () {
         readUrl($(this), this);
     });
 
-    $('#create-result').click(function () {
+    $('#create-result, #edit-result').click(function () {
         var url = $(this).data('url');
         var token = $('meta[name="csrf-token"]').attr('content');
         var surveyId = $(this).data('survey-id');
@@ -77,6 +77,17 @@ $(document).ready(function () {
             });
         } else {
             window.location.href = action;
+        }
+    });
+
+    $('.delete').click(function () {
+        formResult = $(this).parents('.form-result');
+        if ($('.form-result').length > 1) {
+            if (formResult.is(':first-child')) {
+                formResult.next('hr').remove();
+            }
+            formResult.prev('hr').remove();
+            formResult.remove();
         }
     });
 });

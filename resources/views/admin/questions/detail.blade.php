@@ -39,6 +39,11 @@
                                                 {{ trans('admin/question.text') }}
                                             </p>
                                         @endif
+                                        @if ($question->other_option)
+                                            <p class="list-option">
+                                                <span>{{ trans('admin/question.other_option') }}: </span>
+                                            </p>
+                                        @endif
                                     </div>
                                 </td>
                             <tr>

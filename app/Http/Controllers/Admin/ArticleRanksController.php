@@ -7,11 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Services\Admin\LocaleService;
 use App\Services\Admin\ArticleLocaleService;
 use App\Services\Admin\ArticleRankService;
+use Gate;
 
 class ArticleRanksController extends Controller
 {
     public function index()
     {
+        abort_if(Gate::denies('permission', 'ranking.list'), 403, 'Unauthorized action.');
         $locales = LocaleService::getAllLocales();
         $this->viewData['locales'] = $locales;
         $this->viewData['articleRanks'] = ArticleRankService::getAllArticleRanks($locales);
@@ -31,6 +33,13 @@ class ArticleRanksController extends Controller
 
     public function store(Request $request, $localeId)
     {
+        abort_if(Gate::denies('permission', 'raking.add'), 403, 'Unauthorized action.');
+        if (!auth()->check()) {
+            return response()->json([
+                'message' => trans('admin/recommend_article.messages.not_permission'),
+            ]);
+        }
+
         $arrayArticleLocaleId = [];
         $message = [];
         if (isset($request->articleRank)) {

@@ -32,8 +32,7 @@
                     'required',
                 ])
             }}
+            <p class="text-danger font-bold error-question"></p>
         </div>
     </div>
-    <p class="text-danger font-bold error-question"></p>
 </div>
-<div id="statusForm" data-status=""></div>

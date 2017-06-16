@@ -21,18 +21,43 @@ class QuestionsController extends Controller
     public function store(Request $request, Survey $survey)
     {
         $inputs = $request->input('question');
-        $message = QuestionService::validate($inputs);
+        $messages = QuestionService::validate($inputs);
+        $checkMessage = false;
+        $checkUpdate = false;
+        foreach ($messages as $key => $message) {
+            if (!empty($message)) {
+                $checkMessage = true;
+            }
+        }
 
-        if ($message) {
+        if ($checkMessage) {
             return response()->json([
-                'message' => $message,
+                'message' => $messages,
             ]);
         }
 
-        if (QuestionService::store($inputs)) {
-            Session::flash('message', trans('admin/survey.create_success'));
+        foreach ($inputs as $key => $input) {
+            if (isset($input['id'])) {
+                $question = Question::find($input['id']);
+                if ($question) {
+                    $checkUpdate = true;
+                    break;
+                }
+            }
+        }
+
+        if ($checkUpdate) {
+            if (QuestionService::update($inputs)) {
+                Session::flash('message', trans('admin/survey.update_success'));
+            } else {
+                Session::flash('error', trans('admin/survey.update_error'));
+            }
         } else {
-            Session::flash('error', trans('admin/survey.create_error'));
+            if (QuestionService::store($inputs)) {
+                Session::flash('message', trans('admin/survey.create_success'));
+            } else {
+                Session::flash('error', trans('admin/survey.create_error'));
+            }
         }
     }
 
@@ -42,18 +67,6 @@ class QuestionsController extends Controller
         $this->viewData['question'] = Question::find($questionId);
 
         return view('admin.questions.edit', $this->viewData);
-    }
-
-    public function update(Request $request, Survey $survey, $questionId)
-    {
-        $inputs = $request->all();
-
-        if (QuestionService::update($inputs, $questionId)) {
-            return redirect()->action('Admin\SurveysController@show', [$survey->id])
-                ->with(['message' => trans('admin/survey.update_success')]);
-        }
-
-        return redirect()->back()->withErrors(['error' => trans('admin/survey.update_error')]);
     }
 
     public function destroy(Survey $survey, $questionId)

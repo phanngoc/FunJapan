@@ -34,7 +34,7 @@
                                                         data-locale-id="{{ $localeId }}">
                                                         @if (count($articleRank))
                                                             @foreach($articleRank as $ar)
-                                                                @if($ar->rank == $rank && isset($ar->article_locale_id))
+                                                                @if($ar->rank == $rank && isset($ar['articleLocale']))
                                                                     <option value="{{ $ar->article_locale_id }}" selected>
                                                                         {{ $ar['articleLocale']->title }}
                                                                     </option>

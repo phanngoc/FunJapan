@@ -1,24 +1,22 @@
 $(document).ready(function() {
-    var error =
-        '<div class="error">' +
-            '<p class="text-danger font-bold m-xxs error-option"></p>' +
-            '<p class="text-danger font-bold m-xxs error-score"></p>' +
-        '</div>';
+    var errorOption = '<p class="text-danger font-bold error-option"></p>';
+    var errorScore = '<p class="text-danger font-bold error-score"></p>';
     var option =
         '<div class="form-group input-option">' +
             '<label class="option-name col-sm-1 control-label">Option</label>' +
             '<div class="col-sm-4">' +
                 '<input name="option_name[]" id="option_name[]" type="text" class="form-control input-field">' +
+                errorOption +
             '</div>' +
             '<label class="option-name col-sm-1 control-label">Score</label>' +
             '<div class="col-sm-4">' +
                 '<input name="score[]" id="score[]" type="text" class="form-control input-field">' +
+                errorScore +
             '</div>' +
             '<div class="col-sm-2">' +
-                '<a data-toggle="tooltip" data-placement="left" title="Add Option" class="add-option"><i class="fa fa-plus-square-o fa-lg"></i></a>' +
+                '<a data-toggle="tooltip" data-placement="left" title="Add Option" class="add-option"><i class="fa fa-plus-square-o fa-lg"></i></a>&nbsp;' +
                 '<a data-toggle="tooltip" data-placement="top" title="Delete Option" class="delete-option"><i class="fa fa-trash fa-lg"></i></a>' +
             '</div>' +
-            error +
         '</div>';
 
     var question = $('.form-create').html();
@@ -31,7 +29,7 @@ $(document).ready(function() {
         '</div>';
     var deleteQuestion =
         '<div class="col-sm-2">' +
-            '<a data-toggle="tooltip" data-placement="top" title="Delete Option" class="delete-question"><i class="fa fa-trash fa-lg"></i></a>' +
+            '<a data-toggle="tooltip" data-placement="top" title="Delete Question" class="delete-question"><i class="fa fa-trash fa-lg"></i></a>' +
         '</div>';
 
     $(document).on('change', '.question-type', function () {
@@ -40,14 +38,21 @@ $(document).ready(function() {
         form_question.find('.input-option').remove();
         form_question.find('.other-option').remove();
         if (selected_option == checkbox || selected_option == radio) {
-            form_question.append(option + otherOption);
+            if (psychological) {
+                form_question.append(option);
+            } else {
+                form_question.append(option + otherOption);
+            }
         }
+
         $('[data-toggle="tooltip"]').tooltip();
+        disabledDeleteOption();
     });
 
     $(document).on('click', '.add-option', function () {
         $(this).parents('.input-option').after(option);
         $('[data-toggle="tooltip"]').tooltip();
+        disabledDeleteOption();
     });
 
     $(document).on('click', '.delete-option', function () {
@@ -56,6 +61,8 @@ $(document).ready(function() {
         if (formQuestion.find('.input-option').length > 1) {
             input.remove();
         }
+
+        disabledDeleteOption();
     });
 
     $(document).on('click', '.add-more', function () {
@@ -66,6 +73,11 @@ $(document).ready(function() {
             }
         });
         $('[data-toggle="tooltip"]').tooltip();
+        $('#statusForm').data('status', 'change');
+        $('.delete-question').hover(function () {
+            $(this).css('cursor', 'pointer');
+        });
+        disabledDeleteQuestion();
     });
 
     $(document).on('click', '.delete-question', function () {
@@ -77,6 +89,8 @@ $(document).ready(function() {
             formQuestion.prev('hr').remove();
             formQuestion.remove();
         }
+
+        disabledDeleteQuestion();
     });
 
     $('.delete').click(function () {
@@ -106,13 +120,14 @@ $(document).ready(function() {
         });
     });
 
-    $('#create-question').click(function () {
+    $('#create-question, #edit-question').click(function () {
         var url = $(this).data('url');
         var token = $('meta[name="csrf-token"]').attr('content');
         var option_name = [];
         var score = [];
         var formQuestion = [];
         var surveyId = $(this).data('survey-id');
+        var id = $(this).data('id');
         $.each($('.form-question'), function () {
             $.each($(this).find($('input[name="option_name[]"]')), function () {
                 option_name.push($(this).val());
@@ -121,6 +136,7 @@ $(document).ready(function() {
                 score.push($(this).val());
             });
             formQuestion.push({
+                id: id,
                 survey_id: surveyId,
                 question_type: $(this).find('.question-type').val(),
                 title: $(this).find('.title').val(),
@@ -207,3 +223,23 @@ $(document).ready(function() {
         }
     });
 });
+
+function disabledDeleteOption() {
+    $.each($('.form-question'), function () {
+        if ($(this).find('.delete-option').length == 1) {
+            $(this).find('.delete-option').hover(function () {
+                $(this).css('cursor', 'not-allowed');
+            });
+        } else {
+            $(this).find('.delete-option').hover(function () {
+                $(this).css('cursor', 'pointer');
+            });
+        }
+    });
+}
+
+function disabledDeleteQuestion() {
+    $('.form-question:only-child').find('.delete-question').hover(function () {
+        $(this).css('cursor', 'not-allowed');
+    });
+}

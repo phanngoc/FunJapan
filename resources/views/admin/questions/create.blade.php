@@ -19,6 +19,7 @@
                         <div class="form-create">
                             @include('admin.questions._form_create')
                         </div>
+                        <div id="statusForm" data-status=""></div>
                         <div class="form-group">
                             <div class="col-sm-2">
                                 <a href="javascript:;" class="add-more"><b>{{ trans('admin/question.add_more') }}</b></a>
@@ -27,7 +28,8 @@
                         <div class="form-group button-question">
                             <div class="col-sm-2 col-sm-offset-1">
                                 <a href="javascript:;" class="btn btn-primary" id="create-question"
-                                    data-url="{{ action('Admin\QuestionsController@store', [$survey->id]) }}" data-survey-id="{{ $survey->id }}">
+                                    data-url="{{ action('Admin\QuestionsController@store', [$survey->id]) }}"
+                                    data-survey-id="{{ $survey->id }}">
                                     {{ trans('admin/survey.button.save') }}
                                 </a>
                             </div>
@@ -49,5 +51,6 @@
     <script type="text/javascript">
         var checkbox = {{ config('question.type_value.checkbox') }};
         var radio = {{ config('question.type_value.radio') }};
+        var psychological = {{ ($survey->type == config('survey.psychological')) ? 1 : 0 }};
     </script>
 @stop
