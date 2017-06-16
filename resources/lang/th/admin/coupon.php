@@ -16,6 +16,7 @@ return [
     'image_message_mines' => 'The photo must be a file of type jpeg, png, jpg!',
     'image_message_size' => 'The photo may not be greater than 10240 kilobytes',
     'cancel_edit_page' => 'Are you want to cancel editing?',
+    'cancel_create_page' => 'Are you sure you want to cancel?',
     'delete_confirm' => 'Are you sure want to delete this coupon?',
     'delete_another_action' => 'Can\'t delete this coupon. It is being used by user.',
     'validate' => [

@@ -164,7 +164,7 @@
                             {{ Form::submit(trans('admin/coupon.button.save'), ['class' => 'btn btn-primary']) }}
                         </div>
                         <div class="col-sm-3">
-                            <a id="btn-cancel" href="javascript:" data-confirm="{{ trans('admin/coupon.cancel_edit_page') }}" data-url="{{ action('Admin\CouponsController@index') }}" class="cancel btn-primary btn">{{ trans('admin/coupon.button.cancel') }}</a>
+                            <a id="btn-cancel" href="javascript:" data-confirm="{{ trans('admin/coupon.cancel_create_page') }}" data-url="{{ action('Admin\CouponsController@index') }}" class="cancel btn-primary btn">{{ trans('admin/coupon.button.cancel') }}</a>
                         </div>
                     </div>
                 {{ Form::close() }}
