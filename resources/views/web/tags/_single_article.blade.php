@@ -21,8 +21,8 @@
             <div class="article-summary">
                 <div class="article-engagement">
                     <p class="article-category">
-                        <img class="category-icon" src="{{ asset($article->article->category->icon_urls['normal']) }}" />
-                        {{ $article->article->category->name }} / {{ $article->article->category->short_name }}
+                        <img class="category-icon" src="{{ asset($article->articleLocale->category->icon_urls['normal']) }}" />
+                        {{ $article->articleLocale->category->name }} / {{ $article->articleLocale->category->short_name }}
                         <span class="verticle-bar">|</span>
                     </p>
                     <!-- ENGAGEMENT -->

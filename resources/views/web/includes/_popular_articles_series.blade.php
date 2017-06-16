@@ -36,7 +36,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <img class="pp-icon" src="{{ $post->article->category->icon_urls['normal'] ? : '' }}">
+                                <img class="pp-icon" src="{{ $post->category->icon_urls['normal'] ? : '' }}">
                             </div>
                         </div>
                         </div>

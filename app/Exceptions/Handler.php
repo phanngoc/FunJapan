@@ -46,10 +46,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        $locale = $request->segment(1);
-        if ($locale && in_array($locale, config('app.locales'))) {
-            if ($exception instanceof ErrorException || $exception instanceof NotFoundHttpException) {
-                return redirect()->route('not_found');
+        if (!config('app.debug')) {
+            $locale = $request->segment(1);
+            if ($locale && in_array($locale, config('app.locales'))) {
+                if ($exception instanceof ErrorException || $exception instanceof NotFoundHttpException) {
+                    return redirect()->route('not_found');
+                }
             }
         }
 

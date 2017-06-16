@@ -2,18 +2,18 @@
     <!-- CARD_ITEM -->
     <div class="list-group-item list-group-item-cards">
         @php
-            if (!Auth::check() && $article->articleLocales[0]->is_member_only) {
+            if (!Auth::check() && $article->is_member_only) {
                 $url = route('login');
             } else {
-                $url = route('article_detail', $article->id);
+                $url = route('article_detail', $article->article_id);
             }
         @endphp
         <a href="{{ $url }}">
             <div class="img-card card-item">
                 <div class="card-thumbnail">
-                    <img src="{{ asset($article->articleLocales[0]->thumbnail_urls['normal']) }}">
+                    <img src="{{ asset($article->thumbnail_urls['normal']) }}">
                 </div>
-                <p class="card-title"><span>{{ $article->articleLocales[0]->title }}</span> </p>
+                <p class="card-title"><span>{{ $article->title }}</span> </p>
             </div>
         </a>
         <div class="article-info">
@@ -26,34 +26,32 @@
                     </p>
                     <!-- ENGAGEMENT -->
                     <ul class="engagement">
-                        @if (count($article->articleLocales) > 0)
-                            <li>
-                                <a class="engagement-favorite" href="{{ $url }}">
-                                    <i class="fa fa-heart"></i>
-                                </a>
-                                <span class="engagement-count">
-                                    {{ $article->articleLocales[0]->like_count }}
-                                </span>
-                            </li>
+                        <li>
+                            <a class="engagement-favorite" href="{{ $url }}">
+                                <i class="fa fa-heart"></i>
+                            </a>
+                            <span class="engagement-count">
+                                {{ $article->like_count }}
+                            </span>
+                        </li>
 
-                            <li>
-                                <a class="engagement-comment" href="{{ $url . '#comment-area-desktop' }}">
-                                    <i class="fa fa-comment"></i>
-                                </a>
-                                <span class="engagement-count">
-                                    {{ $article->articleLocales[0]->comment_count }}
-                                </span>
-                            </li>
+                        <li>
+                            <a class="engagement-comment" href="{{ $url . '#comment-area-desktop' }}">
+                                <i class="fa fa-comment"></i>
+                            </a>
+                            <span class="engagement-count">
+                                {{ $article->comment_count }}
+                            </span>
+                        </li>
 
-                            <li>
-                                <a class="engagement-share" href="{{ $url }}">
-                                    <i class="fa fa-share-alt"></i>
-                                </a>
-                                <span class="engagement-count">
-                                    {{ $article->articleLocales[0]->share_count }}
-                                </span>
-                            </li>
-                        @endif
+                        <li>
+                            <a class="engagement-share" href="{{ $url }}">
+                                <i class="fa fa-share-alt"></i>
+                            </a>
+                            <span class="engagement-count">
+                                {{ $article->share_count }}
+                            </span>
+                        </li>
                     </ul>
                     <!-- EOF ENGAGEMENT -->
                 </div>

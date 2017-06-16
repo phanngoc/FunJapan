@@ -7,7 +7,7 @@
             <i class="fa fa-chevron-right" aria-hidden="true"></i>
         </li>
         <li>
-            <a href="#">{{ $articleLocale->article->category->name }}</a> <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            <a href="#">{{ $articleLocale->category->name }}</a> <i class="fa fa-chevron-right" aria-hidden="true"></i>
         </li>
         <li>
             <a href="{{ action('Web\ArticlesController@show', [$articleLocale->article_id]) }}">
@@ -15,6 +15,6 @@
             </a>
         </li>
     </ul>
-    <p class="article-detail-category">{{ $articleLocale->article->category->name }}</p>
-    <p class="article-detail-title">{{ isset($articleLocale->title) ? $articleLocale->title : '' }}</h1>
+    <p class="article-detail-category">{{ $articleLocale->category->name }}</p>
+    <p class="article-detail-title">{{ isset($articleLocale->title) ? $articleLocale->title : '' }}</p>
 </header>
