@@ -2,46 +2,46 @@
 
 namespace App\Listeners;
 
-use App\Events\ViewCountEvent;
+use App\Events\LogViewTagEvent;
 use App\Libraries\Browser;
 use App\Models\VisitedLog;
-use Carbon\Carbon;
 use Illuminate\Session\Store;
+use Carbon\Carbon;
 
-class ViewCountListener
+class LogViewTagListener
 {
-    private $key = 'view_count';
+    private $key = 'view_tag_count';
     private $browser;
     private $session;
 
     /**
      * Create the event listener.
      *
-     * @param Browser $browser
+     * @return void
      */
     public function __construct(Browser $browser, Store $session)
     {
         $this->browser = $browser;
         $this->session = $session;
-        $this->key = config('article.view_count_key', $this->key);
+        $this->key = config('tag.view_tag_count', $this->key);
     }
 
     /**
      * Handle the event.
      *
-     * @param  ViewCountEvent  $event
+     * @param  LogViewTagEvent  $event
      * @return void
      */
-    public function handle(ViewCountEvent $event)
+    public function handle(LogViewTagEvent $event)
     {
-        $articleLocale = $event->articleLocale;
+        $tag = $event->tag;
+        $localeId = $event->localeId;
         $user = $this->getUser();
 
-        if (!$this->isArticleViewed($articleLocale, $user)) {
-            $articleLocale->increment('view_count');
-            $this->updateActivityLog($articleLocale);
+        if (!$this->isTagViewed($tag, $user)) {
+            $this->updateActivityLog($tag, $localeId);
 
-            $this->storeView($articleLocale, $user);
+            $this->storeView($tag, $user);
         }
     }
 
@@ -60,11 +60,11 @@ class ViewCountListener
         return $userData;
     }
 
-    private function isArticleViewed($articleLocale, $user)
+    private function isTagViewed($tag, $user)
     {
         $viewed = $this->session->get($this->key, []);
 
-        return array_key_exists($articleLocale->id . '_' . $user['user_id'], $viewed);
+        return array_key_exists($tag->id . '_' . $user['user_id'], $viewed);
     }
 
     private function storeView($articleLocale, $user)
@@ -73,23 +73,23 @@ class ViewCountListener
         $this->session->put($key, time());
     }
 
-    private function updateActivityLog($articleLocale)
+    private function updateActivityLog($tag, $localeId)
     {
         $toDay = Carbon::toDay()->toDateString();
 
         $activity = VisitedLog::where('start_date', $toDay)
-            ->where('relate_table_id', $articleLocale->id)
-            ->where('relate_table_type', config('visit_log.relate_type.article'))
+            ->where('relate_table_id', $tag->id)
+            ->where('relate_table_type', config('visit_log.relate_type.tag'))
             ->first();
 
         if ($activity) {
             $activity->increment('count');
         } else {
-            $activity = VisitedLog::create([
+            VisitedLog::create([
                 'start_date' => $toDay,
-                'relate_table_id' => $articleLocale->id,
-                'relate_table_type' => config('visit_log.relate_type.article'),
-                'locale_id' => $articleLocale->locale_id,
+                'relate_table_id' => $tag->id,
+                'relate_table_type' => config('visit_log.relate_type.tag'),
+                'locale_id' => $localeId,
             ]);
         }
     }

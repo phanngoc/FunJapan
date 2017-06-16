@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Events\LogViewTagEvent;
 use App\Services\Web\TagService;
 use App\Models\Tag;
 
@@ -19,6 +20,8 @@ class TagsController extends Controller
         if ($tag) {
             $this->viewData['articles'] = TagService::getArticleByTag($tag, $this->currentLocaleId);
             $this->viewData['tag'] = $tag;
+
+            event(new LogViewTagEvent($tag, $this->currentLocaleId));
 
             return view('web.tags.show', $this->viewData);
         } else {

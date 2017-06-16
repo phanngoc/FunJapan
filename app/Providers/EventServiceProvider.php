@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Events\ActivityLogEvent;
+use App\Events\LogViewTagEvent;
 use App\Events\ViewCountEvent;
 use App\Listeners\ActivityLogListener;
+use App\Listeners\LogViewTagListener;
 use App\Listeners\ViewCountListener;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         ViewCountEvent::class => [
             ViewCountListener::class,
+        ],
+        LogViewTagEvent::class => [
+            LogViewTagListener::class,
         ],
     ];
 

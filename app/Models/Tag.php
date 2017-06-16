@@ -45,4 +45,9 @@ class Tag extends BaseModel
             }
         });
     }
+
+    public function visitLog()
+    {
+        return $this->morphMany(VisitedLog::class, 'relateTable');
+    }
 }
