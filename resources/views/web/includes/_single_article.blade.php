@@ -13,8 +13,8 @@
             <div class="article-summary">
                 <div class="article-engagement">
                     <p class="article-category">
-                        <img class="category-icon" src="{{ $article->article->category->iconUrls['normal'] }}" />
-                        {{ $article->article->category->name }} / {{ $article->article->category->short_name }}
+                        <img class="category-icon" src="{{ $article->category->iconUrls['normal'] }}" />
+                        {{ $article->category->name }} / {{ $article->category->short_name }}
                         <span class="verticle-bar">|</span>
                     </p>
                     <!-- ENGAGEMENT -->
