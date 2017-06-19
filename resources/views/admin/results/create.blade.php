@@ -20,6 +20,7 @@
                         <div class="form-create">
                             @include('admin.results._form_create')
                         </div>
+                        <div id="statusForm" data-status=""></div>
                         <div class="form-group">
                             <div class="col-sm-2">
                                 <a href="javascript:;" class="add-more"><b>Add more result?</b></a>

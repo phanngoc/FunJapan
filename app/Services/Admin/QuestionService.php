@@ -11,6 +11,7 @@ class QuestionService extends BaseService
     public static function validate($inputs)
     {
         $message = [];
+        $check = false;
         $validationRules = [
             'title' => 'required|min:10|max:255',
         ];
@@ -23,24 +24,26 @@ class QuestionService extends BaseService
             if ($input['question_type'] == config('question.type_value.checkbox') ||
                 $input['question_type'] == config('question.type_value.radio')) {
                 foreach ($input['option_name'] as $keyOption => $option) {
-                    if ($keyOption == 0 && $option == null) {
-                        $message[$key]['option_name'][$keyOption] = trans('admin/question.error_option.required');
-                    } elseif ($option != null && strlen($option) > config('question.character.max')) {
-                        $message[$key]['option_name'][$keyOption] = trans('admin/question.error_option.max', [
-                            'value' => config('question.character.max'),
-                        ]);
-                    } elseif ($option != null && strlen($option) < config('question.character.min')) {
-                        $message[$key]['option_name'][$keyOption] = trans('admin/question.error_option.min', [
-                            'value' => config('question.character.min'),
-                        ]);
+                    if ($option != null) {
+                        $check = true;
+                        if (strlen($option) > config('question.character.max')) {
+                            $message[$key]['option_name'][$keyOption] = trans('admin/question.error_option.max', [
+                                'value' => config('question.character.max'),
+                            ]);
+                        }
                     }
+                }
+
+                if (!$check) {
+                    $message[$key]['option_name'][0] = trans('admin/question.error_option.at_least');
                 }
             }
 
             if (isset($input['score'])) {
                 foreach ($input['score'] as $keyScore => $score) {
                     if (isset($score)) {
-                        if (!is_numeric($score)) {
+                        $score = ltrim($score, '0');
+                        if (!preg_match('/^[0-9]+$/', $score)) {
                             $message[$key]['score'][$keyScore] = trans('admin/question.error_score.integer');
                         } else {
                             if ($score > config('question.number.max')) {
@@ -51,6 +54,8 @@ class QuestionService extends BaseService
                                 $message[$key]['score'][$keyScore] = trans('admin/question.error_score.min', [
                                     'value' => config('question.number.min'),
                                 ]);
+                            } elseif ($input['option_name'][$keyScore] == null) {
+                                $message[$key]['option_name'][$keyScore] = trans('admin/question.error_option.enter');
                             }
                         }
                     }
@@ -77,6 +82,17 @@ class QuestionService extends BaseService
             DB::beginTransaction();
             try {
                 foreach ($inputs as $key => $input) {
+                    if ($input['question_type'] == config('question.type_value.checkbox') ||
+                        $input['question_type'] == config('question.type_value.radio')) {
+                        foreach ($input['option_name'] as $keyOption => $valueOption) {
+                            if ($valueOption == null && $input['score'][$keyOption] == null) {
+                                unset($input['option_name'][$keyOption]);
+                                unset($input['score'][$keyOption]);
+                            }
+
+                            $input['score'][$keyOption] = ltrim($input['score'][$keyOption], '0');
+                        }
+                    }
                     $question = Question::firstOrCreate([
                         'survey_id' => $input['survey_id'],
                         'question_type' => $input['question_type'],
@@ -107,6 +123,18 @@ class QuestionService extends BaseService
     {
         foreach ($inputs as $key => $input) {
             $question = Question::find($input['id']);
+            if ($input['question_type'] == config('question.type_value.checkbox') ||
+                $input['question_type'] == config('question.type_value.radio')) {
+                foreach ($input['option_name'] as $keyOption => $valueOption) {
+                    if ($valueOption == null && $input['score'][$keyOption] == null) {
+                        unset($input['option_name'][$keyOption]);
+                        unset($input['score'][$keyOption]);
+                    }
+
+                    $input['score'][$keyOption] = ltrim($input['score'][$keyOption], '0');
+                }
+            }
+
             if ($question) {
                 return $question->update([
                     'question_type' => $input['question_type'],

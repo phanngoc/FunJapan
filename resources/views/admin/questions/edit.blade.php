@@ -45,5 +45,6 @@
     <script type="text/javascript">
         var checkbox = {{ config('question.type_value.checkbox') }};
         var radio = {{ config('question.type_value.radio') }};
+        var psychological = {{ ($survey->type == config('survey.psychological')) ? 1 : 0 }};
     </script>
 @stop

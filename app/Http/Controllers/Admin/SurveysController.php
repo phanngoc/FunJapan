@@ -8,6 +8,7 @@ use App\Services\Admin\SurveyService;
 use App\Services\Admin\LocaleService;
 use App\Models\Survey;
 use App\Models\Question;
+use App\Models\Result;
 use Session;
 use Gate;
 
@@ -34,8 +35,10 @@ class SurveysController extends Controller
                 ->withErrors(['errors' => trans('admin/survey.survey_not_exist')]);
         }
         $questions = Question::whereSurveyId($survey->id)->orderBy('order')->get();
+        $results = Result::whereSurveyId($survey->id)->get();
         $this->viewData['survey'] = $survey;
         $this->viewData['questions'] = $questions;
+        $this->viewData['results'] = $results;
 
         return view('admin.surveys.detail', $this->viewData);
     }

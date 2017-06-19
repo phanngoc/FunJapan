@@ -1,4 +1,22 @@
 <div class="form-result">
+    <div class="form-group required title">
+        {{ Form::label(
+            'title',
+            trans('admin/result.title'),
+            ['class' => 'col-sm-1 control-label'])
+        }}
+        <div class="col-sm-9">
+            {{ Form::text(
+                'result['.$id.'][title]',
+                $result->title ?? '',
+                [
+                    'class' => 'form-control input-title',
+                    'required',
+                ])
+            }}
+            <p class="text-danger font-bold error-title"></p>
+        </div>
+    </div>
     <div class="form-group">
         {{ Form::label(
             'require_point',
@@ -31,27 +49,6 @@
                 ])
             }}
             <p class="text-danger font-bold error-score-to"></p>
-        </div>
-        <div class="col-sm-1">
-            <a data-toggle="tooltip" data-placement="top" href="javascript:;" title="Delete Result" class="delete"><i class="fa fa-trash fa-lg"></i></a>
-        </div>
-    </div>
-    <div class="form-group required">
-        {{ Form::label(
-            'title',
-            trans('admin/result.title'),
-            ['class' => 'col-sm-1 control-label'])
-        }}
-        <div class="col-sm-9">
-            {{ Form::text(
-                'result['.$id.'][title]',
-                $result->title ?? '',
-                [
-                    'class' => 'form-control title',
-                    'required',
-                ])
-            }}
-            <p class="text-danger font-bold error-title"></p>
         </div>
     </div>
     <div class="form-group">
@@ -97,7 +94,7 @@
                     'class' => 'form-control bottom_text',
                 ])
             }}
+            <p class="text-danger font-bold error-bottom-text"></p>
         </div>
     </div>
 </div>
-<div id="statusForm" data-status=""></div>

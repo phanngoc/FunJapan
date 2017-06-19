@@ -1,52 +1,45 @@
-@extends('layouts.admin.default')
-
-@section('style')
-@endsection
-
-@section('content')
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox">
-                <div class="ibox-title"><h2><strong>{{ trans('admin/survey.title') }}: </strong> {{ $survey->title }}</h2></div>
-                <div class="ibox-content">
-                    @foreach($results as $result)
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <strong>Required Score From: </strong> {{ $result->required_point_from }}
-                            </div>
-                            <div class="col-lg-6">
-                                <strong>Required Score To: </strong> {{ $result->required_point_to }}
-                            </div>
-                            <div class="col-lg-12">
-                                <strong>{{ trans('admin/survey.title') }}: </strong> {{ $result->title }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <strong>{{ trans('admin/survey.description') }}:</strong> {!! $result->html_description !!}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                            <strong>Photo Result: </strong>
-                                <img src="{{ $result->photoUrl['original'] }}">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <strong>Bottom Text:</strong> {{ $survey->bottom_text }}
-                            </div>
-                            <div class="col-lg-6">
-                                <strong>{{ trans('admin/survey.created_by') }}:</strong> {{ $survey->user->name }}
-                            </div>
-                        </div>
-                        <hr>
-                    @endforeach
-                    <a href="{{ action('Admin\ResultsController@edit', [$survey->id]) }}" class="btn btn-w-m btn-primary">
-                        {{ trans('admin/article.button.edit') }}
-                    </a>
-                </div>
-            </div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-content ibox-result">
+                <table class="table table-striped table-hover">
+                    <tbody id="sortable">
+                        @forelse($results as $key => $result)
+                            <tr>
+                                <td>
+                                    <a href="javascript:;" onclick="showDetail({{$result->id}})">
+                                        {{ $key + 1 }} - {{ $result->title }}
+                                    </a>
+                                    <div class="pull-right">
+                                        <a data-toggle="tooltip" data-placement="left" title="Edit" href="{{ action('Admin\ResultsController@edit', [$survey->id, $result->id]) }}" class="edit">
+                                            &nbsp;<i class="fa fa-pencil-square-o fa-lg"></i>
+                                        </a>
+                                        <a data-toggle="tooltip" data-placement="top" title="Delete" href="javascript:;" data-url="{{ action('Admin\ResultsController@destroy', [$survey->id, $result->id]) }}" class="delete">
+                                            &nbsp;<i class="fa fa-trash-o fa-lg"></i>
+                                        </a>
+                                    </div>
+                                    <div class="show-detail-{{$result->id}}" style="display: none;">
+                                        <p class="text-center">
+                                            <strong>Score: </strong>
+                                            {{ ($result->required_point_from != 0) ? $result->required_point_from : '' }}
+                                            {{ ($result->required_point_from != 0 && $result->required_point_to != 0) ? ' - ' : ''}}
+                                            {{ ($result->required_point_to != 0) ?  $result->required_point_to : '' }}
+                                        </p>
+                                        <p class="text-center"><img src="{{ $result->photoUrl['small'] }}"></p>
+                                        <div class="text-center">
+                                            {!! $result->html_description !!}
+                                        </div>
+                                        <p class="text-center">{{ $result->bottom_text }}</p>
+                                    </div>
+                                </td>
+                            <tr>
+                        @empty
+                            <span class="show-nothing">{{ trans('admin/question.show_nothing') }}</span>
+                        @endforelse
+                    </tbody>
+                </table>
+             </div>
         </div>
     </div>
-@stop
+</div>
+
