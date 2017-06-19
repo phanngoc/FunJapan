@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,6 +16,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\UpdateInviteCodeInOldUser::class,
         Commands\SendEmailNotifications::class,
+        Commands\LogLastWeek::class,
     ];
 
     /**
@@ -27,6 +29,12 @@ class Kernel extends ConsoleKernel
     {
          $schedule->command('send:email-notifications')
                   ->daily();
+
+        foreach (config('app.locales') as $locale) {
+            $schedule->command('last_week:process ' . $locale)
+                ->timezone(trans('datetime.time_zone', [], $locale))
+                ->dailyAt('2:00');
+        }
     }
 
     /**

@@ -14,18 +14,18 @@ class ResultService extends BaseService
     {
         $message = [];
         foreach ($inputs['result'] as $key => $input) {
-            $input['required_point_from'] = ltrim($input['required_point_from'], '0');
-            $input['required_point_to'] = ltrim($input['required_point_to'], '0');
             $validationRules = [
                 'title' => 'required|min:10|max:255',
             ];
 
 
             if (isset($input['required_point_from'])) {
+                $input['required_point_from'] = ltrim($input['required_point_from'], '0');
                 $validationRules['required_point_from'] = 'integer|min:0|max:999999999';
             }
 
             if (isset($input['required_point_to'])) {
+                $input['required_point_to'] = ltrim($input['required_point_to'], '0');
                 $validationRules['required_point_to'] =  'integer|min:0|max:999999999';
             }
 
