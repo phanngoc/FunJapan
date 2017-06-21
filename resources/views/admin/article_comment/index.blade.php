@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table-align table table-striped table-bordered table-hover" id="article-comment-table" data-url="{{action('Admin\ArticleCommentsController@getListArticleComments')}}">
+                    <table width="100%" class="table-align table table-striped table-bordered table-hover" id="article-comment-table" data-url="{{action('Admin\ArticleCommentsController@getListArticleComments')}}">
                         <thead>
                             <tr>
                                 <th class="col-sm-1 text-center">{{ trans('admin/article_comment.no') }}</th>
@@ -36,7 +36,7 @@
                     {{ Form::open(['action' => ['Admin\ArticleCommentsController@index'], 'id' => 'delete-article-comment-form', 'class' => 'form-horizontal', 'files' => true]) }}
                         {{ method_field('DELETE') }}
                     {{ Form::close() }}
-                    <div id="delete-confirm" data-confirm-message="{{ trans('admin/omikuji.delete_confirm') }}"></div>
+                    <div id="delete-confirm" data-confirm-message="{{ trans('admin/article-comment.delete_confirm') }}"></div>
                     <div id="actionUrl" data-url="{{ url()->current() }}"></div>
                 </div>
             </div>

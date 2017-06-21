@@ -26,17 +26,17 @@
                     {{ Form::close() }}
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover" id="omikuji-table" data-url="{{action('Admin\OmikujisController@getListOmikujis', ['locale_id' => $localeId])}}">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="omikuji-table" data-url="{{action('Admin\OmikujisController@getListOmikujis', ['locale_id' => $localeId])}}">
                         <thead>
                             <tr>
                                 <th class="text-center">{{ trans('admin/omikuji.no') }}</th>
                                 <th class="col-sm-3 text-center">{{ trans('admin/omikuji.omikuji_name') }}</th>
                                 <th class="col-sm-1 text-center">{{ trans('admin/omikuji.image') }}</th>
-                                <th class="col-sm-2 text-center">{{ trans('admin/omikuji.start_time') }}</th>
-                                <th class="col-sm-2 text-center">{{ trans('admin/omikuji.end_time') }}</th>
-                                <th class="col-sm-1 text-center">{{ trans('admin/omikuji.recover_time') }}</th>
-                                <th class="col-sm-2 text-center">{{ trans('admin/omikuji.created_at') }}</th>
-                                <th class="col-sm-1 text-center">{{ trans('admin/omikuji.status') }}</th>
+                                <th class="col-sm-2 date-time-width text-center">{{ trans('admin/omikuji.start_time') }}</th>
+                                <th class="col-sm-2 date-time-width text-center">{{ trans('admin/omikuji.end_time') }}</th>
+                                <th class="col-sm-2 date-time-width text-center">{{ trans('admin/omikuji.recover_time') }}</th>
+                                <th class="col-sm-2 date-time-width text-center">{{ trans('admin/omikuji.created_at') }}</th>
+                                <th class="text-center">{{ trans('admin/omikuji.status') }}</th>
                                 <th class="text-center">{{ trans('admin/omikuji.action') }}</th>
                             </tr>
                         </thead>

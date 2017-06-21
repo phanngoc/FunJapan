@@ -30,6 +30,9 @@
                         </div>
                     </div>
 
+                    {{ Form::hidden('deleteList', old('deleteList') ?? '' , ['id' => 'deleteList']) }}
+                    {{ Form::hidden('omikujiId', $omikuji->id) }}
+
                     <br>
                     <table class="table table-striped table-bordered table-hover" id="omikuji-item-table" ">
                         <thead>
@@ -55,11 +58,11 @@
                                         <td>{{ Form::text('rate_weight['.$i.']', old('rate_weight')[$i], ['class' => 'form-control', 'pattern'=> '[0-9]*']) }}</td>
                                         <td>{{ Form::text('point['.$i.']', old('point')[$i], ['class' => 'form-control', 'pattern'=> '[0-9]*']) }}</td>
                                         <td>{{ Form::file('item_image['.$i.']', ['class' => 'mt5 upload-image-item', 'data-index' => $i]) }}
-                                            <img class="item-hide" id="image-item-preview-{{ $i }}" src="" width="32" height="32"  title="Preview Image">
+                                            &nbsp; <img class="item-hide" id="image-item-preview-{{ $i }}" src="" width="32" height="32"  title="Preview Image">
                                         </td>
                                         <td class="text-center">
                                             @if (old('omikujiItem_id')[$i])
-                                                    <a href="javascript:void(0)" data-url="{{ action('Admin\OmikujisController@destroy', [old('omikujiItem_id')[$i], 'omikuji_id' => $omikuji->id ]) }}" data-confirm="{{ trans('admin/omikuji.delete_confirm', ['name' => old('item')[$i]]) }}" class="delete-omikuji-item" data-toggle="tooltip" title="Delete">
+                                                    <a href="javascript:void(0)" data-confirm="{{ trans('admin/omikuji.delete_confirm', ['name' => old('item')[$i]]) }}" class="delete-omikuji-item" data-toggle="tooltip" title="Delete">
                                                     <i class="fa fa-trash-o fa-lg"></i>
                                                 </a>
                                                 {{ Form::hidden('omikujiItem_id['.$i.']', old('omikujiItem_id')[$i]) }}
@@ -80,10 +83,10 @@
                                         <td>{{ Form::text('rate_weight['.$key.']', $omikujiItem->rate_weight, ['class' => 'form-control', 'pattern'=> '[0-9]*']) }}</td>
                                         <td>{{ Form::text('point['.$key.']', $omikujiItem->point, ['class' => 'form-control', 'pattern'=> '[0-9]*']) }}</td>
                                         <td>{{ Form::file('item_image['.$key.']', ['class' => 'mt5 upload-image-item', 'data-index' => $key]) }}
-                                            <img class="" id="image-item-preview-{{ $key }}" src="{{ $omikujiItem->imageUrls['small'] ?? '' }}" width="32" height="32"  title="Preview Image">
+                                            &nbsp; <img class="" id="image-item-preview-{{ $key }}" src="{{ $omikujiItem->imageUrls['small'] ?? '' }}" width="32" height="32"  title="Preview Image">
                                         </td>
                                         <td class="text-center">
-                                            <a href="javascript:void(0)" data-url="{{ action('Admin\OmikujisController@destroy', [$omikujiItem->id, 'omikuji_id' => $omikuji->id ]) }}" data-confirm="{{ trans('admin/omikuji.delete_confirm', ['name' => $omikujiItem->name]) }}" class="delete-omikuji-item" data-toggle="tooltip" title="Delete">
+                                            <a href="javascript:void(0)" data-confirm="{{ trans('admin/omikuji.delete_confirm', ['name' => $omikujiItem->name]) }}" class="delete-omikuji-item" data-toggle="tooltip" title="Delete">
                                                 <i class="fa fa-trash-o fa-lg"></i>
                                             </a>
                                             {{ Form::hidden('omikujiItem_id['.$key.']', $omikujiItem->id) }}

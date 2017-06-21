@@ -3,11 +3,11 @@
 @section('content_child')
     <div>
         <h3>
-            Omikuji
+            {{ trans('web/omikuji_user.omikuji') }}
         </h3>
         <div class="col-xs-8 col-xs-offset-2">
             <div class="text-center">
-                <p><img src="{{ $omikuji->imageUrls['normal'] ?? '' }}" alt="" width="235" height="459" style="width:20%; height:20%"></p>
+                <p><img src="{{ $omikuji->imageUrls['normal'] ?? '' }}" alt="" width="88" height="171" ></p>
                 {{ Form::open(['action' => ['Web\OmikujisController@create'], 'id' => 'omikuji-form', 'class' => 'form-horizontal', 'files' => true]) }}
                     {{ method_field('POST') }}
                     @if($remainingTime)
@@ -24,7 +24,7 @@
                     @endif
 
                     <p class="text-center"><a href="#">{{ trans('web/omikuji_user.about_omikuji') }}</a></p>
-                    {{ Form::hidden('omikujiId', $omikujiId) }}
+                    {{ Form::hidden('omikujiId', $omikuji->id ?? '') }}
                 {{ Form::close() }}
             </div>
 

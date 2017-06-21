@@ -45,7 +45,7 @@ class OmikujisController extends Controller
                 if ($i <$count) {
                     $round = round(($omikujiItem->rate_weight/$sum)*100, 2);
                     $percent = $percent + $round;
-                    $omikujiItem->rate_weight = $omikujiItem->rate_weight . ' (' . $round . ' %)';
+                    $omikujiItem->rate_weight = $omikujiItem->rate_weight . ' (' . $round . '%)';
                 }
                 $i++;
             }
