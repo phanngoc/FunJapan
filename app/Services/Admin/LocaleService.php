@@ -15,4 +15,9 @@ class LocaleService extends BaseService
     {
         return Locale::orderBy('name', $order)->pluck('name', 'id')->toArray();
     }
+
+    public static function getAllIsoCodeLocales()
+    {
+        return Locale::orderBy('iso_code')->pluck('iso_code', 'id')->all();
+    }
 }
