@@ -25,6 +25,12 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::get('articles/always-on-top', 'ArticlesController@alwaysOnTop');
         Route::post('articles/always-on-top', 'ArticlesController@setAlwaysOnTop');
         Route::delete('articles/always-on-top/{articleLocaleId}', 'ArticlesController@deleteAlwaysOnTop');
+        Route::post('articles/preview', 'ArticlesController@preview');
+        Route::post('articles/validate', 'ArticlesController@validateInput');
+        Route::post('articles/confirm', 'ArticlesController@confirm');
+        Route::post('articles/cancelConfirm', 'ArticlesController@cancelConfirm');
+        Route::post('articles/upload-image', 'ArticlesController@uploadImage');
+        Route::post('articles/delete-image', 'ArticlesController@deleteImage');
         Route::resource('articles', 'ArticlesController');
         Route::get('articles/setOtherLanguage/{article}', 'ArticlesController@setOtherLanguage');
         Route::post('articles/updateOtherLanguage/{article}', 'ArticlesController@updateOtherLanguage');

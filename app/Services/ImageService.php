@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Contracts\Filesystem\Filesystem;
+use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Http\Request;
 use Exception;
 use Storage;
@@ -111,5 +112,35 @@ class ImageService
     public static function imageUrl($filePath)
     {
         return Storage::disk(config('filesystem.default'))->url($filePath);
+    }
+
+    public static function getImageFromHtml($content)
+    {
+        try {
+            $doc = new \DOMDocument();
+            libxml_use_internal_errors(true);
+            $doc->loadHTML($content);
+
+            $xpath = new \DOMXPath($doc);
+            $imgs = $xpath->query('//img');
+
+            $results = [];
+
+            for ($i = 0; $i < $imgs->length; $i++) {
+                $img = $imgs->item($i);
+                $results[] = $img->getAttribute('src');
+            }
+        } catch (Exception $e) {
+            $results = [];
+        }
+
+        return $results;
+    }
+
+    public static function getImageFromMarkdown($content)
+    {
+        $content = Markdown::convertToHtml($content);
+
+        return self::getImageFromHtml($content);
     }
 }

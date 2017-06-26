@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\Admin\ArticleService;
 use App\Services\Admin\ArticleLocaleService;
+use App\Services\Admin\ArticleTagService;
+use GrahamCampbell\Markdown\Facades\Markdown;
 use App\Services\Admin\LocaleService;
 use App\Services\Admin\CategoryLocaleService;
 use App\Services\Admin\CategoryService;
 use App\Models\Article;
 use Gate;
 use Illuminate\Support\Facades\Input;
+use App\Models\Author;
+use App\Models\Client;
+use Carbon\Carbon;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use App\Services\ImageService;
 
 class ArticlesController extends Controller
 {
@@ -75,39 +84,155 @@ class ArticlesController extends Controller
 
     public function create()
     {
-        $locales = LocaleService::getLocaleSort();
-        $localeId = key($locales);
-        if (old('locale')) {
-            $localeId = old('locale');
-        }
-        $this->viewData['locales'] = $locales;
-        $this->viewData['categories'] = CategoryService::getCategoryLocaleDropList($localeId);
-        $this->viewData['types'] = ArticleService::getArticleTypes();
+        $this->viewData['locales'] = LocaleService::getLocaleSort();
+        $this->viewData['authors'] = Author::get()->pluck('name', 'id')->toArray();
+        $this->viewData['clients'] = Client::get()->pluck('name', 'id')->toArray();
+        $this->viewData['subCategories'] = CategoryService::getSubCategories();
 
         return view('admin.article.create', $this->viewData);
     }
 
-    public function store(Request $request)
+    public function validateInput(Request $request)
     {
-        $inputs = $request->all();
+        $input = $request->input();
+        $input['content'] = $input['switch_editor'] == config('article.content_type.medium') ?
+            $input['contentMedium'] : $input['contentMarkdown'];
+        $input['published_at'] = $input['publish_date'] ?
+            ($input['publish_time'] ? $input['publish_date'] . ' ' . $input['publish_time'] . ':00' :
+            $input['publish_date'] . ' 00:00:00') : '';
+        $input['end_published_at'] = $input['end_publish_date'] ?
+            ($input['end_publish_time'] ? $input['end_publish_date'] . ' ' . $input['end_publish_time'] . ':00' :
+            $input['end_publish_date'] . ' 00:00:00') : '';
 
-        $inputs['auto_approve_photo'] = isset($inputs['auto_approve_photo']) && $inputs['auto_approve_photo'] ?
-            $inputs['auto_approve_photo'] : false;
-
-        $inputs['summary'] = str_replace(["\r\n", "\n\r"], "\n", $inputs['summary']);
-
-        $validator = ArticleService::validate($inputs);
+        $validator = ArticleService::validate($input);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput($inputs);
+            return [
+                'success' => false,
+                'message' => $validator->errors(),
+            ];
         }
 
-        if ($article = ArticleService::create($inputs)) {
-            return redirect()->action('Admin\ArticlesController@show', [$article->id, 'locale' => $inputs['locale']])
+        return [
+            'success' => true,
+            'message' => '',
+        ];
+    }
+
+    public function preview(Request $request)
+    {
+        $input = $request->input();
+
+        if (isset($input['saveDraft']) && $input['saveDraft'] == 'true') {
+            $input['status'] = config('article.status.draft');
+
+            return self::save($input);
+        }
+
+        $this->viewData['input'] = $input;
+        $this->viewData['images'] = $input['switch_editor'] == config('article.content_type.medium') ?
+            ImageService::getImageFromHtml($input['contentMedium']) :
+            ImageService::getImageFromMarkdown($input['contentMarkdown']);
+        $this->viewData['content'] = $input['switch_editor'] == config('article.content_type.medium') ?
+            $input['contentMedium'] :
+            Markdown::convertToHtml($input['contentMarkdown']);
+        $this->viewData['category'] = Category::find($input['category_id']);
+        $this->viewData['author'] = Author::find($input['author_id']);
+
+        return view('admin.article.preview', $this->viewData);
+    }
+
+    public function confirm(Request $request)
+    {
+        $input = $request->all();
+
+        $this->viewData['input'] = $input;
+        $this->viewData['subCategories'] = CategoryService::getSubCategories();
+        $this->viewData['authors'] = Author::get()->pluck('name', 'id')->toArray();
+        $this->viewData['clients'] = Client::get()->pluck('name', 'id')->toArray();
+        $this->viewData['locales'] = LocaleService::getLocaleSort();
+        $this->viewData['categories'] = CategoryService::getCategoryLocaleDropList($input['locale_id']);
+
+        return view('admin.article.confirm', $this->viewData);
+    }
+
+    public function cancelConfirm(Request $request)
+    {
+        $input = $request->input();
+
+        return redirect()->action('Admin\ArticlesController@create')
+            ->withInput($input);
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $input = $request->all();
+
+        $fileName = ImageService::uploadFile(
+            $input['files'][0],
+            'article_content',
+            config('images.paths.article_content')
+        );
+
+        return [
+            'files' => [
+                [
+                    'url' => ImageService::imageUrl(config('images.paths.article_content') . '/' . $fileName),
+                    'imagePath' => config('images.paths.article_content') . '/' . $fileName,
+                ],
+            ],
+        ];
+    }
+
+    public function deleteImage(Request $request)
+    {
+        $input = $request->all();
+        $imgUrl = explode('/', $input['file']);
+        $image = array_values(array_slice($imgUrl, -1))[0];
+        ImageService::delete(config('images.paths.article_content'), $image);
+
+        return [
+            'success' => true,
+        ];
+    }
+
+    public function store(Request $request)
+    {
+        $input = $request->all();
+
+        return self::save($input);
+    }
+
+    private function save($input)
+    {
+        $input['content'] = ($input['switch_editor'] == config('article.content_type.medium')) ?
+            $input['contentMedium'] : $input['contentMarkdown'];
+        $input['published_at'] = $input['publish_date'] ?
+            ($input['publish_time'] ? $input['publish_date'] . ' ' . $input['publish_time'] . ':00' :
+            $input['publish_date'] . ' 00:00:00') : '';
+        $input['end_published_at'] = $input['end_publish_date'] ?
+            ($input['end_publish_time'] ? $input['end_publish_date'] . ' ' . $input['end_publish_time'] . ':00' :
+            $input['end_publish_date'] . ' 00:00:00') : '';
+
+        if (isset($input['thumbnail']) && $input['thumbnail']) {
+            $fileName = explode('/', $input['thumbnail']);
+            $input['thumbnail'] = array_values(array_slice($fileName, -1))[0];
+        }
+
+        $validator = ArticleService::validate($input);
+
+        if ($validator->fails()) {
+            return redirect()->action('Admin\ArticlesController@index')
+                ->withErrors(['errors' => trans('admin/article.create_error')]);
+        }
+
+        if ($article = ArticleService::create($input)) {
+            return redirect()->action('Admin\ArticlesController@show', [$article->id, 'locale' => $input['locale_id']])
                 ->with(['message' => trans('admin/article.create_success')]);
         }
 
-        return redirect()->back()->withErrors(['errors' => trans('admin/article.create_error')]);
+        return redirect()->action('Admin\ArticlesController@index')
+            ->withErrors(['errors' => trans('admin/article.create_error')]);
     }
 
     public function edit(Request $request, Article $article)

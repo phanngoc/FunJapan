@@ -13,6 +13,7 @@ return [
         'popular_category_image' => 'uploads/categories/popular',
         'result_survey' => 'uploads/results',
         'author' => 'uploads/authors',
+        'article_content' => 'uploads/articles/content',
     ],
     'validate' => [
         'post_photo' => [
@@ -60,6 +61,10 @@ return [
             'max_size' => 10240,
         ],
         'author' => [
+            'mimes' => 'jpeg,png,jpg',
+            'max_size' => 10240,
+        ],
+        'article_content' => [
             'mimes' => 'jpeg,png,jpg',
             'max_size' => 10240,
         ],
@@ -128,5 +133,6 @@ return [
         ],
     ],
     'not_resize' => [
+        'article_content',
     ],
 ];

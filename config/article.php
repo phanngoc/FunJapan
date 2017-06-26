@@ -38,6 +38,10 @@ return [
         'coupon' => 3,
         'location' => 4,
     ],
+    'content_type' => [
+        'markdown' => 0,
+        'medium' => 1,
+    ],
     'status' => [
         'stop' => 0,
         'published' => 1,

@@ -16,4 +16,5 @@
 {!! Html::style('assets/admin/css/admin.css') !!}
 {!! Html::style('assets/admin/css/survey.css') !!}
 {!! Html::style('assets/admin/css/plugins/datapicker/datepicker3.css') !!}
+{!! Html::style('assets/admin/css/plugins/clockpicker/clockpicker.css') !!}
 @yield('style')

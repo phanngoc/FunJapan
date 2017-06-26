@@ -40,6 +40,12 @@ class ArticleLocale extends BaseModel
         'is_member_only',
         'is_popular',
         'category_id',
+        'sub_category_id',
+        'end_published_at',
+        'content_type',
+        'title_bg_color',
+        'hide',
+        'status',
     ];
 
     protected $appends = [
@@ -47,6 +53,7 @@ class ArticleLocale extends BaseModel
         'html_content',
         'is_show_able',
         'status_by_locale',
+        'status_show_in_front',
     ];
 
     protected $dates = [
@@ -202,5 +209,10 @@ class ArticleLocale extends BaseModel
     public function visitLog()
     {
         return $this->morphMany(VisitedLog::class, 'relate_table');
+    }
+
+    public function getStatusShowInFrontAttribute()
+    {
+        return $this->status_by_locale = config('article.status_by_locale.published') && !$this->hide;
     }
 }
