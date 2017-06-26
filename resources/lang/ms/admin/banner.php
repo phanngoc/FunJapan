@@ -1,9 +1,14 @@
 <?php
 
 return [
-    'title' => 'Banner setting',
+    'title' => 'Add Banner',
+    'title_list' => 'List Banner',
     'note' => ' If you doesn\'t setting article , photo will be empty',
-    'image_suggest_sie' => 'Standard dimention: 1000*400',
+    'image_suggest_size' => 'Standard dimention of thumbnail: 1000*400',
+    'condition_show_in_front' => 'Mandatory set 3 banner and  banners status must active to banner show in front',
+    'status' => 'Status',
+    'active' => 'Active',
+    'deactive' => 'Deactive',
     'validate' => [
         'file_type' => 'The photo must be a file of type: jpeg, png, jpg!',
         'unauthorized' => 'The request has not been applied because it lacks valid authentication credentials for the target resource!',
@@ -16,8 +21,8 @@ return [
     ],
     'label_update_success' => 'Banner has been updated successfully!',
     'label_update' => 'Update',
-    'label_update_all' => 'Update All',
-    'label_delete_all' => 'Clear All',
+    'label_update_all' => 'Update',
+    'label_delete_all' => 'Delete',
     'label_upload' => 'Upload',
     'label_title' => 'Title',
     'label_summary' => 'Summary',
@@ -28,4 +33,10 @@ return [
     'label_no' => 'No',
     'label_delete_question' => 'Are you sure to delete banner ?',
     'label_delete_question_title' => 'Delete Banner',
+    'label_change_locale_title' => 'Change location',
+    'label_change_locale_question' => 'Change location will be reset article choice. Are you sure ?',
+    'label_from_to' => 'From - To',
+    'label_locale' => 'Country',
+    'label_place' => 'Place',
+    'label_article' => 'Article',
 ];

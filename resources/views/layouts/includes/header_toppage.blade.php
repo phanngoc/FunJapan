@@ -26,10 +26,6 @@
                             <p class="description">{{ $banner->articleLocale ? $banner->articleLocale->getShortSummary() : '' }}</p>
                             <p class="read-more"><span>Read more</span></p>
                         </div>
-                        <div class="content sm">
-                            <p class="heading">{{ $banner->articleLocale ? $banner->articleLocale->getShortTitle() : '' }}</p>
-                            <p class="description">{{ $banner->articleLocale ? $banner->articleLocale->getShortSummary() : '' }}</p>
-                        </div>
                     </a>
                 </div>
             @endforeach
