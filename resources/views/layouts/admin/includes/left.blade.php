@@ -20,18 +20,26 @@
                     IN+
                 </div>
             </li>
-            <li class="{{ set_active(['admin/articles*', 'admin/articles/create', 'admin/article-comments']) }}">
-                <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/article.article_management') }}</span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse">
-                    <li class="{{ set_active(['admin/articles']) }}"><a href="{{action('Admin\ArticlesController@index')}}">{{ trans('admin/article.article_list') }}</a></li>
-                    <li class="{{ set_active(['admin/articles/create']) }}">
-                        <a href="{{action('Admin\ArticlesController@create')}}">{{ trans('admin/article.add_article') }}</a>
-                    </li>
-                    <li class="{{ set_active(['admin/article-comments']) }}">
-                        <a href="{{action('Admin\ArticleCommentsController@index')}}">{{ trans('admin/article_comment.comment_list') }}</a>
-                    </li>
-                </ul>
-            </li>
+            @can('permission', [['article.read', 'article.list', 'article.add', 'ranking.list', 'article.edit', 'article.delete']])
+                <li class="{{ set_active(['admin/articles*', 'admin/articles/create', 'admin/article-comments']) }}">
+                    <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/article.article_management') }}</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li class="{{ set_active(['admin/articles']) }}">
+                            <a href="{{action('Admin\ArticlesController@index')}}">{{ trans('admin/article.article_list') }}</a></li>
+                        <li class="{{ set_active(['admin/articles/create']) }}">
+                            <a href="{{action('Admin\ArticlesController@create')}}">{{ trans('admin/article.add_article') }}</a>
+                        </li>
+                        <li class="{{ set_active(['admin/article-comments']) }}">
+                            <a href="{{action('Admin\ArticleCommentsController@index')}}">{{ trans('admin/article_comment.comment_list') }}</a>
+                        </li>
+                        @can('permission', 'article.edit')
+                            <li class="{{ set_active(['admin/always-on-top']) }}">
+                                <a href="{{action('Admin\ArticlesController@alwaysOnTop')}}">{{ trans('admin/article.always_on_top.label_title_menu') }}</a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcan
             <li class="{{ set_active(['admin/tags*', 'admin/tags/create', 'admin/settingHotTags', 'admin/showHotTags']) }}">
                 <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/tag.tag_management') }}</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">

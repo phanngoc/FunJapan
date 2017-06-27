@@ -79,7 +79,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">{{ trans('admin/banner.label_place') }}</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control" name="order" id="locale">
+                                        <select class="form-control" name="order">
                                             @foreach (config('banner.order') as $position => $value)
                                                 <option value="{{ $value }}" {{ $value == old('order') ? 'selected' : '' }}>{{ ucfirst($position) }}</option>
                                             @endforeach

@@ -4,11 +4,12 @@ namespace App\Services\Admin;
 
 use App\Models\Article;
 use App\Models\ArticleLocale;
+use App\Models\TopArticle;
+use Illuminate\Validation\Rule;
 use Validator;
 use DB;
 use Carbon\Carbon;
 use Auth;
-use Illuminate\Support\Facades\View;
 
 class ArticleService extends BaseService
 {
@@ -255,7 +256,7 @@ class ArticleService extends BaseService
             ->paginate(config('banner.article_suggest'))
             ->toArray();
     }
-
+    
     public static function listArticles($options)
     {
         $articles = Article::with([
@@ -316,5 +317,51 @@ class ArticleService extends BaseService
         }
 
         return $articles;
+    }
+
+    public static function getArticleAlwayOnTop()
+    {
+        return TopArticle::all();
+    }
+
+    public static function validateSetAlwaysOnTop($input)
+    {
+        $validationRules = [
+            'locale_id' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'article_locale_id' => 'required|exists:article_locales,id',
+        ];
+
+        return Validator::make($input, $validationRules)->messages()->toArray();
+    }
+
+    public static function setAlwaysOnTop($input)
+    {
+        $topArticle = TopArticle::where('locale_id', $input['locale_id'])->first();
+
+        try {
+            if ($topArticle) {
+                if ($topArticle->article_locale_id == $input['article_locale_id']) {
+                    $topArticle->update($input);
+                } else {
+                    $topArticle->delete();
+                    TopArticle::create($input);
+                }
+            } else {
+                TopArticle::create($input);
+            }
+
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public static function deleteAlwaysOnTop($topArticleId)
+    {
+        $topArticle = TopArticle::find($topArticleId);
+
+        return $topArticle->delete();
     }
 }
