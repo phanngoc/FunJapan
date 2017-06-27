@@ -90,7 +90,9 @@ class QuestionService extends BaseService
                                 unset($input['score'][$keyOption]);
                             }
 
-                            $input['score'][$keyOption] = ltrim($input['score'][$keyOption], '0');
+                            if (isset($input['score'][$keyOption])) {
+                                $input['score'][$keyOption] = ltrim($input['score'][$keyOption], '0');
+                            }
                         }
                     }
                     $question = Question::firstOrCreate([
@@ -131,7 +133,9 @@ class QuestionService extends BaseService
                         unset($input['score'][$keyOption]);
                     }
 
-                    $input['score'][$keyOption] = ltrim($input['score'][$keyOption], '0');
+                    if (isset($input['score'][$keyOption])) {
+                        $input['score'][$keyOption] = ltrim($input['score'][$keyOption], '0');
+                    }
                 }
             }
 
