@@ -51,7 +51,7 @@ class OmikujisController extends Controller
             }
             if ($count > 0) {
                 $omikujiItems[$count -1]->rate_weight = $omikujiItems[$count -1]->rate_weight
-                    . ' (' . (100 - $percent) . ' %)';
+                    . ' (' . (100 - $percent) . '%)';
             }
             $this->viewData['omikujiItems'] = $omikuji->omikujiItems;
 
