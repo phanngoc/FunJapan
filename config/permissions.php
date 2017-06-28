@@ -89,5 +89,8 @@ return [
             'author.add',
             'author.edit',
         ],
+        'advertisement' => [
+            'advertisement.change',
+        ],
     ],
 ];

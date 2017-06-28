@@ -129,5 +129,9 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::post('setting/api-token', 'ApiTokenController@store');
         Route::get('setting/api-token/delete/{id}', 'ApiTokenController@destroy');
         Route::get('setting/api-token/get-user', 'ApiTokenController@getUser');
+
+        Route::get('setting/advertisements', 'AdvertisementsController@index');
+        Route::post('setting/advertisements', 'AdvertisementsController@update');
+        Route::post('setting/advertisements/change/{advertisementId}', 'AdvertisementsController@change');
     });
 });

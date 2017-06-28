@@ -4,7 +4,7 @@
     {!! Html::script('assets/admin/js/alwaysOnTop.js') !!}
 
     <script>
-        var articleSuggest = {{ config('banner.article_suggest') }};;
+        var articleSuggest = {{ config('banner.article_suggest') }};
         var labelUnauthorized = '{{ trans('admin/banner.validate.unauthorized') }}';
         var lblConfirmRemove = '{{ trans('admin/article.always_on_top.label_delete_question_title') }}';
         var lblConfirmRemoveTitle = '{{ trans('admin/article.always_on_top.label_delete_question') }}';

@@ -8,7 +8,7 @@ class LocaleService extends BaseService
 {
     public static function getAllLocales()
     {
-        return Locale::orderBy('name')->pluck('name', 'id')->all();
+        return Locale::orderBy('id')->pluck('name', 'id')->all();
     }
 
     public static function getLocaleSort($order = 'ASC')
