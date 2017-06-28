@@ -17,17 +17,20 @@ class HomesController extends Controller
     public function index(Request $request)
     {
         $articleRanks = ArticleRankService::getArticleRanksLocale($this->currentLocaleId);
+        $lists = [];
         $checkDisplay = 0;
         foreach ($articleRanks as $articleRank) {
             if (isset($articleRank->articleLocale)) {
                 $checkDisplay += 1;
+                $lists[] = $articleRank;
             }
         }
 
-        $rank1 = $articleRanks->splice(0, 1);
+        $listRanks = collect($lists);
+        $rank1 = $listRanks->splice(0, 1);
         $this->viewData['checkDisplay'] = $checkDisplay;
         $this->viewData['rank1'] = $rank1;
-        $this->viewData['articleRanks'] = $articleRanks->splice(0, 4);
+        $this->viewData['articleRanks'] = $listRanks->splice(0, 4);
         $this->viewData['newArticles'] = WebArticleService::getNewArticles(
             $this->currentLocaleId,
             config('limitation.new_post.per_page')

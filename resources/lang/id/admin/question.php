@@ -13,13 +13,13 @@ return [
 
     'error_score' => [
         'integer' => 'The Score must be an integer.',
-        'max' => 'The Score must be at least :value.',
+        'max' => 'The Score may not be greater than :value.',
         'min' => 'The Score must be at least :value.',
     ],
 
     'error_option' => [
         'required' => 'The Option field is required.',
-        'max' => 'The Option must be at least :value characters.',
+        'max' => 'The Option may not be greater than :value characters.',
         'min' => 'The Option must be at least :value characters.',
         'at_least' => 'The Question must be at least an Option.',
         'enter' => 'You have to enter data in Option.',

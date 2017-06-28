@@ -58,10 +58,7 @@
             ['class' => 'col-sm-1 control-label'])
         }}
         <div class="col-sm-9 pt5">
-            {{ Form::file(
-                'result['.$id.'][photo]',
-                ['class' => 'form-control photo'])
-            }}
+            {{ Form::file('result['.$id.'][photo]')}}
         </div>
     </div>
     <div class="form-group">

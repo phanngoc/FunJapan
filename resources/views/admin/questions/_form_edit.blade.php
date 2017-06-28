@@ -61,7 +61,7 @@
                 <div class="col-sm-4">
                     {{ Form::text(
                         'score[]',
-                        $question->score[$key] ?: '',
+                        (isset($question->score[$key]) ? (($question->score[$key] != 0) ? $question->score[$key] : 0) : ''),
                         [
                             'class' => 'form-control',
                         ])
@@ -74,7 +74,7 @@
                 </div>
             </div>
         @endforeach
-        @if ($survey->type == config('survey.psychological'))
+        @if ($survey->type != config('survey.psychological'))
             <div class="form-group other-option">
                 {{ Form::label(
                     'option',

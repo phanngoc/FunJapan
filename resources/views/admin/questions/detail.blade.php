@@ -26,6 +26,12 @@
                                                     <span>{{ $value }}</span>
                                                 </p>
                                             @endforeach
+                                            @if ($question->other_option)
+                                                <p class="list-option">
+                                                    <input type="checkbox" disabled="" />
+                                                    <span>{{ trans('admin/question.other_option') }}: </span>
+                                                </p>
+                                            @endif
                                         @elseif ($question->question_type == config('question.type_value.radio'))
                                             @foreach($question->option_name as $key => $value)
                                                 <p class="list-option">
@@ -33,14 +39,15 @@
                                                     <span>{{ $value }}</span>
                                                 </p>
                                             @endforeach
+                                            @if ($question->other_option)
+                                                <p class="list-option">
+                                                    <input type="radio" disabled="" />
+                                                    <span>{{ trans('admin/question.other_option') }}: </span>
+                                                </p>
+                                            @endif
                                         @else
                                             <p class="list-option">
                                                 {{ trans('admin/question.text') }}
-                                            </p>
-                                        @endif
-                                        @if ($question->other_option)
-                                            <p class="list-option">
-                                                <span>{{ trans('admin/question.other_option') }}: </span>
                                             </p>
                                         @endif
                                     </div>
