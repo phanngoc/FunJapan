@@ -84,3 +84,35 @@ sortTable = function (inputSortBy, sortKeyDirDelimiter, onChangeSort) {
         }
     });
 }
+
+renderTable = function (keyword = null, limit = 20, sortBy = 'id.desc', page = 1, tab = 'client') {
+    $.ajax({
+        url: baseUrl() + '/admin/ids/',
+        type: 'GET',
+        data: {
+            tab: tab,
+            keyword: keyword,
+            perPage: limit,
+            sortBy: sortBy,
+            page: page
+        },
+        success: function success(response) {
+            if (tab == 'client') {
+                $('#table-client').html(response.htmlClients);
+                $('#paginate-client').html(response.htmlClientsPaginator);
+            } else {
+                $('#table-author').html(response.htmlAuthors);
+                $('#paginate-author').html(response.htmlAuthorsPaginator);
+            }
+            var inputSortByVal = $('input[name="sortBy"]').val().split('.');
+            $('.sort').each(function (index) {
+                var el = $(this);
+                var sortName = el.data('sort-name');
+
+                if (inputSortByVal && inputSortByVal[0] == sortName) {
+                    el.addClass('sort-' + inputSortByVal[1]);
+                }
+            });
+        }
+    });
+}

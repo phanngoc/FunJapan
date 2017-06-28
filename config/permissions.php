@@ -77,5 +77,17 @@ return [
             'api.add',
             'api.delete',
         ],
+        'clients' => [
+            'client.list',
+            'client.article_list',
+            'client.add',
+            'client.edit',
+        ],
+        'authors' => [
+            'author.list',
+            'author.article_list',
+            'author.add',
+            'author.edit',
+        ],
     ],
 ];

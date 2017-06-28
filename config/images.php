@@ -12,6 +12,7 @@ return [
         'coupon_image' => 'uploads/coupons/images',
         'popular_category_image' => 'uploads/categories/popular',
         'result_survey' => 'uploads/results',
+        'author' => 'uploads/authors',
     ],
     'validate' => [
         'post_photo' => [
@@ -55,6 +56,10 @@ return [
             'max_size' => 10240,
         ],
         'result_survey' => [
+            'mimes' => 'jpeg,png,jpg',
+            'max_size' => 10240,
+        ],
+        'author' => [
             'mimes' => 'jpeg,png,jpg',
             'max_size' => 10240,
         ],
@@ -115,6 +120,11 @@ return [
             'original' => '',
             'normal' => [480, 318],
             'small' => [96, 60],
+        ],
+        'author' => [
+            'original' => '',
+            'normal' => [96, 60],
+            'small' => [32, 32],
         ],
     ],
     'not_resize' => [

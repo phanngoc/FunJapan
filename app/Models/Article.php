@@ -20,6 +20,8 @@ class Article extends BaseModel
         'category_id',
         'auto_approve_photo',
         'type',
+        'client_id',
+        'author_id',
     ];
 
     public function articleLocales()
@@ -73,6 +75,16 @@ class Article extends BaseModel
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'article_tags', 'article_id', 'tag_id');
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(Author::class);
     }
 
     public function getRelateArticle($localeId)

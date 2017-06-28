@@ -264,6 +264,14 @@ class ArticleService extends BaseService
             },
         ], 'articleLocales.locale');
 
+        if (isset($options['client_id'])) {
+            $articles = $articles->where('client_id', $options['client_id']);
+        }
+
+        if (isset($options['author_id'])) {
+            $articles = $articles->where('author_id', $options['author_id']);
+        }
+
         if (isset($options['keyword']) && $options['keyword']) {
             $keyword = escape_like($options['keyword']);
             $searchColumn = $options['searchColumn'] ?? 'title';

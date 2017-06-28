@@ -101,6 +101,10 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::get('roles/{role}/change-permission', 'RolesController@getChangePermission');
         Route::post('roles/{role}/change-permission', 'RolesController@postChangePermission');
         Route::resource('roles', 'RolesController');
+        Route::get('ids', 'IdsController@index');
+        Route::resource('clients', 'ClientsController');
+        Route::post('authors/{authorId}', 'AuthorsController@update');
+        Route::resource('authors', 'AuthorsController');
 
         Route::get('{action?}', 'DashboardController@index');
 
