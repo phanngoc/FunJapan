@@ -12,7 +12,7 @@ $(document).ready(function () {
         formLast.find('.result-id').val(id);
         formLast.find('.score_from').attr('name', 'result[' + id + '][required_point_from]');
         formLast.find('.score_to').attr('name', 'result[' + id + '][required_point_to]');
-        formLast.find('.title').attr('name', 'result[' + id + '][title]');
+        formLast.find('.input-title').attr('name', 'result[' + id + '][title]');
         formLast.find('.photo').attr('name', 'result[' + id + '][photo]');
         formLast.find('.description').attr('name', 'result[' + id + '][description]');
         formLast.find('.bottom_text').attr('name', 'result[' + id + '][bottom_text]');

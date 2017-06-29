@@ -17,25 +17,25 @@
             }}
         </div>
     </div>
-@endif
-<div class="form-group">
-    {{ Form::label(
-        'type',
-        trans('admin/survey.type'),
-        ['class' => 'col-sm-2 control-label'])
-    }}
-    <div class="col-sm-10">
-        {{ Form::select(
+    <div class="form-group">
+        {{ Form::label(
             'type',
-            config('survey.type'),
-            $survey->type ?? null,
-            [
-                'class' => 'form-control',
-                'required',
-            ])
+            trans('admin/survey.type'),
+            ['class' => 'col-sm-2 control-label'])
         }}
+        <div class="col-sm-10">
+            {{ Form::select(
+                'type',
+                config('survey.type'),
+                $survey->type ?? null,
+                [
+                    'class' => 'form-control',
+                    'required',
+                ])
+            }}
+        </div>
     </div>
-</div>
+@endif
 <div class="form-group required">
     {{ Form::label(
         'title',

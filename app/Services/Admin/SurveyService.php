@@ -14,9 +14,16 @@ class SurveyService extends BaseService
     {
         $validationRules = [
             'title' => 'required|min:10|max:255',
-            'type' => 'required|in:' . implode(',', array_keys(config('survey.type'))),
-            'point' => 'integer|min:0|max:999999999',
         ];
+
+        if (isset($inputs['point'])) {
+            $inputs['point'] = ($inputs['point'] != 0) ? ltrim($inputs['point'], '0') : 0;
+            $validationRules['point'] = 'integer|min:0|max:999999999';
+        }
+
+        if (isset($inputs['type'])) {
+            $validationRules['type'] = 'required|in:' . implode(',', array_keys(config('survey.type')));
+        }
 
         return Validator::make($inputs, $validationRules)->setAttributeNames([
             'title' => trans('admin/survey.title'),
@@ -32,6 +39,10 @@ class SurveyService extends BaseService
 
     public static function store($inputs)
     {
+        if (isset($inputs['point'])) {
+            $inputs['point'] = ($inputs['point'] != 0) ? ltrim($inputs['point'], '0') : 0;
+        }
+
         return Survey::firstOrCreate([
             'title' => $inputs['title'],
             'description' => $inputs['description'],
@@ -46,12 +57,15 @@ class SurveyService extends BaseService
     public static function update($inputs, $id)
     {
         $survey = Survey::find($id);
+        if (isset($inputs['point'])) {
+            $inputs['point'] = ($inputs['point'] != 0) ? ltrim($inputs['point'], '0') : 0;
+        }
+
         if ($survey) {
             return $survey->update([
                 'title' => $inputs['title'],
                 'description' => $inputs['description'],
-                'type' => $inputs['type'],
-                'point' => $inputs['point'],
+                'point' => $inputs['point'] ?? 0,
                 'user_id' => auth()->user()->id,
                 'multiple_join' => $inputs['multiple_join'] ?? 0,
             ]);

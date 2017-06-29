@@ -42,10 +42,13 @@ class QuestionService extends BaseService
             if (isset($input['score'])) {
                 foreach ($input['score'] as $keyScore => $score) {
                     if (isset($score)) {
-                        $score = ltrim($score, '0');
                         if (!preg_match('/^[0-9]+$/', $score)) {
                             $message[$key]['score'][$keyScore] = trans('admin/question.error_score.integer');
                         } else {
+                            if ($score != 0) {
+                                $score = ltrim($score, '0');
+                            }
+
                             if ($score > config('question.number.max')) {
                                 $message[$key]['score'][$keyScore] = trans('admin/question.error_score.max', [
                                     'value' => config('question.number.max'),

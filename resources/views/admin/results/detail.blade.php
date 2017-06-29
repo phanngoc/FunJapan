@@ -34,7 +34,7 @@
                                 </td>
                             <tr>
                         @empty
-                            <span class="show-nothing">{{ trans('admin/question.show_nothing') }}</span>
+                            <span class="show-nothing">{{ trans('admin/result.show_nothing') }}</span>
                         @endforelse
                     </tbody>
                 </table>
