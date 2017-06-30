@@ -35,5 +35,13 @@ return [
     ],
     'article_tag' => [
         'per_page' => 6,
-    ]
+    ],
+    'articles' => [
+        'default_per_page' => 20,
+    ],
+    'lists' => [
+        20 => 20,
+        50 => 50,
+        100 => 100,
+    ],
 ];

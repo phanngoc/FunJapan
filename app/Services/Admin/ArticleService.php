@@ -255,4 +255,66 @@ class ArticleService extends BaseService
             ->paginate(config('banner.article_suggest'))
             ->toArray();
     }
+
+    public static function listArticles($options)
+    {
+        $articles = Article::with([
+            'articleLocales' => function ($query) {
+                $query->orderBy('created_at', 'asc');
+            },
+        ], 'articleLocales.locale');
+
+        if (isset($options['keyword']) && $options['keyword']) {
+            $keyword = escape_like($options['keyword']);
+            $searchColumn = $options['searchColumn'] ?? 'title';
+
+            $articles = $articles->where(function ($currentQuery) use ($keyword, $searchColumn, $options) {
+                $currentQuery->whereIn(
+                    'id',
+                    ArticleLocale::where($searchColumn, 'like', "%$keyword%")
+                        ->pluck('article_id')->toArray()
+                );
+            });
+        }
+
+        $orderBy = $options['orderBy'] ?? null;
+        $optionsSort = [
+            'id.desc',
+            'id.asc',
+            'title.desc',
+            'title.asc',
+        ];
+
+        if (!in_array($orderBy, $optionsSort)) {
+            $orderBy = 'id.desc';
+        }
+
+        $orders = explode('.', $orderBy);
+        if ($orders[0] == 'title') {
+            //
+        } else {
+            $articles = $articles->orderBy($orders[0], $orders[1]);
+        }
+
+        $articles = $articles->paginate($options['limit'] ?? config('limitation.articles.default_per_page'));
+
+        foreach ($articles as $key => $article) {
+            $articleLocales = [];
+            $i = 1;
+            foreach ($article->articleLocales as $articleLocale) {
+                if ($articleLocale->locale->iso_code == config('app.locale')) {
+                    $articleLocales[0] = $articleLocale;
+                } else {
+                    $articleLocales[$i] = $articleLocale;
+                    $i++;
+                }
+            }
+
+            ksort($articleLocales);
+            $articleLocales = array_values($articleLocales);
+            $articles[$key]->arrangedArticleLocales = $articleLocales;
+        }
+
+        return $articles;
+    }
 }

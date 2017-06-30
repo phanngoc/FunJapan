@@ -48,113 +48,6 @@ $(document).ready(function () {
         };
     });
 
-    //datatable setting
-    $.fn.dataTable.ext.errMode = 'none';
-
-    var table = $('#article-table').DataTable({
-        'order': [[ 3, "desc" ]],
-        'processing': true,
-        'serverSide': true,
-        'searchDelay': 400,
-        "language": {
-            "infoFiltered": ''
-        },
-        'ajax': {
-            'url': $('#article-table').data('url'),
-            'type': 'GET',
-        },
-        'columns': [
-            { 'data': 'id' },
-            { 'data': 'title' },
-            { 'data': 'user_id' },
-            { 'data': 'created_at' },
-            { 'data': 'published_at' },
-        ],
-        'columnDefs': [{
-            'targets': 0,
-            'sortable': false,
-            'class': 'text-center',
-        },
-        {
-            'targets': 2,
-            'sortable': false,
-            'data': function () {
-                return '';
-            }
-        },
-        {
-            'targets': 3,
-            'class': 'text-center',
-        },
-        {
-            'targets': 4,
-            'class': 'text-center',
-        },
-        {
-            'targets': 5,
-            'sortable': false,
-            'searchable': false,
-            'data': function () {
-                return '';
-            }
-        },
-        {
-            'targets': 6,
-            'sortable': false,
-            'searchable': false,
-            'data': function () {
-                return '';
-            }
-        },
-        {
-            'targets': 7,
-            'sortable': false,
-            'searchable': false,
-            'data': function () {
-                return '';
-            }
-        },
-        {
-            'targets': 8,
-            'sortable': false,
-            'searchable': false,
-            'class': 'text-center',
-            'data': function () {
-                return '';
-            }
-        },
-        {
-            'targets': 9,
-            'sortable': false,
-            'searchable': false,
-            'class': 'text-center',
-            'data': function () {
-                return '';
-            }
-        }],
-        'createdRow': function (row, data, index) {
-            var pageInfo = table.page.info();
-            $('td', row).eq(0).empty().append(pageInfo.page * pageInfo.length + index + 1);
-            var detailLink = baseUrl() + '/admin/articles/' + data.article_id + '?locale=' + data.locale_id;
-            $('td', row).eq(1).empty().append('<a href="' + detailLink + '">' + encodeHTML(data.title) + '</a>');
-            $('td', row).eq(2).empty().append(encodeHTML(data.article.user.name));
-            $('td', row).eq(5).empty().append(articleTypes[data.article.type]);
-            $('td', row).eq(6).empty().append(data.is_top_article ? 'Yes' : 'No');
-            $('td', row).eq(7).empty().append(data.hide_always ? 'Yes' : 'No');
-            $('td', row).eq(8).empty().append(data.is_member_only ? 'Yes' : 'No');
-            var editLink = baseUrl() + '/admin/articles/' + data.article_id + '/edit/?locale=' + data.locale_id;
-            $('td', row).eq(9).empty().append('<a data-toggle="tooltip" data-placement="left" title="'
-                + $('#button-edit').data('message')
-                +'" href="' + editLink + '" class="edit"><i class="fa fa-pencil-square-o fa fa-lg"></i></a>'
-                + '<a data-toggle="tooltip" data-placement="left" title="'
-                + $('#button-delete').data('message')
-                +'" href="#" class="delete"><i class="fa fa-trash-o fa fa-lg"></i></a>');
-        },
-        'fnDrawCallback': function (data, type, full, meta) {
-            $('[data-toggle="tooltip"]').tooltip();
-        },
-    });
-
     $('.datetime-picker').datetimepicker({
         format: 'Y-m-d H:i'
     });
@@ -188,6 +81,11 @@ $(document).ready(function () {
         function(){
             location.href = url;
         });
+    });
+
+    $('.dropdown-menu.search-by').on('click', 'a', function () {
+        $('[name="searchColumn"]').val($(this).attr('data-column'));
+        $('.selected-search-by').empty().text($(this).text());
     });
 });
 

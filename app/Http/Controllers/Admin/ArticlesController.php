@@ -20,10 +20,26 @@ class ArticlesController extends Controller
 {
     public function index(Request $request)
     {
-        $localeId = $request->input('locale_id') ?? array_first(array_keys(LocaleService::getAllLocales()));
-        $this->viewData['locales'] = LocaleService::getAllLocales();
-        $this->viewData['localeId'] = $localeId;
-        $this->viewData['types'] = json_encode(ArticleService::getArticleTypes());
+        $limit = $request->input('perPage', config('limitation.articles.default_per_page'));
+        $keyword = $request->input('keyword', '');
+        $sortBy = $request->input('sortBy', 'id.desc');
+        $searchColumn = $request->input('searchColumn', 'article_id');
+
+        $this->viewData['filter'] = [
+            'limit' => $limit,
+            'keyword' => $keyword,
+            'sortBy' => $sortBy,
+            'searchColumn' => $searchColumn,
+        ];
+
+        $this->viewData['articles'] = ArticleService::listArticles([
+            'limit' => $limit,
+            'keyword' => $keyword,
+            'orderBy' => $sortBy,
+            'searchColumn' => $searchColumn,
+        ]);
+
+        $this->viewData['locales'] = LocaleService::getAllIsoCodeLocales();
 
         return view('admin.article.index', $this->viewData);
     }

@@ -46,6 +46,7 @@ class ArticleLocale extends BaseModel
         'thumbnail_urls',
         'html_content',
         'is_show_able',
+        'status_by_locale',
     ];
 
     protected $dates = [
@@ -85,6 +86,23 @@ class ArticleLocale extends BaseModel
     public function article()
     {
         return $this->belongsTo(Article::class);
+    }
+
+    public function getStatusByLocaleAttribute()
+    {
+//        if ($this->draf) {
+//            return config('article.status_by_locale.draft');
+//        }
+
+        if ($this->status == config('article.status.published')) {
+            if ($this->published_at > Carbon::now()) {
+                return config('article.status_by_locale.schedule');
+            }
+
+            return config('article.status_by_locale.published');
+        }
+
+        return config('article.status_by_locale.stop');
     }
 
     public function comments()

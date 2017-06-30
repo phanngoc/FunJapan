@@ -38,7 +38,16 @@ return [
         'coupon' => 3,
         'location' => 4,
     ],
-
+    'status' => [
+        'stop' => 0,
+        'published' => 1,
+    ],
+    'status_by_locale' => [
+        'draft' => 0,
+        'schedule' => 1,
+        'published' => 2,
+        'stop' => 3,
+    ],
     'limit_short_title' => 37,
     'limit_short_summary' => 80,
     'rank' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],

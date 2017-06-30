@@ -43,7 +43,9 @@ return [
         'cancel' => 'Cancel',
         'delete' => 'Delete',
         'create_new' => 'Create New',
-        'clone' => 'Clone First Tab'
+        'clone' => 'Clone First Tab',
+        'stop' => 'Stop',
+        'filter' => 'Filter',
     ],
     'label' => [
         'is_top' => 'Always On Top?',
@@ -67,6 +69,21 @@ return [
         'comment_limit' => 'Comment Limit Per User',
         'tags.*' => 'Tags',
         'current_thumbnail' => 'Current Thumbnail',
+        'article_id' => 'Article ID',
+        'published_at' => 'Published Date',
+        'country' => 'Country',
+        'action' => 'Action',
+        'search' => 'Search',
+        'showing' => 'Showing',
+        'items' => 'Items',
+        'no_article' => 'No Articles',
+    ],
+    'status_by_locale' => [
+        'schedule' => 'Schedule',
+        'stop' => 'Stop',
+        'published' => 'Published',
+        'no_article' => 'No Article',
+        'draft' => 'Draft',
     ],
     'type' => [
         'normal' => 'Normal Article',
