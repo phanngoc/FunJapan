@@ -227,3 +227,27 @@
 .notification-list {
     overflow-x: hidden;
 }
+
+a.tw {
+    background-color: #1da1f2;
+    box-shadow: 0px 2px 0px #1379b7;
+}
+
+a.more {
+    background-color: #f58d0c;
+    box-shadow: 0px 2px 0px #dc6600;
+}
+
+.pl1 {
+    padding-left: 1px;
+}
+
+.w40 {
+    width: 40px !important;
+}
+
+@media (min-width: 571px) and (max-width: 768px) {
+    .w15 {
+        max-width: 12% !important;
+    }
+}

@@ -54,8 +54,8 @@ $(document).ready(function (e) {
         }
         pagesLoaded.push(url);
         initDropzone();
+        LineIt.loadButton();
     });
-
 });
 
 function visibleY(n)
@@ -100,4 +100,24 @@ function countShare(articleId)
         success: function (response) {
         }
     });
+}
+
+function activePocket() {
+    !function(d,i){
+        if(!d.getElementById(i)) {
+            var j=d.createElement("script");
+            j.id=i;
+            j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";
+            var w=d.getElementById(i);
+            d.body.appendChild(j);
+        } else {
+            var e = d.getElementById(i);
+            e.remove();
+            var j=d.createElement("script");
+            j.id=i;
+            j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";
+            var w=d.getElementById(i);
+            d.body.appendChild(j);
+        }
+    }(document,"pocket-btn-js");
 }
