@@ -105,7 +105,7 @@ return [
             'after:can_use_from' => 'The Time use coupon: Finished time must be after started time.',
         ],
     ],
-
+    'invalid_url' => 'Entered url is invalid. Please enter valid url.',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes
