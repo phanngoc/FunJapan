@@ -7,6 +7,7 @@ use App\Services\Admin\BannerSettingService;
 use App\Services\Admin\LocaleService;
 use Illuminate\Http\Request;
 use Gate;
+use Illuminate\Support\Facades\Input;
 
 class BannerSettingsController extends Controller
 {
@@ -14,8 +15,20 @@ class BannerSettingsController extends Controller
     {
         abort_if(Gate::denies('permission', 'banner.change'), 403, 'Unauthorized action.');
 
+        $currentLocale = Input::get('locale_id');
+        $isSuccess = Input::get('isSuccess');
+        $isDeleted = Input::get('isDeleted');
         $this->viewData['locales'] = LocaleService::getAllLocales();
+        $this->viewData['currentLocale'] = array_key_exists($currentLocale, $this->viewData['locales']) ? $currentLocale : key($this->viewData['locales']) ;
         $this->viewData['bannerSettingLocales'] = BannerSettingService::getAllBanner($this->viewData['locales']);
+
+        if ($isSuccess) {
+            session()->flash('message', trans('admin/banner.label_update_success'));
+        }
+
+        if ($isDeleted) {
+            session()->flash('message', trans('admin/banner.label_delete_success'));
+        }
 
         return view('admin.banner.index', $this->viewData);
     }
@@ -27,7 +40,7 @@ class BannerSettingsController extends Controller
         return response()->json(ArticleService::getListForBanner($condition));
     }
 
-    public function update($localeId, Request $request)
+    public function store(Request $request)
     {
         abort_if(Gate::denies('permission', 'banner.change'), 403, 'Unauthorized action.');
 
@@ -35,15 +48,24 @@ class BannerSettingsController extends Controller
             return response()->json(['message' => trans('admin/banner.validate.unauthorized')], 401);
         }
 
-        $input = $request->only(['banner']);
+        $input = $request->only([
+            'article_locale_id',
+            'article_title',
+            'from',
+            'to',
+            'photo',
+            'photo_base',
+            'locale_id',
+            'order',
+        ]);
 
-        $validate = BannerSettingService::validateUpdate($input['banner']);
+        $validate = BannerSettingService::validateStore($input);
 
         if (count($validate)) {
             return response()->json(['message' => $validate], 400);
         }
 
-        $banner = BannerSettingService::update($input['banner'], $localeId);
+        $banner = BannerSettingService::create($input);
 
         if ($banner) {
             return response()->json(['data' => $banner]);
@@ -57,7 +79,7 @@ class BannerSettingsController extends Controller
         );
     }
 
-    public function delete($localeId)
+    public function delete($bannerId)
     {
         abort_if(Gate::denies('permission', 'banner.change'), 403, 'Unauthorized action.');
 
@@ -65,7 +87,7 @@ class BannerSettingsController extends Controller
             return response()->json(['message' => trans('admin/banner.validate.unauthorized')], 401);
         }
 
-        $banner = BannerSettingService::delete($localeId);
+        $banner = BannerSettingService::delete($bannerId);
 
         if ($banner) {
             return response()->json(['success' => true]);

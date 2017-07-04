@@ -2,103 +2,77 @@
 
 namespace App\Services\Admin;
 
-use App\Models\ArticleLocale;
 use App\Models\BannerSetting;
 use App\Services\ImageService;
+use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\DB;
 use Validator;
 
 class BannerSettingService extends BaseService
 {
-    public static function validateUpdate($inputs)
+    public static function validateStore($input)
     {
-        $result = [];
-        $listArticle = [];
         $mimes = config('images.validate.banner.mimes');
         $maxSize = config('images.validate.banner.max_size');
 
         $rules = [
-            'photo' => 'mimes:' . $mimes . '|max:' . $maxSize,
+            'photo' => 'required|mimes:' . $mimes . '|max:' . $maxSize,
+            'from' => 'required|date',
+            'to' => 'required|date',
+            'locale_id' => 'required',
+            'order' => 'required',
+            'article_locale_id' => 'required|unique:banner_settings',
         ];
 
         $messages = [
             'article_locale_id.required' => trans('admin/banner.validate.required.article_locale_id'),
         ];
 
-        foreach ($inputs as $key => $input) {
-            $validate = Validator::make($input, $rules, $messages)->messages()->toArray();
-
-            if ($input['article_locale_id'] && $duplicateKey = array_search($input['article_locale_id'], $listArticle)) {
-                $validate['article_locale_id']['duplicate'] = trans('admin/banner.validate.duplicate');
-                $result[$duplicateKey]['article_locale_id']['duplicate'] = trans('admin/banner.validate.duplicate');
-            }
-
-            if ($input['article_locale_id'] && (!isset($input['is_uploaded_photo']) || !$input['is_uploaded_photo'])) {
-                $validate['photo'][] = trans('admin/banner.validate.required.photo');
-            }
-
-            $article = ArticleLocale::find($input['article_locale_id']);
-            if ($article && !$article->is_show_able) {
-                $result[$key]['article_locale_id'][] = trans('admin/banner.validate.not_show');
-            }
-
-            if (count($validate)) {
-                $result[$key] = $validate;
-            }
-
-            $listArticle[$key] = $input['article_locale_id'];
-        }
-
-
-        return $result;
+        return Validator::make($input, $rules, $messages)->messages()->toArray();
     }
 
-    public static function update($inputs, $localeId)
+    public static function create($input)
     {
-        $result = [];
+        $banner = BannerSetting::where('locale_id', $input['locale_id'])
+            ->where('order', $input['order'])
+            ->first();
 
         try {
-            DB::beginTransaction();
-
-            foreach ($inputs as $key => $input) {
-                if (isset($input['id']) && $input['id']) {
-                    $banner = BannerSetting::find($input['id']);
-                } else {
-                    $banner = BannerSetting::create(['locale_id' => $localeId]);
-                }
-
-                if ($input['article_locale_id']) {
-                    if (isset($input['photo']) && $input['photo'] instanceof UploadedFile) {
-                        $photoUploadPath = config('images.paths.banner') . '/' . $banner->id;
-                        $input['photo'] = ImageService::uploadFile($input['photo'], 'banner', $photoUploadPath, true);
-                    }
-                } else {
-                    $photoUploadPath = config('images.paths.banner') . '/' . $banner->id;
-                    $input['photo'] = null;
-                    ImageService::delete($photoUploadPath);
-                }
-
-                $banner->update($input);
-                $result[$key] = $banner;
-
-                DB::commit();
+            if (!$banner) {
+                $banner = BannerSetting::create(['locale_id' => $input['locale_id']]);
             }
 
-            return $result;
-        } catch (\Exception $e) {
-            DB::rollBack();
+            if (isset($input['photo']) && $input['photo'] instanceof UploadedFile) {
+                $photoUploadPath = config('images.paths.banner') . '/' . $banner->id;
+                $input['photo'] = ImageService::uploadFile($input['photo'], 'banner', $photoUploadPath, true);
+            }
 
+            $banner->update($input);
+
+            return $banner;
+        } catch (\Exception $e) {
             return false;
         }
     }
 
     public static function getBannerViaLocale($localeId, $isFront = true)
     {
-        $query = BannerSetting::where('locale_id', $localeId);
+        $query = BannerSetting::where('locale_id', $localeId)
+            ->orderBy('order', 'asc');
 
         if ($isFront) {
-            $query = $query->where('article_locale_id', '!=', 0);
+            $toDay = Carbon::now()->toDateString();
+            $query = $query->where('article_locale_id', '!=', 0)
+                ->where('from', '<=', $toDay)
+                ->where('to', '>=', $toDay);
+
+            $banner = $query->limit(config('banner.limit'))->get();
+
+            if ($banner->count() < config('banner.limit')) {
+                return null;
+            }
+
+            return $banner;
         }
 
         return $query->limit(config('banner.limit'))->get();
@@ -115,12 +89,12 @@ class BannerSettingService extends BaseService
         return $result;
     }
 
-    public static function delete($localeId)
+    public static function delete($bannerId)
     {
-        $banners = BannerSetting::where('locale_id', $localeId)->get();
+        $banner = BannerSetting::find($bannerId);
 
         try {
-            foreach ($banners as $banner) {
+            if ($banner) {
                 $photoUploadPath = config('images.paths.banner') . '/' . $banner->id;
                 if (ImageService::delete($photoUploadPath)) {
                     $banner->delete();

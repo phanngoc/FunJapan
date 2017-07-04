@@ -69,8 +69,8 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::delete('/omikujis/delete/{id}', 'OmikujisController@destroyOmikuji');
 
         Route::get('setting/banner', 'BannerSettingsController@index');
-        Route::post('setting/banner/{localeId}/locale', 'BannerSettingsController@update');
-        Route::delete('setting/banner/{localeId}/locale', 'BannerSettingsController@delete');
+        Route::post('setting/banner', 'BannerSettingsController@store');
+        Route::delete('setting/banner/{bannerId}', 'BannerSettingsController@delete');
         Route::get('setting/banner/get-article', 'BannerSettingsController@getArticle');
 
         Route::get('getCategories', 'CategoriesController@getCategories');
