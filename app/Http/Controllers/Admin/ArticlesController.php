@@ -6,15 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\Admin\ArticleService;
 use App\Services\Admin\ArticleLocaleService;
-use App\Services\Admin\ArticleTagService;
 use App\Services\Admin\LocaleService;
 use App\Services\Admin\CategoryLocaleService;
 use App\Services\Admin\CategoryService;
 use App\Models\Article;
-use App\Models\ArticleTag;
-use Carbon\Carbon;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
+use Gate;
+use Illuminate\Support\Facades\Input;
 
 class ArticlesController extends Controller
 {
@@ -232,5 +229,79 @@ class ArticlesController extends Controller
         }
 
         return redirect()->back()->withErrors(['errors' => trans('admin/article.add_error')]);
+    }
+
+    public function alwaysOnTop()
+    {
+        abort_if(Gate::denies('permission', 'article.edit'), 403, 'Unauthorized action.');
+
+        $currentLocale = Input::get('locale_id');
+        $isSuccess = Input::get('isSuccess');
+        $isDeleted = Input::get('isDeleted');
+
+        $this->viewData['locales'] = LocaleService::getAllLocales();
+        $this->viewData['currentLocale'] = array_key_exists($currentLocale, $this->viewData['locales']) ? $currentLocale : key($this->viewData['locales']) ;
+        $this->viewData['tops'] = ArticleService::getArticleAlwayOnTop();
+
+        if ($isSuccess) {
+            session()->flash('message', trans('admin/article.always_on_top.label_update_success'));
+        }
+
+        if ($isDeleted) {
+            session()->flash('message', trans('admin/article.always_on_top.label_delete_success'));
+        }
+
+        return view('admin.article.always_on_top', $this->viewData);
+    }
+
+    public function setAlwaysOnTop(Request $request)
+    {
+        abort_if(Gate::denies('permission', 'article.edit'), 403, 'Unauthorized action.');
+
+        $input = $request->only([
+            'article_locale_id',
+            'locale_id',
+            'start_date',
+            'end_date',
+        ]);
+
+        $validate = ArticleService::validateSetAlwaysOnTop($input);
+        if (count($validate)) {
+            return response()->json(['message' => $validate], 400);
+        }
+
+        $isSuccess = ArticleService::setAlwaysOnTop($input);
+        if ($isSuccess) {
+            return response()->json(['isSuccess' => $isSuccess]);
+        }
+
+        return response()->json(
+            [
+                'message' => ['article_locale_id' => [trans('admin/banner.validate.article_banner')]],
+            ],
+            400
+        );
+    }
+
+    public function deleteAlwaysOnTop($topArticleId)
+    {
+        abort_if(Gate::denies('permission', 'article.edit'), 403, 'Unauthorized action.');
+
+        if (!auth()->check()) {
+            return response()->json(['message' => trans('admin/banner.validate.unauthorized')], 401);
+        }
+
+        $isSuccess = ArticleService::deleteAlwaysOnTop($topArticleId);
+
+        if ($isSuccess) {
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(
+            [
+                'message' => 'Something went wrong',
+            ],
+            400
+        );
     }
 }

@@ -21,12 +21,16 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::get('recommend-articles/lists', 'RecommendedArticlesController@lists');
         Route::get('recommend-articles/recommendedLists', 'RecommendedArticlesController@recommendedLists');
         Route::resource('recommend-articles', 'RecommendedArticlesController');
+        Route::get('articles/always-on-top', 'ArticlesController@alwaysOnTop');
+        Route::post('articles/always-on-top', 'ArticlesController@setAlwaysOnTop');
+        Route::delete('articles/always-on-top/{articleLocaleId}', 'ArticlesController@deleteAlwaysOnTop');
         Route::resource('articles', 'ArticlesController');
         Route::get('articles/setOtherLanguage/{article}', 'ArticlesController@setOtherLanguage');
         Route::post('articles/updateOtherLanguage/{article}', 'ArticlesController@updateOtherLanguage');
         Route::get('getArticles', 'ArticlesController@getListArticles');
         Route::get('articles/edit-global/{article}', 'ArticlesController@editGlobalInfo');
         Route::post('articles/edit-global/{article}', 'ArticlesController@updateGlobalInfo');
+
         Route::get('getCategoryLocale', 'ArticlesController@getCategoryLocale');
 
         Route::resource('article-comments', 'ArticleCommentsController');
