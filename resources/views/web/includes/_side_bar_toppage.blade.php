@@ -9,6 +9,7 @@
     @endif
     {{-- @include('web.includes._popular_articles_series') --}}
     {{-- @include('web.includes._popular_categories') --}}
+    @include('web.includes._editor_choices')
     @include('web.includes._footer')
 </div>
 <!-- EOF SIDEBAR -->

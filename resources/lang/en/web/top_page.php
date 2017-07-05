@@ -7,4 +7,5 @@ return [
     'comments' => 'comments',
     'shares' => 'shares',
     'all' => 'All',
+    'editor_choice' => 'Editor\'s Choices',
 ];
