@@ -54,7 +54,6 @@ $(document).ready(function (e) {
         }
         pagesLoaded.push(url);
         initDropzone();
-        LineIt.loadButton();
     });
 });
 

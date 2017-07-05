@@ -6,7 +6,6 @@
 {{ Html::script('assets/momentjs/moment-timezone.min.js') }}
 {{ Html::script('assets/momentjs/moment-timezone-with-data.js') }}
 {{ Html::script('assets/momentjs/moment-timezone-with-data-2012-2022.js') }}
-<script src="//scdn.line-apps.com/n/line_it/thirdparty/loader.min.js" async="async"　defer="defer"></script>
 <script>
     var BASE_URL = '{{ url('') }}';
     var BASE_LOCALE = '{{ App::getLocale() }}';
