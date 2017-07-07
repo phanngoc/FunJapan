@@ -87,146 +87,111 @@
             </div>
         </div>
         <div class="step-2 jmb">
-            {{ Form::open(['action' => 'Web\RegisterController@storeJmb']) }}
+            {{ Form::open(['action' => 'Web\RegisterController@storeJmb', 'id' => 'jmbRegisterForm']) }}
                 <p class="guide-text center">Please provide all of the required information below and click the Next button.</p>
-                <div class="row" id="given-name-section">
+                <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group row has-feedback has-info">
-                            <label for="firstName" class="col-md-36 col-form-label">{{ trans('web/user.jmb.label.given_name') }}<span class="require">*</span></label>
+                        <div class="form-group row has-info">
+                            <label class="col-md-36 col-form-label" for="firstName">Given Name
+                                <span class="require">*</span>
+                            </label>
                             <div class="col-md-64 col-xs-11">
-                                <input type="text" class="form-control" id="firstName" name="first_name1" placeholder="First name" value="{{ old('first_name1') ?? '' }}">
-                                <i class="zmdi zmdi-plus-circle-o control-btn" id="add-input"></i>
+                                <input class="form-control" id="jmbFirstName" type="text" name="firstName" placeholder="10 characters or less">
+                                <i class="zmdi zmdi-plus-circle-o control-btn" id="addFn_2"></i>
+                                <i class="zmdi zmdi-plus-circle-o control-btn" id="addFn_3"></i>
                                 <i class="fa fa-question-circle info-tooltip-btn" id="firstName1Info" aria-hidden="true"></i>
-                                <label class="help-block">{{ $errors->has('first_name1') ? $errors->first('first_name1') : '' }}</label>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-22 col-xs-11 @if (!array_key_exists('first_name2', old()))
-                        hidden
-                    @endif" id="firstName2_block">
-                        <div class="form-group has-feedback has-info">
+                    <div class="col-md-22 col-xs-11 hidden" id="firstName2_block">
+                        <div class="form-group has-info">
                             <div class="col-md-12 no-padding">
-                                <input type="text" class="form-control" id="firstName2" placeholder="First name 2" value="{{ old('first_name2') ?? '' }}" name="{{ array_key_exists('first_name2', old()) ? 'first_name2' : '' }}">
-                                <i class="zmdi zmdi-minus-circle-outline control-btn
-                                @if (array_key_exists('first_name3', old()))
-                                    hidden
-                                @endif" id="remove-2"></i>
+                                <input class="form-control" id="jmbFirstName2" type="text" name="firstName2" placeholder="9 characters or less">
+                                <i class="zmdi zmdi-minus-circle-outline control-btn" id="rmFn_2"></i>
                                 <i class="fa fa-question-circle info-tooltip-btn" id="firstName2Info" aria-hidden="true"></i>
-                                <label class="help-block">{{ $errors->has('first_name2') ? $errors->first('first_name2') : '' }}</label>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-22 col-xs-11 @if (!array_key_exists('first_name3', old()))
-                        hidden
-                    @endif" id="firstName3_block">
-                        <div class="form-group has-feedback has-info">
+                    <div class="col-md-22 col-xs-11 hidden" id="firstName3_block">
+                        <div class="form-group has-info">
                             <div class="col-md-12 no-padding">
-                                <input type="text" class="form-control" id="firstName3" placeholder="First name 3" value="{{ old('first_name3') ?? '' }}" name="{{ array_key_exists('first_name3', old()) ? 'first_name3' : '' }}">
-                                <i class="zmdi zmdi-minus-circle-outline control-btn" id="remove-3"></i>
+                                <input class="form-control" id="jmbFirstName3" type="text" name="firstName3" placeholder="9 characters or less">
+                                <i class="zmdi zmdi-minus-circle-outline control-btn" id="rmFn_3"></i>
                                 <i class="fa fa-question-circle info-tooltip-btn" id="firstName3Info" aria-hidden="true"></i>
-                                <label class="help-block">{{ $errors->has('first_name3') ? $errors->first('first_name3') : '' }}</label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group row has-feedback has-info">
-                            <label for="lastName" class="col-md-36 col-form-label">{{ trans('web/user.jmb.label.family_name') }}<span class="require">*</span></label>
+                        <div class="form-group row has-info">
+                            <label class="col-md-36 col-form-label" for="lastName">Family Name
+                                <span class="require">*</span>
+                            </label>
                             <div class="col-md-64">
-                                <input type="text" class="form-control" id="lastName" name="last_name" placeholder="Last name" value="{{ old('last_name') ?? '' }}" {{ array_key_exists('first_name2', old()) ? 'disabled' : '' }}>
-                                <span class="glyphicon form-control-feedback" id="lastName1"></span>
+                                <input class="form-control" id="jmbLastName" type="text" name="lastName" placeholder="9 characters or less">
                                 <i class="fa fa-question-circle info-tooltip-btn" id="lastNameInfo" aria-hidden="true"></i>
-                                <label class="help-block">{{ $errors->has('last_name') ? $errors->first('last_name') : '' }}
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group row has-info">
-                            <label for="midName" class="col-md-36 col-form-label alR">{{ trans('web/user.jmb.label.middle_name') }}</label>
+                            <label class="col-md-36 col-form-label alR" for="midName">Middle Name</label>
                             <div class="col-md-64">
-                                <input type="text" class="form-control" id="midName" name="mid_name" placeholder="Middle name" value="{{ old('mid_name') ?? '' }}" {{ array_key_exists('first_name2', old()) ? 'disabled' : '' }}>
+                                <input class="form-control" id="jmbMidName" type="text" name="midName" placeholder="9 characters or less">
                                 <i class="fa fa-question-circle info-tooltip-btn" id="midNameInfo" aria-hidden="true"></i>
-                                <label class="help-block">{{ $errors->has('mid_name') ? $errors->first('mid_name') : '' }}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group row has-feedback has-info">
-                            <label for="password" class="col-md-36 col-form-label">{{ trans('web/user.jmb.label.pin_password') }}<span class="require" >*</span></label>
+                        <div class="form-group row has-info">
+                            <label class="col-md-36 col-form-label" for="password">Personal Identification Number (PIN)
+                                <span class="require">*</span>
+                            </label>
                             <div class="col-md-64">
-                                <input type="password" class="form-control" id="password" name="password" maxlength="6" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+                                <input class="form-control" id="jmbPassword" type="password" name="password" placeholder="Enter 6 numeric characters">
                                 <i class="fa fa-question-circle info-tooltip-btn" id="pwInfo" aria-hidden="true"></i>
-                                <label class="help-block">{{ $errors->has('password') ? $errors->first('password') : '' }}
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group row has-feedback">
-                            <label for="password2" class="col-md-36 col-form-label alR">{{ trans('web/user.jmb.label.pin_confirm') }}<span class="require">*</span></label>
+                        <div class="form-group row">
+                            <label class="col-md-36 col-form-label alR" for="confirmPassword">PIN Confirmation
+                                <span class="require">*</span>
+                            </label>
                             <div class="col-md-64">
-                                <input type="password" class="form-control" id="password2" name="password_confirmation" maxlength="6" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
-                                <span class="glyphicon form-control-feedback" id="password21"></span>
-                                <label class="help-block">{{ $errors->has('password_confirmation') ? $errors->first('password_confirmation') : '' }}
+                                <input class="form-control" id="jmbConfirmPassword" type="password" name="confirmPassword" placeholder="Enter 6 numeric characters">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="form-group row has-feedback">
-                    <label for="address1" class="col-md-18 col-form-label">Address 1<span class="require">*</span></label>
+                <div class="form-group row">
+                    <label class="col-md-18 col-form-label" for="address1">Address 1
+                        <span class="require">*</span>
+                    </label>
                     <div class="col-md-82">
-                        <input type="text" class="form-control" id="address1" name="address1" placeholder="Address 1" value="{{ old('address1') ?? '' }}">
-                        <span class="glyphicon form-control-feedback" id="address11"></span>
-                        <label class="help-block">{{ $errors->has('address1') ? $errors->first('address1') : '' }}
+                        <input class="form-control addressInput" id="jmbAddress1" type="text" name="address1" placeholder="Address 1">
                     </div>
                 </div>
-                <div class="form-group row has-feedback">
-                    <label for="address2" class="col-md-18 col-form-label">Address 2<span class="require">*</span></label>
+                <div class="form-group row">
+                    <label class="col-md-18 col-form-label" for="address2">Address 2
+                        <span class="require">*</span>
+                    </label>
                     <div class="col-md-82">
-                        <input type="text" class="form-control" id="address2" name="address2" placeholder="Address 2" value="{{ old('address2') ?? '' }}">
-                        <span class="glyphicon form-control-feedback" id="address21"></span>
-                        <label class="help-block">{{ $errors->has('address2') ? $errors->first('address2') : '' }}
-                        <i class="zmdi zmdi-plus-circle-o control-btn address @if (old('address3'))
-                            hidden
-                        @endif" id="add-address-3"></i>
+                        <input class="form-control addressInput" id="jmbAddress2" type="text" name="address2" placeholder="Address 2">
+                        <i class="zmdi zmdi-plus-circle-o control-btn address"></i>
                     </div>
                 </div>
-
-                <div class="form-group row has-feedback @if (!old('address3'))
-                    hidden
-                @endif" id="input-address-3">
-                    <label for="address3" class="col-md-18 col-form-label">Address 3</label>
-                    <div class="col-md-82">
-                        <input type="text" class="form-control" id="address3" name="address3" placeholder="Address 3" value="{{ old('address3') ?? '' }}">
-                        <span class="glyphicon form-control-feedback" id="address21"></span>
-                        <label class="help-block">{{ $errors->has('address3') ? $errors->first('address3') : '' }}
-                        <i class="zmdi zmdi-plus-circle-o control-btn address @if (old('address4'))
-                            hidden
-                        @endif" id="add-address-4"></i>
-                    </div>
-                </div>
-
-                <div class="form-group row has-feedback @if (!old('address4'))
-                    hidden
-                @endif" id="input-address-4">
-                    <label for="address4" class="col-md-18 col-form-label">Address 4</label>
-                    <div class="col-md-82">
-                        <input type="text" class="form-control" id="address4" name="address4" placeholder="Address 4" value="{{ old('address4') ?? '' }}">
-                        <span class="glyphicon form-control-feedback" id="address21"></span>
-                        <label class="help-block">{{ $errors->has('address4') ? $errors->first('address4') : '' }}
-                    </div>
-                </div>
-
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group row has-feedback">
-                            <label for="zipcode" class="col-md-36 col-form-label">{{ trans('web/user.jmb.label.zipcode') }}<span class="require">*</span></label>
+                        <div class="form-group row">
+                            <label class="col-md-36 col-form-label" for="zipcode">Zip Code
+                                <span class="require">*</span>
+                            </label>
                             <div class="col-md-64">
-                                <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="Zip code" value="{{ old('zipcode') ?? '' }}">
-                                <span class="glyphicon form-control-feedback" id="zipcode1"></span>
-                                <label class="help-block">{{ $errors->has('zipcode') ? $errors->first('zipcode') : '' }}
+                                <input class="form-control" id="jmbZipcode" type="text" name="zipcode" placeholder="Zip Code">
                             </div>
                         </div>
                     </div>
@@ -253,19 +218,19 @@
                     </div>
                 </div>
 
-                <div class="form-group row has-feedback">
-                    <label for="phone" class="col-md-18 col-form-label">{{ trans('web/user.jmb.label.phone') }}<span class="require">*</span></label>
+                <div class="form-group row">
+                    <label class="col-md-18 col-form-label" for="phoneNumber">Phone Number
+                        <span class="require">*</span>
+                    </label>
                     <div class="col-md-82">
-                        <input type="text" class="form-control"
-                            id="phone" name="phone" placeholder="Phone number"
-                            value="{{ old('phone') ?? '' }}">
-                        <span class="glyphicon form-control-feedback" id="phone1"></span>
-                        <label class="help-block">{{ $errors->has('phone') ? $errors->first('phone') : '' }}
+                        <input class="form-control" id="jmbPhoneNumber" type="text" name="phoneNumber" placeholder="Phone Number">
                     </div>
                 </div>
-
                 <div class="form-group term">
-                    <p class="term-title"><label for="term" class="col-form-label">{{ trans('web/user.jmb.text.accept_terms') }}</label><span class="guide-text">{{ trans('web/user.jmb.text.accept_terms_warning') }}</span></p>
+                    <p class="term-title">
+                        <label class="col-form-label" for="term">Acceptance of Rules and Conditions</label>
+                        <span class="guide-text">Please agree to the JMB Rules and Conditions to continue</span>
+                    </p>
                     <p class="term-banner">
                         <a href="https://www.jal.co.jp/en/jalmile/rules.html" target="_blank">
                             <img class="banner-dk" src="assets/images/registration/jmb_term.png" alt="jmb_term">
@@ -275,12 +240,16 @@
                 </div>
                 <div class="form-group term-check">
                     <div class="checkbox-holder term-checkbox">
-                        <input type="checkbox" class="terms-checkbox" id="smTerms" name="terms" value="">
-                        <input name="terms" type="hidden" value="{{ count(old()) > 0 ? old('terms') : 'false' }}" id="inputTerm">
-                        <label for="terms" class="checkbox-label tick"></label>
-                        <label class="checkbox-label"><span>{{ trans('web/user.jmb.label.terms') }}</span></label>
+                        <input id="jmbIsAcceptPolicy" type="checkbox" name="isAcceptPolicy" value="true">
+                        <input name="isAcceptPolicy" type="hidden" value="false">
+                        <label class="checkbox-label tick" for="jmbIsAcceptPolicy"></label>
+                        <label class="checkbox-label">
+                            <span>I agree to the above Rules & Conditions</span>
+                        </label>
                     </div>
-                    <label class="help-block">{{ $errors->has('terms') ? $errors->first('terms') : '' }}
+                    <p class="feedback">
+                        <strong><span id="jmbRequireMessage"></span></strong>
+                    </p>
                 </div>
                 <div class="step-btn-container">
                     <input class="btn btn-primary" id="submit-button" type="submit" value="Next">
@@ -292,9 +261,8 @@
 @endsection
 @section('script')
     <script type="text/javascript">
-        var terms = {{ count(old()) > 0 ? old('terms') : 'false' }};
         var allCities = {!! json_encode($allCities) !!};
-        var oldInputs = {!! json_encode(old()) !!};
+        var userBirthDay = {!! $userBirthDay !!};
     </script>
     {{ Html::script('assets/js/web/jmb.js') }}
 @endsection

@@ -144,6 +144,7 @@ class RegisterController extends Controller
         if (count($jmbUser) > 0) {
             return redirect()->action('Web\RegisterController@finalStep');
         }
+        $user = Auth::user();
         $this->viewData['step'] = 2;
         $this->viewData['currentLocale'] = $this->currentLocale;
         $allJmbCountries = JmbCountry::where('available', 1);
@@ -154,6 +155,7 @@ class RegisterController extends Controller
         }
         $this->viewData['initCity'] = $this->viewData['allCities'][$this->currentLocale]->prepend('---', '');
         $this->viewData['locales'] = $allJmbCountries->pluck('name', 'code')->prepend('---', '');
+        $this->viewData['userBirthDay'] = $user->birthday_parse->year;
 
         return view('web.users.register.jmb_1', $this->viewData);
     }
@@ -161,13 +163,6 @@ class RegisterController extends Controller
     public function storeJmb(Request $request)
     {
         $inputs = $request->all();
-
-        $validator = UserService::validateJmbInput($inputs);
-
-
-        if (count($validator)) {
-            return redirect()->back()->withErrors($validator)->withInput($inputs);
-        }
         $inputs['user_id'] = Auth::id();
 
         if (JmbService::create($inputs)) {
