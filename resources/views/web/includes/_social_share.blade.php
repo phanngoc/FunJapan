@@ -29,13 +29,13 @@
                 </a>
             </div>
             <div class="col-xs-1">
-                <a href="https://getpocket.com/edit.php?url={{ $url }}" target="_blank" class="btn gp">
-                    <span><i class="fa fa-get-pocket" aria-hidden="true"></i></span>
+                <a href="https://timeline.line.me/social-plugin/share?url={{ $url }}" target="_blank" class="btn line">
+                    <span><i class="fa fa-whatsapp" aria-hidden="true"></i></span>
                 </a>
             </div>
             <div class="col-xs-1">
-                <a href="https://timeline.line.me/social-plugin/share?url={{ $url }}" target="_blank" class="btn line">
-                    <span>LINE</span>
+                <a href="https://getpocket.com/edit.php?url={{ $url }}" target="_blank" class="btn gp">
+                    <span><i class="fa fa-get-pocket" aria-hidden="true"></i></span>
                 </a>
             </div>
         </div>
@@ -72,13 +72,13 @@
                 </a>
             </div>
             <div class="col-xs-2">
-                <a href="https://getpocket.com/edit.php?url={{ $url }}" target="_blank" class="btn gp">
-                    <span><i class="fa fa-get-pocket" aria-hidden="true"></i></span>
+                <a href="https://timeline.line.me/social-plugin/share?url={{ $url }}" target="_blank" class="btn line">
+                    <span><i class="fa fa-whatsapp" aria-hidden="true"></i></span>
                 </a>
             </div>
             <div class="col-xs-2">
-                <a href="https://timeline.line.me/social-plugin/share?url={{ $url }}" target="_blank" class="btn line">
-                    <span>LINE</span>
+                <a href="https://getpocket.com/edit.php?url={{ $url }}" target="_blank" class="btn gp">
+                    <span><i class="fa fa-get-pocket" aria-hidden="true"></i></span>
                 </a>
             </div>
         </div>

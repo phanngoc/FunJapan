@@ -46,83 +46,85 @@ $(function() {
     },
     jmb: {
       firstName: {
-        required: "This field is required.",
-        maxlength: "Max length {0} charactors.",
-        regex: "Only alphabets charactors are allowed.",
-        info: "First name info here."
+        required: "Please enter your given name.",
+        maxlength: "Please enter {0} characters or less.",
+        regex: "Only alphabet character and space is accepted.",
+        info: "Please input the same alphabet name as shown in your passport"
       },
       firstName2: {
         required: "This field is required.",
-        maxlength: "Max length {0} charactors.",
-        regex: "Only alphabets charactors are allowed.",
-        info: "First name 2 info here."
+        maxlength: "Please enter {0} characters or less.",
+        regex: "Only alphabet character and space is accepted.",
+        info: "Please input the same alphabet name as shown in your passport"
       },
       firstName3: {
-        maxlength: "Max length {0} charactors.",
-        regex: "Only alphabets charactors are allowed.",
-        info: "First name 3 info here."
+        maxlength: "Please enter {0} characters or less.",
+        regex: "Only alphabet character and space is accepted.",
+        info: "Please input the same alphabet name as shown in your passport"
       },
       lastName: {
-        required: "This field is required.",
-        maxlength: "Max length {0} charactors.",
-        regex: "Only alphabets charactors are allowed.",
-        info: "Last name info here."
+        required: "Please enter your family name.",
+        maxlength: "Please enter {0} characters or less.",
+        regex: "Only alphabet character and space is accepted.",
+        info: "Please input the same alphabet name as shown in your passport."
       },
       midName: {
-        maxlength: "Max length {0} charactors.",
-        regex: "Only alphabets charactors are allowed.",
-        info: "Middle name info here."
+        maxlength: "Please enter {0} characters or less.",
+        regex: "Only alphabet character and space is accepted.",
+        info: "Please input the same alphabet name as shown in your passport."
       },
       password: {
-        required: "This field is required.",
-        exactLength: "Password must have exactly {0} charactors.",
-        isNotSequentialNumber: "Password is invalid.",
-        isNot6RepeatedNumChar: "Password is invalid.",
-        valueNotContains: "Password should not contain your birth year.",
+        required: "Please enter the password.",
+        exactLength: "Please input {0} numbers.",
+        isNotSequentialNumber: "PIN cannot be sequential number string such as 123456 or 654321.",
+        isNot6RepeatedNumChar: "PIN cannot be the same string number like 111111.",
+        valueNotContains: "PIN should not contain your birth year.",
         isNotInPhoneNumber: "Password should not be in phone number.",
         isNotInZipCode: "Password should not be in your zip code.",
-        regex: "Must be 6 numeric charactors.",
-        info: "<ul>\
-                        <li><span>Birth date (the Christian Era, the name of a Japanese era)</span></li>\
-                        <li><span>Telephone number</span></li>\
-                        <li><span>Numbers in your address</span></li>\
-                        <li><span>6 identical numbers such as 1111111</span></li>\
-                        <li><span>Serial numbers such as 123456, 654321*6 identical numbers, numbers in reverse order are also unacceptable</span></li>\
-                    </ul>"
+        regex: "Please input number only.",
+        info: "<span>To ensure password security, please</span>\
+              <p></p>\
+              <ul>\
+                <li><span> Do not input the same number to your birth date</span></li>\
+                <li><span> Do not input the same number to your telephone number</span></li>\
+                <li><span> Do not input the same number to your home address </span></li>\
+                <li><span> Do not input the same 6 numbers such as 111111</span></li>\
+                <li><span> Do not input sequential numbers such as 123456 or 654321</span></li>\
+              </ul>"
       },
       confirmPassword: {
-        required: "This field is required.",
-        equalTo: "Password does not match the confirm password."
+        required: "Please enter the password for confirmation.",
+        equalTo: "The PIN confirmation does not match with the PIN code."
       },
       city: {
-        required: "This field is required."
+        required: "Please select your city."
       },
       country: {
-        required: "This field is required."
+        required: "Please select your country."
       },
       address1: {
         required: "This field is required.",
-        maxlength: "Max length {0} charactors."
+        maxlength: "Please enter {0} characters or less."
       },
       address2: {
         required: "This field is required.",
-        maxlength: "Max length {0} charactors."
+        maxlength: "Please enter {0} characters or less."
       },
       address3: {
-        maxlength: "Max length {0} charactors."
+        maxlength: "Please enter {0} characters or less."
       },
       address4: {
-        maxlength: "Max length {0} charactors."
+        maxlength: "Please enter {0} characters or less."
       },
       zipcode: {
-        required: "This field is required.",
-        maxlength: "Max length {0} charactors.",
-        regex: "Zipcode should contain only number and dash."
+        required: "Please enter Zip Code.",
+        maxlength: "Please enter {0} characters or less.",
+        regex: "Please enter a valid Zip Code."
       },
       phoneNumber: {
-        required: "This field is required.",
-        maxlength: "Max length {0} charactors.",
-        regex: "Phone number should contain only number and dash."
+        required: "Please enter a valid phone number.",
+        maxlength: "Please enter {0} characters or less.",
+        regex: "Please enter your phone number."
       },
       isAcceptPolicy: {
         required: "You must accept JMB Rules and Conditions first."
@@ -183,7 +185,7 @@ $(function() {
     midName.prop('disabled', false);
   });
 
-  // 2. address 
+  // 2. address
   var addAddressBtn = $('.control-btn.address');
   var addressCount = 3;
   addAddressBtn.click(function() {
@@ -200,6 +202,9 @@ $(function() {
     inserted_block.insertAfter(parent_block);
     $(this).addClass('hidden');
     addressCount = addressCount + 1;
+    if (addressCount == 5) {
+      inserted_block.find('.control-btn.address').addClass('hidden');
+    }
   });
 
   // Check term checkbox when clicking term banner
@@ -407,23 +412,24 @@ $(function() {
     rules: {
       firstName: {
         required: true,
-        regex: /^[a-z]+$/i,
+        regex: /^[a-z\s]+$/i,
         maxlength: 10
       },
       firstName2: {
-        regex: /^[a-z]+$/i,
+        regex: /^[a-z\s]+$/i,
         maxlength: 9
       },
       firstName3: {
-        regex: /^[a-z]+$/i,
+        required: true,
+        regex: /^[a-z\s]+$/i,
         maxlength: 9
       },
       lastName: {
-        regex: /^[a-z]+$/i,
+        regex: /^[a-z\s]+$/i,
         maxlength: 9
       },
       midName: {
-        regex: /^[a-z]+$/i,
+        regex: /^[a-z\s]+$/i,
         maxlength: 9
       },
       password: {
@@ -432,7 +438,7 @@ $(function() {
         exactLength: 6,
         isNotSequentialNumber: true,
         isNot6RepeatedNumChar: true,
-        valueNotContains: [userInfo.birthYear]
+        valueNotContains: [userBirthDay]
       },
       confirmPassword: {
         required: true,
@@ -460,13 +466,16 @@ $(function() {
       },
       zipcode: {
         required: true,
-        regex: /^[0-9\-]+$/i,
+        regex: /^([\d][\d\-]{0,8}[\d])$/i,
         maxlength: 10
       },
       phoneNumber: {
         required: true,
-        regex: /^[0-9\-]+$/i,
+        regex: /^((\d)+-)*\d+$/i,
         maxlength: 20
+      },
+      isAcceptPolicy: {
+        required: true,
       }
     },
     messages: messages.jmb,
@@ -475,16 +484,16 @@ $(function() {
         err = $(error),
         msg = err.text();
       if (msg != null && msg !== "") {
-        showToolTip(ele, msg);
+        ele.attr('type') === 'checkbox' ? $('#jmbRequireMessage').text(msg) : showToolTip(ele, msg);
       }
     },
     success: function(label, element) {
       var ele = $(element);
       ele.tooltip('hide');
+      $('#jmbRequireMessage').text('');
     },
     submitHandler: function(form) {
-      alert('valid form');
-      return false;
+      form.submit();
     }
   });
 
