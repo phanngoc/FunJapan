@@ -53,4 +53,5 @@
 {!! Html::script('assets/admin/js/plugins/select2/select2.full.min.js') !!}
 <!-- Datetime Picker -->
 {!! Html::script('assets/admin/js/jquery-datetimepicker/jquery.datetimepicker.full.min.js') !!}
+{!! Html::script('assets/admin/js/plugins/datapicker/bootstrap-datepicker.js') !!}
 @yield('script')

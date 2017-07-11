@@ -58,6 +58,15 @@ $(document).ready(function () {
         addAutoApprovePhoto($(this));
     });
 
+    $('.date-filter').datepicker({
+        minViewMode: 1,
+        format: 'yyyy MM',
+        keyboardNavigation: false,
+        forceParse: false,
+        autoclose: true,
+        todayHighlight: true
+    });
+
     $('.select-locale').on('change', function (e) {
         $('.articles-list').submit();
     });
@@ -69,7 +78,7 @@ $(document).ready(function () {
     $('.cancel').on('click', function(e) {
         e.preventDefault();
         var message = $(this).data('message');
-        url = $(this).attr('href');;
+        url = $(this).attr('href');
         swal({
             title: message,
             type: "warning",
@@ -86,6 +95,53 @@ $(document).ready(function () {
     $('.dropdown-menu.search-by').on('click', 'a', function () {
         $('[name="searchColumn"]').val($(this).attr('data-column'));
         $('.selected-search-by').empty().text($(this).text());
+    });
+
+    $('body').on('click', '.stop-btn', function () {
+        var element = $(this);
+        var articleId = element.attr('data-article-id');
+        var url = element.attr('data-url');
+        swal({
+            title: element.attr('data-message-confirm') + element.attr('data-title'),
+            text: '',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: element.attr('data-yes-confirm'),
+            cancelButtonText: element.attr('data-cancel-confirm'),
+            closeOnConfirm: false,
+            closeOnCancel: true
+        }, function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    data: {
+                        'articleId': articleId
+                    },
+                    success: (response) => {
+                        if (response.success) {
+                            swal(response.message, '', 'success');
+                            element.attr('disabled', true);
+                            element.parents('tr').find('td.label-locale span.label').each(function () {
+                                if ($(this).hasClass('label-custom-published') || $(this).hasClass('label-custom-schedule')) {
+                                    $(this).removeClass().addClass('label label-custom-stop');
+                                }
+                            });
+                        } else {
+                            swal(response.message, '', 'error');
+                        }
+
+                    },
+                    error: function (e) {
+                    }
+                });
+            }
+        });
+    });
+
+    $('body').on('click', '.date-filter-btn', function () {
+        $('input[name="dateFilter"]').val($('.date-filter').val());
+        $('form.filter-sort-form').submit();
     });
 });
 

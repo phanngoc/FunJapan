@@ -15,4 +15,5 @@
 {!! Html::style('assets/admin/css/plugins/select2/select2.min.css') !!}
 {!! Html::style('assets/admin/css/admin.css') !!}
 {!! Html::style('assets/admin/css/survey.css') !!}
+{!! Html::style('assets/admin/css/plugins/datapicker/datepicker3.css') !!}
 @yield('style')

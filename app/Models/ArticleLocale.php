@@ -90,9 +90,9 @@ class ArticleLocale extends BaseModel
 
     public function getStatusByLocaleAttribute()
     {
-//        if ($this->draf) {
-//            return config('article.status_by_locale.draft');
-//        }
+        if ($this->status == config('article.status.draft')) {
+            return config('article.status_by_locale.draft');
+        }
 
         if ($this->status == config('article.status.published')) {
             if ($this->published_at > Carbon::now()) {

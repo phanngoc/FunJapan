@@ -269,10 +269,26 @@ class ArticleService extends BaseService
             $keyword = escape_like($options['keyword']);
             $searchColumn = $options['searchColumn'] ?? 'title';
 
-            $articles = $articles->where(function ($currentQuery) use ($keyword, $searchColumn, $options) {
+            if (in_array($searchColumn, ['client_id', 'id'])) {
+                $articles = $articles->where($searchColumn, 'like', "%$keyword%");
+            } elseif (in_array($searchColumn, $options['searchColumns'])) {
+                $articles = $articles->where(function ($currentQuery) use ($keyword, $searchColumn, $options) {
+                    $currentQuery->whereIn(
+                        'id',
+                        ArticleLocale::where($searchColumn, 'like', "%$keyword%")
+                            ->pluck('article_id')->toArray()
+                    );
+                });
+            }
+        }
+
+        if (isset($options['dateFilter']) && $options['dateFilter']) {
+            $dateFilter = Carbon::createFromFormat('Y M', $options['dateFilter']);
+            $articles = $articles->where(function ($currentQuery) use ($dateFilter) {
                 $currentQuery->whereIn(
                     'id',
-                    ArticleLocale::where($searchColumn, 'like', "%$keyword%")
+                    ArticleLocale::whereMonth('published_at', $dateFilter->month)
+                        ->whereYear('published_at', $dateFilter->year)
                         ->pluck('article_id')->toArray()
                 );
             });
@@ -284,6 +300,8 @@ class ArticleService extends BaseService
             'id.asc',
             'title.desc',
             'title.asc',
+            'client_id.desc',
+            'client_id.asc',
         ];
 
         if (!in_array($orderBy, $optionsSort)) {
@@ -363,5 +381,16 @@ class ArticleService extends BaseService
         $topArticle = TopArticle::find($topArticleId);
 
         return $topArticle->delete();
+    }
+
+    public static function stop($articleId)
+    {
+        $article = Article::with('articleLocales')->find($articleId);
+
+        if (!$article) {
+            return false;
+        }
+
+        return $article->articleLocales()->update(['status' => config('article.status.stop')]);
     }
 }
