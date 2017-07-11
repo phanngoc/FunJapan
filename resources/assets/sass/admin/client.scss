@@ -1,0 +1,37 @@
+.btn-left-radius {
+    border-bottom-left-radius: 20px !important;
+    border-top-left-radius: 20px !important;
+}
+.btn-right-radius {
+    border-bottom-right-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+}
+
+table {
+    td {
+        vertical-align: middle !important;
+    }
+}
+
+#client, #author {
+    margin-top: 25px;
+}
+
+.sort {
+    cursor: pointer;
+}
+
+.sort.sort-asc::after {
+    font-family: FontAwesome;
+    content: " \f0de";
+}
+
+.sort.sort-desc::after {
+    font-family: FontAwesome;
+    content: " \f0dd";
+}
+
+#preview {
+    height: 32px;
+    width: 32px;
+}

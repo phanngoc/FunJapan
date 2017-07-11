@@ -62,11 +62,12 @@
                 'result[0][photo]',
                 [
                     'class' => 'form-control photo',
+                    'accept' => 'image/jpeg,image/png,image/jpg',
                 ])
             }}
         </div>
     </div>
-    <div class="form-group" class="preview-section">
+    <div class="form-group preview-section">
         <div class="col-sm-4 col-sm-offset-1">
             <img src="{{ $result->photoUrl['small'] }}" class="preview-img" data-url="{{ $result->photoUrl['small'] }}">
         </div>

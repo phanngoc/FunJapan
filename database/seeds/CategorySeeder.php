@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Category;
-use App\Models\CategoryLocale;
 use Carbon\Carbon;
 
 class CategorySeeder extends Seeder
@@ -87,7 +86,6 @@ class CategorySeeder extends Seeder
             ];
 
             Category::insert($categories);
-            CategoryLocale::insert($categoryLocales);
 
             DB::commit();
             echo "Seeding Categories data has done.\n";

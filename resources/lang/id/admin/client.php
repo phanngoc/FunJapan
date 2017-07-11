@@ -1,0 +1,19 @@
+<?php
+
+return [
+	'client_management' => 'Client ID Management',
+	'author_management' => 'Author Management',
+	'tag_management' => 'Tag Management',
+	'list' => 'List Client',
+	'add' => 'Add Client',
+	'edit' => 'Edit Client',
+    'label' => [
+        'id' => 'Client ID',
+        'name' => 'Client Name',
+        'action' => 'Action',
+        'article_list' => 'Article List',
+        'showing' => 'Showing',
+        'items' => 'Items',
+    ],
+    'no_matching' => 'No matching records found.',
+];
