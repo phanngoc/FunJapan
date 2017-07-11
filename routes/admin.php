@@ -40,7 +40,12 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::resource('article-comments', 'ArticleCommentsController');
         Route::get('getArticleComments', 'ArticleCommentsController@getListArticleComments');
 
-        Route::resource('tags', 'TagsController');
+        Route::get('tags', 'TagsController@index');
+        Route::get('tags/create', 'TagsController@create');
+        Route::post('tags/store', 'TagsController@store');
+        Route::post('tags/update', 'TagsController@update');
+        Route::post('tags/destroy', 'TagsController@destroy');
+        Route::get('tags/ajaxLoad', 'TagsController@ajaxTagList');
         Route::get('tagsSuggest', 'TagsController@suggest');
         Route::get('getTags', 'TagsController@getListTags');
         Route::post('tagBlock/{tag}', 'TagsController@block');
