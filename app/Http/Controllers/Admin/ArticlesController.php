@@ -17,25 +17,27 @@ class ArticlesController extends Controller
 {
     public function index(Request $request)
     {
-        $limit = $request->input('perPage', config('limitation.articles.default_per_page'));
-        $keyword = $request->input('keyword', '');
-        $sortBy = $request->input('sortBy', 'id.desc');
-        $searchColumn = $request->input('searchColumn', 'article_id');
-
-        $this->viewData['filter'] = [
-            'limit' => $limit,
-            'keyword' => $keyword,
-            'sortBy' => $sortBy,
-            'searchColumn' => $searchColumn,
+        $searchColumns = [
+            'id',
+            'article_id',
+            'client_id',
+            'title',
+            'published_at',
         ];
 
-        $this->viewData['articles'] = ArticleService::listArticles([
-            'limit' => $limit,
-            'keyword' => $keyword,
-            'orderBy' => $sortBy,
-            'searchColumn' => $searchColumn,
-        ]);
+        $searchColumn = $request->input('searchColumn', 'client_id');
 
+        $filter = [
+            'limit' => $request->input('perPage', config('limitation.articles.default_per_page')),
+            'keyword' => $request->input('keyword', ''),
+            'sortBy' => $request->input('sortBy', 'id.desc'),
+            'searchColumn' => in_array($searchColumn, $searchColumns) ? $searchColumn : 'client_id',
+            'dateFilter' => $request->input('dateFilter', null),
+            'searchColumns' => $searchColumns,
+        ];
+
+        $this->viewData['filter'] = $filter;
+        $this->viewData['articles'] = ArticleService::listArticles($filter);
         $this->viewData['locales'] = LocaleService::getAllIsoCodeLocales();
 
         return view('admin.article.index', $this->viewData);
@@ -303,5 +305,21 @@ class ArticlesController extends Controller
             ],
             400
         );
+    }
+
+    public function stop(Request $request)
+    {
+        $articleId = $request->get('articleId');
+        if (ArticleService::stop($articleId)) {
+            return [
+                'success' => true,
+                'message' => trans('admin/article.messages.stop_success'),
+            ];
+        }
+
+        return [
+            'success' => false,
+            'message' => trans('admin/article.messages.stop_error'),
+        ];
     }
 }

@@ -98,46 +98,60 @@ div.dataTables_wrapper {
     float: left;
     width: 40px;
     height: 20px;
+    padding-top: 4px !important;
+    color: #FFFFFF !important;
+    font-weight: bold !important;
 }
 .label-custom-schedule {
-    border: 1px solid #F9DF6B;
-    color: #F9DF6B !important;
-    background-color: #ffffff !important;
-    font-weight: bold;
+    background-color: #F6CB58 !important;
     @include custom-position;
 }
 .label-custom-stop {
-    border: 1px solid #FF8A91;
-    color: #FF8A91 !important;
-    background-color: #ffffff !important;
-    font-weight: bold;
+    background-color: #F99796 !important;
     @include custom-position;
 }
 .label-custom-no-article {
-    border: 1px solid #D1DADE;
-    color: #D1DADE !important;
-    background-color: #FFFFFF !important;
-    font-weight: bold;
+    background-color: #A2A2A2 !important;
     @include custom-position;
 }
 .label-custom-draft {
-    font-weight: bold;
-    color: #FFFFFF;
+    background-color: #B4A3D0 !important;
     @include custom-position;
 }
 .label-custom-published {
     background-color: #1C84C6 !important;
-    color: #FFFFFF !important;
     @include custom-position;
 }
 .label-explain {
     display: flex;
     p {
         margin-right: 10px;
+        font-size: 11px;
+    }
+    span {
+        display: block !important;
+        width: 12px;
+        height: 12px;
+        margin-top: 2px;
+        padding-right: 0px !important;
     }
 }
 table {
     td {
         vertical-align: middle !important;
+    }
+}
+.border-left {
+    border-left: 4px solid #19aa8d !important;
+}
+.breadcrumb {
+    .home {
+        color: #1ab394 !important;
+    }
+}
+.page-title {
+    h2 {
+        color: #1ab394;
+        text-transform: uppercase;
     }
 }

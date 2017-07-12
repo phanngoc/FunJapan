@@ -41,6 +41,7 @@ return [
     'status' => [
         'stop' => 0,
         'published' => 1,
+        'draft' => 2,
     ],
     'status_by_locale' => [
         'draft' => 0,
