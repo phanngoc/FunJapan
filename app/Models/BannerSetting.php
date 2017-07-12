@@ -20,13 +20,12 @@ class BannerSetting extends BaseModel
         'locale_id',
         'photo',
         'order',
-        'from',
-        'to',
     ];
 
     protected $appends = [
         'photo_urls',
         'active',
+        'order_text',
     ];
 
     public function articleLocale()
@@ -68,19 +67,15 @@ class BannerSetting extends BaseModel
         return $results;
     }
 
+    public function getOrderTextAttribute()
+    {
+        $orders = array_flip(config('banner.order'));
+
+        return trans('admin/banner.order.' . $orders[$this->order]);
+    }
+
     public function getActiveAttribute()
     {
-        if ($this->locale) {
-            $isoCode = $this->locale->iso_code;
-
-            $now = Carbon::now(trans('datetime.time_zone', [], $isoCode));
-            $startDay = Carbon::parse($this->from, trans('datetime.time_zone', [], $isoCode));
-            $endDay = Carbon::parse($this->to . ' 23:59:59', trans('datetime.time_zone', [], $isoCode));
-
-
-            return ($now->gte($startDay)) && ($now->lte($endDay));
-        }
-
-        return false;
+        return $this->articleLocale->status_show_in_front;
     }
 }

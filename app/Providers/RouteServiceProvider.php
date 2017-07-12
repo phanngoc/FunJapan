@@ -90,6 +90,9 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapAdminRoutes()
     {
+        //Set timezone
+        config(['app.timezone' => config('app.admin_timezone')]);
+
         Route::prefix('admin')
             ->middleware(['web'])
             ->namespace($this->namespace)
