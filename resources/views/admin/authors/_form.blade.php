@@ -13,7 +13,7 @@
                 'required',
             ])
         }}
-        <p class="text-danger font-bold error-name"></p>
+        <p class="text-danger font-bold error-author-name"></p>
     </div>
 </div>
 <div class="form-group">
@@ -30,10 +30,10 @@
                 'id' => 'photo',
             ])
         }}
-        <p class="text-danger font-bold error-photo"></p>
+        <p class="text-danger font-bold error-author-photo"></p>
     </div>
 </div>
-<div class="form-group hidden" id="preview-section">
+<div class="form-group" id="preview-section" style="display: none;">
     <div class="col-sm-4 col-sm-offset-1">
         <img src="#" id="preview-img" data-url="">
     </div>
@@ -53,7 +53,7 @@
                 'class' => 'form-control',
             ])
         }}
-        <p class="text-danger font-bold error-description"></p>
+        <p class="text-danger font-bold error-author-description"></p>
     </div>
 </div>
 <input type="hidden" value="{{ $author->id ?? null }}" name="id">

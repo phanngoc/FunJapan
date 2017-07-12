@@ -255,7 +255,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="{{ set_active(['admin/id*']) }}">
+            <li class="{{ set_active(['admin/id*', 'admin/clients/*', 'admin/authors/*']) }}">
                 <a href="{!! action('Admin\IdsController@index') !!}">
                     <i class="fa fa-sitemap"></i> <span class="nav-label"> ID Management
                 </a>

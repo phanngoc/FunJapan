@@ -85,14 +85,13 @@ sortTable = function (inputSortBy, sortKeyDirDelimiter, onChangeSort) {
     });
 }
 
-renderTable = function (keyword = null, limit = 20, sortBy = 'id.desc', page = 1, tab = 'client') {
+renderTable = function (keyword = null, sortBy = 'id.desc', page = 1, tab = 'client') {
     $.ajax({
         url: baseUrl() + '/admin/ids/',
         type: 'GET',
         data: {
             tab: tab,
             keyword: keyword,
-            perPage: limit,
             sortBy: sortBy,
             page: page
         },
@@ -100,19 +99,26 @@ renderTable = function (keyword = null, limit = 20, sortBy = 'id.desc', page = 1
             if (tab == 'client') {
                 $('#table-client').html(response.htmlClients);
                 $('#paginate-client').html(response.htmlClientsPaginator);
+                $('#showing-client').html('Showing ' + response.total + ' items');
+                addSortClass($('#client'));
             } else {
                 $('#table-author').html(response.htmlAuthors);
                 $('#paginate-author').html(response.htmlAuthorsPaginator);
+                $('#showing-author').html('Showing ' + response.total + ' items');
+                addSortClass($('#author'));
             }
-            var inputSortByVal = $('input[name="sortBy"]').val().split('.');
-            $('.sort').each(function (index) {
-                var el = $(this);
-                var sortName = el.data('sort-name');
-
-                if (inputSortByVal && inputSortByVal[0] == sortName) {
-                    el.addClass('sort-' + inputSortByVal[1]);
-                }
-            });
         }
     });
+
+    var addSortClass = function(element) {
+        var inputSortByVal = element.find('input[name="sortBy"]').val().split('.');
+        element.find('.sort').each(function (index) {
+            var el = $(this);
+            var sortName = el.data('sort-name');
+
+            if (inputSortByVal && inputSortByVal[0] == sortName) {
+                el.addClass('sort-' + inputSortByVal[1]);
+            }
+        });
+    }
 }

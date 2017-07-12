@@ -98,11 +98,13 @@
                 <div class="tabs-container">
                     <ul class="nav nav-tabs">
                         <li class="active" data-tab="question">
-                            <a data-toggle="tab" href="#question">Question</a>
+                            <a data-toggle="tab" href="#question">{{ trans('admin/question.question') }}</a>
                         </li>
-                        <li data-tab="result">
-                            <a data-toggle="tab" href="#result">Result</a>
-                        </li>
+                        @if ($survey->type == config('survey.psychological'))
+                            <li data-tab="result">
+                                <a data-toggle="tab" href="#result">{{ trans('admin/result.result') }}</a>
+                            </li>
+                        @endif
                     </ul>
                     <div class="tab-content">
                         <div id="question" class="tab-pane fade in active">

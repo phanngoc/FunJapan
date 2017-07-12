@@ -8,7 +8,7 @@ return [
 	'add' => 'Add Client',
 	'edit' => 'Edit Client',
     'label' => [
-        'id' => 'Client ID',
+        'id' => 'ID',
         'name' => 'Client Name',
         'action' => 'Action',
         'article_list' => 'Article List',

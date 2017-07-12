@@ -1,19 +1,21 @@
 <thead>
     <tr>
-        <th style="min-width: 100px;" class="text-center sort" data-sort-name="id">{{ trans('admin/author.label.id') }}</th>
-        <th style="min-width: 100px;" class="text-center">{{ trans('admin/author.label.photo') }}</th>
-        <th style="min-width: 300px;" class="text-center sort" data-sort-name="name">{{ trans('admin/author.label.name') }}</th>
-        <th style="min-width: 300px;" class="text-center">{{ trans('admin/author.label.description') }}</th>
-        <th style="min-width: 300px;" class="text-center">{{ trans('admin/author.label.action') }}</th>
+        <th class="text-center col-sm-1 sort" data-sort-name="id">{{ trans('admin/author.label.id') }}</th>
+        <th class="text-center col-sm-2">{{ trans('admin/author.label.photo') }}</th>
+        <th class="text-center col-sm-3 sort" data-sort-name="name">{{ trans('admin/author.label.name') }}</th>
+        <th class="text-center col-sm-3">{{ trans('admin/author.label.description') }}</th>
+        <th class="text-center col-sm-3">{{ trans('admin/author.label.action') }}</th>
     </tr>
 </thead>
 <tbody>
-    @if (count($clients) > 0)
+    @if (count($authors) > 0)
         @foreach($authors as $author)
             <tr data-id="{{ $author->id }}">
                 <td class="text-center author-id">{{ $author->id }}</td>
                 <td class="text-center author-photo">
-                    <img src="{{ $author->photoUrl['small']}}" id="preview">
+                    <img src="{{ $author->photoUrl['small']}}"
+                        id="preview"
+                        {{ (!$author->photoUrl['small']) ? 'style=display:none;' : '' }}>
                 </td>
                 <td class="author-name">{{ $author->name }}</td>
                 <td class="author-description">{{ $author->description ?? ''}}</td>

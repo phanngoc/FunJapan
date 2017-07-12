@@ -12,21 +12,13 @@ class AuthorService extends BaseService
 {
     public static function validate($inputs)
     {
-        $mimes = config('images.validate.author.mimes');
-        $maxSize = config('images.validate.author.max_size');
-
         $validationRules = [
             'name' => 'required|max:255',
             'description' => 'max:255',
         ];
 
-        if (isset($inputs['photo'])) {
-            $validationRules['photo'] = 'mimes:' . $mimes . '|max:' . $maxSize;
-        }
-
         return Validator::make($inputs, $validationRules)->setAttributeNames([
             'name' => 'Name',
-            'photo' => 'Photo',
             'description' => 'Description',
         ]);
     }
@@ -65,7 +57,7 @@ class AuthorService extends BaseService
         $orders = explode('.', $orderBy);
         $authors = $authors->orderBy($orders[0], $orders[1]);
 
-        $authors = $authors->paginate($options['limit'] ?? config('limitation.articles.default_per_page'));
+        $authors = $authors->paginate(config('limitation.articles.default_per_page'));
 
         return $authors;
     }
@@ -75,9 +67,9 @@ class AuthorService extends BaseService
         if ($inputs) {
             DB::beginTransaction();
             try {
-                $author =  Author::firstOrCreate([
-                    'name' => $inputs['name'],
-                    'description' => $inputs['description'] ?? null,
+                $author =  Author::create([
+                    'name' => trim($inputs['name']),
+                    'description' => trim($inputs['description']) ?? null,
                 ]);
 
                 if ($author) {
@@ -115,8 +107,8 @@ class AuthorService extends BaseService
                 DB::beginTransaction();
                 try {
                     $author->update([
-                        'name' => $inputs['name'],
-                        'description' => $inputs['description'],
+                        'name' => trim($inputs['name']),
+                        'description' => trim($inputs['description']),
                     ]);
                     if (isset($inputs['photo'])) {
                         $photoUploadPath = config('images.paths.author') . '/' . $author->id;
