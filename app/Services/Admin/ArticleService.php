@@ -355,11 +355,15 @@ class ArticleService extends BaseService
         $validationRules = [
             'locale_id' => 'required',
             'start_date' => 'required|date',
-            'end_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date|after:' . Carbon::today()->toDateString(),
             'article_locale_id' => 'required|exists:article_locales,id',
         ];
 
-        return Validator::make($input, $validationRules)->messages()->toArray();
+        $messages = [
+            'end_date.after' => trans('admin/article.always_on_top.validate.after_end_date'),
+        ];
+
+        return Validator::make($input, $validationRules, $messages)->messages()->toArray();
     }
 
     public static function setAlwaysOnTop($input)
