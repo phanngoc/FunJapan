@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'title' => 'Fun Japan! Renewal Admin',
+    'title' => 'Fun! Japan Renewal Admin',
     'author' => 'Author',
 ];

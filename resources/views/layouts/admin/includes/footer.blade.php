@@ -3,6 +3,6 @@
         <strong>Renewal Admin</strong>
     </div>
     <div>
-        <strong>Copyright</strong> Fun Japan! &copy; 2017
+        <strong>Copyright</strong> Fun! Japan &copy; 2017
     </div>
 </div>
