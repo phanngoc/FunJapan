@@ -1,5 +1,40 @@
 $(function () {
     $('.next-to-confirm').on('click', function () {
+        var validateUrl = $('form.form-confirm').attr('data-validate-url');
+        var formData = $('form.form-confirm').serialize();
+        var thisElement = $(this);
+        thisElement.attr('disabled', true);
+        thisElement.find('.fa-spinner').removeClass('hidden');
+
+        $.ajax({
+            url: validateUrl,
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                if (response.success) {
+                    $('form.form-confirm').submit();
+                } else {
+                    var message = '';
+                    for (let key in response.message) {
+                        message += '<p>' + response.message[key] + '</p>';
+                    }
+                    $('.alert-error-section').removeClass('hidden')
+                        .find('.alert.alert-danger').empty().append(message);
+                    $('html, body').animate({
+                        scrollTop: $('.alert-error-section').offset().top
+                    }, 700);
+
+                    thisElement.attr('disabled', false);
+                    thisElement.find('.fa-spinner').addClass('hidden');
+                }
+            }
+        });
+    });
+
+    $('.btn-back').on('click', function () {
+        $(this).attr('disabled', true);
+        $(this).find('.fa-spinner').removeClass('hidden');
+        $('.back-to-create').val(true);
         $('form.form-confirm').submit();
     });
 
@@ -7,8 +42,8 @@ $(function () {
     $('.colorpicker-element').colorpicker({
         color: divStyle.backgroundColor
     }).on('changeColor', function(ev) {
-        divStyle.backgroundColor = ev.color.toHex();
-        $('.title-bg-color').val(ev.color.toHex());
+        divStyle.backgroundColor = ev.color.toString('rgba');
+        $('.title-bg-color').val(ev.color.toString('rgba'));
     });
 
     $('.image-item').on('click', function () {

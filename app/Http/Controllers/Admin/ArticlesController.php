@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use App\Models\Locale;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\Admin\ArticleService;
@@ -13,6 +14,7 @@ use App\Services\Admin\LocaleService;
 use App\Services\Admin\CategoryLocaleService;
 use App\Services\Admin\CategoryService;
 use App\Models\Article;
+use App\Models\ArticleLocale;
 use Gate;
 use Illuminate\Support\Facades\Input;
 use App\Models\Author;
@@ -54,11 +56,9 @@ class ArticlesController extends Controller
 
     public function show(Request $request, Article $article)
     {
-        $this->viewData['tab'] = $request->input('locale');
-
         $this->viewData['article'] = $article;
-        $this->viewData['locales'] = LocaleService::getAllLocales();
-        $this->viewData['types'] = ArticleService::getArticleTypes();
+        $localesId = $article->articleLocales->pluck('locale_id')->toArray();
+        $this->viewData['localesNoArticles'] = Locale::whereNotIn('id', $localesId)->get();
 
         return view('admin.article.detail', $this->viewData);
     }
@@ -79,17 +79,40 @@ class ArticlesController extends Controller
 
         $response = CategoryService::getCategoryLocaleDropList($params['locale_id']);
 
-        return response()->json($response);
+        return $response;
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $this->viewData['locales'] = LocaleService::getLocaleSort();
-        $this->viewData['authors'] = Author::get()->pluck('name', 'id')->toArray();
-        $this->viewData['clients'] = Client::get()->pluck('name', 'id')->toArray();
-        $this->viewData['subCategories'] = CategoryService::getSubCategories();
+        $localeId = $request->get('localeId');
+        $articleId = $request->get('articleId');
+
+        if ($localeId && $articleId) {
+            $locale = Locale::find($localeId);
+            $article = Article::find($articleId);
+
+            if ($locale && $article) {
+                $this->viewData['article'] = $article;
+                $firstArticleLocale = $article->articleLocales->first();
+                $this->viewData['firstArticleLocale'] = $firstArticleLocale;
+                $this->viewData['locale'] = $locale;
+                $this->viewData['tags'] = $firstArticleLocale->tags->pluck('name')->toArray();
+                $this->viewData['category'] = Category::where('locale_id', $localeId)
+                    ->where('mapping', $article->category->mapping)->first();
+            }
+        }
+
+        self::setViewData();
 
         return view('admin.article.create', $this->viewData);
+    }
+
+    private function setViewData()
+    {
+        $this->viewData['locales'] = ArticleService::getLocaleOptions();
+        $this->viewData['authors'] = ArticleService::getAuthorOptions();
+        $this->viewData['clients'] = ArticleService::getClientOptions();
+        $this->viewData['subCategories'] = CategoryService::getSubCategories();
     }
 
     public function validateInput(Request $request)
@@ -104,7 +127,11 @@ class ArticlesController extends Controller
             ($input['end_publish_time'] ? $input['end_publish_date'] . ' ' . $input['end_publish_time'] . ':00' :
             $input['end_publish_date'] . ' 00:00:00') : '';
 
-        $validator = ArticleService::validate($input);
+        if (isset($input['preview']) && $input['preview']) {
+            $validator = ArticleService::validate($input, true);
+        } else {
+            $validator = ArticleService::validate($input);
+        }
 
         if ($validator->fails()) {
             return [
@@ -125,8 +152,9 @@ class ArticlesController extends Controller
 
         if (isset($input['saveDraft']) && $input['saveDraft'] == 'true') {
             $input['status'] = config('article.status.draft');
+            $articleLocaleId = $input['articleLocaleId'] ?? null;
 
-            return self::save($input);
+            return self::save($input, $articleLocaleId);
         }
 
         $this->viewData['input'] = $input;
@@ -146,11 +174,18 @@ class ArticlesController extends Controller
     {
         $input = $request->all();
 
+        if (isset($input['back']) && $input['back']) {
+            if (isset($input['editMode']) && $input['editMode']) {
+                return redirect()->action('Admin\ArticlesController@edit', $input['articleLocaleId'])
+                    ->withInput($input);
+            }
+
+            return redirect()->action('Admin\ArticlesController@create')
+                ->withInput($input);
+        }
+
         $this->viewData['input'] = $input;
-        $this->viewData['subCategories'] = CategoryService::getSubCategories();
-        $this->viewData['authors'] = Author::get()->pluck('name', 'id')->toArray();
-        $this->viewData['clients'] = Client::get()->pluck('name', 'id')->toArray();
-        $this->viewData['locales'] = LocaleService::getLocaleSort();
+        self::setViewData();
         $this->viewData['categories'] = CategoryService::getCategoryLocaleDropList($input['locale_id']);
 
         return view('admin.article.confirm', $this->viewData);
@@ -203,7 +238,7 @@ class ArticlesController extends Controller
         return self::save($input);
     }
 
-    private function save($input)
+    private function save($input, $articleLocaleId = null)
     {
         $input['content'] = ($input['switch_editor'] == config('article.content_type.medium')) ?
             $input['contentMedium'] : $input['contentMarkdown'];
@@ -215,8 +250,10 @@ class ArticlesController extends Controller
             $input['end_publish_date'] . ' 00:00:00') : '';
 
         if (isset($input['thumbnail']) && $input['thumbnail']) {
-            $fileName = explode('/', $input['thumbnail']);
-            $input['thumbnail'] = array_values(array_slice($fileName, -1))[0];
+            if ($input['switch_editor'] == config('article.content_type.medium')) {
+                $fileName = explode('/', $input['thumbnail']);
+                $input['thumbnail'] = array_values(array_slice($fileName, -1))[0];
+            }
         }
 
         $validator = ArticleService::validate($input);
@@ -226,56 +263,50 @@ class ArticlesController extends Controller
                 ->withErrors(['errors' => trans('admin/article.create_error')]);
         }
 
-        if ($article = ArticleService::create($input)) {
-            return redirect()->action('Admin\ArticlesController@show', [$article->id, 'locale' => $input['locale_id']])
-                ->with(['message' => trans('admin/article.create_success')]);
-        }
+        if (isset($input['editMode']) && $input['editMode']) {
+            if ($articleLocale = ArticleService::update($input, $articleLocaleId)) {
+                return redirect()->action('Admin\ArticlesController@show', [$articleLocale->article_id])
+                    ->with(['message' => trans('admin/article.update_success')]);
+            }
 
-        return redirect()->action('Admin\ArticlesController@index')
-            ->withErrors(['errors' => trans('admin/article.create_error')]);
+            return redirect()->back()->withErrors(['errors' => trans('admin/article.update_error')]);
+        } else {
+            if ($article = ArticleService::create($input)) {
+                return redirect()->action('Admin\ArticlesController@show', [$article->id])
+                    ->with(['message' => trans('admin/article.create_success')]);
+            }
+
+            return redirect()->action('Admin\ArticlesController@index')
+                ->withErrors(['errors' => trans('admin/article.create_error')]);
+        }
     }
 
-    public function edit(Request $request, Article $article)
+    public function edit($articleLocaleId)
     {
-        $locales = LocaleService::getAllLocales();
-        if (($localeId = (int)$request->input('locale'))
-            && count($article->articleLocales->where('locale_id', (int)$request->input('locale'))) > 0 ) {
-            $this->viewData['localeId'] = $localeId;
-            $this->viewData['article'] = $article;
-            $articleLocale = $article->articleLocales->where('locale_id', $localeId)->first();
+        if ($articleLocale = ArticleLocale::find($articleLocaleId)) {
+            self::setViewData();
             $this->viewData['articleLocale'] = $articleLocale;
-            $this->viewData['categories'] = CategoryService::getCategoryLocaleDropList($localeId);
-            $tagLocales = $article->articleTags->where('article_locale_id', $articleLocale->id);
+            $this->viewData['article'] = $articleLocale->article;
             $this->viewData['tags'] = [];
+            $tagLocales = $articleLocale->articleTags;
             foreach ($tagLocales as $tagLocale) {
-                $this->viewData['tags'][$tagLocale->tag->name] = $tagLocale->tag->name;
+                $this->viewData['tags'][$tagLocale->tag->id] = $tagLocale->tag->name;
             }
+
+            $this->viewData['notEditHideAttr'] = ArticleService::notEditHideAttribute($articleLocale);
 
             return view('admin.article.edit', $this->viewData);
         }
 
-        return redirect()->action('Admin\ArticlesController@show', [$article->id])
+        return redirect()->back()
             ->withErrors(['errors' => trans('admin/article.locale_not_exist')]);
     }
 
-    public function update(Request $request, Article $article)
+    public function update(Request $request, $articleLocaleId)
     {
-        $inputs = $request->all();
+        $input = $request->all();
 
-        $inputs['summary'] = str_replace(["\r\n", "\n\r"], "\n", $inputs['summary']);
-
-        $validator = ArticleService::validate($inputs, $article);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput($inputs);
-        }
-
-        if (ArticleService::update($article, $inputs)) {
-            return redirect()->action('Admin\ArticlesController@show', [$article->id, 'locale' => $inputs['locale']])
-                ->with(['message' => trans('admin/article.update_success')]);
-        }
-
-        return redirect()->back()->withErrors(['errors' => trans('admin/article.update_error')]);
+        return self::save($input, $articleLocaleId);
     }
 
     public function setOtherLanguage(Request $request, Article $article)
@@ -367,7 +398,8 @@ class ArticlesController extends Controller
         $isDeleted = Input::get('isDeleted');
 
         $this->viewData['locales'] = LocaleService::getAllLocales();
-        $this->viewData['currentLocale'] = array_key_exists($currentLocale, $this->viewData['locales']) ? $currentLocale : key($this->viewData['locales']) ;
+        $this->viewData['currentLocale'] = array_key_exists($currentLocale, $this->viewData['locales']) ?
+            $currentLocale : key($this->viewData['locales']) ;
         $this->viewData['tops'] = ArticleService::getArticleAlwayOnTop();
 
         if ($isSuccess) {
@@ -445,6 +477,32 @@ class ArticlesController extends Controller
         return [
             'success' => false,
             'message' => trans('admin/article.messages.stop_error'),
+        ];
+    }
+
+    public function stopOrStart(Request $request)
+    {
+        $articleLocaleId = $request->get('articleLocaleId');
+
+        $result = ArticleService::stopOrStart($articleLocaleId);
+
+        if (!isset($result['type']) && !$result) {
+            return [
+                'success' => false,
+                'message' => trans('admin/article.messages.some_thing_wrong'),
+            ];
+        }
+
+        if ($result['type'] == 'start') {
+            $msg = $result['success'] ? 'article_locale_start_success' : 'article_locale_start_error';
+        } else {
+            $msg = $result['success'] ? 'article_locale_stop_success' : 'article_locale_stop_error';
+        }
+
+        return [
+            'success' => $result['success'],
+            'type' => $result['type'],
+            'message' => trans('admin/article.messages.' . $msg),
         ];
     }
 }

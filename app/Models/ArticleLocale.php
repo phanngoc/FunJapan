@@ -54,10 +54,12 @@ class ArticleLocale extends BaseModel
         'is_show_able',
         'status_by_locale',
         'status_show_in_front',
+        'url_photo',
     ];
 
     protected $dates = [
         'published_at',
+        'end_published_at',
         'start_campaign',
         'end_campaign',
     ];
@@ -104,6 +106,8 @@ class ArticleLocale extends BaseModel
         if ($this->status == config('article.status.published')) {
             if ($this->published_at > Carbon::now()) {
                 return config('article.status_by_locale.schedule');
+            } elseif ($this->end_published_at < Carbon::now()) {
+                return config('article.status_by_locale.stop');
             }
 
             return config('article.status_by_locale.published');
@@ -165,6 +169,19 @@ class ArticleLocale extends BaseModel
         }
 
         return $results;
+    }
+
+    public function getUrlPhotoAttribute()
+    {
+        if ($this->photo) {
+            if ($this->content_type == config('article.content_type.markdown')) {
+                return $this->photo;
+            }
+
+            return ImageService::imageUrl(config('images.paths.article_content') . '/' . $this->photo);
+        }
+
+        return '';
     }
 
     // public function getCategoryAttribute()

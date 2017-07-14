@@ -21,7 +21,7 @@ class ImageService
                 $storage->deleteDirectory($path);
             }
 
-            $hashTime = sha1(time());
+            $hashTime = sha1(time() . clean($image->getClientOriginalName()));
             $extension = $image->getClientOriginalExtension();
 
             if (in_array($type, config('images.not_resize'))) {

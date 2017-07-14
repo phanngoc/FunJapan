@@ -4,115 +4,192 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox">
-                <div class="ibox-title">
-                    <h2>
-                        {{ trans('admin/article.list_language') }}
-                        <a href="{{ action('Admin\ArticlesController@index') }}" type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true" class="fa fa-times"></span>
-                        </a>
-                    </h2>
-                </div>
-                <div class="ibox-content">
-                    <div class="tabs-container">
-                        <div class="tab-content">
-                            <h3>{{ trans('admin/article.title_global') }}</h3>
-                            <hr>
-                            <strong>{{ trans('admin/article.label.type') }}:</strong>
-                            {{ $types[$article->type] ?? null }}
-                            @if ($article->type == config('article.type.photo'))
-                            <hr>
-                                <strong>{{ trans('admin/article.label.auto_approve_photo') }}:</strong>
-                                {{ $article->auto_approve_photo ? trans('admin/article.label.yes') : trans('admin/article.label.no') }}
-                            @endif
-                            <hr>
-                            <a href="{{ action('Admin\ArticlesController@editGlobalInfo',
-                                [$article->id, 'locale' => $article->articleLocales->first()->locale_id]) }}" class="btn btn-w-m btn-primary">
-                                {{ trans('admin/article.button.edit') }}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="ibox-content">
-                    <div class="tabs-container">
-                        <ul class="nav nav-tabs">
-                            @foreach ($article->articleLocales as $key => $articleLocale)
-                                <li class="@if ($tab == $articleLocale->locale->id) active @endif"><a data-toggle="tab" href="#{{ $articleLocale->locale->name }}">{{ $articleLocale->locale->name }}</a></li>
-                            @endforeach
-                            @if (count($article->articleLocales) !== count($locales))
-                            <li class="dropdown">
-                                    <a id="set-language" data-target="#" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-plus"></i>
-                                        {{ trans('admin/article.button.set_language') }}
-                                    </a>
-                                    <ul class="dropdown-menu set-language" aria-labelledby="set-language">
-                                        <li>
-                                            <a href="{{ action('Admin\ArticlesController@setOtherLanguage', [$article->id]) }}">{{ trans('admin/article.button.create_new') }}</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ action('Admin\ArticlesController@setOtherLanguage', [$article->id, 'clone' => 1]) }}">{{ trans('admin/article.button.clone') }}</a>
-                                        </li>
-                                    </ul>
-                            </li>
-                            @endif
-                        </ul>
-                        <div class="tab-content">
-                            @foreach ($article->articleLocales as $key => $articleLocale)
-                                <div id="{{ $articleLocale->locale->name }}" class="tab-pane @if ($tab == $articleLocale->locale->id) active @endif">
-                                    <div class="panel-body">
-                                        <h2>{{ $articleLocale->title }}</h2>
-                                        <hr>
-                                        <div class="article-content">
-                                            {!! $articleLocale->html_content !!}
-                                        </div>
-                                        <hr>
-                                        {{ $articleLocale->summary }}
-                                        <hr>
-                                        <img src="{{ $articleLocale->thumbnail_urls['small'] }}">
-                                        <hr>
-                                        <strong>{{ trans('admin/article.list_tag') }}: </strong>
-                                        @foreach ($article->articleTags as $articleTag)
-                                            @if ($articleTag->article_locale_id == $articleLocale->id)
-                                                {{ $articleTag->tag->status ? '' : '#' . $articleTag->tag->name }}
+    <div class="row wrapper border-bottom white-bg page-heading border-left">
+        <div class="col-lg-10 page-title">
+            <h2><b>{{ trans('admin/article.label.article') }}</b> {{ trans('admin/article.label.list') }}</h2>
+            <ol class="breadcrumb">
+                <li class="home">
+                    <a href="{{ action('Admin\DashboardController@index') }}"><i class="fa fa-home"></i> <b>{{ trans('admin/article.label.home') }}</b></a>
+                </li>
+                <li>
+                    <b>{{ trans('admin/article.article_list') }}</b></a>
+                </li>
+                <li class="active breadcrumb-preview">
+                    <strong>
+                        {{ trans('admin/article.label.edit') }}
+                    </strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>{{ trans('admin/article.label.country') }}</th>
+                                    <th>{{ trans('admin/article.label.published_at') }}</th>
+                                    <th>{{ trans('admin/article.label.title') }}</th>
+                                    <th>{{ trans('admin/article.label.action') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @if ($article->articleLocales->count() > 0)
+                                @foreach ($article->articleLocales as $articleLocale)
+                                    <tr>
+                                        <td>{{ $articleLocale->locale->name }} ({{ strtoupper($articleLocale->locale->iso_code) }})</td>
+                                        <td>{{ $articleLocale->published_at->format('d F Y g:i A') }}</td>
+                                        <td>{{ $articleLocale->title }}</td>
+                                        <td class="article-detail-action"
+                                            data-url="{{ action('Admin\ArticlesController@stopOrStart') }}"
+                                            data-article-locale="{{ $articleLocale->id }}"
+                                            data-start-confirm="hihihihi"
+                                            data-start-label="{{ trans('admin/article.button.start') }}"
+                                            data-published-label="{{ trans('admin/article.status_by_locale.published') }}"
+                                            data-stop-confirm="blabla"
+                                            data-stop-label="{{ trans('admin/article.button.stop') }}">
+                                            <button type="button" class="btn btn-default btn-xs btn-w-m
+                                                btn-label-{{ array_flip(config('article.status_by_locale'))[$articleLocale->status_by_locale] }}">
+                                                <i class="fa fa-level-up"></i>
+                                                {{ trans('admin/article.status_by_locale.' . array_flip(config('article.status_by_locale'))[$articleLocale->status_by_locale]) }}
+                                            </button>
+                                            <a type="button" href="{{ action('Admin\ArticlesController@edit', $articleLocale->id) }}"
+                                                class="btn btn-default btn-xs btn-w-m btn-modify">
+                                                <i class="fa fa-pencil"></i> {{ trans('admin/article.button.modify') }}
+                                            </a>
+                                            @if ($articleLocale->status_by_locale == config('article.status_by_locale.published'))
+                                                <button type="button" class="btn btn-default btn-xs btn-w-m btn-stop">
+                                                    <i class="fa fa-stop"></i> {{ trans('admin/article.button.stop') }}
+                                                </button>
+                                            @elseif ($articleLocale->status_by_locale == config('article.status_by_locale.schedule'))
+                                                <button type="button" class="btn btn-default btn-xs btn-w-m btn-stop">
+                                                    <i class="fa fa-stop"></i> {{ trans('admin/article.button.stop') }}
+                                                </button>
+                                            @elseif ($articleLocale->status_by_locale == config('article.status_by_locale.stop'))
+                                                <button type="button" class="btn btn-default btn-xs btn-w-m btn-start">
+                                                    <i class="fa fa-chevron-circle-right"></i> {{ trans('admin/article.button.start') }}
+                                                </button>
+                                            @elseif ($articleLocale->status_by_locale == config('article.status_by_locale.draft'))
+                                                <button type="button" class="btn btn-default btn-xs btn-w-m btn-start" disabled>
+                                                    <i class="fa fa-chevron-circle-right"></i> {{ trans('admin/article.button.start') }}
+                                                </button>
                                             @endif
-                                        @endforeach
-                                        <hr>
-                                        <strong>{{ trans('admin/article.category') }}: </strong>
-                                            {{ $articleLocale->categoryName }}
-                                        <hr>
-                                        <strong>{{ trans('admin/article.label.is_top') }}:</strong>
-                                        {{ $articleLocale->is_top_article ? trans('admin/article.label.yes') : trans('admin/article.label.no') }}
-                                        <hr>
-                                        <strong>{{ trans('admin/article.published_at') }}: </strong>
-                                        {{ $articleLocale->published_at }}
-                                        <hr>
-                                        <strong>{{ trans('admin/article.label.is_alway_hide') }}:</strong>
-                                        {{ $articleLocale->hide_always ? trans('admin/article.label.yes') : trans('admin/article.label.no') }}
-                                        <hr>
-                                        <strong>{{ trans('admin/article.label.is_member_only') }}:</strong>
-                                        {{ $articleLocale->is_member_only ? trans('admin/article.label.yes') : trans('admin/article.label.no') }}
-                                        <hr>
-                                        @if ($articleLocale->start_campaign || $articleLocale->end_campaign)
-                                            <strong>{{ trans('admin/article.label.start_campaign') }}: </strong>
-                                            {{ $articleLocale->start_campaign ?? '-' }}
-                                            <hr>
-                                            <strong>{{ trans('admin/article.label.end_campaign') }}: </strong>
-                                            {{ $articleLocale->end_campaign ?? '-' }}
-                                            <hr>
-                                        @endif
-                                        <a href="{{ action('Admin\ArticlesController@edit',
-                                            [$article->id, 'locale' => $articleLocale->locale_id]) }}" class="btn btn-w-m btn-primary">
-                                            {{ trans('admin/article.button.edit') }}
-                                        </a>
-                                    </div>
-                                </div>
-                            @endforeach
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                @if ($localesNoArticles->count() > 0)
+                                    @foreach ($localesNoArticles as $localeNoArticles)
+                                        <tr class="faint-word">
+                                            <td>{{ $localeNoArticles->name }} ({{ strtoupper($localeNoArticles->iso_code) }})</td>
+                                            <td>{{ trans('admin/article.label.none') }}</td>
+                                            <td>{{ trans('admin/article.label.none') }}</td>
+                                            <td class="article-detail-action">
+                                                <button type="button" class="btn btn-default btn-xs btn-w-m btn-label-null">
+                                                    <i class="fa fa-file-o"></i> {{ trans('admin/article.button.null') }}
+                                                </button>
+                                                <a type="button"
+                                                    href="{{ action('Admin\ArticlesController@create', ['localeId' => $localeNoArticles->id, 'articleId' => $article->id]) }}"
+                                                    class="btn btn-default btn-xs btn-w-m btn-create">
+                                                    <i class="fa fa-pencil"></i> {{ trans('admin/article.button.create') }}
+                                                </a>
+                                                <button type="button" class="btn btn-default btn-xs btn-w-m btn-start" disabled>
+                                                    <i class="fa fa-chevron-circle-right"></i> {{ trans('admin/article.button.start') }}
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                            @else
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="label label-warning">{{ trans('admin/article.label.no_article') }}</span>
+                                    </td>
+                                </tr>
+                            @endif
+                            </tbody>
+                        </table>
+                        <div class="ibox-content no-borders">
+                            <div class="row pull-right label-explain">
+                                <p><span class="label label-custom-published text-uppercase"></span> {{ trans('admin/article.status_by_locale.published') }}</p>
+                                <p><span class="label label-custom-schedule text-uppercase"></span> {{ trans('admin/article.status_by_locale.schedule') }}</p>
+                                <p><span class="label label-custom-draft text-uppercase"></span> {{ trans('admin/article.status_by_locale.draft') }}</p>
+                                <p><span class="label label-custom-stop text-uppercase"></span> {{ trans('admin/article.status_by_locale.stop') }}</p>
+                                <p><span class="label label-custom-no-article text-uppercase"></span> {{ trans('admin/article.status_by_locale.no_article') }}</p>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@stop
+
+@section('script')
+    <script>
+        $(function () {
+            $('.article-detail-action').on('click', '.btn-start, .btn-stop', function () {
+                var element = $(this);
+                var articleLocaleId = element.parents('.article-detail-action').attr('data-article-locale');
+                var url = element.parents('.article-detail-action').attr('data-url');
+
+                if (element.hasClass('btn-stop')) {
+                    var titleConfirm = element.parents('.article-detail-action').attr('data-stop-confirm');
+                } else {
+                    var titleConfirm = element.parents('.article-detail-action').attr('data-start-confirm');
+                }
+
+                swal({
+                    title: titleConfirm,
+                    text: '',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'yes',
+                    cancelButtonText: 'cancel',
+                    closeOnConfirm: false,
+                    closeOnCancel: true
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            type: 'GET',
+                            url: url,
+                            data: {
+                                'articleLocaleId': articleLocaleId
+                            },
+                            success: (response) => {
+                                if (response.success) {
+                                    swal(response.message, '', 'success');
+                                    if (element.hasClass('btn-stop')) {
+                                        var textBtn = '<i class="fa fa-chevron-circle-right"></i> ';
+                                        textBtn += element.parents('.article-detail-action').attr('data-start-label');
+                                        element.removeClass('btn-stop').addClass('btn-start').html(textBtn);
+                                        var textLabel = '<i class="fa fa-level-up"></i> ';
+                                        textLabel += element.parents('.article-detail-action').attr('data-stop-label');
+                                        element.parents('.article-detail-action').find('.btn:first').removeClass()
+                                            .addClass('btn btn-default btn-xs btn-w-m btn-label-stop').html(textLabel);
+                                    } else {
+                                        var textBtn = '<i class="fa fa-stop"></i> ';
+                                        textBtn += element.parents('.article-detail-action').attr('data-stop-label');
+                                        element.removeClass('btn-start').addClass('btn-stop').html(textBtn);
+                                        var textLabel = '<i class="fa fa-level-up"></i> ';
+                                        textLabel += element.parents('.article-detail-action').attr('data-published-label');
+                                        element.parents('.article-detail-action').find('.btn:first').removeClass()
+                                            .addClass('btn btn-default btn-xs btn-w-m btn-label-published').html(textLabel);
+                                    }
+                                } else {
+                                    swal(response.message, '', 'error');
+                                }
+
+                            },
+                            error: function (e) {
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 @stop

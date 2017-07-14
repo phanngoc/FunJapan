@@ -22,6 +22,7 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::get('recommend-articles/recommendedLists', 'RecommendedArticlesController@recommendedLists');
         Route::resource('recommend-articles', 'RecommendedArticlesController');
         Route::get('articles/stop', 'ArticlesController@stop');
+        Route::get('articles/stopOrStart', 'ArticlesController@stopOrStart');
         Route::get('articles/always-on-top', 'ArticlesController@alwaysOnTop');
         Route::post('articles/always-on-top', 'ArticlesController@setAlwaysOnTop');
         Route::delete('articles/always-on-top/{articleLocaleId}', 'ArticlesController@deleteAlwaysOnTop');

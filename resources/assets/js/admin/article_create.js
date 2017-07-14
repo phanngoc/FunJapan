@@ -11,7 +11,7 @@ $(function () {
             items: 5,
             autoSelect: false,
         },
-        freeInput: true,
+       // freeInput: true,
         trimValue: true,
         tagClass: 'label label-warning',
     });
@@ -23,6 +23,20 @@ $(function () {
         forceParse: false,
         calendarWeeks: true,
         autoclose: true
+    }).on('show', function (e) {
+        var monthYear = $('.table-condensed thead tr th:eq(2).datepicker-switch').text().split(' ');
+        var month = monthYear[0];
+        var year = parseInt(monthYear[1]);
+        var today = new Date();
+        var monthToday = today.toLocaleString('en-us', { month: 'long' });
+        var dateToday = today.getDate();
+        if (year == today.getUTCFullYear() && month == monthToday) {
+            $('table.table-condensed tbody tr td').each(function () {
+                if ($(this).text() == dateToday && !$(this).hasClass('old')) {
+                    $(this).addClass('active-today');
+                }
+            });
+        }
     });
 
     $('.clockpicker').clockpicker();
@@ -33,6 +47,8 @@ $(function () {
         var url = $(this).attr('data-url');
         getCategoriesByLocale(url, $(this).val());
     });
+
+    var contentMarkdown = $('.article-content').val();
 
     $('.article-content').markdown({
         autofocus:false,
@@ -95,18 +111,19 @@ $(function () {
         }
     });
 
-    if (typeof contentMarkdown != 'undefined' && contentMarkdown != '') {
-        $('.article-content').data('markdown').setContent(contentMarkdown);
-    }
-
     editor.subscribe('editableInput', function (event, editable) {
         var allContents = editor.serialize();
         var elContent = allContents['element-0'].value;
         $('input[name="contentMedium"]').val(elContent);
     });
 
-    $('.medium-section').show();
-    $('.md-editor').hide();
+    if (typeof showMarkdown != 'undefined' && showMarkdown != '') {
+        $('.medium-section').hide();
+        $('.md-editor').show();
+    } else {
+        $('.medium-section').show();
+        $('.md-editor').hide();
+    }
 
     $('input[name="switch_editor"]').on('click', function () {
         if ($(this).val() == 1) {
@@ -118,6 +135,9 @@ $(function () {
             $('.md-editor').show();
         }
     });
+
+    $('.article-content').data('markdown').setContent(contentMarkdown);
+
     $('.create-action').on('click', function () {
         $('.save-draft-input').val(false);
         var thisElement = $(this);
@@ -126,9 +146,11 @@ $(function () {
             $('.save-draft-input').val(true);
         }
 
+        thisElement.attr('disabled', true);
+        thisElement.find('.fa-spinner').removeClass('hidden');
+
         var url = thisElement.attr('data-url');
         var thisForm = thisElement.parents('form.article-create');
-
         var formData = thisForm.serialize();
 
         $.ajax({
@@ -146,7 +168,7 @@ $(function () {
                 } else {
                     var message = '';
                     for (let key in response.message) {
-                        message += '<p>' + response.message[key] + '</p>';
+                        message += '<p>' + response.message[key].join(' ') + '</p>';
                     }
                     $('.alert-error-section').removeClass('hidden')
                         .find('.alert.alert-danger').empty().append(message);
@@ -154,6 +176,9 @@ $(function () {
                         scrollTop: $('.alert-error-section').offset().top
                     }, 700);
                 }
+
+                thisElement.attr('disabled', false);
+                thisElement.find('.fa-spinner').addClass('hidden');
             }
         });
     });
@@ -163,9 +188,18 @@ $(function () {
         $('#confirm-check-preview').modal('hide');
         $('form.article-create').submit();
     });
+
+    $('.article-form-edit').on(
+        'change',
+        'select[name="author_id"], select[name="client_id"], select[name="sub_category_id"], select[name="category_id"]',
+        function () {
+        if ($(this).val() != '') {
+            swal(warningChangeTxt, '', 'warning');
+        }
+    });
 });
 
-function getCategoriesByLocale(url, localeId, selected = null) {
+function getCategoriesByLocale(url, localeId, selected = '') {
     $.ajax({
         url: url,
         type: 'GET',
@@ -173,12 +207,12 @@ function getCategoriesByLocale(url, localeId, selected = null) {
             locale_id: localeId
         },
         success: function (data) {
-            var html = '';
+            var html = '<option value="">' + $('#category_id').attr('data-select-text') + '</option>';
             for (let key in data) {
                 if (key == selected) {
-                    html += '<option value=' + key + ' selected>' + encodeHTML(data[key]) + '</option>';
+                    html += '<option value="' + key + '" selected>' + encodeHTML(data[key]) + '</option>';
                 } else {
-                    html += '<option value=' + key + '>' + encodeHTML(data[key]) + '</option>';
+                    html += '<option value="' + key + '">' + encodeHTML(data[key]) + '</option>';
                 }
             }
 
