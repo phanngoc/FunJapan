@@ -9,7 +9,6 @@
   "/assets/admin/css/coupon.css": "/assets/admin/css/coupon.css",
   "/assets/admin/css/category.css": "/assets/admin/css/category.css",
   "/assets/admin/css/client.css": "/assets/admin/css/client.css",
-  "/assets/admin/css/advertisement.css": "/assets/admin/css/advertisement.css",
   "/assets/admin/js/tag.js": "/assets/admin/js/tag.js",
   "/assets/admin/js/survey.js": "/assets/admin/js/survey.js",
   "/assets/admin/js/setting_hot_tags.js": "/assets/admin/js/setting_hot_tags.js",
@@ -28,13 +27,12 @@
   "/assets/admin/js/banner.js": "/assets/admin/js/banner.js",
   "/assets/admin/js/author.js": "/assets/admin/js/author.js",
   "/assets/admin/js/article_rank.js": "/assets/admin/js/article_rank.js",
-  "/assets/admin/js/article_preview.js": "/assets/admin/js/article_preview.js",
-  "/assets/admin/js/article_create.js": "/assets/admin/js/article_create.js",
-  "/assets/admin/js/article_confirm.js": "/assets/admin/js/article_confirm.js",
   "/assets/admin/js/article_comment.js": "/assets/admin/js/article_comment.js",
   "/assets/admin/js/article.js": "/assets/admin/js/article.js",
   "/assets/admin/js/api_token.js": "/assets/admin/js/api_token.js",
   "/assets/admin/js/alwaysOnTop.js": "/assets/admin/js/alwaysOnTop.js",
   "/assets/admin/js/admin.js": "/assets/admin/js/admin.js",
-  "/assets/admin/js/advertisement.js": "/assets/admin/js/advertisement.js"
+  "/assets/admin/js/article_create.js": "/assets/admin/js/article_create.js",
+  "/assets/admin/js/article_preview.js": "/assets/admin/js/article_preview.js",
+  "/assets/admin/js/article_confirm.js": "/assets/admin/js/article_confirm.js"
 }

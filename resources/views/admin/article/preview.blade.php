@@ -84,7 +84,7 @@
                                                 </div>
                                                 <div class="col-sm-12 button-group">
                                                     <span class="simple_tag col-sm-12">
-                                                        <button class="btn btn-success next-to-confirm" type="button">
+                                                        <button class="btn btn-success next-to-confirm btn-w-m" type="button">
                                                             <i class="fa fa-hand-o-right"></i>&nbsp;{{ trans('admin/article.button.next') }}
                                                         </button>
                                                     </span>

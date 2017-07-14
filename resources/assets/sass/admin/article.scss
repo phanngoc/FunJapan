@@ -95,7 +95,7 @@ div.dataTables_wrapper {
 
 @mixin custom-position {
     margin-right: 4px;
-    float: left;
+    display: inline-block;
     width: 40px;
     height: 20px;
     padding-top: 4px !important;
@@ -129,11 +129,12 @@ div.dataTables_wrapper {
         font-size: 11px;
     }
     span {
-        display: block !important;
+        display: inline-block !important;
         width: 12px;
         height: 12px;
         margin-top: 2px;
         padding-right: 0px !important;
+        float: left;
     }
 }
 table {
@@ -364,6 +365,7 @@ figure {
 }
 .save-draft {
     margin-left: 13px;
+    margin-top: 25px;
     background-color: #7CC576 !important;
 }
 .empty-div {
@@ -371,4 +373,7 @@ figure {
 }
 .member-only-btn {
     padding-left: 0px !important;
+}
+.break-word {
+    word-break: break-all;
 }
