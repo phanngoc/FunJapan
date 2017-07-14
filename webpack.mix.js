@@ -22,7 +22,7 @@ var assetsCopy = [
     ['mock/front/dist/css', 'css', false],
     ['mock/front/dist/fonts', 'fonts', false],
     ['mock/front/dist/images', 'images', false],
-    [ 'resources/assets/images/guide', 'images/guide', false],
+    ['resources/assets/images/guide', 'images/guide', false],
     ['node_modules/font-awesome/css', 'font-awesome', false],
     ['resources/assets/js/web', 'js/web', false],
     ['node_modules/jquery-datetimepicker/build/jquery.datetimepicker.min.css', 'admin/css/jquery-datetimepicker', false],
@@ -34,6 +34,18 @@ var assetsCopy = [
     ['node_modules/moment-timezone/builds/moment-timezone.min.js', 'momentjs', false],
     ['node_modules/moment-timezone/builds/moment-timezone-with-data.js', 'momentjs', false],
     ['node_modules/moment-timezone/builds/moment-timezone-with-data-2012-2022.js', 'momentjs', false],
+    ['node_modules/medium-editor/dist', 'medium-editor', false],
+    ['node_modules/medium-editor-markdown/dist', 'medium-editor-markdown', false],
+    ['node_modules/medium-editor-handsontable/dist', 'medium-editor-handsontable', false],
+    ['node_modules/medium-editor-handsontable/demo/handsontable/handsontable.full.css', 'medium-editor-handsontable/css', false],
+    ['node_modules/medium-editor-handsontable/demo/handsontable/handsontable.full.js', 'medium-editor-handsontable/js', false],
+    ['node_modules/medium-editor-insert-plugin/dist', 'medium-editor-insert', false],
+    ['node_modules/handlebars/dist', 'handlebars', false],
+    ['node_modules/bootstrap-colorpicker/dist', 'bootstrap-colorpicker', false],
+    ['node_modules/jquery-sortable/source', 'jquery-sortable', false],
+    ['node_modules/blueimp-file-upload/js', 'blueimp-file-upload/js', false],
+    ['node_modules/blueimp-file-upload/css', 'blueimp-file-upload/css', false],
+    ['node_modules/blueimp-file-upload/img', 'blueimp-file-upload/img', false],
 ];
 
 for (var i = 0; i < assetsCopy.length; i++) {
@@ -50,6 +62,9 @@ mix.js('resources/assets/js/app.js', assetPath + 'js')
     .js('resources/assets/js/admin/popular_article.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/category.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/article_rank.js', assetPath + 'admin/js')
+    .js('resources/assets/js/admin/article_create.js', assetPath + 'admin/js')
+    .js('resources/assets/js/admin/article_preview.js', assetPath + 'admin/js')
+    .js('resources/assets/js/admin/article_confirm.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/menu.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/survey.js', assetPath + 'admin/js')
     .js('resources/assets/js/admin/question.js', assetPath + 'admin/js')

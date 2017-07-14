@@ -16,28 +16,36 @@ class ArticleService extends BaseService
     public static function validate($inputs, $article = null)
     {
         $validationRules = [
-            'locale' => 'required',
-            'summary' => 'required|min:1|max:1000',
+            'locale_id' => 'required',
+            'description' => 'required|min:1|max:1000',
             'title' => 'required|min:10|max:255',
             'content' => 'required|min:20',
-            'category' => 'required',
-            'thumbnail' => 'image|max:' . config('images.validate.article_thumbnail.max_size'),
+            'category_id' => 'required',
+            'sub_category_id' => 'required',
+            'author_id' => 'required',
+            'client_id' => 'required',
             'tags.*' => 'min:3|max:15',
-            'type' => 'in:' . implode(',', array_values(config('article.type'))),
+            'published_at' => 'date_format:"Y-m-d H:i:s"',
+            'end_published_at' => 'date_format:"Y-m-d H:i:s"',
         ];
 
-        if ($inputs['type'] == config('article.type.photo')
-            || $inputs['type'] == config('article.type.campaign')
-            || $inputs['type'] == config('article.type.coupon')) {
-            $validationRules['start_campaign'] = 'required|date_format:"Y-m-d H:i"';
-            $validationRules['end_campaign'] = 'date_format:"Y-m-d H:i"|after:start_campaign';
+        if ($inputs['publish_date'] || $inputs['publish_time']) {
+            $validationRules['published_at'] = 'required|date_format:"Y-m-d H:i:s"';
         }
 
-        if (!$article) {
-            $validationRules['thumbnail'] = 'required|image|max:' . config('images.validate.article_thumbnail.max_size');
+        if ($inputs['end_publish_date'] || $inputs['end_publish_time']) {
+            $validationRules['end_published_at'] = 'required|date_format:"Y-m-d H:i:s"|after:published_at';
         }
 
-        return Validator::make($inputs, $validationRules)
+        $messages = [
+            'published_at.date_format' => trans('admin/article.messages.published_date_format'),
+            'end_published_at.date_format' => trans('admin/article.messages.end_published_date_format'),
+            'published_at.required' => trans('admin/article.messages.published_date_required'),
+            'end_published_at.required' => trans('admin/article.messages.end_published_date_required'),
+            'end_published_at.after' => trans('admin/article.messages.end_published_date_after'),
+        ];
+
+        return Validator::make($inputs, $validationRules, $messages)
             ->setAttributeNames(trans('admin/article.label'));
     }
 
@@ -57,36 +65,31 @@ class ArticleService extends BaseService
         try {
             $articleData = [
                 'user_id' => Auth::id(),
-                // delete after
-                'category_id' => $inputs['category'],
-                'type' => $inputs['type'],
-                'auto_approve_photo' => $inputs['auto_approve_photo'],
+                'category_id' => $inputs['category_id'],
+                'author_id' => $inputs['author_id'],
+                'client_id' => $inputs['client_id'],
             ];
+
             if ($article = Article::create($articleData)) {
                 $articleLocaleData = [
-                    'locale_id' => (int)$inputs['locale'],
+                    'locale_id' => (int)$inputs['locale_id'],
                     'article_id' => $article->id,
-                    'category_id' => $inputs['category'],
+                    'category_id' => $inputs['category_id'],
+                    'sub_category_id' => $inputs['sub_category_id'],
                     'title' => $inputs['title'],
                     'content' => $inputs['content'],
-                    'summary' => $inputs['summary'],
-                    'published_at' => $inputs['publish_date'] ? $inputs['publish_date'] . ':00' : Carbon::now(),
-                    'start_campaign' => $inputs['start_campaign'] ? $inputs['start_campaign'] . ':00' : null,
-                    'end_campaign' => $inputs['end_campaign'] ? $inputs['end_campaign'] . ':00' : null,
+                    'summary' => $inputs['description'],
+                    'published_at' => $inputs['published_at'] ? $inputs['published_at'] : Carbon::now(),
+                    'end_published_at' => $inputs['end_published_at'] ? $inputs['end_published_at'] : Carbon::now(),
+                    'content_type' => $inputs['switch_editor'] ?? null,
+                    'title_bg_color' => $inputs['titleBgColor'] ?? null,
+                    'is_member_only' => $inputs['is_member_only'],
+                    'photo' => $inputs['thumbnail'] ?? null,
+                    'hide' => $inputs['hide'],
+                    'status' => $inputs['status'] ?? config('article.status.published'),
                 ];
-                if (isset($inputs['is_top_article'])) {
-                    $articleLocaleData['is_top_article'] = $inputs['is_top_article'];
-                }
 
-                if (isset($inputs['is_alway_hide'])) {
-                    $articleLocaleData['hide_always'] = $inputs['is_alway_hide'];
-                }
-
-                if (isset($inputs['is_member_only'])) {
-                    $articleLocaleData['is_member_only'] = $inputs['is_member_only'];
-                }
-
-                if ($articleLocale = ArticleLocaleService::create($articleLocaleData, $inputs['thumbnail'])) {
+                if ($articleLocale = ArticleLocale::create($articleLocaleData)) {
                     if (ArticleTagService::create($article, $articleLocale->id, $inputs['tags'] ?? [])) {
                         DB::commit();
 

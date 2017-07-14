@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "axios": "^0.15.3",
+    "bootstrap-colorpicker": "^2.5.1",
     "bootstrap-sass": "^3.3.7",
     "cross-env": "^3.2.3",
     "fancybox": "^3.0.0",
@@ -20,9 +21,13 @@
     "laravel-echo": "^1.2.5",
     "laravel-mix": "0.*",
     "lodash": "^4.17.4",
+    "medium-editor": "^5.23.1",
+    "medium-editor-handsontable": "^0.1.2",
+    "medium-editor-insert-plugin": "^2.4.1",
+    "medium-editor-markdown": "^2.6.0",
     "moment": "^2.18.1",
-    "pusher-js": "^4.0.0",
     "moment-timezone": "^0.5.13",
+    "pusher-js": "^4.0.0",
     "vue": "^2.1.10"
   }
 }

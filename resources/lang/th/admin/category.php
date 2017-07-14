@@ -36,6 +36,10 @@ return [
         'image' => 'Image',
         'locale_id' => 'Language'
     ],
+    'sub_categories' => [
+        'instagram' => 'Instagram',
+        'movies' => 'Movies',
+    ],
     'placeholder' => [
         'name' => 'Input Name',
         'short_name' => 'Input Short Name',

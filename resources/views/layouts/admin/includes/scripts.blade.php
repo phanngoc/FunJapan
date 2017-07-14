@@ -54,4 +54,5 @@
 <!-- Datetime Picker -->
 {!! Html::script('assets/admin/js/jquery-datetimepicker/jquery.datetimepicker.full.min.js') !!}
 {!! Html::script('assets/admin/js/plugins/datapicker/bootstrap-datepicker.js') !!}
+{!! Html::script('assets/admin/js/plugins/clockpicker/clockpicker.js') !!}
 @yield('script')

@@ -155,3 +155,220 @@ table {
         text-transform: uppercase;
     }
 }
+.right-column {
+    .form-group-radio {
+        margin-top: 10px;
+    }
+}
+.padding-left-0 {
+    padding-left: 0px !important;
+}
+.button-group {
+    .simple_tag {
+        padding-top: 10px;
+    }
+}
+.medium-editor {
+    min-height: 200px !important;
+    height: 250px;
+    overflow: auto;
+    outline: none;
+    margin: 0 0 20px 0;
+    padding: 4px 10px 20px 20px;
+    border: 1px solid #dbdbdb;
+}
+.switch-editor {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+@mixin title-prview {
+    font-size: 10pt;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    text-align: center;
+    border-radius: 25px;
+}
+#mobile-preview {
+    .title-left {
+        color: #1ab394;
+        @include title-prview;
+        width: 170px;
+        border-color: #1ab394 !important;
+    }
+    .title-right {
+        color: #1c84c6;
+        @include title-prview;
+        width: 170px;
+        border-color: #1c84c6 !important;
+    }
+    p {
+        word-break: break-all;
+    }
+}
+#pc-preview {
+    .title-left {
+        color: #1ab394;
+        @include title-prview;
+        width: 250px;
+        border-color: #1ab394 !important;
+    }
+    .title-right {
+        color: #1c84c6;
+        @include title-prview;
+        width: 250px;
+        border-color: #1c84c6 !important;
+    }
+    p {
+        word-break: break-all;
+    }
+}
+.social-feed-box {
+    border-radius: 5px !important;
+    .title {
+        margin-top: 25px;
+        margin-bottom: 25px;
+        h2 {
+            font-weight: bold;
+            color: #888;
+        }
+    }
+}
+.tags {
+    margin-top: 35px;
+    margin-bottom: 25px;
+    [data-role="remove"]:after {
+        content: "x";
+        padding: 0px 2px;
+        margin-left: 8px;
+    }
+}
+.page-title {
+    h2 {
+        color: #1ab394;
+        text-transform: uppercase;
+    }
+}
+.mobile-preview {
+    width: 40%;
+    margin: 0px auto;
+}
+.image-preview {
+    .list-image-preview {
+        img {
+            width: 100%;
+        }
+    }
+}
+.image-preview {
+    .list-image-preview {
+        .image-item {
+            min-height: 100px;
+            margin-bottom: 10px;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+    }
+}
+.selected-image {
+    text-align: center;
+}
+.selected-image {
+    img {
+        width: 60%;
+        min-height: 300px;
+    }
+}
+.preview-selected {
+    border: 3px solid #ffff00;
+}
+.title-preview {
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+    text-align: left;
+}
+.title-preview {
+    span {
+        padding-left: 10px;
+    }
+}
+.btn-preview {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 20px;
+}
+.right-column .form-group-radio {
+    margin-top: 10px;
+}
+.btn-primary-custom {
+    background-color: #60D172;
+    color: #ffffff;
+}
+.btn-primary-custom:hover {
+    background-color: #46B959 !important;
+    color: #ffffff !important;
+}
+figure {
+    img {
+        width: 100%;
+    }
+}
+.alert-error-section {
+    padding-bottom: 0px !important;
+    .alert {
+        margin-bottom: 0px !important;
+    }
+}
+.article-create {
+    .form-group-radio {
+        label {
+            cursor: auto !important;
+        }
+        .radio {
+            input {
+                cursor: pointer;
+            }
+        }
+    }
+}
+#pc-preview,
+#mobile-preview {
+    .panel-body,
+    .ibox-content {
+        border: none !important;
+    }
+}
+.not-selected-btn {
+    background-color: #CCCCCC;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+.colorpicker-element {
+    background-color: #f59ac3 !important;
+    border-color: #f59ac3 !important;
+    text-transform: uppercase;
+}
+.btn-back {
+    background-color: #74429B !important;
+    color: #ffffff !important;
+    text-transform: uppercase;
+}
+.back-section {
+    padding-bottom: 0px !important;
+}
+.save-draft {
+    margin-left: 13px;
+    background-color: #7CC576 !important;
+}
+.empty-div {
+    min-height: 57px;
+}
+.member-only-btn {
+    padding-left: 0px !important;
+}

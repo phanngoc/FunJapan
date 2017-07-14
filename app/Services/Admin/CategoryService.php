@@ -200,4 +200,15 @@ class CategoryService extends BaseService
     {
         return Category::select('id', 'name', 'short_name')->where('id', $categoryId)->first();
     }
+
+    public static function getSubCategories()
+    {
+        $result = [];
+
+        foreach (config('category.sub_categories') as $key => $value) {
+            $result[$value] = trans('admin/category.sub_categories.' . $key);
+        }
+
+        return $result;
+    }
 }
