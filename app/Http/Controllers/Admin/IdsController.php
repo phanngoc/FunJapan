@@ -14,33 +14,32 @@ class IdsController extends Controller
     {
         $this->viewData['authors'] = AuthorService::getAll();
         $this->viewData['selectClients'] = ClientService::getList();
-        $limit = $request->input('perPage', config('limitation.articles.default_per_page'));
         $keyword = $request->input('keyword', '');
         $sortBy = $request->input('sortBy', 'id.desc');
         $tab = $request->input('tab');
 
         $this->viewData['filter'] = [
-            'limit' => $limit,
             'sortBy' => $sortBy,
         ];
 
         $this->viewData['clients'] = ClientService::filterClients([
-            'limit' => $limit,
             'keyword' => $keyword,
             'orderBy' => $sortBy,
         ]);
 
         $this->viewData['authors'] = AuthorService::filterAuthors([
-            'limit' => $limit,
             'keyword' => $keyword,
             'orderBy' => $sortBy,
         ]);
 
+        $this->viewData['total_clients'] = $this->viewData['clients']->total();
+        $this->viewData['total_authors'] = $this->viewData['authors']->total();
         if ($request->ajax() && $tab == 'client') {
             $this->viewData['results'] = $this->viewData['clients'];
             return response()->json([
                 'htmlClients' => View::make('admin/clients/_table', $this->viewData)->render(),
                 'htmlClientsPaginator' => View::make('admin/elements/_paginate', $this->viewData)->render(),
+                'total' => $this->viewData['total_clients'],
             ]);
         }
 
@@ -49,6 +48,7 @@ class IdsController extends Controller
             return response()->json([
                 'htmlAuthors' => View::make('admin/authors/_table', $this->viewData)->render(),
                 'htmlAuthorsPaginator' => View::make('admin/elements/_paginate', $this->viewData)->render(),
+                'total' => $this->viewData['total_authors'],
             ]);
         }
 

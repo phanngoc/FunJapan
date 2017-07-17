@@ -3,7 +3,7 @@
 return [
     'type' => [
         'Questionnaire',
-        'Campain',
+        'Campaign',
         'Quiz',
         'Psychological',
     ],

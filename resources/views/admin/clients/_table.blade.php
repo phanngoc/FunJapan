@@ -1,12 +1,12 @@
 <thead>
     <tr>
-        <th style="min-width: 100px;" class="text-center sort" data-sort-name="id">
+        <th class="text-center col-sm-1 sort" data-sort-name="id">
             {{ trans('admin/client.label.id') }}
         </th>
-        <th style="min-width: 500px;" class="text-center sort" data-sort-name="name">
+        <th class="text-center col-sm-8 sort" data-sort-name="name">
             {{ trans('admin/client.label.name') }}
         </th>
-        <th style="min-width: 300px;" class="text-center">{{ trans('admin/client.label.action') }}</th>
+        <th class="text-center col-sm-3">{{ trans('admin/client.label.action') }}</th>
     </tr>
 </thead>
 <tbody>

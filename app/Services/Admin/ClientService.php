@@ -54,7 +54,7 @@ class ClientService extends BaseService
         $orders = explode('.', $orderBy);
         $clients = $clients->orderBy($orders[0], $orders[1]);
 
-        $clients = $clients->paginate($options['limit'] ?? config('limitation.articles.default_per_page'));
+        $clients = $clients->paginate(config('limitation.articles.default_per_page'));
 
         return $clients;
     }
@@ -66,8 +66,8 @@ class ClientService extends BaseService
 
     public static function store($inputs)
     {
-        return Client::firstOrCreate([
-            'name' => $inputs['name'],
+        return Client::create([
+            'name' => trim($inputs['name']),
         ]);
     }
 
@@ -78,7 +78,7 @@ class ClientService extends BaseService
             DB::beginTransaction();
             try {
                 $client->update([
-                    'name' => $inputs['name'],
+                    'name' => trim($inputs['name']),
                 ]);
 
                 DB::commit();

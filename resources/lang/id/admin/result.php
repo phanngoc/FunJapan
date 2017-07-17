@@ -1,5 +1,6 @@
 <?php
 return [
+    'result' => 'Result',
     'add_more' => 'Add more result?',
     'add_result' => 'Add result?',
     'score_from' => 'Score From',

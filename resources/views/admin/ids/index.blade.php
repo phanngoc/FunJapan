@@ -18,6 +18,8 @@
         <div id="author" class="tab-pane fade">
             @include('admin.authors.index')
         </div>
+        <div id="tag" class="tab-pane fade">
+        </div>
     </div>
 @endsection
 @section('script')
