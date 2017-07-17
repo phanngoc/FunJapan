@@ -8,8 +8,8 @@
   "/assets/css/app.css": "/assets/css/app.css",
   "/assets/admin/css/coupon.css": "/assets/admin/css/coupon.css",
   "/assets/admin/css/category.css": "/assets/admin/css/category.css",
-  "/assets/admin/css/client.css": "/assets/admin/css/client.css",
   "/assets/admin/css/advertisement.css": "/assets/admin/css/advertisement.css",
+  "/assets/admin/css/client.css": "/assets/admin/css/client.css",
   "/assets/admin/js/tag.js": "/assets/admin/js/tag.js",
   "/assets/admin/js/survey.js": "/assets/admin/js/survey.js",
   "/assets/admin/js/setting_hot_tags.js": "/assets/admin/js/setting_hot_tags.js",
@@ -35,6 +35,6 @@
   "/assets/admin/js/article.js": "/assets/admin/js/article.js",
   "/assets/admin/js/api_token.js": "/assets/admin/js/api_token.js",
   "/assets/admin/js/alwaysOnTop.js": "/assets/admin/js/alwaysOnTop.js",
-  "/assets/admin/js/admin.js": "/assets/admin/js/admin.js",
-  "/assets/admin/js/advertisement.js": "/assets/admin/js/advertisement.js"
+  "/assets/admin/js/advertisement.js": "/assets/admin/js/advertisement.js",
+  "/assets/admin/js/admin.js": "/assets/admin/js/admin.js"
 }

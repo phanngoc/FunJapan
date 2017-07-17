@@ -166,15 +166,11 @@ function readUrl(input, element, oldImg) {
         if ($.inArray(ext, mimes) == -1) {
             element.value = '';
             swal("Cancelled", mess, "error");
-            input.parents('#author-form').find('#preview-section').hide();
-            input.parents('.author-photo').find('#preview').hide();
         } else {
             var size = element.files[0].size;
             if (size / 1024 > maxSize) {
                 element.value = '';
                 swal("Cancelled", messSize, "error");
-                input.parents('#author-form').find('#preview-section').hide();
-                input.parents('.author-photo').find('#preview').hide();
             } else {
                 reader.onload = function (e) {
                     oldImg.attr('src', e.target.result);
@@ -185,8 +181,6 @@ function readUrl(input, element, oldImg) {
             }
         }
     } else {
-        input.parents('#author-form').find('#preview-section').hide();
-        input.parents('.author-photo').find('#preview').show();
         oldImg.attr('src', oldUrl);
     }
 }

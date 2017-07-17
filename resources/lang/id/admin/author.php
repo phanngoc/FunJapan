@@ -11,7 +11,7 @@ return [
         'description' => 'Description',
         'action' => 'Action',
         'article_list' => 'Article List',
-        'showing' => 'Showing',
+        'total' => 'Total',
         'items' => 'Items',
     ],
     'image_message' => 'The photo must be a file of type: :type!',

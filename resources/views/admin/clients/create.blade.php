@@ -13,9 +13,9 @@
                             {{ Form::label(
                                 'name',
                                 trans('admin/client.label.name'),
-                                ['class' => 'col-sm-1 control-label'])
+                                ['class' => 'col-sm-2 control-label'])
                             }}
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                                 {{ Form::text(
                                     'name',
                                     null,

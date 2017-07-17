@@ -57,14 +57,6 @@ class ClientsController extends Controller
         }
     }
 
-    public function edit($id)
-    {
-        abort_if(Gate::denies('permission', 'client.edit'), 403, 'Unauthorized action.');
-        $this->viewData['client'] = Client::find($id);
-
-        return view('admin.clients.edit', $this->viewData);
-    }
-
     public function update(Request $request, $id)
     {
         abort_if(Gate::denies('permission', 'client.edit'), 403, 'Unauthorized action.');

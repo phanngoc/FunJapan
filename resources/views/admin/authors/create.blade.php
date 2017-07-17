@@ -12,7 +12,7 @@
                     }}
                         @include('admin.authors._form')
                         <div class="form-group">
-                            <div class="col-sm-1 col-sm-offset-1">
+                            <div class="col-sm-1 col-sm-offset-2">
                                 <a href="javascript:;" class="btn btn-primary" id="create-author"
                                     data-url="{{ action('Admin\AuthorsController@store') }}">
                                     {{ trans('admin/survey.button.save') }}

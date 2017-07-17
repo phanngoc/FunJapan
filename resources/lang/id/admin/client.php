@@ -1,18 +1,19 @@
 <?php
 
 return [
-	'client_management' => 'Client ID Management',
-	'author_management' => 'Author Management',
-	'tag_management' => 'Tag Management',
-	'list' => 'List Client',
-	'add' => 'Add Client',
-	'edit' => 'Edit Client',
+    'id_management' => 'Various ID Management',
+    'client_management' => 'Client ID Management',
+    'author_management' => 'Author Management',
+    'tag_management' => 'Tag Management',
+    'list' => 'List Client',
+    'add' => 'Add Client',
+    'edit' => 'Edit Client',
     'label' => [
         'id' => 'ID',
         'name' => 'Client Name',
         'action' => 'Action',
         'article_list' => 'Article List',
-        'showing' => 'Showing',
+        'total' => 'Total',
         'items' => 'Items',
     ],
     'no_matching' => 'No matching records found.',

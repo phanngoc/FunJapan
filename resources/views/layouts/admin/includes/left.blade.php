@@ -21,7 +21,7 @@
                 </div>
             </li>
             @can('permission', [['article.read', 'article.list', 'article.add', 'ranking.list', 'article.edit', 'article.delete']])
-                <li class="{{ set_active(['admin/articles*', 'admin/articles/create', 'admin/article-comments']) }}">
+                <li class="{{ set_active(['admin/articles*', 'admin/articles/create', 'admin/article-comments', 'admin/clients/*', 'admin/authors/*']) }}">
                     <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/article.article_management') }}</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li class="{{ set_active(['admin/articles']) }}">
@@ -73,7 +73,7 @@
                 </ul>
             </li>
 
-            <li class="{{ set_active(['admin/recommend-articles*']) }}">
+            {{-- <li class="{{ set_active(['admin/recommend-articles*']) }}">
                 <a href="#">
                     <i class="fa fa-thumbs-up"></i>
                     <span class="nav-label">
@@ -93,9 +93,9 @@
                         </li>
                     </ul>
                 </a>
-            </li>
+            </li> --}}
 
-            @can('permission', [['popular.list', 'popular.change']])
+            {{-- @can('permission', [['popular.list', 'popular.change']])
                 <li class="{{ set_active(['admin/popular-articles', 'admin/popular-list']) }}">
                     <a href="#">
                         <i class="fa fa-thumbs-up"></i>
@@ -122,7 +122,7 @@
                         </ul>
                     </a>
                 </li>
-            @endcan
+            @endcan --}}
 
             @can('permission', [['survey.list', 'survey.add']])
                 <li class="{{ set_active(['admin/surveys*', 'admin/surveys/create']) }}">
@@ -156,13 +156,13 @@
                             </li>
                         @endcan
 
-                        @can('permission', 'ranking.list')
+                        {{-- @can('permission', 'ranking.list')
                             <li>
                                 <a href="{{action('Admin\ArticleRanksController@index')}}">
                                     {{ trans('admin/article_rank.label') }}
                                 </a>
                             </li>
-                        @endcan
+                        @endcan --}}
 
                         @can('permission', 'api.list')
                             <li>
@@ -183,7 +183,7 @@
                 </li>
             @endcan
 
-            <li class="{{ set_active(['admin/menus*', 'admin/menus/create']) }}">
+            {{-- <li class="{{ set_active(['admin/menus*', 'admin/menus/create']) }}">
                 <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/menu.menu_management') }}</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li>
@@ -193,9 +193,9 @@
                         <a href="{{action('Admin\MenusController@create')}}">{{ trans('admin/menu.add_menu') }}</a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
 
-            <li class="{{ set_active(['admin/popular-series*']) }}">
+            {{-- <li class="{{ set_active(['admin/popular-series*']) }}">
                 <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/popular_series.popular_series_management') }}</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li>
@@ -209,7 +209,7 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
 
             <li class="{{ set_active(['admin/coupons*']) }}">
                 <a href="#"><i class="fa fa-tags"></i> <span class="nav-label">{{ trans('admin/coupon.coupon_management') }}</span><span class="fa arrow"></span></a>
@@ -223,7 +223,7 @@
                 </ul>
             </li>
 
-            <li class="{{ set_active(['admin/popular-category*']) }}">
+            {{-- <li class="{{ set_active(['admin/popular-category*']) }}">
                 <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ trans('admin/popular_category.popular_category_management') }}</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li>
@@ -237,7 +237,7 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
 
             <li class="{{ set_active(['admin/roles*']) }}">
                 <a href="javascript:;">
@@ -263,9 +263,9 @@
                     </li>
                 </ul>
             </li>
-            <li class="{{ set_active(['admin/id*', 'admin/clients/*', 'admin/authors/*']) }}">
+            <li class="{{ set_active(['admin/id*']) }}">
                 <a href="{!! action('Admin\IdsController@index') !!}">
-                    <i class="fa fa-sitemap"></i> <span class="nav-label"> ID Management
+                    <i class="fa fa-sitemap"></i> <span class="nav-label"> {{ trans('admin/client.id_management') }}
                 </a>
             </li>
         </ul>

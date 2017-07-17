@@ -4,7 +4,6 @@ $(document).ready(function () {
     var page;
     $('#client').on('keypress', function(e) {
         if (e.keyCode == 13) {
-            $('#create-client').click();
             return false;
         };
     });

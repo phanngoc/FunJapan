@@ -32,7 +32,7 @@
                         <div class="select-limit">
                             <div class="form-inline">
                                 <div class="form-group" id="showing-author">
-                                    {{ trans('admin/author.label.showing') }}
+                                    {{ trans('admin/author.label.total') }}
                                     {{ $total_authors ?? 0 }}
                                     {{ trans('admin/author.label.items') }}
                                 </div>

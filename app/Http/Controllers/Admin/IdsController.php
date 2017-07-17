@@ -13,7 +13,6 @@ class IdsController extends Controller
     public function index(Request $request)
     {
         $this->viewData['authors'] = AuthorService::getAll();
-        $this->viewData['selectClients'] = ClientService::getList();
         $keyword = $request->input('keyword', '');
         $sortBy = $request->input('sortBy', 'id.desc');
         $tab = $request->input('tab');
