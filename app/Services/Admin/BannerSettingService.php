@@ -6,6 +6,7 @@ use App\Models\BannerSetting;
 use App\Services\ImageService;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Validation\Rule;
 use Validator;
 
 class BannerSettingService extends BaseService
@@ -16,12 +17,10 @@ class BannerSettingService extends BaseService
         $maxSize = config('images.validate.banner.max_size');
 
         $rules = [
-            'photo' => 'required|mimes:' . $mimes . '|max:' . $maxSize,
-            'from' => 'required|date',
-            'to' => 'required|date',
             'locale_id' => 'required',
             'order' => 'required',
             'article_locale_id' => 'required|unique:banner_settings',
+            'photo' => 'required|mimes:' . $mimes . '|max:' . $maxSize,
         ];
 
         $messages = [
@@ -57,14 +56,15 @@ class BannerSettingService extends BaseService
 
     public static function getBannerViaLocale($localeId, $isFront = true)
     {
-        $query = BannerSetting::where('locale_id', $localeId)
+        $query = BannerSetting::select('banner_settings.*')
+            ->where('article_locales.locale_id', $localeId)
             ->orderBy('order', 'asc');
 
         if ($isFront) {
-            $toDay = Carbon::now()->toDateString();
             $query = $query->where('article_locale_id', '!=', 0)
-                ->where('from', '<=', $toDay)
-                ->where('to', '>=', $toDay);
+                ->leftJoin('article_locales', 'banner_settings.article_locale_id', 'article_locales.id')
+                ->where('article_locales.published_at', '<=', Carbon::now(config('app.admin_timezone')))
+                ->where('article_locales.status', config('article.status.published'));
 
             $banner = $query->limit(config('banner.limit'))->get();
 
@@ -89,7 +89,7 @@ class BannerSettingService extends BaseService
         return $result;
     }
 
-    public static function delete($bannerId)
+    /*public static function delete($bannerId)
     {
         $banner = BannerSetting::find($bannerId);
 
@@ -105,5 +105,46 @@ class BannerSettingService extends BaseService
         } catch (\Exception $e) {
             return false;
         }
+    }*/
+
+    public static function validateUpdate($input, $id)
+    {
+        $mimes = config('images.validate.banner.mimes');
+        $maxSize = config('images.validate.banner.max_size');
+
+        $rules = [
+            'article_locale_id' => [
+                'required',
+                Rule::unique('banner_settings')->ignore($id),
+            ],
+        ];
+
+        if ($input['is_uploaded_photo']) {
+            $rules['photo'] = 'required|mimes:' . $mimes . '|max:' . $maxSize;
+        }
+
+        $messages = [
+            'article_locale_id.required' => trans('admin/banner.validate.required.article_locale_id'),
+        ];
+
+        return Validator::make($input, $rules, $messages)->messages()->toArray();
+    }
+
+    public static function update($input, $bannerId)
+    {
+        $banner = BannerSetting::find($bannerId);
+
+        if ($banner) {
+            if (isset($input['photo']) && $input['photo'] instanceof UploadedFile) {
+                $photoUploadPath = config('images.paths.banner') . '/' . $banner->id;
+                $input['photo'] = ImageService::uploadFile($input['photo'], 'banner', $photoUploadPath, true);
+            } else {
+                unset($input['photo']);
+            }
+
+            return $banner->update($input);
+        }
+
+        return false;
     }
 }

@@ -252,9 +252,9 @@ class ArticleService extends BaseService
     public static function getListForBanner($condition)
     {
         return ArticleLocale::where('locale_id', $condition['locale_id'])
-            ->where('title', 'like', '%' . $condition['key_word'] . '%')
+            ->where('id', 'like', '%' . $condition['key_word'] . '%')
             ->where('published_at', '<=', Carbon::now())
-            ->where('hide_always', 0)
+            ->where('status', config('article.status.published'))
             ->select(['id', 'title', 'locale_id', 'article_id', 'summary', 'published_at'])
             ->paginate(config('banner.article_suggest'))
             ->toArray();

@@ -5,16 +5,21 @@
 
     <script>
         var articleSuggest = {{ config('banner.article_suggest') }};
-        var minimumInputLength = {{ config('banner.minimum_input_length') }};
         var labelWrongFileType = '{{ trans('admin/banner.validate.file_type') }}';
         var labelUnauthorized = '{{ trans('admin/banner.validate.unauthorized') }}';
         var labelMaxSize = '{{ trans('validation.max.file', ['attribute' => 'photo', 'max' => config('images.validate.banner.max_size')]) }}';
-        var lblConfirmRemove = '{{ trans('admin/banner.label_delete_question_title') }}';
-        var lblConfirmRemoveTitle = '{{ trans('admin/banner.label_delete_question') }}';
         var lblButtonYes = '{{ trans('admin/banner.label_yes') }}';
         var lblButtonNo = '{{ trans('admin/banner.label_no') }}';
         var lblTitleChangeLocale = '{{ trans('admin/banner.label_change_locale_title') }}';
         var lblQuestionChangeLocale = '{{ trans('admin/banner.label_change_locale_question') }}';
+        var lblButtonEdit = '{{ trans('admin/banner.label_edit') }}';
+        var lblButtonStopEdit = '{{ trans('admin/banner.label_stop_edit') }}';
+        var lblTitleChangeMode = '{{ trans('admin/banner.change_mode_edit_title') }}';
+        var lblQuestionChangeMode = '{{ trans('admin/banner.change_mode_edit_question') }}';
+        var lblTitleAddMode = '{{ trans('admin/banner.change_mode_add_title') }}';
+        var lblQuestionAddMode = '{{ trans('admin/banner.change_mode_add_question') }}';
+        var lblTitleReplace = '{{ trans('admin/banner.label_replace_question_title') }}';
+        var lblQuestionReplace = '{{ trans('admin/banner.label_replace_question') }}';
     </script>
 @endsection
 
@@ -32,14 +37,16 @@
                 </div>
                 <div class="ibox-content">
                     <div class="tabs-container">
-                        {!! Form::open(['class' => 'form-horizontal', 'files' => true]) !!}
+                        {!! Form::open(['class' => 'form-horizontal', 'files' => true, 'id' => 'form-edit']) !!}
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">{{ trans('admin/banner.label_locale') }}</label>
                                     <div class="col-sm-10">
                                         <select class="form-control" name="locale_id" id="locale">
                                             @foreach ($locales as $id => $locale)
-                                                <option value="{{ $id }}" {{ $id == $currentLocale ? 'selected' : '' }}>{{ $locale }}</option>
+                                                <option value="{{ $id }}" {{ $id == $currentLocale ? 'selected' : '' }}>
+                                                    {{ $locale }}
+                                                </option>
                                             @endforeach
                                         </select>
                                         <input type="hidden" name="old_locale_id" id="old_locale" value="{{ $currentLocale }}">
@@ -63,25 +70,14 @@
                                         <p class="text-danger font-bold m-xxs error-message" id="article_locale_id_error"></p>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">{{ trans('admin/banner.label_from_to') }}</label>
-                                    <div class="col-sm-5">
-                                        <input type="text" name="from" class="form-control from-datetime-picker" autocomplete="off">
-                                        <p class="text-danger font-bold m-xxs error-message" id="from_error"></p>
-                                        <p class="text-danger font-bold m-xxs error-message" id="to_error"></p>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <input type="text" name="to" class="form-control to-datetime-picker" autocomplete="off">
-                                    </div>
-                                </div>
-
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">{{ trans('admin/banner.label_place') }}</label>
                                     <div class="col-sm-10">
                                         <select class="form-control" name="order">
                                             @foreach (config('banner.order') as $position => $value)
-                                                <option value="{{ $value }}" {{ $value == old('order') ? 'selected' : '' }}>{{ ucfirst($position) }}</option>
+                                                <option value="{{ $value }}" {{ $value == old('order') ? 'selected' : '' }}>
+                                                    {{ trans('admin/banner.order.' . $position) }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -99,6 +95,7 @@
                                         accept="image/jpeg,image/png,image/jpg"
                                         max-size="{{ config('images.validate.banner.max_size') }}"
                                     >
+                                    <input type="hidden" name="is_uploaded_photo">
                                 </div>
                             </div>
                             <div class="input-group col-xs-6">
@@ -110,7 +107,7 @@
                             <button class="btn btn-primary btn-block store-banner" type="button">
                                 <i class="fa fa-spinner fa-pulse fa-fw hidden"></i>
                                 <i class="fa fa-check"></i>&nbsp;
-                                <strong>{{ trans('admin/banner.label_update_all') }}</strong>
+                                <strong>{{ trans('admin/banner.label_update') }}</strong>
                             </button>
                         {!! Form::close() !!}
                     </div>
@@ -130,7 +127,7 @@
                     <div class="tabs-container">
                         <ul class="nav nav-tabs">
                             @foreach ($locales as $key => $locale)
-                                <li class="tab-title {{ $key == $currentLocale ? 'active' : '' }}" id="tab-{{ $key }}">
+                                <li class="tab-title {{ $key == $currentLocale ? 'active' : null }}" id="tab-{{ $key }}">
                                     <a data-toggle="tab" href="#tab-pane-{{ $key }}"  data-locale-id="{{ $key }}">
                                         {{ $locale }}
                                     </a>
@@ -151,10 +148,15 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <h3><strong>{{ trans('admin/banner.label_from_to') }} : </strong> {{ $bannerSetting->from . ' -> ' .  $bannerSetting->to }}</h3>
                                                         <h3 class="{{ $bannerSetting->active ? '' : 'text-danger' }}">
                                                             <strong>{{ trans('admin/banner.status') }} : </strong>
-                                                            {{ $bannerSetting->active ? trans('admin/banner.active') : trans('admin/banner.deactive') }}</h3>
+                                                            {{ $bannerSetting->active ? trans('admin/banner.active') : trans('admin/banner.deactive') }}
+                                                        </h3>
+
+                                                        <h3>
+                                                            <strong>{{ trans('admin/banner.label_place') }} : </strong>
+                                                            {{ $bannerSetting->order_text }}
+                                                        </h3>
 
                                                         <h3><strong>{{ trans('admin/banner.label_title') }}</strong></h3>
                                                         <p id="title-{{ $bannerSetting->id }}">
@@ -169,17 +171,22 @@
                                                     <div class="col-md-4">
                                                         <div class="row">
                                                             <button
-                                                                class="btn btn-danger btn-block btn-lg delete-banner"
+                                                                class="btn btn-success btn-block btn-lg btn-edit"
                                                                 type="button"
-                                                                action="{{ action('Admin\BannerSettingsController@delete', ['bannerId' => $bannerSetting->id]) }}"
+                                                                data-article-id="{{ $bannerSetting->article_locale_id }}"
+                                                                data-article-title="{{ $bannerSetting->articleLocale->title }}"
+                                                                data-from="{{ $bannerSetting->from }}"
+                                                                data-to="{{ $bannerSetting->to }}"
+                                                                data-order="{{ $bannerSetting->order }}"
+                                                                data-photo="{{ $bannerSetting->photo_urls['original'] }}"
+                                                                data-id="{{ $bannerSetting->id }}"
                                                             >
-                                                                <i class="fa fa-spinner fa-pulse fa-fw hidden"></i>
-                                                                <i class="fa fa-check"></i>&nbsp;
-                                                                <strong>{{ trans('admin/banner.label_delete_all') }}</strong>
+                                                                <strong>{{ trans('admin/banner.label_edit') }}</strong>
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <input type="hidden" value="1" id="has_place_{{ $bannerSetting->order }}">
                                             </div>
                                         @endforeach
                                     @endif
