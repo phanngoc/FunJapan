@@ -14,6 +14,7 @@ return [
         'result_survey' => 'uploads/results',
         'author' => 'uploads/authors',
         'article_content' => 'uploads/articles/content',
+        'advertisement' => 'uploads/advertisement',
     ],
     'validate' => [
         'post_photo' => [
@@ -65,6 +66,10 @@ return [
             'max_size' => 10240,
         ],
         'article_content' => [
+            'mimes' => 'jpeg,png,jpg',
+            'max_size' => 10240,
+        ],
+        'advertisement' => [
             'mimes' => 'jpeg,png,jpg',
             'max_size' => 10240,
         ],
@@ -130,6 +135,11 @@ return [
             'original' => '',
             'normal' => [96, 60],
             'small' => [32, 32],
+        ],
+        'advertisement' => [
+            'original' => '',
+            'normal' => [480, 318],
+            'small' => [125, 25],
         ],
     ],
     'not_resize' => [

@@ -48,5 +48,6 @@ return [
         'roles' => 'Role Management',
         'users' => 'User Management',
         'api' => 'Api Token Management',
+        'advertisement' => 'Advertisement',
     ],
 ];

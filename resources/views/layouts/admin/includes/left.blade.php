@@ -138,7 +138,7 @@
                 </li>
             @endcan
 
-            @can('permission', [['api.list', 'banner.change', 'ranking.list']])
+            @can('permission', [['api.list', 'banner.change', 'ranking.list', 'advertisement.change']])
                 <li class="{{ set_active(['admin/setting/*']) }}">
                     <a href="#">
                         <i class="fa fa-thumbs-up"></i>
@@ -168,6 +168,14 @@
                             <li>
                                 <a href="{{action('Admin\ApiTokenController@index')}}">
                                     {{ trans('admin/api_token.label_title') }}
+                                </a>
+                            </li>
+                        @endcan
+
+                        @can('permission', 'advertisement.change')
+                            <li>
+                                <a href="{{action('Admin\AdvertisementsController@index')}}">
+                                    {{ trans('admin/advertisement.label_title') }}
                                 </a>
                             </li>
                         @endcan
