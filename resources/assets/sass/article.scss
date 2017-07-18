@@ -241,3 +241,9 @@ a.line {
 .t4 {
     top: 4px !important;
 }
+
+@-moz-document url-prefix() {
+    .ff {
+        right: 3px !important;
+    }
+}

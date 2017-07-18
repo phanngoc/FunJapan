@@ -218,9 +218,11 @@ class ArticleService
     {
         return ArticleLocale::with('article', 'article.category', 'articleTags', 'articleTags.tag')
             ->where('locale_id', $localeId)
-            ->where('hide_always', 0)
+            ->where('status', config('article.status.published'))
+            ->where('hide', 0)
             ->whereNotNull('published_at')
             ->where('published_at', '<', Carbon::now())
+            ->where('end_published_at', '>', Carbon::now())
             ->orderBy('is_top_article', 'desc')
             ->orderBy('published_at', 'desc')
             ->orderBy('title', 'desc')
