@@ -253,7 +253,11 @@ class ArticleService extends BaseService
     public static function getListForBanner($condition)
     {
         return ArticleLocale::where('locale_id', $condition['locale_id'])
-            ->where('id', 'like', '%' . $condition['key_word'] . '%')
+            ->whereIn('article_id', function ($subQuery) use ($condition) {
+                $subQuery->select('id')
+                    ->from('articles')
+                    ->where('id', 'like', '%' . $condition['key_word'] . '%');
+            })
             ->where('published_at', '<=', Carbon::now())
             ->where('status', config('article.status.published'))
             ->select(['id', 'title', 'locale_id', 'article_id', 'summary', 'published_at'])
@@ -366,12 +370,12 @@ class ArticleService extends BaseService
         $validationRules = [
             'locale_id' => 'required',
             'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date|after:' . Carbon::today()->toDateString(),
+            'end_date' => 'required|date|after_or_equal:start_date|after_or_equal:' . Carbon::today()->toDateString(),
             'article_locale_id' => 'required|exists:article_locales,id',
         ];
 
         $messages = [
-            'end_date.after' => trans('admin/article.always_on_top.validate.after_end_date'),
+            'end_date.after_or_equal' => trans('admin/article.always_on_top.validate.after_end_date'),
         ];
 
         return Validator::make($input, $validationRules, $messages)->messages()->toArray();

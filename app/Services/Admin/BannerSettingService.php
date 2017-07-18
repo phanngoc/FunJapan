@@ -57,7 +57,7 @@ class BannerSettingService extends BaseService
     public static function getBannerViaLocale($localeId, $isFront = true)
     {
         $query = BannerSetting::select('banner_settings.*')
-            ->where('article_locales.locale_id', $localeId)
+            ->where('locale_id', $localeId)
             ->orderBy('order', 'asc');
 
         if ($isFront) {
