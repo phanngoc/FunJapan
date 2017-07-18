@@ -30,7 +30,7 @@
                                     {!! Form::hidden('perPage', $filter['limit'] ?? null) !!}
                                     {!! Form::hidden('dateFilter', $filter['dateFilter'] ?? null) !!}
                                     {!! Form::hidden('searchColumn', $filter['searchColumn'] ?? null) !!}
-                                    <div class="input-group col-md-6">
+                                    <div class="input-group col-md-10">
                                         <div class="input-group-btn">
                                             <button data-toggle="dropdown" class="btn btn-white dropdown-toggle btn-left-radius" type="button" aria-expanded="false">
                                                 <b class="selected-search-by">
@@ -60,10 +60,14 @@
                                         {!! Form::text('dateFilter', $filter['dateFilter'] ?? null, [
                                             'class' => 'input-sm form-control date-filter',
                                             'placeholder' => trans('admin/article.placeholder.published_at'),
+                                            'maxlength' => 20,
+                                            'onkeydown' => 'return false',
                                         ]) !!}
                                     </div>
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-sm btn-primary date-filter-btn">{{ trans('admin/article.button.filter') }}</button>
+                                        <button type="button" class="btn btn-sm btn-primary date-filter-btn text-uppercase">
+                                            {{ trans('admin/article.button.filter') }}
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -72,21 +76,21 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th style="min-width: 90px;" class="sortable" data-sort-name="client_id">{{ trans('admin/article.label.client_id') }}</th>
-                                    <th style="min-width: 90px;" class="sortable" data-sort-name="id">{{ trans('admin/article.label.article_id') }}</th>
-                                    <th>{{ trans('admin/article.label.title') }}</th>
-                                    <th style="min-width: 150px;">{{ trans('admin/article.label.published_at') }}</th>
-                                    <th style="min-width: 195px;">{{ trans('admin/article.label.country') }}</th>
-                                    <th style="min-width: 160px;">{{ trans('admin/article.label.action') }}</th>
+                                    <th style="min-width: 90px;" class="text-center sortable" data-sort-name="client_id">{{ trans('admin/article.label.client_id') }}</th>
+                                    <th style="min-width: 90px;" class="text-center sortable" data-sort-name="id">{{ trans('admin/article.label.article_id') }}</th>
+                                    <th class="text-center">{{ trans('admin/article.label.title') }}</th>
+                                    <th class="text-center" style="min-width: 175px;">{{ trans('admin/article.label.published_at') }}</th>
+                                    <th class="text-center" style="min-width: 210px;">{{ trans('admin/article.label.country') }}</th>
+                                    <th class="text-center" style="min-width: 160px;">{{ trans('admin/article.label.action') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @if ($articles->count() > 0)
                                     @foreach ($articles as $article)
                                         <tr>
-                                            <td># {{ $article->client_id }}</td>
-                                            <td># {{ $article->id }}</td>
-                                            <td>
+                                            <td class="text-center">{{ $article->client_id }}</td>
+                                            <td class="text-center"># {{ $article->id }}</td>
+                                            <td class="break-word">
                                                 @if (count($article->arrangedArticleLocales) == 1)
                                                     {{ $article->arrangedArticleLocales[0]->title ?? null }}
                                                 @else
@@ -104,12 +108,12 @@
                                                     </div>
                                                 @endif
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 @if (isset($article->arrangedArticleLocales[0]) && !is_null($article->arrangedArticleLocales[0]->published_at))
                                                     {{ $article->arrangedArticleLocales[0]->published_at->format('d F Y g:i A') }}
                                                 @endif
                                             </td>
-                                            <td class="label-locale text-uppercase">
+                                            <td class="label-locale text-uppercase text-center">
                                                 @foreach ($locales as $localeId => $localeName)
                                                     @if (in_array($localeId, $article->articleLocales->pluck('locale_id')->toArray()))
                                                         @php
@@ -123,7 +127,7 @@
                                                     @endif
                                                 @endforeach
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 <button class="btn btn-info" type="button">
                                                     <i class="fa fa-pencil"></i> {{ trans('admin/article.button.edit') }}
                                                 </button>
@@ -151,11 +155,11 @@
                         </table>
                         <div class="ibox-content no-borders">
                             <div class="row pull-right label-explain">
-                                <p><span class="label label-custom-published text-uppercase"></span> {{ trans('admin/article.status_by_locale.published') }}</p>
-                                <p><span class="label label-custom-schedule text-uppercase"></span> {{ trans('admin/article.status_by_locale.schedule') }}</p>
-                                <p><span class="label label-custom-draft text-uppercase"></span> {{ trans('admin/article.status_by_locale.draft') }}</p>
-                                <p><span class="label label-custom-stop text-uppercase"></span> {{ trans('admin/article.status_by_locale.stop') }}</p>
-                                <p><span class="label label-custom-no-article text-uppercase"></span> {{ trans('admin/article.status_by_locale.no_article') }}</p>
+                                <p><span class="label label-custom-published"></span> {{ trans('admin/article.status_by_locale.published') }}</p>
+                                <p><span class="label label-custom-schedule"></span> {{ trans('admin/article.status_by_locale.schedule') }}</p>
+                                <p><span class="label label-custom-draft"></span> {{ trans('admin/article.status_by_locale.draft') }}</p>
+                                <p><span class="label label-custom-stop"></span> {{ trans('admin/article.status_by_locale.stop') }}</p>
+                                <p><span class="label label-custom-no-article"></span> {{ trans('admin/article.status_by_locale.no_article') }}</p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -163,22 +167,16 @@
                         <div class="box-footer clearfix pagination-limit">
                             <div class="select-limit">
                                 <div class="form-inline">
-                                    {{--<div class="form-group">
-                                        {{ trans('admin/article.label.showing') }}
-                                    </div>
                                     <div class="form-group">
-                                        {!! Form::select(
-                                            '',
-                                            config('limitation.lists'),
-                                            $filter['limit'] ?? null,
-                                            ['class' => 'form-control', 'id' => 'per-page'])
-                                        !!}
-                                    </div>
-                                    <div class="form-group">
+                                        {{ trans('admin/article.label.total') }}
+                                        {{ $articles->total() }}
                                         {{ trans('admin/article.label.items') }}
-                                    </div>--}}
+                                    </div>
                                     <div class="form-group pull-right">
-                                        {!! method_exists($articles, 'appends') ? $articles->appends(request()->except('page'))->links() : '' !!}
+                                        @include('admin/elements._paginate', [
+                                            'results' => $articles,
+                                            'appends' => true,
+                                        ])
                                     </div>
                                 </div>
                             </div>

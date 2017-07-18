@@ -9,6 +9,7 @@ use Illuminate\Validation\Rule;
 use Validator;
 use DB;
 use Carbon\Carbon;
+use Exception;
 use Auth;
 
 class ArticleService extends BaseService
@@ -80,7 +81,7 @@ class ArticleService extends BaseService
                     'content' => $inputs['content'],
                     'summary' => $inputs['description'],
                     'published_at' => $inputs['published_at'] ? $inputs['published_at'] : Carbon::now(),
-                    'end_published_at' => $inputs['end_published_at'] ? $inputs['end_published_at'] : Carbon::now(),
+                    'end_published_at' => $inputs['end_published_at'] ? $inputs['end_published_at'] : null,
                     'content_type' => $inputs['switch_editor'] ?? null,
                     'title_bg_color' => $inputs['titleBgColor'] ?? null,
                     'is_member_only' => $inputs['is_member_only'],
@@ -294,7 +295,12 @@ class ArticleService extends BaseService
         }
 
         if (isset($options['dateFilter']) && $options['dateFilter']) {
-            $dateFilter = Carbon::createFromFormat('Y M', $options['dateFilter']);
+            try {
+                $dateFilter = Carbon::createFromFormat('Y M', $options['dateFilter']);
+            } catch (Exception $e) {
+                $dateFilter = Carbon::now();
+            }
+
             $articles = $articles->where(function ($currentQuery) use ($dateFilter) {
                 $currentQuery->whereIn(
                     'id',
@@ -305,7 +311,7 @@ class ArticleService extends BaseService
             });
         }
 
-        $orderBy = $options['orderBy'] ?? null;
+        $orderBy = $options['sortBy'] ?? null;
         $optionsSort = [
             'id.desc',
             'id.asc',
@@ -326,7 +332,9 @@ class ArticleService extends BaseService
             $articles = $articles->orderBy($orders[0], $orders[1]);
         }
 
-        $articles = $articles->paginate($options['limit'] ?? config('limitation.articles.default_per_page'));
+        $limit = in_array($options['limit'], config('limitation.lists')) ? $options['limit'] : config('limitation.articles.default_per_page');
+
+        $articles = $articles->paginate($limit);
 
         foreach ($articles as $key => $article) {
             $articleLocales = [];

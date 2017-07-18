@@ -176,9 +176,9 @@ function getCategoriesByLocale(url, localeId, selected = null) {
             var html = '';
             for (let key in data) {
                 if (key == selected) {
-                    html += '<option value=' + key + ' selected>' + data[key] + '</option>';
+                    html += '<option value=' + key + ' selected>' + encodeHTML(data[key]) + '</option>';
                 } else {
-                    html += '<option value=' + key + '>' + data[key] + '</option>';
+                    html += '<option value=' + key + '>' + encodeHTML(data[key]) + '</option>';
                 }
             }
 

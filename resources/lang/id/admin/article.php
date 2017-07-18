@@ -128,6 +128,7 @@ return [
         'article_confirm' => 'Confirmation',
         'new' => 'New',
         'new_article' => 'New Article',
+        'total' => 'Total',
     ],
     'status_by_locale' => [
         'schedule' => 'Schedule',

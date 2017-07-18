@@ -64,7 +64,21 @@ $(document).ready(function () {
         keyboardNavigation: false,
         forceParse: false,
         autoclose: true,
+        clearBtn: true,
         todayHighlight: true
+    }).on('show', function (e) {
+        var year = parseInt($('.table-condensed thead tr th:eq(1).datepicker-switch').text().split(' ')[1]);
+        var today = new Date(),
+            month = today.toLocaleString('en-us', { month: 'long' });
+        if ($(this).val() == '' && year == today.getUTCFullYear()) {
+            var highlightMonth = today.toLocaleString('en-us', { month: 'short' });
+
+            $('.datepicker-months table tbody tr:first td span.month').each(function () {
+                if ($(this).text() == highlightMonth) {
+                    $(this).addClass('active');
+                }
+            });
+        }
     });
 
     $('.select-locale').on('change', function (e) {

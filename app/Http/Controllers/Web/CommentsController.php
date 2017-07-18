@@ -69,22 +69,22 @@ class CommentsController extends Controller
             ];
         }
 
-        if ($input['parentId']) {
-            $lastCommentKey = 'last_reply_' . auth()->id() . '.' . $input['parentId'];
-        } else {
-            $lastCommentKey = 'last_comment_' . auth()->id() . '.' . $articleLocale->id;
-        }
-
-        $lastTimeComment = session()->get($lastCommentKey);
-
-        if ($lastTimeComment && (time() - $lastTimeComment) < config('limitation.comment.next_time')) {
-            return [
-                'success' => false,
-                'message' => [trans('web/comment.messages.only_once')],
-            ];
-        }
-
-        session()->put($lastCommentKey, time());
+//        if ($input['parentId']) {
+//            $lastCommentKey = 'last_reply_' . auth()->id() . '.' . $input['parentId'];
+//        } else {
+//            $lastCommentKey = 'last_comment_' . auth()->id() . '.' . $articleLocale->id;
+//        }
+//
+//        $lastTimeComment = session()->get($lastCommentKey);
+//
+//        if ($lastTimeComment && (time() - $lastTimeComment) < config('limitation.comment.next_time')) {
+//            return [
+//                'success' => false,
+//                'message' => [trans('web/comment.messages.only_once')],
+//            ];
+//        }
+//
+//        session()->put($lastCommentKey, time());
 
         if ($comment = CommentService::create($input)) {
             $htmlComments = '';

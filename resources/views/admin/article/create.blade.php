@@ -7,7 +7,6 @@
     {{ Html::style('assets/medium-editor-handsontable/css/medium-editor-handsontable.css') }}
     {{ Html::style('assets/medium-editor-handsontable/css/handsontable.full.css') }}
     {{ Html::style('assets/medium-editor-insert/css/medium-editor-insert-plugin.min.css') }}
-
 @endsection
 @section('content')
     <div class="row wrapper border-bottom white-bg page-heading border-left">

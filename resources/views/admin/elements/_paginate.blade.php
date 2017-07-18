@@ -1,4 +1,9 @@
 @if ($results->lastPage() > 1)
+    @php
+        if (isset($appends) && $appends) {
+            $results = $results->appends(request()->except('page'));
+        }
+    @endphp
     <ul class="pagination pagination-sm">
         <li class="first {{ ($results->currentPage() == 1) ? 'disabled' : '' }} pull-left">
             <a href="{{ $results->url(1) }}"><<</a>
