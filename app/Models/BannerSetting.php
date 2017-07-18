@@ -76,6 +76,6 @@ class BannerSetting extends BaseModel
 
     public function getActiveAttribute()
     {
-        return $this->articleLocale->status_show_in_front;
+        return $this->articleLocale ? $this->articleLocale->status_show_in_front : false;
     }
 }
