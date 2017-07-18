@@ -73,7 +73,7 @@ $(document).ready(function () {
         escapeMarkup: function escapeMarkup(markup) {
             return markup;
         },
-        minimumInputLength: minimumInputLength,
+        minimumInputLength: 1,
         minimumResultsForSearch: -1,
         templateResult: formatRepo,
         templateSelection: formatRepoSelection
@@ -178,7 +178,7 @@ $(document).ready(function () {
             url += '/' + bannerId;
         }
 
-        if (hasPlace) {
+        if (hasPlace && !bannerId) {
             swal({
                 title: lblTitleReplace,
                 text: lblQuestionReplace,
