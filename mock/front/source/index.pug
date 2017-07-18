@@ -1,13 +1,9 @@
 extends ./modules/templates/top.pug
 include ./modules/article/article-ranking
-include ./modules/article/recommended-post
 include ./modules/article/article-card-list
 
 block head
   +head(head.home)
-
-block recommended-post
-  +recommended-post
 
 block article-ranking
   +article-ranking

@@ -3,14 +3,14 @@ include ./../shared/engagement
 mixin popular-post-card-item(post_item)
   .row
     .col-xs-12
-      .list-group-item
+      .list-group-item.popular-post-item
         .row.gutter-12
-          .col-md-39.pp-item-thumbnail
+          .col-md-39.popular-post-item__thumbnail
             a(href=post_item.href)
               img(src=post_item.thumb_src)
           .col-md-61
-            .pp-item-info
+            .popular-post-item__info
               a(href=post_item.href)
-                p.pp-item-title=post_item.title
+                p.popular-post-item__title=post_item.title
               +engagement
-        img.pp-icon(src=post_item.category_icon_src)
+              img.popular-post-item__icon(src=post_item.category_icon_src)

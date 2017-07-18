@@ -1,20 +1,19 @@
 ﻿include ./article-card-item
 
 mixin article-card-list()
-  .list-group.article-cards
-    .list-group-header
-      p.list-group-title NEW POST
-    .list-infinity
+  .list-group.list-group--card
+    .list-group__header
+      span news feed
+    .list-group__body.list-infinity
       each card_item, index in article_card_items
         if index%2 == 0
-          .list-group-article
-            .row.gutter-16
-              .col-md-6
-                // CARD_ITEM
-                +card-item(card_item)
-                // EOF CARD_ITEM
-              .col-md-6
-                // CARD_ITEM
-                - var next_card = article_card_items[index+1]
-                +card-item(next_card)
-                // EOF CARD_ITEM
+          .row.gutter-16
+            .col-md-6
+              // CARD_ITEM
+              +card-item(card_item)
+              // EOF CARD_ITEM
+            .col-md-6
+              // CARD_ITEM
+              - var next_card = article_card_items[index+1]
+              +card-item(next_card)
+              // EOF CARD_ITEM

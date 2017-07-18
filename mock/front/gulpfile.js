@@ -12,6 +12,7 @@ var inject = require('gulp-inject');
 var bundle = require('gulp-bundle-assets');
 var series = require('stream-series');
 var less = require('gulp-less');
+var autoprefixer = require('gulp-autoprefixer');
 
 var source = 'source/',
   dest = 'dist/';
@@ -144,7 +145,7 @@ gulp.task('compile-styles',function (cb) {
     ])
     .pipe($.sourcemaps.init())
     .pipe(less(options.less))
-    .pipe($.autoprefixer('last 2 versions'))
+    .pipe(autoprefixer('last 3 versions', 'ie 9'))
     .pipe($.sourcemaps.write('./', {
       includeContent: false,
       sourceRoot: source + 'less'

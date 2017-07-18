@@ -1,57 +1,15 @@
 ﻿include ./popular-post-card-item
-include ./popular-series-card-item
 
 mixin sidebar-top()
   .sidebar-top
     // POPULAR POST
-    .popular-list
-      ul.nav.popular-tabs
-        li.active
-          a(data-toggle='tab', href='#popular-posts') POPULAR POSTS
-        li
-          a(data-toggle='tab', href='#popular-series') POPULAR SERIES
-      .tab-content
-        // POPULAR POSTS
-        #popular-posts.list-group.tab-pane.fade.in.active
-          .list-group-popular-post
-            each val, index in popular_post
-              +popular-post-card-item(val)
-        // EOF POPULAR POSTS
-        // POPULAR SERIES
-        #popular-series.list-group.tab-pane.fade
-          .list-group-popular-series
-            .row
-              .col-xs-12
-                each val, index in popular_series
-                  +popular-series-card-item(val)
-        // EOF SERIES
+    .list-group
+      .list-group__header
+        span editor's choice
+      .list-group__body
+        each val, index in popular_post
+          +popular-post-card-item(val)
     // EOF POPULAR POST
-    // POPULAR CATEGORIES
-    .list-group-popular-category
-      .list-group.noborder
-        .row
-          .col-xs-12
-            .list-group-header
-              p.list-group-title
-                | POPULAR CATEGORIES 
-                a.show-more(href='#') show more
-            .list-group-item
-              a(href='#')
-                img.img-thumbnail(src='images/top/category_01.png')
-                p.text-right Travel / Season
-            .list-group-item
-              a(href='#')
-                img.img-thumbnail(src='images/top/category_2.png')
-                p.text-right Food / Gourmet
-            .list-group-item.hidden-category.hidden
-              a(href='#')
-                img.img-thumbnail(src='images/top/category_01.png')
-                p.text-right Tradition
-            .list-group-item.hidden-category.hidden
-              a(href='#')
-                img.img-thumbnail(src='images/top/category_2.png')
-                p.text-right Technology
-    // EOF POPULAR CATEGORIES
     // SIDEBAR FOOTER
     .sidebar-footer
       .col-md-12
