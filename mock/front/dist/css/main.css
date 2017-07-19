@@ -15644,11 +15644,6 @@ ul.engagement li > a:focus {
 .list-group--card .list-group__body {
   margin-top: 0;
 }
-@media only screen and (max-width: 768px) {
-  .list-group--card .list-group__header {
-    display: none;
-  }
-}
 .list-group-item ul.engagement {
   font-size: 11px;
   margin-left: 2px;

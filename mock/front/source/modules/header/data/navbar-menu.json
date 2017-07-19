@@ -3,6 +3,7 @@
     {
       "href_id": "coupons-dropdown",
       "title": "Coupons",
+      "icon": "zmdi-labels",
       "submenus": ["Get Coupons", "My Coupons", "Coupon Map", "How to use"],
       "mobile": {
         "href_id": "sm-coupons-dropdown"
@@ -11,6 +12,7 @@
     {
       "href_id": "other-menus-dropdown",
       "title": "Other Menus",
+      "icon": "zmdi-widgets",
       "submenus": ["Series", "FJ Points", "FJ Talk", "Japan Guide", "Invite Friends", "Omikuji", "Map", "Personality Test"],
       "mobile": {
         "href_id": "sm-other-menus-dropdown"
@@ -19,6 +21,7 @@
     {
       "href_id": "categories-dropdown",
       "title": "categories",
+      "icon": "zmdi-layers",
       "submenus": ["All", "Travel", "Food", "Technology", "Tradition", "Entertainment", "Lifestyle", "Business", "Health", "Talent"],
       "mobile": {
         "href_id": "sm-categories-dropdown"
@@ -27,6 +30,7 @@
     {
       "href_id": "tags-dropdown",
       "title": "TAGS",
+      "icon": "zmdi-tag-more",
       "submenus": ["japan", "fun", "culture"],
       "mobile": {
         "href_id": "sm-tags-dropdown"
@@ -35,6 +39,7 @@
     {
       "href_id": "social-dropdown",
       "title": "SOCIAL",
+      "icon": "zmdi-share",
       "submenus": [
         {
           "title": "facebook",
@@ -60,6 +65,7 @@
     {
       "href_id": "legal-dropdown",
       "title": "LEGAL",
+      "icon": "zmdi-assignment",
       "submenus": ["TERMS & CONDITIONS", "PRIVACY POLICIES"],
       "mobile": {
         "href_id": "sm-legal-dropdown"
@@ -68,6 +74,7 @@
     {
       "href_id": "info-dropdown",
       "title": "FURTHER INFO",
+      "icon": "zmdi-info-outline",
       "submenus": ["FAQ", "CONTACT US", "FOR MARKETERS"],
       "mobile": {
         "href_id": "sm-info-dropdown"
