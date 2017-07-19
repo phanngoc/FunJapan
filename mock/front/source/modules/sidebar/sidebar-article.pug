@@ -4,8 +4,8 @@ mixin sidebar-article()
   .sidebar-detail
     // ABOUT AUTHOR
     .list-group.detail-about-author
-      .list-group-header
-        p.list-group-title Author
+      .list-group__header
+        span Author
       p.about-author
         | Fun! Japan is a team of passionate fans that is dedicated to yu to bring the most insteresting news about Japanese culture.
     // EOF ABOUT AUTHOR
@@ -13,19 +13,18 @@ mixin sidebar-article()
     #comment-area.comment-area
       #comment-area-desktop
         .list-group
-          .list-group-header
-            p.list-group-title
+          .list-group__header
+            span
               span.comment-count 119
               |  COMMENTS
           // HIDE COMMENT MODAL BTN
           .hide-comment-modal
-            p
-              span.comment-count 119
-              |  COMMENTS
-              a#hide-comment-btn
-                span.suggest-text.pull-right
-                  | close 
-                  i.fa.fa-times.pull-right(aria-hidden='true')
+            span.comment-count 119
+            |  COMMENTS
+            a#hide-comment-btn
+              span.suggest-text.pull-right
+                | close 
+                i.fa.fa-times.pull-right(aria-hidden='true')
           // EOF HIDE COMMENT MODAL BTN
         .comment-posting-form
           .alert.alert-danger.hidden

@@ -1,55 +1,12 @@
 ﻿mixin article-ranking()
   .article-ranking
-    .row.gutter-10
-      .col-md-55
-        .first-ranking
-          a(href='#')
-            .img-card.first-ranking-img
-              .card-thumbnail
-                img(src='images/top/ranking_01.png')
-                p.first-ranking-num
-                  span.no No
-                  span.dot .
-                  span.number-1 1
-                .triangle-bottomright-1
-              p.card-title
-                span
-                  | Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun! Japan Words Oshibori (おしぼり) Fun!
-            .first-ranking-info
-              p.first-ranking-topic
-                img(src='images/top/icon_bus.png')
-                |  Tralvel / Season
-              p.first-ranking-des
-                | Below is the hexadecimal representation for an array of HTML background colors
-      .col-md-45
-        .row.gutter-10
-          each article, index in article_rankings
-            if index%2 == 0
-              .col-xs-6
-                .rest-ranking
-                  a(href='#')
-                    .img-card.list-group-ranking-item
-                      .card-thumbnail
-                        img(src=article.thumb_src)
-                        p.card-title
-                          span= article.title
-                        p.rest-ranking-num
-                          | #{article.rank}
-                        .triangle-bottomright-rest
-                .rest-ranking
-                  a(href='#')
-                    .img-card.list-group-ranking-item
-                      - var next_article = article_rankings[index+1]
-                      .card-thumbnail
-                        img(src=next_article.thumb_src)
-                        p.card-title
-                          span= next_article.title
-                        p.rest-ranking-num
-                          | #{next_article.rank}
-                        .triangle-bottomright-rest          
-        .vote-button
-          p.text-center
-            a.btn.btn-default(role='button', href='#', target='_blank')
-              span
-                i.fa.fa-heart
-                |  Vote for your favorite article
+    each article, index in article_rankings
+      .ranking-card-item
+        a(href='#')
+          .ranking-card-item__thumbnail
+            img(src=article.thumb_src)
+            .ranking-card-item__title
+              span= article.title
+            p.ranking-card-item__number
+              | #{article.rank}
+            .ranking-card-item__br-triangle

@@ -1,29 +1,30 @@
 ﻿include ./../shared/engagement
 
 mixin card-item(card_item)
-  .list-group-item.list-group-item-cards
+  .list-group-item.article-card-item
     a(href='#')
-      .img-card.card-item
-        .card-thumbnail
-          img(src=card_item.thumb_src)
-        p.card-title
+      .img-card
+        .article-card-item__thumbnail
+          img(src=card_item.thumb_src)        
+    .article-card-item__info
+      p.article-card-item__title
           span=card_item.title
-    .article-info
-      .article-engagement
-        p.article-category
-          img.category-icon(src=card_item.category_icon_src)
-          | #{card_item.category}
-          span.verticle-bar |
-        // ENGAGEMENT
-        +engagement
-        // EOF ENGAGEMENT
-      span.posted-date=card_item.posted_date
-      // TAGS
-      .article-tags
-        ul
-          each tag in card_item.tags
-            li.hot-tag
-              a(href='#')
-                span.hashtag # 
-                | #{tag}
-      // EOF TAGS
+      .article-card-item__extra
+        .article-card-item__engagement
+          p.article-card-item__category
+            img.category-icon(src=card_item.category_icon_src)
+            | #{card_item.category}
+            span.verticle-bar |
+          // ENGAGEMENT
+          +engagement
+          // EOF ENGAGEMENT
+        span.article-card-item__posted-date=card_item.posted_date
+        // TAGS
+        .article-card-item__tags
+          ul
+            each tag in card_item.tags
+              li.hot-tag
+                a(href='#')
+                  span.hashtag # 
+                  | #{tag}
+        // EOF TAGS
