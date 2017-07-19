@@ -15,11 +15,14 @@ return [
     'label' => [
         'update' => 'Update Advertisement',
         'list' => 'List Advertisement',
-        'from_to' => 'From - To',
+        'from_to' => 'Period',
+        'from' => 'From',
+        'to' => 'To',
         'upload' => 'Upload',
         'url' => 'Url',
         'publish' => 'Publish',
         'unpublish' => 'Unpublish',
+        'note' => 'Enter Url to publish Advertisement',
     ],
     'label_yes' => 'Yes',
     'label_no' => 'No',
@@ -29,6 +32,13 @@ return [
     'add_title' => 'Add Advertisement',
     'list_title' => 'List Advertisement',
     'validate' => [
-        'after_end_date' => 'The end date time must be a date after the Start time and Current time'
+        'after_end_date' => 'The End Date time must be a date after the Start time and Current time',
+        'active_url' => 'The Url is not a valid URL.',
+        'require' => [
+            'end_date' => 'The End Date field is required.',
+            'start_date' => 'The Start Date field is required.',
+            'url' => 'The Url field is required.',
+            'photo' => 'The Photo field is required.',
+        ],
     ]
 ];

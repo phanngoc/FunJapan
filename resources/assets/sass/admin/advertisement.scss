@@ -9,3 +9,32 @@
     width: 50%;
     margin: 15px auto;
 }
+
+.list-advertisement {
+    display: flex;
+
+    .panel-body {
+        flex: 1;
+    }
+}
+
+@media screen and (max-width: 1800px) {
+    .image-advertisement {
+        height:150px;
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .image-advertisement {
+        height:150px;
+        width: 375px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .image-advertisement {
+        height:100px;
+        width: 250px;
+    }
+}
