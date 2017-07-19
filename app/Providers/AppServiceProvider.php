@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use App\Models\Category;
 use App\Models\ArticleLocale;
 use App\Models\Tag;
+use App\Models\Locale;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +35,18 @@ class AppServiceProvider extends ServiceProvider
             $regex = '/^([0-9])\1*$/';
 
             return !preg_match($regex, $value);
+        });
+
+        Validator::extend('invalid_url', function ($attribute, $value, $parameters, $validator) {
+            $locales = Locale::pluck('iso_code');
+            foreach ($locales as $locale) {
+                $pattern = url('/') . '/' . $locale . '/articles/';
+                if (strpos($value, $pattern) !== false) {
+                    return true;
+                }
+            }
+
+            return false;
         });
 
         Validator::extend('unique_name_category', function ($attribute, $value, $parameters, $validator) {

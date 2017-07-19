@@ -49,5 +49,6 @@ return [
         'users' => 'User Management',
         'api' => 'Api Token Management',
         'advertisement' => 'Advertisement',
+        'editor_choice' => 'Editor Choice Management',
     ],
 ];

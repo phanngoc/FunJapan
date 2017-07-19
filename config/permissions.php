@@ -92,5 +92,11 @@ return [
         'advertisement' => [
             'advertisement.change',
         ],
+        'editor_choice' => [
+            'editor_choice.list',
+            'editor_choice.add',
+            'editor_choice.edit',
+            'editor_choice.delete',
+        ],
     ],
 ];

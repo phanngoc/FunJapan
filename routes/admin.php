@@ -118,6 +118,11 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::post('authors/{authorId}', 'AuthorsController@update');
         Route::resource('authors', 'AuthorsController');
 
+        Route::get('editor-choices', 'EditorChoicesController@index');
+        Route::post('editor-choices/store', 'EditorChoicesController@store');
+        Route::post('editor-choices/update', 'EditorChoicesController@update');
+        Route::post('editor-choices/destroy', 'EditorChoicesController@destroy');
+
         Route::get('{action?}', 'DashboardController@index');
 
         // Route::get('setting/ranks', 'ArticleRanksController@index');

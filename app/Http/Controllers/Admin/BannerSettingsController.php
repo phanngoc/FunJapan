@@ -35,7 +35,7 @@ class BannerSettingsController extends Controller
 
     public function getArticle(Request $request)
     {
-        $condition = $request->only(['key_word', 'locale_id', 'page', 'banner_id']);
+        $condition = $request->only(['key_word', 'locale_id', 'page', 'banner_id', 'is_not_locale']);
 
         return response()->json(ArticleService::getListForBanner($condition));
     }

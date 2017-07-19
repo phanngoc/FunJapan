@@ -268,6 +268,12 @@
                     <i class="fa fa-sitemap"></i> <span class="nav-label"> {{ trans('admin/client.id_management') }}
                 </a>
             </li>
+            <li class="{{ set_active(['admin/editor-choices*']) }}">
+                <a href="{{action('Admin\EditorChoicesController@index')}}">
+                    <i class="fa fa-wrench"></i>
+                    <span class="nav-label">{{ trans('admin/editor_choices.editor_choices') }}</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
