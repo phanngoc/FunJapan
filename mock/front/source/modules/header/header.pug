@@ -179,7 +179,7 @@
                 if menu.href_id != "social-dropdown" && menu.href_id != "legal-dropdown" && menu.href_id != "info-dropdown"                     
                   li.dropdown
                     a.fj-tab(data-toggle='tab', href=`#${menu.href_id}`)
-                      i.zmdi.zmdi-labels
+                      i(class=`zmdi ${menu.icon}`)
                       | #{menu.title}
                       i.fa.fa-chevron-down
                     .caret-up
@@ -231,7 +231,7 @@
                 if menu.href_id === "info-dropdown"
                   li.dropdown#lastitem
                     a.fj-tab(data-toggle='tab', href=`#${menu.mobile.href_id}`)
-                      i.zmdi.zmdi-labels
+                      i(class=`zmdi ${menu.icon}`)
                       | #{menu.title}
                       i.fa.fa-chevron-down
                     .caret-up
@@ -239,7 +239,7 @@
                 else
                   li.dropdown
                     a.fj-tab(data-toggle='tab', href=`#${menu.mobile.href_id}`)
-                      i.zmdi.zmdi-labels
+                      i(class=`zmdi ${menu.icon}`)
                       | #{menu.title}
                       i.fa.fa-chevron-down
                     .caret-up

@@ -3,7 +3,12 @@
 mixin article-card-list()
   .list-group.list-group--card
     .list-group__header
-      span news feed
+      a.list-group__switch(href='#')
+        i.zmdi.zmdi-globe
+        span news feed
+      a.list-group__switch(href='#')
+        i.zmdi.zmdi-layers
+        span my feed
     .list-group__body.list-infinity
       each card_item, index in article_card_items
         if index%2 == 0
