@@ -59,11 +59,6 @@ class ClientService extends BaseService
         return $clients;
     }
 
-    public static function getList()
-    {
-        return Client::pluck('name', 'id')->all();
-    }
-
     public static function store($inputs)
     {
         return Client::create([

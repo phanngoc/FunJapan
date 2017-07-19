@@ -52,22 +52,22 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::get('settingHotTags', 'TagsController@settingHotTags');
         Route::post('updateHotTag', 'TagsController@updateHotTag');
 
-        Route::get('menus/getCategories', 'MenusController@getCategories');
-        Route::resource('menus', 'MenusController');
-        Route::get('menus/createSubMenu/{menu}', 'MenusController@createSubMenu');
-        Route::post('menus/createSubMenu/{menu}', 'MenusController@storeSubMenu');
-        Route::get('menus/editSubMenu/{menu}', 'MenusController@editSubMenu');
-        Route::put('menus/updateSubMenu/{menu}', 'MenusController@updateSubMenu');
-        Route::post('menus/updateOrder', 'MenusController@updateOrder');
-        Route::get('menus/showSubMenu/{menu}', 'MenusController@showSubMenu');
-        Route::get('menus/setOtherLanguage/{menu}', 'MenusController@setLanguageSubMenu');
-        Route::post('menus/storeOtherLanguage/{menu}', 'MenusController@storeLanguageSubMenu');
+        // Route::get('menus/getCategories', 'MenusController@getCategories');
+        // Route::resource('menus', 'MenusController');
+        // Route::get('menus/createSubMenu/{menu}', 'MenusController@createSubMenu');
+        // Route::post('menus/createSubMenu/{menu}', 'MenusController@storeSubMenu');
+        // Route::get('menus/editSubMenu/{menu}', 'MenusController@editSubMenu');
+        // Route::put('menus/updateSubMenu/{menu}', 'MenusController@updateSubMenu');
+        // Route::post('menus/updateOrder', 'MenusController@updateOrder');
+        // Route::get('menus/showSubMenu/{menu}', 'MenusController@showSubMenu');
+        // Route::get('menus/setOtherLanguage/{menu}', 'MenusController@setLanguageSubMenu');
+        // Route::post('menus/storeOtherLanguage/{menu}', 'MenusController@storeLanguageSubMenu');
 
         Route::resource('categories', 'CategoriesController');
 
-        Route::get('popular-list', 'PopularArticlesController@popularLists');
-        Route::get('popular-articles/list', 'PopularArticlesController@lists');
-        Route::resource('popular-articles', 'PopularArticlesController');
+        // Route::get('popular-list', 'PopularArticlesController@popularLists');
+        // Route::get('popular-articles/list', 'PopularArticlesController@lists');
+        // Route::resource('popular-articles', 'PopularArticlesController');
         Route::resource('surveys', 'SurveysController');
 
         Route::resource('surveys.questions', 'QuestionsController');
@@ -87,26 +87,26 @@ Route::group(['namespace' => 'Admin'], function () {
 
         Route::get('getCategories', 'CategoriesController@getCategories');
 
-        Route::get('popular-series', 'PopularSeriesController@index');
-        Route::get('popular-series/create', 'PopularSeriesController@create');
-        Route::post('popular-series/store', 'PopularSeriesController@store');
-        Route::get('popular-series/edit/{popularSeries}', 'PopularSeriesController@edit');
-        Route::post('popular-series/update/{popularSeries}', 'PopularSeriesController@update');
-        Route::post('popular-series/delete/{popularSeries}', 'PopularSeriesController@delete');
-        Route::get('popular-series/getSuggest', 'PopularSeriesController@getSuggest');
-        Route::get('popular-series/getListSeries', 'PopularSeriesController@getListSeries');
+        // Route::get('popular-series', 'PopularSeriesController@index');
+        // Route::get('popular-series/create', 'PopularSeriesController@create');
+        // Route::post('popular-series/store', 'PopularSeriesController@store');
+        // Route::get('popular-series/edit/{popularSeries}', 'PopularSeriesController@edit');
+        // Route::post('popular-series/update/{popularSeries}', 'PopularSeriesController@update');
+        // Route::post('popular-series/delete/{popularSeries}', 'PopularSeriesController@delete');
+        // Route::get('popular-series/getSuggest', 'PopularSeriesController@getSuggest');
+        // Route::get('popular-series/getListSeries', 'PopularSeriesController@getListSeries');
 
         Route::resource('coupons', 'CouponsController');
         Route::get('list-coupon', 'CouponsController@getListCoupons');
 
-        Route::get('popular-category', 'PopularCategoriesController@index');
-        Route::get('popular-category/create', 'PopularCategoriesController@create');
-        Route::post('popular-category/store', 'PopularCategoriesController@store');
-        Route::get('popular-category/edit/{popularCategory}', 'PopularCategoriesController@edit');
-        Route::post('popular-category/update/{popularCategory}', 'PopularCategoriesController@update');
-        Route::post('popular-category/delete/{popularCategory}', 'PopularCategoriesController@delete');
-        Route::get('popular-category/getSuggest', 'PopularCategoriesController@getSuggest');
-        Route::get('popular-category/getListCategories', 'PopularCategoriesController@getListCategories');
+        // Route::get('popular-category', 'PopularCategoriesController@index');
+        // Route::get('popular-category/create', 'PopularCategoriesController@create');
+        // Route::post('popular-category/store', 'PopularCategoriesController@store');
+        // Route::get('popular-category/edit/{popularCategory}', 'PopularCategoriesController@edit');
+        // Route::post('popular-category/update/{popularCategory}', 'PopularCategoriesController@update');
+        // Route::post('popular-category/delete/{popularCategory}', 'PopularCategoriesController@delete');
+        // Route::get('popular-category/getSuggest', 'PopularCategoriesController@getSuggest');
+        // Route::get('popular-category/getListCategories', 'PopularCategoriesController@getListCategories');
 
         Route::get('roles/users', 'RolesController@getUsersRole');
         Route::post('roles/users', 'RolesController@postUsersRole');
@@ -120,10 +120,10 @@ Route::group(['namespace' => 'Admin'], function () {
 
         Route::get('{action?}', 'DashboardController@index');
 
-        Route::get('setting/ranks', 'ArticleRanksController@index');
-        Route::get('setting/ranks/{locale}', 'ArticleRanksController@getArticleLocales');
-        Route::post('setting/ranks/{locale}/store', 'ArticleRanksController@store');
-        Route::post('setting/ranks/{locale}/delete', 'ArticleRanksController@destroy');
+        // Route::get('setting/ranks', 'ArticleRanksController@index');
+        // Route::get('setting/ranks/{locale}', 'ArticleRanksController@getArticleLocales');
+        // Route::post('setting/ranks/{locale}/store', 'ArticleRanksController@store');
+        // Route::post('setting/ranks/{locale}/delete', 'ArticleRanksController@destroy');
 
         Route::get('setting/api-token-list', 'ApiTokenController@index');
         Route::get('setting/api-token/list', 'ApiTokenController@lists');

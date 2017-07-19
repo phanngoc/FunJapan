@@ -50,7 +50,7 @@
     @endif
 
     <!-- EOF SLIDER -->
-    @include('layouts.includes.menu')
+    {{-- @include('layouts.includes.menu') --}}
 </header>
 <!-- EOF Menu bars -->
 <!-- EOF HEADER -->

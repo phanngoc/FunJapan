@@ -61,15 +61,6 @@ class AuthorsController extends Controller
         }
     }
 
-    public function edit($id)
-    {
-        abort_if(Gate::denies('permission', 'author.edit'), 403, 'Unauthorized action.');
-        $this->viewData['author'] = Author::find($id);
-        $this->viewData['selectClients'] = ClientService::getList();
-
-        return view('admin.authors.edit', $this->viewData);
-    }
-
     public function update(Request $request, $id)
     {
         abort_if(Gate::denies('permission', 'author.edit'), 403, 'Unauthorized action.');
