@@ -27,11 +27,16 @@ class AdvertisementService extends BaseService
             'url' => 'required|active_url',
             'photo' => 'required|mimes:' . $mimes . '|max:' . $maxSize,
             'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date|after:' . Carbon::today()->toDateString(),
+            'end_date' => 'required|date|after_or_equal:start_date|after_or_equal:' . Carbon::today()->toDateString(),
         ];
 
         $messages = [
-            'end_date.after' => trans('admin/advertisement.validate.after_end_date'),
+            'end_date.after_or_equal' => trans('admin/advertisement.validate.after_end_date'),
+            'end_date.required' => trans('admin/advertisement.validate.require.end_date'),
+            'start_date.required' => trans('admin/advertisement.validate.require.start_date'),
+            'photo.required' => trans('admin/advertisement.validate.require.photo'),
+            'url.required' => trans('admin/advertisement.validate.require.photo'),
+            'url.active_url' => trans('admin/advertisement.validate.active_url'),
         ];
 
         foreach ($inputs['advertisement'] as $key => $input) {
@@ -84,10 +89,16 @@ class AdvertisementService extends BaseService
     {
         $rules = [
             'start_date' => 'required|date',
-            'end_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date|after_or_equal:' . Carbon::today()->toDateString(),
         ];
 
-        return Validator::make($input, $rules)->messages()->toArray();
+        $messages = [
+            'end_date.after_or_equal' => trans('admin/advertisement.validate.after_end_date'),
+            'end_date.required' => trans('admin/advertisement.validate.require.end_date'),
+            'start_date.required' => trans('admin/advertisement.validate.require.start_date'),
+        ];
+
+        return Validator::make($input, $rules, $messages)->messages()->toArray();
     }
 
     public static function change($advertisementId, $input)
