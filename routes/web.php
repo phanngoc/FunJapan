@@ -42,6 +42,7 @@ Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
     Route::group(['middleware' => 'auth'], function () {
         Route::get('account/create/success', 'RegisterController@createSuccess');
         Route::get('account/create/final', 'RegisterController@finalStep');
+        Route::get('/myfeed', 'HomesController@getMyFeed');
     });
 
     Route::get('/comments/lists/{articleId}', 'CommentsController@lists');
@@ -92,4 +93,3 @@ Route::group(['middleware' => 'locale', 'namespace' => 'Web'], function () {
     Route::get('/tag/{name}', 'TagsController@show')->name('tag_detail');
     Route::get('/category/{name}', 'CategoriesController@show')->name('category_detail');
 });
-
