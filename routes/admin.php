@@ -52,16 +52,16 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::get('settingHotTags', 'TagsController@settingHotTags');
         Route::post('updateHotTag', 'TagsController@updateHotTag');
 
-        // Route::get('menus/getCategories', 'MenusController@getCategories');
-        // Route::resource('menus', 'MenusController');
-        // Route::get('menus/createSubMenu/{menu}', 'MenusController@createSubMenu');
-        // Route::post('menus/createSubMenu/{menu}', 'MenusController@storeSubMenu');
-        // Route::get('menus/editSubMenu/{menu}', 'MenusController@editSubMenu');
-        // Route::put('menus/updateSubMenu/{menu}', 'MenusController@updateSubMenu');
-        // Route::post('menus/updateOrder', 'MenusController@updateOrder');
-        // Route::get('menus/showSubMenu/{menu}', 'MenusController@showSubMenu');
-        // Route::get('menus/setOtherLanguage/{menu}', 'MenusController@setLanguageSubMenu');
-        // Route::post('menus/storeOtherLanguage/{menu}', 'MenusController@storeLanguageSubMenu');
+         Route::get('menus/getCategories', 'MenusController@getCategories');
+         Route::resource('menus', 'MenusController');
+         Route::get('menus/createSubMenu/{menu}', 'MenusController@createSubMenu');
+         Route::post('menus/createSubMenu/{menu}', 'MenusController@storeSubMenu');
+         Route::get('menus/editSubMenu/{menu}', 'MenusController@editSubMenu');
+         Route::put('menus/updateSubMenu/{menu}', 'MenusController@updateSubMenu');
+         Route::post('menus/updateOrder', 'MenusController@updateOrder');
+         Route::get('menus/showSubMenu/{menu}', 'MenusController@showSubMenu');
+         Route::get('menus/setOtherLanguage/{menu}', 'MenusController@setLanguageSubMenu');
+         Route::post('menus/storeOtherLanguage/{menu}', 'MenusController@storeLanguageSubMenu');
 
         Route::resource('categories', 'CategoriesController');
 

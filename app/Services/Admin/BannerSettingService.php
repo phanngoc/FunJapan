@@ -64,6 +64,7 @@ class BannerSettingService extends BaseService
             $query = $query->where('article_locale_id', '!=', 0)
                 ->leftJoin('article_locales', 'banner_settings.article_locale_id', 'article_locales.id')
                 ->where('article_locales.published_at', '<=', Carbon::now(config('app.admin_timezone')))
+                ->where('article_locales.end_published_at', '>=', Carbon::now(config('app.admin_timezone')))
                 ->where('article_locales.status', config('article.status.published'));
 
             $banner = $query->limit(config('banner.limit'))->get();

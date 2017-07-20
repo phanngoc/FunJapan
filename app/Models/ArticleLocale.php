@@ -213,6 +213,6 @@ class ArticleLocale extends BaseModel
 
     public function getStatusShowInFrontAttribute()
     {
-        return $this->status_by_locale = config('article.status_by_locale.published') && !$this->hide;
+        return $this->status_by_locale == config('article.status_by_locale.published') && !$this->hide;
     }
 }
