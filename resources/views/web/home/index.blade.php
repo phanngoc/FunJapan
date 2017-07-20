@@ -7,9 +7,16 @@
         <div class="row gutter-32">
             <div class="col-md-70 main-column">
                 <!-- MAIN -->
-                <div class="list-group article-cards">
-                    <div class="list-group-header">
-                        <p class="list-group-title">{{ trans('web/top_page.new_post') }}</p>
+                <div class="list-group list-group--card">
+                    <div class="list-group__header">
+                        <a class="list-group__switch" href="#">
+                            <i class="zmdi zmdi-globe"></i>
+                            <span>{{ trans('web/top_page.new_post') }}</span>
+                        </a>
+                        <a class="list-group__switch" href="#">
+                            <i class="zmdi zmdi-layers"></i>
+                            <span>{{ trans('web/top_page.my_post') }}</span>
+                        </a>
                     </div>
                     @include('web.includes._list_new_posts', ['newArticles' => $newArticles])
                 </div>

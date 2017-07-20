@@ -1,6 +1,6 @@
 <div class="col-md-6">
     <!-- CARD_ITEM -->
-    <div class="list-group-item list-group-item-cards">
+    <div class="list-group-item article-card-item">
         <a href="{{ action('Web\ArticlesController@show', ['id' => $article->article_id]) }}">
             <div class="img-card card-item">
                 <div class="card-thumbnail">
