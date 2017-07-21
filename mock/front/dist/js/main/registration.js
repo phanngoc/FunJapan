@@ -80,7 +80,7 @@ $(function() {
         isNot6RepeatedNumChar: "PIN cannot be the same string number like 111111.",
         valueNotContains: "PIN should not contain your birth year.",
         isNotInPhoneNumber: "PIN cannot be the same number to your phone number.",
-        isNotInZipCode: "PlN cannnot be the same number to your zip code.",
+        isNotInZipCode: "PIN cannnot be the same number to your zip code.",
         regex: "Please input number only.",
         info: "<span>To ensure password security, please</span>\
               <p></p>\
@@ -311,6 +311,22 @@ $(function() {
     return true;
   });
 
+  $.validator.addMethod("isNotInZipCode", function(value, element) {
+    var zipcode = $('#jmbZipcode').val().replace(/-/g, '');
+    if (zipcode.indexOf(value) >= 0) {
+      return false;
+    }
+    return true;
+  });
+
+  $.validator.addMethod("isNotInPhoneNumber", function(value, element) {
+    var phone = $('#jmbPhoneNumber').val().replace(/-/g, '');
+    if (phone.indexOf(value) >= 0) {
+      return false;
+    }
+    return true;
+  });
+
   $.validator.addMethod("exactLength", function(value, element, param) {
     return this.optional(element) || value.length === param;
   });
@@ -442,7 +458,9 @@ $(function() {
         exactLength: 6,
         isNotSequentialNumber: true,
         isNot6RepeatedNumChar: true,
-        valueNotContains: [userBirthDay]
+        valueNotContains: [userBirthDay],
+        isNotInZipCode: true,
+        isNotInPhoneNumber: true,
       },
       confirmPassword: {
         required: true,
@@ -524,7 +542,6 @@ $(function() {
         var jmbPasswordVal = jmbPassword.val();
         var jmbPhoneNumVal = $('#jmbPhoneNumber').val().replace(/-/g, '');
         var jmbZipcodeVal = $('#jmbZipcode').val().replace(/-/g, '');
-
         if (jmbPasswordVal != "") {
           if (!jmbPassword.valid()) {
             return;
