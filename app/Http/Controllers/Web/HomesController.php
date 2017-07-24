@@ -36,15 +36,7 @@ class HomesController extends Controller
             config('limitation.new_post.per_page')
         );
         $this->viewData['recommendArticles'] = WebArticleService::getRecommendArticles($this->currentLocaleId);
-
-        if (in_array($this->currentLocale, array_keys(config('advertisement_banner.src')))) {
-            $this->viewData['advertisementSrc'] = config('advertisement_banner.src.' . $this->currentLocale);
-            $this->viewData['newArticles'] = WebArticleService::getNewArticles(
-                $this->currentLocaleId,
-                config('limitation.new_post.per_page')
-            );
-        }
-
+        
         return view('web.home.index', $this->viewData);
     }
 

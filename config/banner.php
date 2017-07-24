@@ -9,4 +9,11 @@ return [
         'middle' => 2,
         'bottom' => 3,
     ],
+    'advertisement' => [
+        'status' => [
+            'unpublic' => 0,
+            'public' => 1,
+            'in_future' => 2,
+        ]
+    ]
 ];

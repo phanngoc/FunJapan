@@ -64,7 +64,7 @@
                                             <input
                                                 type="text"
                                                 name="advertisement[{{ $key }}][url]"
-                                                class="form-control"
+                                                class="form-control input-url"
                                                 autocomplete="off"
                                                 placeholder="{{ trans('admin/advertisement.label.url') }}"
                                             >
@@ -105,7 +105,7 @@
                             @endforeach
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <button type="button" class="btn btn-block btn-success btn-public">
+                                    <button type="button" class="btn btn-block btn-success btn-public" disabled=tr>
                                         <i class="fa fa-spinner fa-pulse fa-fw hidden"></i>
                                         <i class="fa fa-check"></i>&nbsp;
                                         {{ trans('admin/advertisement.label.publish') }}
@@ -142,7 +142,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="text-success font-bold m-xxs error-message">
+                                            <label class="text-success font-bold m-xxs">
                                                 {{ $advertisement->locale->name }}
                                             </label>
                                         </div>
@@ -160,7 +160,7 @@
                                                     autocomplete="off"
                                                     id="min-date-edit-locale-{{ $advertisement->locale_id }}"
                                                     value = "{{ $advertisement->start_date }}"
-                                                    {{ $advertisement->active ? 'disabled' : null }}
+                                                    {{ $advertisement->status == config('banner.advertisement.status.public') ? 'disabled' : null }}
                                                     placeholder="{{ trans('admin/advertisement.label.from') }}"
                                                 >
                                                 <p class="text-danger font-bold m-xxs error-message" id="from_edit_error_{{ $advertisement->locale_id }}"></p>
@@ -172,22 +172,32 @@
                                                     autocomplete="off",
                                                     id="max-date-edit-locale-{{ $advertisement->locale_id }}"
                                                     value = "{{ $advertisement->end_date }}"
-                                                    {{ $advertisement->active ? 'disabled' : null}}
+                                                    {{ $advertisement->status == config('banner.advertisement.status.public') ? 'disabled' : null}}
                                                     placeholder="{{ trans('admin/advertisement.label.to') }}"
                                                 >
                                                 <p class="text-danger font-bold m-xxs error-message" id="to_edit_error_{{ $advertisement->locale_id }}"></p>
-                                                <input type="hidden" value="{{ $advertisement->active ? 1 : 0 }}" type="hidden" id="is_active_{{ $advertisement->locale_id }}">
+                                                <input
+                                                    type="hidden"
+                                                    value="{{ $advertisement->status == config('banner.advertisement.status.public') ? 1 : 0 }}"
+                                                    type="hidden"
+                                                    id="is_active_{{ $advertisement->locale_id }}">
                                         </div>
                                         <div class="form-group">
                                             <button
                                                 type="button"
-                                                class="btn btn-block btn-edit {{ $advertisement->active ? 'btn-danger' :  'btn-success'}}"
+                                                class="btn btn-block btn-edit {{ $advertisement->status == config('banner.advertisement.status.public') ? 'btn-danger' :  ($advertisement->status == config('banner.advertisement.status.in_future') ? 'btn-warning' : 'btn-success')}}"
                                                 data-locale="{{ $advertisement->locale_id }}"
                                                 data-action="{{ action('Admin\AdvertisementsController@change', ['advertisementId' => $advertisement->id]) }}"
                                             >
                                                 <i class="fa fa-spinner fa-pulse fa-fw hidden"></i>
                                                 <i class="fa fa-check"></i>&nbsp;
-                                                {{ $advertisement->active ? trans('admin/advertisement.label.unpublish') : trans('admin/advertisement.label.publish') }}
+                                                @if ($advertisement->status == config('banner.advertisement.status.unpublic'))
+                                                    {{ trans('admin/advertisement.label.publish') }}
+                                                @elseif ($advertisement->status == config('banner.advertisement.status.public'))
+                                                    {{ trans('admin/advertisement.label.unpublish') }}
+                                                @else
+                                                    {{ trans('admin/advertisement.label.in_future') }}
+                                                @endif
                                             </button>
                                         </div>
                                     </div>

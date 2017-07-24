@@ -9,6 +9,8 @@ $(document).ready(function () {
     function commonHandleStartDate(element, idMaxInput) {
         $(element).datetimepicker({
             format: 'Y-m-d',
+            scrollMonth : false,
+            scrollInput : false,
             timepicker:false,
             onShow:function(ct){
                 this.setOptions({
@@ -30,6 +32,8 @@ $(document).ready(function () {
         $(element).datetimepicker({
             format: 'Y-m-d',
             timepicker:false,
+            scrollMonth : false,
+            scrollInput : false,
             onShow:function(ct){
                 this.setOptions({
                     minDate : $('#' + idMinInput + '').val() ? $('#' + idMinInput + '').val(): false
@@ -122,7 +126,7 @@ $(document).ready(function () {
             },
             success: function (response) {
                 element.removeAttr('disabled');
-                window.location.reload();
+                window.location.reload(true);
             },
             error: function (response) {
                 element.removeAttr('disabled');
@@ -205,6 +209,26 @@ $(document).ready(function () {
                 }
             },
         });
+    });
+
+    $('.input-url').change(function(){
+        var isCanNotUpdate = true;
+
+        $('.input-url').each(function(index) {
+            var value = $(this).val();
+
+            if (value) {
+                isCanNotUpdate = false;
+
+                return false;
+            }
+        });
+
+        if (isCanNotUpdate) {
+            $('.btn-public').attr('disabled', true);
+        } else {
+            $('.btn-public').removeAttr('disabled');
+        }
     });
 });
 

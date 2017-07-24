@@ -87,13 +87,15 @@ class AdvertisementService extends BaseService
 
     public static function validateChange($input)
     {
+        $today = Carbon::today()->toDateString();
         $rules = [
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after_or_equal:start_date|after_or_equal:' . Carbon::today()->toDateString(),
+            'start_date' => 'required|date|after_or_equal: .' . $today,
+            'end_date' => 'required|date|after_or_equal:start_date|after_or_equal:' . $today,
         ];
 
         $messages = [
             'end_date.after_or_equal' => trans('admin/advertisement.validate.after_end_date'),
+            'start_date.after_or_equal' => trans('admin/advertisement.validate.after_start_date'),
             'end_date.required' => trans('admin/advertisement.validate.require.end_date'),
             'start_date.required' => trans('admin/advertisement.validate.require.start_date'),
         ];
