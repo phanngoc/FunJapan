@@ -21,6 +21,8 @@ $(document).ready(function () {
     $('.from-datetime-picker').datetimepicker({
         format: 'Y-m-d',
         timepicker:false,
+        scrollMonth : false,
+        scrollInput : false,
         onShow:function( ct ){
             this.setOptions({
                 maxDate : $('.to-datetime-picker').val() ? $('.to-datetime-picker').val(): false
@@ -31,6 +33,8 @@ $(document).ready(function () {
     $('.to-datetime-picker').datetimepicker({
         format: 'Y-m-d',
         timepicker:false,
+        scrollMonth : false,
+        scrollInput : false,
         onShow:function( ct ){
             this.setOptions({
                 minDate : $('.from-datetime-picker').val() ? $('.from-datetime-picker').val(): false

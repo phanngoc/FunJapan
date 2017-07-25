@@ -138,7 +138,7 @@ return [
         ],
         'advertisement' => [
             'original' => '',
-            'normal' => [480, 318],
+            'normal' => [271, 301],
             'small' => [125, 25],
         ],
     ],

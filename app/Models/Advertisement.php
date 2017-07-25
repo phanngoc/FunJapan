@@ -27,6 +27,7 @@ class Advertisement extends Model
     protected $appends = [
         'photo_urls',
         'active',
+        'status',
     ];
 
     public function locale()
@@ -63,10 +64,10 @@ class Advertisement extends Model
         return $results;
     }
 
-    public function getActiveAttribute()
+    public function getStatusAttribute()
     {
         if ($this->is_not_publish) {
-            return false;
+            return config('banner.advertisement.status.unpublic');
         }
 
         $locale = $this->locale;
@@ -77,10 +78,15 @@ class Advertisement extends Model
             $startDay = Carbon::parse($this->start_date, trans('datetime.time_zone', [], $isoCode));
             $endDay = Carbon::parse($this->end_date . ' 23:59:59', trans('datetime.time_zone', [], $isoCode));
 
+            if ($now->lt($startDay)) {
+                return config('banner.advertisement.status.in_future');
+            }
 
-            return ($now->gte($startDay)) && ($now->lte($endDay));
+            if (($now->gte($startDay)) && ($now->lte($endDay))) {
+                return config('banner.advertisement.status.public');
+            };
         }
 
-        return false;
+        return config('banner.advertisement.status.unpublic');
     }
 }
