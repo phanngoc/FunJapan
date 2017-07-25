@@ -67,7 +67,7 @@ return [
         ],
         'article_content' => [
             'mimes' => 'jpeg,png,jpg',
-            'max_size' => 10240,
+            'max_size' => 2048,
         ],
         'advertisement' => [
             'mimes' => 'jpeg,png,jpg',

@@ -193,17 +193,20 @@ table {
     .title-left {
         color: #1ab394;
         @include title-prview;
-        width: 170px;
+        width: 125px;
         border-color: #1ab394 !important;
     }
     .title-right {
         color: #1c84c6;
         @include title-prview;
-        width: 170px;
+        width: 125px;
         border-color: #1c84c6 !important;
     }
     p {
         word-break: break-all;
+        img {
+            width: 100%;
+        }
     }
 }
 #pc-preview {
@@ -221,10 +224,14 @@ table {
     }
     p {
         word-break: break-all;
+        img {
+            width: 100%;
+        }
     }
 }
 .social-feed-box {
     border-radius: 5px !important;
+    overflow-y: auto;
     .title {
         margin-top: 25px;
         margin-bottom: 25px;
@@ -237,6 +244,12 @@ table {
 .tags {
     margin-top: 35px;
     margin-bottom: 25px;
+    span {
+        display: inline-block;
+        height: 20px;
+        padding-top: 0px;
+        margin-top: 5px;
+    }
     [data-role="remove"]:after {
         content: "x";
         padding: 0px 2px;
@@ -268,7 +281,7 @@ table {
             background-size: 100%;
             background-repeat: no-repeat;
             background-size: cover;
-            margin-right: 5px;
+            margin-right: 6px;
             cursor: pointer;
         }
     }
@@ -376,4 +389,65 @@ figure {
 }
 .break-word {
     word-break: break-all;
+}
+.faint-word {
+    color: #b1b1b1 !important;
+}
+.article-detail-action {
+    .btn {
+        padding-top: 3px !important;
+        padding-bottom: 3px !important;
+        color: #ffffff;
+        text-transform: uppercase;
+    }
+    .btn:hover {
+        color: #ffffff !important;
+    }
+    .btn-create {
+        background-color: #ABD373;
+    }
+    .btn-start {
+        background-color: #8BD3DF;
+    }
+    .btn-stop {
+        background-color: #F99796;
+    }
+    .btn-modify {
+        background-color: #B5A3D3;
+    }
+    .btn-label-null {
+        background-color: #A2A2A2;
+    }
+    .btn-label-published {
+        background-color: #63A1D4;
+    }
+    .btn-label-stop {
+        background-color: #f5bebe;
+    }
+    .btn-label-schedule {
+        background-color: #F6CB58;
+    }
+    .btn-label-draft {
+        background-color: #cecece;
+    }
+}
+.form-group {
+    select {
+        width: 96%;
+    }
+}
+table.table-condensed {
+    .active-today {
+        background-color: #00aa55;
+    }
+}
+@media (min-width: 992px) {
+    .colorpicker-element {
+        width: 86%;
+    }
+}
+@media (min-width: 1024px) {
+    .colorpicker-element {
+        width: 85%;
+    }
 }

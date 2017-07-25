@@ -39,7 +39,10 @@ class CategoryService extends BaseService
 
     public static function getCategoryLocaleDropList($localeID)
     {
-        $categories = Category::where('locale_id', $localeID)->pluck('name', 'id')->toArray();
+        $categories = Category::where('locale_id', $localeID)
+            ->orderBy('id', 'asc')
+            ->pluck('name', 'id')
+            ->toArray();
 
         return $categories;
     }
@@ -209,6 +212,6 @@ class CategoryService extends BaseService
             $result[$value] = trans('admin/category.sub_categories.' . $key);
         }
 
-        return $result;
+        return ['' => trans('admin/article.label.select_sub_category')] + $result;
     }
 }

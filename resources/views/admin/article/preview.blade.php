@@ -46,6 +46,10 @@
             <i class="fa fa-eye"></i> {{ trans('admin/article.button.thumbnail_preview') }}
         </a>
     </div>
+    <div class="wrapper wrapper-content alert-error-section hidden">
+        <div class="alert alert-danger">
+        </div>
+    </div>
     <div class="wrapper wrapper-content animated fadeInRight article-preview">
         <div class="row">
             <div class="col-lg-12">
@@ -59,10 +63,10 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <span class="simple_tag pull-left title-left">
-                                                        {{ $category->name ?? null }}
+                                                        {{ str_limit($category->name ?? '', 10) }}
                                                     </span>
                                                     <span class="simple_tag pull-right title-right">
-                                                        {{ $author->name ?? null }}
+                                                        {{ str_limit($author->name ?? '', 10) }}
                                                     </span>
                                                 </div>
                                                 <div class="col-lg-12">
@@ -84,8 +88,13 @@
                                                 </div>
                                                 <div class="col-sm-12 button-group">
                                                     <span class="simple_tag col-sm-12">
+                                                        <button class="btn btn-default btn-w-m btn-back">
+                                                            <i class="fa fa-hand-o-left"></i> {{ trans('admin/article.button.back') }}
+                                                            <i class="fa fa-spinner fa-pulse fa-fw hidden"></i>
+                                                        </button>
                                                         <button class="btn btn-success next-to-confirm btn-w-m" type="button">
                                                             <i class="fa fa-hand-o-right"></i>&nbsp;{{ trans('admin/article.button.next') }}
+                                                            <i class="fa fa-spinner fa-pulse fa-fw hidden"></i>
                                                         </button>
                                                     </span>
                                                 </div>
@@ -104,10 +113,10 @@
                                                 <div class="row">
                                                     <div class="col-sm-12">
                                                         <span class="simple_tag pull-left title-left">
-                                                            {{ $category->name ?? null }}
+                                                            {{ str_limit($category->name ?? '', 20) }}
                                                         </span>
                                                         <span class="simple_tag pull-right title-right">
-                                                            {{ $author->name ?? null }}
+                                                            {{ str_limit($author->name ?? '', 20) }}
                                                         </span>
                                                     </div>
                                                     <div class="col-lg-12">
@@ -129,8 +138,13 @@
                                                     </div>
                                                     <div class="col-sm-12 button-group">
                                                         <span class="simple_tag col-sm-12">
+                                                            <button class="btn btn-default btn-w-m btn-back">
+                                                                <i class="fa fa-hand-o-left"></i> {{ trans('admin/article.button.back') }}
+                                                                <i class="fa fa-spinner fa-pulse fa-fw hidden"></i>
+                                                            </button>
                                                             <button class="btn btn-success btn-w-m next-to-confirm" type="button">
                                                                 <i class="fa fa-hand-o-right"></i>&nbsp;{{ trans('admin/article.button.next') }}
+                                                                <i class="fa fa-spinner fa-pulse fa-fw hidden"></i>
                                                             </button>
                                                         </span>
                                                     </div>
@@ -147,10 +161,12 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-md-8">
                                             <div class="selected-image">
-                                                @if (isset($images[0]))
+                                                @if (isset($input['photo']) && $input['photo'])
+                                                    <img src="{{ $input['photo'] }}">
+                                                @elseif (isset($images[0]))
                                                     <img src="{{ $images[0] }}">
                                                 @endif
-                                                <div class="title-preview">
+                                                <div class="title-preview" style="{{ isset($input['title_bg_color']) ? 'background-color:' . $input['title_bg_color'] : '' }}">
                                                     <span>{{ $input['title'] }}</span>
                                                 </div>
                                             </div>
@@ -158,7 +174,8 @@
                                         <div class="col-xs-6 col-md-4">
                                             <div class="row list-image-preview">
                                                 @foreach ($images as $key => $image)
-                                                    <div class="col-md-5 image-item {{ $key == 0 ? 'preview-selected' : '' }}"
+                                                    <div class="col-md-5 image-item
+                                                    {{ ((isset($input['photo']) && $input['photo'] == $image) || (!isset($input['photo']) && $key == 0)) ? 'preview-selected' : '' }}"
                                                         data-src="{{ $image }}"
                                                         style="background-image:url({{ $image }})">
                                                     </div>
@@ -172,8 +189,13 @@
                                         </div>
                                         <div class="col-sm-12 button-group">
                                             <span class="simple_tag col-sm-12">
+                                                <button class="btn btn-default btn-w-m btn-back">
+                                                    <i class="fa fa-hand-o-left"></i> {{ trans('admin/article.button.back') }}
+                                                    <i class="fa fa-spinner fa-pulse fa-fw hidden"></i>
+                                                </button>
                                                 <button class="btn btn-success btn-w-m next-to-confirm" type="button">
                                                     <i class="fa fa-hand-o-right"></i>&nbsp;{{ trans('admin/article.button.next') }}
+                                                    <i class="fa fa-spinner fa-pulse fa-fw hidden"></i>
                                                 </button>
                                             </span>
                                         </div>
@@ -190,7 +212,8 @@
                     'action' => 'Admin\ArticlesController@confirm',
                     'role' => 'form',
                     'method' => 'POST',
-                    'class' => 'form-confirm'
+                    'class' => 'form-confirm',
+                    'data-validate-url' => action('Admin\ArticlesController@validateInput'),
                 ]) }}
                     {{ Form::hidden('author_id', $input['author_id'] ?? null) }}
                     {{ Form::hidden('client_id', $input['client_id'] ?? null) }}
@@ -210,8 +233,18 @@
                     {{ Form::hidden('description', $input['description'] ?? null) }}
                     {{ Form::hidden('previewMode', $input['previewMode'] ?? null) }}
                     {{ Form::hidden('saveDraft', $input['saveDraft'] ?? null) }}
-                    {{ Form::hidden('titleBgColor', null, ['class' => 'title-bg-color']) }}
+                    {{ Form::hidden('titleBgColor', $input['title_bg_color'] ?? null, ['class' => 'title-bg-color']) }}
                     {{ Form::hidden('thumbnail', $images[0] ?? null, ['class' => 'thumbnail']) }}
+                    {{ Form::hidden('photo', $input['photo'] ?? null, ['class' => 'photo']) }}
+                    {{ Form::hidden('editMode', $input['editMode'] ?? null) }}
+                    @foreach ($input['tags'] as $tag)
+                        <input type="hidden" name="tags[]" value="{{ $tag }}">
+                    @endforeach
+                    {{ Form::hidden('editMode', $input['editMode'] ?? null) }}
+                    {{ Form::hidden('articleLocaleId', $input['articleLocaleId'] ?? null) }}
+                    {{ Form::hidden('preview', true) }}
+                    {{ Form::hidden('back', false, ['class' => 'back-to-create']) }}
+                    {{ Form::hidden('articleId', $input['articleId'] ?? null) }}
                 {{ Form::close() }}
             </div>
         </div>

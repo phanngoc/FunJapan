@@ -192,9 +192,9 @@
                             </div>
                             <div class="col-sm-12 button-group">
                                 {{ Form::open([
-                                    'action' => 'Admin\ArticlesController@store',
+                                    'action' => isset($input['editMode']) && $input['editMode'] ? ['Admin\ArticlesController@update', $input['articleLocaleId'] ?? null] : 'Admin\ArticlesController@store',
                                     'role' => 'form',
-                                    'method' => 'POST',
+                                    'method' => isset($input['editMode']) && $input['editMode'] ? 'PUT' : 'POST',
                                 ]) }}
                                     {{ Form::hidden('author_id', $input['author_id'] ?? null) }}
                                     {{ Form::hidden('client_id', $input['client_id'] ?? null) }}
@@ -216,6 +216,12 @@
                                     {{ Form::hidden('saveDraft', $input['saveDraft'] ?? null) }}
                                     {{ Form::hidden('titleBgColor', $input['titleBgColor'] ?? null, ['class' => 'title-bg-color']) }}
                                     {{ Form::hidden('thumbnail', $input['thumbnail'] ?? null, ['class' => 'thumbnail']) }}
+                                    @foreach ($input['tags'] as $tag)
+                                        <input type="hidden" name="tags[]" value="{{ $tag }}">
+                                    @endforeach
+                                    {{ Form::hidden('editMode', $input['editMode'] ?? null) }}
+                                    {{ Form::hidden('articleLocaleId', $input['articleLocaleId'] ?? null) }}
+                                    {{ Form::hidden('articleId', $input['articleId'] ?? null) }}
                                     <span class="simple_tag col-sm-12">
                                         <button type="submit" class="btn btn-w-m btn-primary-custom">{{ trans('admin/article.button.yes') }}</button>
                                         <button type="button" class="btn btn-w-m btn-danger btn-cancel">{{ trans('admin/article.button.no') }}</button>
@@ -246,8 +252,15 @@
                                 {{ Form::hidden('description', $input['description'] ?? null) }}
                                 {{ Form::hidden('previewMode', $input['previewMode'] ?? null) }}
                                 {{ Form::hidden('saveDraft', $input['saveDraft'] ?? null) }}
+                                {{ Form::hidden('status', config('article.status.published')) }}
                                 {{ Form::hidden('titleBgColor', $input['titleBgColor'] ?? null, ['class' => 'title-bg-color']) }}
                                 {{ Form::hidden('thumbnail', $input['thumbnail'] ?? null, ['class' => 'thumbnail']) }}
+                                @foreach ($input['tags'] as $tag)
+                                    <input type="hidden" name="tags[]" value="{{ $tag }}">
+                                @endforeach
+                                {{ Form::hidden('editMode', $input['editMode'] ?? null) }}
+                                {{ Form::hidden('articleLocaleId', $input['articleLocaleId'] ?? null) }}
+                                {{ Form::hidden('articleId', $input['articleId'] ?? null) }}
                             {{ Form::close() }}
                         </div>
                     </div>

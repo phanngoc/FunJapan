@@ -128,9 +128,9 @@
                                                 @endforeach
                                             </td>
                                             <td class="text-center">
-                                                <button class="btn btn-info" type="button">
+                                                <a class="btn btn-info" href="{{ action('Admin\ArticlesController@show', $article->id) }}">
                                                     <i class="fa fa-pencil"></i> {{ trans('admin/article.button.edit') }}
-                                                </button>
+                                                </a>
                                                 <button type="button" class="btn btn-danger stop-btn"
                                                         {{ $article->articleLocales->where('status', config('article.status.published'))->count() ? '' : 'disabled' }}
                                                         data-message-confirm="{{ trans('admin/article.messages.confirm_stop') }}"

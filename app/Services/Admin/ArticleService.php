@@ -3,9 +3,16 @@
 namespace App\Services\Admin;
 
 use App\Models\Article;
+use App\Models\Author;
+use App\Models\Category;
+use App\Models\Client;
 use App\Models\ArticleLocale;
+use App\Models\EditorChoice;
+use App\Models\BannerSetting;
+use App\Models\Locale;
 use App\Models\TopArticle;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Log;
 use Validator;
 use DB;
 use Carbon\Carbon;
@@ -14,8 +21,11 @@ use Auth;
 
 class ArticleService extends BaseService
 {
-    public static function validate($inputs, $article = null)
+    public static function validate($inputs, $preview = false)
     {
+        $inputs['content'] = str_replace('&nbsp;', '', trim(strip_tags($inputs['content'])));
+        $inputs['description'] = trim($inputs['description']);
+
         $validationRules = [
             'locale_id' => 'required',
             'description' => 'required|min:1|max:1000',
@@ -25,17 +35,14 @@ class ArticleService extends BaseService
             'sub_category_id' => 'required',
             'author_id' => 'required',
             'client_id' => 'required',
+            'tags' => 'required',
             'tags.*' => 'min:3|max:15',
-            'published_at' => 'date_format:"Y-m-d H:i:s"',
-            'end_published_at' => 'date_format:"Y-m-d H:i:s"',
+            'published_at' => 'required|date_format:"Y-m-d H:i:s"|after:' . Carbon::now(),
+            'end_published_at' => 'required|date_format:"Y-m-d H:i:s"|after:published_at',
         ];
 
-        if ($inputs['publish_date'] || $inputs['publish_time']) {
-            $validationRules['published_at'] = 'required|date_format:"Y-m-d H:i:s"';
-        }
-
-        if ($inputs['end_publish_date'] || $inputs['end_publish_time']) {
-            $validationRules['end_published_at'] = 'required|date_format:"Y-m-d H:i:s"|after:published_at';
+        if ($preview) {
+            $validationRules['thumbnail'] = 'required';
         }
 
         $messages = [
@@ -44,6 +51,10 @@ class ArticleService extends BaseService
             'published_at.required' => trans('admin/article.messages.published_date_required'),
             'end_published_at.required' => trans('admin/article.messages.end_published_date_required'),
             'end_published_at.after' => trans('admin/article.messages.end_published_date_after'),
+            'locale_id.required' => trans('admin/article.messages.locale_required'),
+            'author_id.required' => trans('admin/article.messages.author_required'),
+            'category_id.required' => trans('admin/article.messages.category_required'),
+            'sub_category_id.required' => trans('admin/article.messages.sub_category_required'),
         ];
 
         return Validator::make($inputs, $validationRules, $messages)
@@ -64,6 +75,47 @@ class ArticleService extends BaseService
     {
         DB::beginTransaction();
         try {
+            if (isset($inputs['articleId']) && $inputs['articleId']) {
+                if ($article = Article::find($inputs['articleId'])) {
+                    $firstArticleLocale = $article->articleLocales->first();
+                    $category = Category::where('locale_id', $inputs['locale_id'])
+                        ->where('mapping', $article->category->mapping)->first();
+
+                    $articleLocale = ArticleLocale::create([
+                        'locale_id' => (int)$inputs['locale_id'],
+                        'article_id' => $article->id,
+                        'category_id' => $category->id,
+                        'sub_category_id' => $firstArticleLocale->sub_category_id,
+                        'title' => $inputs['title'],
+                        'content' => $inputs['content'],
+                        'summary' => $inputs['description'],
+                        'published_at' => $inputs['published_at'] ? $inputs['published_at'] : Carbon::now(),
+                        'end_published_at' => $inputs['end_published_at'] ? $inputs['end_published_at'] : null,
+                        'content_type' => $inputs['switch_editor'] ?? null,
+                        'title_bg_color' => $inputs['titleBgColor'] ?? null,
+                        'is_member_only' => $firstArticleLocale->is_member_only,
+                        'photo' => $inputs['thumbnail'] ?? null,
+                        'hide' => $firstArticleLocale->hide,
+                        'status' => $inputs['status'] ?? config('article.status.published'),
+                    ]);
+
+                    if ($articleLocale) {
+                        //will be remove latter after changing tags construct
+                        if (ArticleTagService::create($article, $articleLocale->id, $inputs['tags'] ?? [])) {
+                            DB::commit();
+
+                            return $article;
+                        }
+                    }
+
+                    DB::rollback();
+
+                    return false;
+                }
+
+                return false;
+            }
+
             $articleData = [
                 'user_id' => Auth::id(),
                 'category_id' => $inputs['category_id'],
@@ -98,59 +150,70 @@ class ArticleService extends BaseService
                     }
                 }
             }
+
             DB::rollback();
 
             return false;
         } catch (\Exception $e) {
+            Log::debug($e);
             DB::rollback();
 
             return false;
         }
     }
 
-    public static function update($article, $inputs)
+    public static function update($inputs, $articleLocaleId)
     {
-        DB::beginTransaction();
-        try {
-            $articleData = [
-                // delete after
-                'category_id' => $inputs['category'],
-            ];
-            if ($article->update($articleData)) {
-                $articleLocaleData = [
-                    'title' => $inputs['title'],
-                    'content' => $inputs['content'],
-                    'summary' => $inputs['summary'],
-                    'category_id' => $inputs['category'],
-                    'is_top_article' => isset($inputs['is_top_article']) ? $inputs['is_top_article'] : 0,
-                    'hide_always' => isset($inputs['is_alway_hide']) ? $inputs['is_alway_hide'] : 0,
-                    'is_member_only' => isset($inputs['is_member_only']) ? $inputs['is_member_only'] : 0,
-                    'start_campaign' => $inputs['start_campaign'] ? $inputs['start_campaign'] . ':00' : null,
-                    'end_campaign' => $inputs['end_campaign'] ? $inputs['end_campaign'] . ':00' : null,
+        if ($articleLocale = ArticleLocale::find($articleLocaleId)) {
+            DB::beginTransaction();
+            try {
+                $articleData = [
+                    'category_id' => $inputs['category_id'],
+                    'author_id' => $inputs['author_id'],
+                    'client_id' => $inputs['client_id'],
                 ];
+                if ($articleLocale->article->update($articleData)) {
+                    $articleLocaleData = [
+                        'locale_id' => (int)$inputs['locale_id'],
+                        'category_id' => $inputs['category_id'],
+                        'sub_category_id' => $inputs['sub_category_id'],
+                        'title' => $inputs['title'],
+                        'content' => $inputs['content'],
+                        'summary' => $inputs['description'],
+                        'published_at' => $inputs['published_at'] ? $inputs['published_at'] : Carbon::now(),
+                        'end_published_at' => $inputs['end_published_at'] ? $inputs['end_published_at'] : null,
+                        'content_type' => $inputs['switch_editor'] ?? null,
+                        'title_bg_color' => $inputs['titleBgColor'] ?? null,
+                        'is_member_only' => $inputs['is_member_only'],
+                        'photo' => $inputs['thumbnail'] ?? null,
+                        'status' => $inputs['status'] ?? config('article.status.published'),
+                    ];
 
-                if (isset($inputs['thumbnail'])) {
-                    $articleLocaleData['thumbnail'] = $inputs['thumbnail'];
-                }
+                    if (isset($inputs['hide'])) {
+                        $articleLocaleData['hide'] = $inputs['hide'];
+                    }
 
-                if (isset($inputs['publish_date'])) {
-                    $articleLocaleData['published_at'] = $inputs['publish_date'] . ':00';
-                }
-                if (ArticleLocaleService::update($articleLocaleData, $inputs['articleLocaleId'])) {
-                    if (ArticleTagService::update($article, $inputs['articleLocaleId'], $inputs['tags'] ?? [])) {
-                        DB::commit();
+                    if ($articleLocale->update($articleLocaleData)) {
+                        if (ArticleTagService::update($articleLocale->article, $inputs['articleLocaleId'], $inputs['tags'] ?? [])) {
+                            DB::commit();
 
-                        return true;
+                            return $articleLocale;
+                        }
                     }
                 }
+
+                DB::rollback();
+
+                return false;
+            } catch (\Exception $e) {
+                DB::rollback();
+                Log::debug($e);
+
+                return false;
             }
-
-            return false;
-        } catch (\Exception $e) {
-            DB::rollback();
-
-            return false;
         }
+
+        return false;
     }
 
     public static function getArticleTypes()
@@ -422,5 +485,92 @@ class ArticleService extends BaseService
         }
 
         return $article->articleLocales()->update(['status' => config('article.status.stop')]);
+    }
+
+    public static function stopOrStart($articleLocaleId)
+    {
+        $articleLocale = ArticleLocale::find($articleLocaleId);
+
+        if (!$articleLocale) {
+            return false;
+        }
+
+        switch ($articleLocale->status_by_locale) {
+            case config('article.status_by_locale.stop'):
+                if ($articleLocale->published_at <= Carbon::now() &&
+                    ($articleLocale->end_published_at >= Carbon::now() ||
+                    is_null($articleLocale->end_published_at))) {
+                    if ($articleLocale->update(['status' => config('article.status.published')])) {
+                        return [
+                            'type' => 'start',
+                            'success' => true,
+                            'status' => 'published',
+                        ];
+                    }
+
+                    return [
+                        'type' => 'start',
+                        'success' => false,
+                        'status' => '',
+                    ];
+                }
+
+                return [
+                    'type' => 'start',
+                    'success' => false,
+                    'status' => '',
+                ];
+            case config('article.status_by_locale.published'):
+            case config('article.status_by_locale.schedule'):
+                if ($articleLocale->update(['status' => config('article.status.stop')])) {
+                    return [
+                        'type' => 'stop',
+                        'success' => true,
+                        'status' => 'stop',
+                    ];
+                }
+
+                return [
+                    'type' => 'stop',
+                    'success' => false,
+                ];
+            default:
+                return false;
+        }
+    }
+
+    public static function getAuthorOptions()
+    {
+        $authors = Author::orderBy('id', 'asc')->pluck('name', 'id')->toArray();
+
+        return ['' => trans('admin/article.label.select_author')] + $authors;
+    }
+
+    public static function getLocaleOptions()
+    {
+        $locales = Locale::orderBy('id', 'asc')->pluck('name', 'id')->toArray();
+
+        return ['' => trans('admin/article.label.select_locale')] + $locales;
+    }
+
+    public static function getClientOptions()
+    {
+        $clients = Client::orderBy('id', 'asc')->get();
+        $result = [];
+
+        foreach ($clients as $client) {
+            $result[$client->id] = $client->id . ' - ' . $client->name;
+        }
+
+        return ['' => trans('admin/article.label.select_client')] + $result;
+    }
+
+    public static function notEditHideAttribute($articleLocale)
+    {
+        $topArticle = TopArticle::where('article_locale_id', $articleLocale->id)->first();
+        $bannerArticle = BannerSetting::where('article_locale_id', $articleLocale->id)->first();
+        $editorChoiceArticle = EditorChoice::where('article_id', $articleLocale->article_id)->first();
+
+        return $topArticle || $bannerArticle || $editorChoiceArticle;
     }
 }

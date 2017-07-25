@@ -49,204 +49,292 @@
                                 'method' => 'POST',
                                 'class' => 'article-create',
                             ]) }}
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        {{ Form::label(
-                                            'author_id',
-                                            trans('admin/article.label.author'),
-                                            ['class' => 'control-label'])
-                                        }}
-                                        {{ Form::select(
-                                            'author_id',
-                                            $authors,
-                                            old('author_id') ?? null,
-                                            [
-                                                'class' => 'form-control m-b',
-                                            ]
-                                        ) }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ Form::label(
-                                            'client_id',
-                                            trans('admin/article.label.choose_client_id'),
-                                            ['class' => 'control-label'])
-                                        }}
-                                        {{ Form::select(
-                                            'client_id',
-                                            $clients,
-                                            old('client_id') ?? null,
-                                            [
-                                                'class' => 'form-control m-b',
-                                            ]
-                                        ) }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ Form::label(
-                                            'category_id',
-                                            trans('admin/article.label.choose_category'),
-                                            ['class' => 'control-label'])
-                                        }}
-                                        {{ Form::select(
-                                            'category_id',
-                                            [],
-                                            null,
-                                            ['class' => 'form-control m-b']
-                                        ) }}
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-6 padding-left-0">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
                                             {{ Form::label(
-                                                'publish_date',
-                                                trans('admin/article.label.publish_date'),
+                                                'author_id',
+                                                trans('admin/article.label.author'),
                                                 ['class' => 'control-label'])
                                             }}
-                                            <div class="input-group date">
-                                                {{ Form::text(
-                                                    'publish_date',
-                                                    old('publish_date') ?? null,
+                                            @if (isset($firstArticleLocale))
+                                                {{ Form::select(
+                                                    'author_id',
+                                                    [$article->author_id => $article->author->name],
+                                                    $article->author_id,
                                                     [
-                                                        'class' => 'form-control',
-                                                        'autocomplete' => 'off',
-                                                    ])
-                                                }}
-                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            {{ Form::label(
-                                                'published_time',
-                                                trans('admin/article.label.published_time'),
-                                                ['class' => 'control-label'])
-                                            }}
-                                            <div class="input-group clockpicker" data-autoclose="true">
-                                                {{ Form::text(
-                                                    'publish_time',
-                                                    old('publish_time') ?? null,
+                                                        'class' => 'form-control m-b',
+                                                        'readonly' => true,
+                                                    ]
+                                                ) }}
+                                            @else
+                                                {{ Form::select(
+                                                    'author_id',
+                                                    $authors,
+                                                    old('author_id') ?? null,
                                                     [
-                                                        'class' => 'form-control',
-                                                        'autocomplete' => 'off',
-                                                    ])
-                                                }}
-                                                <span class="input-group-addon">
-                                                    <span class="fa fa-clock-o"></span>
-                                                </span>
-                                            </div>
+                                                        'class' => 'form-control m-b',
+                                                    ]
+                                                ) }}
+                                            @endif
                                         </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-6 member-only-btn">
-                                            {{ Form::label(
-                                                'is_member_only',
-                                                trans('admin/article.label.member_only'),
-                                                ['class' => 'control-label'])
-                                            }}
-                                            <div class="form-group-radio">
-                                                <div class="radio radio-success radio-inline">
-                                                    {{ Form::radio('is_member_only', 1, old('is_member_only') ? old('is_member_only') == 1 : false) }}
-                                                    <label>{{ trans('admin/article.button.yes') }}</label>
-                                                </div>
-                                                <div class="radio radio-success radio-inline">
-                                                    {{ Form::radio('is_member_only', 0, old('is_member_only') ? old('is_member_only') == 0 : true) }}
-                                                    <label>{{ trans('admin/article.button.no') }}</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            {{ Form::label(
-                                                'hide',
-                                                trans('admin/article.label.hide'),
-                                                ['class' => 'control-label'])
-                                            }}
-                                            <div class="form-group-radio">
-                                                <div class="radio radio-success radio-inline">
-                                                    <input type="radio" value="1" name="hide">
-                                                    {{ Form::radio('hide', 1, old('hide') ? old('hide') == 1 : false) }}
-                                                    <label>{{ trans('admin/article.button.yes') }}</label>
-                                                </div>
-                                                <div class="radio radio-success radio-inline">
-                                                    {{ Form::radio('hide', 0, old('hide') ? old('hide') == 0 : true) }}
-                                                    <label>{{ trans('admin/article.button.no') }}</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 right-column">
-                                    <div class="form-group empty-div">
-                                    </div>
-                                    <div class="form-group">
-                                        {{ Form::label(
-                                            'locale_id',
-                                            trans('admin/article.label.choose_country'),
-                                            ['class' => 'control-label'])
-                                        }}
-                                        {{ Form::select(
-                                            'locale_id',
-                                            $locales,
-                                            old('locale_id') ?? null,
-                                            [
-                                                'class' => 'form-control m-b',
-                                                'data-url' => action('Admin\ArticlesController@getCategoryLocale'),
-                                            ]
-                                        ) }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ Form::label(
-                                            'sub_category_id',
-                                            trans('admin/article.label.choose_sub_category'),
-                                            ['class' => 'control-label'])
-                                        }}
-                                        {{ Form::select(
-                                            'sub_category_id',
-                                            $subCategories,
-                                            old('sub_category_id') ?? null,
-                                            ['class' => 'form-control m-b']
-                                        ) }}
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-6 padding-left-0">
-                                            {{ Form::label(
-                                                'end_publish_date',
-                                                trans('admin/article.label.end_publish_date'),
-                                                ['class' => 'control-label'])
-                                            }}
-                                            <div class="input-group date">
-                                                {{ Form::text(
-                                                    'end_publish_date',
-                                                    old('end_publish_date') ?? null,
-                                                    [
-                                                        'class' => 'form-control',
-                                                        'autocomplete' => 'off',
-                                                    ])
-                                                }}
-                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            {{ Form::label(
-                                                'end_publish_time',
-                                                trans('admin/article.label.end_publish_time'),
-                                                ['class' => 'control-label'])
-                                            }}
-                                            <div class="input-group clockpicker" data-autoclose="true">
-                                                {{ Form::text(
-                                                    'end_publish_time',
-                                                    old('end_publish_time') ?? null,
-                                                    [
-                                                        'class' => 'form-control',
-                                                        'autocomplete' => 'off',
-                                                    ])
-                                                }}
-                                                <span class="input-group-addon">
-                                                    <span class="fa fa-clock-o"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            {{ Form::label(
+                                                'client_id',
+                                                trans('admin/article.label.choose_client_id'),
+                                                ['class' => 'control-label'])
+                                            }}
+                                            @if (isset($firstArticleLocale))
+                                                {{ Form::select(
+                                                    'client_id',
+                                                    $clients,
+                                                    $article->client_id,
+                                                    [
+                                                        'class' => 'form-control m-b',
+                                                        'disabled' => true,
+                                                    ]
+                                                ) }}
+                                                <input type="hidden" name="client_id" value="{{ $article->client_id }}">
+                                            @else
+                                                {{ Form::select(
+                                                    'client_id',
+                                                    $clients,
+                                                    old('client_id') ?? null,
+                                                    [
+                                                        'class' => 'form-control m-b',
+                                                    ]
+                                                ) }}
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            {{ Form::label(
+                                                'locale_id',
+                                                trans('admin/article.label.choose_country'),
+                                                ['class' => 'control-label'])
+                                            }}
+                                            {{ Form::select(
+                                                'locale_id',
+                                                $locales,
+                                                old('locale_id') ?? (isset($locale) ? $locale->id : null),
+                                                [
+                                                    'class' => 'form-control m-b',
+                                                    'data-url' => action('Admin\ArticlesController@getCategoryLocale'),
+                                                    'disabled' => isset($locale),
+                                                ]
+                                            ) }}
+                                            @if (isset($locale))
+                                                <input type="hidden" name="locale_id" value="{{ $locale->id }}">
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            {{ Form::label(
+                                                'category_id',
+                                                trans('admin/article.label.choose_category'),
+                                                ['class' => 'control-label'])
+                                            }}
+                                            {{ Form::select(
+                                                'category_id',
+                                                [],
+                                                null,
+                                                [
+                                                    'class' => 'form-control m-b',
+                                                    'data-select-text' => trans('admin/article.label.select_category'),
+                                                    'disabled' => isset($firstArticleLocale),
+                                                ]
+                                            ) }}
+                                            @if (isset($firstArticleLocale))
+                                                <input type="hidden" name="category_id" value="{{ $category->id }}">
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            {{ Form::label(
+                                                'sub_category_id',
+                                                trans('admin/article.label.choose_sub_category'),
+                                                ['class' => 'control-label'])
+                                            }}
+                                            @if (isset($firstArticleLocale))
+                                                {{ Form::select(
+                                                    'sub_category_id',
+                                                    $subCategories,
+                                                    $firstArticleLocale->sub_category_id,
+                                                    [
+                                                        'class' => 'form-control m-b',
+                                                        'disabled' => true,
+                                                    ]
+                                                ) }}
+                                                <input type="hidden" name="sub_category_id" value="{{ $firstArticleLocale->sub_category_id }}">
+                                            @else
+                                                {{ Form::select(
+                                                    'sub_category_id',
+                                                    $subCategories,
+                                                    old('sub_category_id') ?? null,
+                                                    ['class' => 'form-control m-b']
+                                                ) }}
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <div class="col-sm-6 padding-left-0">
+                                                {{ Form::label(
+                                                    'publish_date',
+                                                    trans('admin/article.label.publish_date'),
+                                                    ['class' => 'control-label'])
+                                                }}
+                                                <div class="input-group date">
+                                                    {{ Form::text(
+                                                        'publish_date',
+                                                        old('publish_date') ?? null,
+                                                        [
+                                                            'class' => 'form-control',
+                                                            'autocomplete' => 'off',
+                                                        ])
+                                                    }}
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                {{ Form::label(
+                                                    'published_time',
+                                                    trans('admin/article.label.published_time'),
+                                                    ['class' => 'control-label'])
+                                                }}
+                                                <div class="input-group clockpicker" data-autoclose="true">
+                                                    {{ Form::text(
+                                                        'publish_time',
+                                                        old('publish_time') ?? null,
+                                                        [
+                                                            'class' => 'form-control',
+                                                            'autocomplete' => 'off',
+                                                        ])
+                                                    }}
+                                                    <span class="input-group-addon">
+                                                        <span class="fa fa-clock-o"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <div class="col-sm-6 padding-left-0">
+                                                {{ Form::label(
+                                                    'end_publish_date',
+                                                    trans('admin/article.label.end_publish_date'),
+                                                    ['class' => 'control-label'])
+                                                }}
+                                                <div class="input-group date">
+                                                    {{ Form::text(
+                                                        'end_publish_date',
+                                                        old('end_publish_date') ?? null,
+                                                        [
+                                                            'class' => 'form-control',
+                                                            'autocomplete' => 'off',
+                                                        ])
+                                                    }}
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                {{ Form::label(
+                                                    'end_publish_time',
+                                                    trans('admin/article.label.end_publish_time'),
+                                                    ['class' => 'control-label'])
+                                                }}
+                                                <div class="input-group clockpicker" data-autoclose="true">
+                                                    {{ Form::text(
+                                                        'end_publish_time',
+                                                        old('end_publish_time') ?? null,
+                                                        [
+                                                            'class' => 'form-control',
+                                                            'autocomplete' => 'off',
+                                                        ])
+                                                    }}
+                                                    <span class="input-group-addon">
+                                                        <span class="fa fa-clock-o"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <div class="col-sm-6 member-only-btn">
+                                                {{ Form::label(
+                                                    'is_member_only',
+                                                    trans('admin/article.label.member_only'),
+                                                    ['class' => 'control-label'])
+                                                }}
+                                                <div class="form-group-radio">
+                                                    <div class="radio radio-success radio-inline">
+                                                        @if (isset($firstArticleLocale))
+                                                            {{ Form::radio('is_member_only', 1, old('is_member_only') ? old('is_member_only') == 1 :
+                                                                ($firstArticleLocale->is_member_only == 1), ['disabled' => true]) }}
+                                                        @else
+                                                            {{ Form::radio('is_member_only', 1, old('is_member_only') ? old('is_member_only') == 1 : false) }}
+                                                        @endif
+                                                        <label>{{ trans('admin/article.button.yes') }}</label>
+                                                    </div>
+                                                    <div class="radio radio-success radio-inline">
+                                                        @if (isset($firstArticleLocale))
+                                                            {{ Form::radio('is_member_only', 0, old('is_member_only') ? old('is_member_only') == 1 :
+                                                                ($firstArticleLocale->is_member_only == 0), ['disabled' => true]) }}
+                                                        @else
+                                                            {{ Form::radio('is_member_only', 0, old('is_member_only') ? old('is_member_only') == 0 : true) }}
+                                                        @endif
+                                                        <label>{{ trans('admin/article.button.no') }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                {{ Form::label(
+                                                    'hide',
+                                                    trans('admin/article.label.hide'),
+                                                    ['class' => 'control-label'])
+                                                }}
+                                                <div class="form-group-radio">
+                                                    <div class="radio radio-success radio-inline">
+                                                        <input type="radio" value="1" name="hide">
+                                                        @if (isset($firstArticleLocale))
+                                                            {{ Form::radio('hide', 1, old('hide') ? old('hide') == 1 : ($firstArticleLocale->hide == 1), ['disabled' => true]) }}
+                                                        @else
+                                                            {{ Form::radio('hide', 1, old('hide') ? old('hide') == 1 : false) }}
+                                                        @endif
+                                                        <label>{{ trans('admin/article.button.yes') }}</label>
+                                                    </div>
+                                                    <div class="radio radio-success radio-inline">
+                                                        @if (isset($firstArticleLocale))
+                                                            {{ Form::radio('hide', 0, old('hide') ? old('hide') == 0 : ($firstArticleLocale->hide == 0), ['disabled' => true]) }}
+                                                        @else
+                                                            {{ Form::radio('hide', 0, old('hide') ? old('hide') == 0 : true) }}
+                                                        @endif
+                                                        <label>{{ trans('admin/article.button.no') }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12">
                                     <hr>
                                     <div class="form-group">
                                         {{ Form::label(
@@ -285,7 +373,7 @@
                                         </div>
                                         {{ Form::textarea(
                                             'contentMarkdown',
-                                            old('username') ?? null,
+                                            old('contentMarkdown'),
                                             [
                                                 'class' => 'form-control article-content',
                                                 'placeholder' => trans('admin/article.placeholder.content'),
@@ -296,21 +384,42 @@
                                     <div class="form-group medium-section">
                                         {{ Form::hidden('contentMedium', null) }}
                                         <div class="editable medium-editor">
-                                            {!!  old('contentMedium') ?? '' !!}
+                                            {!! old('contentMedium') ?? '' !!}
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Tags</label>
-                                        {{ Form::select(
-                                            'tags[]',
-                                            old('tags') ? array_flip(old('tags')) : [],
-                                            null,
-                                            [
-                                                'class' => 'form-control article-tag',
-                                                'multiple' => 'multiple',
-                                                'data-url' => action('Admin\TagsController@suggest')
-                                            ])
+                                        {{ Form::label(
+                                            'tags',
+                                            trans('admin/article.label.tags'),
+                                            ['class' => 'control-label'])
                                         }}
+                                        @if (isset($firstArticleLocale))
+                                            {{ Form::select(
+                                                'tags[]',
+                                                array_flip($tags),
+                                                null,
+                                                [
+                                                    'class' => 'form-control article-tag',
+                                                    'multiple' => 'multiple',
+                                                    'disabled' => true,
+                                                    'data-url' => action('Admin\TagsController@suggest')
+                                                ])
+                                            }}
+                                            @foreach ($tags as $tag)
+                                                <input type="hidden" name="tags[]" value="{{ $tag }}">
+                                            @endforeach
+                                        @else
+                                            {{ Form::select(
+                                                'tags[]',
+                                                old('tags') ? array_flip(old('tags')) : [],
+                                                null,
+                                                [
+                                                    'class' => 'form-control article-tag',
+                                                    'multiple' => 'multiple',
+                                                    'data-url' => action('Admin\TagsController@suggest')
+                                                ])
+                                            }}
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         {{ Form::label(
@@ -327,10 +436,12 @@
                                             ])
                                         }}
                                     </div>
+                                    </div>
                                     <div class="form-group">
-                                        <button class="btn btn-primary btn-w-m create-action save-draft" type="button"
-                                            data-url="{{ action('Admin\ArticlesController@validateInput') }}">
+                                        <button class="btn btn-primary btn-w-m create-action save-draft text-uppercase" type="button"
+                                                data-url="{{ action('Admin\ArticlesController@validateInput') }}">
                                             <i class="fa fa-eyedropper"></i>&nbsp{{ trans('admin/article.button.draft') }}
+                                            <i class="fa fa-spinner fa-pulse fa-fw hidden"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -338,9 +449,11 @@
                                     <span class="simple_tag col-sm-12">
                                         {{ Form::hidden('previewMode', null, ['class' => 'preview-mode']) }}
                                         {{ Form::hidden('saveDraft', null, ['class' => 'save-draft-input']) }}
-                                        <button class="btn btn-success btn-w-l create-action check-preview" type="button"
+                                        {{ Form::hidden('articleId', $article->id ?? null) }}
+                                        <button class="btn btn-success btn-w-l create-action check-preview text-uppercase" type="button"
                                             data-url="{{ action('Admin\ArticlesController@validateInput') }}">
                                             &nbsp;<i class="fa fa-eye"></i>&nbsp;{{ trans('admin/article.button.check_preview') }}&nbsp;
+                                            <i class="fa fa-spinner fa-pulse fa-fw hidden"></i>
                                         </button>
                                     </span>
                                 </div>
@@ -354,7 +467,7 @@
     <div class="upload-file-data"
         data-url-upload="{{ action('Admin\ArticlesController@uploadImage') }}"
         data-url-delete="{{ action('Admin\ArticlesController@deleteImage') }}"
-        data-max-size="{{ config('images.article_content.max_size') }}"
+        data-max-size="{{ config('images.validate.article_content.max_size') * 1000 }}"
         data-message-file-type-error="{{ trans('admin/article.messages.not_supported_format') }}"
         data-message-size-error="{{ trans('admin/article.messages.max_size_error') }}">
     </div>
@@ -388,8 +501,8 @@
     {{ Html::script('assets/blueimp-file-upload/js/jquery.fileupload.js') }}
     {{ Html::script('assets/medium-editor-insert/js/medium-editor-insert-plugin.min.js') }}
     <script>
-        var contentMarkdown = "{{ old('contentMarkdown') ? json_encode(old('contentMarkdown')) : '' }}";
-        var categoryId = "{{ old('category_id') ?? null }}";
+        var categoryId = "{{ old('category_id') ?? ($category->id ?? null) }}";
+        var showMarkdown = "{{ old('switch_editor') != null && old('switch_editor') == config('article.content_type.markdown') ? 1 : '' }}";
     </script>
     {{ Html::script('assets/admin/js/article_create.js') }}
 @stop

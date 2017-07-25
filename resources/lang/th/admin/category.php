@@ -39,6 +39,7 @@ return [
     'sub_categories' => [
         'instagram' => 'Instagram',
         'movies' => 'Movies',
+        'normal' => 'Normal',
     ],
     'placeholder' => [
         'name' => 'Input Name',

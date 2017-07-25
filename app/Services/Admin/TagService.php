@@ -76,6 +76,7 @@ class TagService extends BaseService
 
     public static function suggetTags($q)
     {
+        $q = escape_like($q);
         $tags = Tag::where('name', 'like', "%$q%")
             ->where('status', config('tag.status.un_block'))->pluck('name')->toArray();
 
