@@ -16,7 +16,6 @@ class FakeDataSeeder extends Seeder
         $this->call(LocationSeeder::class);
         $this->call(ReligionSeeder::class);
         $this->call(ArticleSeeder::class);
-        $this->call(CategorySeeder::class);
         $this->call(TagSeeder::class);
         $this->call(MenuSeeder::class);
         $this->call(MailTemplateSeeder::class);

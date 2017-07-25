@@ -1,0 +1,41 @@
+id,user_id,name,short_name,locale_id,mapping
+1,1,travel,season,1,1
+2,1,travel,season,2,1
+3,1,travel,season,3,1
+4,1,travel,season,4,1
+5,1,food,gourmet,1,2
+6,1,food,gourmet,2,2
+7,1,food,gourmet,3,2
+8,1,food,gourmet,4,2
+9,1,technology,,1,3
+10,1,technology,,2,3
+11,1,technology,,3,3
+12,1,technology,,4,3
+13,1,tradition,,1,4
+14,1,tradition,,2,4
+15,1,tradition,,3,4
+16,1,tradition,,4,4
+17,1,entertainment,otaku / art,1,5
+18,1,entertainment,otaku / art,2,5
+19,1,entertainment,otaku / art,3,5
+20,1,entertainment,otaku / art,4,5
+21,1,lifestyle,event,1,6
+22,1,lifestyle,event,2,6
+23,1,lifestyle,event,3,6
+24,1,lifestyle,event,4,6
+25,1,business,,1,7
+26,1,business,,2,7
+27,1,business,,3,7
+28,1,business,,4,7
+29,1,health,beauty,1,8
+30,1,health,beauty,2,8
+31,1,health,beauty,3,8
+32,1,health,beauty,4,8
+33,1,talent,artist / celebrity,1,9
+34,1,talent,artist / celebrity,2,9
+35,1,talent,artist / celebrity,3,9
+36,1,talent,artist / celebrity,4,9
+37,1,coupon,,1,10
+38,1,coupon,,2,10
+39,1,coupon,,3,10
+40,1,coupon,,4,10

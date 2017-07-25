@@ -26,6 +26,7 @@ class Category extends BaseModel
         'user_id',
         'short_name',
         'name',
+        'mapping',
     ];
 
     public function user()
