@@ -13,7 +13,9 @@
                 <div class="card-thumbnail">
                     <img src="{{ asset($article->articleLocale->thumbnail_urls['normal']) }}">
                 </div>
-                <p class="card-title"><span>{{$article->articleLocale->title}}</span> </p>
+                <p class="card-title" @if ($article->title_bg_color)
+                    style="background-color: {{ $article->title_bg_color }};"
+                @endif><span>{{$article->articleLocale->title}}</span> </p>
             </div>
         </a>
 
