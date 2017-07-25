@@ -8,4 +8,5 @@ return [
         'th' => 'http://www.japanican.com/gnavi/funjapan_th/search.html',
         'tw' => 'http://www.japanican.com/gnavi/funjapan_tw/search.html',
     ],
+    'max_url' => 2000,
 ];

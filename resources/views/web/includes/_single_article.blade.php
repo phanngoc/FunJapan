@@ -2,19 +2,19 @@
     <!-- CARD_ITEM -->
     <div class="list-group-item article-card-item">
         <a href="{{ action('Web\ArticlesController@show', ['id' => $article->article_id]) }}">
-            <div class="img-card card-item">
-                <div class="card-thumbnail">
+            <div class="img-card">
+                <div class="article-card-item__thumbnail">
                     <img src="{{ $article->thumbnail_urls['original'] }}">
                 </div>
-                <p class="card-title" @if ($article->title_bg_color)
-                    style="background-color: {{ $article->title_bg_color }};"
-                @endif><span>{{ $article->title }}</span> </p>
             </div>
         </a>
-        <div class="article-info">
-            <div class="article-summary">
-                <div class="article-engagement">
-                    <p class="article-category">
+        <div class="article-card-item__info">
+            <p class="article-card-item__title" style="background-color: {{ $article->title_bg_color ?: 'none' }}">
+                <span>{{ $article->title }}</span>
+            </p>
+            <div class="article-card-item__extra">
+                <div class="article-card-item__engagement">
+                    <p class="article-card-item__category">
                         <img class="category-icon" src="{{ $article->category->iconUrls['normal'] }}" />
                         {{ $article->category->name }} / {{ $article->category->short_name }}
                         <span class="verticle-bar">|</span>
@@ -48,8 +48,9 @@
                     </ul>
                     <!-- EOF ENGAGEMENT -->
                 </div>
+
                 <!-- TAGS -->
-                <div class="article-tags">
+                <div class="article-card-item__tags">
                     @if ($article->articleTags->count())
                         <ul>
                             @foreach ($article->articleTags(config('limitation.tags.single_artile'), false)->get() as $articleTag)
