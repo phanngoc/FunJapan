@@ -16,10 +16,6 @@ class Article extends BaseModel
      */
     protected $fillable = [
         'user_id',
-        // delete category_id after
-        'category_id',
-        'auto_approve_photo',
-        'type',
         'client_id',
         'author_id',
     ];
@@ -67,10 +63,10 @@ class Article extends BaseModel
         return $this->belongsTo(User::class);
     }
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
+//    public function category()
+//    {
+//        return $this->belongsTo(Category::class);
+//    }
 
     public function tags()
     {
@@ -121,14 +117,14 @@ class Article extends BaseModel
                 $subQueryLocale->select('article_id')
                     ->from('article_locales')
                     ->where('locale_id', $localeId)
-                    ->where('hide_always', 0)
+                    ->where('hide', 0)
                     ->where('published_at', '<=', Carbon::now());
             })
             ->limit($limit);
 
-        if ($isSameCategory) {
-            $query->where('category_id', $this->category_id);
-        }
+//        if ($isSameCategory) {
+//            $query->where('category_id', $this->category_id);
+//        }
 
         if ($tags) {
             $query->whereIn('id', function ($subQuery) use ($tags) {

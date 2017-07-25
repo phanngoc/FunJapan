@@ -8,7 +8,7 @@
                         <a href="{{ action ('Web\ArticlesController@show', ['id' => $rank->articleLocale->article_id]) }}">
                             <div class="img-card first-ranking-img">
                                 <div class="card-thumbnail">
-                                    <img src="{{ $rank->articleLocale->thumbnail_urls['original'] }}">
+                                    <img src="{{ $rank->articleLocale->url_photo }}">
                                     <p class="first-ranking-num">
                                         <span class="no">No</span><span class="dot">.</span><span class="number-1"> {{ $rank->rank }}</span>
                                     </p>
@@ -35,7 +35,7 @@
                                     <a href="{{ action ('Web\ArticlesController@show', ['id' => $articleRank->articleLocale->article_id]) }}">
                                         <div class="img-card list-group-ranking-item">
                                             <div class="card-thumbnail">
-                                                <img src="{{ $articleRank->articleLocale->thumbnail_urls['original'] }}">
+                                                <img src="{{ $articleRank->articleLocale->url_photo }}">
                                                 <p class="card-title"><span>{{ $articleRank->articleLocale->getShortTitle() }}</span> </p>
                                                 <p class="rest-ranking-num">
                                                     .{{ $articleRank->rank }}
@@ -55,7 +55,7 @@
                                     <a href="{{ action ('Web\ArticlesController@show', ['id' => $articleRank->articleLocale->article_id]) }}">
                                         <div class="img-card list-group-ranking-item">
                                             <div class="card-thumbnail">
-                                                <img src="{{ $articleRank->articleLocale->thumbnail_urls['original'] }}">
+                                                <img src="{{ $articleRank->articleLocale->url_photo }}">
                                                 <p class="card-title"><span>{{ $articleRank->articleLocale->getShortTitle() }}</span> </p>
                                                 <p class="rest-ranking-num">
                                                     .{{ $articleRank->rank }}

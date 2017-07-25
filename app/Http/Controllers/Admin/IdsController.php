@@ -17,6 +17,8 @@ class IdsController extends Controller
         $sortBy = $request->input('sortBy', 'id.desc');
         $tab = $request->input('tab');
 
+        $this->viewData['tab'] = $tab;
+
         $this->viewData['filter'] = [
             'sortBy' => $sortBy,
         ];

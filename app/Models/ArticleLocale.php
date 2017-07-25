@@ -32,13 +32,7 @@ class ArticleLocale extends BaseModel
         'view_count',
         'published_at',
         'photo',
-        'is_top_article',
-        'recommended',
-        'start_campaign',
-        'end_campaign',
-        'hide_always',
         'is_member_only',
-        'is_popular',
         'category_id',
         'sub_category_id',
         'end_published_at',
@@ -55,13 +49,12 @@ class ArticleLocale extends BaseModel
         'status_by_locale',
         'status_show_in_front',
         'url_photo',
+        'is_top',
     ];
 
     protected $dates = [
         'published_at',
         'end_published_at',
-        'start_campaign',
-        'end_campaign',
     ];
 
     public function locale()
@@ -191,7 +184,11 @@ class ArticleLocale extends BaseModel
 
     public function getHtmlContentAttribute($value)
     {
-        return Markdown::convertToHtml($this->content);
+        if ($this->content_type == config('article.content_type.markdown')) {
+            return Markdown::convertToHtml($this->content);
+        }
+
+        return $this->content;
     }
 
     public function getShortTitle()
@@ -206,7 +203,7 @@ class ArticleLocale extends BaseModel
 
     public function getIsShowAbleAttribute()
     {
-        return Carbon::now()->gt(Carbon::parse($this->published_at)) && !$this->hide_always;
+        return Carbon::now()->gt(Carbon::parse($this->published_at)) && !$this->hide;
     }
 
     public function category()
@@ -231,5 +228,15 @@ class ArticleLocale extends BaseModel
     public function getStatusShowInFrontAttribute()
     {
         return $this->status_by_locale == config('article.status_by_locale.published') && !$this->hide;
+    }
+
+    public function getIsTopAttribute()
+    {
+        $today = Carbon::today(config('app.admin_timezone'));
+
+        return TopArticle::where('article_locale_id', $this->id)
+            ->where('start_date', '<=', $today)
+            ->where('end_date', '>=', $today)
+            ->count();
     }
 }

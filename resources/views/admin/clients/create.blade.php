@@ -29,7 +29,7 @@
                             <div class="col-sm-1">
                                 <a href="javascript:;" class="btn btn-primary" id="create-client"
                                     data-url="{{ action('Admin\ClientsController@store') }}">
-                                    {{ trans('admin/survey.button.save') }}
+                                    {{ trans('admin/client.button.save') }}
                                 </a>
                             </div>
                         </div>

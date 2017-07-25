@@ -4,7 +4,7 @@
         <a href="{{ action('Web\ArticlesController@show', ['id' => $article->article_id]) }}">
             <div class="img-card">
                 <div class="article-card-item__thumbnail">
-                    <img src="{{ $article->thumbnail_urls['original'] }}">
+                    <img src="{{ $article->url_photo }}">
                 </div>
             </div>
         </a>

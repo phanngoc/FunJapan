@@ -14,7 +14,6 @@ class OmikujisController extends Controller
     public function __construct()
     {
         parent::__construct();
-        $this->viewData['popularPost'] = ArticleService::getPopularPost($this->currentLocaleId);
         $this->viewData['banners'] = BannerSettingService::getBannerViaLocale($this->currentLocaleId);
     }
 

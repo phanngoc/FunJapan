@@ -38,19 +38,6 @@ class ArticleLocaleService extends BaseService
             $query = $query->whereIn('id', $listArticleLocaleIds);
         }
 
-        if (isset($conditions['recommended'])) {
-            $query = $query->where('recommended', true);
-        }
-
-        if (isset($conditions['is_popular'])) {
-            $query = $query->where('is_popular', $conditions['is_popular']);
-        }
-
-        if (isset($conditions['list_set_recommend'])) {
-            $query = $query->where('published_at', '<=', Carbon::now())
-                ->where('hide_always', 0);
-        }
-
         foreach ($conditions['columns'] as $column) {
             if ($column['data'] == 'user_id') {
                 $userIds = User::where('name', 'like', '%' . escape_like($column['search']['value']) . '%')
@@ -75,7 +62,7 @@ class ArticleLocaleService extends BaseService
         return ArticleLocale::where('locale_id', $condition['locale_id'])
             ->where('title', 'like', '%' . $condition['key_search'] . '%')
             ->where('published_at', '<=', Carbon::now())
-            ->where('hide_always', 0)
+            ->where('hide', 0)
             ->select(['id', 'title as text'])
             ->paginate(config('article.per_page'));
     }
@@ -123,8 +110,6 @@ class ArticleLocaleService extends BaseService
         }
 
         if (!$articleLocale->is_show_able) {
-            $articleLocale->is_popular = false;
-            $articleLocale->recommended = false;
             $articleLocale->save();
 
             $removeInBanner = BannerSetting::where('article_locale_id', $articleLocale->id);
@@ -143,50 +128,5 @@ class ArticleLocaleService extends BaseService
         }
 
         return true;
-    }
-
-    public static function createArticleOtherLanguage($article, $inputs)
-    {
-        $articleLocaleData = [
-            'locale_id' => (int)$inputs['locale'],
-            'article_id' => $article->id,
-            'title' => $inputs['title'],
-            'content' => $inputs['content'],
-            'category_id' => $inputs['category'],
-            'summary' => $inputs['summary'],
-            'published_at' => $inputs['publish_date'] ? $inputs['publish_date'] . ':00' : Carbon::now(),
-            'start_campaign' => $inputs['start_campaign'] ? $inputs['start_campaign'] . ':00' : null,
-            'end_campaign' => $inputs['end_campaign'] ? $inputs['end_campaign'] . ':00' : null,
-        ];
-
-        if (isset($inputs['is_top_article'])) {
-            $articleLocaleData['is_top_article'] = $inputs['is_top_article'];
-        }
-
-        if (isset($inputs['is_alway_hide'])) {
-            $articleLocaleData['hide_always'] = $inputs['is_alway_hide'];
-        }
-
-        if (isset($inputs['is_member_only'])) {
-            $articleLocaleData['is_member_only'] = $inputs['is_member_only'];
-        }
-
-        DB::beginTransaction();
-        try {
-            if ($articleLocale = static::create($articleLocaleData, $inputs['thumbnail'])) {
-                if (ArticleTagService::create($article, $articleLocale->id, $inputs['tags'] ?? [])) {
-                    DB::commit();
-
-                    return true;
-                }
-            }
-            DB::rollback();
-
-            return false;
-        } catch (\Exception $e) {
-            DB::rollback();
-
-            return false;
-        }
     }
 }

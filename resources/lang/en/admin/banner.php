@@ -53,4 +53,5 @@ return [
     ],
     'label_replace_question' => 'Are you sure to replace banner ?',
     'label_replace_question_title' => 'Replace Banner',
+    'setting_management' => 'Setting Management',
 ];

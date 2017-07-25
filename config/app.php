@@ -68,7 +68,7 @@ return [
 
     'global_timezone' => env('APP_GLOBAL_TIME_ZONE', 'UTC'),
 
-    'admin_timezone' => 'JST',
+    'admin_timezone' => env('APP_ADMIN_TIMEZONE', 'JST'),
 
     /*
     |--------------------------------------------------------------------------

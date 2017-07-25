@@ -153,6 +153,7 @@ return [
         'select_category' => '---- Select Category ----',
         'select_locale' => '---- Select Locale ----',
         'select_sub_category' => '---- Select Sub Category ----',
+        'other_management' => 'Other Article Management',
     ],
     'status_by_locale' => [
         'schedule' => 'Schedule',

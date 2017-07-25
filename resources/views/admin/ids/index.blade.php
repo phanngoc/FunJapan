@@ -6,16 +6,16 @@
 
 @section('content')
     <ul class="nav nav-tabs" id="tabs">
-        <li class="active"><a data-toggle="tab" href="#client">{{ trans('admin/client.client_management') }}</a></li>
-        <li><a data-toggle="tab" href="#author">{{ trans('admin/client.author_management') }}</a></li>
+        <li class="{{ isset($tab) ? ($tab == 'client' ? 'active' : '') : 'active' }}"><a data-toggle="tab" href="#client">{{ trans('admin/client.client_management') }}</a></li>
+        <li class="{{ isset($tab) ? ($tab == 'author' ? 'active' : '') : '' }}"><a data-toggle="tab" href="#author">{{ trans('admin/client.author_management') }}</a></li>
         <li><a data-toggle="tab" href="#tag">{{ trans('admin/client.tag_management') }}</a></li>
     </ul>
 
     <div class="tab-content">
-        <div id="client" class="tab-pane fade in active">
+        <div id="client" class="tab-pane fade {{ isset($tab) ? ($tab == 'client' ? 'in active' : '') : 'in active' }}">
             @include('admin.clients.index')
         </div>
-        <div id="author" class="tab-pane fade">
+        <div id="author" class="tab-pane fade {{ isset($tab) ? ($tab == 'author' ? 'in active' : '') : '' }}">
             @include('admin.authors.index')
         </div>
         <div id="tag" class="tab-pane fade">

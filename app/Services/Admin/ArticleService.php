@@ -131,7 +131,6 @@ class ArticleService extends BaseService
 
             $articleData = [
                 'user_id' => Auth::id(),
-                'category_id' => $inputs['category_id'],
                 'author_id' => $inputs['author_id'],
                 'client_id' => $inputs['client_id'],
             ];
@@ -151,7 +150,7 @@ class ArticleService extends BaseService
                     'title_bg_color' => $inputs['titleBgColor'] ?? null,
                     'is_member_only' => $inputs['is_member_only'],
                     'photo' => $inputs['thumbnail'] ?? null,
-                    'hide' => $inputs['hide'],
+                    'hide' => $inputs['hide'] ?? 0,
                     'status' => $inputs['status'] ?? config('article.status.published'),
                 ];
 
@@ -181,7 +180,6 @@ class ArticleService extends BaseService
             DB::beginTransaction();
             try {
                 $articleData = [
-                    'category_id' => $inputs['category_id'],
                     'author_id' => $inputs['author_id'],
                     'client_id' => $inputs['client_id'],
                 ];
@@ -199,14 +197,11 @@ class ArticleService extends BaseService
                         'is_member_only' => $inputs['is_member_only'],
                         'photo' => $inputs['thumbnail'] ?? null,
                         'status' => $inputs['status'] ?? config('article.status.published'),
+                        'hide' => $inputs['hide'] ?? 0,
                     ];
 
                     if ($articleLocale->status_by_locale == config('article.status_by_locale.schedule')) {
                         $articleLocaleData['published_at'] = $inputs['published_at'] ? $inputs['published_at'] : Carbon::now();
-                    }
-
-                    if (isset($inputs['hide'])) {
-                        $articleLocaleData['hide'] = $inputs['hide'];
                     }
 
                     if ($articleLocale->update($articleLocaleData)) {
@@ -230,103 +225,6 @@ class ArticleService extends BaseService
         }
 
         return false;
-    }
-
-    public static function getArticleTypes()
-    {
-        $result = [];
-
-        foreach (config('article.type') as $key => $value) {
-            $result[$value] = trans('admin/article.type.' . $key);
-        }
-
-        return $result;
-    }
-
-    public static function getListArticleForPopularPost($input)
-    {
-        return ArticleLocale::where('locale_id', $input['locale_id'] ?? $input['default_locale_id'])
-            ->where(function ($query) use ($input) {
-                $query->where('title', 'like', '%' . $input['keyword'] . '%')
-                    ->orWhere('article_id', $input['keyword']);
-            })
-            ->where('published_at', '<=', Carbon::now())
-            ->where('hide_always', 0)
-            ->paginate(config('limitation.popular_article.per_page'));
-    }
-
-    public static function getPopularPost($localeId, $limit = null)
-    {
-        $query = ArticleLocale::where('is_popular', true)
-            ->where('locale_id', $localeId);
-
-        if ($limit) {
-            $query->limit($limit);
-        }
-
-        return $query->get();
-    }
-
-    public static function addPopularPost($articleLocaleId)
-    {
-        $articleLocale = ArticleLocale::find($articleLocaleId);
-
-        if (!$articleLocale) {
-            return [
-                'success' => false,
-                'message' => trans('admin/popular_article.messages.not_found'),
-            ];
-        }
-
-        if (!$articleLocale->is_show_able) {
-            return [
-                'success' => false,
-                'message' => trans('admin/popular_article.messages.not_show'),
-            ];
-        }
-
-        if (!$articleLocale->is_popular && config('limitation.popular_article.limit') > 0) {
-            $countPopular = ArticleLocale::where('is_popular', true)
-                ->where('locale_id', $articleLocale->locale_id)
-                ->count();
-
-            if ($countPopular >= config('limitation.popular_article.limit')) {
-                return [
-                    'success' => false,
-                    'message' => trans('admin/popular_article.messages.max_setting'),
-                ];
-            }
-        }
-
-        $articleLocale->timestamps = false;
-        $articleLocale->is_popular = true;
-        $updated = $articleLocale->save();
-
-        return [
-            'success' => $updated,
-            'message' => $updated ? trans('admin/popular_article.messages.success') : trans('admin/popular_article.messages.fail'),
-        ];
-    }
-
-    public static function deletePopularPost($articleLocaleId)
-    {
-        $articlesLocale = ArticleLocale::find($articleLocaleId);
-
-        if (!$articlesLocale || !$articlesLocale->is_popular) {
-            return [
-                'success' => false,
-                'message' => trans('admin/popular_article.messages.not_found'),
-            ];
-        }
-
-        $articlesLocale->timestamps = false;
-        $articlesLocale->is_popular = false;
-        $updated = $articlesLocale->save();
-
-        return [
-            'success' => $updated,
-            'message' => $updated ? trans('admin/popular_article.messages.success') : trans('admin/popular_article.messages.fail'),
-        ];
     }
 
     public static function getListForBanner($condition)

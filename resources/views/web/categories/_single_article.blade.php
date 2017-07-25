@@ -11,7 +11,7 @@
         <a href="{{ $url }}">
             <div class="img-card card-item">
                 <div class="card-thumbnail">
-                    <img src="{{ asset($article->thumbnail_urls['normal']) }}">
+                    <img src="{{ asset($article->url_photo) }}">
                 </div>
                 <p class="card-title" @if ($article->title_bg_color)
                     style="background-color: {{ $article->title_bg_color }};"
