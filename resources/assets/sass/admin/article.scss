@@ -103,15 +103,15 @@ div.dataTables_wrapper {
     font-weight: bold !important;
 }
 .label-custom-schedule {
-    background-color: #F6CB58 !important;
+    background-color: #F78E57 !important;
     @include custom-position;
 }
 .label-custom-stop {
-    background-color: #F99796 !important;
+    background-color: #F3534D !important;
     @include custom-position;
 }
 .label-custom-no-article {
-    background-color: #A2A2A2 !important;
+    background-color: #CDCDCD !important;
     @include custom-position;
 }
 .label-custom-draft {
@@ -316,12 +316,15 @@ table {
     margin: 0 auto;
     text-align: center;
     margin-top: 20px;
+    .btn-success {
+        background-color: #5D96DA !important;
+    }
 }
 .right-column .form-group-radio {
     margin-top: 10px;
 }
 .btn-primary-custom {
-    background-color: #60D172;
+    background-color: #5FC451;
     color: #ffffff;
 }
 .btn-primary-custom:hover {
@@ -364,12 +367,12 @@ figure {
     text-transform: uppercase;
 }
 .colorpicker-element {
-    background-color: #f59ac3 !important;
+    background-color: #F16FAA !important;
     border-color: #f59ac3 !important;
     text-transform: uppercase;
 }
 .btn-back {
-    background-color: #74429B !important;
+    background-color: #3FB89E !important;
     color: #ffffff !important;
     text-transform: uppercase;
 }
@@ -379,7 +382,7 @@ figure {
 .save-draft {
     margin-left: 13px;
     margin-top: 25px;
-    background-color: #7CC576 !important;
+    background-color: #5FC451 !important;
 }
 .empty-div {
     min-height: 57px;
@@ -400,35 +403,43 @@ figure {
         color: #ffffff;
         text-transform: uppercase;
     }
+    .btn-default[disabled]:hover {
+        color: #eeeeee;
+        background-color: #888888;
+        border-color: #cccccc;
+    }
+    .label {
+        margin-right: 4px;
+    }
     .btn:hover {
         color: #ffffff !important;
     }
     .btn-create {
-        background-color: #ABD373;
+        background-color: #94D22F;
     }
     .btn-start {
-        background-color: #8BD3DF;
+        background-color: #40BFD7;
     }
     .btn-stop {
-        background-color: #F99796;
+        background-color: #F3534D;
     }
     .btn-modify {
-        background-color: #B5A3D3;
+        background-color: #8560A8;
     }
     .btn-label-null {
-        background-color: #A2A2A2;
+        background-color: #CCCCCC;
     }
     .btn-label-published {
         background-color: #63A1D4;
     }
     .btn-label-stop {
-        background-color: #f5bebe;
+        background-color: #F3534D;
     }
     .btn-label-schedule {
-        background-color: #F6CB58;
+        background-color: #F78E57;
     }
     .btn-label-draft {
-        background-color: #cecece;
+        background-color: #E8B679;
     }
 }
 .form-group {

@@ -223,8 +223,8 @@
                                     {{ Form::hidden('articleLocaleId', $input['articleLocaleId'] ?? null) }}
                                     {{ Form::hidden('articleId', $input['articleId'] ?? null) }}
                                     <span class="simple_tag col-sm-12">
-                                        <button type="submit" class="btn btn-w-m btn-primary-custom">{{ trans('admin/article.button.yes') }}</button>
-                                        <button type="button" class="btn btn-w-m btn-danger btn-cancel">{{ trans('admin/article.button.no') }}</button>
+                                        <button type="submit" class="btn btn-w-m btn-primary-custom text-uppercase">{{ trans('admin/article.button.ok') }}</button>
+                                        <button type="button" class="btn btn-w-m btn-danger btn-cancel text-uppercase">{{ trans('admin/article.button.back') }}</button>
                                     </span>
                                 {{ Form::close() }}
                             </div>

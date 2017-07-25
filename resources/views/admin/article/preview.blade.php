@@ -183,6 +183,7 @@
                                             </div>
                                             <div class="row">
                                                 <a class="btn btn-danger btn-block colorpicker-element" href="javascript:;">
+                                                    <i class="fa fa-paint-brush"></i>
                                                     {{ trans('admin/article.button.color_panel') }}
                                                 </a>
                                             </div>

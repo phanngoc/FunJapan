@@ -79,7 +79,7 @@
                                     <th style="min-width: 90px;" class="text-center sortable" data-sort-name="client_id">{{ trans('admin/article.label.client_id') }}</th>
                                     <th style="min-width: 90px;" class="text-center sortable" data-sort-name="id">{{ trans('admin/article.label.article_id') }}</th>
                                     <th class="text-center">{{ trans('admin/article.label.title') }}</th>
-                                    <th class="text-center" style="min-width: 175px;">{{ trans('admin/article.label.published_at') }}</th>
+                                    <th class="text-center" style="min-width: 185px;">{{ trans('admin/article.label.published_at') }}</th>
                                     <th class="text-center" style="min-width: 210px;">{{ trans('admin/article.label.country') }}</th>
                                     <th class="text-center" style="min-width: 160px;">{{ trans('admin/article.label.action') }}</th>
                                 </tr>
@@ -139,7 +139,7 @@
                                                         data-no-confirm="{{ trans('admin/article.button.cancel') }}"
                                                         data-url="{{ action('Admin\ArticlesController@stop') }}"
                                                         data-article-id="{{ $article->id }}">
-                                                    <i class="fa fa-stop"></i> {{ trans('admin/article.button.stop') }}
+                                                    <i class="fa fa-stop-circle"></i> {{ trans('admin/article.button.stop') }}
                                                 </button>
                                             </td>
                                         </tr>
