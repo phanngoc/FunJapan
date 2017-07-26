@@ -58,7 +58,7 @@
                                         <select
                                             name="article_locale_id"
                                             class="article-select2"
-                                            style="width: 100%"
+                                            style="width: 96%"
                                         >
                                             @if (old('article_id'))
                                                 <option value="{{ old('article_id') }}" selected="selected">
@@ -149,21 +149,21 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <h3 class="{{ $bannerSetting->active ? '' : 'text-danger' }}">
-                                                            <strong>{{ trans('admin/banner.status') }} : </strong>
+                                                            <strong>{{ trans('admin/banner.status') }}: </strong>
                                                             {{ $bannerSetting->active ? trans('admin/banner.active') : trans('admin/banner.deactive') }}
                                                         </h3>
 
                                                         <h3>
-                                                            <strong>{{ trans('admin/banner.label_place') }} : </strong>
+                                                            <strong>{{ trans('admin/banner.label_place') }}: </strong>
                                                             {{ $bannerSetting->order_text }}
                                                         </h3>
 
-                                                        <h3><strong>{{ trans('admin/banner.label_title') }}</strong></h3>
+                                                        <h3><strong>{{ trans('admin/banner.label_title') }}:</strong></h3>
                                                         <p id="title-{{ $bannerSetting->id }}">
                                                             {{ $bannerSetting->articleLocale ? $bannerSetting->articleLocale->title : '' }}
                                                         </p>
 
-                                                        <h3><strong>{{ trans('admin/banner.label_summary') }}</strong></h3>
+                                                        <h3><strong>{{ trans('admin/banner.label_summary') }}:</strong></h3>
                                                         <p class="m-t" id="summary-{{ $bannerSetting->id }}">
                                                             {{ $bannerSetting->articleLocale ? $bannerSetting->articleLocale->summary : '' }}
                                                         </p>
@@ -186,7 +186,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <input type="hidden" value="1" id="has_place_{{ $bannerSetting->order }}">
+                                                <input
+                                                    type="hidden"
+                                                    value="1"
+                                                    id="has_place_{{ $bannerSetting->order . '_' . $bannerSetting->locale_id }}"
+                                                >
                                             </div>
                                         @endforeach
                                     @endif

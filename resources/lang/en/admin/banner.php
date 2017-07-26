@@ -2,10 +2,10 @@
 
 return [
     'title' => 'Add Banner',
-    'title_list' => 'List Banner',
+    'title_list' => 'Banner List',
     'note' => ' If you doesn\'t setting article , photo will be empty',
     'image_suggest_size' => 'Standard dimention of thumbnail: 1000*400',
-    'condition_show_in_front' => 'Mandatory set 3 banner and  banners status must active to banner show in front',
+    'condition_show_in_front' => 'Mandatory set 3 banners and status of banners must be active to show in front',
     'status' => 'Status',
     'active' => 'Active',
     'deactive' => 'Deactive',

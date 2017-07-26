@@ -11,7 +11,7 @@ class EditorChoicesService
     {
         $editorChoicesArticleId = EditorChoice::pluck('article_id');
 
-        return ArticleLocale::with('article', 'article.category', 'articleTags', 'articleTags.tag')
+        return ArticleLocale::with('article', 'articleTags', 'articleTags.tag')
             ->where('locale_id', $localeId)
             ->whereIn('article_id', $editorChoicesArticleId)
             ->where('status', config('article.status.published'))

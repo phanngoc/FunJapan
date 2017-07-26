@@ -186,7 +186,8 @@ return [
     'size_message' => 'The photo size must not greater than 10MB',
     'always_on_top' => [
         'validate' => [
-            'after_end_date' => 'The end date time must be a date after the Start time and Current time',
+            'after_end_date' => 'The End date must be a date after the Start date and Current date.',
+            'after_start_date' => 'The Start date must be a date after the Current date.',
         ],
         'label_title_menu' => 'Always on top',
         'label_yes' => 'Yes',
@@ -205,9 +206,11 @@ return [
         'label_delete' => 'Delete',
         'label_title' => 'Title',
         'label_summary' => 'Summary',
-        'label_update_question_title' => 'The locale has established article, you want to change?',
+        'label_update_question_title' => 'The locale has established article.Do you want to change?',
         'label_update_title' => 'Update setting always on top',
+        'label_from' => 'From',
         'label_from_to' => 'From - To',
+        'label_to' => 'To',
         'status' => 'Status',
         'deactive' => 'Deactive',
         'active' => 'Active',

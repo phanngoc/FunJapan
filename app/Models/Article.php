@@ -111,14 +111,18 @@ class Article extends BaseModel
 
     public function commonQueryGetRelate($arrIgnoreIds, $localeId, $limit = 1, $isSameCategory = true, $tags = null)
     {
+        $now = Carbon::now(config('app.admin_timezone'));
+
         $query = self::inRandomOrder()
             ->whereNotIn('id', $arrIgnoreIds)
-            ->whereIn('id', function ($subQueryLocale) use ($localeId) {
+            ->whereIn('id', function ($subQueryLocale) use ($localeId, $now) {
                 $subQueryLocale->select('article_id')
                     ->from('article_locales')
                     ->where('locale_id', $localeId)
                     ->where('hide', 0)
-                    ->where('published_at', '<=', Carbon::now());
+                    ->where('status', config('article.status.published'))
+                    ->where('published_at', '<=', $now)
+                    ->where('end_published_at', '>=', $now);
             })
             ->limit($limit);
 

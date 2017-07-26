@@ -148,4 +148,34 @@ class BannerSettingService extends BaseService
 
         return false;
     }
+
+    public static function checkActiveUrl($value)
+    {
+        if (!is_string($value)) {
+            return false;
+        }
+
+        $url = parse_url($value, PHP_URL_HOST);
+
+        if ($url && $url == parse_url(config('app.url'), PHP_URL_HOST)) {
+            try {
+                return count(dns_get_record($url, DNS_A | DNS_AAAA)) > 0;
+            } catch (\Exception $e) {
+                return false;
+            }
+        }
+
+        return false;
+    }
+
+    public static function processUrlSearch($value)
+    {
+        $url = parse_url($value, PHP_URL_PATH);
+
+        $regex = '/\/(' . implode(config('app.locales'), '|') . ')\/(articles)\/([^\/]*)(\/|\?)*/';
+
+        preg_match($regex, $url, $matches);
+
+        return isset($matches[3]) ? $matches[3] : $value;
+    }
 }

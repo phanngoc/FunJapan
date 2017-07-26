@@ -37,6 +37,10 @@ class BannerSettingsController extends Controller
     {
         $condition = $request->only(['key_word', 'locale_id', 'page', 'banner_id', 'is_not_locale']);
 
+        if (BannerSettingService::checkActiveUrl($condition['key_word'])) {
+            $condition['key_word'] = BannerSettingService::processUrlSearch($condition['key_word']);
+        }
+
         return response()->json(ArticleService::getListForBanner($condition));
     }
 
@@ -111,8 +115,6 @@ class BannerSettingsController extends Controller
         }
 
         $input = $request->only([
-            'from',
-            'to',
             'photo',
             'article_locale_id',
             'is_uploaded_photo',
