@@ -42,5 +42,8 @@ return [
             'url' => 'The Url field is required.',
             'photo' => 'The Photo field is required.',
         ],
+        'max' => [
+            'url' => 'The Url may not be greater than :max characters.',
+        ],
     ]
 ];

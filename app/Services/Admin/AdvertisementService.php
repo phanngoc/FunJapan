@@ -22,12 +22,13 @@ class AdvertisementService extends BaseService
         $result = [];
         $mimes = config('images.validate.advertisement.mimes');
         $maxSize = config('images.validate.advertisement.max_size');
+        $toDay = Carbon::today()->toDateString();
 
         $rules = [
-            'url' => 'required|active_url',
+            'url' => 'required|max:' . config('advertisement_banner.max_url') . '|active_url',
             'photo' => 'required|mimes:' . $mimes . '|max:' . $maxSize,
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after_or_equal:start_date|after_or_equal:' . Carbon::today()->toDateString(),
+            'start_date' => 'required|date|after_or_equal:' . $toDay,
+            'end_date' => 'required|date|after_or_equal:start_date|after_or_equal:' . $toDay,
         ];
 
         $messages = [
@@ -37,6 +38,8 @@ class AdvertisementService extends BaseService
             'photo.required' => trans('admin/advertisement.validate.require.photo'),
             'url.required' => trans('admin/advertisement.validate.require.photo'),
             'url.active_url' => trans('admin/advertisement.validate.active_url'),
+            'url.max' => trans('admin/advertisement.validate.max.url', ['max' => config('advertisement_banner.max_url')]),
+            'start_date.after_or_equal' => trans('admin/advertisement.validate.after_start_date'),
         ];
 
         foreach ($inputs['advertisement'] as $key => $input) {
