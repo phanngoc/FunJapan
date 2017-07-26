@@ -61,6 +61,7 @@ return [
         'null' => 'Null',
         'start' => 'Start',
         'modify' => 'Modify',
+        'ok' => 'OK',
     ],
     'messages' => [
         'confirm_title' => 'Article ID #:id',
@@ -80,6 +81,13 @@ return [
         'author_required' => 'Author is required.',
         'locale_required' => 'Country is required',
         'warning_change_data' => 'Articles on another locales will be changed.',
+        'start_confirm' => 'Do you want to start this article?',
+        'stop_confirm' => 'Do you want to stop this articles?',
+        'some_thing_wrong' => 'Some thing went wrong.',
+        'article_locale_start_success' => 'This article was started successfully',
+        'article_locale_start_error' => 'Please edit start published date and end published date then start this article',
+        'article_locale_stop_success' => 'This article was stopped successfully',
+        'article_locale_stop_error' => 'This article was not stopped',
     ],
     'label' => [
         'is_top' => 'Always On Top?',

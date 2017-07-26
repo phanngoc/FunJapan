@@ -30,10 +30,10 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>{{ trans('admin/article.label.country') }}</th>
-                                    <th>{{ trans('admin/article.label.published_at') }}</th>
-                                    <th>{{ trans('admin/article.label.title') }}</th>
-                                    <th>{{ trans('admin/article.label.action') }}</th>
+                                    <th class="text-center">{{ trans('admin/article.label.country') }}</th>
+                                    <th class="text-center" style="min-width: 170px;">{{ trans('admin/article.label.published_at') }}</th>
+                                    <th class="text-center">{{ trans('admin/article.label.title') }}</th>
+                                    <th style="min-width: 385px;" class="text-center">{{ trans('admin/article.label.action') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,19 +41,31 @@
                                 @foreach ($article->articleLocales as $articleLocale)
                                     <tr>
                                         <td>{{ $articleLocale->locale->name }} ({{ strtoupper($articleLocale->locale->iso_code) }})</td>
-                                        <td>{{ $articleLocale->published_at->format('d F Y g:i A') }}</td>
-                                        <td>{{ $articleLocale->title }}</td>
-                                        <td class="article-detail-action"
+                                        <td class="text-center">{{ $articleLocale->published_at->format('d F Y g:i A') }}</td>
+                                        <td class="break-word">{{ $articleLocale->title }}</td>
+                                        <td class="article-detail-action text-center"
                                             data-url="{{ action('Admin\ArticlesController@stopOrStart') }}"
                                             data-article-locale="{{ $articleLocale->id }}"
-                                            data-start-confirm="hihihihi"
+                                            data-btn-yes="{{ trans('admin/article.button.yes') }}"
+                                            data-btn-cancel="{{ trans('admin/article.button.cancel') }}"
+                                            data-start-confirm="{{ trans('admin/article.messages.start_confirm') }}"
                                             data-start-label="{{ trans('admin/article.button.start') }}"
                                             data-published-label="{{ trans('admin/article.status_by_locale.published') }}"
-                                            data-stop-confirm="blabla"
+                                            data-stop-confirm="{{ trans('admin/article.messages.stop_confirm') }}"
                                             data-stop-label="{{ trans('admin/article.button.stop') }}">
                                             <button type="button" class="btn btn-default btn-xs btn-w-m
                                                 btn-label-{{ array_flip(config('article.status_by_locale'))[$articleLocale->status_by_locale] }}">
-                                                <i class="fa fa-level-up"></i>
+                                                @if ($articleLocale->status_by_locale == config('article.status_by_locale.schedule'))
+                                                    <i class="fa fa-calendar-plus-o"></i>
+                                                @elseif ($articleLocale->status_by_locale == config('article.status_by_locale.published'))
+                                                    <i class="fa fa-level-up"></i>
+                                                @elseif ($articleLocale->status_by_locale == config('article.status_by_locale.draft'))
+                                                    <i class="fa fa-star-half-o"></i>
+                                                @elseif ($articleLocale->status_by_locale == config('article.status_by_locale.stop'))
+                                                    <i class="fa fa-stop-circle"></i>
+                                                @else
+                                                    <i class="fa fa-level-up"></i>
+                                                @endif
                                                 {{ trans('admin/article.status_by_locale.' . array_flip(config('article.status_by_locale'))[$articleLocale->status_by_locale]) }}
                                             </button>
                                             <a type="button" href="{{ action('Admin\ArticlesController@edit', $articleLocale->id) }}"
@@ -62,11 +74,11 @@
                                             </a>
                                             @if ($articleLocale->status_by_locale == config('article.status_by_locale.published'))
                                                 <button type="button" class="btn btn-default btn-xs btn-w-m btn-stop">
-                                                    <i class="fa fa-stop"></i> {{ trans('admin/article.button.stop') }}
+                                                    <i class="fa fa-stop-circle"></i> {{ trans('admin/article.button.stop') }}
                                                 </button>
                                             @elseif ($articleLocale->status_by_locale == config('article.status_by_locale.schedule'))
                                                 <button type="button" class="btn btn-default btn-xs btn-w-m btn-stop">
-                                                    <i class="fa fa-stop"></i> {{ trans('admin/article.button.stop') }}
+                                                    <i class="fa fa-stop-circle"></i> {{ trans('admin/article.button.stop') }}
                                                 </button>
                                             @elseif ($articleLocale->status_by_locale == config('article.status_by_locale.stop'))
                                                 <button type="button" class="btn btn-default btn-xs btn-w-m btn-start">
@@ -84,9 +96,9 @@
                                     @foreach ($localesNoArticles as $localeNoArticles)
                                         <tr class="faint-word">
                                             <td>{{ $localeNoArticles->name }} ({{ strtoupper($localeNoArticles->iso_code) }})</td>
-                                            <td>{{ trans('admin/article.label.none') }}</td>
-                                            <td>{{ trans('admin/article.label.none') }}</td>
-                                            <td class="article-detail-action">
+                                            <td class="text-center">{{ trans('admin/article.label.none') }}</td>
+                                            <td class="text-center">{{ trans('admin/article.label.none') }}</td>
+                                            <td class="article-detail-action text-center">
                                                 <button type="button" class="btn btn-default btn-xs btn-w-m btn-label-null">
                                                     <i class="fa fa-file-o"></i> {{ trans('admin/article.button.null') }}
                                                 </button>
@@ -112,12 +124,15 @@
                             </tbody>
                         </table>
                         <div class="ibox-content no-borders">
-                            <div class="row pull-right label-explain">
-                                <p><span class="label label-custom-published text-uppercase"></span> {{ trans('admin/article.status_by_locale.published') }}</p>
-                                <p><span class="label label-custom-schedule text-uppercase"></span> {{ trans('admin/article.status_by_locale.schedule') }}</p>
-                                <p><span class="label label-custom-draft text-uppercase"></span> {{ trans('admin/article.status_by_locale.draft') }}</p>
-                                <p><span class="label label-custom-stop text-uppercase"></span> {{ trans('admin/article.status_by_locale.stop') }}</p>
-                                <p><span class="label label-custom-no-article text-uppercase"></span> {{ trans('admin/article.status_by_locale.no_article') }}</p>
+                            <div class="row pull-right label-explain article-detail-action">
+                                <p><span class="label btn-label-published text-uppercase"></span> {{ trans('admin/article.status_by_locale.published') }}</p>
+                                <p><span class="label btn-label-schedule text-uppercase"></span> {{ trans('admin/article.status_by_locale.schedule') }}</p>
+                                <p><span class="label btn-create text-uppercase"></span> {{ trans('admin/article.button.create') }}</p>
+                                <p><span class="label btn-modify text-uppercase"></span> {{ trans('admin/article.button.modify') }}</p>
+                                <p><span class="label btn-label-draft text-uppercase"></span> {{ trans('admin/article.status_by_locale.draft') }}</p>
+                                <p><span class="label btn-start text-uppercase"></span> {{ trans('admin/article.button.start') }}</p>
+                                <p><span class="label btn-label-stop text-uppercase"></span> {{ trans('admin/article.status_by_locale.stop') }}</p>
+                                <p><span class="label btn-label-null text-uppercase"></span> {{ trans('admin/article.status_by_locale.no_article') }}</p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -129,67 +144,5 @@
 @stop
 
 @section('script')
-    <script>
-        $(function () {
-            $('.article-detail-action').on('click', '.btn-start, .btn-stop', function () {
-                var element = $(this);
-                var articleLocaleId = element.parents('.article-detail-action').attr('data-article-locale');
-                var url = element.parents('.article-detail-action').attr('data-url');
-
-                if (element.hasClass('btn-stop')) {
-                    var titleConfirm = element.parents('.article-detail-action').attr('data-stop-confirm');
-                } else {
-                    var titleConfirm = element.parents('.article-detail-action').attr('data-start-confirm');
-                }
-
-                swal({
-                    title: titleConfirm,
-                    text: '',
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'yes',
-                    cancelButtonText: 'cancel',
-                    closeOnConfirm: false,
-                    closeOnCancel: true
-                }, function (isConfirm) {
-                    if (isConfirm) {
-                        $.ajax({
-                            type: 'GET',
-                            url: url,
-                            data: {
-                                'articleLocaleId': articleLocaleId
-                            },
-                            success: (response) => {
-                                if (response.success) {
-                                    swal(response.message, '', 'success');
-                                    if (element.hasClass('btn-stop')) {
-                                        var textBtn = '<i class="fa fa-chevron-circle-right"></i> ';
-                                        textBtn += element.parents('.article-detail-action').attr('data-start-label');
-                                        element.removeClass('btn-stop').addClass('btn-start').html(textBtn);
-                                        var textLabel = '<i class="fa fa-level-up"></i> ';
-                                        textLabel += element.parents('.article-detail-action').attr('data-stop-label');
-                                        element.parents('.article-detail-action').find('.btn:first').removeClass()
-                                            .addClass('btn btn-default btn-xs btn-w-m btn-label-stop').html(textLabel);
-                                    } else {
-                                        var textBtn = '<i class="fa fa-stop"></i> ';
-                                        textBtn += element.parents('.article-detail-action').attr('data-stop-label');
-                                        element.removeClass('btn-start').addClass('btn-stop').html(textBtn);
-                                        var textLabel = '<i class="fa fa-level-up"></i> ';
-                                        textLabel += element.parents('.article-detail-action').attr('data-published-label');
-                                        element.parents('.article-detail-action').find('.btn:first').removeClass()
-                                            .addClass('btn btn-default btn-xs btn-w-m btn-label-published').html(textLabel);
-                                    }
-                                } else {
-                                    swal(response.message, '', 'error');
-                                }
-
-                            },
-                            error: function (e) {
-                            }
-                        });
-                    }
-                });
-            });
-        });
-    </script>
+    {{ Html::script('assets/admin/js/article_detail.js') }}
 @stop

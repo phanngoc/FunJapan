@@ -37,5 +37,6 @@
   "/assets/admin/js/api_token.js": "/assets/admin/js/api_token.js",
   "/assets/admin/js/alwaysOnTop.js": "/assets/admin/js/alwaysOnTop.js",
   "/assets/admin/js/advertisement.js": "/assets/admin/js/advertisement.js",
-  "/assets/admin/js/admin.js": "/assets/admin/js/admin.js"
+  "/assets/admin/js/admin.js": "/assets/admin/js/admin.js",
+  "/assets/admin/js/article_detail.js": "/assets/admin/js/article_detail.js"
 }

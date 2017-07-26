@@ -195,6 +195,11 @@ class ArticlesController extends Controller
     {
         $input = $request->input();
 
+        if (isset($input['editMode']) && $input['editMode']) {
+            return redirect()->action('Admin\ArticlesController@edit', $input['articleLocaleId'])
+                ->withInput($input);
+        }
+
         return redirect()->action('Admin\ArticlesController@create')
             ->withInput($input);
     }
