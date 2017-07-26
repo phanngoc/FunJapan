@@ -32,7 +32,7 @@ $(function () {
         var dateToday = today.getDate();
         if (year == today.getUTCFullYear() && month == monthToday) {
             $('table.table-condensed tbody tr td').each(function () {
-                if ($(this).text() == dateToday && !$(this).hasClass('old')) {
+                if ($(this).text() == dateToday && !$(this).hasClass('old') && !$(this).hasClass('cw')) {
                     $(this).addClass('active-today');
                 }
             });

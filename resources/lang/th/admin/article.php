@@ -75,7 +75,7 @@ return [
         'end_published_date_format' => 'End Published Date Time Format is not correct.',
         'published_date_required' => 'Published Date is required.',
         'end_published_date_required' => 'End Published Date is required.',
-        'end_published_date_after' => 'End Published Time must be after Published Time.',
+        'end_published_date_after' => 'End Published Date must be after Published Date.',
         'category_required' => 'Category is required.',
         'sub_category_required' => 'Sub Category is required.',
         'author_required' => 'Author is required.',

@@ -37,12 +37,25 @@ class ArticleService extends BaseService
             'client_id' => 'required',
             'tags' => 'required',
             'tags.*' => 'min:3|max:15',
-            'published_at' => 'required|date_format:"Y-m-d H:i:s"|after:' . Carbon::now(),
             'end_published_at' => 'required|date_format:"Y-m-d H:i:s"|after:published_at',
         ];
 
         if ($preview) {
             $validationRules['thumbnail'] = 'required';
+        }
+
+        if (!isset($inputs['editMode'])) {
+            $validationRules['published_at'] = 'required|date_format:"Y-m-d H:i:s"|after:' . Carbon::now();
+        }
+
+        if (isset($inputs['editMode']) && $inputs['editMode']) {
+            $articleLocale = ArticleLocale::find($inputs['articleLocaleId']);
+
+            if ($articleLocale->status_by_locale == config('article.status_by_locale.schedule')) {
+                $validationRules['published_at'] = 'required|date_format:"Y-m-d H:i:s"|after:' . Carbon::now();
+            } else {
+                $inputs['published_at'] = $articleLocale->published_at;
+            }
         }
 
         $messages = [
@@ -180,7 +193,6 @@ class ArticleService extends BaseService
                         'title' => $inputs['title'],
                         'content' => $inputs['content'],
                         'summary' => $inputs['description'],
-                        'published_at' => $inputs['published_at'] ? $inputs['published_at'] : Carbon::now(),
                         'end_published_at' => $inputs['end_published_at'] ? $inputs['end_published_at'] : null,
                         'content_type' => $inputs['switch_editor'] ?? null,
                         'title_bg_color' => $inputs['titleBgColor'] ?? null,
@@ -188,6 +200,10 @@ class ArticleService extends BaseService
                         'photo' => $inputs['thumbnail'] ?? null,
                         'status' => $inputs['status'] ?? config('article.status.published'),
                     ];
+
+                    if ($articleLocale->status_by_locale == config('article.status_by_locale.schedule')) {
+                        $articleLocaleData['published_at'] = $inputs['published_at'] ? $inputs['published_at'] : Carbon::now();
+                    }
 
                     if (isset($inputs['hide'])) {
                         $articleLocaleData['hide'] = $inputs['hide'];
