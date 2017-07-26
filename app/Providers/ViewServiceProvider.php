@@ -57,5 +57,14 @@ class ViewServiceProvider extends ServiceProvider
             'web.tags.show',
             'web.users.*',
         ], 'App\Http\ViewComposers\PopularCategoriesComposer');
+
+        view()->composer([
+            'web.home.index',
+            'web.invite_friends.*',
+            'web.guide.*',
+            'web.categories.show',
+            'web.tags.show',
+            'web.users.*',
+        ], 'App\Http\ViewComposers\EditorChoicesComposer');
     }
 }
