@@ -163,6 +163,7 @@
                                                     [
                                                         'class' => 'form-control',
                                                         'autocomplete' => 'off',
+                                                        'disabled' => $notEditPublishedTime ?? false,
                                                     ])
                                                 }}
                                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -181,6 +182,7 @@
                                                     [
                                                         'class' => 'form-control',
                                                         'autocomplete' => 'off',
+                                                        'disabled' => $notEditPublishedTime ?? false,
                                                     ])
                                                 }}
                                                 <span class="input-group-addon">
@@ -188,6 +190,10 @@
                                                 </span>
                                             </div>
                                         </div>
+                                        @if (isset($notEditPublishedTime) && $notEditPublishedTime)
+                                            <input type="hidden" name="publish_date" value="{{ $articleLocale->published_at->format('Y-m-d') }}">
+                                            <input type="hidden" name="publish_time" value="{{ $articleLocale->published_at->format('H:i') }}">
+                                        @endif
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>

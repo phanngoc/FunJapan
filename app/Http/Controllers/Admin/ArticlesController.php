@@ -299,6 +299,10 @@ class ArticlesController extends Controller
             }
 
             $this->viewData['notEditHideAttr'] = ArticleService::notEditHideAttribute($articleLocale);
+            $this->viewData['notEditPublishedTime'] = in_array($articleLocale->status_by_locale, [
+                config('article.status_by_locale.published'),
+                config('article.status_by_locale.stop'),
+            ]);
 
             return view('admin.article.edit', $this->viewData);
         }
