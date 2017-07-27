@@ -147,31 +147,32 @@
   overflow: hidden;
   border: 0;
   margin-top: 20px;
-  .img-card {
-    background: @list-group-white;
-  }
   &__thumbnail {
     @media only screen and (min-width: 768px) and (max-width: 1030px) {
       height: 145px;
     }
+    background: @list-group-white;
     height: 200px;
     overflow: hidden;
-
+    position: relative;
     img {
       width: 100%;
       border: 0;
     }
   }
   &__title {
-    .multiLineEllipsis(@lineHeight: 1.25em, @lineCount: 2, @bgColor: @list-group-white);
+    .multiLineEllipsis(@lineHeight: 1.25em, @lineCount: 2, @bgColor: inherit);
     background: @list-group-white;
-    margin-top: 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    color: @list-group-white;
     font-size: 14px;
+    position: absolute;
+    margin-bottom: 0;
+    bottom: 0;
+    height: 35px;
+    width: 100%;
     @media only screen and (max-width: 1030px) {
       font-size: 12px;
-    }      
+    }
   }
   ul.engagement {
     @media only screen and (max-width: 768px) {
@@ -191,11 +192,7 @@
       @media only screen and (max-width: 768px) {
         display: inline;
       }
-    }
-    
-  }
-  &__extra {
-    position: relative;
+    }    
   }
   &__posted-date {
     @media only screen and (max-width: 768px) {
