@@ -79,17 +79,17 @@ $(function() {
         isNotSequentialNumber: "PIN cannot be sequential number string such as 123456 or 654321.",
         isNot6RepeatedNumChar: "PIN cannot be the same string number like 111111.",
         valueNotContains: "PIN should not contain your birth year.",
-        isNotInPhoneNumber: "PIN cannot be the same number to your phone number.",
-        isNotInZipCode: "PIN cannnot be the same number to your zip code.",
+        isNotInPhoneNumber: "Password should not be in phone number.",
+        isNotInZipCode: "Password should not be in your zip code.",
         regex: "Please input number only.",
         info: "<span>To ensure password security, please</span>\
               <p></p>\
               <ul>\
-                <li><span class=\"ff\"> Do not input the same number to your birth date</span></li>\
-                <li><span class=\"ff\"> Do not input the same number to your telephone number</span></li>\
-                <li><span class=\"ff\"> Do not input the same number to your home address </span></li>\
-                <li><span class=\"ff\"> Do not input the same 6 numbers such as 111111</span></li>\
-                <li><span class=\"ff\"> Do not input sequential numbers such as 123456 or 654321</span></li>\
+                <li><span> Do not input the same number to your birth date</span></li>\
+                <li><span> Do not input the same number to your telephone number</span></li>\
+                <li><span> Do not input the same number to your home address </span></li>\
+                <li><span> Do not input the same 6 numbers such as 111111</span></li>\
+                <li><span> Do not input sequential numbers such as 123456 or 654321</span></li>\
               </ul>"
       },
       confirmPassword: {
@@ -158,9 +158,7 @@ $(function() {
     lastName.prop('required', false);
     lastName.tooltip('destroy');
     lastName.prop('disabled', true);
-    lastName.removeAttr('name');
     midName.prop('disabled', true);
-    midName.removeAttr('name');
   });
 
   addFn_3.click(function() {
@@ -184,9 +182,7 @@ $(function() {
     firstName2.prop('required', false);
     lastName.prop('required', true);
     lastName.prop('disabled', false);
-    lastName.attr('name', 'lastName');
     midName.prop('disabled', false);
-    midName.attr('name', 'midName');
   });
 
   // 2. address
@@ -307,22 +303,6 @@ $(function() {
       if (value.indexOf(checkingArray[i]) >= 0) {
         return false;
       }
-    }
-    return true;
-  });
-
-  $.validator.addMethod("isNotInZipCode", function(value, element) {
-    var zipcode = $('#jmbZipcode').val().replace(/-/g, '');
-    if (zipcode.indexOf(value) >= 0) {
-      return false;
-    }
-    return true;
-  });
-
-  $.validator.addMethod("isNotInPhoneNumber", function(value, element) {
-    var phone = $('#jmbPhoneNumber').val().replace(/-/g, '');
-    if (phone.indexOf(value) >= 0) {
-      return false;
     }
     return true;
   });
@@ -458,9 +438,7 @@ $(function() {
         exactLength: 6,
         isNotSequentialNumber: true,
         isNot6RepeatedNumChar: true,
-        valueNotContains: [userBirthDay],
-        isNotInZipCode: true,
-        isNotInPhoneNumber: true,
+        valueNotContains: [userBirthDay]
       },
       confirmPassword: {
         required: true,
@@ -542,6 +520,7 @@ $(function() {
         var jmbPasswordVal = jmbPassword.val();
         var jmbPhoneNumVal = $('#jmbPhoneNumber').val().replace(/-/g, '');
         var jmbZipcodeVal = $('#jmbZipcode').val().replace(/-/g, '');
+
         if (jmbPasswordVal != "") {
           if (!jmbPassword.valid()) {
             return;

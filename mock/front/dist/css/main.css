@@ -15756,12 +15756,11 @@ ul.engagement li > a:focus {
   border: 0;
   margin-top: 20px;
 }
-.article-card-item .img-card {
-  background: #ffffff;
-}
 .article-card-item__thumbnail {
+  background: #ffffff;
   height: 200px;
   overflow: hidden;
+  position: relative;
 }
 @media only screen and (min-width: 768px) and (max-width: 1030px) {
   .article-card-item__thumbnail {
@@ -15778,10 +15777,13 @@ ul.engagement li > a:focus {
   line-height: 1.25em;
   max-height: 2.5em;
   background: #ffffff;
-  margin-top: 10px;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  color: #ffffff;
   font-size: 14px;
+  position: absolute;
+  margin-bottom: 0;
+  bottom: 0;
+  height: 35px;
+  width: 100%;
 }
 .article-card-item__title:before {
   content: '';
@@ -15789,7 +15791,7 @@ ul.engagement li > a:focus {
   right: 0;
   bottom: 0;
   padding-right: inherit;
-  background: #ffffff;
+  background: inherit;
   z-index: 2;
 }
 .article-card-item__title:after {
@@ -15799,7 +15801,7 @@ ul.engagement li > a:focus {
   width: 1em;
   height: 1em;
   margin-top: 0.2em;
-  background: #ffffff;
+  background: inherit;
   z-index: 3;
 }
 @media only screen and (max-width: 1030px) {
@@ -15826,9 +15828,6 @@ ul.engagement li > a:focus {
   .article-card-item__info .loader-engagement {
     display: inline;
   }
-}
-.article-card-item__extra {
-  position: relative;
 }
 .article-card-item__posted-date {
   font-family: opensans-semibold;
