@@ -264,5 +264,4 @@
         var allCities = {!! json_encode($allCities) !!};
         var userBirthDay = {!! $userBirthDay !!};
     </script>
-    {{ Html::script('assets/js/web/jmb.js') }}
 @endsection
