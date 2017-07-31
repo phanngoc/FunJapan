@@ -300,11 +300,19 @@ class ArticlesController extends Controller
             self::setViewData();
             $this->viewData['articleLocale'] = $articleLocale;
             $this->viewData['article'] = $articleLocale->article;
-            $this->viewData['tags'] = [];
-            $tagLocales = $articleLocale->articleTags;
-            foreach ($tagLocales as $tagLocale) {
-                $this->viewData['tags'][$tagLocale->tag->id] = $tagLocale->tag->name;
+
+            $tags = [];
+            $articleTags = $articleLocale->articleTags;
+
+            foreach ($articleTags as $articleTag) {
+                $tagsLocale = $articleTag->tag->tagLocales($articleLocale->locale_id)->first();
+
+                if ($tagsLocale) {
+                    $tags[$articleTag->tag->id] = $tagsLocale->name;
+                }
             }
+
+            $this->viewData['tags'] = $tags;
 
             $this->viewData['notEditHideAttr'] = ArticleService::notEditHideAttribute($articleLocale);
             $this->viewData['notEditPublishedTime'] = in_array($articleLocale->status_by_locale, [

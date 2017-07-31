@@ -445,6 +445,7 @@
         var categoryId = "{{ old('category_id') ?? ($articleLocale->category_id ?? null) }}";
         var showMarkdown = "{{ old('switch_editor') ? (old('switch_editor') == config('article.content_type.markdown')) : $articleLocale->content_type == config('article.content_type.markdown') }}";
         var warningChangeTxt = "{{ trans('admin/article.messages.warning_change_data') }}";
+        var localeId = "{{ $articleLocale->locale_id }}";
     </script>
     {{ Html::script('assets/admin/js/article_create.js') }}
 @stop

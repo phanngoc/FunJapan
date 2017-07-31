@@ -61,9 +61,12 @@
                 <div class="article-tags">
                     <ul>
                         @foreach ($article->articleTags(config('limitation.tags.single_artile'), false)->get() as $tag)
+                            @php
+                                $tagLocale = $tag->tag->tagLocales($article->locale_id)->first()
+                            @endphp
                             <li class="hot-tag">
-                                <a href="{{ route('tag_detail', $tag->tag->name) }}">
-                                    <span class="hashtag"># </span>{{ $tag->tag->name }}
+                                <a href="{{ route('tag_detail', $tagLocale->name) }}">
+                                    <span class="hashtag"># </span>{{ $tagLocale->name }}
                                 </a>
                             </li>
                         @endforeach

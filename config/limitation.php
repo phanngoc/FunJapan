@@ -29,6 +29,7 @@ return [
     'tags' => [
         'hot_tags' => 20,
         'single_artile' => 3,
+        'per_page' => 10,
     ],
     'role' => [
         'per_page' => 20,
@@ -43,8 +44,5 @@ return [
         20 => 20,
         50 => 50,
         100 => 100,
-    ],
-    'tags' => [
-        'per_page' => 10,
     ],
 ];

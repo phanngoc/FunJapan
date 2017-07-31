@@ -113,7 +113,6 @@ class ArticleService extends BaseService
                     ]);
 
                     if ($articleLocale) {
-                        //will be remove latter after changing tags construct
                         if (ArticleTagService::create($article, $articleLocale->id, $inputs['tags'] ?? [])) {
                             DB::commit();
 
@@ -205,7 +204,7 @@ class ArticleService extends BaseService
                     }
 
                     if ($articleLocale->update($articleLocaleData)) {
-                        if (ArticleTagService::update($articleLocale->article, $inputs['articleLocaleId'], $inputs['tags'] ?? [])) {
+                        if (ArticleTagService::update($articleLocale, $inputs['tags'] ?? [])) {
                             DB::commit();
 
                             return $articleLocale;

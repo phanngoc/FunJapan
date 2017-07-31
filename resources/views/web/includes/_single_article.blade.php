@@ -51,11 +51,14 @@
                 @if ($article->articleTags->count())
                     <ul>
                         @foreach ($article->articleTags(config('limitation.tags.single_artile'), false)->get() as $articleTag)
-                        <li class="hot-tag">
-                            <a href="{{ action('Web\TagsController@show', ['name' => $articleTag->tag->name]) }}">
-                                <span class="hashtag">#</span> {{ $articleTag->tag->name }}
-                            </a>
-                        </li>
+                            @php
+                                $tagLocale = $articleTag->tag->tagLocales($article->locale_id)->first()
+                            @endphp
+                            <li class="hot-tag">
+                                <a href="{{ action('Web\TagsController@show', ['name' => $tagLocale->name]) }}">
+                                    <span class="hashtag">#</span> {{ $tagLocale->name }}
+                                </a>
+                            </li>
                         @endforeach
                     </ul>
                 @endif

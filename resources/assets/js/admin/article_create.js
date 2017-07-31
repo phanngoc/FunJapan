@@ -1,9 +1,13 @@
 $(function () {
+    if (typeof localeId == 'undefined') {
+        var localeId = $('select[name="locale_id"]').val();
+    }
+
     $('.article-tag').tagsinput({
         cancelConfirmKeysOnEmpty: false,
         typeahead: {
             source: function(query) {
-                return $.get($('.article-tag').data('url') + '/?query='+ query);
+                return $.get($('.article-tag').data('url') + '/?query='+ query + '&localeId=' + localeId);
             },
             afterSelect: function(val) {
                 this.$element.val('');
@@ -32,7 +36,7 @@ $(function () {
         var dateToday = today.getDate();
         if (year == today.getUTCFullYear() && month == monthToday) {
             $('table.table-condensed tbody tr td').each(function () {
-                if ($(this).text() == dateToday && !$(this).hasClass('old') && !$(this).hasClass('cw')) {
+                if ($(this).text() == dateToday && !$(this).hasClass('old') && !$(this).hasClass('new') && !$(this).hasClass('cw')) {
                     $(this).addClass('active-today');
                 }
             });
