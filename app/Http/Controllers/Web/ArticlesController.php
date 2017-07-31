@@ -29,8 +29,10 @@ class ArticlesController extends Controller
             return redirect()->action('Web\LoginController@showLoginForm');
         }
 
-        if (isset($article->category)) {
-            $this->viewData['categoryName'] = $article->category->name;
+        $this->viewData['article'] = $article;
+
+        if (isset($article->locale->category)) {
+            $this->viewData['categoryName'] = $article->locale->category->name;
         } else {
             return view('web.articles.show', $this->viewData)->withErrors(trans('web/global.error'));
         }
@@ -39,7 +41,6 @@ class ArticlesController extends Controller
             $article,
             $this->currentLocaleId
         );
-        $this->viewData['article'] = $article;
         $this->viewData['title'] = trans('web/global.title', ['article_title' => ' - ' . $article->locale->title]);
         $this->viewData['photo'] = $article->photo;
         $this->viewData['comments'] = CommentService::lists(

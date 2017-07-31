@@ -29,37 +29,6 @@ class ViewServiceProvider extends ServiceProvider
 
         view()->composer([
             'web.home.index',
-            'web.categories.show',
-            'web.tags.show',
-            'web.users.profile',
-            'web.users.close_account',
-            'web.users.interest',
-            'web.users.password',
-            'web.users.close_complete',
-            'web.invite_friends.*',
-            'web.guide.*',
-            ], 'App\Http\ViewComposers\PopularPostComposer');
-
-        view()->composer([
-            'web.home.index',
-            'web.invite_friends.*',
-            'web.guide.*',
-            'web.categories.show',
-            'web.tags.show',
-            'web.users.*',
-        ], 'App\Http\ViewComposers\PopularSeriesComposer');
-
-        view()->composer([
-            'web.home.index',
-            'web.invite_friends.*',
-            'web.guide.*',
-            'web.categories.show',
-            'web.tags.show',
-            'web.users.*',
-        ], 'App\Http\ViewComposers\PopularCategoriesComposer');
-
-        view()->composer([
-            'web.home.index',
             'web.invite_friends.*',
             'web.guide.*',
             'web.categories.show',

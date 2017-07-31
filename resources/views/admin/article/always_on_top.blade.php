@@ -107,7 +107,7 @@
                                         <div class="row" id="top-{{ $top->id }}">
                                             <div class="col-md-4 preview-image">
                                                 <div class="row">
-                                                    <img class="image-banner" src="{{ $top->articleLocale->thumbnail_urls['original'] }}">
+                                                    <img class="image-banner" src="{{ $top->articleLocale->url_photo }}">
                                                 </div>
                                                 <input type="hidden" value="1" id="setted_locale_{{ $top->locale_id }}">
                                             </div>

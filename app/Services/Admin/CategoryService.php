@@ -163,6 +163,7 @@ class CategoryService extends BaseService
             DB::beginTransaction();
             try {
                 $articles = Article::where('category_id', '=', $category->id)->get();
+                // check again
                 foreach ($articles as $article) {
                     $comments = Comment::where('article_id', '=', $article->id)->get();
                     if (!empty($comments)) {
@@ -196,6 +197,7 @@ class CategoryService extends BaseService
 
     public static function checkCategoryUsed($categoryId)
     {
+        // check again
         return Article::where('category_id', '=', $categoryId)->count();
     }
 

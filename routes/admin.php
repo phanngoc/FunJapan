@@ -33,11 +33,7 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::post('articles/upload-image', 'ArticlesController@uploadImage');
         Route::post('articles/delete-image', 'ArticlesController@deleteImage');
         Route::resource('articles', 'ArticlesController');
-        Route::get('articles/setOtherLanguage/{article}', 'ArticlesController@setOtherLanguage');
-        Route::post('articles/updateOtherLanguage/{article}', 'ArticlesController@updateOtherLanguage');
         Route::get('getArticles', 'ArticlesController@getListArticles');
-        Route::get('articles/edit-global/{article}', 'ArticlesController@editGlobalInfo');
-        Route::post('articles/edit-global/{article}', 'ArticlesController@updateGlobalInfo');
 
         Route::get('getCategoryLocale', 'ArticlesController@getCategoryLocale');
 
@@ -69,12 +65,6 @@ Route::group(['namespace' => 'Admin'], function () {
         // Route::get('popular-list', 'PopularArticlesController@popularLists');
         // Route::get('popular-articles/list', 'PopularArticlesController@lists');
         // Route::resource('popular-articles', 'PopularArticlesController');
-        Route::resource('surveys', 'SurveysController');
-
-        Route::resource('surveys.questions', 'QuestionsController');
-        Route::post('questions/updateOrder', 'QuestionsController@updateOrder');
-
-        Route::resource('surveys.results', 'ResultsController');
 
         Route::resource('omikujis', 'OmikujisController');
         Route::get('getOmikujis', 'OmikujisController@getListOmikujis');
@@ -97,8 +87,6 @@ Route::group(['namespace' => 'Admin'], function () {
         // Route::get('popular-series/getSuggest', 'PopularSeriesController@getSuggest');
         // Route::get('popular-series/getListSeries', 'PopularSeriesController@getListSeries');
 
-        Route::resource('coupons', 'CouponsController');
-        Route::get('list-coupon', 'CouponsController@getListCoupons');
 
         // Route::get('popular-category', 'PopularCategoriesController@index');
         // Route::get('popular-category/create', 'PopularCategoriesController@create');

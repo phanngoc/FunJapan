@@ -19,7 +19,7 @@
                         <div class="row gutter-12">
                             <div class="col-md-39 popular-post-item__thumbnail">
                                 <a href="{{ $url }}">
-                                    <img src="{{ $post->thumbnail_urls['small'] }}">
+                                    <img src="{{ $post->url_photo }}">
                                 </a>
                             </div>
                             <div class="col-md-61">

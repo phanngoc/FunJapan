@@ -50,5 +50,7 @@ return [
         'api' => 'Api Token Management',
         'advertisement' => 'Advertisement',
         'editor_choice' => 'Editor Choice Management',
+        'clients' => 'Client Manager',
+        'authors' => 'Author Manager',
     ],
 ];

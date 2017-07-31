@@ -6,10 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 use App\Services\ImageService;
 use App\Models\Article;
-use App\Models\PopularSeries;
-use App\Models\PopularCategory;
-use App\Services\Admin\PopularSeriesService;
-use App\Services\Admin\PopularCategoryService;
 
 class Category extends BaseModel
 {
@@ -34,15 +30,15 @@ class Category extends BaseModel
         return $this->belongsTo(User::class);
     }
 
-    public function categoryLocales()
-    {
-        return $this->hasMany(CategoryLocale::class);
-    }
+//    public function categoryLocales()
+//    {
+//        return $this->hasMany(CategoryLocale::class);
+//    }
 
-    public function articles()
-    {
-        return $this->hasMany(Article::class);
-    }
+//    public function articles()
+//    {
+//        return $this->hasMany(Article::class);
+//    }
 
     public function interestUsers()
     {
@@ -89,22 +85,5 @@ class Category extends BaseModel
         }
 
         return '';
-    }
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::deleting(function ($category) {
-            $popularSeries = PopularSeries::where('link', $category->id)
-                ->where('type', strtolower(config('popular_series.type.category')))->get();
-            foreach ($popularSeries as $value) {
-                PopularSeriesService::delete($value);
-            }
-            $popularCategories = PopularCategory::where('link', $category->id)->get();
-            foreach ($popularCategories as $value) {
-                PopularCategoryService::delete($value);
-            }
-        });
     }
 }

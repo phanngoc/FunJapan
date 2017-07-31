@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Services\ImageService;
 use App\Models\ArticleLocale;
 use App\Models\FavoriteArticle;
+use App\Models\TopArticle;
 use App\Services\Web\LocaleService;
 use Illuminate\Support\Facades\App;
 use Carbon\Carbon;
@@ -17,9 +18,10 @@ class ArticleService
 {
     public static function getArticleLocaleDetails($id, $localeId)
     {
-        return ArticleLocale::where('article_id', $id)
+        return ArticleLocale::with('category')
+            ->where('article_id', $id)
             ->where('locale_id', $localeId)
-            ->where('hide_always', 0)
+            ->where('hide', 0)
             ->where('published_at', '<=', Carbon::now())
             ->first();
     }
@@ -68,13 +70,18 @@ class ArticleService
     public static function getNextArticleId($article, $localeId)
     {
         $articleNext = null;
+        $today = Carbon::today(config('app.admin_timezone'));
+        $topArticleIds = TopArticle::where('start_date', '<=', $today)
+            ->where('end_date', '>=', $today)
+            ->pluck('article_locale_id')
+            ->toArray();
 
-        if ($article->locale->is_top_article) {
+        if ($article->locale->is_top) {
             $articleIsTop =  DB::table('article_locales as al')
                 ->where('al.article_id', '!=', $article->id)
                 ->where('al.locale_id', $localeId)
-                ->where('al.hide_always', 0)
-                ->where('al.is_top_article', 1)
+                ->where('al.hide', 0)
+                ->whereIn('al.id', $topArticleIds)
                 ->where('al.published_at', '<=', $article->locale->published_at)
                 ->orderBy('al.published_at', 'desc')
                 ->orderBy('al.title', 'desc')
@@ -83,8 +90,8 @@ class ArticleService
             $articleNonTop =  DB::table('article_locales as al')
                 ->where('al.article_id', '!=', $article->id)
                 ->where('al.locale_id', $localeId)
-                ->where('al.hide_always', 0)
-                ->where('al.is_top_article', 0)
+                ->where('al.hide', 0)
+                ->whereNotIn('al.id', $topArticleIds)
                 ->where('published_at', '<=', Carbon::now())
                 ->orderBy('al.published_at', 'desc')
                 ->orderBy('al.title', 'desc')
@@ -100,8 +107,8 @@ class ArticleService
             $articleNext =  DB::table('article_locales as al')
                 ->where('al.article_id', '!=', $article->id)
                 ->where('al.locale_id', $localeId)
-                ->where('al.hide_always', 0)
-                ->where('al.is_top_article', 0)
+                ->where('al.hide', 0)
+                ->whereNotIn('al.id', $topArticleIds)
                 ->where(function ($query) use ($article) {
                     $query->where('al.published_at', '<', $article->locale->published_at)
                         ->orWhere(function ($query) use ($article) {
@@ -131,6 +138,7 @@ class ArticleService
         }
 
         $article->locale = self::getArticleLocaleDetails($id, $localeId);
+
         if (!$article->locale) {
             return false;
         }
@@ -216,28 +224,16 @@ class ArticleService
 
     public static function getNewArticles($localeId, $limit = 12)
     {
-        return ArticleLocale::with('article', 'article.category', 'articleTags', 'articleTags.tag')
+        return ArticleLocale::with('article', 'category', 'articleTags', 'articleTags.tag')
             ->where('locale_id', $localeId)
             ->where('status', config('article.status.published'))
             ->where('hide', 0)
             ->whereNotNull('published_at')
             ->where('published_at', '<', Carbon::now())
             ->where('end_published_at', '>', Carbon::now())
-            ->orderBy('is_top_article', 'desc')
+//            ->orderBy('is_top_article', 'desc')
             ->orderBy('published_at', 'desc')
             ->orderBy('title', 'desc')
             ->paginate($limit);
-    }
-
-    public static function getRecommendArticles($localeId)
-    {
-        return ArticleLocale::with('article')
-            ->where('locale_id', $localeId)
-            ->where('recommended', 1)
-            ->where('hide_always', 0)
-            ->whereNotNull('published_at')
-            ->where('published_at', '<', Carbon::now())
-            ->orderBy('created_at', 'desc')
-            ->get();
     }
 }

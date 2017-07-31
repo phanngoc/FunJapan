@@ -29,7 +29,7 @@ return [
     'label_no' => 'No',
     'label_delete_question' => 'Are you sure to delete token ?',
     'label_delete_question_title' => 'Delete token',
-    'label_title' => 'Advertisement Setting',
+    'label_title' => 'Advertisement',
     'add_title' => 'Add Advertisement',
     'list_title' => 'List Advertisement',
     'validate' => [
