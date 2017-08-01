@@ -160,7 +160,7 @@
                                                     autocomplete="off"
                                                     id="min-date-edit-locale-{{ $advertisement->locale_id }}"
                                                     value = "{{ $advertisement->start_date }}"
-                                                    {{ $advertisement->status == config('banner.advertisement.status.public') ? 'disabled' : null }}
+                                                    {{ $advertisement->status == config('banner.advertisement.status.in_future') ? null : 'disabled' }}
                                                     placeholder="{{ trans('admin/advertisement.label.from') }}"
                                                 >
                                                 <p class="text-danger font-bold m-xxs error-message" id="from_edit_error_{{ $advertisement->locale_id }}"></p>
@@ -169,7 +169,7 @@
                                                     name="to"
                                                     class="form-control to-datetime-picker-edit"
                                                     data-locale="{{ $advertisement->locale_id }}"
-                                                    autocomplete="off",
+                                                    autocomplete="off"
                                                     id="max-date-edit-locale-{{ $advertisement->locale_id }}"
                                                     value = "{{ $advertisement->end_date }}"
                                                     {{ $advertisement->status == config('banner.advertisement.status.public') ? 'disabled' : null}}
@@ -180,7 +180,8 @@
                                                     type="hidden"
                                                     value="{{ $advertisement->status == config('banner.advertisement.status.public') ? 1 : 0 }}"
                                                     type="hidden"
-                                                    id="is_active_{{ $advertisement->locale_id }}">
+                                                    id="is_active_{{ $advertisement->locale_id }}"
+                                                >
                                         </div>
                                         <div class="form-group">
                                             <button

@@ -168,12 +168,13 @@ $(document).ready(function () {
         var element = $(this);
         var localeId = $(this).data('locale');
         var url = $(this).data('action');
+        var startDate = $('#min-date-edit-locale-' + localeId + '').attr('disabled') ? null : $('#min-date-edit-locale-' + localeId + '').val();
 
         $.ajax({
             url: url,
             type: 'POST',
             data: {
-                'start_date' : $('#min-date-edit-locale-' + localeId + '').val(),
+                'start_date' : startDate,
                 'end_date' : $('#max-date-edit-locale-' + localeId + '').val(),
                 'is_active' : $('#is_active_' + localeId + '').val(),
             },
@@ -217,7 +218,7 @@ $(document).ready(function () {
         $('.input-url').each(function(index) {
             var value = $(this).val();
 
-            if (value) {
+            if (value.trim().length) {
                 isCanNotUpdate = false;
 
                 return false;

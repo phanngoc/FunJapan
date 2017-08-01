@@ -33,8 +33,8 @@ return [
     'add_title' => 'Add Advertisement',
     'list_title' => 'List Advertisement',
     'validate' => [
-        'after_end_date' => 'The End Date time must be a date after the Start time and Current time',
-        'after_start_date' => 'The Start Date time must be a date after Current time',
+        'after_end_date' => 'The End Date must be a date after the Start time and Current Date.',
+        'after_start_date' => 'The Start Date must be a date after Current Date.',
         'active_url' => 'The Url is not a valid URL.',
         'require' => [
             'end_date' => 'The End Date field is required.',

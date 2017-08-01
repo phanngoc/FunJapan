@@ -28,6 +28,10 @@
         height:150px;
         width: 95%;
     }
+
+    #image-banner-pre {
+        width: 90% !important;
+    }
 }
 
 @media screen and (max-width: 991px) {

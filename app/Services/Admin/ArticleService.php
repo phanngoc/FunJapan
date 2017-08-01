@@ -229,17 +229,29 @@ class ArticleService extends BaseService
 
     public static function getListForBanner($condition)
     {
+        $now = Carbon::now();
+
         $query = ArticleLocale::select(['id', 'title', 'locale_id', 'article_id', 'summary', 'published_at'])
             ->whereIn('article_id', function ($subQuery) use ($condition) {
                 $subQuery->select('id')
                     ->from('articles')
                     ->where('id', 'like', '%' . $condition['key_word'] . '%');
             })
-            ->where('published_at', '<=', Carbon::now())
+            ->where('published_at', '<=', $now)
+            ->where('end_published_at', '>=', $now)
+            ->where('hide', false)
             ->where('status', config('article.status.published'));
 
         if (!$condition['is_not_locale']) {
             $query = $query->where('locale_id', $condition['locale_id']);
+        }
+
+        if ($condition['banner_id']) {
+            $query = $query->where('locale_id', function ($subQuery) use ($condition) {
+                $subQuery->select('locale_id')
+                    ->from('banner_settings')
+                    ->where('id', $condition['banner_id']);
+            });
         }
 
         return $query->paginate(config('banner.article_suggest'))->toArray();
@@ -347,15 +359,18 @@ class ArticleService extends BaseService
 
     public static function validateSetAlwaysOnTop($input)
     {
+        $today = Carbon::today()->toDateString();
+
         $validationRules = [
             'locale_id' => 'required',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after_or_equal:start_date|after_or_equal:' . Carbon::today()->toDateString(),
+            'start_date' => 'required|date|after_or_equal:' . $today,
+            'end_date' => 'required|date|after_or_equal:start_date|after_or_equal:' . $today,
             'article_locale_id' => 'required|exists:article_locales,id',
         ];
 
         $messages = [
             'end_date.after_or_equal' => trans('admin/article.always_on_top.validate.after_end_date'),
+            'start_date.after_or_equal' => trans('admin/article.always_on_top.validate.after_start_date'),
         ];
 
         return Validator::make($input, $validationRules, $messages)->messages()->toArray();

@@ -54,6 +54,7 @@ $(document).ready(function () {
                 return {
                     key_word: params.term,
                     locale_id: $('#locale').val(),
+                    banner_id: $('#form-edit').data('id'),
                     page: params.page,
                 };
             },
@@ -84,39 +85,42 @@ $(document).ready(function () {
     });
 
     $(document).on('change', '#locale', function() {
-        if (isUpdateArticle) {
-            swal({
-                title: lblTitleChangeLocale,
-                text: lblQuestionChangeLocale,
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonText: lblButtonYes,
-                cancelButtonText: lblButtonNo,
-                closeOnConfirm: true,
-                closeOnCancel: true
-            }, function (isConfirm) {
-                if (isConfirm) {
-                    var localeId = $('#locale').val();
+        var isEditMode = !!$('#form-edit').data('id');
+        if (!isEditMode) {
+            if (isUpdateArticle) {
+                swal({
+                    title: lblTitleChangeLocale,
+                    text: lblQuestionChangeLocale,
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: lblButtonYes,
+                    cancelButtonText: lblButtonNo,
+                    closeOnConfirm: true,
+                    closeOnCancel: true
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        var localeId = $('#locale').val();
 
-                    $('#old_locale').val(localeId);
-                    $('.article-select2').select2('val', '');
-                    isUpdateArticle = false;
-                } else {
-                    var localeId = $('#old_locale').val();
+                        $('#old_locale').val(localeId);
+                        $('.article-select2').select2('val', '');
+                        isUpdateArticle = false;
+                    } else {
+                        var localeId = $('#old_locale').val();
 
-                    $('#locale').val(localeId);
-                }
+                        $('#locale').val(localeId);
+                    }
 
+                    $('.tab-title, .tab-pane').removeClass('active');
+                    $('#tab-' + localeId + ', #tab-pane-' + localeId + '').addClass('active');
+                });
+            } else {
+                var localeId = $('#locale').val();
+                $('#old_locale').val(localeId);
                 $('.tab-title, .tab-pane').removeClass('active');
-                $('#tab-' + localeId+ ', #tab-pane-' + localeId + '').addClass('active');
-            });
-        } else {
-            var localeId = $('#locale').val();
-            $('.tab-title, .tab-pane').removeClass('active');
-            $('#tab-' + localeId+ ', #tab-pane-' + localeId + '').addClass('active');
-            $('.article-select2').select2('val', '');
+                $('#tab-' + localeId + ', #tab-pane-' + localeId + '').addClass('active');
+                $('.article-select2').select2('val', '');
+            }
         }
-
     });
 
     $(document).on('click', '.btn-upload', function() {
@@ -131,8 +135,10 @@ $(document).ready(function () {
             $(this).siblings('input.is_uploaded_photo').val(1);
             $(imgPreview).siblings('p.text-danger').text('');
         } else {
-            $(this).siblings('input.is_uploaded_photo').val(0);
-            imgPreview.attr('src', '');
+            if (!$('#form-edit').data('id')) {
+                $(this).siblings('input.is_uploaded_photo').val(0);
+                imgPreview.attr('src', '');
+            }
         }
     });
 
@@ -172,7 +178,7 @@ $(document).ready(function () {
         var formData = new FormData(element.parent()[0]);
         var url = element.parent().attr('action');
         var bannerId = element.parent().attr('data-id');
-        var hasPlace = $('#has_place_' + $('select[name=order]').val()).val();
+        var hasPlace = $('#has_place_' + $('select[name=order]').val() + '_' + $('select[id=locale]').val()).val();
 
         if (bannerId) {
             url += '/' + bannerId;
@@ -357,6 +363,7 @@ $(document).ready(function () {
         $(element).removeClass('btn-stop-edit btn-warning').addClass('btn-edit btn-success').text(lblButtonEdit);
         $('#form-edit').removeAttr('data-id');
         $(".upload-file")[0].value = '';
+        $('select[name=order]').val($('select[name=order] option:first').val());
     }
 
     $(document).on('click', '.btn-stop-edit', function() {

@@ -25,7 +25,6 @@ class TagService
             ])
             ->with([
                 'article',
-                'article.category',
                 'articleLocale',
             ])
             ->select('article_tags.*')

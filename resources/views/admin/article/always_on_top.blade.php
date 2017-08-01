@@ -48,7 +48,7 @@
                                     <select
                                             name="article_locale_id"
                                             class="article-select2"
-                                            style="width: 100%"
+                                            style="width: 96%"
                                     >
                                         @if (old('article_id'))
                                             <option value="{{ old('article_id') }}" selected="selected">
@@ -60,19 +60,26 @@
                                     <p class="text-danger font-bold m-xxs error-message" id="article_locale_id_error"></p>
                                 </div>
                             </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">
-                                {{ trans('admin/article.always_on_top.label_from_to') }}
-                            </label>
-                            <div class="col-sm-5">
-                                <input type="text" name="start_date" class="form-control from-datetime-picker" autocomplete="off">
-                                <p class="text-danger font-bold m-xxs error-message" id="start_date_error"></p>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    {{ trans('admin/article.always_on_top.label_from') }}
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="start_date" class="form-control from-datetime-picker" autocomplete="off">
+                                    <p class="text-danger font-bold m-xxs error-message" id="start_date_error"></p>
+                                </div>
                             </div>
-                            <div class="col-sm-5">
-                                <input type="text" name="end_date" class="form-control to-datetime-picker" autocomplete="off">
-                                <p class="text-danger font-bold m-xxs error-message" id="end_date_error"></p>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    {{ trans('admin/article.always_on_top.label_to') }}
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="end_date" class="form-control to-datetime-picker" autocomplete="off">
+                                    <p class="text-danger font-bold m-xxs error-message" id="end_date_error"></p>
+                                </div>
                             </div>
-                        </div>
+
                             <button class="btn btn-primary btn-block set-always-on-top" type="button">
                                 <i class="fa fa-spinner fa-pulse fa-fw hidden"></i>
                                 <i class="fa fa-check"></i>&nbsp;

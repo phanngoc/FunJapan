@@ -91,10 +91,14 @@ class AdvertisementService extends BaseService
     public static function validateChange($input)
     {
         $today = Carbon::today()->toDateString();
+
         $rules = [
-            'start_date' => 'required|date|after_or_equal: .' . $today,
             'end_date' => 'required|date|after_or_equal:start_date|after_or_equal:' . $today,
         ];
+
+        if ($input['start_date']) {
+            $rules['start_date'] = 'required|date|after_or_equal: .' . $today;
+        }
 
         $messages = [
             'end_date.after_or_equal' => trans('admin/advertisement.validate.after_end_date'),
@@ -115,6 +119,10 @@ class AdvertisementService extends BaseService
                 $input['is_not_publish'] = false;
             } else {
                 $input['is_not_publish'] = true;
+            }
+
+            if (is_null($input['start_date'])) {
+                unset($input['start_date']);
             }
 
             return $advertisement->update($input);
