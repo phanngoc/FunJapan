@@ -18,8 +18,8 @@ return [
         'cancel' => 'Cancel',
         'block' => 'Block',
         'unblock' => 'Unblock',
-        'edit' => 'Edit',
         'delete' => 'Delete',
+        'modify' => 'Modify',
     ],
     'placeholder' => [
         'input_tag_name' => 'Tag Name',
@@ -52,4 +52,6 @@ return [
     'remove_error' => 'Removed Error',
     'remove' => 'Remove',
     'remove_hot_tag_message' => 'Do you want to remove this hot tag?',
+    'no_tag' => 'There is no tag has been created! Pls add above',
+    'no_result' => 'There is no result for search',
 ];

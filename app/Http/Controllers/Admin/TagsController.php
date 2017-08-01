@@ -31,7 +31,13 @@ class TagsController extends Controller
 
     public function create()
     {
-        return view('admin.tag.create');
+        $tags = Tag::with('tagLocales')->orderBy('id', 'desc')->paginate(config('limitation.tags.per_page'));
+        $this->viewData['tags'] = $tags;
+        $tags->withPath(action('Admin\TagsController@ajaxTagList', ['query' => '']));
+        $locales = LocaleService::getAllLocales();
+        $this->viewData['locales'] = $locales;
+
+        return view('admin.tag.create', $this->viewData);
     }
 
     public function store(Request $request)
@@ -41,16 +47,33 @@ class TagsController extends Controller
         $validator = TagService::validate($inputs);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput($inputs);
-        }
-        $tagData[] = $inputs['name'];
-        if (TagService::create($tagData)) {
-            return redirect()
-                ->action('Admin\TagsController@index')->with(['message' => trans('admin/tag.create_success')]);
+            return response()->json($validator->errors());
         }
 
-        return redirect()
-            ->back()->withErrors(['errors' => trans('admin/tag.create_error')]);
+        $tagData[] = $inputs['name'];
+
+        $locales = LocaleService::getAllLocales();
+
+        $tagLocaleDatas = [];
+
+        foreach ($locales as $key => $value) {
+            $tagLocaleDatas[$inputs['name']][] = [
+                'name' => $inputs['name' . $key],
+                'locale_id' => $key,
+            ];
+        }
+
+        if (TagService::create($tagData, $tagLocaleDatas)) {
+            return response()->json([
+                'status' => 1,
+                'message' => trans('admin/tag.create_success'),
+            ]);
+        }
+
+        return response()->json([
+            'status' => 0,
+            'message' => trans('admin/tag.create_errors'),
+        ]);
     }
 
     public function edit(Tag $tag)
@@ -60,33 +83,44 @@ class TagsController extends Controller
         return view('admin.tag.edit', $this->viewData);
     }
 
-    public function update(Request $request, Tag $tag)
+    public function update(Request $request)
     {
         $inputs = $request->all();
+        $tag = Tag::find($inputs['id']);
 
         $validator = TagService::validate($inputs, $tag);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput($inputs);
+            return response()->json($validator->errors());
         }
         if (TagService::update($inputs, $tag->id)) {
-            return redirect()
-                ->action('Admin\TagsController@index')->with(['message' => trans('admin/tag.update_success')]);
+            return response()->json([
+                'status' => 1,
+                'message' => trans('admin/tag.update_success'),
+            ]);
         }
 
-        return redirect()
-            ->back()->withErrors(['errors' => trans('admin/tag.update_error')]);
+        return response()->json([
+            'status' => 0,
+            'message' => trans('admin/tag.update_errors'),
+        ]);
     }
 
-    public function destroy(Tag $tag)
+    public function destroy(Request $request)
     {
+        $inputs = $request->all();
+        $tag = Tag::find($inputs['id']);
         if (TagService::delete($tag)) {
-            return redirect()
-                ->action('Admin\TagsController@index')->with(['message' => trans('admin/tag.delete_success')]);
+            return response()->json([
+                'status' => 1,
+                'message' => trans('admin/tag.delete_success'),
+            ]);
         }
 
-        return redirect()
-            ->back()->withErrors(['errors' => trans('admin/tag.delete_error')]);
+        return response()->json([
+            'status' => 0,
+            'message' => trans('admin/tag.update_errors'),
+        ]);
     }
 
     public function getListTags(Request $request)
@@ -166,5 +200,22 @@ class TagsController extends Controller
         }
 
         return response()->json(['message' => trans('admin/tag.setting_error'), 'status' => 0]);
+    }
+
+    public function ajaxTagList(Request $request)
+    {
+        $inputs = $request->all();
+        $page = $inputs['page'];
+
+        $tags = Tag::with('tagLocales')->where('name', 'like', '%' . escape_like($inputs['query']) . '%')
+            ->orderBy('id', 'desc')->paginate(config('limitation.tags.per_page'), ['*'], 'page', $page);
+
+        $tags->withPath(action('Admin\TagsController@ajaxTagList', ['query' => '']));
+        if (isset($inputs['search'])) {
+            $this->viewData['isSearch'] = true;
+        }
+        $this->viewData['tags'] = $tags;
+
+        return view('admin.tag._tag_list', $this->viewData);
     }
 }

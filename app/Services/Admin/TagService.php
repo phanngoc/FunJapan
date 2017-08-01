@@ -3,6 +3,7 @@
 namespace App\Services\Admin;
 
 use App\Models\Tag;
+use App\Models\TagLocale;
 use Illuminate\Support\Facades\Log;
 use DB;
 use Validator;
@@ -10,6 +11,8 @@ use Illuminate\Validation\Rule;
 use App\Models\ArticleLocale;
 use App\Models\ArticleTag;
 use App\Models\HotTag;
+use App\Services\Admin\LocaleService;
+use App\Services\Admin\TagLocaleService;
 
 class TagService extends BaseService
 {
@@ -49,7 +52,7 @@ class TagService extends BaseService
         ];
     }
 
-    public static function create($tags)
+    public static function create($tags, $tagLocales = null)
     {
         $tagIds = [];
         DB::beginTransaction();
@@ -60,6 +63,14 @@ class TagService extends BaseService
                 ]);
 
                 if ($newTag && $newTag->id) {
+                    foreach ($tagLocales[$tag] as $key => $tagLocale) {
+                        $tagLocale['tag_id'] = $newTag->id;
+                        if (!TagLocaleService::create($tagLocale)) {
+                            DB::rollback();
+
+                            return false;
+                        }
+                    }
                     $tagIds[] = $newTag->id;
                 }
             }
@@ -85,9 +96,20 @@ class TagService extends BaseService
 
     public static function validate($inputs, $tag = null)
     {
+        $locales = LocaleService::getAllLocales();
         $validationRules = [
             'name' => 'required|min:3|max:15|unique:tags,name',
         ];
+        foreach ($locales as $key => $value) {
+            $validationRules['name' . $key] = [
+                'required',
+                'min:3',
+                'max:15',
+                Rule::unique('tag_locales', 'name')->where(function ($query) use ($key) {
+                    $query->where('locale_id', $key);
+                }),
+            ];
+        }
 
         if ($tag) {
             $validationRules = [
@@ -98,6 +120,18 @@ class TagService extends BaseService
                     Rule::unique('tags')->ignore($tag->id),
                 ],
             ];
+
+            foreach ($locales as $key => $value) {
+                $tagLocale = TagLocale::where('tag_id', $tag->id)->where('locale_id', $key)->first();
+                $validationRules['name' . $key] = [
+                    'required',
+                    'min:3',
+                    'max:15',
+                    Rule::unique('tag_locales', 'name')->where(function ($query) use ($key, $tagLocale) {
+                        $query->where('locale_id', $key);
+                    })->ignore($tagLocale->id ?? null),
+                ];
+            }
         }
 
         return Validator::make($inputs, $validationRules)
@@ -107,8 +141,30 @@ class TagService extends BaseService
     public static function update($inputs, $tagId)
     {
         $tag = Tag::findOrFail($tagId);
+        $locales = LocaleService::getAllLocales();
+        DB::beginTransaction();
+        try {
+            if ($tag->update(['name' => $inputs['name']])) {
+                foreach ($locales as $key => $value) {
+                    if (!TagLocale::updateOrCreate(['tag_id' => $tag->id, 'locale_id' => $key], ['name' => $inputs['name' . $key]])) {
+                        DB::rollback();
 
-        return $tag->update($inputs);
+                        return false;
+                    }
+                }
+                DB::commit();
+
+                return true;
+            }
+            DB::rollback();
+
+            return false;
+        } catch (Exception $e) {
+            DB::rollback();
+            Log::debug($e);
+
+            return false;
+        }
     }
 
     public static function delete($tag)

@@ -1,3 +1,4 @@
+var isSearch = false;
 $(document).ready(function (e) {
     var table = $('#tag-table').DataTable({
         'order': [[ 3, "desc" ]],
@@ -75,22 +76,6 @@ $(document).ready(function (e) {
         },
     });
 
-    $(document).on('click', '.delete', function (e) {
-        deleteAction = baseUrl() + '/admin/tags/' + $(e.target).data('id');
-        swal({
-            title: $('#delete-confirm').data('message'),
-            text: $('#delete-warning').data('message'),
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes",
-            closeOnConfirm: false
-        },
-        function(){
-            $('#deleteForm').attr('action', deleteAction).submit();
-        });
-    });
-
     $(document).on('click', '.ban', function (e) {
         blockAction = $(e.target).data('url');
         swal({
@@ -155,6 +140,207 @@ $(document).ready(function (e) {
             .fail(function() {
             })
         });
-
     });
+
+    //new spec
+    $('#create').on('click', function(e) {
+        e.preventDefault();
+        clearNotification();
+        var data = $('#tag-create-form').serialize();
+        var url = $('#tag-create-form').attr('action');
+        $('#clear').addClass('hidden');
+        isSearch = false;
+        $('#search-input').val('');
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+        })
+        .done(function(response) {
+            if (response.status == 0) {
+                showMessage(response.message, 'danger');
+            } else if (response.status == 1) {
+                showMessage(response.message, 'success');
+                $('#tag-create-form')[0].reset();
+                loadData(tagLoadUrl + '?query=&page=1');
+            } else {
+                showValidate(response);
+            }
+        });
+    });
+
+    $(document).on('click', '.pagination a', function(e) {
+        e.preventDefault();
+        clearNotification();
+        var url = $(this).attr('href');
+        loadData(url);
+    });
+
+    $(document).on('click', '.edit', function(e) {
+        var id = $(this).data('id');
+        var editItem;
+        clearNotification();
+        $.each(dataTags.data, function(index, val) {
+            if (val.id == id) {
+                editItem = val;
+
+                return false;
+            }
+        });
+        $('#form-edit #name').val(editItem.name);
+        $('#form-edit input[name=\'id\']').val(id);
+        $.each(editItem.tag_locales, function(index, val) {
+            $('#form-edit #name' + val.locale_id).val(val.name);
+        });
+        $('#edit-' + id).empty().append($('#form-edit').clone()).removeClass('text-center');
+    });
+
+    $(document).on('click', '.cancel', function(e) {
+        e.preventDefault();
+        if (isSearch) {
+            loadData(tagLoadUrl + '?search=1&query=' + $('#search-input').val() + '&page=' + dataTags.current_page);
+        } else {
+            loadData(tagLoadUrl + '?query=&page=' + dataTags.current_page);
+        }
+    });
+
+    $(document).on('click', '.update', function(e) {
+        e.preventDefault();
+        clearNotification();
+        var data = $(this).parent().parent().parent('form').serialize();
+        var url = $(this).data('url');
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+        })
+        .done(function(response) {
+            if (response.status == 0) {
+                showMessage(response.message, 'danger');
+            } else if (response.status == 1) {
+                showMessage(response.message, 'success');
+                $('#tag-create-form')[0].reset();
+                if (isSearch) {
+                    loadData(tagLoadUrl + '?search=1&query=' + $('#search-input').val() + '&page=' + dataTags.current_page);
+                } else {
+                    loadData(tagLoadUrl + '?query=&page=' + dataTags.current_page);
+                }
+            } else {
+                showValidate(response);
+            }
+            scrollTo();
+        })
+    });
+
+     $(document).on('click', '.delete', function (e) {
+        clearNotification();
+        var url = $(this).data('url');
+        var id = $(this).data('id');
+        swal({
+            title: $('#delete-confirm').data('message'),
+            text: $('#delete-warning').data('message'),
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes",
+            closeOnConfirm: false
+        },
+        function(){
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {id: id},
+            })
+            .done(function(response) {
+                if (response.status == 0) {
+                    showMessage(response.message, 'danger');
+                } else if (response.status == 1) {
+                    showMessage(response.message, 'success');
+                    $('#tag-create-form')[0].reset();
+                    if (dataTags.from == dataTags.to) {
+                        if (isSearch) {
+                            loadData(tagLoadUrl + '?search=1&query=' + $('#search-input').val() + '&page=' + (dataTags.current_page - 1));
+                        } else {
+                            loadData(tagLoadUrl + '?query=&page=' + (dataTags.current_page - 1));
+                        }
+                    } else {
+                        if (isSearch) {
+                            loadData(tagLoadUrl + '?search=1&query=' + $('#search-input').val() + '&page=' + dataTags.current_page);
+                        } else {
+                            loadData(tagLoadUrl + '?query=&page=' + dataTags.current_page);
+                        }
+                    }
+                }
+                scrollTo();
+                swal.close();
+            })
+        });
+    });
+
+    $('#search').on('click', function(e) {
+        e.preventDefault();
+        clearNotification();
+        var searchInput = $('#search-input').val();
+        if ($.trim(searchInput) == '') {
+            swal('Pls enter keyword', null,'warning');
+        } else {
+            isSearch = true;
+            $('#clear').removeClass('hidden');
+            loadData(tagLoadUrl + '?search=1&page=1&query=' + searchInput);
+        }
+    })
+
+    $('#search-form input').on('keypress', function(e) {
+        return e.which !== 13;
+    });
+
+    $('#clear').on('click', function(e) {
+        e.preventDefault();
+        clearNotification();
+        $(this).addClass('hidden');
+        isSearch = false;
+        $('#search-input').val('');
+        loadData(tagLoadUrl + '?page=1&query=');
+    })
 })
+
+function scrollTo() {
+    $('html, body').animate(
+        {
+            scrollTop: $('body').offset().top
+        },
+        1000
+    );
+}
+
+function clearNotification() {
+    $('#notification').empty();
+}
+
+function showMessage(message, message_class) {
+    var insertText = '<div class="alert mt20 alert-' + message_class + '" id="alert-message">'
+        + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+        +   '<span aria-hidden="true">×</span>'
+        + '</button>'
+        + '<p>' + message + '</p></div>';
+    $('#notification').append(insertText);
+}
+
+function showValidate(data) {
+    var insertText = '<div class="alert mt20 alert-danger" id="alert-message">'
+        + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+        +   '<span aria-hidden="true">×</span>'
+        + '</button>';
+        $.each(data, function(index, val) {
+        var name = index.replace('name', '');
+        insertText += '<p>' + val[0].replace(index, locales[name] + ' Tag Name') + '</p>';
+    });
+    insertText += '</div>';
+    $('#notification').append(insertText);
+}
+
+function loadData(url) {
+    $.get(url, function(data) {
+        $('#tag-list').empty().append(data);
+    });
+}

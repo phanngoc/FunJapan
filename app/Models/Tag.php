@@ -29,6 +29,11 @@ class Tag extends BaseModel
         return $this->hasMany(HotTag::class);
     }
 
+    public function tagLocales()
+    {
+        return $this->hasMany(TagLocale::class);
+    }
+
     protected static function boot()
     {
         parent::boot();
