@@ -40,6 +40,7 @@
     "stream-series": "^0.1.1"
   },
   "dependencies": {
-    "gulp-filelist": "^0.5.0"
+    "gulp-filelist": "^0.5.0",
+    "lesshat": "^4.1.0"
   }
 }
