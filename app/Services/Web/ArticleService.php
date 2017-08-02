@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\App;
 use Carbon\Carbon;
 use App\Models\PostPhoto;
 use DB;
+use App\Models\InterestUser;
 
 class ArticleService
 {

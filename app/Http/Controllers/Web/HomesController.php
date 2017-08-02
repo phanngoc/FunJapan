@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Services\Admin\ArticleService as AdminArticleService;
 use App\Services\Web\ArticleService as WebArticleService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomesController extends Controller
 {
@@ -17,6 +18,17 @@ class HomesController extends Controller
     {
         $this->viewData['newArticles'] = WebArticleService::getNewArticles(
             $this->currentLocaleId,
+            config('limitation.new_post.per_page')
+        );
+
+        return view('web.home.index', $this->viewData);
+    }
+
+    public function getMyFeed(Request $request)
+    {
+        $this->viewData['newArticles'] = WebArticleService::getUserArticles(
+            $this->currentLocaleId,
+            Auth::user(),
             config('limitation.new_post.per_page')
         );
 
