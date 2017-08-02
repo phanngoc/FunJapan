@@ -20,6 +20,7 @@ class HomesController extends Controller
             $this->currentLocaleId,
             config('limitation.new_post.per_page')
         );
+        $this->viewData['myFeed'] = false;
 
         return view('web.home.index', $this->viewData);
     }
@@ -31,6 +32,7 @@ class HomesController extends Controller
             Auth::user(),
             config('limitation.new_post.per_page')
         );
+        $this->viewData['myFeed'] = true;
 
         return view('web.home.index', $this->viewData);
     }

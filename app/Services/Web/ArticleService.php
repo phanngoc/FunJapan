@@ -232,7 +232,23 @@ class ArticleService
             ->whereNotNull('published_at')
             ->where('published_at', '<', Carbon::now())
             ->where('end_published_at', '>', Carbon::now())
-//            ->orderBy('is_top_article', 'desc')
+            ->orderBy('published_at', 'desc')
+            ->orderBy('title', 'desc')
+            ->paginate($limit);
+    }
+
+    public static function getUserArticles($localeId, $user, $limit = 12)
+    {
+        $categories = InterestUser::where('user_id', $user->id)->pluck('category_id');
+
+        return ArticleLocale::with('article', 'category', 'articleTags', 'articleTags.tag')
+            ->where('locale_id', $localeId)
+            ->whereIn('category_id', $categories)
+            ->where('status', config('article.status.published'))
+            ->where('hide', 0)
+            ->whereNotNull('published_at')
+            ->where('published_at', '<', Carbon::now())
+            ->where('end_published_at', '>', Carbon::now())
             ->orderBy('published_at', 'desc')
             ->orderBy('title', 'desc')
             ->paginate($limit);
