@@ -12,13 +12,13 @@
                 <!-- MAIN -->
                 <div class="list-group article-cards">
                     <div class="list-group-header">
-                        <p class="list-group-title">{{$tag->name}}</p>
+                        <p class="list-group-title">{{ $tagLocale->name }}</p>
                     </div>
                     <div class="list-infinity">
                         @include('web.tags.more')
                         <div class="next list-group-article">
                             @if ($articles->currentPage() < $articles->lastPage())
-                                <a class="next-page" href="{{ route('tag_detail', $tag->name) . '?page=' . ($articles->currentPage() + 1) }}"></a>
+                                <a class="next-page" href="{{ route('tag_detail', $tagLocale->name) . '?page=' . ($articles->currentPage() + 1) }}"></a>
                             @endif
                         </div>
                     </div>

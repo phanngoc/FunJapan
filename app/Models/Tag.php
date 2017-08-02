@@ -29,8 +29,12 @@ class Tag extends BaseModel
         return $this->hasMany(HotTag::class);
     }
 
-    public function tagLocales()
+    public function tagLocales($localeId = null)
     {
+        if ($localeId) {
+            return $this->hasOne(TagLocale::class)->where('locale_id', $localeId);
+        }
+
         return $this->hasMany(TagLocale::class);
     }
 

@@ -13,4 +13,9 @@ class TagLocale extends BaseModel
         'name',
         'locale_id',
     ];
+
+    public function tag()
+    {
+        return $this->belongsTo(Tag::class);
+    }
 }

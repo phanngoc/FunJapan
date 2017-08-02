@@ -136,7 +136,9 @@ class TagsController extends Controller
     public function suggest(Request $request)
     {
         $query = $request->input('query');
-        $tags = TagService::suggetTags($query);
+        $localeId = $request->input('localeId');
+
+        $tags = TagService::suggetTags($query, $localeId);
 
         return $tags;
     }

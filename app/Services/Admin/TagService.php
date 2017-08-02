@@ -4,6 +4,7 @@ namespace App\Services\Admin;
 
 use App\Models\Tag;
 use App\Models\TagLocale;
+use function foo\func;
 use Illuminate\Support\Facades\Log;
 use DB;
 use Validator;
@@ -85,13 +86,18 @@ class TagService extends BaseService
         }
     }
 
-    public static function suggetTags($q)
+    public static function suggetTags($q, $localeId = null)
     {
         $q = escape_like($q);
-        $tags = Tag::where('name', 'like', "%$q%")
-            ->where('status', config('tag.status.un_block'))->pluck('name')->toArray();
+        $tags = TagLocale::where('name', 'like', "%$q%");
 
-        return $tags;
+        if ($localeId) {
+            $tags = $tags->where('locale_id', $localeId);
+        }
+
+        return $tags->whereHas('tag', function ($query) {
+            $query->where('status', config('tag.status.un_block'));
+        })->pluck('name')->toArray();
     }
 
     public static function validate($inputs, $tag = null)

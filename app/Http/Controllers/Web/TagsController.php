@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Events\LogViewTagEvent;
+use App\Models\TagLocale;
 use App\Services\Web\TagService;
 use App\Models\Tag;
 
@@ -15,13 +16,13 @@ class TagsController extends Controller
 
     public function show($tagName)
     {
-        $tag = Tag::where('name', $tagName)->first();
+        $tagLocale = TagLocale::where('name', $tagName)->first();
 
-        if ($tag) {
-            $this->viewData['articles'] = TagService::getArticleByTag($tag, $this->currentLocaleId);
-            $this->viewData['tag'] = $tag;
+        if ($tagLocale) {
+            $this->viewData['articles'] = TagService::getArticleByTag($tagLocale->tag, $this->currentLocaleId);
+            $this->viewData['tagLocale'] = $tagLocale;
 
-            event(new LogViewTagEvent($tag, $this->currentLocaleId));
+            event(new LogViewTagEvent($tagLocale->tag, $this->currentLocaleId));
 
             return view('web.tags.show', $this->viewData);
         } else {

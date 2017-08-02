@@ -31,6 +31,11 @@ class ArticleTag extends BaseModel
         return $this->belongsTo(Tag::class);
     }
 
+    public function tagLocales()
+    {
+        return $this->hasMany(TagLocale::class);
+    }
+
     public function articleLocale()
     {
         return $this->belongsTo(ArticleLocale::class, 'article_locale_id', 'id');

@@ -2,8 +2,12 @@
 
 namespace App\Services\Admin;
 
+use App\Models\TagLocale;
 use App\Services\Admin\TagService;
+use App\Services\Admin\LocaleService;
 use App\Models\ArticleTag;
+use App\Models\Tag;
+use Carbon\Carbon;
 use DB;
 
 class ArticleTagService extends BaseService
@@ -13,7 +17,20 @@ class ArticleTagService extends BaseService
         if (!$tags) {
             return true;
         }
-        $tagsCreated = TagService::create($tags);
+
+        $locales = LocaleService::getAllLocales();
+
+        $tagLocaleDatas = [];
+        foreach ($tags as $tag) {
+            foreach ($locales as $key => $value) {
+                $tagLocaleDatas[$tag][] = [
+                    'name' => $tag,
+                    'locale_id' => $key,
+                ];
+            }
+        }
+
+        $tagsCreated = TagService::create($tags, $tagLocaleDatas);
 
         if ($tagsCreated) {
             DB::beginTransaction();
@@ -38,14 +55,10 @@ class ArticleTagService extends BaseService
         return false;
     }
 
-    public static function getArticleTagsByArticleAndLocale($articleId, $localeId)
+    public static function update($articleLocale, $tags)
     {
-        return ArticleTag::where('article_id', $articleId)->where('article_locale_id', $localeId);
-    }
+        $articleTags = ArticleTag::where('article_id', $articleLocale->article_id)->where('article_locale_id', $articleLocale->id);
 
-    public static function update($article, $localeId, $tags)
-    {
-        $articleTags = static::getArticleTagsByArticleAndLocale($article->id, $localeId);
         DB::beginTransaction();
         try {
             if (!$tags) {
@@ -55,30 +68,60 @@ class ArticleTagService extends BaseService
                 return true;
             }
 
-            $tagsCreated = TagService::create($tags);
+            $tags = array_unique($tags);
+            $locales = LocaleService::getAllLocales();
+
+            $tagLocaleDatas = [];
+            $tagLocales = TagLocale::whereIn('name', $tags)
+                ->where('locale_id', $articleLocale->locale_id)
+                ->get();
+            $newTags = array_diff($tags, $tagLocales->pluck('name')->toArray());
+
+            foreach ($newTags as $tag) {
+                foreach ($locales as $key => $value) {
+                    $tagLocaleDatas[$tag][] = [
+                        'name' => $tag,
+                        'locale_id' => $key,
+                    ];
+                }
+            }
+
+            $tagsCreated = [];
+            if ($tagLocaleDatas) {
+                $tagsCreated = TagService::create($newTags, $tagLocaleDatas);
+            }
+            $tagsCreated = array_merge($tagsCreated, $tagLocales->pluck('tag_id')->toArray());
 
             if ($tagsCreated) {
                 $oldTags = $articleTags->get()->pluck('tag_id', 'id')->toArray();
                 $newTags = array_diff($tagsCreated, $oldTags);
                 $deleteTags = array_diff($oldTags, $tagsCreated);
+
+                $articleTags = [];
                 foreach ($newTags as $tagId) {
-                    $articleTag = ArticleTag::create([
-                        'article_locale_id' => $localeId,
-                        'article_id' => $article->id,
+                    $articleTags[] = [
+                        'article_locale_id' => $articleLocale->id,
+                        'article_id' => $articleLocale->article_id,
                         'tag_id' => $tagId,
-                    ]);
+                        'updated_at' => Carbon::now(),
+                        'created_at' => Carbon::now(),
+                    ];
                 }
 
-                foreach ($deleteTags as $tagId) {
-                    $articleTag = ArticleTag::where('tag_id', $tagId)->where('article_locale_id', $localeId)->first();
-                    $articleTag->delete();
+                if ($articleTags) {
+                    ArticleTag::insert($articleTags);
                 }
-                DB::commit();
 
-                return true;
+                if ($deleteTags) {
+                    ArticleTag::whereIn('tag_id', $deleteTags)
+                        ->where('article_locale_id', $articleLocale->id)
+                        ->delete();
+                }
             }
 
-            return false;
+            DB::commit();
+
+            return true;
         } catch (\Exception $e) {
             DB::rollback();
 
