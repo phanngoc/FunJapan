@@ -1,20 +1,3 @@
-function formatRepo (repo) {
-    if (repo.loading) return repo.text;
-
-    return '<div class="clearfix">'+ encodeHTML(repo.title) + '</div>';
-}
-
-function formatRepoSelection (repo) {
-    if (repo.selected) return repo.text;
-
-    var textShow = repo.title || repo.summary;
-
-    if (textShow) {
-        textShow = encodeHTML(textShow);
-    }
-    return textShow;
-}
-
 $(document).ready(function () {
     var isUpdateArticle = false;
 
@@ -41,43 +24,6 @@ $(document).ready(function () {
                 minDate : $('.from-datetime-picker').val() ? $('.from-datetime-picker').val(): false
             })
         },
-    });
-
-    $('.article-select2').select2({
-        placeholder: "Select a state",
-        allowClear: true,
-        ajax: {
-            url: baseUrl() + "/admin/setting/banner/get-article",
-            dataType: 'json',
-            delay: 250,
-            data: function data(params) {
-                return {
-                    key_word: params.term,
-                    locale_id: $('#locale').val(),
-                    banner_id: $('#form-edit').data('id'),
-                    page: params.page,
-                };
-            },
-            processResults: function processResults(data, params) {
-                params.page = params.page || 1;
-
-                return {
-                    results: data.data,
-                    pagination: {
-                        more: params.page * articleSuggest < data.total
-                    }
-                };
-            },
-            cache: true
-        },
-
-        escapeMarkup: function escapeMarkup(markup) {
-            return markup;
-        },
-        minimumInputLength: 1,
-        minimumResultsForSearch: -1,
-        templateResult: formatRepo,
-        templateSelection: formatRepoSelection
     });
 
     $('.article-select2').on("select2:select", function (e) {

@@ -227,7 +227,7 @@ class ArticleService extends BaseService
         return false;
     }
 
-    public static function getListForBanner($condition)
+    public static function getListForBanner($condition, $isNotLocale)
     {
         $now = Carbon::now();
 
@@ -242,7 +242,7 @@ class ArticleService extends BaseService
             ->where('hide', false)
             ->where('status', config('article.status.published'));
 
-        if (!$condition['is_not_locale']) {
+        if (!$isNotLocale) {
             $query = $query->where('locale_id', $condition['locale_id']);
         }
 

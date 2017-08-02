@@ -40,7 +40,11 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="row margin-bottom-10">
-                                <select class="form-control article-select2" id="url-input">
+                                <select
+                                    class="form-control article-select2"
+                                    id="url-input"
+                                    data-ajax--url="{{ action('Admin\BannerSettingsController@getArticle', ['isNotLocale' => true]) }}"
+                                >
                                 </select>
                             </div>
                             <div class="row hidden">
@@ -81,6 +85,8 @@
 @stop
 @section('script')
     {!! Html::script('assets/admin/js/editor_choices.js') !!}
+    {!! Html::script('assets/admin/js/select2-article.js') !!}
+
     <script>
         var articleSuggest = {{ config('banner.article_suggest') }};
     </script>
