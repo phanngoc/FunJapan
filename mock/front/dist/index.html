@@ -35,7 +35,7 @@
                   <span class="badge-number">10 </span>
                 </a>
                 <div class="dropdown-menu">
-                  <div class="notification-list">
+                  <div class="dropdown-menu__list" id="notification-list">
                     <ul>
                       <li>
                         <a href="#">
@@ -209,8 +209,11 @@
                       </li>
                     </ul>
                   </div>
-                  <div class="show-all">
-                    <a href="#">Show all </a>
+                  <div class="dropdown-menu__extra-info">
+                    <a href="#">Show all</a>
+                  </div>
+                  <div class="dropdown-menu__extra-info">
+                    <span>There is no message!</span>
                   </div>
                 </div>
               </li>
@@ -363,52 +366,56 @@
           <!-- EOF SLIDER-->
         </div>
         <!-- NAVBAR-->
-        <div class="fj-navbar nav-desktop">
+        <div class="fj-navbar">
           <div class="container">
             <nav class="navbar navbar-default">
               <ul class="nav navbar-nav">
                 <li>
                   <a href="/index.html">
-                    <i class="zmdi zmdi-ticket-star"></i>Campaigns</a>
+                    <i class="zmdi zmdi-ticket-star"></i>
+                    <span>Campaigns</span>
+                  </a>
                 </li>
                 <li>
                   <a href="#">
-                    <i class="zmdi zmdi-card-giftcard"></i>Rewards</a>
+                    <i class="zmdi zmdi-card-giftcard"></i>
+                    <span>Rewards</span>
+                  </a>
                 </li>
                 <li class="dropdown">
                   <a class="fj-tab" data-toggle="tab" href="#coupons-dropdown">
-                    <i class="zmdi zmdi-labels"></i>Coupons
-                    <i class="fa fa-chevron-down"></i>
+                    <i class="zmdi zmdi-labels"></i>
+                    <span>Coupons</span>
                   </a>
                   <div class="caret-up">
-                    <i class="fa fa-caret-up"> </i>
+                    <i class="fa fa-caret-up"></i>
                   </div>
                 </li>
                 <li class="dropdown">
                   <a class="fj-tab" data-toggle="tab" href="#other-menus-dropdown">
-                    <i class="zmdi zmdi-widgets"></i>Other Menus
-                    <i class="fa fa-chevron-down"></i>
+                    <i class="zmdi zmdi-widgets"></i>
+                    <span>Other Menus</span>
                   </a>
                   <div class="caret-up">
-                    <i class="fa fa-caret-up"> </i>
+                    <i class="fa fa-caret-up"></i>
                   </div>
                 </li>
                 <li class="dropdown">
                   <a class="fj-tab" data-toggle="tab" href="#categories-dropdown">
-                    <i class="zmdi zmdi-layers"></i>categories
-                    <i class="fa fa-chevron-down"></i>
+                    <i class="zmdi zmdi-layers"></i>
+                    <span>categories</span>
                   </a>
                   <div class="caret-up">
-                    <i class="fa fa-caret-up"> </i>
+                    <i class="fa fa-caret-up"></i>
                   </div>
                 </li>
                 <li class="dropdown">
                   <a class="fj-tab" data-toggle="tab" href="#tags-dropdown">
-                    <i class="zmdi zmdi-tag-more"></i>TAGS
-                    <i class="fa fa-chevron-down"></i>
+                    <i class="zmdi zmdi-tag-more"></i>
+                    <span>TAGS</span>
                   </a>
                   <div class="caret-up">
-                    <i class="fa fa-caret-up"> </i>
+                    <i class="fa fa-caret-up"></i>
                   </div>
                 </li>
               </ul>
@@ -463,7 +470,7 @@
                     <a href="#">How to use</a>
                   </li>
                   <li class="vertical-bar">
-                    <a href="#">| </a>
+                    <a href="#">|</a>
                   </li>
                 </ul>
               </div>
@@ -518,7 +525,7 @@
                     <a href="#">Personality Test</a>
                   </li>
                   <li class="vertical-bar">
-                    <a href="#">| </a>
+                    <a href="#">|</a>
                   </li>
                 </ul>
               </div>
@@ -585,7 +592,7 @@
                     <a href="#">Talent</a>
                   </li>
                   <li class="vertical-bar">
-                    <a href="#">| </a>
+                    <a href="#">|</a>
                   </li>
                 </ul>
               </div>
@@ -608,75 +615,70 @@
             </div>
           </div>
         </div>
-        <div class="navigation fj-navbar-mobile" id="nav-affix">
+        <div class="fj-navbar-mobile" id="nav-affix">
           <div class="container">
             <ul class="list-inline">
               <li>
                 <a href="#">
-                  <i class="zmdi zmdi-ticket-star"></i>CAMPAIGNS</a>
+                  <span>CAMPAIGNS</span>
+                </a>
               </li>
               <li>
                 <a href="#">
-                  <i class="zmdi zmdi-card-giftcard"></i>REWARDS</a>
+                  <span>REWARDS</span>
+                </a>
               </li>
               <li class="dropdown">
                 <a class="fj-tab" data-toggle="tab" href="#sm-coupons-dropdown">
-                  <i class="zmdi zmdi-labels"></i>Coupons
-                  <i class="fa fa-chevron-down"></i>
+                  <span>Coupons</span>
                 </a>
                 <div class="caret-up">
-                  <i class="fa fa-caret-up"> </i>
+                  <i class="fa fa-caret-up"></i>
                 </div>
               </li>
               <li class="dropdown">
                 <a class="fj-tab" data-toggle="tab" href="#sm-other-menus-dropdown">
-                  <i class="zmdi zmdi-widgets"></i>Other Menus
-                  <i class="fa fa-chevron-down"></i>
+                  <span>Other Menus</span>
                 </a>
                 <div class="caret-up">
-                  <i class="fa fa-caret-up"> </i>
+                  <i class="fa fa-caret-up"></i>
                 </div>
               </li>
               <li class="dropdown">
                 <a class="fj-tab" data-toggle="tab" href="#sm-categories-dropdown">
-                  <i class="zmdi zmdi-layers"></i>categories
-                  <i class="fa fa-chevron-down"></i>
+                  <span>categories</span>
                 </a>
                 <div class="caret-up">
-                  <i class="fa fa-caret-up"> </i>
+                  <i class="fa fa-caret-up"></i>
                 </div>
               </li>
               <li class="dropdown">
                 <a class="fj-tab" data-toggle="tab" href="#sm-tags-dropdown">
-                  <i class="zmdi zmdi-tag-more"></i>TAGS
-                  <i class="fa fa-chevron-down"></i>
+                  <span>TAGS</span>
                 </a>
                 <div class="caret-up">
-                  <i class="fa fa-caret-up"> </i>
+                  <i class="fa fa-caret-up"></i>
                 </div>
               </li>
               <li class="dropdown">
                 <a class="fj-tab" data-toggle="tab" href="#sm-social-dropdown">
-                  <i class="zmdi zmdi-share"></i>SOCIAL
-                  <i class="fa fa-chevron-down"></i>
+                  <span>SOCIAL</span>
                 </a>
                 <div class="caret-up">
-                  <i class="fa fa-caret-up"> </i>
+                  <i class="fa fa-caret-up"></i>
                 </div>
               </li>
               <li class="dropdown">
                 <a class="fj-tab" data-toggle="tab" href="#sm-legal-dropdown">
-                  <i class="zmdi zmdi-assignment"></i>LEGAL
-                  <i class="fa fa-chevron-down"></i>
+                  <span>LEGAL</span>
                 </a>
                 <div class="caret-up">
-                  <i class="fa fa-caret-up"> </i>
+                  <i class="fa fa-caret-up"></i>
                 </div>
               </li>
               <li class="dropdown" id="lastitem">
                 <a class="fj-tab" data-toggle="tab" href="#sm-info-dropdown">
-                  <i class="zmdi zmdi-info-outline"></i>FURTHER INFO
-                  <i class="fa fa-chevron-down"></i>
+                  <span>FURTHER INFO</span>
                 </a>
                 <div class="caret-up">
                   <i class="fa fa-caret-up"></i>
@@ -859,19 +861,27 @@
                 <ul class="list-inline">
                   <li>
                     <a class="btn btn-sns">
-                      <i class="fa fa-facebook" aria-hidden="true"></i> facebook</a>
+                      <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                      <span>&nbsp;Facebook</span>
+                    </a>
                   </li>
                   <li>
                     <a class="btn btn-sns">
-                      <i class="fa fa-twitter" aria-hidden="true"></i> twitter</a>
+                      <i class="fa fa-twitter" aria-hidden="true"></i>
+                      <span>&nbsp;Twitter</span>
+                    </a>
                   </li>
                   <li>
                     <a class="btn btn-sns">
-                      <i class="fa fa-instagram" aria-hidden="true"></i> instagram</a>
+                      <i class="fa fa-instagram" aria-hidden="true"></i>
+                      <span>&nbsp;Instagram</span>
+                    </a>
                   </li>
                   <li>
                     <a class="btn btn-sns">
-                      <i class="fa fa-youtube-play" aria-hidden="true"></i> youtube</a>
+                      <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                      <span>&nbsp;Youtube</span>
+                    </a>
                   </li>
                 </ul>
               </div>

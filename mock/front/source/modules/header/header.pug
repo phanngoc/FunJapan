@@ -19,7 +19,7 @@ mixin header(hasSlider)
               i.fa.fa-bell
               span.badge-number 10                                        
             .dropdown-menu
-              .notification-list
+              .dropdown-menu__list#notification-list
                 ul
                   each noti, index in notification
                     li
@@ -42,10 +42,10 @@ mixin header(hasSlider)
                               p.notification__time
                                 i.fa.fa-clock-o
                                 span=noti.time
-              .show-all
-                a(href='#') Show all     
-
-    
+              .dropdown-menu__extra-info
+                a(href='#') Show all
+              .dropdown-menu__extra-info
+                span There is no message!
     .user-settings
       ul.nav
         // If is authenticated

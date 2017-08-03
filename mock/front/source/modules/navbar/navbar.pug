@@ -1,25 +1,24 @@
 mixin navbar()
-  .fj-navbar.nav-desktop
+  .fj-navbar
     .container
       nav.navbar.navbar-default
         ul.nav.navbar-nav
           li
             a(href='/index.html')
               i.zmdi.zmdi-ticket-star
-              | Campaigns
+              span Campaigns
           li
             a(href='#')
               i.zmdi.zmdi-card-giftcard
-              | Rewards
+              span Rewards
           each menu in menus
             if menu.href_id != "social-dropdown" && menu.href_id != "legal-dropdown" && menu.href_id != "info-dropdown"                     
               li.dropdown
                 a.fj-tab(data-toggle='tab', href=`#${menu.href_id}`)
                   i(class=`zmdi ${menu.icon}`)
-                  | #{menu.title}
-                  i.fa.fa-chevron-down
+                  span #{menu.title}
                 .caret-up
-                  i.fa.fa-caret-up          
+                  i.fa.fa-caret-up
         ul.nav.navbar-nav.navbar-right
           li
             a(href='#')
@@ -51,35 +50,29 @@ mixin navbar()
                     li
                       a(href='#')=submenu
                   li.vertical-bar
-                    a(href='#') |          
-  #nav-affix.navigation.fj-navbar-mobile
+                    a(href='#') |
+  #nav-affix.fj-navbar-mobile
       .container
         ul.list-inline
           li
             a(href='#')
-              i.zmdi.zmdi-ticket-star
-              | CAMPAIGNS
+              span CAMPAIGNS
           li
             a(href='#')
-              i.zmdi.zmdi-card-giftcard
-              | REWARDS
+              span REWARDS
           each menu in menus
             if menu.href_id === "info-dropdown"
               li.dropdown#lastitem
                 a.fj-tab(data-toggle='tab', href=`#${menu.mobile.href_id}`)
-                  i(class=`zmdi ${menu.icon}`)
-                  | #{menu.title}
-                  i.fa.fa-chevron-down
+                  span #{menu.title}
                 .caret-up
                   i.fa.fa-caret-up
             else
               li.dropdown
                 a.fj-tab(data-toggle='tab', href=`#${menu.mobile.href_id}`)
-                  i(class=`zmdi ${menu.icon}`)
-                  | #{menu.title}
-                  i.fa.fa-chevron-down
+                  span #{menu.title}
                 .caret-up
-                  i.fa.fa-caret-up          
+                  i.fa.fa-caret-up
       .tab-content
         each menu in menus
           div(class="tab-pane navbar-tab fade", id=`${menu.mobile.href_id}`)
@@ -97,7 +90,7 @@ mixin navbar()
                     li
                       a.btn.btn-sns
                         i(class="fa " + submenu.class, aria-hidden='true')
-                        |  #{submenu.title}
+                        span &nbsp;#{submenu.title}
             else
               ul.tab-content-menu 
                 each submenu in menu.submenus

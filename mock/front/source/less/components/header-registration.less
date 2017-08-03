@@ -1,0 +1,252 @@
+@head-red: #dd280d;
+@head-black: #333;
+@head-gray: #999;
+@head-gray-2: #666;
+@head-light-gray: #f3f3f4;
+@head-light-gray-2: #ddd;
+@head-light-gray-3: #ecebeb;
+@head-dark-gray: #979797;
+@head-dark-gray-2: #ccc;
+@head-yellow: #FFD628;
+@head-white: #fff;
+@head-pink: #fd3261;
+@head-light-pink: #ff6666;
+@head-red-2: #fd494a;
+@head-red-3: #fc4949;
+@head-white-transparent: rgba(255, 255, 255, 0.15);
+
+// Registration header
+.registration-header {
+  @media only screen and (max-width: 768px) {
+    height: 198px;
+  }
+  text-align: center;
+  height: 349px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 0 0 7px 7px;
+  background: url('./../images/registration/registration_banner_header.png');
+  background-size: cover;
+  background-position: center;
+  &.hide-steps {
+    .registration-title {
+      @media only screen and (max-width: 768px) {
+        margin-top: 50px;
+      }
+      margin-top: 105px;
+    }
+    .registration-navigation {
+      display: none;
+    }
+  }
+  .registration-top-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .registration-title {
+    @media only screen and (max-width: 768px) {
+      margin-top: 21px;
+    }
+    margin-top: 24px;
+    font-family: josefinsans-semibold;
+    position: relative;
+    z-index: 2;
+    &>a {
+      &:hover,
+      &:focus {
+        background-color: transparent;
+      }
+    }
+    .registration-logo {
+      @media only screen and (max-width: 768px) {
+        width: 50px;
+        height: 50px;
+      }
+      display: inline-block;
+      background-color: @head-white;
+      opacity: 0.8;
+      border-radius: 3px;
+      width: 60px;
+      height: 60px;
+      span {
+        @media only screen and (max-width: 768px) {
+          font-size: 40px;
+        }
+        font-size: 48px;
+        text-transform: uppercase;
+        color: @head-light-pink;
+      }
+    }
+    .web-title {
+      color: @head-white;
+      margin-top: 10px;
+      .text-fun {
+        @media only screen and (max-width: 768px) {
+          font-size: 15px;
+        }
+        font-size: 24px;
+        text-transform: uppercase;
+      }
+      .text-country {
+        @media only screen and (max-width: 768px) {
+          font-size: 13px;
+        }
+        font-size: 20px;
+      }
+    }
+  }
+  .registration-navigation {
+    @media only screen and (max-width: 768px) {
+      margin-top: 10px;
+    }
+    margin-top: 70px;
+    margin-bottom: 75px;
+    position: relative;
+    z-index: 2;
+    ul.list-inline {
+      font-size: 0;
+      &.step {
+        @media only screen and (max-width: 768px) {
+          padding: 5px;
+          margin-bottom: 2px;
+        }
+        display: inline-block;
+        padding: 7px;
+        .horizontal-bar {
+          @media only screen and (max-width: 768px) {
+            padding: 0px 20px;
+            bottom: 15px;
+          }
+          @media only screen and (min-width: 768px) and (max-width: 1024px) {
+            padding: 0 40px;
+          }
+          position: relative;
+          bottom: 25px;
+          padding: 0 70px;
+          background: @head-white-transparent;
+          &:after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 3px;
+            @media only screen and (max-width: 768px) {
+              height: 2px;
+            }
+          }
+        }
+        .step-item {
+          @media only screen and (max-width: 768px) {
+            font-size: 16px;
+            width: 30px;
+            height: 30px;
+            border: 2px solid @head-white-transparent;
+          }
+          font-family: josefinsans-bold;
+          font-size: 23px;
+          color: @head-white-transparent;
+          width: 50px;
+          height: 50px;
+          padding: 0;
+          border-radius: 50%;
+          position: relative;
+          border: 3px solid @head-white-transparent;
+          .step-number {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+          }
+          .step-des-item {
+            @media only screen and (max-width: 768px) {
+              font-size: 10px;
+              top: 35px;
+            }
+            display: none;
+            font-size: 14px;
+            color: @head-white-transparent;
+            padding: 0;
+            width: 280px;
+            position: absolute;
+            top: 65px;
+            left: 50%;
+            transform: translateX(-50%);
+            .step-number {
+              font-family: josefinsans-bold;
+            }
+            .step-des {
+              @media only screen and (max-width: 768px) {
+                display: inline-block;
+                min-width: 180px;
+                padding: 2px 0 1px;
+              }
+              font-family: josefinsans-semibold;
+              padding: 5px 25px;
+              background-color: @head-white;
+              opacity: 0.8;
+              border-radius: 15px;
+            }
+          }
+          .vertical-bar {
+            display: none;
+            background-color: @head-white;
+            width: 3px;
+            height: 15px;
+            position: absolute;
+            top: 47px;
+            left: 50%;
+            transform: translateX(-50%);
+            @media only screen and (max-width: 768px) {
+              width: 2px;
+              height: 7px;
+              top: 28px;
+            }
+          }
+          &.active {
+            color: @head-white;
+            border-color: @head-white;
+            .step-des-item {
+              display: block;
+              color: @head-light-pink;
+            }
+            .vertical-bar {
+              display: block;
+            }
+          }
+          &.step-item--1 {
+            @media only screen and (max-width: 768px) {
+              .step-des-item {
+                transform: translateX(-25%);
+              }
+            }
+          }
+          &.step-item--3 {
+            @media only screen and (max-width: 768px) {
+              .step-des-item {
+                transform: translateX(-75%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .header-boder {
+    height: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    position: absolute;
+    bottom: 0;
+    min-width: 100%;
+    z-index: 2;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .top-header {
+    display: none;
+  }
+  .top-header-mobile {
+    display: block;
+  }
+}

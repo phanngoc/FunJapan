@@ -42,19 +42,19 @@
       "icon": "zmdi-share",
       "submenus": [
         {
-          "title": "facebook",
-          "class": "fa-facebook"
+          "title": "Facebook",
+          "class": "fa-facebook-square"
         },
         {
-          "title": "twitter",
+          "title": "Twitter",
           "class": "fa-twitter"
         },
         {
-          "title": "instagram",
+          "title": "Instagram",
           "class": "fa-instagram"
         },
         {
-          "title": "youtube",
+          "title": "Youtube",
           "class": "fa-youtube-play"
         }
       ],        
