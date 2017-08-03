@@ -64,6 +64,11 @@
     @media @tablet {
       display: block;
       margin-left: 15px;
+      .dropdown {
+        &>a {
+          background-color: transparent;
+        }
+      }
       .dropdown-toggle {
         padding: 0;
         i.fa-bell {
@@ -105,24 +110,36 @@
         .jspVerticalBar {
           right: 1px;
         }
-      }
-      .notification-list {
-        height: 270px;
-        width: 350px !important;
-        overflow: auto;
+        &__list {
+          max-height: 260px;
+          width: 350px !important;
+          overflow: auto;
+          li:not(:last-child) {
+            &::after {
+              content: '';
+              display: block;
+              height: 1px;
+              margin-right: 5px;
+              margin-left: 10px;
+              background-color: @gray-2;
+            }
+          }
+        }
+        &__extra-info {
+          text-align: center;
+          padding: 10px;
+          border-top: 1px solid @gray-light;
+          a,
+          span {
+            font-family: opensans-regular;
+            color: @gray;
+            font-size: 12px;
+          }
+        }
       }
       .notification {
         position: relative;
-        height: 50px;
         padding: 5px 5px 5px 10px;
-        &::after {
-          content: '';
-          display: block;
-          margin-top: 5px;
-          width: 320px;
-          height: 1px;
-          background-color: @gray-2;
-        }
         &>* {
           vertical-align: middle;
         }
@@ -139,8 +156,9 @@
         &__message {
           display: inline-block;
           height: 100%;
-          width: 280px;
-          padding: 2px 8px;
+          width: 270px;
+          padding: 4px;
+          margin-left: 5px;
           &--new {
             background-color: @gray-light;
           }
@@ -168,16 +186,6 @@
             font-size: 11px;
             color: @gray-2;
           }
-        }
-      }
-      .show-all {
-        text-align: center;
-        padding: 10px;
-        border-top: 1px solid @gray-light;
-        a {
-          font-family: opensans-regular;
-          color: @gray;
-          font-size: 12px;
         }
       }
     }

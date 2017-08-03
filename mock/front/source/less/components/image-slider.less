@@ -11,7 +11,7 @@
   background-color: @white;
   position: relative;
   transform: translate3d(0, 0, 0);
-  @media @tablet {
+  @media @desktop {
     height: 450px;
   }
   .bgLayer {
@@ -21,7 +21,7 @@
     height: 160px;
     width: 100%;
     border-radius: 0px;
-    @media @tablet {
+    @media @desktop {
       height: 450px;
     }
     .mcSlc {
@@ -39,14 +39,14 @@
     position: absolute;
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.9);
-    @media @tablet {
+    @media @desktop {
       width: 43%;
       left: 38px;
       bottom: 40px;
     }
     .slider-summary {
       margin: 7px 10px;
-      @media @tablet {
+      @media @desktop {
         margin: 15px;
       }
       &__title {
@@ -56,7 +56,7 @@
         color: @red;
         margin-bottom: 5px;
         .multiLineEllipsis(@lineHeight: 1.3em, @lineCount: 1, @bgColor: inherit);
-        @media @tablet {
+        @media @desktop {
           text-transform: uppercase;
           .multiLineEllipsis(@lineHeight: 1.3em, @lineCount: 2, @bgColor: inherit);
         }
@@ -67,14 +67,14 @@
         color: @black;
         margin-bottom: 7px;
         .multiLineEllipsis(@lineHeight: 1.3em, @lineCount: 1, @bgColor: inherit);
-        @media @tablet {
+        @media @desktop {
           font-size: 13px;
           .multiLineEllipsis(@lineHeight: 1.3em, @lineCount: 2, @bgColor: inherit);
         }
       }
       &__read-more {
         display: none;
-        @media @tablet {
+        @media @desktop {
           display: inline-block;
           word-wrap: break-word;
           height: 21px;
@@ -155,7 +155,7 @@
     background-repeat: no-repeat;
     background-position: right top;
     border-radius: 2px;
-    @media @tablet {
+    @media @desktop {
       margin: 20px 0;
       width: 193px;
       height: 123px;
@@ -182,7 +182,7 @@
   }
   .thumb-content-wrapper {
     display: none;
-    @media @tablet {
+    @media @desktop {
       display: block;
       height: 40px;
       width: 100%;
@@ -199,7 +199,7 @@
       }
     }
   }
-  @media @tablet {
+  @media @desktop {
     right: 20px;
   }
 }

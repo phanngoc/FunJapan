@@ -3,6 +3,6 @@
 // Scroll bar
 $(function() {
   $('#notifications').addClass('open');
-  $(".notification-list").jScrollPane();
+  $("#notification-list").jScrollPane();
   $('#notifications').removeClass('open');
 });
