@@ -11,19 +11,20 @@ mixin slider()
       each val in slide_images
         div(id=val.title_id)
           a(href='#')
-            .content
-              p.heading=val.heading
-              p.description=val.description 
-              p.read-more
-                span Read more
+            .slider-summary
+              p.slider-summary__title=val.heading
+              p.slider-summary__description=val.description
+              p.slider-summary__read-more
+                span more &nbsp;
+                  i.zmdi.zmdi-more
     // EOF CAPTIONS
     // THUMBNAIS
     #banner-top-thumbs
       each slide_image in slide_images
         .thumb(style="background-image: url('" + slide_image.thumb.thumb_src + "');")
           .thumb-content-wrapper
-            .thumb-content
-              p=slide_image.thumb.description
-          div(style='clear:both;')          
+            p.thumb-content=slide_image.thumb.description
+          div(style='clear:both;')
+          .thumb__layer    
     // EOF THUMBNAIS
     // EOF SLIDER
