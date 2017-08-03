@@ -1,0 +1,109 @@
+mixin navbar()
+  .fj-navbar.nav-desktop
+    .container
+      nav.navbar.navbar-default
+        ul.nav.navbar-nav
+          li
+            a(href='/index.html')
+              i.zmdi.zmdi-ticket-star
+              | Campaigns
+          li
+            a(href='#')
+              i.zmdi.zmdi-card-giftcard
+              | Rewards
+          each menu in menus
+            if menu.href_id != "social-dropdown" && menu.href_id != "legal-dropdown" && menu.href_id != "info-dropdown"                     
+              li.dropdown
+                a.fj-tab(data-toggle='tab', href=`#${menu.href_id}`)
+                  i(class=`zmdi ${menu.icon}`)
+                  | #{menu.title}
+                  i.fa.fa-chevron-down
+                .caret-up
+                  i.fa.fa-caret-up          
+        ul.nav.navbar-nav.navbar-right
+          li
+            a(href='#')
+              i.fa.fa-facebook-square
+          li
+            a(href='#')
+              i.fa.fa-twitter
+          li
+            a(href='#')
+              i.fa.fa-instagram
+          li
+            a(href='#')
+              i.fa.fa-youtube-play
+      .tab-content
+        each menu in menus
+          if menu.href_id != "social-dropdown" && menu.href_id != "legal-dropdown" && menu.href_id != "info-dropdown"
+            div(class="tab-pane navbar-tab fade", id=`${menu.href_id}`)
+              ul.tab-content-menu
+                if menu.href_id === "tags-dropdown"
+                  each submenu in menu.submenus
+                    li.hot-tags
+                      a(href='#')
+                        span.hashtag # 
+                        | #{submenu}
+                else              
+                  each submenu in menu.submenus
+                    li.vertical-bar
+                      a(href='#') |
+                    li
+                      a(href='#')=submenu
+                  li.vertical-bar
+                    a(href='#') |          
+  #nav-affix.navigation.fj-navbar-mobile
+      .container
+        ul.list-inline
+          li
+            a(href='#')
+              i.zmdi.zmdi-ticket-star
+              | CAMPAIGNS
+          li
+            a(href='#')
+              i.zmdi.zmdi-card-giftcard
+              | REWARDS
+          each menu in menus
+            if menu.href_id === "info-dropdown"
+              li.dropdown#lastitem
+                a.fj-tab(data-toggle='tab', href=`#${menu.mobile.href_id}`)
+                  i(class=`zmdi ${menu.icon}`)
+                  | #{menu.title}
+                  i.fa.fa-chevron-down
+                .caret-up
+                  i.fa.fa-caret-up
+            else
+              li.dropdown
+                a.fj-tab(data-toggle='tab', href=`#${menu.mobile.href_id}`)
+                  i(class=`zmdi ${menu.icon}`)
+                  | #{menu.title}
+                  i.fa.fa-chevron-down
+                .caret-up
+                  i.fa.fa-caret-up          
+      .tab-content
+        each menu in menus
+          div(class="tab-pane navbar-tab fade", id=`${menu.mobile.href_id}`)
+            if menu.mobile.href_id === "sm-tags-dropdown"
+              ul.tab-content-menu
+                each submenu in menu.submenus
+                  li.hot-tags
+                    a(href='#')
+                      span.hashtag # 
+                      | #{submenu}
+            else if menu.mobile.href_id === "sm-social-dropdown"
+              .sns-btn-fanpage
+                ul.list-inline
+                  each submenu in menu.submenus              
+                    li
+                      a.btn.btn-sns
+                        i(class="fa " + submenu.class, aria-hidden='true')
+                        |  #{submenu.title}
+            else
+              ul.tab-content-menu 
+                each submenu in menu.submenus
+                  li.vertical-bar
+                    a(href='#') |
+                  li
+                    a(href='#')=submenu
+                li.vertical-bar
+                  a(href='#') |       

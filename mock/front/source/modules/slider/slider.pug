@@ -1,0 +1,29 @@
+mixin slider()
+  // SLIDER
+  #banner-top-sliderFrame
+    // MAIN IMAGES
+    #banner-top-slider
+      each val in slide_images
+        a.lazyImage(href=val.main_image_src, title="#" + val.title_id)
+    // MAIN IMAGES
+    // CAPTIONS
+    div(style='display: none;')
+      each val in slide_images
+        div(id=val.title_id)
+          a(href='#')
+            .content
+              p.heading=val.heading
+              p.description=val.description 
+              p.read-more
+                span Read more
+    // EOF CAPTIONS
+    // THUMBNAIS
+    #banner-top-thumbs
+      each slide_image in slide_images
+        .thumb(style="background-image: url('" + slide_image.thumb.thumb_src + "');")
+          .thumb-content-wrapper
+            .thumb-content
+              p=slide_image.thumb.description
+          div(style='clear:both;')          
+    // EOF THUMBNAIS
+    // EOF SLIDER
