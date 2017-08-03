@@ -2,6 +2,7 @@
 
 @section('scripts')
     {!! Html::script('assets/admin/js/banner.js') !!}
+    {!! Html::script('assets/admin/js/select2-article.js') !!}
 
     <script>
         var articleSuggest = {{ config('banner.article_suggest') }};
@@ -58,7 +59,7 @@
                                         <select
                                             name="article_locale_id"
                                             class="article-select2"
-                                            style="width: 96%"
+                                            data-ajax--url="{{ action('Admin\BannerSettingsController@getArticle') }}"
                                         >
                                             @if (old('article_id'))
                                                 <option value="{{ old('article_id') }}" selected="selected">

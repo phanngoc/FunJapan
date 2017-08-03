@@ -33,15 +33,15 @@ class BannerSettingsController extends Controller
         return view('admin.banner.index', $this->viewData);
     }
 
-    public function getArticle(Request $request)
+    public function getArticle(Request $request, $isNotLocale = false)
     {
-        $condition = $request->only(['key_word', 'locale_id', 'page', 'banner_id', 'is_not_locale']);
+        $condition = $request->only(['key_word', 'locale_id', 'page', 'banner_id']);
 
         if (BannerSettingService::checkActiveUrl($condition['key_word'])) {
             $condition['key_word'] = BannerSettingService::processUrlSearch($condition['key_word']);
         }
 
-        return response()->json(ArticleService::getListForBanner($condition));
+        return response()->json(ArticleService::getListForBanner($condition, $isNotLocale));
     }
 
     public function store(Request $request)

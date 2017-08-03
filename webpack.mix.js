@@ -81,4 +81,5 @@ mix.js('resources/assets/js/app.js', assetPath + 'js')
     .js('resources/assets/js/admin/client.js', assetPath + 'admin/js')
     .sass('resources/assets/sass/admin/client.scss', assetPath + 'admin/css')
     .js('resources/assets/js/admin/author.js', assetPath + 'admin/js')
-    .js('resources/assets/js/admin/editor_choices.js', assetPath + 'admin/js');
+    .js('resources/assets/js/admin/editor_choices.js', assetPath + 'admin/js')
+    .js('resources/assets/js/admin/select2-article.js', assetPath + 'admin/js');

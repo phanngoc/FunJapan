@@ -2,6 +2,7 @@
 
 @section('scripts')
     {!! Html::script('assets/admin/js/alwaysOnTop.js') !!}
+    {!! Html::script('assets/admin/js/select2-article.js') !!}
 
     <script>
         var articleSuggest = {{ config('banner.article_suggest') }};
@@ -14,6 +15,7 @@
         var lblQuestionChangeLocale = '{{ trans('admin/article.always_on_top.label_change_locale_question') }}';
         var lblTitleUpdate = '{{ trans('admin/article.always_on_top.label_update_title') }}';
         var lblQuestionUpdate = '{{ trans('admin/article.always_on_top.label_update_question_title') }}';
+        var isNotLocale = false;
     </script>
 @endsection
 
@@ -47,7 +49,9 @@
                                 <div class="col-sm-10">
                                     <select
                                             name="article_locale_id"
+                                            data-ajax--url="{{ action('Admin\BannerSettingsController@getArticle') }}"
                                             class="article-select2"
+                                            data-not-locale="0"
                                             style="width: 96%"
                                     >
                                         @if (old('article_id'))
@@ -65,7 +69,7 @@
                                     {{ trans('admin/article.always_on_top.label_from') }}
                                 </label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="start_date" class="form-control from-datetime-picker" autocomplete="off">
+                                    <input type="text" name="start_date" class="form-control from-datetime-picker width-96" autocomplete="off">
                                     <p class="text-danger font-bold m-xxs error-message" id="start_date_error"></p>
                                 </div>
                             </div>
@@ -75,7 +79,7 @@
                                     {{ trans('admin/article.always_on_top.label_to') }}
                                 </label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="end_date" class="form-control to-datetime-picker" autocomplete="off">
+                                    <input type="text" name="end_date" class="form-control to-datetime-picker width-96" autocomplete="off">
                                     <p class="text-danger font-bold m-xxs error-message" id="end_date_error"></p>
                                 </div>
                             </div>

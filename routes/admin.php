@@ -78,7 +78,7 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::get('setting/banner', 'BannerSettingsController@index');
         Route::post('setting/banner', 'BannerSettingsController@store');
         //Route::delete('setting/banner/{bannerId}', 'BannerSettingsController@delete');
-        Route::get('setting/banner/get-article', 'BannerSettingsController@getArticle');
+        Route::get('setting/banner/get-article/{isNotLocale?}', 'BannerSettingsController@getArticle');
         Route::post('setting/banner/{bannerId}', 'BannerSettingsController@update');
 
         Route::get('getCategories', 'CategoriesController@getCategories');

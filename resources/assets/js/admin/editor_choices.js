@@ -154,41 +154,4 @@ $(document).ready(function(e) {
         $('#update-section').addClass('hidden');
         $('#update-error-message').parent().parent().addClass('hidden');
     });
-
-    $('.article-select2').select2({
-        placeholder: "Select a state",
-        width: '100%',
-        allowClear: true,
-        ajax: {
-            url: baseUrl() + "/admin/setting/banner/get-article",
-            dataType: 'json',
-            delay: 250,
-            data: function data(params) {
-                return {
-                    key_word: params.term,
-                    page: params.page,
-                    is_not_locale: 1,
-                };
-            },
-            processResults: function processResults(data, params) {
-                params.page = params.page || 1;
-
-                return {
-                    results: data.data,
-                    pagination: {
-                        more: params.page * articleSuggest < data.total
-                    }
-                };
-            },
-            cache: true
-        },
-
-        escapeMarkup: function escapeMarkup(markup) {
-            return markup;
-        },
-        minimumInputLength: 1,
-        minimumResultsForSearch: -1,
-        templateResult: formatRepo,
-        templateSelection: formatRepoSelection
-    });
 })
