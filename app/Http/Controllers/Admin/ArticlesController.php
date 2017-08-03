@@ -102,9 +102,19 @@ class ArticlesController extends Controller
                 $firstArticleLocale = $article->articleLocales->first();
                 $this->viewData['firstArticleLocale'] = $firstArticleLocale;
                 $this->viewData['locale'] = $locale;
-                $this->viewData['tags'] = $firstArticleLocale->tags->pluck('name')->toArray();
+
+                $tags = [];
+                $articleTags = $firstArticleLocale->articleTags;
+                foreach ($articleTags as $articleTag) {
+                    $tagsLocale = $articleTag->tag->tagLocales($localeId)->first();
+
+                    if ($tagsLocale) {
+                        $tags[$articleTag->tag->id] = $tagsLocale->name;
+                    }
+                }
+                $this->viewData['tags'] = $tags;
                 $this->viewData['category'] = Category::where('locale_id', $localeId)
-                    ->where('mapping', $article->category->mapping)->first();
+                    ->where('mapping', $firstArticleLocale->category->mapping)->first();
             }
         }
 
@@ -131,7 +141,7 @@ class ArticlesController extends Controller
             $input['publish_date'] . ' 00:00:00') : '';
         $input['end_published_at'] = $input['end_publish_date'] ?
             ($input['end_publish_time'] ? $input['end_publish_date'] . ' ' . $input['end_publish_time'] . ':00' :
-            $input['end_publish_date'] . ' 00:00:00') : '';
+            $input['end_publish_date'] . ' 23:59:59') : '';
 
         if (isset($input['preview']) && $input['preview']) {
             $validator = ArticleService::validate($input, true);
@@ -258,7 +268,7 @@ class ArticlesController extends Controller
             $input['publish_date'] . ' 00:00:00') : '';
         $input['end_published_at'] = $input['end_publish_date'] ?
             ($input['end_publish_time'] ? $input['end_publish_date'] . ' ' . $input['end_publish_time'] . ':00' :
-            $input['end_publish_date'] . ' 00:00:00') : '';
+            $input['end_publish_date'] . ' 23:59:59') : '';
 
         if (isset($input['thumbnail']) && $input['thumbnail']) {
             if ($input['switch_editor'] == config('article.content_type.medium')) {
