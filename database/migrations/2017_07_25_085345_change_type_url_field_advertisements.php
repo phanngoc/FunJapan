@@ -25,7 +25,7 @@ class ChangeTypeUrlFieldAdvertisements extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
+        Schema::table('advertisements', function (Blueprint $table) {
             $table->string('url')->change();
         });
     }

@@ -1,30 +1,41 @@
-<div class="top-header">
-    <div class="header-text">
-        <a href="/">
-            <img src="assets/images/brand-icon.png" alt="brand-icon">
-            <span>
-                {!! trans('web/global.app_name', [
-                    'sitename' => '<span class="title-country">' . trans('web/global.site_name') . '</span>'
-                ]) !!}
-            </span>
-        </a>
-    </div>
-    <div class="header-right">
-        <form role="form" action="/Search" method="get">
-            <input type="text" placeholder="Type in keyword">
-            <i class="fa fa-search form-control-feedback"></i>
-        </form>
-        <div class="user-setting">
-            @if (!auth()->check())
-                <div class="authentication">
-                    <a class="authen-link" href="{{ action('Web\RegisterController@create') }}">
-                        <i class="fa fa-unlock-alt"></i> Register</a>
-                    <span class="authen-link">/</span>
-                    <a class="authen-link" href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
+<a class="header__sitename" href="/">
+    <span class="header__sitename-red">{{ trans('web/global.app_name') }}</span>
+    <span class="header__sitename-black">{{ trans('web/global.site_name') }}</span>
+</a>
+<form class="header__search" role="form" action="/Search" method="get">
+    <input type="text" placeholder="Search">
+    <i class="fa fa-search"></i>
+</form>
+<a class="header__advanced-search" href="#">
+    <span>Advanced</span>
+</a>
+@if (auth()->check())
+    @include('layouts.includes.notifications')
+@endif
+<div class="user-settings">
+    @if (!auth()->check())
+        <ul class="nav">
+            <li class="dropdown dropdown--unauthen">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                    <i class="zmdi zmdi-account-circle"></i>
+                </a>
+                <div class="dropdown-menu">
+                    <ul class="list-items">
+                        <li>
+                            <a href="{{ action('Web\RegisterController@create') }}">
+                                <i class="fa fa-unlock-alt"></i> Register
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('login') }}">
+                                <i class="fa fa-user"></i> Login
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-            @else
-                @include('layouts.includes.user_logined_control', ['user' => auth()->user()])
-            @endif
-        </div>
-    </div>
+            </li>
+        </ul>
+    @else
+        @include('layouts.includes.user_logined_control', ['user' => auth()->user()])
+    @endif
 </div>
