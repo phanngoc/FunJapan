@@ -1,5 +1,5 @@
 <!-- NAVBAR -->
-<div class="fj-navbar nav-desktop">
+<div class="fj-navbar">
     <div class="container">
         <nav class="navbar navbar-default">
             <ul class="nav navbar-nav">
@@ -13,7 +13,7 @@
                                     @else
                                         <img class="icon-menu" src="{{ $m->icon_url['normal'] }}">
                                     @endif
-                                    {{ $m->name }}
+                                    <span>{{ $m->name }}</span>
                                 </a>
                             </li>
                         @else
@@ -26,9 +26,12 @@
                                     <a data-toggle="tab" href="#dropdown-tags-{{ $m->id }}" class="fj-tab">
                                 @endif
                                 @if ($m->icon_class)
-                                    <i class="{{ $m->icon_class }}"></i>{{ $m->name }} <i class="fa fa-chevron-down"></i>
+                                    <i class="{{ $m->icon_class }}"></i>
+                                    <span>{{ $m->name }}</span>
                                 @else
-                                    <img class="icon-menu" src="{{ $m->icon_url['normal'] }}">{{ $m->name }} <i class="fa fa-chevron-down"></i>
+                                    <img class="icon-menu" src="{{ $m->icon_url['normal'] }}">
+                                    <span>{{ $m->name }}</span>
+                                    <i class="fa fa-chevron-down"></i>
                                 @endif
                                 </a>
                                 <div class="caret-up">
@@ -110,7 +113,7 @@
     </div>
 </div>
 
-<div class="navigation fj-navbar-mobile" id="nav-affix">
+<div class="fj-navbar-mobile" id="nav-affix">
     <div class="container">
         <ul class="list-inline">
             @if (isset($menu))
@@ -118,12 +121,7 @@
                     @if ($m->type == config('menu.parent_type.link'))
                         <li class="">
                             <a href="{{ $m->link }}">
-                                @if ($m->icon_class)
-                                    <i class="{{ $m->icon_class }}"></i>
-                                @else
-                                    <img class="icon-menu" src="{{ $m->icon_url['normal'] }}">
-                                @endif
-                                {{ $m->name }}
+                                <span>{{ $m->name }}</span>
                             </a>
                         </li>
                     @else
@@ -135,11 +133,7 @@
                             @elseif ($m->type == config('menu.parent_type.tag'))
                                 <a data-toggle="tab" href="#sm-dropdown-tags-{{ $m->id }}" class="fj-tab">
                             @endif
-                            @if ($m->icon_class)
-                                <i class="{{ $m->icon_class }}"></i>{{ $m->name }} <i class="fa fa-chevron-down"></i>
-                            @else
-                                <img class="icon-menu" src="{{ $m->icon_url['normal'] }}">{{ $m->name }} <i class="fa fa-chevron-down"></i>
-                            @endif
+                                <span>{{ $m->name }}</span>
                             </a>
                             <div class="caret-up">
                                 <i class="fa fa-caret-up"></i>
@@ -148,6 +142,30 @@
                     @endif
                 @endforeach
             @endif
+            <li class="dropdown">
+                <a class="fj-tab" data-toggle="tab" href="#sm-social-dropdown">
+                    <span>SOCIAL</span>
+                </a>
+                <div class="caret-up">
+                    <i class="fa fa-caret-up"></i>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a class="fj-tab" data-toggle="tab" href="#sm-legal-dropdown">
+                    <span>LEGAL</span>
+                </a>
+                <div class="caret-up">
+                    <i class="fa fa-caret-up"></i>
+                </div>
+            </li>
+            <li class="dropdown" id="lastitem">
+                <a class="fj-tab" data-toggle="tab" href="#sm-info-dropdown">
+                    <span>FURTHER INFO</span>
+                </a>
+                <div class="caret-up">
+                    <i class="fa fa-caret-up"></i>
+                </div>
+            </li>
         </ul>
     </div>
     <div class="tab-content">
@@ -194,6 +212,80 @@
                 @endif
             @endforeach
         @endif
+        <div class="tab-pane navbar-tab fade" id="sm-social-dropdown">
+            <div class="sns-btn-fanpage">
+                <ul class="list-inline">
+                    <li>
+                        <a class="btn btn-sns" href="{{ trans('web/global.link.facebook') }}">
+                            <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                            <span>&nbsp;Facebook</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn btn-sns" href="{{ trans('web/global.link.twitter') }}">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                            <span>&nbsp;Twitter</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn btn-sns" href="{{ trans('web/global.link.instagram') }}">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                            <span>&nbsp;Instagram</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn btn-sns" href="{{ trans('web/global.link.youtube') }}">
+                            <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                            <span>&nbsp;Youtube</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-pane navbar-tab fade" id="sm-legal-dropdown">
+            <ul class="tab-content-menu">
+                <li class="vertical-bar">
+                    <a href="#">|</a>
+                </li>
+                <li>
+                    <a href="{{ action('Web\GuidesController@termsAndConditions') }}">TERMS &amp; CONDITIONS</a>
+                </li>
+                <li class="vertical-bar">
+                    <a href="#">|</a>
+                </li>
+                <li>
+                    <a href="{{ action('Web\GuidesController@privacyPolicies') }}">PRIVACY POLICIES</a>
+                </li>
+                <li class="vertical-bar">
+                    <a href="#">| </a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-pane navbar-tab fade" id="sm-info-dropdown">
+            <ul class="tab-content-menu">
+                <li class="vertical-bar">
+                    <a href="#">|</a>
+                </li>
+                <li>
+                    <a href="{{ action('Web\GuidesController@faq') }}">FAQ</a>
+                </li>
+                <li class="vertical-bar">
+                    <a href="#">|</a>
+                </li>
+                <li>
+                    <a href="{{ action('Web\GuidesController@contactUs') }}">CONTACT US</a>
+                </li>
+                <li class="vertical-bar">
+                    <a href="#">|</a>
+                </li>
+                <li>
+                    <a href="{{ action('Web\GuidesController@inquiry') }}">FOR MARKETERS</a>
+                </li>
+                <li class="vertical-bar">
+                    <a href="#">| </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 <!-- EOF NAVBAR -->

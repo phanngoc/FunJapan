@@ -10,5 +10,5 @@ return [
         'youtube' => 'https://www.youtube.com/c/Funjapantravel',
     ],
     'site_name' => 'Japan Thailand',
-    'app_name' => 'Fun! :sitename',
+    'app_name' => 'Fun!',
 ];

@@ -2,7 +2,7 @@
 <html lang="{{ config('app.locale') }}">
     <head>
         @include('layouts.includes.head')
-        <title>{{ trans('web/global.app_name', ['sitename' => trans('web/global.site_name')]) }}</title>
+        <title>{{ trans('web/global.app_name') . ' ' .trans('web/global.site_name') }}</title>
         @include('layouts.includes.styles')
     </head>
     <body>

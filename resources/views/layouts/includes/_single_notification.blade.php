@@ -6,12 +6,16 @@
             @else
                 <i class="fa fa-user-circle fa-2x"></i>
             @endif
-            <div class="message">
-                <p class="single-line">
-                    <span class="name">{{ $notification->sender->name ?? 'Unknow' }}</span>
-                    <span class="action">{{ trans('web/notification.messages.' . $notification->type) }}</span>
+            <div class="notification__message {{ $notification->status == config('notification.status.un_read') ? 'notification__message--new' : null  }}">
+                <p class="notification__content">
+                    <span class="notification__user-name">
+                        {{ $notification->sender->name ?? 'Unknow' }}
+                    </span>
+                    <span class="notification__action">
+                        {{ trans('web/notification.messages.' . $notification->type) }}
+                    </span>
                 </p>
-                <p class="time" data-time="{{ $notification->created_at }}">
+                <p class="notification__time" data-time="{{ $notification->created_at }}">
                     <i class="fa fa-clock-o"></i>
                     <span>{{ $notification->created_at }}</span>
                 </p>

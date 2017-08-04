@@ -1,7 +1,7 @@
 $(function () {
     Echo.private('notification.' + channel)
         .listen('NotificationEvent', (e) => {
-            $('#notifications').find('.notification-list').prepend(e.html);
+            $('#notifications').find('#notification-list ul').prepend(e.html);
             $('#notifications').find('.no-notifications').empty();
             var currentTotal = $('#notifications').find('.badge-number').text();
             currentTotal = currentTotal == '' ? 0 : parseInt(currentTotal);
@@ -18,7 +18,7 @@ $(function () {
                     $('#notifications').find('.badge-number').empty().append(response.total);
                 }
 
-                $('#notifications').append(response.htmlNotifications);
+                $('#notifications').find('#notification-list ul').append(response.htmlNotifications);
                 timeDiffHuman();
             }
         }
@@ -43,7 +43,7 @@ $(function () {
 
 function timeDiffHuman() {
     $('#notifications').find('.notification').each(function () {
-        var thisTime = $(this).find('.time');
+        var thisTime = $(this).find('.notification__time');
         thisTime.find('span').text(moment.tz(thisTime.attr('data-time'), timezone).fromNow());
     });
 }
